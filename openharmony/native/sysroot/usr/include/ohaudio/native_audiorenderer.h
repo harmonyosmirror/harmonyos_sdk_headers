@@ -48,7 +48,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*
+/**
  * Request to release the renderer stream.
  *
  * @since 10
@@ -61,7 +61,7 @@ extern "C" {
  */
 OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer);
 
-/*
+/**
  * Request to start the renderer stream.
  *
  * @since 10
@@ -74,7 +74,7 @@ OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer);
  */
 OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer);
 
-/*
+/**
  * Request to pause the renderer stream.
  *
  * @since 10
@@ -87,7 +87,7 @@ OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer);
  */
 OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
 
-/*
+/**
  * Request to stop renderer stream.
  *
  * @since 10
@@ -100,7 +100,7 @@ OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
  */
 OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer);
 
-/*
+/**
  * Request to flush the renderer stream.
  *
  * @since 10
@@ -113,7 +113,7 @@ OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer);
  */
 OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer);
 
-/*
+/**
  * Query the current state of the renderer client.
  *
  * This function will return the renderer state without updating the state.
@@ -129,7 +129,7 @@ OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer);
 OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer* renderer,
     OH_AudioStream_State* state);
 
-/*
+/**
  * Query the sample rate value of the renderer client
  *
  * This function will return the renderer sample rate value without updating the state.
@@ -144,20 +144,20 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer* rendere
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* renderer, int32_t* rate);
 
-/*
+/**
  * Query the stream id of the renderer client.
  *
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @param stramId Pointer to a variable that will be set for the stream id.
+ * @param streamId Pointer to a variable that will be set for the stream id.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, uint32_t* streamId);
 
-/*
+/**
  * Query the channel count of the renderer client.
  *
  * @since 10
@@ -170,7 +170,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, u
  */
 OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* renderer, int32_t* channelCount);
 
-/*
+/**
  * Query the sample format of the renderer client.
  *
  * @since 10
@@ -184,7 +184,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* rendere
 OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* renderer,
     OH_AudioStream_SampleFormat* sampleFormat);
 
-/*
+/**
  * Query the latency mode of the renderer client.
  *
  * @since 10
@@ -197,7 +197,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* rendere
  */
 OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer,
     OH_AudioStream_LatencyMode* latencyMode);
-/*
+
+/**
  * Query the renderer info of the renderer client.
  *
  * The rendere info includes {@link OH_AudioStream_Usage} value.
@@ -213,7 +214,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer
 OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* renderer,
     OH_AudioStream_Usage* usage);
 
-/*
+/**
  * Query the encoding type of the renderer client.
  *
  * @since 10
@@ -227,7 +228,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* rendere
 OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* renderer,
     OH_AudioStream_EncodingType* encodingType);
 
-/*
+/**
  * Query the the number of frames that have been written since the stream was created.
  *
  * @since 10
@@ -240,7 +241,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* rendere
  */
 OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* renderer, int64_t* frames);
 
-/*
+/**
  * Query the the time at which a particular frame was presented.
  *
  * @since 10
@@ -259,7 +260,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* render
 OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
     clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
 
-/*
+/**
  * Query the frame size in callback, it is a fixed length that the stream want to be filled for each callback.
  *
  * @since 10
@@ -272,7 +273,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
  */
 OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* renderer, int32_t* frameSize);
 
-/*
+/**
  * Query the playback speed of the stream client
  *
  * @since 11
@@ -285,8 +286,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* 
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, float* speed);
 
-
-/*
+/**
  * Set the playback speed of the stream client
  *
  * @since 11

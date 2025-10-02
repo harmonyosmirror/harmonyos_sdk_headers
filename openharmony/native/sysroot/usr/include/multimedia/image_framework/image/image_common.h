@@ -27,7 +27,7 @@
  *
  * @brief Declares the common enums and structs used by the image interface.
  *
- * @library libpixelmap.so
+ * @library libimage_common.so
  * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
@@ -171,6 +171,11 @@ typedef enum {
      *  @since 13
      */
     IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,
+    /**
+     * @error Invalid parameter.
+     * @since 19
+     */
+    IMAGE_INVALID_PARAMETER = 7600206,
     /** failed to allocate memory */
     IMAGE_ALLOC_FAILED = 7600301,
     /** memory copy failed */
@@ -204,6 +209,11 @@ typedef enum {
      * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203,
+    /**
+     * @error Invalid parameter.
+     * @since 19
+     */
+    IMAGE_SOURCE_INVALID_PARAMETER = 7700204,
     /** decode failed */
     IMAGE_DECODE_FAILED = 7700301,
     /**
@@ -211,6 +221,11 @@ typedef enum {
      * @since 15
      */
     IMAGE_SOURCE_ALLOC_FAILED = 7700302,
+    /**
+     * @error Invalid parameter for ImagePacker.
+     * @since 19
+     */
+    IMAGE_PACKER_INVALID_PARAMETER = 7800202,
     /** encode failed */
     IMAGE_ENCODE_FAILED = 7800301,
 } Image_ErrorCode;
@@ -272,6 +287,21 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+ 
+/**
+ * @brief Obtains the property of picture metadata. The output value.data is null-terminated. 
+ *
+ * @param metadata Pointer to OH_PictureMetadata.
+ * @param key Pointer to property's key.
+ * @param value Pointer to property's value. Output parameter.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
+ *         auxiliary picture type.
+ * @since 19
+ */
+Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
 
 /**
  * @brief Releases this PictureMetadata object.

@@ -53,7 +53,6 @@ extern "C" {
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint64_t *displayId);
@@ -65,7 +64,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint6
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(int32_t *displayWidth);
@@ -77,7 +75,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(in
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(int32_t *displayHeight);
@@ -89,7 +86,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(i
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation(
@@ -102,7 +98,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientation(
@@ -115,7 +110,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientat
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualPixelRatio(float *virtualPixels);
@@ -127,7 +121,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualP
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshRate(uint32_t *refreshRate);
@@ -139,7 +132,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityDpi(int32_t *densityDpi);
@@ -151,7 +143,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityPixels(float *densityPixels);
@@ -163,7 +154,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityP
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDensity(float *scaledDensity);
@@ -175,7 +165,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityXdpi(float *xDpi);
@@ -187,7 +176,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityYdpi(float *yDpi);
@@ -199,7 +187,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo(
@@ -211,7 +198,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
  * @param cutoutInfo Indicates the pointer to an <b>NativeDisplayManager_CutoutInfo</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo(
@@ -221,7 +207,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCuto
  * @brief Check whether the device is foldable.
  *
  * @return { bool } true means the device is foldable.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 bool OH_NativeDisplayManager_IsFoldable();
@@ -233,7 +218,6 @@ bool OH_NativeDisplayManager_IsFoldable();
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(
@@ -243,7 +227,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(
  * @brief the callback function type when display change.
  *
  * @param displayId change display id.
- * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
 typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId);
@@ -256,7 +239,6 @@ typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeListener(
@@ -269,7 +251,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeListener(uint32_t listenerIndex);
@@ -278,7 +259,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeLi
  * @brief the callback function type when display fold change.
  *
  * @param displayMode current fold display mode.
- * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
 typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(
@@ -293,7 +273,6 @@ typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener(
@@ -307,7 +286,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(uint32_t listenerIndex);
@@ -319,7 +297,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayMode
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager.Core
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
@@ -329,7 +306,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
  * @brief Destroy all displays.
  *
  * @param allDisplays all displays to be free.
- * @syscap SystemCapability.Window.SessionManager.Core
  * @since 14
  */
 void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInfo *allDisplays);
@@ -342,7 +318,6 @@ void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInf
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager.Core
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId,
@@ -352,7 +327,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_
  * @brief Destroy the display information.
  *
  * @param displayInfo the target display to be free.
- * @syscap SystemCapability.Window.SessionManager.Core
  * @since 14
  */
 void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *displayInfo);
@@ -364,7 +338,6 @@ void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *di
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager.Core
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(

@@ -544,6 +544,17 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNative
  * @brief Sets or obtains the attributes of a native window, including the width, height, and content format.\n
  * This interface is a non-thread-safe type interface.\n
  *
+ * <p><strong>API Note</strong>
+ *
+ * <strong>Performance Note</strong>
+ * <p>By default, the window buffer in the current operating system is accessed via the CPU. If an application
+ * does not need to access the window buffer data using the CPU, it can proactively disable CPU access to
+ * enhance energy efficiency and reduce power consumption.
+ * </p>
+ * <p>For details about how to optimize power consumption for data read/write operations in data buffers,
+ * see [How do I proactively disable CPU access to window buffers to reduce power consumption?]{@link https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-arkgraphics-2d-14}.</p>
+ * </p>
+ *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
  * @param code Indicates the operation code, pointer to <b>NativeWindowOperation</b>.
@@ -868,6 +879,21 @@ int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
  */
 int32_t OH_NativeWindow_GetMetadataValue(OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey,
     int32_t *size, uint8_t **metadata);
+
+/**
+ * @brief Clean all <b>OHNativeWindowBuffer</b> caches of this <b>OHNativeWindow</b>
+ * This interface is a non-thread-safe type interface.\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window is NULL.
+ *     {@link NATIVE_ERROR_CONSUMER_DISCONNECTED} 41211000 - the consumer is disconnected.
+ *     {@link NATIVE_ERROR_BINDER_ERROR} 50401000 - ipc send failed.
+ * @since 19
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_CleanCache(OHNativeWindow *window);
 #ifdef __cplusplus
 }
 #endif

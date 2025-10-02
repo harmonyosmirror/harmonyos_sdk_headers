@@ -25,7 +25,7 @@
  */
 
 /**
- * @file hideug.h
+ * @file hidebug.h
  *
  * @brief Defines the debug functions of the HiDebug module.
  *

@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup WindowManager_NativeModule
+ * @addtogroup WindowManager
  * @{
  *
  * @brief Provides  abilities of windowManager on the native side, such as key event

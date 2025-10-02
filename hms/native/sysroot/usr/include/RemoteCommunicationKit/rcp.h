@@ -673,7 +673,9 @@ typedef struct Rcp_DnsServers {
  * @since 5.0.0(12)
  */
 typedef struct Rcp_IpAddress {
+    /** IP address */
     char ipAddress[RCP_IP_MAX_LEN];
+    /** Pointer to the next {@link Rcp_IpAddress} */
     struct Rcp_IpAddress *next;
 } Rcp_IpAddress;
 
@@ -862,8 +864,11 @@ typedef struct Rcp_DnsOverHttps {
  * @since 5.0.0(12)
  */
 typedef enum Rcp_PathPreference {
+    /** No preference */
     RCP_PATH_PREFERENCE_AUTO,
+    /** Prefer to use wifi */
     RCP_PATH_PREFERENCE_WIFI,
+    /** Prefer to use cellular */
     RCP_PATH_PREFERENCE_CELLULAR,
 } Rcp_PathPreference;
 

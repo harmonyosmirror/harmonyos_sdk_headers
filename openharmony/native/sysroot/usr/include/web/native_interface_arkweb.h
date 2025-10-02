@@ -69,7 +69,7 @@ typedef void (*NativeArkWeb_OnValidCallback)(const char*);
 */
 typedef void (*NativeArkWeb_OnDestroyCallback)(const char*);
 
-/*
+/**
  * @brief Loads a piece of code and execute JS code in the context of the currently displayed page.
  *
  * @param webTag The name of the web component.
@@ -81,7 +81,7 @@ typedef void (*NativeArkWeb_OnDestroyCallback)(const char*);
  */
 void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback);
 
-/*
+/**
  * @brief Registers the JavaScript object and method list.
  *
  * @param webTag The name of the web component.
@@ -97,7 +97,7 @@ void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, Nativ
 void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* objName, const char** methodList,
     NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh);
 
-/*
+/**
  * @brief Deletes the registered object which th given name.
  *
  * @param webTag The name of the web component.
@@ -108,7 +108,7 @@ void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* obj
  */
 void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName);
 
-/*
+/**
  * @brief Registers the valid callback.
  *
  * @param webTag The name of the web component.
@@ -119,7 +119,7 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* o
  */
 void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeArkWeb_OnValidCallback callback);
 
-/*
+/**
  * @brief Get the valid callback.
  *
  * @param webTag The name of the web component.

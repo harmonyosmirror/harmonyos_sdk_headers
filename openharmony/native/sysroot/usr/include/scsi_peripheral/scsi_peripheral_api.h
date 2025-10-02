@@ -83,6 +83,7 @@ int32_t OH_ScsiPeripheral_Release(void);
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND} device not found by deviceId.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPeripheral_Device **dev);

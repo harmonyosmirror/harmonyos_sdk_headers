@@ -1635,44 +1635,6 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
 
 /**
- * @brief Registers a listener for device hot swap events.
- *
- * @param listener Pointer to an {@Link Input_DeviceListener} object.
- *
- * @return OH_Input_RegisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
-
-/**
- * @brief Unregisters the listener for device hot swap events.
- *
- * @param listener Pointer to the listener for device hot swap events. For details, see {@Link Input_DeviceListener}.
- *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if listener is NULL or no listener is registered;
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
-
-/**
- * @brief Unregisters the listener for all device hot swap events.
- *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_UnregisterDeviceListeners();
-
-/**
  * @brief Obtains the IDs of all input devices.
  *
  * @param deviceIds Array of input device IDs.
@@ -1822,6 +1784,44 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
  * @since 13
  */
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
+
+/**
+ * @brief Registers a listener for device hot swap events.
+ *
+ * @param listener Pointer to an {@Link Input_DeviceListener} object.
+ *
+ * @return OH_Input_RegisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief Unregisters the listener for device hot swap events.
+ *
+ * @param listener Pointer to the listener for device hot swap events. For details, see {@Link Input_DeviceListener}.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} if listener is NULL or no listener is registered;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief Unregisters the listener for all device hot swap events.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListeners();
 
 /**
  * @brief Obtains the function key status.

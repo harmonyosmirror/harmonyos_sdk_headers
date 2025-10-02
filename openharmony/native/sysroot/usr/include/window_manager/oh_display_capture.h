@@ -57,7 +57,6 @@ extern "C" {
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } If device not support.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager.Core
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,

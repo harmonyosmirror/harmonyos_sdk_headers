@@ -55,7 +55,9 @@ extern "C" {
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS} the operation is successful.
- *         {@link USB_DDK_FAILED} permission check failed or connect usb ddk service failed or internal error failed.
+ *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed or internal error.
+ *         {@link USB_DDK_NO_PERM} permission check failed.
+ *         {@link USB_DDK_MEMORY_ERROR} memory allocation failed.
  * @since 10
  * @version 1.0
  */
@@ -76,6 +78,7 @@ void OH_Usb_Release(void);
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS} the operation is successful.
  *         {@link USB_DDK_NO_PERM} permission check failed.
+ *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  * @since 18
  * @version 1.0
  */
@@ -109,6 +112,8 @@ int32_t OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  *         {@link USB_DDK_INVALID_PARAMETER} config is null.
+ *         {@link USB_DDK_IO_FAILED} data IO exception.
+ *         {@link USB_DDK_MEMORY_ERROR} memory allocation failed.
  * @since 10
  * @version 1.0
  */
@@ -138,6 +143,7 @@ void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  *         {@link USB_DDK_INVALID_PARAMETER} interfaceHandle is null.
+ *         {@link USB_DDK_MEMORY_ERROR} memory exceeds limit.
  * @since 10
  * @version 1.0
  */
@@ -151,6 +157,7 @@ int32_t OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_
  * @return {@link USB_DDK_SUCCESS} the operation is successful.
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
+ *         {@link USB_DDK_INVALID_PARAMETER} parameter error.
  * @since 10
  * @version 1.0
  */
@@ -166,6 +173,7 @@ int32_t OH_Usb_ReleaseInterface(uint64_t interfaceHandle);
  * @return {@link USB_DDK_SUCCESS} the operation is successful.
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
+ *         {@link USB_DDK_INVALID_PARAMETER} parameter error.
  * @since 10
  * @version 1.0
  */
@@ -202,6 +210,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *set
  *         {@link USB_DDK_INVALID_PARAMETER} setup is null or data is null or dataLen is null or dataLen is less than\n
  *         size of the read data.
  *         {@link USB_DDK_MEMORY_ERROR} the memory of read data copies failed.
+ *         {@link USB_DDK_IO_FAILED} data IO exception.
+ *         {@link USB_DDK_TIMEOUT} interface timeout.
  * @since 10
  * @version 1.0
  */
@@ -221,6 +231,9 @@ int32_t OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct Usb
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  *         {@link USB_DDK_INVALID_PARAMETER} setup is null or data is null.
+ *         {@link USB_DDK_MEMORY_ERROR} the memory of read data copies failed.
+ *         {@link USB_DDK_IO_FAILED} data IO exception.
+ *         {@link USB_DDK_TIMEOUT} interface timeout.
  * @since 10
  * @version 1.0
  */
@@ -238,6 +251,9 @@ int32_t OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct Us
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  *         {@link USB_DDK_INVALID_PARAMETER} pipe is null or devMmap is null or address of devMmap is null.
+ *         {@link USB_DDK_MEMORY_ERROR} the memory of read data copies failed.
+ *         {@link USB_DDK_IO_FAILED} data IO exception.
+ *         {@link USB_DDK_TIMEOUT} interface timeout.
  * @since 10
  * @version 1.0
  */
@@ -254,6 +270,9 @@ int32_t OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMa
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  *         {@link USB_DDK_INVALID_PARAMETER} pipe is null or ashmem is null or address of ashmem is null.
+ *         {@link USB_DDK_MEMORY_ERROR} the memory of read data copies failed.
+ *         {@link USB_DDK_IO_FAILED} data IO exception.
+ *         {@link USB_DDK_TIMEOUT} interface timeout.
  * @since 12
  */
 int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);

@@ -37,47 +37,47 @@
  * @since 18
  */
 
-#ifndef OH_RDB_TYPES_H
-#define OH_RDB_TYPES_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * @brief Describe the security area of the database.
- *
- * @since 18
- */
-typedef enum Rdb_ConflictResolution {
-    /**
-     * @brief Implements no operation when conflict occurs.
-     */
-    RDB_CONFLICT_NONE = 1,
-    /**
-     * @brief Implements rollback operation when conflict occurs.
-     */
-    RDB_CONFLICT_ROLLBACK,
-    /**
-     * @brief Implements abort operation when conflict occurs.
-     */
-    RDB_CONFLICT_ABORT,
-    /**
-     * @brief Implements fail operation when conflict occurs.
-     */
-    RDB_CONFLICT_FAIL,
-    /**
-     * @brief Implements ignore operation when conflict occurs.
-     */
-    RDB_CONFLICT_IGNORE,
-    /**
-     * @brief Implements replace operation when conflict occurs.
-     */
-    RDB_CONFLICT_REPLACE,
-} Rdb_ConflictResolution;
-
-#ifdef __cplusplus
-};
-#endif
-#endif
-/** @} */
+ #ifndef OH_RDB_TYPES_H
+ #define OH_RDB_TYPES_H
+ 
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+ 
+ /**
+  * @brief Describe the security area of the database.
+  *
+  * @since 18
+  */
+ typedef enum Rdb_ConflictResolution {
+     /**
+      * @brief Implements no operation when conflict occurs.
+      */
+     RDB_CONFLICT_NONE = 1,
+     /**
+      * @brief Implements rollback operation when conflict occurs.
+      */
+     RDB_CONFLICT_ROLLBACK,
+     /**
+      * @brief Implements abort operation when conflict occurs.
+      */
+     RDB_CONFLICT_ABORT,
+     /**
+      * @brief Implements fail operation when conflict occurs.
+      */
+     RDB_CONFLICT_FAIL,
+     /**
+      * @brief Implements ignore operation when conflict occurs.
+      */
+     RDB_CONFLICT_IGNORE,
+     /**
+      * @brief Implements replace operation when conflict occurs.
+      */
+     RDB_CONFLICT_REPLACE,
+ } Rdb_ConflictResolution;
+ 
+ #ifdef __cplusplus
+ };
+ #endif
+ #endif
+ /** @} */

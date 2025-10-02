@@ -246,7 +246,14 @@ typedef enum MediaLibrary_ResourceType {
  */
 typedef enum MediaLibrary_ImageFileType {
     /*JPEG type*/
-    MEDIA_LIBRARY_IMAGE_JPEG = 1
+    MEDIA_LIBRARY_IMAGE_JPEG = 1,
+
+    /**
+     * @brief MPEG type
+     *
+     * @since 19
+     */
+    MEDIA_LIBRARY_FILE_VIDEO = 3,
 } MediaLibrary_ImageFileType;
 
 /**

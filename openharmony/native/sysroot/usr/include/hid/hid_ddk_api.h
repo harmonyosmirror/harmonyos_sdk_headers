@@ -97,6 +97,7 @@ int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t 
  * @return {@link HID_DDK_SUCCESS} operation successful.
  *         {@link HID_DDK_NO_PERM} permission check failed.
  *         {@link HID_DDK_INVALID_OPERATION} connect hid ddk service failed or the caller is not the creator of device.
+ *         {@link HID_DDK_NULL_PTR} the device does not exist.
  * @since 11
  * @version 1.0
  */

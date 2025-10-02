@@ -414,6 +414,19 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(
     ArkUI_KeyframeAnimateOption* option, void* userData, void (*onFinish)(void* userData));
 
 /**
+ * @brief Sets the expected frame rate range of a keyframe animation.
+ *
+ * @param option Indicates the pointer to a keyframe animation configuration.
+ * @param frameRate Indicates the expected frame rate range.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 19
+ */
+int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
+    ArkUI_KeyframeAnimateOption* option, ArkUI_ExpectedFrameRateRange* frameRate);
+
+/**
  * @brief Sets the duration of a keyframe animation, in milliseconds.
  *
  * @param option Indicates the keyframe animation parameters.
@@ -475,6 +488,15 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetDelay(ArkUI_KeyframeAnimateOption* opt
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations(ArkUI_KeyframeAnimateOption* option);
+
+/**
+ * @brief Obtains the expected frame rate range of a keyframe animation configuration.
+ *
+ * @param option Indicates the pointer to a keyframe animation configuration.
+ * @return Returns the expected frame rate range of the keyframe animation.
+ * @since 19
+ */
+ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(ArkUI_KeyframeAnimateOption* option);
 
 /**
  * @brief Obtains the duration of a specific state in a keyframe animation.

@@ -111,6 +111,19 @@ Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
     Image_MimeType *format);
 
 /**
+ * @brief Gets MIME type from OH_PackingOptions. The output format.data is null-terminated.
+ *
+ * @param options The OH_PackingOptions pointer will be operated.
+ * @param format MimeType set in the OH_PackingOptions.
+ * @return Returns functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_PACKER_INVALID_PARAMETER} if options or format is nullptr.
+ * @since 19
+ */
+Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options,
+    Image_MimeType *format);
+
+/**
  * @brief Set format number for OH_PackingOptions struct.
  *
  * @param options The OH_PackingOptions pointer will be operated.

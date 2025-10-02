@@ -22,17 +22,17 @@
  * @since 5.0.0(12)
  */
 
- /**
+/**
  * @file native_gcp_api.h
  * @kit Penkit
  *
  * @brief Defines the functions of GlobalColorPicker.
  *
  * @library libcolorpicker_ndk.z.so
- * @syscap SystemCapability.StylusService.ColorPicker
+ * @syscap SystemCapability.Stylus.ColorPicker
  * @since 5.0.0(12)
  */
- 
+
 #ifndef NATIVE_GCP_API_H
 #define NATIVE_GCP_API_H
 
@@ -160,7 +160,7 @@ typedef void (*HMS_GCP_OnResult)(void* userData, HMS_GCP_PickedColorInfo colorIn
  */
 int32_t HMS_GCP_StartColorPicker(
     int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData);
-	
+
 /**
  * @brief Start global color picker.
  *

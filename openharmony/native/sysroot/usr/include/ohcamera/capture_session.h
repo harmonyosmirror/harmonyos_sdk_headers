@@ -929,6 +929,33 @@ Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession*
 Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(
     Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization);
 
+/**
+ * @brief Checks whether the macro capability is supported.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param isSupported Pointer to the check result. The value true means that the macro capability is supported, and false means the opposite.
+ * @return {@link Camera_ErrorCode}:
+ *         CAMERA_OK = 0: The function call is successful.\n
+ *         CAMERA_INVALID_ARGUMENT = 7400101: A parameter is missing or the parameter type is incorrect.\n
+ *         CAMERA_SESSION_NOT_CONFIG = 7400103: The capture session is not configured.
+ * @since 19
+ */
+Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported);
+
+/**
+ * @brief Enables or disables the macro capability of the camera device.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param enabled Whether to enable the macro capability. The value true means to enable the macro capability, and false means to disable it.
+ * @return {@link Camera_ErrorCode}:
+ *         CAMERA_OK = 0: The function call is successful.\n
+ *         CAMERA_INVALID_ARGUMENT = 7400101: A parameter is missing or the parameter type is incorrect.\n
+ *         CAMERA_SESSION_NOT_CONFIG = 7400103: The capture session is not configured.\n
+ *         CAMERA_OPERATION_NOT_ALLOWED = 7400102: The operation is not allowed.
+ * @since 19
+ */
+Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled);
+
 #ifdef __cplusplus
 }
 #endif

@@ -97,11 +97,8 @@ OH_Crypto_ErrCode OH_CryptoDigest_Final(OH_CryptoDigest *ctx, Crypto_DataBlob *o
  * @brief Get the digest length of the digest context.
  *
  * @param ctx Indicates the digest context.
- * @return {@link OH_Crypto_ErrCode#CRYPTO_SUCCESS} 0 - If the operation is successful.
- *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
- *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
- *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
- *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
+ * @return Return the digest length.
+ *         If the input parameter ctx is NULL, 401 is returned, in other failure scenarios, 0 is returned.
  * @since 12
  */
 uint32_t OH_CryptoDigest_GetLength(OH_CryptoDigest *ctx);
@@ -119,11 +116,6 @@ const char *OH_CryptoDigest_GetAlgoName(OH_CryptoDigest *ctx);
  * @brief Destroy the digest context.
  *
  * @param ctx Indicates the digest context.
- * @return {@link OH_Crypto_ErrCode#CRYPTO_SUCCESS} 0 - If the operation is successful.
- *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
- *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
- *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
- *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
 void OH_DigestCrypto_Destroy(OH_CryptoDigest *ctx);

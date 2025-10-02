@@ -592,6 +592,21 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
  */
 OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnErrorCallback callback, void *userData);
 
+/**
+ * @brief Sets the volume mode of the AVPlayer.
+ * @param player Pointer to an <b>OH_AVPlayer</b> instance.
+ * @param volumeMode Volume mode, which is defined in {@link OH_AudioStream_VolumeMode}.
+ * @return Result code.
+ *     {@link AV_ERR_OK}: The execution is successful.
+ *     {@link AV_ERR_INVALID_VAL}: The value of <b>player</b> is a null pointer or
+ *         the value of <b>volumeMode</b> is invalid.
+ *     {@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *         This function should be called prior to <b>prepare</b>.
+ *     {@link AV_ERR_SERVICE_DIED}: System errors such as media service breakdown.
+ * @since 19
+ */
+OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_VolumeMode volumeMode);
+
 #ifdef __cplusplus
 }
 #endif

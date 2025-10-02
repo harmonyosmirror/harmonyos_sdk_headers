@@ -152,7 +152,6 @@ enum EventType {
  * @brief The HiAppEvent_AppEventInfo structure is used to represent event information in an application, including
  * the event's domain, name, type, and parameters.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  * @version 1.0
  */
@@ -221,7 +220,6 @@ typedef struct HiAppEvent_Config HiAppEvent_Config;
  * @brief The OH_HiAppEvent_OnReceive function acts as the callback function for the HiAppEvent_Watcher. It is called
  * when an event occurs.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param domain The domain of the event.
  * @param appEventGroups The event group by the domain.
  * @param groupLen The length of appEventGroups array.
@@ -234,7 +232,6 @@ typedef void (*OH_HiAppEvent_OnReceive)(
 /**
  * @brief Called when watcher receive the event meet the condition.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param row The row of events received by watcher.
  * @param size The size of events received by watcher.
  * @since 12
@@ -245,7 +242,6 @@ typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
 /**
  * @brief Called when watcher take the events.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param events The event json string array.
  * @param eventLen The length of events array.
  * @since 12
@@ -517,7 +513,6 @@ bool OH_HiAppEvent_Configure(const char* name, const char* value);
 /**
  * @brief Create a HiAppEvent_Watcher handler pointer to set the property.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param name The name of the watcher.
  * @return Returns a pointer to the HiAppEvent_Watcher instance.
  * @since 12
@@ -528,7 +523,6 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
 /**
  * @brief Destroy the specified HiAppEvent_Watcher handle resource.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @since 12
  * @version 1.0
@@ -540,7 +534,6 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  * interface and any of the condition which is set over than 0 met, the onTrigger callback set through
  * OH_HiAppEvent_SetWatcherOnTrigger will be invoked.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param row The row of write events that trigger the onTrigger callback.
  * @param size The size of write events that trigger the onTrigger callback.
@@ -557,7 +550,6 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
 /**
  * @brief The interface to set the AppEventFilter which defines the kind of app events will be received by  the watcher.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param domain The name of the event domain to be monitored by the watcher.
  * @param eventTypes The types of the events to be monitored by the watcher.0x08 means BEHAVIOR,0x04 means
@@ -581,7 +573,6 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * to nullptr, the app events received by the watcher will be saved. When the new saved appEvents met the conditions set
  * by OH_HiAppEvent_SetTriggerCondition, the onTrigger callback will be invoked.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param onTrigger The callback of the watcher.
  * @return Returns 0 if set OnTrigger is successful, and returns a
@@ -597,7 +588,6 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @brief The interface to set onReceive callback for watcher. When the watcher received an app event, the onReceive
  * callback set will be invoked.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param onReceive The callback of the watcher.
  * @return Returns 0 if set OnReceive is successful, and returns a
@@ -612,7 +602,6 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
 /**
  * @brief The interface to take saved events data for the watcher.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param eventNum The num of events to take.
  * @param onTake The callback of the watcher.
@@ -629,7 +618,6 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
 /**
  * @brief The interface to add the watcher. The watcher will start receiving app events after it is added.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance which receive the event.
  * @return Returns 0 if add watcher is successful, and returns a
  * negative integer if add fail.
@@ -643,7 +631,6 @@ int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
 /**
  * @brief The interface to remove the watcher. The watcher will stop receiving app events after it is removed.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @return Returns 0 if remove watcher is successful, and returns a
  * negative integer if remove fail.
@@ -658,7 +645,6 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
 /**
  * @brief Clear all local saved event data of the application.
  *
- * @SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  * @version 1.0
  */

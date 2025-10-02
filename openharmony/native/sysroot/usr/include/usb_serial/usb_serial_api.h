@@ -138,7 +138,6 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  *         2.buff is null; 3.bufferSize is zero; 4. bytesWritten is null.
  *         {@link USB_SERIAL_DDK_INIT_ERROR} the ddk not init.
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
- *         {@link USB_SERIAL_DDK_MEMORY_ERROR} the buff is outside accessible address space error.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18

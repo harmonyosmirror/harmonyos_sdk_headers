@@ -195,17 +195,17 @@ typedef enum Rdb_DBType {
 typedef enum Rdb_Tokenizer {
     /**
      * @brief Means not using tokenizer.
-     * @since 17
+	 * @since 17
      */
     RDB_NONE_TOKENIZER = 1,
     /**
      * @brief Means using native icu tokenizer.
-     * @since 17
+	 * @since 17
      */
     RDB_ICU_TOKENIZER = 2,
     /**
      * @brief Means using self-developed enhance tokenizer.
-     * @since 18
+	 * @since 18
      */
     RDB_CUSTOM_TOKENIZER = 3,
 } Rdb_Tokenizer;
@@ -549,7 +549,7 @@ int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
  * @since 10
  */
 int OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates);
-
+ 
 /**
  * @brief Deletes data from the database based on specified conditions.
  *
