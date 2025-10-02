@@ -59,7 +59,7 @@ typedef struct InputMethod_TextConfig InputMethod_TextConfig;
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_TextConfig *OH_TextConfig_Create();
+InputMethod_TextConfig *OH_TextConfig_Create(void);
 /**
  * @brief Destroy a {@link InputMethod_TextConfig} instance.
  *

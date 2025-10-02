@@ -279,6 +279,15 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
     const char* entry, NativeChildProcess_Args args,
     NativeChildProcess_Options options, int32_t *pid);
 
+/**
+ * @brief Child process get self NativeChildProcess_Args.
+ *
+ * @return Returns a pointer to the arguments passed to current child process.\n
+ * For details, see {@link NativeChildProcess_Args}.
+ * @since 17
+ */
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+
 #ifdef __cplusplus
 } // extern "C"
 #endif

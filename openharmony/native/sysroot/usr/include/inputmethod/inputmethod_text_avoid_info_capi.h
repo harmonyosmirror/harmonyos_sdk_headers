@@ -61,7 +61,7 @@ InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double heig
 /**
  * @brief Destroy a {@link InputMethod_TextAvoidInfo} instance.
  *
- * @param options Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be destroyed.
+ * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be destroyed.
  * @since 12
  */
 void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);

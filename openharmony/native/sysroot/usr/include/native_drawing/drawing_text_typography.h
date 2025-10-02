@@ -64,12 +64,12 @@ extern "C" {
  * @since 8
  * @version 1.0
  */
-enum OH_Drawing_TextDirection {
+typedef enum OH_Drawing_TextDirection {
     /** Right to left (RTL) */
     TEXT_DIRECTION_RTL,
     /** Left to right (LTR) */
     TEXT_DIRECTION_LTR,
-};
+} OH_Drawing_TextDirection;
 
 /**
  * @brief Enumerates text alignment modes.
@@ -77,7 +77,7 @@ enum OH_Drawing_TextDirection {
  * @since 8
  * @version 1.0
  */
-enum OH_Drawing_TextAlign {
+typedef enum OH_Drawing_TextAlign {
     /** Left-aligned */
     TEXT_ALIGN_LEFT,
     /** Right-aligned */
@@ -103,7 +103,7 @@ enum OH_Drawing_TextAlign {
      * when <b>OH_Drawing_TextDirection</b> is <b>TEXT_DIRECTION_RTL</b>.
      */
     TEXT_ALIGN_END,
-};
+} OH_Drawing_TextAlign;
 
 /**
  * @brief Enumerates font weights.
@@ -111,7 +111,7 @@ enum OH_Drawing_TextAlign {
  * @since 8
  * @version 1.0
  */
-enum OH_Drawing_FontWeight {
+typedef enum OH_Drawing_FontWeight {
     /** Thin */
     FONT_WEIGHT_100,
     /** Extra-light */
@@ -130,7 +130,7 @@ enum OH_Drawing_FontWeight {
     FONT_WEIGHT_800,
     /** Black */
     FONT_WEIGHT_900,
-};
+} OH_Drawing_FontWeight;
 
 /**
  * @brief Enumerates text baselines.
@@ -138,12 +138,12 @@ enum OH_Drawing_FontWeight {
  * @since 8
  * @version 1.0
  */
-enum OH_Drawing_TextBaseline {
+typedef enum OH_Drawing_TextBaseline {
     /** Alphabetic, where the letters in alphabets like English sit on. */
     TEXT_BASELINE_ALPHABETIC,
     /** Ideographic. The baseline is at the bottom of the text area. */
     TEXT_BASELINE_IDEOGRAPHIC,
-};
+} OH_Drawing_TextBaseline;
 
 /**
  * @brief Enumerates text decorations.
@@ -151,7 +151,7 @@ enum OH_Drawing_TextBaseline {
  * @since 8
  * @version 1.0
  */
-enum OH_Drawing_TextDecoration {
+typedef enum OH_Drawing_TextDecoration {
     /** No decoration. */
     TEXT_DECORATION_NONE = 0x0,
     /** A underline is used for decoration. */
@@ -160,7 +160,7 @@ enum OH_Drawing_TextDecoration {
     TEXT_DECORATION_OVERLINE = 0x2,
     /** A strikethrough is used for decoration. */
     TEXT_DECORATION_LINE_THROUGH = 0x4,
-};
+} OH_Drawing_TextDecoration;
 
 /**
  * @brief Enumerates font styles.
@@ -168,14 +168,14 @@ enum OH_Drawing_TextDecoration {
  * @since 8
  * @version 1.0
  */
-enum OH_Drawing_FontStyle {
+typedef enum OH_Drawing_FontStyle {
     /** Normal style */
     FONT_STYLE_NORMAL,
     /** Italic style */
     FONT_STYLE_ITALIC,
     /** Oblique style */
     FONT_STYLE_OBLIQUE,
-};
+} OH_Drawing_FontStyle;
 
 /**
  * @brief Enumerates placeholder vertical alignment.
@@ -321,7 +321,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-enum OH_Drawing_FontConfigInfoErrorCode {
+typedef enum OH_Drawing_FontConfigInfoErrorCode {
     /** The list of system font configuration information was successfully obtained */
     SUCCESS_FONT_CONFIG_INFO = 0,
     /** Unknown error */
@@ -332,7 +332,7 @@ enum OH_Drawing_FontConfigInfoErrorCode {
     ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY = 3,
     /** Copy string data error */
     ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA = 4,
-};
+} OH_Drawing_FontConfigInfoErrorCode;
 
 /**
  * @brief Fallback font information.
@@ -507,7 +507,7 @@ typedef struct OH_Drawing_LineMetrics {
  * @since 12
  * @version 1.0
  */
-enum OH_Drawing_TextHeightBehavior {
+typedef enum OH_Drawing_TextHeightBehavior {
     /** both ascend of first row and last row style */
     TEXT_HEIGHT_ALL = 0x0,
     /** forbidding ascend of first row style*/
@@ -516,7 +516,7 @@ enum OH_Drawing_TextHeightBehavior {
     TEXT_HEIGHT_DISABLE_LAST_ASCENT = 0x2,
       /** neither ascend of first row nor last row style */
     TEXT_HEIGHT_DISABLE_ALL = 0x1 | 0x2,
-};
+} OH_Drawing_TextHeightBehavior;
 
 /**
  * @brief Enumerates text style type.
@@ -524,7 +524,7 @@ enum OH_Drawing_TextHeightBehavior {
  * @since 12
  * @version 1.0
  */
-enum OH_Drawing_TextStyleType {
+typedef enum OH_Drawing_TextStyleType {
     /** None style */
     TEXT_STYLE_NONE,
     /** All attributes style */
@@ -543,7 +543,7 @@ enum OH_Drawing_TextStyleType {
     TEXT_STYLE_LETTER_SPACING,
     /** Word spacing style */
     TEXT_STYLE_WORD_SPACING
-};
+} OH_Drawing_TextStyleType;
 
 /**
  * @brief Enumerates font width.
@@ -551,7 +551,7 @@ enum OH_Drawing_TextStyleType {
  * @since 12
  * @version 1.0
  */
-enum OH_Drawing_FontWidth {
+typedef enum OH_Drawing_FontWidth {
     /* Ultra condensed font width */
     FONT_WIDTH_ULTRA_CONDENSED = 1,
     /* Extra condensed font width */
@@ -570,7 +570,7 @@ enum OH_Drawing_FontWidth {
     FONT_WIDTH_EXTRA_EXPANDED = 8,
     /* Ultra expanded font width */
     FONT_WIDTH_ULTRA_EXPANDED = 9,
-};
+} OH_Drawing_FontWidth;
 
 /**
  * @brief Defines the font style struct.
@@ -756,6 +756,7 @@ void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle* style, int baseline);
  * @version 1.0
  */
 void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
+
 
 /**
  * @brief Sets the color for the text decoration.

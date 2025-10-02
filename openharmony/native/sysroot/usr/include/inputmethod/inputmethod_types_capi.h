@@ -261,7 +261,7 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_PARAMCHECK = 401,
     /**
-     * @error The error code when the package manager error.
+     * @error The error code when the bundle manager error.
      */
     IME_ERR_PACKAGEMANAGER = 12800001,
     /**
@@ -273,7 +273,7 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_IMCLIENT = 12800003,
     /**
-     * @error The error code when configuration persisting error.
+     * @error The error code when configuration persistence error.
      */
     IME_ERR_CONFIG_PERSIST = 12800005,
     /**
@@ -289,7 +289,7 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_IMMS = 12800008,
     /**
-     * @error The error code when input method client is detached.
+     * @error The error code when input method client detached.
      */
     IME_ERR_DETACHED = 12800009,
     /**

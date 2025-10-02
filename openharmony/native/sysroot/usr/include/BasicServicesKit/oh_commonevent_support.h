@@ -544,7 +544,7 @@ static const char* const COMMON_EVENT_SCREEN_LOCKED = "usual.event.SCREEN_LOCKED
  * @since 12
  */
 static const char* const COMMON_EVENT_HTTP_PROXY_CHANGE = "usual.event.HTTP_PROXY_CHANGE";
-
+ 
 /**
  * @brief This commonEvent means when the network connectivityy change.
  *
@@ -553,7 +553,7 @@ static const char* const COMMON_EVENT_HTTP_PROXY_CHANGE = "usual.event.HTTP_PROX
  * @since 12
  */
 static const char* const COMMON_EVENT_CONNECTIVITY_CHANGE = "usual.event.CONNECTIVITY_CHANGE";
-
+ 
 /**
  * @brief This common event means that minors mode is enabled.
  * This is a protected common event that can only be sent by system.
@@ -561,7 +561,7 @@ static const char* const COMMON_EVENT_CONNECTIVITY_CHANGE = "usual.event.CONNECT
  * @since 12
  */
 static const char* const COMMON_EVENT_MINORSMODE_ON = "usual.event.MINORSMODE_ON";
-
+ 
 /**
  * @brief This common event means that minors mode is disabled.
  * This is a protected common event that can only be sent by system.

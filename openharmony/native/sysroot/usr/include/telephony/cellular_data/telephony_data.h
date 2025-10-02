@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#ifndef NATIVE_TELEPHONY_DATA_API_H
-#define NATIVE_TELEPHONY_DATA_API_H
+/**
+ * @addtogroup Telephony
+ * @{
+ *
+ * @brief Provides C interface for the telephony cellular data.
+ *
+ * @since 13
+ */
 
 /**
  * @file telephony_data.h
@@ -26,6 +32,9 @@
  * @library libtelephony_data.so
  * @since 13
  */
+
+#ifndef NATIVE_TELEPHONY_DATA_API_H
+#define NATIVE_TELEPHONY_DATA_API_H
 
 #include <stdint.h>
 
@@ -47,3 +56,4 @@ int32_t OH_Telephony_GetDefaultCellularDataSlotId(void);
 #endif
 
 #endif // NATIVE_TELEPHONY_DATA_API_H
+/** @} */

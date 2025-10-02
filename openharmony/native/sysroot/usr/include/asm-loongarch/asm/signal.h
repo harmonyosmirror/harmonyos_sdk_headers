@@ -18,7 +18,10 @@
  ****************************************************************************/
 #ifndef _ASM_SIGNAL_H
 #define _ASM_SIGNAL_H
+
 #define MINSIGSTKSZ 4096
-#define SIGSTKSZ 16384
+#define SIGSTKSZ    16384
+
 #include <asm-generic/signal.h>
+
 #endif

@@ -356,6 +356,29 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
+ * @brief Enumerates the MIME type of video mpeg2 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
+/**
+ * @brief Enumerates the MIME type of video mpeg4 part2 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
+
+/**
+ * @brief Enumerates the MIME type of video h263 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
+
+/**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1094,6 +1117,79 @@ typedef enum OH_VVCProfile {
 } OH_VVCProfile;
 
 /**
+ * @brief MPEG2 Profile
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+typedef enum OH_MPEG2Profile {
+    /** Simple profile */
+    MPEG2_PROFILE_SIMPLE = 0,
+    /** Main profile */
+    MPEG2_PROFILE_MAIN = 1,
+    /** SNR scalable profile */
+    MPEG2_PROFILE_SNR_SCALABLE = 2,
+    /** Spatially scalable profile */
+    MPEG2_PROFILE_SPATIALLY_SCALABLE = 3,
+    /** High profile */
+    MPEG2_PROFILE_HIGH = 4,
+    /** 4:2:2 profile */
+    MPEG2_PROFILE_422 = 5,
+} OH_MPEG2Profile;
+
+/**
+ * @brief MPEG4 Profile
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+typedef enum OH_MPEG4Profile {
+    /** Simple profile */
+    MPEG4_PROFILE_SIMPLE = 0,
+    /** Simple scalable profile */
+    MPEG4_PROFILE_SIMPLE_SCALABLE = 1,
+    /** Core profile */
+    MPEG4_PROFILE_CORE = 2,
+    /** Main profile */
+    MPEG4_PROFILE_MAIN = 3,
+    /** N-Bit profile */
+    MPEG4_PROFILE_N_BIT = 4,
+    /** Hybrid profile */
+    MPEG4_PROFILE_HYBRID = 5,
+    /** Basic animated texture profile */
+    MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,
+    /** Scalable texture profile */
+    MPEG4_PROFILE_SCALABLE_TEXTURE = 7,
+    /** Simple FA profile */
+    MPEG4_PROFILE_SIMPLE_FA = 8,
+    /** Advanced real time simple profile */
+    MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,
+    /** Core scalable profile */
+    MPEG4_PROFILE_CORE_SCALABLE = 10,
+    /** Advanced coding efficiency profile */
+    MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,
+    /** Advanced core profile */
+    MPEG4_PROFILE_ADVANCED_CORE = 12,
+    /** Advanced scalable texture profile */
+    MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,
+    /** Advanced simple profile */
+    MPEG4_PROFILE_ADVANCED_SIMPLE = 17,
+} OH_MPEG4Profile;
+
+/**
+ * @brief H263 Profile
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+typedef enum OH_H263Profile {
+    /** Baseline profile */
+    H263_PROFILE_BASELINE = 0,
+    /** Version 1 backward compatibility profile */
+    H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2,
+} OH_H263Profile;
+
+/**
  * @brief Enumerates the muxer output file format
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1335,6 +1431,77 @@ typedef enum OH_VVCLevel {
     /** VVC level 15.5 */
     VVC_LEVEL_155 = 255,
 } OH_VVCLevel;
+
+/**
+ * @brief MPEG2 Level.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+typedef enum OH_MPEG2Level {
+    /** Low level */
+    MPEG2_LEVEL_LOW = 0,
+    /** Main level */
+    MPEG2_LEVEL_MAIN = 1,
+    /** High 1440 level */
+    MPEG2_LEVEL_HIGH_1440 = 2,
+    /** High level */
+    MPEG2_LEVEL_HIGH = 3,
+} OH_MPEG2Level;
+
+/**
+ * @brief MPEG4 Level.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+typedef enum OH_MPEG4Level {
+    /** 0 level */
+    MPEG4_LEVEL_0 = 0,
+    /** 0B level */
+    MPEG4_LEVEL_0B = 1,
+    /** 1 level */
+    MPEG4_LEVEL_1 = 2,
+    /** 2 level */
+    MPEG4_LEVEL_2 = 3,
+    /** 3 level */
+    MPEG4_LEVEL_3 = 4,
+    /** 3B level */
+    MPEG4_LEVEL_3B = 5,
+    /** 4 level */
+    MPEG4_LEVEL_4 = 6,
+    /** 4A level */
+    MPEG4_LEVEL_4A = 7,
+    /** 5 level */
+    MPEG4_LEVEL_5 = 8,
+    /** 6 level */
+    MPEG4_LEVEL_6 = 9,
+} OH_MPEG4Level;
+
+/**
+ * @brief H263 Level.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 17
+ */
+typedef enum OH_H263Level {
+    /** 10 level */
+    H263_LEVEL_10 = 0,
+    /** 20 level */
+    H263_LEVEL_20 = 1,
+    /** 30 level */
+    H263_LEVEL_30 = 2,
+    /** 40 level */
+    H263_LEVEL_40 = 3,
+    /** 45 level */
+    H263_LEVEL_45 = 4,
+    /** 50 level */
+    H263_LEVEL_50 = 5,
+    /** 60 level */
+    H263_LEVEL_60 = 6,
+    /** 70 level */
+    H263_LEVEL_70 = 7,
+} OH_H263Level;
 
 /**
  * @brief The reference mode in temporal group of picture.

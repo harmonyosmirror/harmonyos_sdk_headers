@@ -42,6 +42,7 @@
 extern "C" {
 #endif
 
+
 /**
  * @brief Determines the priority of key event processing when component cannot handle the key event.
  *
@@ -53,7 +54,6 @@ typedef enum {
     /** Key events bubble up to ancestors. */
     ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT,
 } ArkUI_KeyProcessingMode;
-
 
 /**
  * @brief Apply focus for a specific node.

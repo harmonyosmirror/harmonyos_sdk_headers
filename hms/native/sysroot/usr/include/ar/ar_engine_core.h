@@ -214,7 +214,21 @@ typedef enum {
         the U plane indexed as 1, and the V plane indexed as 2. The Y plane does not intersect with the U/V plane.
         That is, the pixel stride of the Y plane is always 1. The U and V planes share the same row stride and
         pixel stride. */
-    ARENGINE_IMAGE_YUV_420_888 = 2
+    ARENGINE_IMAGE_YUV_420_888 = 2,
+
+    /**
+     * The <b>ARENGINE_IMAGE_Y_8</b> format consists of one data buffer, with the plane indexed as 0.
+     * The data buffer type is an 8-bit unsigned integer.
+     * @since 5.0.5(17)
+     */
+    ARENGINE_IMAGE_Y_8 = 3,
+ 
+    /**
+     * The <b>ARENGINE_IMAGE_Y_16</b> format consists of one data buffer, with the plane indexed as 0.
+     * The data buffer type is a 16-bit unsigned integer.
+     * @since 5.0.5(17)
+     */
+    ARENGINE_IMAGE_Y_16 = 4
 } AREngine_ARImageFormat;
 
 /**
@@ -520,6 +534,35 @@ typedef enum {
 } AREngine_ARStatus;
 
 /**
+ * @brief Depth image mode.
+ * @since 5.0.5(17)
+ */
+typedef enum {
+    /** Does not provide depth information. */
+    ARENGINE_DEPTH_MODE_DISABLED = 0,
+ 
+    /** There are two depth sources, one from the motion algorithm and one from the hardware depth sensor (TOF).
+     * Currently, only the depth from the motion used by master RGB camera is supported.
+     */
+    ARENGINE_DEPTH_MODE_AUTOMATIC = 1
+} AREngine_ARDepthMode;
+
+/**
+ * @brief Depth Confidence mode.
+ * @since 5.0.5(17)
+ */
+typedef enum {
+    /** The confidence of this depth image is low. */
+    ARENGINE_DEPTH_CONFIDENCE_LOW = 0,
+ 
+    /** The confidence of this depth image is medium. */
+    ARENGINE_DEPTH_CONFIDENCE_MEDIUM = 1,
+ 
+    /** The confidence of this depth image is high. */
+    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2,
+} AREngine_ARConfidenceLevel;
+
+/**
  * @brief Creates a configuration object with a proper default configuration.
  * @param session The AREngine session.
  * @param outConfig Pointer to the newly allocated address of the configuration object.
@@ -623,6 +666,28 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetFocusMode(const AREngine_ARSession *s
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetFocusMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
     AREngine_ARFocusMode focusMode);
+
+/**
+ * @brief Obtains the depth mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param outDepthMode Depth mode. For details, please refer to <b>AREngine_ARDepthMode</b>.
+ * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @since 5.0.5(17)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetDepthMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
+    AREngine_ARDepthMode *outDepthMode);
+ 
+/**
+ * @brief Sets the depth mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param depthMode Depth mode. For details, please refer to <b>AREngine_ARDepthMode</b>.
+ * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @since 5.0.5(17)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetDepthMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
+    AREngine_ARDepthMode depthMode);
 
 /**
  * @brief Sets the preview image size.
@@ -1956,6 +2021,32 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetTimestamp(const AREngine_ARSession *se
  */
 void HMS_AREngine_ARImage_Release(AREngine_ARImage *image);
 
+/**
+ * @brief Acquires a depth image object that corresponds to the current frame.
+ * The depth image is a single 16-bit plane at index 0. Each pixel contains the distance in millimeters to the camera
+ * plane, with the representable depth range between 0 millimeters and 65535 millimeters, or about 65 meters.
+ * @param session The AREngine session.
+ * @param frame Current frame object.
+ * @param outDepthImage Depth image object of the current frame, please refer to <b>AREngine_ARImage</b>.
+ * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @since 5.0.5(17)
+ */
+AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthImage16Bits(const AREngine_ARSession *session,
+    const AREngine_ARFrame *frame, AREngine_ARImage **outDepthImage);
+ 
+/**
+ * @brief Obtains the depth confidence image of the current frame. The confidence value is between
+ * 0<b>ARENGINE_DEPTH_CONFIDENCE_LOW</b> and 2<b>ARENGINE_DEPTH_CONFIDENCE_HIGH</b>, inclusive, with 0 representing the
+ * lowest confidence and 2 representing the highest confidence in the measured depth value. The width and height of the
+ * depth confidence image are consistent with the depth image.
+ * @param session The AREngine session.
+ * @param frame Current frame object.
+ * @param outConfidenceImage Depth confidence image of the current frame, please refer to <b>AREngine_ARImage</b>.
+ * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @since 5.0.5(17)
+ */
+AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthConfidenceImage(const AREngine_ARSession *session,
+    const AREngine_ARFrame *frame, AREngine_ARImage **outConfidenceImage);
 #ifdef __cplusplus
 }
 #endif

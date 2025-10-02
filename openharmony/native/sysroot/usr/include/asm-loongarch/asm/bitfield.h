@@ -16,11 +16,14 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _XT_TCPMSS_H
-#define _XT_TCPMSS_H
-#include <linux/types.h>
-struct xt_tcpmss_info {
-  __u16 mss;
-};
-#define XT_TCPMSS_CLAMP_PMTU 0xffff
-#endif
+#ifndef __UAPI_ASM_BITFIELD_H
+#define __UAPI_ASM_BITFIELD_H
+
+/*
+ *  * Damn ...  bitfields depend from byteorder :-(
+ *   */
+#define __BITFIELD_FIELD(field, more)					\
+	more								\
+	field;
+
+#endif /* __UAPI_ASM_BITFIELD_H */

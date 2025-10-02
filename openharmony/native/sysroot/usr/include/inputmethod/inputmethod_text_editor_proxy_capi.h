@@ -265,7 +265,7 @@ typedef void (*OH_TextEditorProxy_FinishTextPreviewFunc)(InputMethod_TextEditorP
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_TextEditorProxy *OH_TextEditorProxy_Create();
+InputMethod_TextEditorProxy *OH_TextEditorProxy_Create(void);
 /**
  * @brief Destroy a {@link InputMethod_TextEditorProxy} instance.
  *

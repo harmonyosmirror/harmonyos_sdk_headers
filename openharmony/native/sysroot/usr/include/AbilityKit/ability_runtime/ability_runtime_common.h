@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024 Huawei Device Co., Ltd.
+* Copyright (C) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -108,6 +108,36 @@ typedef enum {
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,
+    /**
+     * @error Setting visibility is disabled.
+     * @since 17
+     */
+    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,
+    /**
+     * @error App clone or multi-instance is not supported.
+     * @since 17
+     */
+    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,
+    /**
+     * @error The app instance key is invalid.
+     * @since 17
+     */
+    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,
+    /**
+     * @error The number of app instances reaches the limit.
+     * @since 17
+     */
+    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,
+    /**
+     * @error The multi-instance is not supported.
+     * @since 17
+     */
+    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,
+    /**
+     * @error The APP_INSTANCE_KEY cannot be specified.
+     * @since 17
+     */
+    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079,
 } AbilityRuntime_ErrorCode;
 
 #ifdef __cplusplus

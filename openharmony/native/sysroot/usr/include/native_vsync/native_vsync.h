@@ -39,6 +39,8 @@
 #ifndef NDK_INCLUDE_NATIVE_VSYNC_H_
 #define NDK_INCLUDE_NATIVE_VSYNC_H_
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

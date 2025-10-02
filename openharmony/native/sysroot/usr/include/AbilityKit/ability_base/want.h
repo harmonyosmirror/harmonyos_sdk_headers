@@ -161,6 +161,109 @@ AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const cha
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const char* key, int32_t* fd);
 
+/**
+ * @brief Set uri to want.
+ *
+ * @param want The want needs to set uri.
+ * @param uri The uri of the want.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const char* uri);
+
+/**
+ * @brief Get uri from want.
+ *
+ * @param want The want that includes uri.
+ * @param uri The uri of the want.
+ * @param uriSize Size of the uri.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* uri, size_t uriSize);
+
+/**
+ * @brief Set int32_t to want.
+ *
+ * @param want The want needs to set int32_t value.
+ * @param key The key of int32_t param.
+ * @param value The value of int32_t param.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t value);
+
+/**
+ * @brief Get int32_t from want.
+ *
+ * @param want The want includes int32_t value.
+ * @param key The key of int32_t param.
+ * @param value The value of int32_t param.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t* value);
+
+/**
+ * @brief Set bool to want.
+ *
+ * @param want The want needs to set bool value.
+ * @param key The key of bool param.
+ * @param value The value of bool param.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, const char* key, bool value);
+
+/**
+ * @brief Get bool from want.
+ *
+ * @param want The want needs to set bool value.
+ * @param key The key of bool param.
+ * @param value The value of bool param.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, const char* key, bool* value);
+
+/**
+ * @brief Set double to want.
+ *
+ * @param want The want needs to set double value.
+ * @param key The key of double param.
+ * @param value The value of double param.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, const char* key, double value);
+
+/**
+ * @brief Get double from want.
+ *
+ * @param want The want needs to set double value.
+ * @param key The key of double param.
+ * @param value The value of double param.
+ * @return The error code.
+ *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @since 17
+ */
+AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, const char* key, double* value);
+
 #ifdef __cplusplus
 } // extern "C"
 #endif
