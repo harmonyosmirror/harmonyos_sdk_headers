@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HILOG_H
-#define HIVIEWDFX_HILOG_H
 /**
  * @addtogroup HiLog
  * @{
@@ -57,8 +55,14 @@
  * Output result:\n
  *     05-06 15:01:06.870 1051 1051 W 0201/MY_TAG: Failed to visit <private>, reason:503.\n
  *
+ * @library libhilog.so
+ * @syscap SystemCapability.HiviewDFX.HiLog
  * @since 8
  */
+
+#ifndef HIVIEWDFX_HILOG_H
+#define HIVIEWDFX_HILOG_H
+
 #include <stdarg.h>
 #include <stdbool.h>
 
@@ -274,6 +278,14 @@ typedef void (*LogCallback)(const LogType type, const LogLevel level, const unsi
  * @since 11
  */
 void OH_LOG_SetCallback(LogCallback callback);
+
+/**
+ * @brief Sets the lowest log level of the current application process.
+ *
+ * @param level log level
+ * @since 15
+ */
+void OH_LOG_SetMinLogLevel(LogLevel level);
 
 #ifdef __cplusplus
 }

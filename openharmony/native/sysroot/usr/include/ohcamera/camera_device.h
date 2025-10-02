@@ -60,6 +60,32 @@ extern "C" {
  */
 Camera_ErrorCode OH_CameraDevice_GetCameraOrientation(Camera_Device* camera, uint32_t* orientation);
 
+/**
+ * @brief Gets remote device name attribute for a camera device.
+ *
+ * @param camera the {@link Camera_Device} which use to get attributes.
+ * @param hostDeviceName the remote device name attribute if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 15
+ */
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char** hostDeviceName);
+
+
+/**
+ * @brief Gets the remote device type attribute for a camera device.
+ *
+ * @param camera the {@link Camera_Device} which use to get attributes.
+ * @param hostDeviceType the {@link Camera_HostDeviceType} which remote device type attribute
+          if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 15
+ */
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera_HostDeviceType* hostDeviceType);
+
 #ifdef __cplusplus
 }
 #endif

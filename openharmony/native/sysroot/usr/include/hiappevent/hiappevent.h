@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -88,6 +88,20 @@ extern "C" {
 #endif
 
 /**
+ * @brief Defines error code
+ *
+ * @since 15
+ */
+typedef enum {
+    /** @error The operation is successful. */
+    HIAPPEVENT_SUCCESS = 0,
+    /** @error Invalid param value */
+    HIAPPEVENT_INVALID_PARAM_VALUE = -9,
+    /** @error event config is null */
+    HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10,
+} HiAppEvent_ErrorCode;
+
+/**
  * @brief Event types.
  *
  * You are advised to select event types based on their respective usage scenarios.
@@ -163,6 +177,13 @@ typedef struct ParamListNode* ParamList;
  * @version 1.0
  */
 typedef struct HiAppEvent_Watcher HiAppEvent_Watcher;
+
+/**
+ * @brief The HiAppEvent_Config structure is designed for configuration.
+ *
+ * @since 15
+ */
+typedef struct HiAppEvent_Config HiAppEvent_Config;
 
 /**
  * @brief The OH_HiAppEvent_OnReceive function acts as the callback function for the HiAppEvent_Watcher. It is called
@@ -610,6 +631,48 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
  * @version 1.0
  */
 void OH_HiAppEvent_ClearData();
+
+/**
+ * @brief Create a HiAppEvent_Config handler pointer to set the config.
+ *
+ * @return Returns a pointer to the HiAppEvent_Config instance.
+ * @since 15
+ */
+HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
+
+/**
+ * @brief Destroy the specified HiAppEvent_Config handle resource.
+ *
+ * @param config The pointer to the HiAppEvent_Config instance.
+ * @since 15
+ */
+void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
+
+/**
+ * @brief The interface to set item to the config.
+ *
+ * @param config The pointer to the HiAppEvent_Config instance.
+ * @param itemName The name of config item.
+ * @param itemValue The value of config item.
+ * @return set result.
+ *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
+ *         {@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The event config is null.
+ *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The item is invalid.
+ * @since 15
+ */
+int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName, const char* itemValue);
+
+/**
+ * @brief The interface to set the config.
+ *
+ * @param name The name of the os event.
+ * @param config The pointer to the HiAppEvent_Config instance.
+ * @return set result.
+ *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
+ *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The config is invalid.
+ * @since 15
+ */
+int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
 #ifdef __cplusplus
 }
 #endif

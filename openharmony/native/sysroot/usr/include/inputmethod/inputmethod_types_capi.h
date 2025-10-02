@@ -301,6 +301,30 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_QUERY_FAILED = 12802001,
 } InputMethod_ErrorCode;
+
+/**
+ * @brief The value type of request keyboard.
+ *
+ * @since 15
+ */
+typedef enum InputMethod_RequestKeyboardReason {
+    /**
+     * The request keyboard reason is NONE.
+     */
+    IME_REQUEST_REASON_NONE = 0,
+    /**
+     * The request keyboard reason is MOUSE.
+     */
+    IME_REQUEST_REASON_MOUSE = 1,
+    /**
+     * The request keyboard reason is TOUCH.
+     */
+    IME_REQUEST_REASON_TOUCH = 2,
+    /**
+     * The request keyboard reason is OTHER.
+     */
+    IME_REQUEST_REASON_OTHER = 20
+} InputMethod_RequestKeyboardReason;
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -1,34 +1,32 @@
 /**
- * Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025-2025. All rights reserved.
  */
 
 /**
  * @addtogroup ModuleInstall
  * @{
  *
- * @brief Provides APIs related to module install of StoreKit.
+ * @brief Provides APIs related to module install of AppGalleryKit.
  *
  * Covers module install, including related API.
  *
  *
- * @since 5.0.2(14)
- * @deprecated since 5.0.3(15)
- * @useinstead AppGalleryKit/module_install.h
+ * @since 5.0.3(15)
  */
 
 /**
  * @file module_install.h
- * @kit StoreKit
+ * @kit AppGalleryKit
  *
  * @brief module install
  * This class is mainly for module install;
  * @library libhmsmoduleinstall.so
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 
-#ifndef STORE_KIT_MODULE_INSTALL_H
-#define STORE_KIT_MODULE_INSTALL_H
+#ifndef APPGALLERY_KIT_MODULE_INSTALL_H
+#define APPGALLERY_KIT_MODULE_INSTALL_H
 
 #include <stdlib.h>
 #ifdef __cplusplus
@@ -37,7 +35,7 @@ extern "C" {
 
 /**
  * @brief Defines module install error code.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef enum ModuleInstall_ErrCode {
     /* * @error Execution successful. */
@@ -66,7 +64,7 @@ typedef enum ModuleInstall_ErrCode {
 
 /**
  * @brief Defines install status.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef enum ModuleInstall_InstallStatus {
     /* * Module has been installed. */
@@ -77,7 +75,7 @@ typedef enum ModuleInstall_InstallStatus {
 
 /**
  * @brief Defines module install request code.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef enum ModuleInstall_RequestCode {
     /* * Module already exists. */
@@ -104,7 +102,7 @@ typedef enum ModuleInstall_RequestCode {
 
 /**
  * @brief Defines module install task status.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef enum ModuleInstall_TaskStatus {
     /* * Create task failed. */
@@ -141,25 +139,25 @@ typedef enum ModuleInstall_TaskStatus {
 
 /**
  * @brief the information of the installedModule
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef struct ModuleInstall_InstalledModule ModuleInstall_InstalledModule;
 
 /**
  * @brief the information of the ModuleInstallResult
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef struct ModuleInstall_FetchModulesResult ModuleInstall_FetchModulesResult;
 
 /**
  * @brief the information of the StatusCallback
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef struct ModuleInstall_StatusCallback ModuleInstall_StatusCallback;
 
 /**
  * @brief Defines the OnStatusCallback
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 typedef void (*ModuleInstall_OnStatusCallback)(char *bundleName, char *eventInfo);
 
@@ -173,7 +171,7 @@ typedef void (*ModuleInstall_OnStatusCallback)(char *bundleName, char *eventInfo
  * {@link E_PARAMS}  401 - Invalid input parameter.
  * {@link E_QUERY_MODULE} 1006500001 - Failed to invoke the BMS.
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_GetInstalledModule(const char *moduleName, unsigned int length,
     ModuleInstall_InstalledModule **installedModule);
@@ -183,7 +181,7 @@ ModuleInstall_ErrCode HMS_ModuleInstall_GetInstalledModule(const char *moduleNam
  *
  * @param installedModule installedModule.
  * @return Returns the module name of module.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 char *HMS_ModuleInstall_GetInstalledModuleName(const ModuleInstall_InstalledModule *installedModule);
 
@@ -192,7 +190,7 @@ char *HMS_ModuleInstall_GetInstalledModuleName(const ModuleInstall_InstalledModu
  *
  * @param installedModule installedModule.
  * @return Returns the module type of module.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 int HMS_ModuleInstall_GetInstalledModuleType(const ModuleInstall_InstalledModule *installedModule);
 
@@ -201,7 +199,7 @@ int HMS_ModuleInstall_GetInstalledModuleType(const ModuleInstall_InstalledModule
  *
  * @param installedModule installedModule.
  * @return Returns the install status of module.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_InstallStatus HMS_ModuleInstall_GetModuleInstallStatus(
     const ModuleInstall_InstalledModule *installedModule);
@@ -223,7 +221,7 @@ ModuleInstall_InstallStatus HMS_ModuleInstall_GetModuleInstallStatus(
  * {@link E_RESPONSE_INVALID} 1006500010 - Response from service cannot be recognized.
  * {@link E_INNER_ERROR} 1006500011 - System inner error.
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_FetchModules(const char *bundleName, unsigned int length, char **moduleNames,
     unsigned int moduleNamesLength, ModuleInstall_FetchModulesResult **fetchModulesResult);
@@ -233,7 +231,7 @@ ModuleInstall_ErrCode HMS_ModuleInstall_FetchModules(const char *bundleName, uns
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns the request code of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_RequestCode HMS_ModuleInstall_GetFetchModulesRequestCode(
     const ModuleInstall_FetchModulesResult *fetchModulesResult);
@@ -243,7 +241,7 @@ ModuleInstall_RequestCode HMS_ModuleInstall_GetFetchModulesRequestCode(
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns the task status of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_TaskStatus HMS_ModuleInstall_GetFetchModulesTaskStatus(
     const ModuleInstall_FetchModulesResult *fetchModulesResult);
@@ -253,7 +251,7 @@ ModuleInstall_TaskStatus HMS_ModuleInstall_GetFetchModulesTaskStatus(
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns task id of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 char *HMS_ModuleInstall_GetFetchModulesTaskId(const ModuleInstall_FetchModulesResult *fetchModulesResult);
 
@@ -262,7 +260,7 @@ char *HMS_ModuleInstall_GetFetchModulesTaskId(const ModuleInstall_FetchModulesRe
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns desc of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 char *HMS_ModuleInstall_GetFetchModulesDesc(const ModuleInstall_FetchModulesResult *fetchModulesResult);
 
@@ -271,7 +269,7 @@ char *HMS_ModuleInstall_GetFetchModulesDesc(const ModuleInstall_FetchModulesResu
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns modules of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 char *HMS_ModuleInstall_GetFetchModules(const ModuleInstall_FetchModulesResult *fetchModulesResult);
 
@@ -280,7 +278,7 @@ char *HMS_ModuleInstall_GetFetchModules(const ModuleInstall_FetchModulesResult *
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns total size of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 int HMS_ModuleInstall_GetFetchModulesTotalSize(const ModuleInstall_FetchModulesResult *fetchModulesResult);
 
@@ -289,7 +287,7 @@ int HMS_ModuleInstall_GetFetchModulesTotalSize(const ModuleInstall_FetchModulesR
  *
  * @param fetchModulesResult Indicates the result of fetch modules.
  * @return Returns downloaded size of fetch modules.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 int HMS_ModuleInstall_GetFetchModulesDownloadedSize(const ModuleInstall_FetchModulesResult *fetchModulesResult);
 
@@ -306,7 +304,7 @@ int HMS_ModuleInstall_GetFetchModulesDownloadedSize(const ModuleInstall_FetchMod
  * {@link E_REQUEST_SERVER} 1006500009 - Request to service error.
  * {@link E_RESPONSE_INVALID} 1006500010 - Response from service cannot be recognized.
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_CancelTask(const char *taskId, unsigned int length, unsigned int cancelResult);
 
@@ -323,7 +321,7 @@ ModuleInstall_ErrCode HMS_ModuleInstall_CancelTask(const char *taskId, unsigned 
  * {@link E_REQUEST_SERVER} 1006500009 - Request to service error.
  * {@link E_RESPONSE_INVALID} 1006500010 - Response from service cannot be recognized.
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_ShowCellularDataConfirmation(const char *taskId, unsigned int length,
     unsigned int showResult);
@@ -333,7 +331,7 @@ ModuleInstall_ErrCode HMS_ModuleInstall_ShowCellularDataConfirmation(const char 
  *
  * @param onStatusCallback The callback function.
  * @return Returns StatusCallback.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_StatusCallback *HMS_ModuleInstall_CreateStatusCallback(ModuleInstall_OnStatusCallback *onStatusCallback);
 
@@ -350,7 +348,7 @@ ModuleInstall_StatusCallback *HMS_ModuleInstall_CreateStatusCallback(ModuleInsta
  * {@link E_REPEATED_CALL} 1006500002 - The interface is called repeatedly with the same input.
  * {@link E_CONNECT_SA} 1006500004 - SA connection failed.
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_On(const char *bundleName, unsigned int length, unsigned int appIndex,
     unsigned int period, ModuleInstall_StatusCallback **callback);
@@ -359,7 +357,7 @@ ModuleInstall_ErrCode HMS_ModuleInstall_On(const char *bundleName, unsigned int 
  * @brief Release statusCallback.
  *
  * @param statusCallback statusCallback.
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 void HMS_ModuleInstall_ReleaseStatusCallback(ModuleInstall_StatusCallback *statusCallback);
 
@@ -374,7 +372,7 @@ void HMS_ModuleInstall_ReleaseStatusCallback(ModuleInstall_StatusCallback *statu
  * {@link E_CONNECT_SA} 1006500004 - SA connection failed.
  * {@link E_OFF_WITHOUT_ON} 1006500006 - The interface is not used together with "HMS_Module_Install_On".
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
- * @since 5.0.2(14)
+ * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_Off(const char *bundleName, unsigned int length, unsigned int appIndex);
 
@@ -382,4 +380,4 @@ ModuleInstall_ErrCode HMS_ModuleInstall_Off(const char *bundleName, unsigned int
 };
 #endif
 /** @} */
-#endif // STORE_KIT_MODULE_INSTALL_H
+#endif // APPGALLERY_KIT_MODULE_INSTALL_H

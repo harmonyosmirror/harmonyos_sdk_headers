@@ -57,6 +57,17 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
  */
 InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
 /**
+ * @brief Create a new {@link InputMethod_AttachOptions} instance.
+ *
+ * @param showKeyboard Represents whether to show the keyboard.
+ * @param requestKeyboardReason  the reason for showKeyboard.
+ * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_AttachOptions}
+ * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
+ * @since 15
+ */
+InputMethod_AttachOptions *OH_AttachOptions_CreateWithRequestKeyboardReason(
+    bool showKeyboard, InputMethod_RequestKeyboardReason requestKeyboardReason);
+/**
  * @brief Delete a {@link InputMethod_AttachOptions} instance.
  *
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be destroyed.
@@ -77,6 +88,20 @@ void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options);
  * @since 12
  */
 InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions *options, bool *showKeyboard);
+/**
+ * @brief Get showKeyboard value from {@link InputMethod_AttachOptions}.
+ *
+ * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be get value from.
+ * @param requestKeyboardReason  Represents a pointer to an {@link InputMethodRequestKeyboardReason} instance which will
+ * be get value from.
+ * @return Returns a specific error code.
+ *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer. If options is NULL, or requestKeyboardReason is NULL.
+ * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @since 15
+ */
+InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason(
+    InputMethod_AttachOptions *options, int *requestKeyboardReason);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

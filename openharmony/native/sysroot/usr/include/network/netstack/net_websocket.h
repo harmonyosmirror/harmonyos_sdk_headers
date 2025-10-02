@@ -55,6 +55,7 @@ extern "C" {
  * @param onMessage Callback function invoked when a message is received.
  * @param onError Callback function invoked when a connection error message is received.
  * @param onClose Callback function invoked when a connection closing message is closed.
+ *
  * @return Pointer to the websocket client if success; NULL otherwise.
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
@@ -132,6 +133,6 @@ int OH_WebSocketClient_Destroy(struct WebSocket *client);
 }
 #endif
 
-#endif // NET_WEBSOCKET_H
 /** @} */
+#endif // NET_WEBSOCKET_H
 

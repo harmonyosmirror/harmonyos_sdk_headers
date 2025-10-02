@@ -29,7 +29,8 @@ extern "C" {
 #define OH_API_VERSION_12 12
 #define OH_API_VERSION_13 13
 #define OH_API_VERSION_14 14
-#define OH_CURRENT_API_VERSION OH_API_VERSION_14
+#define OH_API_VERSION_15 15
+#define OH_CURRENT_API_VERSION OH_API_VERSION_15
 
 /**
   * @brief Get the target sdk version number of the application.

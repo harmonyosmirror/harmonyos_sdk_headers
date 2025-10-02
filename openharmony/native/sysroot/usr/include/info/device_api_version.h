@@ -22,7 +22,10 @@ extern "C" {
 
 /**
   * @brief Get the api version number of the device.
+  *        Note: the interface function is not implemented.
   * @return The api version number of the device.
+  * @since 12
+  * @deprecated since 15
   */
 int get_device_api_version(void);
 

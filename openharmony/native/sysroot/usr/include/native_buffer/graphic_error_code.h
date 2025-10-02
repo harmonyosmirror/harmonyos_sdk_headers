@@ -52,6 +52,11 @@ extern "C" {
 typedef enum OHNativeErrorCode {
     /** @error succeed */
     NATIVE_ERROR_OK = 0,
+    /**
+     * @error memory operation error
+     * @since 15
+     */
+    NATIVE_ERROR_MEM_OPERATION_ERROR = 30001000,
     /** @error input invalid parameter */
     NATIVE_ERROR_INVALID_ARGUMENTS = 40001000,
     /** @error unauthorized operation */

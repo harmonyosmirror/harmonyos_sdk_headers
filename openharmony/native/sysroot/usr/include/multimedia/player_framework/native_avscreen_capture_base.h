@@ -521,6 +521,17 @@ typedef void (*OH_AVScreenCapture_OnError)(OH_AVScreenCapture *capture, int32_t 
 typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData);
 
+/**
+ * @brief When one of the display devices start being captured, the function pointer will be called
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param displayId Id of the display device that being captured
+ * @param userData Pointer to user specific data
+ *
+ * @since 15
+ */
+typedef void (*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData);
+
 #ifdef __cplusplus
 }
 #endif

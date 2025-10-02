@@ -74,6 +74,26 @@ typedef enum PASTEBOARD_ErrCode {
      * @error Another copy is in progress.
      */
     ERR_BUSY = 12900003,
+    /**
+     * @error Copy file failed.
+     * @since 15
+     */
+    ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007,
+    /**
+     * @error Failed to start progress.
+     * @since 15
+     */
+    ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008,
+    /**
+     * @error Progress exits abnormally.
+     * @since 15
+     */
+    ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009,
+    /**
+     * @error Get Data failed.
+     * @since 15
+     */
+    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,
 } PASTEBOARD_ErrCode;
 #ifdef __cplusplus
 };

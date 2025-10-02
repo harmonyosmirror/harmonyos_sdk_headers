@@ -49,10 +49,65 @@ extern "C" {
 typedef enum {
     /** @error No error. */
     ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,
+    /**
+     * @error permission denied.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,
     /** @error Invalid parameters. */
     ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,
+    /**
+     * @error StartSelfUIAbility is not supported.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,
+    /**
+     * @error No such ability.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,
+    /**
+     * @error Incorrect ability type.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,
+    /**
+     * @error The crowdtesting application expires.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,
+    /**
+     * @error The ability cannot be started in Wukong Mode.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,
     /** @error The context does not exist. */
     ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,
+    /**
+     * @error The app is controlled.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,
+    /**
+     * @error The app is controlled by EDM.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,
+    /**
+     * @error Cross-app start is not allowed.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,
+    /**
+     * @error Internal error.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,
+    /**
+     * @error Not top ability.
+     * @since 15
+     */
+    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,
 } AbilityRuntime_ErrorCode;
 
 #ifdef __cplusplus

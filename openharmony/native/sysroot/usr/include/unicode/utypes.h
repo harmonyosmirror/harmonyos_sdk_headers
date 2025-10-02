@@ -637,5 +637,13 @@ typedef enum UErrorCode {
 #   define U_FAILURE(x) ((x)>U_ZERO_ERROR)
 #endif
 
+/**
+ * Return a string for a UErrorCode value.
+ * The string will be the same as the name of the error code constant
+ * in the UErrorCode enum above.
+ * @stable ICU 2.0
+ */
+U_CAPI const char * U_EXPORT2
+u_errorName(UErrorCode code);
 
 #endif /* _UTYPES */

@@ -37,6 +37,7 @@
 #include <stddef.h>
 
 #include "inputmethod_types_capi.h"
+#include "inputmethod_attach_options_capi.h"
 #include "inputmethod_cursor_info_capi.h"
 #include "inputmethod_private_command_capi.h"
 #ifdef __cplusplus
@@ -66,7 +67,25 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
-
+/**
+ * @brief ShowTextInput.
+ *
+ * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
+ *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
+ * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be get value from.
+ *     {@link ShowKeyboard} - property is always true,can not be changed,so no need to focus on
+ *     {@link InputMethod_RequestKeyboardReason} - property is the requestKeyboardReason for show keyboard
+ * @return Returns a specific error code.
+ *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
+ *     {@link IME_ERR_DETACHED} - input method client detached.
+ *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer. If inputMethodProxy is NULL, or options is NULL.
+ * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @since 15
+ */
+InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
+    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_AttachOptions *options);
 /**
  * @brief Hide keyboard.
  *

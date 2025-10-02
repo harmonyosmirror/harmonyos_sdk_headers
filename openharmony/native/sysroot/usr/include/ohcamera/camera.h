@@ -580,6 +580,29 @@ typedef enum Camera_PreconfigRatio {
 } Camera_PreconfigRatio;
 
 /**
+ * @brief Enum for remote camera device type.
+ *
+ * @since 15
+ * @version 1.0
+ */
+typedef enum Camera_HostDeviceType {
+    /**
+     * Indicates an unknown device camera.
+     */
+    HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,
+
+    /**
+     * Indicates a smartphone camera.
+     */
+    HOST_DEVICE_TYPE_PHONE = 0x0E,
+
+    /**
+     * Indicates tablet camera.
+     */
+    HOST_DEVICE_TYPE_TABLET = 0x11
+} Camera_HostDeviceType;
+
+/**
  * @brief Size parameter.
  *
  * @since 11

@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup ImageSourceNative
  * @{
  *
  * @brief Provides APIs for access to the image interface.
@@ -97,6 +97,26 @@ typedef enum {
     */
     IMAGE_DYNAMIC_RANGE_HDR = 2,
 } IMAGE_DYNAMIC_RANGE;
+
+/**
+ * @brief Type of allocator used to allocate memory of a PixelMap..
+ *
+ * @since 15
+ */
+typedef enum {
+    /*
+    * The system determines which memory to use to create the PixelMap.
+    */
+    IMAGE_ALLOCATOR_TYPE_AUTO = 0,
+    /*
+    * Use DMA buffer to create the PixelMap.
+    */
+    IMAGE_ALLOCATOR_TYPE_DMA = 1,
+    /*
+    * Use share memory to create the PixelMap.
+    */
+    IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2,
+} IMAGE_ALLOCATOR_TYPE;
 
 /**
  * @brief Create a pointer for OH_ImageSource_Info struct.
@@ -359,6 +379,35 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options,
     OH_PixelmapNative **pixelmap);
+
+/**
+ * @brief Creates a PixelMap based on decoding parameters {@link OH_DecodingOptions}, the memory type used by the
+ * PixelMap can be specified by allocatorType {@link IMAGE_ALLOCATOR_TYPE}. By default, the system selects the memory
+ * type based on the image type, image size, platform capability, etc. When processing the PixelMap returned by this
+ * interface, please always consider the impact of stride.
+ *
+ * @param source Image Source.
+ * @param options Decoding parameters, such as the size, pixel format, and color space of the pixelMap.
+ * For details, see {@link OH_DecodingOptions}.
+ * @param allocator Indicate which memory type will be used by the returned PixelMap.
+ * @param pixelmap Decoded <b>Pixelmap</b> object.
+ * @return Error code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} source is nullptr, or picture is nullptr.
+ *         {@link IMAGE_BAD_SOURCE} data source exception.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_MIMETYPE} unsupported mime type.
+ *         {@link IMAGE_SOURCE_TOO_LARGE} image to large.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE} unsupported allocator type,
+ *         e.g., use share memory to decode a HDR image as only DMA supported hdr metadata.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_OPTIONS} unsupported options,
+ *         e.g, cannot convert image into desired pixel format.
+ *         {@link IMAGE_DECODE_FAILED} decode failed.
+ *         {@link IMAGE_SOURCE_ALLOC_FAILED} memory allocation failed.
+ * @since 15
+ */
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSourceNative *source,
+    OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap);
+
 
 /**
  * @brief Decodes an void pointer

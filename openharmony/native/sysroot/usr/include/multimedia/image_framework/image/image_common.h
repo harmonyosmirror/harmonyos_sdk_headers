@@ -175,12 +175,42 @@ typedef enum {
     IMAGE_ALLOC_FAILED = 7600301,
     /** memory copy failed */
     IMAGE_COPY_FAILED = 7600302,
+    /**
+     * @error memory lock or unlock failed
+     * @since 15
+     */
+    IMAGE_LOCK_UNLOCK_FAILED = 7600303,
     /** unknown error */
     IMAGE_UNKNOWN_ERROR = 7600901,
     /** decode data source exception */
     IMAGE_BAD_SOURCE = 7700101,
+    /**
+     * @error unsupported mime type
+     * @since 15
+     */
+    IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,
+    /**
+     * @error image to large
+     * @since 15
+     */
+    IMAGE_SOURCE_TOO_LARGE = 7700103,
+    /**
+     * @error unsupported allocator type, e.g., use share memory to decode a HDR image as only
+     * DMA supported hdr metadata.
+     * @since 15
+     */
+    IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,
+    /* @error unsupported options, e.g, cannot convert image into desired pixel format.
+     * @since 15
+     */
+    IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203,
     /** decode failed */
     IMAGE_DECODE_FAILED = 7700301,
+    /**
+     * @error memory allocation failed
+     * @since 15
+     */
+    IMAGE_SOURCE_ALLOC_FAILED = 7700302,
     /** encode failed */
     IMAGE_ENCODE_FAILED = 7800301,
 } Image_ErrorCode;

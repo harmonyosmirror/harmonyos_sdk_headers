@@ -16,22 +16,17 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _IPT_ECN_TARGET_H
-#define _IPT_ECN_TARGET_H
+#ifndef _IP6T_HL_H
+#define _IP6T_HL_H
 #include <linux/types.h>
-#include <linux/netfilter/xt_DSCP.h>
-#define IPT_ECN_IP_MASK (~XT_DSCP_MASK)
-#define IPT_ECN_OP_SET_IP 0x01
-#define IPT_ECN_OP_SET_ECE 0x10
-#define IPT_ECN_OP_SET_CWR 0x20
-#define IPT_ECN_OP_MASK 0xce
-struct ipt_ECN_info {
-  __u8 operation;
-  __u8 ip_ect;
-  union {
-    struct {
-      __u8 ece : 1, cwr : 1;
-    } tcp;
-  } proto;
+enum {
+  IP6T_HL_SET = 0,
+  IP6T_HL_INC,
+  IP6T_HL_DEC
+};
+#define IP6T_HL_MAXMODE IP6T_HL_DEC
+struct ip6t_HL_info {
+  __u8 mode;
+  __u8 hop_limit;
 };
 #endif

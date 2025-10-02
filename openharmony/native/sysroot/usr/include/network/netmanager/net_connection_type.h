@@ -109,6 +109,28 @@ typedef enum NetConn_NetBearerType {
 } NetConn_NetBearerType;
 
 /**
+ * @brief Enumerates NetConn error codes.
+ *
+ * @since 15
+ */
+typedef enum NetConn_ErrorCode {
+    /** @error Success return code on success*/
+    NETCONN_SUCCESS = 0,
+    /** @error Permission verification failed */
+    NETCONN_PERMISSION_DENIED = 201,
+    /** @error Parameter check failed */
+    NETCONN_PARAMETER_ERROR = 401,
+    /** @error Failed to connect to the service */
+    NETCONN_OPERATION_FAILED = 2100002,
+    /**
+     * @error System internal error.
+     * 1. Memory-related error, for example, insufficient memory or memory data copy failures.
+     * 2. Null pointer error, for example, using memory that has already been released.
+     */
+    NETCONN_INTERNAL_ERROR = 2100003
+} NetConn_ErrorCode;
+
+/**
  * @brief Defines the network handle.
  *
  * @since 11

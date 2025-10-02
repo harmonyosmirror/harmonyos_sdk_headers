@@ -16,17 +16,14 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _IP6T_HL_H
-#define _IP6T_HL_H
+#ifndef _XT_RATEEST_TARGET_H
+#define _XT_RATEEST_TARGET_H
 #include <linux/types.h>
-enum {
-  IP6T_HL_EQ = 0,
-  IP6T_HL_NE,
-  IP6T_HL_LT,
-  IP6T_HL_GT,
-};
-struct ip6t_hl_info {
-  __u8 mode;
-  __u8 hop_limit;
+#include <linux/if.h>
+struct xt_rateest_target_info {
+  char name[IFNAMSIZ];
+  __s8 interval;
+  __u8 ewma_log;
+  struct xt_rateest * est __attribute__((aligned(8)));
 };
 #endif

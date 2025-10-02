@@ -99,6 +99,20 @@ static const char* const COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF";
 static const char* const COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON";
 
 /**
+ * @brief This commonEvent means when the device is is about to enter the hibernate mode.
+ *
+ * @since 15
+ */
+static const char* const COMMON_EVENT_ENTER_HIBERNATE = "usual.event.ENTER_HIBERNATE";
+
+/**
+ * @brief This commonEvent means when the device is exits the hibernate mode.
+ *
+ * @since 15
+ */
+static const char* const COMMON_EVENT_EXIT_HIBERNATE = "usual.event.EXIT_HIBERNATE";
+
+/**
  * @brief This commonEvent means when the thermal state level change
  *
  * @since 12
@@ -555,6 +569,14 @@ static const char* const COMMON_EVENT_MINORSMODE_ON = "usual.event.MINORSMODE_ON
  * @since 12
  */
 static const char* const COMMON_EVENT_MINORSMODE_OFF = "usual.event.MINORSMODE_OFF";
+
+/**
+ * @brief This common event means that the managed browser policy is changed.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 15
+ */
+static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.event.MANAGED_BROWSER_POLICY_CHANGED";
 #ifdef __cplusplus
 }
 #endif

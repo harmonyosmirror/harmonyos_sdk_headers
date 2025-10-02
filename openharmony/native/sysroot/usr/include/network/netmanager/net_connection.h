@@ -344,6 +344,33 @@ int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netCo
  */
 int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId);
 
+/**
+ * @brief Sets the URL of the current PAC script.
+ *
+ * @param pacUrl the URL of the current PAC script.
+ * @return the result defines in {@link NetConn_ErrorCode}.
+ *         {@link NETCONN_SUCCESS} Success.
+ *         {@link NETCONN_PERMISSION_DENIED} Permission denied.
+ *         {@link NETCONN_PARAMETER_ERROR} Parameter check failed.
+ *         {@link NETCONN_OPERATION_FAILED} Failed to connect to the service.
+ *         {@link NETCONN_INTERNAL_ERROR} System internal error.
+ * @permission ohos.permission.SET_PAC_URL
+ * @since 15
+ */
+NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl);
+
+/**
+ * @brief Obtains the URL of the current PAC script.
+ *
+ * @param pacUrl the URL of the current PAC script.
+ * @return the result defines in {@link NetConn_ErrorCode}.
+ *         {@link NETCONN_SUCCESS} Success.
+ *         {@link NETCONN_PARAMETER_ERROR} Parameter check failed.
+ *         {@link NETCONN_OPERATION_FAILED} Failed to connect to the service.
+ *         {@link NETCONN_INTERNAL_ERROR} System internal error.
+ * @since 15
+ */
+NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
 #ifdef __cplusplus
 }
 #endif

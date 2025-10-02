@@ -504,6 +504,37 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(
 OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
     OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType);
 
+/**
+ * @brief Query the timestamp at which a particular frame was presented in clock monotonic timebase,
+ *        the frame at the returned position was just committed to hardware. This is often used in
+ *        video synchronization and recording stream alignment.
+ *
+ *        Position is 0 and timestamp is fixed until stream really runs and frame is committed. Position
+ *        will also be reset while flush function is called. When a audio route change happens, like in
+ *        device or output type change situations, the position may also be reset but timestamp remains
+ *        monotonically increasing.
+ *        So it is better to use the values until they becomes regularly after the change.
+ *        This interface also adapts to playback speed change. For example, the increseing speed for
+ *        position will be double for 2x speed playback.
+ *
+ * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param framePosition Pointer to a variable to receive the position
+ * @param timestamp Pointer to a variable to receive the timestamp
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                         1.The param of renderer is nullptr;
+ *                                         2.The param of framePosition or timestamp is nullptr;
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE}:
+ *                                         1.Only running state is legal for getting audio timestamp.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM}:
+ *                                         1.Crash or blocking occurs in system process.
+ *                                         2.Other unexpected error from internal system.
+ * @since 15
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
+    int64_t* framePosition, int64_t* timestamp);
+
 #ifdef __cplusplus
 }
 #endif
