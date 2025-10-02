@@ -40,6 +40,7 @@
 #include "image_effect_filter.h"
 #include "native_buffer/native_buffer.h"
 #include "native_window/external_window.h"
+#include "multimedia/image_framework/image/picture_native.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -314,6 +315,33 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, co
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, const char *uri);
+
+/**
+ * @brief Set input picture that contains the image information. It should be noted that the input picture will be
+ * directly rendered and modified if the output is not set
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param imageEffect Encapsulate OH_ImageEffect structure instance pointer
+ * @param picture Indicates the OH_PictureNative that contains the image information
+ * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
+ * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
+ * @since 13
+ */
+ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture);
+
+/**
+ * @brief Set output picture that contains the image information
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param imageEffect Encapsulate OH_ImageEffect structure instance pointer
+ * @param picture Indicates the OH_PictureNative that contains the image information
+ * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
+ * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
+ * @since 13
+ */
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture);
 
 /**
  * @brief Render the filter effects that can be a single filter or a chain of filters

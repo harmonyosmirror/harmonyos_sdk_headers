@@ -38,6 +38,7 @@
 #include "image_common.h"
 
 #include "pixelmap_native.h"
+#include "picture_native.h"
 #include "rawfile/raw_file.h"
 
 #ifdef __cplusplus
@@ -60,6 +61,22 @@ typedef struct OH_ImageSourceNative OH_ImageSourceNative;
  */
 struct OH_ImageSource_Info;
 typedef struct OH_ImageSource_Info OH_ImageSource_Info;
+
+/**
+ * @brief Defines decoding options for picture
+ * {@link OH_DecodingOptionsForPicture_Create}.
+ *
+ * @since 13
+ */
+struct OH_DecodingOptionsForPicture;
+
+/**
+ * @brief Defines decoding options for picture
+ * {@link OH_DecodingOptionsForPicture_Create}.
+ *
+ * @since 13
+ */
+typedef struct OH_DecodingOptionsForPicture OH_DecodingOptionsForPicture;
 
 /**
  * @brief Enumerates decoding dynamic range..
@@ -361,6 +378,23 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
     OH_PixelmapNative *resVecPixMap[], size_t size);
 
 /**
+ * @brief Create Picture pointer from ImageSource
+ * based on the specified {@link OH_DecodingOptionsForPicture} struct.
+ *
+ * @param source Indicates a void pointer(from ImageSource pointer convert).
+ * @param options Indicates a pointer to the options for decoding the image source.
+ * For details, see {@link OH_DecodingOptionsForPicture}.
+ * @param picture Indicates a void pointer to the <b>Picture</b> object obtained at the C++ native layer.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} source is nullptr, or picture is nullptr.
+ *         {@link IMAGE_DECODE_FAILED} decode failed.
+ * @since 13
+ */
+Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source, OH_DecodingOptionsForPicture *options,
+    OH_PictureNative **picture);
+
+/**
  * @brief Obtains the delay time list from some <b>ImageSource</b> objects (such as GIF image sources).
  *
  * @param source Indicates a void pointer(from ImageSource pointer convert).
@@ -429,6 +463,57 @@ Image_ErrorCode OH_ImageSourceNative_GetFrameCount(OH_ImageSourceNative *source,
  */
 Image_ErrorCode OH_ImageSourceNative_Release(OH_ImageSourceNative *source);
 
+/**
+ * @brief Create a pointer for OH_DecodingOptionsForPicture struct.
+ *
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 13
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_Create(OH_DecodingOptionsForPicture **options);
+
+/**
+ * @brief Obtains the desired auxiliary pictures of decoding options.
+ *
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @param desiredAuxiliaryPictures The desired auxiliary pictures in DecodingOptionsForPicture.
+ * @param length The length of desired auxiliary pictures.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, desiredAuxiliaryPictures is nullptr,
+ *         or length is invalid.
+ * @since 13
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(OH_DecodingOptionsForPicture *options,
+    Image_AuxiliaryPictureType **desiredAuxiliaryPictures, size_t *length);
+
+/**
+ * @brief Set decoding options desired auxiliary pictures.
+ *
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @param desiredAuxiliaryPictures The desired auxiliary pictures will be set.
+ * @param length The length of desired auxiliary pictures.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, desiredAuxiliaryPictures is nullptr,
+ *         or length is invalid.
+ * @since 13
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_DecodingOptionsForPicture *options,
+    Image_AuxiliaryPictureType *desiredAuxiliaryPictures, size_t length);
+
+/**
+ * @brief Releases an <b>DecodingOptionsForPicture</b> object.
+ *
+ * @param options Indicates a DecodingOptionsForPicture pointer.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 13
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_Release(OH_DecodingOptionsForPicture *options);
 #ifdef __cplusplus
 };
 #endif

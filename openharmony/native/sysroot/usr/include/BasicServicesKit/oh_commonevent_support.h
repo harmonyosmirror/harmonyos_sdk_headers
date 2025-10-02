@@ -57,7 +57,7 @@ static const char* const COMMON_EVENT_SHUTDOWN = "usual.event.SHUTDOWN";
 static const char* const COMMON_EVENT_BATTERY_CHANGED = "usual.event.BATTERY_CHANGED";
 
 /**
- * @brief This commonEvent means when the device in low battery state..
+ * @brief This commonEvent means when the device in low battery state.
  *
  * @since 12
  */
@@ -141,7 +141,7 @@ static const char* const COMMON_EVENT_PACKAGE_ADDED = "usual.event.PACKAGE_ADDED
 static const char* const COMMON_EVENT_PACKAGE_REMOVED = "usual.event.PACKAGE_REMOVED";
 
 /**
- * @brief This commonEvent means when an existing application package is removed from the device.
+ * @brief This commonEvent means when an installed application's add-on package is removed from the device.
  *
  * @since 12
  */

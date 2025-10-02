@@ -35,6 +35,7 @@
 #ifndef NATIVE_AVSCREEN_CAPTURE_H
 #define NATIVE_AVSCREEN_CAPTURE_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avscreen_capture_errors.h"

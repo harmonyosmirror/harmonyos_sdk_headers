@@ -110,6 +110,20 @@ struct Image_String {
 #endif
 
 /**
+ * @brief Define a PictureMetadata struct type, used for picture metadata.
+ *
+ * @since 13
+ */
+struct OH_PictureMetadata;
+
+/**
+ * @brief Define a PictureMetadata struct type, used for picture metadata.
+ *
+ * @since 13
+ */
+typedef struct OH_PictureMetadata OH_PictureMetadata;
+
+/**
  * @brief Defines the property string (in key-value format) of the image source.
  *
  * @since 12
@@ -151,6 +165,11 @@ typedef enum {
     IMAGE_UNSUPPORTED_CONVERSION = 7600203,
     /** invalid region */
     IMAGE_INVALID_REGION = 7600204,
+    /**
+     *  @error unsupported memory format
+     *  @since 13
+     */
+    IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,
     /** failed to allocate memory */
     IMAGE_ALLOC_FAILED = 7600301,
     /** memory copy failed */
@@ -164,6 +183,89 @@ typedef enum {
     /** encode failed */
     IMAGE_ENCODE_FAILED = 7800301,
 } Image_ErrorCode;
+
+/**
+ * @brief Define the metadata type.
+ *
+ * @since 13
+ */
+typedef enum {
+    /*
+    * EXIF metadata.
+    */
+    EXIF_METADATA = 1,
+    /*
+    * Fragment metadata.
+    */
+    FRAGMENT_METADATA = 2,
+} Image_MetadataType;
+
+/**
+ * @brief Creates a <b>PictureMetadata</b> object.
+ *
+ * @param metadataType The type of metadata.
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
+ * @since 13
+ */
+Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_PictureMetadata **metadata);
+
+/**
+ * @brief Obtains the property of picture metadata.
+ *
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @param key The property's key.
+ * @param value The property's value.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
+ *         auxiliary picture type.
+ * @since 13
+ */
+Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+
+/**
+ * @brief Set picture metadata property.
+ *
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @param key The property's key.
+ * @param value The property's value.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
+ *         auxiliary picture type.
+ * @since 13
+ */
+Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+
+/**
+ * @brief Releases this PictureMetadata object.
+ *
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
+ * @since 13
+ */
+Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
+
+/**
+ * @brief Obtains a clone of metadata.
+ *
+ * @param oldMetadata The PictureMetadata pointer will be operated.
+ * @param newMetadata The PictureMetadata pointer will be cloned.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
+ *         {@link IMAGE_ALLOC_FAILED} memory alloc failed.
+ *         {@link IMAGE_COPY_FAILED} memory copy failed.
+ * @since 13
+ */
+Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata);
 
 /**
  * @brief Defines the bmp mime type.
@@ -1351,6 +1453,42 @@ static const char *OHOS_IMAGE_PROPERTY_WIND_SNAPSHOT_MODE = "HwMnoteWindSnapshot
  * @since 12
  */
 static const char *OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT = "GIFLoopCount";
+
+/**
+ * @brief X in original
+ * It is used in {@link OH_ImageSource_GetImageProperty}.
+ * The top left corner of the fragment image is at the X-coordinate of the original image
+ *
+ * @since 13
+ */
+static const char *OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL = "XInOriginal";
+
+/**
+ * @brief Y in original
+ * It is used in {@link OH_ImageSource_GetImageProperty}.
+ * The top left corner of the fragment image is at the Y-coordinate of the original image
+ *
+ * @since 13
+ */
+static const char *OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL = "YInOriginal";
+
+/**
+ * @brief Fragment map width
+ * It is used in {@link OH_ImageSource_GetImageProperty}.
+ * The width of the fragment image
+ *
+ * @since 13
+ */
+static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth";
+
+/**
+ * @brief Fragment map height
+ * It is used in {@link OH_ImageSource_GetImageProperty}.
+ * The height of the fragment image
+ *
+ * @since 13
+ */
+static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT = "FragmentImageHeight";
 #ifdef __cplusplus
 };
 #endif

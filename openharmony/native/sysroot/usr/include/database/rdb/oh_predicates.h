@@ -38,7 +38,12 @@
  * @since 10
  */
 
+#ifdef __cplusplus
 #include <cstdint>
+#else
+#include <stdint.h>
+#endif
+
 #include <stddef.h>
 #include "database/rdb/oh_value_object.h"
 
@@ -67,7 +72,14 @@ typedef enum OH_OrderType {
  *
  * @since 10
  */
-typedef struct OH_Predicates {
+typedef struct OH_Predicates OH_Predicates;
+
+/**
+ * @brief Define the OH_Predicates structure type.
+ *
+ * @since 10
+ */
+struct OH_Predicates {
     /**
      * The id used to uniquely identify the OH_Predicates struct.
      */
@@ -395,7 +407,7 @@ typedef struct OH_Predicates {
      * @since 10
      */
     int (*destroy)(OH_Predicates *predicates);
-} OH_Predicates;
+};
 
 #ifdef __cplusplus
 };

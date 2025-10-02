@@ -21,13 +21,17 @@
  * @kit CoreFileKit
  *
  * @brief uri verification and conversion
+ * This class is mainly for URI format verification and URI conversion processing;
+ * The conversion and operation of the media library type URI is not supported,
+ * and the class only converts according to the existing specifications,
+ * and there is no guarantee that the conversion result will actually exist.
  * @library libohfileuri.so
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
  */
 
 #include "error_code.h"
-#include "stdbool.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef __cplusplus
@@ -93,6 +97,22 @@ FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned 
  * @since 12
  */
 bool OH_FileUri_IsValidUri(const char *uri, unsigned int length);
+
+/**
+* @brief Gets the fileName From uri.
+* This function obtains that the last segment of the URI string is the return value of the function,
+* and the URI of the media type is not supported
+* @param uri Input a pointer to the uri string.
+* @param length  The length of the input uri.
+* @param result Output a pointer to a FileName string. Please use free() to clear the resource.
+* @return Returns the status code of the execution.
+*         {@link ERR_PARAMS} 401 - Invalid input parameter.
+*         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
+*         {@link ERR_OK} 0 - This operation was successfully executed.
+* @syscap SystemCapability.FileManagement.AppFileService
+* @since 13
+ */
+FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int length, char **result);
 #ifdef __cplusplus
 };
 #endif

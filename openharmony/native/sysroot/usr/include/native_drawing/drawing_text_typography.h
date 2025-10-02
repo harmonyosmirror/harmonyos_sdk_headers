@@ -40,14 +40,19 @@
  * @version 1.0
  */
 
-#include "cstddef"
+#ifdef __cplusplus
+#include <cstdint>
+#include <cstddef>
+#else
+#include <stdint.h>
+#include <stddef.h>
+#endif
 #include "drawing_canvas.h"
 #include "drawing_color.h"
 #include "drawing_font.h"
 #include "drawing_text_declaration.h"
 #include "drawing_types.h"
 
-#include "stdint.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -1027,6 +1032,20 @@ double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography*);
  * @version 1.1
  */
 double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography*);
+
+/**
+ * @brief Obtains the width of the longest line with indent. You are advised to
+ * round up the return value in actual use. When the text content is empty, the
+ * minimum float value, that is, 0.0, is returned.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_Typography Pointer to an <b>OH_Drawing_Typography</b> object, which is obtained by
+ * {@link OH_Drawing_CreateTypography}.
+ * @return Returns the width of the longest line with indent.
+ * @since 13
+ * @version 1.1
+ */
+double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography*);
 
 /**
  * @brief Gets the min intrinsic width.

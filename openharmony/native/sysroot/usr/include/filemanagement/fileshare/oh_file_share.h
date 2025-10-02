@@ -17,6 +17,7 @@
 #define FILE_MANAGEMENT_OH_FILE_SHARE_H
 
 #include "error_code.h"
+#include <stdbool.h>
 
 /**
  * @addtogroup fileShare

@@ -251,6 +251,28 @@ typedef struct OH_AudioDeviceDescriptorArray {
 } OH_AudioDeviceDescriptorArray;
 
 /**
+ * @brief Declaring the audio device blocked status. By default, the audio device is considered as unbloked.
+ *
+ * @since 13
+ */
+typedef enum {
+    /**
+     * @brief Audio device is unblocked.
+     *
+     * @since 13
+     */
+    AUDIO_DEVICE_UNBLOCKED = 0,
+
+    /**
+     * @brief Audio Device is blocked.
+     *
+     * @since 13
+     */
+    AUDIO_DEVICE_BLOCKED = 1,
+} OH_AudioDevice_BlockStatus;
+
+
+/**
  * @brief Query the device role of the target audio device descriptor.
  *
  * @param audioDeviceDescriptor reference returned by {@link OH_AudioRoutingManager_GetDevices} or

@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup MediaAccessHelper
+ * @addtogroup MediaAssetManager
  * @{
  *
  * @brief Provides APIs of request capability for Media Source.

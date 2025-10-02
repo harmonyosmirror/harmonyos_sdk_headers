@@ -346,9 +346,10 @@ typedef enum {
      * @brief Sets the gradient attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient. A positive value indicates a clockwise rotation from the
-     * origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set.
+     * .value[0].f32: start angle of the linear gradient. This attribute takes effect only when
+     * {@link ArkUI_LinearGradientDirection} is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
+     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
+     * .value[1].i32: direction of the linear gradient. When it is set, the <b>angle</b> attribute does not take effect.
      * The parameter type is {@link ArkUI_LinearGradientDirection}: \n
      * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>. \n
      * .object: array of color stops, each of which consists of a color and its stop position.
@@ -360,7 +361,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: start angle of the linear gradient. \n
      * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set. \n
-     * .value[0].i32: whether the colors are repeated. \n
+     * .value[2].i32: whether the colors are repeated. \n
      * .object: array of color stops, each of which consists of a color and its stop position.
      * Invalid colors are automatically skipped. \n
      * colors: colors of the color stops. \n
@@ -1353,7 +1354,9 @@ typedef enum {
 
     /**
      * @brief Defines the focused state. This attribute can be set and obtained as required through APIs.
-     *
+     * @note Setting the parameter to <b>0</b> shifts focus from the currently focused component on the current level
+     * of the page to the root container.
+     * 
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: The parameter type is 1 or 0.
      * \n
@@ -1604,8 +1607,9 @@ typedef enum {
      * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
      * .value[2]?.i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3]?.i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[4]?.i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
+     * .value[4]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[5]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
@@ -1613,8 +1617,9 @@ typedef enum {
      * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
      * .value[2].i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3].i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[4].i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
+     * .value[4].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[5].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      *
      */
     NODE_FOREGROUND_BLUR_STYLE,
@@ -2280,6 +2285,21 @@ typedef enum {
      *
      */
     NODE_IMAGE_SPAN_ALT,
+    /**
+     * @brief Defines the baseline offset attribute of the <b>ImageSpan</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     * A positive value means an upward offset, while a negative value means a downward offset.
+     * The default value is <b>0</b>, and the unit is fp. \n
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: baseline offset, in fp.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: baseline offset, in fp. \n
+     *
+     * @since 13
+     */
+    NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4447,7 +4467,7 @@ typedef enum {
      * @brief Scroll to the next or previous page.
      * 
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 Indicates whether to scroll to next page. Value 1 indicates scroll to next page and value 0
+     * .value[0].i32 Indicates whether to scroll to next page. Value 0 indicates scroll to next page and value 1
      * indicates scroll to previous page. \n
      * .value[1]?.i32 Indicates whether to enable animation. Value 1 indicates enable and 0 indicates disable. \n
      *
@@ -4463,6 +4483,18 @@ typedef enum {
      *
      */
     NODE_SCROLL_BY,
+
+    /**
+     * @brief Performs inertial scrolling based on the initial velocity passed in.
+     * 
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: Initial velocity of inertial scrolling. Unit: vp/s. If the value specified is 0, it is
+     * considered as invalid, and the scrolling for this instance will not take effect. If the value is positive,
+     * the scroll will move downward; if the value is negative, the scroll will move upward. \n
+     *
+     * @since 13
+     */
+    NODE_SCROLL_FLING,
 
     /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
@@ -7661,6 +7693,25 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle nod
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
+
+/**
+ * @brief Add the custom property of the component. This interface only works on the main thread.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param name The name of the custom property. Passing null pointers is not allowed.
+ * @param value The value of the custom property. Passing null pointers is not allowed.
+ * @since 13
+ */
+void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* name, const char* value);
+
+/**
+ * @brief Remove the custom property of the component.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param name The name of the custom property.
+ * @since 13
+ */
+void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name);
 
 /**
  * @brief Collapse the ListItem in its expanded state.

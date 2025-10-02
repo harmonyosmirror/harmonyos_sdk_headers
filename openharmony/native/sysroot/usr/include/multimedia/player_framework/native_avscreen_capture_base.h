@@ -35,6 +35,7 @@
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include "native_avbuffer.h"
 

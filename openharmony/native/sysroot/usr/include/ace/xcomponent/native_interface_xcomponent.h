@@ -43,6 +43,7 @@
 #include <vector>
 #endif
 
+#include "arkui/native_interface_accessibility.h"
 #include "arkui/native_type.h"
 #include "arkui/ui_input_event.h"
 
@@ -814,6 +815,19 @@ int32_t OH_NativeXComponent_GetTouchEventSourceType(
  * @version 1.0
  */
 OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node);
+
+/**
+ * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
+ * instance of this <b>OH_NativeXComponent</b> instance.
+ *
+ * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
+ * @param handle Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
+ * @return Returns {@link OH_NATIVEXCOMPONENT_RESULT_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
+int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
+    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
 
 #ifdef __cplusplus
 };

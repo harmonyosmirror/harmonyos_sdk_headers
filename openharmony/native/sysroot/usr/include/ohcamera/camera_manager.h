@@ -73,6 +73,16 @@ typedef void (*OH_CameraManager_StatusCallback)(Camera_Manager* cameraManager, C
 typedef void (*OH_CameraManager_TorchStatusCallback)(Camera_Manager* cameraManager, Camera_TorchStatusInfo* status);
 
 /**
+ * @brief Camera manager fold status info callback.
+ *
+ * @param cameraManager the {@link Camera_Manager} which deliver the callback.
+ * @param foldStatusInfo the {@link Camera_FoldStatusInfo} of the device.
+ * @since 13
+ */
+typedef void (*OH_CameraManager_OnFoldStatusInfoChange)(Camera_Manager* cameraManager,
+    Camera_FoldStatusInfo* foldStatusInfo);
+
+/**
  * @brief A listener for camera devices status.
  *
  * @see OH_CameraManager_RegisterCallback
@@ -131,6 +141,30 @@ Camera_ErrorCode OH_CameraManager_RegisterTorchStatusCallback(Camera_Manager* ca
  */
 Camera_ErrorCode OH_CameraManager_UnregisterTorchStatusCallback(Camera_Manager* cameraManager,
     OH_CameraManager_TorchStatusCallback torchStatusCallback);
+
+/**
+ * @brief Register fold status info change event callback.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param foldStatusInfoCallback the {@link OH_CameraManager_OnFoldStatusInfoChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 13
+ */
+Camera_ErrorCode OH_CameraManager_RegisterFoldStatusInfoCallback(Camera_Manager* cameraManager,
+    OH_CameraManager_OnFoldStatusInfoChange foldStatusInfoCallback);
+
+/**
+ * @brief Unregister fold status info change event callback.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param foldStatusInfoCallback the {@link OH_CameraManager_OnFoldStatusInfoChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 13
+ */
+Camera_ErrorCode OH_CameraManager_UnregisterFoldStatusInfoCallback(Camera_Manager* cameraManager,
+    OH_CameraManager_OnFoldStatusInfoChange foldStatusInfoCallback);
 
 /**
  * @brief Gets supported camera descriptions.

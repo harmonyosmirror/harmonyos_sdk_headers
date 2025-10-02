@@ -13,29 +13,29 @@
  * limitations under the License.
  */
 
-#ifndef NATIVE_GCP_API_H
-#define NATIVE_GCP_API_H
-
 /**
  * @addtogroup GlobalColorPicker
  * @{
  *
  * @brief Defines the functions of GlobalColorPicker.
  *
- * @Syscap SystemCapability.StylusService.ColorPicker
  * @since 5.0.0(12)
  */
 
  /**
  * @file native_gcp_api.h
  * @kit PenKit
- * @library liblibcolorpicker_ndk.z.so
  *
  * @brief Defines the functions of GlobalColorPicker.
  *
+ * @library libcolorpicker_ndk.z.so
+ * @syscap SystemCapability.StylusService.ColorPicker
  * @since 5.0.0(12)
  */
  
+#ifndef NATIVE_GCP_API_H
+#define NATIVE_GCP_API_H
+
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -44,6 +44,7 @@ extern "C" {
 
 /**
  * @brief The color space enum.
+ * @since 5.0.0(12)
  */
 typedef enum {
     /** an unknown color space */
@@ -102,6 +103,7 @@ typedef enum {
 
 /**
  * @brief Defines the structure for color value.
+ * @since 5.0.0(12)
  */
 typedef struct {
     /** The red channel. */
@@ -116,6 +118,7 @@ typedef struct {
 
 /**
  * @brief Defines the structure for the picked color information.
+ * @since 5.0.0(12)
  */
 typedef struct {
     /** The picked color value. */
@@ -133,6 +136,7 @@ typedef struct {
  * @param colorInfo The picked color information which needs to be saved by users.
  * @param code result code
  * @see HMS_GCP_PickColor
+ * @since 5.0.0(12)
  */
 typedef void (*HMS_GCP_OnResult)(void* userData, HMS_GCP_PickedColorInfo colorInfo, const int32_t code);
 
@@ -161,3 +165,4 @@ int32_t HMS_GCP_StartColorPicker(
 #endif
 
 #endif // NATIVE_GCP_API_H
+/** @} */

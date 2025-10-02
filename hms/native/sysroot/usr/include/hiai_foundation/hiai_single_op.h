@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @Syscap SystemCapability.AI.HiAIFoundation
+ * @syscap SystemCapability.AI.HiAIFoundation
  * @since 5.0.0(12)
  */
 
@@ -25,6 +25,7 @@
 
 #ifndef HIAI_FOUNDATION_SINGLE_OP_H
 #define HIAI_FOUNDATION_SINGLE_OP_H
+#include <stdbool.h>
 
 #include "neural_network_runtime/neural_network_runtime_type.h"
 

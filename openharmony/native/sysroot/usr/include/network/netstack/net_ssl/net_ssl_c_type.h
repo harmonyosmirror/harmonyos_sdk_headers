@@ -38,7 +38,11 @@
  */
 
 #include <stdint.h>
+#ifdef __cplusplus
 #include <cstddef>
+#else
+#include <stddef.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {

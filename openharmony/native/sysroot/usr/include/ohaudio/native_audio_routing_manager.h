@@ -237,6 +237,61 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback(
 OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices(
     OH_AudioRoutingManager *audioRoutingManager,
     OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
+
+/**
+ * @brief This type defines the callback function that is used to receive the audio devices' block status.
+ *
+ * @param audioDeviceDescriptorArray The {@link OH_AudioDeviceDescriptorArray}
+ * pointer variable which will be set the audio device descriptors value.
+ * Do not release the audioDeviceDescriptorArray pointer separately instead of calling
+ * {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array when it is no use anymore.
+ * @param status The {@link OH_AudioDevice_BlockStatus} is the block status.
+ * @param userData User data which is passed by user.
+ * @since 13
+ */
+typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(
+    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray,
+    OH_AudioDevice_BlockStatus status,
+    void *userData);
+
+/**
+ * @brief Query whether microphone block detection is supported on current device.
+ *
+ * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned by
+ * {@link OH_AudioManager_GetAudioRoutingManager}.
+ * @param supported query result.
+ * @return Function result code:
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
+ *                                                    1.The param of audioRoutingManager is nullptr;
+ *                                                    2.The param of supported is nullptr.
+ * @since 13
+ */
+OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(
+    OH_AudioRoutingManager *audioRoutingManager,
+    bool *supported);
+
+/**
+ * @brief Set the microphone block status callback. Before using this function, users should query whether block
+ * detection is supported on current device. The caller will receive the callback only when it is recording
+ * and the used microphones' block status have changed. Currently, block detecting is only support for microphones
+ * located on the local device.
+ *
+ * @param audioRoutingManager The {@link OH_AudioRoutingManager} handle returned by
+ * {@link OH_AudioManager_GetAudioRoutingManager}.
+ * @param callback The function pointer will point to the callback function that is used to receive the block status.
+ * @param userData User data which is passed by user.
+ * @return Function result code:
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
+ *                                                    1.The param of audioRoutingManager is nullptr;
+ *                                                    2.The param of callback is nullptr.
+ * @since 13
+ */
+OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(
+    OH_AudioRoutingManager *audioRoutingManager,
+    OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback,
+    void *userData);
 #ifdef __cplusplus
 }
 #endif

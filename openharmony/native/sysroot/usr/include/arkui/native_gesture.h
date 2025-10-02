@@ -38,6 +38,7 @@
 
 #include "ui_input_event.h"
 #include "native_type.h"
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {

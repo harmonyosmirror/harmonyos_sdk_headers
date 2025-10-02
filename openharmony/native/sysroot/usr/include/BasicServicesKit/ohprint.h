@@ -281,6 +281,28 @@ typedef enum {
 } Print_DocumentFormat;
 
 /**
+ * @brief Indicates the print job doc adapter state.
+ *
+ * @since 13
+ */
+typedef enum {
+    /** Print job preview ability destroy. */
+    PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY = 0,
+    /** Print job task succeed. */
+    PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED = 1,
+    /** Print job task failed. */
+    PRINT_DOC_ADAPTER_PRINT_TASK_FAIL = 2,
+    /** Print job task cancel. */
+    PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL = 3,
+    /** Print job task block. */
+    PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK = 4,
+    /** Print job task preview ability destroy for cancel. */
+    PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED = 5,
+    /** Print job task preview ability destroy for started. */
+    PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED = 6,
+} Print_JobDocAdapterState;
+
+/**
  * @brief Indicates printer capabilities.
  *
  * @since 12
@@ -421,6 +443,96 @@ typedef struct {
     /** Advanced options in json format. */
     char *advancedOptions;
 } Print_PrintJob;
+
+/**
+ * @brief Indicates print range structure.
+ *
+ * @since 13
+ */
+typedef struct {
+    /** Print start page. */
+    uint32_t startPage;
+    /** Print end page. */
+    uint32_t endPage;
+    /** Print page array length. */
+    uint32_t pagesArrayLen;
+    /** Print page array. */
+    uint32_t* pagesArray;
+} Print_Range;
+
+/**
+ * @brief Indicates print attributes structure.
+ *
+ * @since 13
+ */
+typedef struct {
+    /** Print ranges. */
+    Print_Range pageRange;
+    /** Print page size. */
+    Print_PageSize pageSize;
+    /** Print margin. */
+    Print_Margin pageMargin;
+    /** Copy numbers. */
+    uint32_t copyNumber;
+    /** Duplex mode. */
+    uint32_t duplexMode;
+    /** color mode. */
+    uint32_t colorMode;
+    /** Print sequential. */
+    bool isSequential;
+    /** Print orient. */
+    bool isLandscape;
+    /** Print option flag. */
+    bool hasOption;
+    /** Print options. */
+    char options[256];
+} Print_PrintAttributes;
+
+/**
+ * @brief Write files result callback.
+ *
+ * @param jobId The print job id of one print task.
+ * @param code The result of write files.
+ * @since 13
+ */
+typedef void(*Print_WriteResultCallback)(const char *jobId, uint32_t code);
+
+/**
+ * @brief Print start layout callback.
+ *
+ * @param jobId The print job id of one print task.
+ * @param fd The file descriptor to be written.
+ * @param oldAttrs The attribute of last.
+ * @param newAttrs The attribute of current.
+ * @param writeCallback The Write files result callback.
+ * @since 13
+ */
+typedef void(*Print_OnStartLayoutWrite)(const char *jobId,
+                                        uint32_t fd,
+                                        const Print_PrintAttributes *oldAttrs,
+                                        const Print_PrintAttributes *newAttrs,
+                                        Print_WriteResultCallback writeCallback);
+
+/**
+ * @brief Print job state callback.
+ *
+ * @param jobId The print job id of one print task.
+ * @param state The state of current print job.
+ * @since 13
+ */
+typedef void(*Print_OnJobStateChanged)(const char *jobId, uint32_t state);
+
+/**
+ * @brief Indicates print doc state callback structure.
+ *
+ * @since 13
+ */
+typedef struct {
+    /** Print start layout callback. */
+    Print_OnStartLayoutWrite startLayoutWriteCb;
+    /** Print job state callback. */
+    Print_OnJobStateChanged jobStateChangedCb;
+} Print_PrintDocCallback;
 
 /**
  * @brief Printer discovery callback.
@@ -658,6 +770,23 @@ Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId, const Pr
  * @since 12
  */
 Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId, const Print_StringList *propertyKeyList);
+
+/**
+ * @brief This API provide capacity to start print dialog.
+ *
+ * @permission {@code ohos.permission.PRINT}
+ * @param printJobName The name of this print job.
+ * @param printDocCallback The print doc state callback.
+ * @param context The context of caller app.
+ * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
+ *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
+ *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
+ * @syscap SystemCapability.Print.PrintFramework
+ * @since 13
+ */
+Print_ErrorCode OH_Print_StartPrintByNative(const char *printJobName,
+                                            Print_PrintDocCallback printDocCallback,
+                                            void *context);
 
 #ifdef __cplusplus
 }

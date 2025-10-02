@@ -36,6 +36,7 @@
 #ifndef NATIVE_IMAGE_EFFECT_FILTER_H
 #define NATIVE_IMAGE_EFFECT_FILTER_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include "image_effect_errors.h"
 #include "multimedia/image_framework/image/pixelmap_native.h"
@@ -147,6 +148,7 @@ typedef union ImageEffect_DataValue {
     void *ptrValue;
 } ImageEffect_DataValue;
 
+#ifdef __cplusplus
 /**
  * @brief Data parameter struct information
  *
@@ -159,6 +161,20 @@ typedef struct ImageEffect_Any {
     /** Effect any data value */
     ImageEffect_DataValue dataValue = { 0 };
 } ImageEffect_Any;
+#else
+/**
+ * @brief Data parameter struct information
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @since 12
+ */
+typedef struct ImageEffect_Any {
+    /** Effect any data type */
+    ImageEffect_DataType dataType;
+    /** Effect any data value */
+    ImageEffect_DataValue dataValue;
+} ImageEffect_Any;
+#endif
 
 /**
  * @brief Enumerates the pixel format type
@@ -315,6 +331,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInf
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_Release(OH_EffectFilterInfo *info);
 
+#ifdef __cplusplus
 /**
  * @brief EffectFilter names information
  *
@@ -327,6 +344,20 @@ typedef struct ImageEffect_FilterNames {
     /** EffectFilter names memory block */
     const char **nameList = nullptr;
 } ImageEffect_FilterNames;
+#else
+/**
+ * @brief EffectFilter names information
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @since 12
+ */
+typedef struct ImageEffect_FilterNames {
+    /** EffectFilter names array size */
+    uint32_t size;
+    /** EffectFilter names memory block */
+    const char **nameList;
+} ImageEffect_FilterNames;
+#endif
 
 /**
  * @brief Define the new type name OH_EffectBufferInfo for struct OH_EffectBufferInfo

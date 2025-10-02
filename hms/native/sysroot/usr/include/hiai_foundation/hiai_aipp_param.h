@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @Syscap SystemCapability.AI.HiAIFoundation
+ * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
  */
 
@@ -26,6 +26,7 @@
 #define HIAI_FOUNDATION_AIPP_PARAM_H
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 #include "neural_network_runtime/neural_network_runtime_type.h"
 
@@ -46,7 +47,7 @@ typedef struct HiAI_AippParam HiAI_AippParam;
  * AIPP parameters. If {@link HiAI_AippParam} not been used, call {@link HMS_HiAIAippParam_Destroy} to
  * release the pointer. Otherwise, memory leak may occur.
  *
- * @param [in] batchNum Batch size of the model input. The value range is (0, 127].
+ * @param batchNum Batch size of the model input. The value range is (0, 127].
  * @return Returns the pointer to {@link HiAI_AippParam} if the operation is successful; returns a null pointer
  * otherwise.
  * @see HMS_HiAIAippParam_Destroy
@@ -60,7 +61,7 @@ HiAI_AippParam* HMS_HiAIAippParam_Create(uint32_t batchNum);
  * This method is used to obtain the data memory address requested for {@link HiAI_AippParam} through {@link
  * HMS_HiAIAippParam_Create}. data points to the memory requested for AIPP parameters.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, a null
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, a null
  * pointer is returned.
  * @return Returns the memory address requested for AippParam if the operation is successful; returns a null pointer
  * otherwise.
@@ -74,7 +75,7 @@ void* HMS_HiAIAippParam_GetData(HiAI_AippParam* aippParam);
  * This method is used to obtain the memory size requested for {@link HiAI_AippParam} through {@link
  * HMS_HiAIAippParam_Create}. size indicates the memory size requested for AIPP parameters.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, 0 is
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, 0 is
  * returned.
  * @return Returns the memory size requested for AippParam if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
@@ -86,7 +87,7 @@ uint32_t HMS_HiAIAippParam_GetDataSize(HiAI_AippParam* aippParam);
  *
  * This method is used to query the input index of the AippParam object in the case of multiple inputs.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, -1 is
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, -1 is
  * returned.
  * @return Returns the input index of the AippParam object if the operation is successful; returns -1 otherwise.
  * @since 4.1.0(11)
@@ -98,8 +99,8 @@ int HMS_HiAIAippParam_GetInputIndex(HiAI_AippParam* aippParam);
  *
  * This method is used to set the index of the input linked with the AippParam object, in the case of multiple inputs.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
- * @param [in] inputIndex Sequence number of the model input linked with the AIPP parameter. The value starts from 0.
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
+ * @param inputIndex Sequence number of the model input linked with the AIPP parameter. The value starts from 0.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -113,7 +114,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputIndex(HiAI_AippParam* aippParam, uint
  * This method is used to query the data node index of the AippParam object, in the case that the data node has more
  * than one index.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, -1 is
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, -1 is
  * returned.
  * @return Returns the data node's index of the AippParam object if the operation is successful; returns -1 otherwise.
  * @since 4.1.0(11)
@@ -126,8 +127,8 @@ int HMS_HiAIAippParam_GetInputAippIndex(HiAI_AippParam* aippParam);
  * This method is used to set the index of an output, in the scenario where the data linked with AippParam has more than
  * one output.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
- * @param [in] inputAippIndex Identifies the output linked with the AIPP configuration, in the scenario where the input
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
+ * @param inputAippIndex Identifies the output linked with the AIPP configuration, in the scenario where the input
  * data has more than one output. The value starts from 0.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -140,7 +141,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputAippIndex(HiAI_AippParam* aippParam, 
  *
  * This method is used to release {@link HiAI_AippParam} created by using {@link HMS_HiAIAippParam_Create}.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @since 4.1.0(11)
  */
 void HMS_HiAIAippParam_Destroy(HiAI_AippParam** aippParam);
@@ -186,9 +187,9 @@ typedef enum {
  * inference. The image formats supported for AIPP are specified in {@link HiAI_ImageFormat}. 8-bit image. The value
  * ranges from 0 to 255. HIAI_YUV444SP_U8 and HIAI_YVU444SP_U8 can't be used for the inputFormat parameter.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] inputFormat Format of the input image. For details, see {@link HiAI_ImageFormat}.
+ * @param inputFormat Format of the input image. For details, see {@link HiAI_ImageFormat}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -201,7 +202,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputFormat(HiAI_AippParam* aippParam, HiA
  * This method is used to query the input image format based on the {@link HiAI_AippParam} object during
  * dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, {@link
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, {@link
  * HIAI_IMAGE_FORMAT_INVALID} is returned.
  * @return Returns {@link HiAI_ImageFormat} if the operation is successful; returns {@link HIAI_IMAGE_FORMAT_INVALID}
  * otherwise.
@@ -215,10 +216,10 @@ HiAI_ImageFormat HMS_HiAIAippParam_GetInputFormat(HiAI_AippParam* aippParam);
  * This method is used to set the width and height of the input image in the {@link HiAI_AippParam} object
  * during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] srcImageW Width of the input image. The value range is [16, 4096].
- * @param [in] srcImageH Height of the input image. The value range is [16, 4096].
+ * @param srcImageW Width of the input image. The value range is [16, 4096].
+ * @param srcImageH Height of the input image. The value range is [16, 4096].
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -232,7 +233,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputShape(
  * This method is used to query the width and height of the input image based on the {@link HiAI_AippParam}
  * object during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
  * @param [out] srcImageW Width of the input image.
  * @param [out] srcImageH Height of the input image.
@@ -250,7 +251,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetInputShape(
  * during dynamic AIPP inference. In the single-batch multi-crop scenario, this method queries the number of the cropped
  * subimages. In the multi-batch single-crop scenario, this method queries the input batch value.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @return Returns the number of images if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
@@ -284,12 +285,12 @@ typedef enum {
  * YUV444SP_U8, YVU444SP_U8, or grayscale (YUV400_U8) images.
  * Conversion from YUV400 to RGB or BGR is not supported.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] inputFormat Image input format. For details, see {@link HiAI_ImageFormat}. HIAI_YUV444SP_U8 and
+ * @param inputFormat Image input format. For details, see {@link HiAI_ImageFormat}. HIAI_YUV444SP_U8 and
  * HIAI_YVU444SP_U8 can't be used for the inputFormat parameter.
- * @param [in] outputFormat Image output format. For details, see {@link HiAI_ImageFormat}.
- * @param [in] space Image's color space type. For details, see {@link HiAI_ImageColorSpace}.
+ * @param outputFormat Image output format. For details, see {@link HiAI_ImageFormat}.
+ * @param space Image's color space type. For details, see {@link HiAI_ImageColorSpace}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -303,7 +304,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetCscConfig(
  * This method is used to query CSC parameters of AippParam based on the {@link HiAI_AippParam} object during
  * dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
  * @param [out] inputFormat Image input format. For details, see {@link HiAI_ImageFormat}.
  * @param [out] outputFormat Image output format. For details, see {@link HiAI_ImageFormat}.
@@ -338,10 +339,10 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetCscConfig(HiAI_AippParam* aippParam, HiAI_
  * into RGBX, RGBA, and YUVA data. When the model training set consists of RGB images and the image input for inference
  * is in XRGB or ARGB format, you can enable AX channel swapping to move the RGB channels forward for compatibility.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] rbuvSwapSwitch Flag indicating RB/UV channel swapping.
- * @param [in] axSwapSwitch Flag indicating AX channel swapping.
+ * @param rbuvSwapSwitch Flag indicating RB/UV channel swapping.
+ * @param axSwapSwitch Flag indicating AX channel swapping.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -355,7 +356,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelSwapConfig(
  * This method is used to query channel swapping parameters based on the {@link HiAI_AippParam} object during
  * dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
  * @param [out] rbuvSwapSwitch Flag indicating RB/UV channel swapping.
  * @param [out] axSwapSwitch Flag indicating AX channel swapping.
@@ -375,9 +376,9 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelSwapConfig(
  * passed at a time. In this way, information about all key points such as the face can be obtained through one
  * inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] singleBatchMultiCrop Indicates whether the scenario is single-batch multi-crop.
+ * @param singleBatchMultiCrop Indicates whether the scenario is single-batch multi-crop.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -391,7 +392,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetSingleBatchMultiCrop(
  * This method is used to query whether the single-batch multi-crop scenario is used based on the {@link
  * HiAI_AippParam} object during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @return Returns true if the operation is successful; returns false otherwise.
  * @since 4.1.0(11)
  */
@@ -405,17 +406,17 @@ bool HMS_HiAIAippParam_GetSingleBatchMultiCrop(HiAI_AippParam* aippParam);
  * As restricted by the YUV image type, when the input image type is YUV420SP, YUYV, YUV422SP, or AYUV444, the
  * coordinates of the crop start and the width and height of the cropped out image must be even numbers.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] startPosW Horizontal coordinate of the crop start. The value of startPosW must be less than the width of
+ * @param startPosW Horizontal coordinate of the crop start. The value of startPosW must be less than the width of
  * the input image.
- * @param [in] startPosH Vertical coordinate of the crop start. The value of startPosH must be less than the height of
+ * @param startPosH Vertical coordinate of the crop start. The value of startPosH must be less than the height of
  * the input image.
- * @param [in] croppedW Width of the cropped out image. The sum of startPosW and croppedW must be less than or equal
+ * @param croppedW Width of the cropped out image. The sum of startPosW and croppedW must be less than or equal
  * to the width of the input image.
- * @param [in] croppedH Height of the cropped out image. The sum of startPosH and croppedH must be less than or equal
+ * @param croppedH Height of the cropped out image. The sum of startPosH and croppedH must be less than or equal
  * to the height of the input image.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -430,9 +431,9 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetCropConfig(HiAI_AippParam* aippParam, uint
  * This method is used to query cropping parameters with a specific index based on the {@link HiAI_AippParam}
  * object during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] startPosW Horizontal coordinate of the crop start.
  * @param [out] startPosH Vertical coordinate of the crop start.
@@ -451,13 +452,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetCropConfig(HiAI_AippParam* aippParam, uint
  * This method is used to set image resizing parameters in the {@link HiAI_AippParam} object during dynamic
  * AIPP inference. Images are resized using the linear interpolation method.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] resizedW Width of the resized image. The value range is [16, 448]. The range of the width resize
+ * @param resizedW Width of the resized image. The value range is [16, 448]. The range of the width resize
  * ratio is [1/16, 16].
- * @param [in] resizedH Height of the resized image. The value range is [16, 4096]. The range of the height
+ * @param resizedH Height of the resized image. The value range is [16, 4096]. The range of the height
  * resize ratio is [1/16, 16].
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -472,9 +473,9 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetResizeConfig(
  * This method is used to query the width and height of the resized image with a specific index based on the {@link
  * HiAI_AippParam} object during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] resizedW Width of the resized image.
  * @param [out] resizedH Height of the resized image.
@@ -492,17 +493,17 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetResizeConfig(
  * object during dynamic AIPP inference. Pixels are padded to the left, right, top, and bottom of an image. Also call
  * {@link HMS_HiAIAippParam_SetPadChannelValue} if you want to set values padded to channels.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] leftPadSize Number of pixels padded on the left of the image. The width of the padded image must be the
+ * @param leftPadSize Number of pixels padded on the left of the image. The width of the padded image must be the
  * same as that in the original model dimension.
- * @param [in] rightPadSize Number of pixels padded on the right of the image. The width of the padded image must be the
+ * @param rightPadSize Number of pixels padded on the right of the image. The width of the padded image must be the
  * same as that in the original model dimension.
- * @param [in] topPadSize Number of pixels padded on the top of the image. The height of the padded image must be the
+ * @param topPadSize Number of pixels padded on the top of the image. The height of the padded image must be the
  * same as that in the original model dimension.
- * @param [in] bottomPadSize Number of pixels padded on the bottom of the image. The height of the padded image must be
+ * @param bottomPadSize Number of pixels padded on the bottom of the image. The height of the padded image must be
  * the same as that in the original model dimension.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -518,9 +519,9 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetPadConfig(HiAI_AippParam* aippParam, uint3
  * HiAI_AippParam} object during dynamic AIPP inference. Also call {@link
  * HMS_HiAIAippParam_GetChannelPadding} if you want to query values padded to channels.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] leftPadSize Number of pixels padded on the left of the image.
  * @param [out] rightPadSize Number of pixels padded on the right of the image.
@@ -539,13 +540,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetPadConfig(HiAI_AippParam* aippParam, uint3
  * This method is used to set the padding value for a channel in the {@link HiAI_AippParam} object during
  * dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] paddingValues Arrays of channel padding value. The value range is [-65504, 65504]. The default value is
+ * @param paddingValues Arrays of channel padding value. The value range is [-65504, 65504]. The default value is
  * 0.
- * @param [in] channelCount Number of channels to be padded. The value range is [1, 4]. For example, if channelCount is
+ * @param channelCount Number of channels to be padded. The value range is [1, 4]. For example, if channelCount is
  * set to 3, channels chn0, chn1, and chn2 will be configured.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -560,13 +561,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelPadding(
  * This method is used to query the padding value of a channel with a specific index based on the {@link
  * HiAI_AippParam} object during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] paddingValues Arrays of channel padding value. The value range is [-65504, 65504]. The default value is
  * 0.
- * @param [in] channelCount Number of channels to be padded. The value range is [1, 4]. For example, if channelCount is
+ * @param channelCount Number of channels to be padded. The value range is [1, 4]. For example, if channelCount is
  * set to 3, channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -581,11 +582,11 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelPadding(
  * This method is used to set the rotation angle in the {@link HiAI_AippParam} object during dynamic AIPP
  * inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] rotationAngle Rotation angle. The value can only be 0, 90, 180, or 270.
+ * @param rotationAngle Rotation angle. The value can only be 0, 90, 180, or 270.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -599,8 +600,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetRotationAngle(
  * This method is used to query the rotation angle of an image with a specific index based on the {@link
  * HiAI_AippParam} object during dynamic AIPP inference.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] rotationAngle Rotation angle.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
@@ -630,13 +631,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetRotationAngle(
  * dynamic AIPP inference. This method must be used together with {@link HMS_HiAIAippParam_SetDtcMinPixel} and
  * {@link HMS_HiAIAippParam_SetDtcVarReciPixel}.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] meanPixel Array of the average pixel values of channels. The array size is channelCount. The default
+ * @param meanPixel Array of the average pixel values of channels. The array size is channelCount. The default
  * value is 0.
- * @param [in] channelCount Number of channels. The value range is [1, 4]. For example, if channelCount is set to 3,
+ * @param channelCount Number of channels. The value range is [1, 4]. For example, if channelCount is set to 3,
  * channels chn0, chn1, and chn2 will be configured.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -654,12 +655,12 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMeanPixel(
  * conversion parameters for all data types.
  *
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] meanPixel Array of the average pixel values of channels. The array size is channelCount.
- * @param [in] channelCount Number of channels. The value range is [1, 4], and the channel starts from chn0. For
+ * @param channelCount Number of channels. The value range is [1, 4], and the channel starts from chn0. For
  * example, if channelCount is 3, the data of channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -676,13 +677,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMeanPixel(
  * This method must be used together with {@link HMS_HiAIAippParam_SetDtcMeanPixel} and
  * {@link HMS_HiAIAippParam_SetDtcVarReciPixel}.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] minPixel Array of the minimum pixel values of channels. The array size is channelCount. The default value
+ * @param minPixel Array of the minimum pixel values of channels. The array size is channelCount. The default value
  * is 0.
- * @param [in] channelCount Number of channels. The value range is [1, 4]. For example, if channelCount is set to 3,
+ * @param channelCount Number of channels. The value range is [1, 4]. For example, if channelCount is set to 3,
  * channels chn0, chn1, and chn2 will be configured.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -699,12 +700,12 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMinPixel(
  * This method must be used together with {@link HMS_HiAIAippParam_GetDtcMeanPixel} and
  * {@link HMS_HiAIAippParam_GetDtcVarReciPixel}, to obtain conversion parameters for all data types.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] minPixel Array of the minimum pixel values of channels. The array size is channelCount.
- * @param [in] channelCount Number of channels. The value range is [1,4], and the channel starts from chn0. For example,
+ * @param channelCount Number of channels. The value range is [1,4], and the channel starts from chn0. For example,
  * if channelCount is 3, the data of channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -721,13 +722,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMinPixel(
  * This method must be used together with {@link HMS_HiAIAippParam_SetDtcMeanPixel} and
  * {@link HMS_HiAIAippParam_SetDtcMinPixel}.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [in] varReciPixel Array of pixel variances of channels. The array size is channelCount. The default value
+ * @param varReciPixel Array of pixel variances of channels. The array size is channelCount. The default value
  * is 1.0.
- * @param [in] channelCount Number of channels. The value range is [1, 4]. For example, if channelCount is set to 3,
+ * @param channelCount Number of channels. The value range is [1, 4]. For example, if channelCount is set to 3,
  * channels chn0, chn1, and chn2 will be configured.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -744,12 +745,12 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcVarReciPixel(
  * This method must be used together with {@link HMS_HiAIAippParam_GetDtcMeanPixel} and
  * {@link HMS_HiAIAippParam_GetDtcMinPixel}, to obtain conversion parameters for all data types.
  *
- * @param [in] aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
+ * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
+ * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
  * @param [out] varReciPixel Array of pixel variances of channels. The array size is channelCount.
- * @param [in] channelCount Number of channels. The value range is [1, 4], and the channel starts from chn0. For
+ * @param channelCount Number of channels. The value range is [1, 4], and the channel starts from chn0. For
  * example, if channelCount is 3, the data of channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.

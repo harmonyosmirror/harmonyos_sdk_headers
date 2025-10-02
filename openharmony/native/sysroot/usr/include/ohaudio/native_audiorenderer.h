@@ -40,6 +40,7 @@
 #ifndef NATIVE_AUDIORENDERER_H
 #define NATIVE_AUDIORENDERER_H
 
+#include <stdbool.h>
 #include <time.h>
 #include "native_audiostream_base.h"
 #include "native_audio_device_base.h"

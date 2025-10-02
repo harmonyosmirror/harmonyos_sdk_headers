@@ -2839,7 +2839,9 @@ JSVM_Status JSVM_CDECL OH_JSVM_IsConstructor(JSVM_Env env,
  * @return Only returns JSVM function's result code.
  *         {@link JSVM_OK } If the API succeeded.\n
  *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
- *         {@link JSVM_PENDING_EXCPTION } If the API throws an exception during runtime.\n
+ *         {@link JSVM_STRING_EXPECTED } If the value of 'value' is not a string.\n
+ *         {@link JSVM_GENERIC_FAILURE } If create RegExp failed.\n
+ *         {@link JSVM_PENDING_EXCEPTION } If the API throws an exception during runtime.\n
  * @since 12
  */
 JSVM_Status JSVM_CDECL OH_JSVM_CreateRegExp(JSVM_Env env,

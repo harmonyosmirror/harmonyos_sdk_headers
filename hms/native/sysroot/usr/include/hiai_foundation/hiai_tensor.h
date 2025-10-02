@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @Syscap SystemCapability.AI.HiAIFoundation
+ * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
  */
 
@@ -37,8 +37,8 @@ extern "C" {
 /**
  * @brief Calculates the size of the tensor to be applied for based on NN_TensorDesc and HiAI_ImageFormat.
  *
- * @param [in] desc Pointer to {@link NN_TensorDesc}. The value cannot be null. Otherwise, 0 is returned.
- * @param [in] format Image format {@link HiAI_ImageFormat}.
+ * @param desc Pointer to {@link NN_TensorDesc}. The value cannot be null. Otherwise, 0 is returned.
+ * @param format Image format {@link HiAI_ImageFormat}.
  * @return Returns the size of the tensor to be applied for if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
@@ -50,10 +50,10 @@ size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageForm
  * After the AIPP parameters are set for {@link NN_Tensor}, release the memory by calling
  * {@link HMS_HiAIAippParam_Destroy} after the tensor is used.
  *
- * @param [in] tensor Pointer to {@link NN_Tensor}. The value cannot be null. Otherwise, a null pointer is
+ * @param tensor Pointer to {@link NN_Tensor}. The value cannot be null. Otherwise, a null pointer is
  * returned.
- * @param [in] aippParams AIPP parameter array.
- * @param [in] aippNum Number of AIPP parameters.
+ * @param aippParams AIPP parameter array.
+ * @param aippNum Number of AIPP parameters.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @see OH_NNCore_DestroyTensor

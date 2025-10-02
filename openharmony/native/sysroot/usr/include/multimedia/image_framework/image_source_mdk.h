@@ -37,7 +37,11 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_SOURCE_MDK_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_SOURCE_MDK_H_
+#ifdef __cplusplus
 #include <cstdint>
+#else
+#include <stdint.h>
+#endif
 #include "napi/native_api.h"
 #include "image_mdk_common.h"
 #include "rawfile/raw_file.h"

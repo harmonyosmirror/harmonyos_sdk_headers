@@ -36,7 +36,12 @@
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 11
  */
+#ifdef __cplusplus
 #include <cstddef>
+#else
+#include <stddef.h>
+#endif
+
 #include <stdint.h>
 #ifdef __cplusplus
 extern "C" {

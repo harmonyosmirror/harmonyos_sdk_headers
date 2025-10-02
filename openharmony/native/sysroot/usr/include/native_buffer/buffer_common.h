@@ -138,7 +138,12 @@ typedef enum OH_NativeBuffer_MetadataType {
     /** HDR10 */
     OH_VIDEO_HDR_HDR10,
     /** HDR VIVID */
-    OH_VIDEO_HDR_VIVID
+    OH_VIDEO_HDR_VIVID,
+    /**
+     * NONE Metadata
+     * @since 13
+     */
+    OH_VIDEO_NONE = -1
 } OH_NativeBuffer_MetadataType;
 
 /**

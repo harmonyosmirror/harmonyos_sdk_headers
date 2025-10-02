@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @Syscap SystemCapability.AI.HiAIFoundation
+ * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
  */
 
@@ -41,9 +41,9 @@ extern "C" {
  * inputs. After the model is compiled, the model inputs' shapes will be updated. During inference, the input and output
  * data must comply with the new input and output description.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null.
- * @param [in] inputTensorDescs Array of model inputs' shape list {@link NN_TensorDesc}. The value cannot be null.
- * @param [in] shapeCount Number of input shapes, which must be consistent with the number of model inputs.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null.
+ * @param inputTensorDescs Array of model inputs' shape list {@link NN_TensorDesc}. The value cannot be null.
+ * @param shapeCount Number of input shapes, which must be consistent with the number of model inputs.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -54,7 +54,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetInputTensorShapes(
 /**
  * @brief Queries the number of shape descriptions among the build options.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the number of shape descriptions among the build options if the operation is successful; returns 0
  * otherwise.
  * @since 4.1.0(11)
@@ -64,9 +64,9 @@ size_t HMS_HiAIOptions_GetInputTensorShapeSize(const OH_NNCompilation* compilati
 /**
  * @brief Queries the shape description of a specific index among the build options.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
  * returned.
- * @param [in] index Index of the input shape. The value is [0, {@link HMS_HiAIOptions_GetInputTensorShapeSize}).
+ * @param index Index of the input shape. The value is [0, {@link HMS_HiAIOptions_GetInputTensorShapeSize}).
  * @return Returns the shape description among the build options if the operation is successful; returns a null pointer
  * otherwise.
  * @since 4.1.0(11)
@@ -90,8 +90,8 @@ typedef enum {
  * This method takes effect only in the model building phase and applies when the data layout formats are different from
  * the default values.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null.
- * @param [in] formatMode Data layout formats {@link HiAI_FormatMode}.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null.
+ * @param formatMode Data layout formats {@link HiAI_FormatMode}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -101,7 +101,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetFormatMode(OH_NNCompilation* compilation, Hi
 /**
  * @brief Queries the data layout format among build options.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns {@link HiAI_FormatModeOption} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
@@ -137,9 +137,9 @@ typedef enum {
  * inference phase and the number of updated shapes does not exceed 10. This method must be used together with {@link
  * HMS_HiAIOptions_SetDynamicShapeMaxCache} and {@link HMS_HiAIOptions_SetDynamicShapeCacheMode}.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] status Indicates whether to enable variable shapes before model building ({@link
+ * @param status Indicates whether to enable variable shapes before model building ({@link
  * HiAI_DynamicShapeStatus}).
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -155,9 +155,9 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeStatus(
  * inference phase and the number of updated shapes does not exceed 10. This method must be used together with {@link
  * HMS_HiAIOptions_SetDynamicShapeStatus} and {@link HMS_HiAIOptions_SetDynamicShapeCacheMode}.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] maxCacheCount Maximum level. The value range is [1,10].
+ * @param maxCacheCount Maximum level. The value range is [1,10].
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -172,9 +172,9 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeMaxCache(
  * inference phase and the number of updated shapes does not exceed 10. This method must be used together with {@link
  * HMS_HiAIOptions_SetDynamicShapeStatus} and {@link HMS_HiAIOptions_SetDynamicShapeMaxCache}.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] mode Cache mode for variable shapes before model building ({@link HiAI_DynamicShapeCacheMode}).
+ * @param mode Cache mode for variable shapes before model building ({@link HiAI_DynamicShapeCacheMode}).
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -185,7 +185,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeCacheMode(
 /**
  * @brief Queries the dynamic shape status parameter in the variable shape configuration before model building.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns {@link HiAI_DynamicShapeStatus} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
@@ -195,7 +195,7 @@ HiAI_DynamicShapeStatus HMS_HiAIOptions_GetDynamicShapeStatus(const OH_NNCompila
 /**
  * @brief Queries the maximum number of caches in the variable shape configuration before model building.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the maximum number of caches if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
@@ -204,7 +204,7 @@ size_t HMS_HiAIOptions_GetDynamicShapeMaxCache(const OH_NNCompilation* compilati
 /**
  * @brief Queries the cacheMode parameter in the variable shape configuration before model building.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns {@link HiAI_DynamicShapeCacheMode} if the operation is successful; returns the default value
  * otherwise.
@@ -234,12 +234,12 @@ typedef enum {
  * preferentially for operators with no device specified. You can check the operator names using Netron, which is an
  * open-source tool.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] operatorName Operator name. The value cannot be null. Otherwise, an error code is returned.
- * @param [in] executeDevices List of supported device types {@link HiAI_ExecuteDevice}. The value cannot be null.
+ * @param operatorName Operator name. The value cannot be null. Otherwise, an error code is returned.
+ * @param executeDevices List of supported device types {@link HiAI_ExecuteDevice}. The value cannot be null.
  * Otherwise, an error code is returned.
- * @param [in] deviceCount Number of supported devices.
+ * @param deviceCount Number of supported devices.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -251,8 +251,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetOperatorDeviceOrder(
  * @brief Queries the number of devices to execute a specific operator in the model from the operator-level tuning
  * configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
- * @param [in] operatorName Operator name. The value cannot be null. Otherwise, 0 is returned.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
+ * @param operatorName Operator name. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the number of devices to execute the operator if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
@@ -262,9 +262,9 @@ size_t HMS_HiAIOptions_GetOperatorDeviceCount(const OH_NNCompilation* compilatio
  * @brief Queries the list of devices to execute a specific operator in the model from the operator-level tuning
  * configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
  * returned.
- * @param [in] operatorName Operator name. The value cannot be null. Otherwise, a null pointer is returned.
+ * @param operatorName Operator name. The value cannot be null. Otherwise, a null pointer is returned.
  * @return Returns the device list {@link HiAI_ExecuteDevice} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 4.1.0(11)
@@ -279,11 +279,11 @@ HiAI_ExecuteDevice* HMS_HiAIOptions_GetOperatorDeviceOrder(
  * specifies the list of devices that execute the model. The devices are sorted by priority. NPU takes the higher
  * priority by default.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] executeDevices List of supported device types {@link HiAI_ExecuteDevice}. The value cannot be null.
+ * @param executeDevices List of supported device types {@link HiAI_ExecuteDevice}. The value cannot be null.
  * Otherwise, an error code is returned.
- * @param [in] deviceCount Number of supported devices.
+ * @param deviceCount Number of supported devices.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -294,7 +294,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetModelDeviceOrder(
 /**
  * @brief Queries the number of devices to execute the model in the model-level tuning configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the number of devices to execute the model if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
@@ -303,7 +303,7 @@ size_t HMS_HiAIOptions_GetModelDeviceCount(const OH_NNCompilation* compilation);
 /**
  * @brief Queries the list of devices to execute the model in the model-level tuning configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
  * returned.
  * @return Returns the device list {@link HiAI_ExecuteDevice} if the operation is successful; returns a null pointer
  * otherwise.
@@ -329,9 +329,9 @@ typedef enum {
  * This method takes effect only in the model building phase. It specifies whether to enable the fallback mode when the
  * specified device list is not supported, in operator-level or model-level tuning.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] fallbackMode Indicates whether to enable the fallback mode ({@link HiAI_FallbackMode}).
+ * @param fallbackMode Indicates whether to enable the fallback mode ({@link HiAI_FallbackMode}).
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -342,7 +342,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetFallbackMode(
 /**
  * @brief Queries the fallback mode in the tuning configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns {@link HiAI_FallbackMode} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
@@ -370,9 +370,9 @@ typedef enum {
  * This method takes effect only in the model building phase. It specifies the device memory overcommitment mode during
  * tuning.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] deviceMemoryReusePlan Device memory overcommitment mode {@link HiAI_DeviceMemoryReusePlan}.
+ * @param deviceMemoryReusePlan Device memory overcommitment mode {@link HiAI_DeviceMemoryReusePlan}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -383,7 +383,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDeviceMemoryReusePlan(
 /**
  * @brief Queries the device memory overcommitment parameters in the tuning configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns {@link HiAI_DeviceMemoryReusePlan} if the operation is successful; returns the default value
  * otherwise.
@@ -411,9 +411,9 @@ typedef enum {
  *
  * This method takes effect only in the model building phase and applies for in-depth convergence.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] tuningStrategy Model tuning strategy {@link HiAI_TuningStrategy}.
+ * @param tuningStrategy Model tuning strategy {@link HiAI_TuningStrategy}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -424,7 +424,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningStrategy(
 /**
  * @brief Queries the model tuning strategy.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns {@link HiAI_TuningStrategy} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
@@ -436,11 +436,11 @@ HiAI_TuningStrategy HMS_HiAIOptions_GetTuningStrategy(const OH_NNCompilation* co
  *
  * This method takes effect only in the model building phase and is used for quantization during model building.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] data Data address of the quantization configuration. The value cannot be null. Otherwise, an error code
+ * @param data Data address of the quantization configuration. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [in] size Data size of the quantization configuration. The value must be greater than 0. Otherwise, an error
+ * @param size Data size of the quantization configuration. The value must be greater than 0. Otherwise, an error
  * code is returned.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
@@ -451,7 +451,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetQuantConfig(OH_NNCompilation* compilation, v
 /**
  * @brief Queries the data address of the quantization configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
  * returned.
  * @return Returns the data address of the quantization configuration if the operation is successful; returns a null
  * pointer otherwise.
@@ -462,7 +462,7 @@ void* HMS_HiAIOptions_GetQuantConfigData(const OH_NNCompilation* compilation);
 /**
  * @brief Queries the data size of the quantization configuration.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the data size of the quantization configuration if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
@@ -487,9 +487,9 @@ typedef enum {
  * This method takes effect only in the model building phase and cannot be used together with other tuning methods. It
  * enables HiAI-assisted tuning. This method must be used together with {@link HMS_HiAIOptions_SetTuningCacheDir}.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] tuningMode Assisted tuning mode {@link HiAI_TuningMode}.
+ * @param tuningMode Assisted tuning mode {@link HiAI_TuningMode}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -502,9 +502,9 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningMode(OH_NNCompilation* compilation, Hi
  * The user process must have the read and write permissions on the cache directory. This method must be used together
  * with {@link HMS_HiAIOptions_SetTuningMode}.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] cacheDir Cache directory. The value cannot be null. Otherwise, an error code is returned.
+ * @param cacheDir Cache directory. The value cannot be null. Otherwise, an error code is returned.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -514,7 +514,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningCacheDir(OH_NNCompilation* compilation
 /**
  * @brief Queries the assisted tuning mode.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns the assisted tuning mode {@link HiAI_TuningMode} if the operation is successful; returns the default
  * value otherwise.
@@ -525,7 +525,7 @@ HiAI_TuningMode HMS_HiAIOptions_GetTuningMode(const OH_NNCompilation* compilatio
 /**
  * @brief Queries the cache directory for assisted tuning.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, a null pointer is
  * returned.
  * @return Returns the cache directory if the operation is successful; returns a null pointer otherwise.
  * @since 4.1.0(11)
@@ -552,9 +552,9 @@ typedef enum {
  *
  * Set this parameter as required. Note that a high bandwidth will lead to a high consumption.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, an error code is
  * returned.
- * @param [in] bandMode Bandwidth mode {@link HiAI_BandMode}.
+ * @param bandMode Bandwidth mode {@link HiAI_BandMode}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
@@ -564,7 +564,7 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetBandMode(OH_NNCompilation* compilation, HiAI
 /**
  * @brief Queries the bandwidth mode.
  *
- * @param [in] compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
+ * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, the default value
  * is returned.
  * @return Returns the bandwidth mode {@link HiAI_BandMode} if the operation is successful; returns the default value
  * otherwise.

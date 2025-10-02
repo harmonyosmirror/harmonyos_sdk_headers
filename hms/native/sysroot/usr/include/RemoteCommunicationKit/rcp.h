@@ -1517,6 +1517,7 @@ typedef struct Rcp_SyncInterceptorArray {
  * @param next Pointer to the next async handler {@link Rcp_RequestHandler}
  * @param responseCallback Pointer to {@link Rcp_ResponseCallbackObject}.
  * @return uint32_t 401 - Parameter error or indicates the return value of the next RequestHandler.
+ * @since 5.0.0(12)
  */
 uint32_t HMS_Rcp_CallNextRequestHandler(Rcp_Request *request, const Rcp_RequestHandler *next,
                                         const Rcp_ResponseCallbackObject *responseCallback);
@@ -1529,6 +1530,7 @@ uint32_t HMS_Rcp_CallNextRequestHandler(Rcp_Request *request, const Rcp_RequestH
  * @param next Pointer to the next sync handler {@link Rcp_SyncRequestHandler}
  * @param errCode [out] 401 - Parameter error or indicates the return value of the next SyncRequestHandler.
  * @return Rcp_Response* Returns response
+ * @since 5.0.0(12)
  */
 Rcp_Response *HMS_Rcp_CallNextSyncRequestHandler(Rcp_Request *request, const Rcp_SyncRequestHandler *next,
                                                  uint32_t *errCode);
@@ -1755,6 +1757,41 @@ uint32_t HMS_Rcp_CancelSession(Rcp_Session *session);
  * @since 5.0.0(12)
  */
 uint32_t HMS_Rcp_CloseSession(Rcp_Session **session);
+
+/**
+ * @brief Callback function that is invoked when a response body is received. The callback point is the same as that of
+ * {@link Rcp_OnDataReceiveCallback}.
+ *
+ * @param usrObject User defined object.
+ * @param buffer Binary data buffer.
+ * @return size_t the length of binary data.
+ * @since 5.0.1(13)
+ */
+typedef size_t (*Rcp_OnBinaryReceiveCallbackFunc)(void *usrObject, Rcp_Buffer *buffer);
+
+/**
+ * @brief Binary data receive callback for request.
+ * @since 5.0.1(13)
+ */
+typedef struct Rcp_OnBinaryReceiveCallback {
+    /** Callback function for receiving binary data */
+    Rcp_OnBinaryReceiveCallbackFunc callback;
+    /** User-defined object, used within a callback function */
+    void *usrObject;
+} Rcp_OnBinaryReceiveCallback;
+
+/**
+ * @brief Sets the binary data receive callback for the request. This callback will replace the
+ * {@link Rcp_OnDataReceiveCallback} that may have been set.
+ *
+ * @param request Pointer to {@link Rcp_Request} to be set.
+ * @param onBinaryReceiveCallback Binary data callback function to be set
+ * @return uint32_t 0 - success. 401 - Parameter error.
+ * @syscap SystemCapability.Collaboration.RemoteCommunication
+ * @since 5.0.1(13)
+ */
+uint32_t HMS_Rcp_SetRequestOnBinaryDataRecvCallback(Rcp_Request *request,
+                                                    Rcp_OnBinaryReceiveCallback onBinaryReceiveCallback);
 
 #ifdef __cplusplus
 }

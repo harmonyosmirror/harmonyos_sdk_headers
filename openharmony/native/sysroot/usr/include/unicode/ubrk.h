@@ -30,6 +30,8 @@
     typedef struct UBreakIterator UBreakIterator;
 #endif
 
+#include "unicode/parseerr.h"
+
 #if !UCONFIG_NO_BREAK_ITERATION
 /**
  * \file

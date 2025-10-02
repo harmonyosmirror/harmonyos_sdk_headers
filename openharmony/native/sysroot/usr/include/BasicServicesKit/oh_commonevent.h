@@ -121,7 +121,7 @@ CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events
  * @brief Set the subscribe information of permission.
  *
  * @param info Indicates the subscribed events.
- * @param permission Indicates the subscribed events of number.
+ * @param permission Indicates the subscribed events of permission.
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
@@ -133,7 +133,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeI
  * @brief Set the subscribe information of bundleName.
  *
  * @param info Indicates the subscribed events.
- * @param bundleName Indicates the subscribed events of number.
+ * @param bundleName Indicates the subscribed events of bundleName.
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.

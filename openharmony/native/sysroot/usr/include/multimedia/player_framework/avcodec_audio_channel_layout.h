@@ -15,7 +15,12 @@
 
 #ifndef AVCODEC_AUDIO_CHANNEL_LAYOUT_H
 #define AVCODEC_AUDIO_CHANNEL_LAYOUT_H
+
+#ifdef __cplusplus
 #include <cstdint>
+#else
+#include <stdint.h>
+#endif
 
 /**
  * @file avcodec_audio_channel_layout.h
@@ -41,7 +46,7 @@ extern "C" {
  * @useinstead OH_AudioChannelSet
  * @since 10
  */
-enum AudioChannelSet : uint64_t {
+typedef enum AudioChannelSet : uint64_t {
     FRONT_LEFT = 1ULL << 0U,
     FRONT_RIGHT = 1ULL << 1U,
     FRONT_CENTER = 1ULL << 2U,
@@ -99,7 +104,7 @@ enum AudioChannelSet : uint64_t {
     AMBISONICS_ACN13 = 1ULL << 54U, /** third-order ambisonics channel number 13. */
     AMBISONICS_ACN14 = 1ULL << 55U, /** third-order ambisonics channel number 14. */
     AMBISONICS_ACN15 = 1ULL << 56U, /** third-order ambisonics channel number 15. */
-};
+} AudioChannelSet;
 
 /**
  * @brief Audio AudioChannel Layout
@@ -110,68 +115,68 @@ enum AudioChannelSet : uint64_t {
  * @useinstead OH_AudioChannelLayout
  * @since 10
  */
-enum AudioChannelLayout : uint64_t {
+typedef enum AudioChannelLayout : uint64_t {
     UNKNOWN_CHANNEL_LAYOUT = 0,
-    MONO = (AudioChannelSet::FRONT_CENTER),
-    STEREO = (AudioChannelSet::FRONT_LEFT | AudioChannelSet::FRONT_RIGHT),
-    CH_2POINT1 = (STEREO | AudioChannelSet::LOW_FREQUENCY),
-    CH_2_1 = (STEREO | AudioChannelSet::BACK_CENTER),
-    SURROUND = (STEREO | AudioChannelSet::FRONT_CENTER),
-    CH_3POINT1 = (SURROUND | AudioChannelSet::LOW_FREQUENCY),
-    CH_4POINT0 = (SURROUND | AudioChannelSet::BACK_CENTER),
-    CH_4POINT1 = (CH_4POINT0 | AudioChannelSet::LOW_FREQUENCY),
-    CH_2_2 = (STEREO | AudioChannelSet::SIDE_LEFT | AudioChannelSet::SIDE_RIGHT),
-    QUAD = (STEREO | AudioChannelSet::BACK_LEFT | AudioChannelSet::BACK_RIGHT),
-    CH_5POINT0 = (SURROUND | AudioChannelSet::SIDE_LEFT | AudioChannelSet::SIDE_RIGHT),
-    CH_5POINT1 = (CH_5POINT0 | AudioChannelSet::LOW_FREQUENCY),
-    CH_5POINT0_BACK = (SURROUND | AudioChannelSet::BACK_LEFT | AudioChannelSet::BACK_RIGHT),
-    CH_5POINT1_BACK = (CH_5POINT0_BACK | AudioChannelSet::LOW_FREQUENCY),
-    CH_6POINT0 = (CH_5POINT0 | AudioChannelSet::BACK_CENTER),
-    CH_6POINT0_FRONT = (CH_2_2 | AudioChannelSet::FRONT_LEFT_OF_CENTER | AudioChannelSet::FRONT_RIGHT_OF_CENTER),
-    HEXAGONAL = (CH_5POINT0_BACK | AudioChannelSet::BACK_CENTER),
-    CH_6POINT1 = (CH_5POINT1 | AudioChannelSet::BACK_CENTER),
-    CH_6POINT1_BACK = (CH_5POINT1_BACK | AudioChannelSet::BACK_CENTER),
-    CH_6POINT1_FRONT = (CH_6POINT0_FRONT | AudioChannelSet::LOW_FREQUENCY),
-    CH_7POINT0 = (CH_5POINT0 | AudioChannelSet::BACK_LEFT | AudioChannelSet::BACK_RIGHT),
-    CH_7POINT0_FRONT = (CH_5POINT0 | AudioChannelSet::FRONT_LEFT_OF_CENTER | AudioChannelSet::FRONT_RIGHT_OF_CENTER),
-    CH_7POINT1 = (CH_5POINT1 | AudioChannelSet::BACK_LEFT | AudioChannelSet::BACK_RIGHT),
-    CH_7POINT1_WIDE = (CH_5POINT1 | AudioChannelSet::FRONT_LEFT_OF_CENTER | AudioChannelSet::FRONT_RIGHT_OF_CENTER),
+    MONO = (FRONT_CENTER),
+    STEREO = (FRONT_LEFT | FRONT_RIGHT),
+    CH_2POINT1 = (STEREO | LOW_FREQUENCY),
+    CH_2_1 = (STEREO | BACK_CENTER),
+    SURROUND = (STEREO | FRONT_CENTER),
+    CH_3POINT1 = (SURROUND | LOW_FREQUENCY),
+    CH_4POINT0 = (SURROUND | BACK_CENTER),
+    CH_4POINT1 = (CH_4POINT0 | LOW_FREQUENCY),
+    CH_2_2 = (STEREO | SIDE_LEFT | SIDE_RIGHT),
+    QUAD = (STEREO | BACK_LEFT | BACK_RIGHT),
+    CH_5POINT0 = (SURROUND | SIDE_LEFT | SIDE_RIGHT),
+    CH_5POINT1 = (CH_5POINT0 | LOW_FREQUENCY),
+    CH_5POINT0_BACK = (SURROUND | BACK_LEFT | BACK_RIGHT),
+    CH_5POINT1_BACK = (CH_5POINT0_BACK | LOW_FREQUENCY),
+    CH_6POINT0 = (CH_5POINT0 | BACK_CENTER),
+    CH_6POINT0_FRONT = (CH_2_2 | FRONT_LEFT_OF_CENTER | FRONT_RIGHT_OF_CENTER),
+    HEXAGONAL = (CH_5POINT0_BACK | BACK_CENTER),
+    CH_6POINT1 = (CH_5POINT1 | BACK_CENTER),
+    CH_6POINT1_BACK = (CH_5POINT1_BACK | BACK_CENTER),
+    CH_6POINT1_FRONT = (CH_6POINT0_FRONT | LOW_FREQUENCY),
+    CH_7POINT0 = (CH_5POINT0 | BACK_LEFT | BACK_RIGHT),
+    CH_7POINT0_FRONT = (CH_5POINT0 | FRONT_LEFT_OF_CENTER | FRONT_RIGHT_OF_CENTER),
+    CH_7POINT1 = (CH_5POINT1 | BACK_LEFT | BACK_RIGHT),
+    CH_7POINT1_WIDE = (CH_5POINT1 | FRONT_LEFT_OF_CENTER | FRONT_RIGHT_OF_CENTER),
     CH_7POINT1_WIDE_BACK =
-        (CH_5POINT1_BACK | AudioChannelSet::FRONT_LEFT_OF_CENTER | AudioChannelSet::FRONT_RIGHT_OF_CENTER),
-    CH_3POINT1POINT2 = (CH_3POINT1 | AudioChannelSet::TOP_FRONT_LEFT | AudioChannelSet::TOP_FRONT_RIGHT),
-    CH_5POINT1POINT2 = (CH_5POINT1 | AudioChannelSet::TOP_SIDE_LEFT | AudioChannelSet::TOP_SIDE_RIGHT),
-    CH_5POINT1POINT4 = (CH_5POINT1 | AudioChannelSet::TOP_FRONT_LEFT | AudioChannelSet::TOP_FRONT_RIGHT |
-                        AudioChannelSet::TOP_BACK_LEFT | AudioChannelSet::TOP_BACK_RIGHT),
-    CH_7POINT1POINT2 = (CH_7POINT1 | AudioChannelSet::TOP_SIDE_LEFT | AudioChannelSet::TOP_SIDE_RIGHT),
-    CH_7POINT1POINT4 = (CH_7POINT1 | AudioChannelSet::TOP_FRONT_LEFT | AudioChannelSet::TOP_FRONT_RIGHT |
-                        AudioChannelSet::TOP_BACK_LEFT | AudioChannelSet::TOP_BACK_RIGHT),
-    CH_9POINT1POINT4 = (CH_7POINT1POINT4 | AudioChannelSet::WIDE_LEFT | AudioChannelSet::WIDE_RIGHT),
-    CH_9POINT1POINT6 = (CH_9POINT1POINT4 | AudioChannelSet::TOP_SIDE_LEFT | AudioChannelSet::TOP_SIDE_RIGHT),
-    CH_10POINT2 = (AudioChannelSet::FRONT_LEFT | AudioChannelSet::FRONT_RIGHT | AudioChannelSet::FRONT_CENTER |
-                   AudioChannelSet::TOP_FRONT_LEFT | AudioChannelSet::TOP_FRONT_RIGHT | AudioChannelSet::BACK_LEFT |
-                   AudioChannelSet::BACK_RIGHT | AudioChannelSet::BACK_CENTER | AudioChannelSet::SIDE_LEFT |
-                   AudioChannelSet::SIDE_RIGHT | AudioChannelSet::WIDE_LEFT | AudioChannelSet::WIDE_RIGHT),
-    CH_22POINT2 = (CH_7POINT1POINT4 | AudioChannelSet::FRONT_LEFT_OF_CENTER | AudioChannelSet::FRONT_RIGHT_OF_CENTER |
-                   AudioChannelSet::BACK_CENTER | AudioChannelSet::TOP_CENTER | AudioChannelSet::TOP_FRONT_CENTER |
-                   AudioChannelSet::TOP_BACK_CENTER | AudioChannelSet::TOP_SIDE_LEFT | AudioChannelSet::TOP_SIDE_RIGHT |
-                   AudioChannelSet::BOTTOM_FRONT_LEFT | AudioChannelSet::BOTTOM_FRONT_RIGHT |
-                   AudioChannelSet::BOTTOM_FRONT_CENTER | AudioChannelSet::LOW_FREQUENCY_2),
-    OCTAGONAL = (CH_5POINT0 | AudioChannelSet::BACK_LEFT | AudioChannelSet::BACK_CENTER | AudioChannelSet::BACK_RIGHT),
+        (CH_5POINT1_BACK | FRONT_LEFT_OF_CENTER | FRONT_RIGHT_OF_CENTER),
+    CH_3POINT1POINT2 = (CH_3POINT1 | TOP_FRONT_LEFT | TOP_FRONT_RIGHT),
+    CH_5POINT1POINT2 = (CH_5POINT1 | TOP_SIDE_LEFT | TOP_SIDE_RIGHT),
+    CH_5POINT1POINT4 = (CH_5POINT1 | TOP_FRONT_LEFT | TOP_FRONT_RIGHT |
+                        TOP_BACK_LEFT | TOP_BACK_RIGHT),
+    CH_7POINT1POINT2 = (CH_7POINT1 | TOP_SIDE_LEFT | TOP_SIDE_RIGHT),
+    CH_7POINT1POINT4 = (CH_7POINT1 | TOP_FRONT_LEFT | TOP_FRONT_RIGHT |
+                        TOP_BACK_LEFT | TOP_BACK_RIGHT),
+    CH_9POINT1POINT4 = (CH_7POINT1POINT4 | WIDE_LEFT | WIDE_RIGHT),
+    CH_9POINT1POINT6 = (CH_9POINT1POINT4 | TOP_SIDE_LEFT | TOP_SIDE_RIGHT),
+    CH_10POINT2 = (FRONT_LEFT | FRONT_RIGHT | FRONT_CENTER |
+                   TOP_FRONT_LEFT | TOP_FRONT_RIGHT | BACK_LEFT |
+                   BACK_RIGHT | BACK_CENTER | SIDE_LEFT |
+                   SIDE_RIGHT | WIDE_LEFT | WIDE_RIGHT),
+    CH_22POINT2 = (CH_7POINT1POINT4 | FRONT_LEFT_OF_CENTER | FRONT_RIGHT_OF_CENTER |
+                   BACK_CENTER | TOP_CENTER | TOP_FRONT_CENTER |
+                   TOP_BACK_CENTER | TOP_SIDE_LEFT | TOP_SIDE_RIGHT |
+                   BOTTOM_FRONT_LEFT | BOTTOM_FRONT_RIGHT |
+                   BOTTOM_FRONT_CENTER | LOW_FREQUENCY_2),
+    OCTAGONAL = (CH_5POINT0 | BACK_LEFT | BACK_CENTER | BACK_RIGHT),
     HEXADECAGONAL =
-        (OCTAGONAL | AudioChannelSet::WIDE_LEFT | AudioChannelSet::WIDE_RIGHT | AudioChannelSet::TOP_BACK_LEFT |
-         AudioChannelSet::TOP_BACK_RIGHT | AudioChannelSet::TOP_BACK_CENTER | AudioChannelSet::TOP_FRONT_CENTER |
-         AudioChannelSet::TOP_FRONT_LEFT | AudioChannelSet::TOP_FRONT_RIGHT),
-    STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT | AudioChannelSet::STEREO_RIGHT),
+        (OCTAGONAL | WIDE_LEFT | WIDE_RIGHT | TOP_BACK_LEFT |
+         TOP_BACK_RIGHT | TOP_BACK_CENTER | TOP_FRONT_CENTER |
+         TOP_FRONT_LEFT | TOP_FRONT_RIGHT),
+    STEREO_DOWNMIX = (STEREO_LEFT | STEREO_RIGHT),
 
-    HOA_FIRST = AudioChannelSet::AMBISONICS_ACN0 | AudioChannelSet::AMBISONICS_ACN1 | AudioChannelSet::AMBISONICS_ACN2 |
-                AudioChannelSet::AMBISONICS_ACN3,
-    HOA_SECOND = HOA_FIRST | AudioChannelSet::AMBISONICS_ACN4 | AudioChannelSet::AMBISONICS_ACN5 |
-                 AudioChannelSet::AMBISONICS_ACN6 | AudioChannelSet::AMBISONICS_ACN7 | AudioChannelSet::AMBISONICS_ACN8,
-    HOA_THIRD = HOA_SECOND | AudioChannelSet::AMBISONICS_ACN9 | AudioChannelSet::AMBISONICS_ACN10 |
-                AudioChannelSet::AMBISONICS_ACN11 | AudioChannelSet::AMBISONICS_ACN12 |
-                AudioChannelSet::AMBISONICS_ACN13 | AudioChannelSet::AMBISONICS_ACN14 |
-                AudioChannelSet::AMBISONICS_ACN15,
-};
+    HOA_FIRST = AMBISONICS_ACN0 | AMBISONICS_ACN1 | AMBISONICS_ACN2 |
+                AMBISONICS_ACN3,
+    HOA_SECOND = HOA_FIRST | AMBISONICS_ACN4 | AMBISONICS_ACN5 |
+                 AMBISONICS_ACN6 | AMBISONICS_ACN7 | AMBISONICS_ACN8,
+    HOA_THIRD = HOA_SECOND | AMBISONICS_ACN9 | AMBISONICS_ACN10 |
+                AMBISONICS_ACN11 | AMBISONICS_ACN12 |
+                AMBISONICS_ACN13 | AMBISONICS_ACN14 |
+                AMBISONICS_ACN15,
+} AudioChannelLayout;
 #ifdef __cplusplus
 }
 #endif

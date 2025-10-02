@@ -28,6 +28,7 @@
  *
  * @brief Declares the APIs for obtaining the time zone information.
  * @library libtime_service_ndk.so
+ * @kit BasicServicesKit
  * @syscap SystemCapability.MiscServices.Time
  * @since 12
  */

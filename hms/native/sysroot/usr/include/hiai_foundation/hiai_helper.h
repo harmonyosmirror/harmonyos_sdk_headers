@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @Syscap SystemCapability.AI.HiAIFoundation
+ * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
  */
 
@@ -51,7 +51,7 @@ typedef enum {
 /**
  * @brief Queries the compatibility of the model stored in the file.
  *
- * @param [in] file Path and name of the model file. The value cannot be empty, and the process must have the permission
+ * @param file Path and name of the model file. The value cannot be empty, and the process must have the permission
  * to access the model file. Otherwise, a message is returned indicating that the model is incompatible.
  * @return Returns {@link HiAI_Compatibility} if the operation is successful; returns a message indicating that the
  * model is incompatible otherwise.
@@ -62,9 +62,9 @@ HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
 /**
  * @brief Queries the compatibility of the model stored in the memory.
  *
- * @param [in] data Model data address. The value cannot be null. Otherwise, a message indicating that the model is
+ * @param data Model data address. The value cannot be null. Otherwise, a message indicating that the model is
  * incompatible is returned.
- * @param [in] size Model data size. The value cannot be null. Otherwise, a message indicating that the model is
+ * @param size Model data size. The value cannot be null. Otherwise, a message indicating that the model is
  * incompatible is returned.
  * @return Returns {@link HiAI_Compatibility} if the operation is successful; returns a message indicating that the
  * model is incompatible otherwise.

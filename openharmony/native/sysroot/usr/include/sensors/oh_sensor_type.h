@@ -34,7 +34,11 @@
 #ifndef OH_SENSOR_TYPE_H
 #define OH_SENSOR_TYPE_H
 
+#ifdef __cplusplus
 #include <cstdint>
+#else
+#include <stdint.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -92,10 +96,20 @@ typedef enum Sensor_Type {
      */
     SENSOR_TYPE_GRAVITY = 257,
     /**
+     * Linear acceleration sensor.
+     * @since 13
+     */
+    SENSOR_TYPE_LINEAR_ACCELERATION = 258,
+    /**
      * Rotation vector sensor.
      * @since 11
      */
     SENSOR_TYPE_ROTATION_VECTOR = 259,
+    /**
+     * Game rotation vector sensor.
+     * @since 13
+     */
+    SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,
     /**
      * Pedometer detection sensor.
      * @since 11
@@ -334,6 +348,11 @@ int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *a
  * The value <b>1</b> means that the number of detected steps changes.
  * SENSOR_TYPE_PEDOMETER: data[0], indicating the number of steps a user has walked.
  * SENSOR_TYPE_HEART_RATE: data[0], indicating the heart rate value.
+ * SENSOR_TYPE_LINEAR_ACCELERATION: Supported from api version 13. data[0], data[1], and data[2], indicating the
+ * linear acceleration around the x, y, and z axes of the device, respectively, in m/s2.
+ * SENSOR_TYPE_GAME_ROTATION_VECTOR: Supported from api version 13. data[0], data[1] and data[2], indicating the
+ * rotation angles of a device around the x, y, and z axes, respectively, in degree. data[3] indicates the rotation
+ * vector.
  *
  * @param sensorEvent - Pointer to the sensor data information.
  * @param data - Double pointer to the sensor data.

@@ -37,6 +37,7 @@
  * @kit ArkUI
  * @since 12
  */
+#include "stdbool.h"
 #include "stdint.h"
 #include "oh_window_comm.h"
 #include "multimodalinput/oh_input_manager.h"

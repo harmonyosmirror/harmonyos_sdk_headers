@@ -63,12 +63,34 @@ struct OH_NativeBundle_ApplicationInfo {
 };
 
 /**
+ * @brief Indicates information of elementName.
+ *
+ * @since 13
+ */
+struct OH_NativeBundle_ElementName {
+    /** Indicates the name of application. */
+    char* bundleName;
+    /** Indicates the name of module. */
+    char* moduleName;
+    /** Indicates the name of ability. */
+    char* abilityName;
+};
+
+/**
  * @brief Indicates information of application
  *
  * @since 11
  * @version 1.0
  */
 typedef struct OH_NativeBundle_ApplicationInfo OH_NativeBundle_ApplicationInfo;
+
+/**
+ * @brief Indicates information of elementName
+ *
+ * @since 13
+ * @version 1.0
+ */
+typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
 
 /**
  * @brief Obtains the application info based on the The current bundle.
@@ -110,6 +132,19 @@ char* OH_NativeBundle_GetAppId();
  * @version 1.0
  */
 char* OH_NativeBundle_GetAppIdentifier();
+
+/**
+* @brief Obtains information of the entry mainElement based on the current application, including bundle name,
+ * module name, and ability name.
+ * After utilizing this interface, to prevent memory leaks,
+ * it is necessary to manually release the pointer returned by the interface.
+ *
+ * @return Returns the newly created OH_NativeBundle_ElementName object, if the returned object is NULL,
+ * it indicates creation failure. The possible cause of failure could be that the application address space is full,
+ * leading to space allocation failure.
+ * @since 13
+ */
+OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
 #ifdef __cplusplus
 };
 #endif

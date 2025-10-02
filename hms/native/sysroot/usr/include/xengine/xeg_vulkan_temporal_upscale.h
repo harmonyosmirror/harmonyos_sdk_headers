@@ -78,10 +78,7 @@ typedef struct XEG_TemporalUpscaleDescription {
     * or higher.
     */
     VkImageView motionVectorImage;
-    /** Dynamic mask image of an object. The format must be `VK_FORMAT_R8_UNORM` or its compatible format. The valid
-    * value of the R channel is 0.0, 0.2 or 1.0, where 0.0 indicates static objects, 0.2 indicates moving objects such
-    * as people, and 1.0 indicates special effects or translucent objects.
-    */
+    /** Dynamic mask image. The format must be `VK_FORMAT_R8_UNORM` or its compatible format. */
     VkImageView dynamicMaskImage;
     /** Output image. */
     VkImageView outputImage;

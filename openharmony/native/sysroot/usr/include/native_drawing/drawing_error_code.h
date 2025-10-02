@@ -65,6 +65,11 @@ typedef enum {
      * @error The parameter is not in the valid range.
      */
     OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE = 26200001,
+    /**
+     * @error mem allocate failed.
+     * @since 13
+     */
+    OH_DRAWING_ERROR_ALLOCATION_FAILED = 26200002,
 } OH_Drawing_ErrorCode;
 
 /**
