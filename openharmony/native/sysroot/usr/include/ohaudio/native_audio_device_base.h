@@ -404,5 +404,6 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDe
 #ifdef __cplusplus
 }
 #endif
-/** @} */
+
 #endif // NATIVE_AUDIO_DEVICE_BASE_H
+/** @} */

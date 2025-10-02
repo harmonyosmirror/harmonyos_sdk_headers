@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OS_ACCOUNT_COMMON_H
-#define OS_ACCOUNT_COMMON_H
-
 /**
  * @addtogroup OsAccount
  * @{
@@ -23,6 +20,7 @@
  * @brief Provide the definition of the C interface for the native OsAccount.
  * @since 12
  */
+
 /**
  * @file os_account_common.h
  *
@@ -32,6 +30,9 @@
  * @syscap SystemCapability.Account.OsAccount
  * @since 12
  */
+
+#ifndef OS_ACCOUNT_COMMON_H
+#define OS_ACCOUNT_COMMON_H
 
 #ifdef __cplusplus
 extern "C" {

@@ -246,3 +246,4 @@ OH_AVErrCode OH_AVCencInfo_SetAVBuffer(OH_AVCencInfo *cencInfo, OH_AVBuffer *buf
 #endif
 
 #endif // NATIVE_AVCENCINFO_H
+/** @} */

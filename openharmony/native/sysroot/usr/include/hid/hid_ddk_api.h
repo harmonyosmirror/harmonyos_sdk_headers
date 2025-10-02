@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef HID_DDK_API_H
-#define HID_DDK_API_H
 
 /**
  * @addtogroup HidDdk
@@ -32,10 +30,15 @@
  * @brief Declares the HID DDK interfaces for the host to access an input device.
  *
  * @kit DriverDevelopmentKit
+ * @library libhid.z.so
+ * @syscap SystemCapability.Driver.HID.Extension
  * File to include: <hid/hid_ddk_api.h>
  * @since 11
  * @version 1.0
  */
+
+#ifndef HID_DDK_API_H
+#define HID_DDK_API_H
 
 #include <stdint.h>
 #include "hid_ddk_types.h"
@@ -100,7 +103,7 @@ int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t 
  * @version 1.0
  */
 int32_t OH_Hid_DestroyDevice(int32_t deviceId);
-
+/** @} */
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

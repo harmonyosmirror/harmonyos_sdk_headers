@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef CAPI_INCLUDE_IPC_ERROR_CODE_H
-#define CAPI_INCLUDE_IPC_ERROR_CODE_H
-
 /**
  * @addtogroup OHIPCErrorCode
  * @{
@@ -36,6 +33,9 @@
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
+
+#ifndef CAPI_INCLUDE_IPC_ERROR_CODE_H
+#define CAPI_INCLUDE_IPC_ERROR_CODE_H
 
 /**
 * @brief Enumerates IPC error codes.

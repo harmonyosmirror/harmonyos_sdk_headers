@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef DATA_ASSET_H
-#define DATA_ASSET_H
 /**
  * @addtogroup RDB
  * @{
@@ -32,10 +30,14 @@
  *
  * @brief Provides the data type of asset.
  * @kit ArkData
- * @library libnative_rdb_ndk.z.so
+ * @library libnative_rdb_ndk.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 11
  */
+
+#ifndef DATA_ASSET_H
+#define DATA_ASSET_H
+
 #ifdef __cplusplus
 #include <cstddef>
 #else
@@ -355,4 +357,7 @@ int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count);
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
+
 #endif // DATA_ASSET_H

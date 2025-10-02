@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HICOLLIE_H
-#define HIVIEWDFX_HICOLLIE_H
-
 /**
  * @addtogroup HiCollie
  * @{
@@ -40,6 +37,9 @@
  * @syscap SystemCapability.HiviewDFX.HiCollie
  * @since 12
  */
+
+#ifndef HIVIEWDFX_HICOLLIE_H
+#define HIVIEWDFX_HICOLLIE_H
 
 #include <time.h>
 #include <stdint.h>

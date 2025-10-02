@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HIDEBUG_TYPE_H
-#define HIVIEWDFX_HIDEBUG_TYPE_H
 /**
  * @addtogroup HiDebug
  * @{
@@ -36,6 +34,9 @@
  * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
  * @since 12
  */
+
+#ifndef HIVIEWDFX_HIDEBUG_TYPE_H
+#define HIVIEWDFX_HIDEBUG_TYPE_H
 
 #include <stdint.h>
 

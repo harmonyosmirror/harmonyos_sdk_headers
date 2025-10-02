@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef CAPI_INCLUDE_IPC_CREMOTE_OBJECT_H
-#define CAPI_INCLUDE_IPC_CREMOTE_OBJECT_H
-
 /**
  * @addtogroup OHIPCRemoteObject
  * @{
@@ -38,6 +35,9 @@
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
+
+#ifndef CAPI_INCLUDE_IPC_CREMOTE_OBJECT_H
+#define CAPI_INCLUDE_IPC_CREMOTE_OBJECT_H
 
 #include <stdint.h>
 

@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HIDEBUG_H
-#define HIVIEWDFX_HIDEBUG_H
 /**
  * @addtogroup HiDebug
  * @{
@@ -36,6 +34,9 @@
  * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
  * @since 12
  */
+
+#ifndef HIVIEWDFX_HIDEBUG_H
+#define HIVIEWDFX_HIDEBUG_H
 
 #include <stdint.h>
 #include "hidebug_type.h"
@@ -137,6 +138,18 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag flag,
  * @since 12
  */
 HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture();
+
+/**
+ * @brief Get the graphics memory of application.
+ *
+ * @param value Indicates value of graphics memory, in kibibytes.
+ * @return Result code
+ *         {@link HIDEBUG_SUCCESS} Get graphics memory success.
+ *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument，value is null.
+ *         {@link HIDEBUG_TRACE_ABNORMAL} Failed to get the application memory due to a remote exception.
+ * @since 14
+ */
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
 
 #ifdef __cplusplus
 }

@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OH_CURSOR_H
-#define OH_CURSOR_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,7 +22,6 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
 
@@ -35,8 +31,13 @@
  * @brief Provides functions and enumerations related to the resultSet.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
+
+#ifndef OH_CURSOR_H
+#define OH_CURSOR_H
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -305,5 +306,7 @@ struct OH_Cursor {
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // OH_CURSOR_H

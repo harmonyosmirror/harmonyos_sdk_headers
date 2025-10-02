@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_IMAGE_H
-#define C_INCLUDE_DRAWING_IMAGE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_IMAGE_H
+#define C_INCLUDE_DRAWING_IMAGE_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -60,56 +60,56 @@ OH_Drawing_Image* OH_Drawing_ImageCreate(void);
  * @brief Destroys an <b>OH_Drawing_Image</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
+ * @param image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ImageDestroy(OH_Drawing_Image*);
+void OH_Drawing_ImageDestroy(OH_Drawing_Image* image);
 
 /**
  * @brief Rebuilds an <b>OH_Drawing_Image</b> object, sharing or copying bitmap pixels.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @return Returns true if successed.
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_ImageBuildFromBitmap(OH_Drawing_Image*, OH_Drawing_Bitmap*);
+bool OH_Drawing_ImageBuildFromBitmap(OH_Drawing_Image* image, OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Gets pixel count in each row of image.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
+ * @param image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
  * @return Returns the width.
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_ImageGetWidth(OH_Drawing_Image*);
+int32_t OH_Drawing_ImageGetWidth(OH_Drawing_Image* image);
 
 /**
  * @brief Gets pixel row count of image.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
+ * @param image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
  * @return Returns the height.
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_ImageGetHeight(OH_Drawing_Image*);
+int32_t OH_Drawing_ImageGetHeight(OH_Drawing_Image* image);
 
 /**
  * @brief Gets the image info.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
- * @param OH_Drawing_Image_Info Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
+ * @param image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
+ * @param imageInfo Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ImageGetImageInfo(OH_Drawing_Image*, OH_Drawing_Image_Info*);
+void OH_Drawing_ImageGetImageInfo(OH_Drawing_Image* image, OH_Drawing_Image_Info* imageInfo);
 
 #ifdef __cplusplus
 }

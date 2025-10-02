@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_MATRIX_H
-#define C_INCLUDE_DRAWING_MATRIX_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_MATRIX_H
+#define C_INCLUDE_DRAWING_MATRIX_H
+
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -62,7 +62,6 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreate(void);
  * rotate by degrees about a pivot point at (px, py).
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param deg  angle of axes relative to upright axes
  * @param x  pivot on x-axis.
  * @param y  pivot on y-axis.
@@ -76,7 +75,6 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation(float deg, float x, float y);
  * by sx and sy, about a pivot point at (px, py).
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param sx  horizontal scale factor.
  * @param sy  vertical scale factor.
  * @param px  pivot on x-axis.
@@ -91,7 +89,6 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale(float sx, float sy, float px, fl
  * @brief Creates an <b>OH_Drawing_Matrix</b> object with translation.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param dx  horizontal translation.
  * @param dy  vertical translation.
  * @return Returns the pointer to the <b>OH_Drawing_Matrix</b> object created.
@@ -104,7 +101,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation(float dx, float dy);
  * @brief Sets the params for a matrix.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param scaleX  horizontal scale factor to store
  * @param skewX   horizontal skew factor to store
  * @param transX  horizontal translation to store
@@ -117,7 +114,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation(float dx, float dy);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_MatrixSetMatrix(OH_Drawing_Matrix*, float scaleX, float skewX, float transX,
+void OH_Drawing_MatrixSetMatrix(OH_Drawing_Matrix* matrix, float scaleX, float skewX, float transX,
     float skewY, float scaleY, float transY, float persp0, float persp1, float persp2);
 
 /**
@@ -149,7 +146,7 @@ typedef enum {
  * @brief Sets matrix to scale and translate src rect to dst rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param src Indicates the pointer to an <b>OH_Drawing_Rect</b> object rect to map from.
  * @param dst Indicates the pointer to an <b>OH_Drawing_Rect</b> object rect to map to.
  * @param stf Scales to fit enum method.
@@ -161,7 +158,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix*, const OH_Drawing_Rect* src,
+bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix* matrix, const OH_Drawing_Rect* src,
     const OH_Drawing_Rect* dst, OH_Drawing_ScaleToFit stf);
 
 /**
@@ -187,14 +184,14 @@ bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix*, const OH_Drawing_Rect* s
  *                                          | G H I | | 0  0  1 |   | Gc+Hs -Gs+Hc G*dx+H*dy+I |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param degree Indicates the angle of axes relative to upright axes.
  * @param px Indicates the pivot on x-axis.
  * @param py Indicates the pivot on y-axis.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix*, float degree, float px, float py);
+void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
 
 /**
  * @brief Sets matrix to forward scale by sx and sy, about a pivot point at (px, py).
@@ -216,7 +213,7 @@ void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix*, float degree, float px, floa
  *                                         | G H I | |  0  0  1 |   | G*sx H*sy G*dx+H*dy+I |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param sx Horizontal scale factor.
  * @param sy Vertical scale factor.
  * @param px Pivot on x-axis.
@@ -224,7 +221,7 @@ void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix*, float degree, float px, floa
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix*, float sx, float sy, float px, float py);
+void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py);
 
 /**
  * @brief Sets forward matrix to translate by dx and dy.
@@ -238,13 +235,13 @@ void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix*, float sx, float sy, float px,
  *                                 | G H I | | 0 0  1 |   | G H G*dx+H*dy+I |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param dx Indicates the horizontal translation.
  * @param dy Indicates the vertical translation.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix*, float dx, float dy);
+void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
 
 /**
  * @brief Sets matrix to matrix constructed from rotating by degrees about pivot point(px, py),
@@ -269,14 +266,14 @@ void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix*, float dx, float dy);
  *                                          |0  0  1| |P Q R|   |         P          Q          R|
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param degree Indicates the angle of axes relative to upright axes.
  * @param px Indicates the pivot on x-axis.
  * @param py Indicates the pivot on y-axis.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix*, float degree, float px, float py);
+void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
 
 /**
  * @brief Sets matrix to backward scale by sx and sy, about a pivot point at (px, py).
@@ -293,7 +290,7 @@ void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix*, float degree, float px, flo
  *                                         |  0  0  1 | | P Q R |   |         P         Q         R |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param sx Horizontal scale factor.
  * @param sy Vertical scale factor.
  * @param px Pivot on x-axis.
@@ -301,7 +298,7 @@ void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix*, float degree, float px, flo
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix*, float sx, float sy, float px, float py);
+void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py);
 
 /**
  * @brief Sets backward matrix to translate by (dx, dy).
@@ -318,13 +315,13 @@ void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix*, float sx, float sy, float px
  *                                 | 0 0  1 | | P Q R |   |      P      Q      R |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param dx Indicates the horizontal translation.
  * @param dy Indicates the vertical translation.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix*, float dx, float dy);
+void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
 
 /**
  * @brief Reset matrix to identity, which has no effect on mapped point, sets matrix to:
@@ -333,11 +330,11 @@ void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix*, float dx, float dy);
  *        | 0 0 1 |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixReset(OH_Drawing_Matrix*);
+void OH_Drawing_MatrixReset(OH_Drawing_Matrix* matrix);
 
 /**
  * @brief Sets matrix total to matrix a multiplied by matrix b.
@@ -376,45 +373,45 @@ OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float va
 /**
  * @brief Get one matrix value. Index is between the range of 0-8.
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param index one of 0-8.
  * @return Returns value corresponding to index.Returns 0 if out of range.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_MatrixGetValue(OH_Drawing_Matrix*, int index);
+float OH_Drawing_MatrixGetValue(OH_Drawing_Matrix* matrix, int index);
 
 /**
  * @brief Sets matrix to rotate by degrees about a pivot point at (px, py). The pivot point is unchanged
  * when mapped with matrix. Positive degrees rotates clockwise.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param degree Indicates the angle of axes relative to upright axes.
  * @param px Indicates the pivot on x-axis.
  * @param py Indicates the pivot on y-axis.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixRotate(OH_Drawing_Matrix*, float degree, float px, float py);
+void OH_Drawing_MatrixRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
 
 /**
  * @brief Sets matrix to translate by (dx, dy)
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param dx Indicates the horizontal translation.
  * @param dy Indicates the vertical translation.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix*, float dx, float dy);
+void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
 
 /**
  * @brief Sets matrix to scale by sx and sy, about a pivot point at (px, py).
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param sx Indicates the horizontal scale factor.
  * @param sy Indicates the vertical scale factor.
  * @param px Indicates the pivot on x-axis.
@@ -422,27 +419,27 @@ void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix*, float dx, float dy);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixScale(OH_Drawing_Matrix*, float sx, float sy, float px, float py);
+void OH_Drawing_MatrixScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py);
 
 /**
  * @brief Sets inverse to reciprocal matrix, returning true if matrix can be inverted.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param inverse Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @return Returns true if the matrix is not nullptr and can be inverted;
  *         returns false if the matrix is nullptr or cannot be inverted.
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix*, OH_Drawing_Matrix* inverse);
+bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* inverse);
 
 /**
  * @brief Sets the params of matrix to map src to dst.
  * Count must greater than or equal to zero, and less than or equal to four.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param src Points to map from.
  * @param dst Points to map to.
  * @param count Number of point in src and dst.
@@ -450,47 +447,47 @@ bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix*, OH_Drawing_Matrix* inverse);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixSetPolyToPoly(OH_Drawing_Matrix*, const OH_Drawing_Point2D* src,
+bool OH_Drawing_MatrixSetPolyToPoly(OH_Drawing_Matrix* matrix, const OH_Drawing_Point2D* src,
     const OH_Drawing_Point2D* dst, uint32_t count);
 
 /**
  * @brief Maps the src point array to the dst point array by matrix transformation.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param src Points to map from.
  * @param dst Points to map to.
  * @param count Number of point in src and dst.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixMapPoints(const OH_Drawing_Matrix*, const OH_Drawing_Point2D* src,
+void OH_Drawing_MatrixMapPoints(const OH_Drawing_Matrix* matrix, const OH_Drawing_Point2D* src,
     OH_Drawing_Point2D* dst, int count);
 
 /**
  * @brief Sets dst to bounds of src corners mapped by matrix transformation.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param src Rect to map from.
  * @param dst Rect to map to.
  * @return Returns true if the mapped src is equal to the dst; returns false is not equal.
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix*, const OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
+bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix* matrix, const OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
 
 /**
  * @brief Returns true if the first matrix equals the second matrix.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param other Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @return Returns true if the two matrices are equal; returns false if not equal.
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix*, OH_Drawing_Matrix* other);
+bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* other);
 
 /**
  * @brief Returns true if matrix is identity.
@@ -499,22 +496,22 @@ bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix*, OH_Drawing_Matrix* other);
  *                       | 0 0 1 |
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @return Returns true if matrix is identity; returns false if not identity.
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixIsIdentity(OH_Drawing_Matrix*);
+bool OH_Drawing_MatrixIsIdentity(OH_Drawing_Matrix* matrix);
 
 /**
  * @brief Destroys an <b>OH_Drawing_Matrix</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_MatrixDestroy(OH_Drawing_Matrix*);
+void OH_Drawing_MatrixDestroy(OH_Drawing_Matrix* matrix);
 
 #ifdef __cplusplus
 }

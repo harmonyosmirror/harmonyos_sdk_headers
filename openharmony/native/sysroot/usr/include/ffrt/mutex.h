@@ -30,7 +30,7 @@
  * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the mutex interfaces in C.
- *
+ * @library libffrt.z.so
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
  * @version 1.0
@@ -42,7 +42,6 @@
 /**
  * @brief Initializes mutex attr.
  *
- * @param mutex Indicates a pointer to the mutex.
  * @param attr Indicates a pointer to the mutex attribute.
  * @return {@link ffrt_success} 0 - success
  *         {@link ffrt_error_inval} 22 - if attr is null.
@@ -142,3 +141,4 @@ FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
  */
 FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 #endif
+/** @} */

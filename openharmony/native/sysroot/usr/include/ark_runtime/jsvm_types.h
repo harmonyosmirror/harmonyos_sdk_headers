@@ -12,10 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#ifndef ARK_RUNTIME_JSVM_JSVM_TYPE_H
-#define ARK_RUNTIME_JSVM_JSVM_TYPE_H
-
 /**
  * @addtogroup JSVM
  * @{
@@ -42,6 +38,10 @@
  * @syscap SystemCapability.ArkCompiler.JSVM
  * @since 11
  */
+
+#ifndef ARK_RUNTIME_JSVM_JSVM_TYPE_H
+#define ARK_RUNTIME_JSVM_JSVM_TYPE_H
+
 
 #include <stddef.h>  // NOLINT(modernize-deprecated-headers)
 #include <stdint.h>  // NOLINT(modernize-deprecated-headers)
@@ -772,3 +772,4 @@ typedef enum {
 } JSVM_CacheType;
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_TYPE_H */
+

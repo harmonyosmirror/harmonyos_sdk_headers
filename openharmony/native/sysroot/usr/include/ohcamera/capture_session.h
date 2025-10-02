@@ -916,6 +916,19 @@ Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSes
  */
 Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession* session, bool enabled);
 
+/**
+ * @brief Set quality prioritization.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param qualityPrioritization the target {@link Camera_QualityPrioritization} to set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 14
+ */
+Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(
+    Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization);
+
 #ifdef __cplusplus
 }
 #endif

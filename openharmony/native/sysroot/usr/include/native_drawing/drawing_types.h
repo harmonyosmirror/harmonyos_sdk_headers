@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TYPES_H
-#define C_INCLUDE_DRAWING_TYPES_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,8 +37,12 @@
  * @version 1.0
  */
 
-#include <stdint.h>
+#ifndef C_INCLUDE_DRAWING_TYPES_H
+#define C_INCLUDE_DRAWING_TYPES_H
+
+#include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -479,6 +480,19 @@ typedef struct {
 } OH_Drawing_RectStyle_Info;
 
 /**
+ * @brief Defines the string information struct.
+ *
+ * @since 14
+ * @version 1.0
+ */
+typedef struct {
+    /** A pointer to a byte string containing UTF-16 encoded entities */
+    uint8_t* strData;
+    /** The length of `strData` in bytes */
+    uint32_t strLen;
+} OH_Drawing_String;
+
+/**
  * @brief Enumerates text encoding types.
  * @since 12
  * @version 1.0
@@ -525,6 +539,14 @@ typedef struct OH_Drawing_RecordCmdUtils OH_Drawing_RecordCmdUtils;
  * @version 1.0
  */
 typedef struct OH_Drawing_RecordCmd OH_Drawing_RecordCmd;
+
+/**
+ * @brief Defines an array object, which is used to store multiple NDK object.
+ *
+ * @since 14
+ * @version 1.0
+ */
+typedef struct OH_Drawing_Array OH_Drawing_Array;
 #ifdef __cplusplus
 }
 #endif

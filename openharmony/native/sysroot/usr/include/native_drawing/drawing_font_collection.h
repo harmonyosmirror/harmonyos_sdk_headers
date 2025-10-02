@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_FONT_COLLECTION_H
-#define C_INCLUDE_DRAWING_FONT_COLLECTION_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_FONT_COLLECTION_H
+#define C_INCLUDE_DRAWING_FONT_COLLECTION_H
+
 #include "drawing_text_declaration.h"
 
 #ifdef __cplusplus
@@ -59,31 +59,31 @@ OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);
  * @brief Releases the memory occupied by an <b>OH_Drawing_FontCollection</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection*);
+void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection);
 
 /**
  * @brief Disable the font collection fallback.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection*);
+void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCollection);
 
 /**
  * @brief Disable the font collection systemfont.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection*);
+void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontCollection);
 
 /**
  * @brief Creates an <b>OH_Drawing_FontCollection</b> object with shared usage between
@@ -100,11 +100,21 @@ OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
  * @brief Clear font caches.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection*);
+void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection* fontCollection);
+
+/**
+ * @brief Get the <b>OH_Drawing_FontCollection</b> global instance.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @return Return the pointer to the <b>OH_Drawing_FontCollection</b> global instance.
+ * @since 14
+ * @version 1.0
+ */
+OH_Drawing_FontCollection* OH_Drawing_GetFontCollectionGlobalInstance(void);
 #ifdef __cplusplus
 }
 #endif

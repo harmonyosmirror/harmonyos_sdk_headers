@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef FILE_MANAGEMENT_FILEIO_ERROR_CODE_H
-#define FILE_MANAGEMENT_FILEIO_ERROR_CODE_H
-
 /**
  * @addtogroup FileIO
  * @{
@@ -32,6 +29,9 @@
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 12
  */
+
+#ifndef FILE_MANAGEMENT_FILEIO_ERROR_CODE_H
+#define FILE_MANAGEMENT_FILEIO_ERROR_CODE_H
 
 #ifdef __cplusplus
 extern "C" {

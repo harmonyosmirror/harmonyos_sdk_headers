@@ -244,7 +244,7 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
 /**
  * @brief Check whether the parameters contains a key.
  *
- * @param rcvData Indicates the event of callback data.
+ * @param para Indicates the event of callback data.
  * @param key Indicates the key of parameter.
  * @return Returns the result of check, true means it contains.
  * @since 12
@@ -254,7 +254,7 @@ bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const
 /**
  * @brief Get int data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param defaultValue Indicates default return value.
  * @return Returns the int data of the key in the parameters.
@@ -265,7 +265,7 @@ int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, cons
 /**
  * @brief Get int array data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param array Indicates the int array.
  * @return Returns the length of the array.
@@ -276,7 +276,7 @@ int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* p
 /**
  * @brief Get long data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param defaultValue Indicates default return value.
  * @return Returns the long data of the key in the parameters.
@@ -287,7 +287,7 @@ long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, co
 /**
  * @brief Get long array data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param array Indicates the long array.
  * @return Returns the length of the array.
@@ -298,7 +298,7 @@ int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* 
 /**
  * @brief Get bool data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param defaultValue Indicates default return value.
  * @return Returns the bool data of the key in the parameters.
@@ -309,7 +309,7 @@ bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, co
 /**
  * @brief Get bool array data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param array Indicates the bool array.
  * @return Returns the length of the array.
@@ -320,7 +320,7 @@ int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* 
 /**
  * @brief Get char data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param defaultValue Indicates default return value.
  * @return Returns the char data of the key in the parameters.
@@ -331,7 +331,7 @@ char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, co
 /**
  * @brief Get char array data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param array Indicates the char array.
  * @return Returns the length of the array.
@@ -342,7 +342,7 @@ int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* 
 /**
  * @brief Get double data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param defaultValue Indicates default return value.
  * @return Returns the double data of the key in the parameters.
@@ -354,7 +354,7 @@ double OH_CommonEvent_GetDoubleFromParameters(const CommonEvent_Parameters* para
 /**
  * @brief Get double array data from parameters data by key.
  *
- * @param rcvData Indicates the event of parameters data.
+ * @param para Indicates the event of parameters data.
  * @param key Indicates the key of parameters data.
  * @param array Indicates the double array.
  * @return Returns the length of the array, default is 0.

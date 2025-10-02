@@ -13,12 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef FILE_MANAGEMENT_OH_FILE_SHARE_H
-#define FILE_MANAGEMENT_OH_FILE_SHARE_H
-
-#include "error_code.h"
-#include <stdbool.h>
-
 /**
  * @addtogroup fileShare
  * @{
@@ -38,6 +32,13 @@
  * @syscap SystemCapability.FileManagement.AppFileService.FolderAuthorization
  * @since 12
  */
+
+#ifndef FILE_MANAGEMENT_OH_FILE_SHARE_H
+#define FILE_MANAGEMENT_OH_FILE_SHARE_H
+
+#include "error_code.h"
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

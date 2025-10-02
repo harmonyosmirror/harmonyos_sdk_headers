@@ -27,6 +27,8 @@
  * @file native_interface_accessibility.h
  *
  * @brief Declares the APIs used to access the native Accessibility.
+ *
+ * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
  * @since 13
@@ -1031,3 +1033,4 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 };
 #endif
 #endif // _NATIVE_INTERFACE_ACCESSIBILITY_H
+/** @} */

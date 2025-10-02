@@ -73,5 +73,5 @@ typedef enum OH_Preferences_ErrCode {
 #ifdef __cplusplus
 };
 #endif
-
+/** @} */
 #endif // OH_PREFERENCES_ERR_CODE_H

@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_IMAGE_FILTER_H
-#define C_INCLUDE_DRAWING_IMAGE_FILTER_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_IMAGE_FILTER_H
+#define C_INCLUDE_DRAWING_IMAGE_FILTER_H
+
 #include "drawing_shader_effect.h"
 
 #ifdef __cplusplus
@@ -52,23 +52,23 @@ extern "C" {
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param sigmaX Indicates the Gaussian sigma value for blurring along the x axis.
  * @param sigmaY Indicates the Gaussian sigma value for blurring along the y axis.
- * @param OH_Drawing_TileMode Indicates the tile mode applied at edges.
- * @param OH_Drawing_ImageFilter Indicates the input filter that is blurred, uses source bitmap if this is null.
+ * @param tileMode Indicates the tile mode applied at edges.
+ * @param imageFilter Indicates the input filter that is blurred, uses source bitmap if this is null.
  * @return Returns the pointer to the <b>OH_Drawing_ImageFilter</b> object created.
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is that the available memory is empty.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sigmaY, OH_Drawing_TileMode,
-    OH_Drawing_ImageFilter*);
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sigmaY, OH_Drawing_TileMode tileMode,
+    OH_Drawing_ImageFilter* imageFilter);
 
 /**
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that applies the color filter to the input.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_ColorFilter Indicates the color filter that transforms the input image.
- * @param OH_Drawing_ImageFilter Indicates the input filter, or uses the source bitmap if this is null.
+ * @param colorFilter Indicates the color filter that transforms the input image.
+ * @param imageFilter Indicates the input filter, or uses the source bitmap if this is null.
  * @return Returns the pointer to the <b>OH_Drawing_ImageFilter</b> object created.
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is that the available memory is empty or
@@ -76,17 +76,18 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sig
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter(OH_Drawing_ColorFilter*, OH_Drawing_ImageFilter*);
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter(OH_Drawing_ColorFilter* colorFilter,
+    OH_Drawing_ImageFilter* imageFilter);
 
 /**
  * @brief Destroys an <b>OH_Drawing_ImageFilter</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_ImageFilter Indicates the pointer to an <b>OH_Drawing_ImageFilter</b> object.
+ * @param imageFilter Indicates the pointer to an <b>OH_Drawing_ImageFilter</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ImageFilterDestroy(OH_Drawing_ImageFilter*);
+void OH_Drawing_ImageFilterDestroy(OH_Drawing_ImageFilter* imageFilter);
 
 #ifdef __cplusplus
 }

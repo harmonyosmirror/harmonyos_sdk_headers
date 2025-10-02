@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TYPEFACE_H
-#define C_INCLUDE_DRAWING_TYPEFACE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_TYPEFACE_H
+#define C_INCLUDE_DRAWING_TYPEFACE_H
 
 #include "drawing_error_code.h"
 #include "drawing_types.h"
@@ -112,23 +112,23 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromCurrent(const OH_Drawing_Typef
  * it or free it again.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_MemoryStream Indicates the pointer to an <b>OH_Drawing_MemoryStream</b> object.
+ * @param memoryStream Indicates the pointer to an <b>OH_Drawing_MemoryStream</b> object.
  * @param index  memory stream index.
  * @return Returns the pointer to the <b>OH_Drawing_Typeface</b> object created.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream(OH_Drawing_MemoryStream*, int32_t index);
+OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream(OH_Drawing_MemoryStream* memoryStream, int32_t index);
 
 /**
  * @brief Destroys an <b>OH_Drawing_Typeface</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Typeface Indicates the pointer to an <b>OH_Drawing_Typeface</b> object.
+ * @param typeface Indicates the pointer to an <b>OH_Drawing_Typeface</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TypefaceDestroy(OH_Drawing_Typeface*);
+void OH_Drawing_TypefaceDestroy(OH_Drawing_Typeface* typeface);
 
 /**
  * @brief Creates an <b>OH_Drawing_FontArguments</b> object.

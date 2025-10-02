@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup AVCapability
+ * @{
+ *
+ * @brief The AVCapability module provides functions for querying encoding and decoding capabilities.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
+
+/**
  * @file native_avcapability.h
  *
- * @brief Provides audio and video capability queries.
+ * @brief Declare the Native API used for querying encoding and decoding capabilities.
  *
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
@@ -30,6 +40,7 @@
 #include <stdint.h>
 #include "native_averrors.h"
 #include "native_avformat.h"
+#include "native_avcodec_base.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,20 +52,6 @@ extern "C" {
  * @since 10
  */
 typedef struct OH_AVCapability OH_AVCapability;
-
-/**
- * @brief The bitrate mode of encoder.
- * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 10
- */
-typedef enum OH_BitrateMode {
-    /* Constant Bit rate mode. */
-    BITRATE_MODE_CBR = 0,
-    /* Variable Bit rate mode. */
-    BITRATE_MODE_VBR = 1,
-    /* Constant Quality mode. */
-    BITRATE_MODE_CQ = 2
-} OH_BitrateMode;
 
 /**
  * @brief Range contain min and max value
@@ -438,3 +435,4 @@ OH_AVFormat *OH_AVCapability_GetFeatureProperties(OH_AVCapability *capability, O
 }
 #endif
 #endif // NATIVE_AVCAPABILITY_H
+/** @} */

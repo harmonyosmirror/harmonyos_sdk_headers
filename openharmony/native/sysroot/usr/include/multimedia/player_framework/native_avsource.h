@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup AVSource
+ * @{
+ *
+ * @brief The AVSource module provides functions for constructing media resource object functionality.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @since 10
+ */
+
+/**
  * @file native_avsource.h
  *
- * @brief Provides audio and video suorce capabilities.
+ * @brief Declare the interface for parsing audio and video media data.
  *
  * @kit AVCodecKit
  * @library libnative_media_avsource.so
@@ -128,3 +138,4 @@ OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex
 #endif
 
 #endif // NATIVE_AVSOURCE_H
+/** @} */

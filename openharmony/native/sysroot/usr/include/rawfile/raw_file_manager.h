@@ -31,6 +31,9 @@
  * @brief Declares native functions for the resource manager.
  *
  * You can use the resource manager to open raw files for subsequent operations, such as seeking and reading.
+ *
+ * @syscap SystemCapability.Global.ResourceManager
+ * @library librawfile.z.so
  * @kit LocalizationKit
  * @since 8
  * @version 1.0

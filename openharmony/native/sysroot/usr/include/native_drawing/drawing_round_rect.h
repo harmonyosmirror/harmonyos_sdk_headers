@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_ROUND_RECT_H
-#define C_INCLUDE_DRAWING_ROUND_RECT_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_ROUND_RECT_H
+#define C_INCLUDE_DRAWING_ROUND_RECT_H
 
 #include "drawing_error_code.h"
 #include "drawing_types.h"
@@ -76,48 +76,49 @@ typedef enum {
  * @brief Creates an <b>OH_Drawing_RoundRect</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @param xRad Indicates the corner radii on x-axis.
  * @param yRad Indicates the corner radii on y-axis.
  * @return Returns the pointer to the <b>OH_Drawing_RoundRect</b> object created.
  * @since 11
  * @version 1.0
  */
-OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect*, float xRad, float yRad);
+OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, float xRad, float yRad);
 
 /**
  * @brief Sets the radiusX and radiusY for a specific corner position.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_RoundRect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param roundRect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @param pos Indicates the corner radii position.
- * @param OH_Drawing_Corner_Radii Indicates the corner radii on x-axis and y-axis.
+ * @param radii Indicates the corner radii on x-axis and y-axis.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RoundRectSetCorner(OH_Drawing_RoundRect*, OH_Drawing_CornerPos pos, OH_Drawing_Corner_Radii);
+void OH_Drawing_RoundRectSetCorner(OH_Drawing_RoundRect* roundRect,
+    OH_Drawing_CornerPos pos, OH_Drawing_Corner_Radii radii);
 
 /**
  * @brief Gets an <b>OH_Drawing_Corner_Radii</b> struct, the point is round corner radiusX and radiusY.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_RoundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
+ * @param roundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
  * @param pos Indicates the corner radii position.
  * @return Returns the corner radii of <b>OH_Drawing_Corner_Radii</b> struct.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect*, OH_Drawing_CornerPos pos);
+OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roundRect, OH_Drawing_CornerPos pos);
 
 /**
  * @brief Destroys an <b>OH_Drawing_RoundRect</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_RoundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
+ * @param roundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect*);
+void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect* roundRect);
 
 /**
  * @brief Translates round rect by (dx, dy).

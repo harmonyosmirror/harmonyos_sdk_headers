@@ -13,13 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_API_H
-#define OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_API_H
-
-#include <stdint.h>
-
-#include "transient_task_type.h"
-
 /**
  * @addtogroup TransientTask
  * @{
@@ -40,6 +33,13 @@
  * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 13
  */
+
+#ifndef OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_API_H
+#define OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_API_H
+
+#include <stdint.h>
+
+#include "transient_task_type.h"
 
 #ifdef __cplusplus
 extern "C" {

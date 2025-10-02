@@ -1402,3 +1402,4 @@ typedef enum ArkWeb_NetError {
 } ArkWeb_NetError;
 
 #endif // ARKWEB_NET_ERROR_LIST_H
+/** @} */

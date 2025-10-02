@@ -133,5 +133,6 @@ typedef enum {
 #ifdef __cplusplus
 }
 #endif
-/** @} */
+
 #endif // NATIVE_AUDIO_COMMON_H
+/** @} */

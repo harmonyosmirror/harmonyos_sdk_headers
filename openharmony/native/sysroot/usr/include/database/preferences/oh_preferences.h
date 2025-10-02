@@ -89,7 +89,6 @@ OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode);
  * @brief Closes a Preferences object.
  *
  * @param preference Pointer to the {@Link OH_Preferences} instance to close.
- * @param option Pointer to an {@Link OH_PreferencesOption} instance.
  * @return Returns the status code of the execution. For details, see {@Link OH_Preferences_ErrCode}.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
  *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.

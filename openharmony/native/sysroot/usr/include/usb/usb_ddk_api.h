@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef USB_DDK_API_H
-#define USB_DDK_API_H
 
 /**
  * @addtogroup UsbDdk
@@ -33,9 +31,15 @@
  *
  * @brief Declares the USB DDK APIs used by the USB host to access USB devices.
  *
+ * @kit DriverDevelopmentKit
+ * @library libusb_ndk.z.so
+ * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
  */
+
+#ifndef USB_DDK_API_H
+#define USB_DDK_API_H
 
 #include <stdint.h>
 

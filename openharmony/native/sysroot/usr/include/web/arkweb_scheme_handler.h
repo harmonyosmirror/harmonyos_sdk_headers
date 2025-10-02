@@ -672,7 +672,7 @@ void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler);
 
 /**
  * @brief Destroy a SchemeHandler.
- * @param The ArkWeb_SchemeHandler to be destroy.
+ * @param schemeHandler The ArkWeb_SchemeHandler to be destroy.
  *
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
@@ -995,3 +995,4 @@ void OH_ArkWeb_ReleaseByteArray(uint8_t* byteArray);
 };
 #endif
 #endif // ARKWEB_SCHEME_HANDLER_H
+/** @} */

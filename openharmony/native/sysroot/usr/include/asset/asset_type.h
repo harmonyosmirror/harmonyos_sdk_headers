@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef ASSET_TYPE_H
-#define ASSET_TYPE_H
-
 /**
  * @addtogroup AssetType
  * @{
@@ -35,6 +32,9 @@
  * @syscap SystemCapability.Security.Asset
  * @since 11
  */
+
+#ifndef ASSET_TYPE_H
+#define ASSET_TYPE_H
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -205,6 +205,12 @@ typedef enum {
      * @since 12
      */
     ASSET_TAG_OPERATION_TYPE = ASSET_TYPE_NUMBER | 0x46,
+    /**
+     * A tag whose value is a bool indicating whether the attributes of an asset are required to be encrypted.
+     *
+     * @since 14
+     */
+    ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL | 0x47,
 } Asset_Tag;
 
 /**

@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_RECORD_CMD_H
-#define C_INCLUDE_DRAWING_RECORD_CMD_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -33,10 +30,15 @@
  *
  * @brief Declares functions related to the <b>RecordCmd</b> object in the drawing module.
  *
+ * @kit ArkGraphics2D
  * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 13
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_RECORD_CMD_H
+#define C_INCLUDE_DRAWING_RECORD_CMD_H
 
 #include "drawing_types.h"
 #include "drawing_error_code.h"

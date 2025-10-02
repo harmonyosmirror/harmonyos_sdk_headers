@@ -374,8 +374,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ExcludeContent(struct OH_AVScreen
  * @brief Add Window content to the screen capture content filter
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param filter Pointer to an OH_AVScreenCapture_ContentFilter instance
- * @param Pointer to windowIDs to be added
- * @param windowCount to be added
+ * @param windowIDs Pointer to windowIDs to be added
+ * @param windowCount length of windowID list
  * @return Returns AV_SCREEN_CAPTURE_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVSCREEN_CAPTURE_ErrCode}
  * @since 12
@@ -404,8 +404,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCa
  * @brief skip some windows' privacy mode of current app during the screen recording
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param capture Pointer to an OH_AVScreenCapture instance
- * @param Pointer of windowID list
- * @param length of windowID list
+ * @param windowIDs Pointer of windowID list
+ * @param windowCount length of windowID list
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input windowIDs are not belong current
@@ -416,6 +416,21 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCa
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScreenCapture *capture,
     int32_t *windowIDs, int32_t windowCount);
+
+/**
+ * @brief set up the max number of video frame per second
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param frameRate max frame rate of video
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or frameRate is not support.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
+ * @since 14
+ * @version 1.0
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate(struct OH_AVScreenCapture *capture,
+    int32_t frameRate);
 #ifdef __cplusplus
 }
 #endif

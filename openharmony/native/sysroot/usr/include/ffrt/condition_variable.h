@@ -30,7 +30,7 @@
  * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the condition variable interfaces in C.
- *
+ * @library libffrt.z.so
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
  * @version 1.0
@@ -117,3 +117,4 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
  */
 FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond);
 #endif
+/** @} */

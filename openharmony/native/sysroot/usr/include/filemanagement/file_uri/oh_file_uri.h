@@ -13,8 +13,15 @@
  * limitations under the License.
  */
 
-#ifndef FILE_MANAGEMENT_OH_FILE_URI_H
-#define FILE_MANAGEMENT_OH_FILE_URI_H
+/**
+ * @addtogroup fileUri
+ * @{
+ *
+ * @brief This module provides URI format validation and URI conversion processing,
+ * as well as obtaining URI-related information
+ *
+ * @since 12
+ */
 
 /**
  * @file oh_file_uri.h
@@ -29,6 +36,9 @@
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
  */
+
+#ifndef FILE_MANAGEMENT_OH_FILE_URI_H
+#define FILE_MANAGEMENT_OH_FILE_URI_H
 
 #include "error_code.h"
 #include <stdbool.h>
@@ -116,4 +126,5 @@ FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int leng
 #ifdef __cplusplus
 };
 #endif
+/** @} */
 #endif // FILE_MANAGEMENT_OH_FILE_URI_H

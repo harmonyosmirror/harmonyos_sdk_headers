@@ -54,6 +54,7 @@ extern "C" {
 #endif
 
 #define OH_NATIVE_XCOMPONENT_OBJ ("__NATIVE_XCOMPONENT_OBJ__")
+#define OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER 10
 
 const uint32_t OH_XCOMPONENT_ID_LEN_MAX = 128;
 const uint32_t OH_MAX_TOUCH_POINTS_NUMBER = 10;
@@ -259,7 +260,7 @@ typedef struct {
     /** Timestamp of the current touch event. */
     int64_t timeStamp;
     /** Array of the current touch points. */
-    OH_NativeXComponent_TouchPoint touchPoints[OH_MAX_TOUCH_POINTS_NUMBER];
+    OH_NativeXComponent_TouchPoint touchPoints[OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER];
     /** Number of current touch points. */
     uint32_t numPoints;
 } OH_NativeXComponent_TouchEvent;
@@ -828,6 +829,20 @@ OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle no
  */
 int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
     OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
+
+/**
+ * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
+ *
+ * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
+ * @param callback Indicates the pointer to a key event callback with result.
+ * @return Returns the status code of the execution.
+ *         {@link OH_NATIVEXCOMPONENT_RESULT_SUCCESS} the callback function is successfully registered.\n
+ *         {@link OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER} component is nullptr or callback is nullptr.\n
+ * @since 14
+ * @version 1.0
+ */
+int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(
+    OH_NativeXComponent* component, bool (*callback)(OH_NativeXComponent* component, void* window));
 
 #ifdef __cplusplus
 };

@@ -267,6 +267,18 @@ int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
  * @since 13
  */
 int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
+
+/**
+ * @brief Obtains all MIME types of Pasteboard data.
+ *
+ * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @param count Poniter to the count of MIME types.
+ * @return Returns char array of MIME types in the Pasteboard.
+ * Returns nullptr if the operation is failed.
+ * @see OH_Pasteboard.
+ * @since 14
+ */
+char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count);
 #ifdef __cplusplus
 };
 #endif

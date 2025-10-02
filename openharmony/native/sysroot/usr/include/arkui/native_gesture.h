@@ -649,6 +649,7 @@ int32_t OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers(ArkUI_Parallel
 * @param userData Indicates the custom data.
 * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+* @since 12
 */
 int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer* recognizer,
     ArkUI_GestureRecognizerDisposeNotifyCallback callback, void* userData);

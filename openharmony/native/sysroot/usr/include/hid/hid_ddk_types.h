@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HID_DDK_TYPES_H
-#define HID_DDK_TYPES_H
 /**
  * @addtogroup HidDdk
  * @{
@@ -33,9 +31,14 @@
  * @brief Provides definitions of enum variables and structs in the HID DDK.
  *
  * File to include: <hid/hid_ddk_types.h>
+ * @library libhid.z.so
+ * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
  * @version 1.0
  */
+
+#ifndef HID_DDK_TYPES_H
+#define HID_DDK_TYPES_H
 
 #include <stdint.h>
 

@@ -12,14 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef INCLUDE_OH_WINDOW_EVENT_FILTER_H
-#define INCLUDE_OH_WINDOW_EVENT_FILTER_H
-
 
 /**
  * @addtogroup WindowManager_NativeModule
  * @{
- *
  *
  * @brief Provides  abilities of windowManager on the native side, such as key event
  * filtration.
@@ -37,6 +33,10 @@
  * @kit ArkUI
  * @since 12
  */
+
+#ifndef INCLUDE_OH_WINDOW_EVENT_FILTER_H
+#define INCLUDE_OH_WINDOW_EVENT_FILTER_H
+
 #include "stdbool.h"
 #include "stdint.h"
 #include "oh_window_comm.h"
@@ -80,3 +80,4 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t 
 #endif
 
 #endif // INCLUDE_OH_WINDOW_EVENT_FILTER_H
+/** @} */

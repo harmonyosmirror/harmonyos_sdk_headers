@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef USB_DDK_TYPES_H
-#define USB_DDK_TYPES_H
 /**
  * @addtogroup UsbDdk
  * @{
@@ -33,9 +31,15 @@
  *
  * @brief Provides the enumerated variables, structures, and macros used in USB DDK APIs.
  *
+ * @kit DriverDevelopmentKit
+ * @library libusb_ndk.z.so
+ * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
  */
+
+#ifndef USB_DDK_TYPES_H
+#define USB_DDK_TYPES_H
 
 #include <stddef.h>
 #include <stdint.h>

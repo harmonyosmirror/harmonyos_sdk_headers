@@ -145,6 +145,20 @@ char* OH_NativeBundle_GetAppIdentifier();
  * @since 13
  */
 OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
+
+/**
+ * @brief Obtains the compatible device type of the current application.
+ * After utilizing this interface, to prevent memory leaks,
+ * it is necessary to manually release the pointer returned by the interface.
+ *
+ * @return Returns the newly created string that indicates the compatible device type,
+ * if the returned object is NULL, it indicates creation failure.
+ * The possible cause of failure could be that the application address space is full,
+ * leading to space allocation failure.
+ * @since 14
+ * @version 1.0
+ */
+char* OH_NativeBundle_GetCompatibleDeviceType();
 #ifdef __cplusplus
 };
 #endif

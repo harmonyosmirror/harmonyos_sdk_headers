@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_SHADOW_LAYER_H
-#define C_INCLUDE_DRAWING_SHADOW_LAYER_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_SHADOW_LAYER_H
+#define C_INCLUDE_DRAWING_SHADOW_LAYER_H
 
 #include "drawing_types.h"
 
@@ -64,11 +64,11 @@ OH_Drawing_ShadowLayer* OH_Drawing_ShadowLayerCreate(float blurRadius, float x, 
  * @brief Destroys an <b>OH_Drawing_ShadowLayer</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_ShadowLayer Indicates the pointer to an <b>OH_Drawing_ShadowLayer</b> object.
+ * @param shadowLayer Indicates the pointer to an <b>OH_Drawing_ShadowLayer</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ShadowLayerDestroy(OH_Drawing_ShadowLayer*);
+void OH_Drawing_ShadowLayerDestroy(OH_Drawing_ShadowLayer* shadowLayer);
 
 #ifdef __cplusplus
 }

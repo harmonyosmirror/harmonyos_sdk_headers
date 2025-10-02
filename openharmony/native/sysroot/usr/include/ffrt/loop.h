@@ -30,7 +30,7 @@
  * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the loop interfaces in C.
- *
+ * @library libffrt.z.so
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 12
  * @version 1.0
@@ -134,3 +134,4 @@ FFRT_C_API ffrt_timer_t ffrt_loop_timer_start(
 FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
 #endif
+/** @} */

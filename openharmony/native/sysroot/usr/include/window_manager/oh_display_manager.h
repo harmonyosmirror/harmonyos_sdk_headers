@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OH_NATIVE_DISPLAY_MANAGER_H
-#define OH_NATIVE_DISPLAY_MANAGER_H
-
 /**
  * @addtogroup OH_DisplayManager
  * @{
@@ -33,11 +30,15 @@
  * @brief Defines the data structures for the C APIs of the display module.
  *
  * @kit ArkUI
- * @library libnative_display_manager.so.
+ * @library libnative_display_manager.so
  * @syscap SystemCapability.WindowManager.WindowManager.Core
  * @since 12
  * @version 1.0
  */
+
+#ifndef OH_NATIVE_DISPLAY_MANAGER_H
+#define OH_NATIVE_DISPLAY_MANAGER_H
+
 
 #include "oh_display_info.h"
 
@@ -48,7 +49,7 @@ extern "C" {
 /**
  * @brief Obtain the default display Id.
  *
- * @param { *displayId } Indicates the pointer to an <b>uint64_t</b> object.
+ * @param displayId Indicates the pointer to an <b>uint64_t</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -60,7 +61,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint6
 /**
  * @brief Obtain the default display width.
  *
- * @param { *displayWidth } Indicates the pointer to an <b>int32_t</b> object.
+ * @param displayWidth Indicates the pointer to an <b>int32_t</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -72,7 +73,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(in
 /**
  * @brief Obtain the default display height.
  *
- * @param { *displayHeight } Indicates the pointer to an <b>int32_t</b> object.
+ * @param displayHeight Indicates the pointer to an <b>int32_t</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -84,7 +85,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(i
 /**
  * @brief Obtain the default display rotation.
  *
- * @param { *displayRotation } Indicates the pointer to an <b>NativeDisplayManager_Rotation</b> object.
+ * @param displayRotation Indicates the pointer to an <b>NativeDisplayManager_Rotation</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -97,7 +98,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation
 /**
  * @brief Obtain the default display orientation.
  *
- * @param { *displayOrientation } Indicates the pointer to an <b>NativeDisplayManager_Orientation</b> object.
+ * @param displayOrientation Indicates the pointer to an <b>NativeDisplayManager_Orientation</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -110,7 +111,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientat
 /**
  * @brief Obtain the default display virtualPixels.
  *
- * @param { *virtualPixels } Indicates the pointer to an <b>float</b> object.
+ * @param virtualPixels Indicates the pointer to an <b>float</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -122,7 +123,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualP
 /**
  * @brief Obtain the default display refreshRate.
  *
- * @param { *refreshRate } Indicates the pointer to an <b>uint32_t</b> object.
+ * @param refreshRate Indicates the pointer to an <b>uint32_t</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -134,7 +135,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
 /**
  * @brief Obtain the default display densityDpi.
  *
- * @param { *densityDpi } Indicates the pointer to an <b>int32_t</b> object.
+ * @param densityDpi Indicates the pointer to an <b>int32_t</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -146,7 +147,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
 /**
  * @brief Obtain the default display densityPixels.
  *
- * @param { *densityPixels } Indicates the pointer to an <b>float</b> object.
+ * @param densityPixels Indicates the pointer to an <b>float</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -158,7 +159,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityP
 /**
  * @brief Obtain the default display scaledDensity.
  *
- * @param { *scaledDensity } Indicates the pointer to an <b>float</b> object.
+ * @param scaledDensity Indicates the pointer to an <b>float</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -170,7 +171,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
 /**
  * @brief Obtain the default display xDpi.
  *
- * @param { *xDpi } Indicates the pointer to an <b>float</b> object.
+ * @param xDpi Indicates the pointer to an <b>float</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -182,7 +183,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
 /**
  * @brief Obtain the default display yDpi.
  *
- * @param { *yDpi } Indicates the pointer to an <b>float</b> object.
+ * @param yDpi Indicates the pointer to an <b>float</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -194,7 +195,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
 /**
  * @brief Create the cutout info of the device.
  *
- * @param { **cutoutInfo } Indicates the pointer to an <b>NativeDisplayManager_CutoutInfo</b> object.
+ * @param cutoutInfo Indicates the pointer to an <b>NativeDisplayManager_CutoutInfo</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -207,7 +208,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
 /**
  * @brief Destroy an <b>NativeDisplayManager_CutoutInfo</b> object and reclaims the memory occupied by the object.
  *
- * @param { **cutoutInfo } Indicates the pointer to an <b>NativeDisplayManager_CutoutInfo</b> object.
+ * @param cutoutInfo Indicates the pointer to an <b>NativeDisplayManager_CutoutInfo</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  * @syscap SystemCapability.WindowManager.WindowManager.Core
@@ -228,7 +229,7 @@ bool OH_NativeDisplayManager_IsFoldable();
 /**
  * @brief Get the display mode of the foldable device.
  *
- * @param { *displayMode } Indicates the pointer to an <b>NativeDisplayManager_FoldDisplayMode</b> object.
+ * @param displayMode Indicates the pointer to an <b>NativeDisplayManager_FoldDisplayMode</b> object.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
@@ -241,7 +242,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(
 /**
  * @brief the callback function type when display change.
  *
- * @param { *displayId } change display id.
+ * @param displayId change display id.
  * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
@@ -250,8 +251,8 @@ typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId
 /**
  * @brief Register the callback for display change listener.
  *
- * @param { displayChangeCallback } display change callback.
- * @param { *listenerIndex } Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
+ * @param displayChangeCallback display change callback.
+ * @param listenerIndex Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -264,7 +265,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
 /**
  * @brief Unregister the callback for display changes listener.
  *
- * @param { listenerIndex } display changed listener index.
+ * @param listenerIndex display changed listener index.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
@@ -276,7 +277,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeLi
 /**
  * @brief the callback function type when display fold change.
  *
- * @param { displayMode } current fold display mode.
+ * @param displayMode current fold display mode.
  * @syscap SystemCapability.Window.SessionManager
  * @since 12
  */
@@ -286,8 +287,8 @@ typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(
 /**
  * @brief Register the callback for display mode change listener.
  *
- * @param { displayModeChangeCallback } display mode change callback.
- * @param { *listenerIndex } Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
+ * @param displayModeChangeCallback display mode change callback.
+ * @param listenerIndex Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
@@ -301,7 +302,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
 /**
  * @brief Unregister the callback for display mode change listener.
  *
- * @param { listenerIndex } display mode change listener index.
+ * @param listenerIndex display mode change listener index.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
@@ -310,6 +311,64 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(uint32_t listenerIndex);
+
+/**
+ * @brief Create all displays.
+ *
+ * @param allDisplays Output parameter for all displays information.
+ * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
+ *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @syscap SystemCapability.Window.SessionManager.Core
+ * @since 14
+ */
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
+    NativeDisplayManager_DisplaysInfo **allDisplays);
+
+/**
+ * @brief Destroy all displays.
+ *
+ * @param allDisplays all displays to be free.
+ * @syscap SystemCapability.Window.SessionManager.Core
+ * @since 14
+ */
+void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInfo *allDisplays);
+
+/**
+ * @brief Create display information by display id.
+ *
+ * @param displayId The display id.
+ * @param displayInfo The pointer to the display information.
+ * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
+ *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @syscap SystemCapability.Window.SessionManager.Core
+ * @since 14
+ */
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId,
+    NativeDisplayManager_DisplayInfo **displayInfo);
+
+/**
+ * @brief Destroy the display information.
+ *
+ * @param displayInfo the target display to be free.
+ * @syscap SystemCapability.Window.SessionManager.Core
+ * @since 14
+ */
+void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *displayInfo);
+
+/**
+ * @brief Create a primary display.
+ *
+ * @param displayInfo The information of the created display.
+ * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
+ *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @syscap SystemCapability.Window.SessionManager.Core
+ * @since 14
+ */
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(
+    NativeDisplayManager_DisplayInfo **displayInfo);
 
 #ifdef __cplusplus
 }

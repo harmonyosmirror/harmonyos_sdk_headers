@@ -30,7 +30,7 @@
  * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the task interfaces in C.
- *
+ * @library libffrt.z.so
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
  * @version 1.0
@@ -276,3 +276,4 @@ FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps);
 FFRT_C_API void ffrt_wait(void);
 
 #endif
+/** @} */

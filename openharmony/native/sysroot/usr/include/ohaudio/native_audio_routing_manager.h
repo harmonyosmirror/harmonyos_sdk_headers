@@ -295,5 +295,6 @@ OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(
 #ifdef __cplusplus
 }
 #endif
-/** @} */
+
 #endif // NATIVE_AUDIO_ROUTING_MANAGER_H
+/** @} */

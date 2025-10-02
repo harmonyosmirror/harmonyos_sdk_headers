@@ -66,7 +66,8 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
 
 /**
  * @brief Get audio scene.
- * @param audioManager the {@link OH_AudioManager} handle received from {@link OH_GetAudioManager}.
+ *
+ * @param manager the {@link OH_AudioManager} handle received from {@link OH_GetAudioManager}.
  * @param scene the {@link OH_AudioScene} pointer to receive the result.
  * @return Function result code:
  *         {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
@@ -80,5 +81,6 @@ OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *
 #ifdef __cplusplus
 }
 #endif
-/** @} */
+
 #endif // NATIVE_AUDIO_ROUTING_MANAGER_H
+/** @} */

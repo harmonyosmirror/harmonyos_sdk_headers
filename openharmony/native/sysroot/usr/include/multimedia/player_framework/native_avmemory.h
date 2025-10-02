@@ -14,9 +14,20 @@
  */
 
 /**
+ * @addtogroup Core
+ * @{
+ *
+ * @brief The Core module provides basic backbone capabilities for media frameworks,
+ * including functions such as memory, error codes, and media data structures.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
+/**
  * @file native_avmemory.h
  *
- * @brief Provides audio and video memory.
+ * @brief Declared the definition of media data structure AVMemory.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so
@@ -99,3 +110,4 @@ OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem);
 #endif
 
 #endif // NATIVE_AVMEMORY_H
+/** @} */

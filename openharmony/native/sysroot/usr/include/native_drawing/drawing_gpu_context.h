@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_GPU_CONTEXT_H
-#define C_INCLUDE_DRAWING_GPU_CONTEXT_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_GPU_CONTEXT_H
+#define C_INCLUDE_DRAWING_GPU_CONTEXT_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -61,22 +61,22 @@ typedef struct {
  * @brief Creates an <b>OH_Drawing_GpuContext</b> object, whose GPU backend context is GL.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_GpuContextOptions Indicates the GPU context options.
+ * @param gpuContextOptions Indicates the GPU context options.
  * @return Returns the pointer to the <b>OH_Drawing_GpuContext</b> object created.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions);
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions gpuContextOptions);
 
 /**
  * @brief Destroys an <b>OH_Drawing_GpuContext</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_GpuContext Indicates the pointer to an <b>OH_Drawing_GpuContext</b> object.
+ * @param gpuContext Indicates the pointer to an <b>OH_Drawing_GpuContext</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_GpuContextDestroy(OH_Drawing_GpuContext*);
+void OH_Drawing_GpuContextDestroy(OH_Drawing_GpuContext* gpuContext);
 
 #ifdef __cplusplus
 }

@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef NATIVE_HUKS_PARAM_H
-#define NATIVE_HUKS_PARAM_H
-
 /**
  * @addtogroup HuksParamSetApi
  * @{
@@ -36,11 +33,17 @@
  *
  * @brief Provides APIs for constructing, using, and destroying parameter sets.
  *
+ * @library libhuks_ndk.z.so
+ * @syscap SystemCapability.Security.Huks
+ *
  * include "huks/include/native_huks_type.h"
  * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0
  */
+
+#ifndef NATIVE_HUKS_PARAM_H
+#define NATIVE_HUKS_PARAM_H
 
 #include "native_huks_type.h"
 

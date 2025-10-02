@@ -16,15 +16,17 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _IPT_ECN_H
-#define _IPT_ECN_H
-#include <linux/netfilter/xt_ecn.h>
-#define ipt_ecn_info xt_ecn_info
+#ifndef _IPT_TTL_H
+#define _IPT_TTL_H
+#include <linux/types.h>
 enum {
-  IPT_ECN_IP_MASK = XT_ECN_IP_MASK,
-  IPT_ECN_OP_MATCH_IP = XT_ECN_OP_MATCH_IP,
-  IPT_ECN_OP_MATCH_ECE = XT_ECN_OP_MATCH_ECE,
-  IPT_ECN_OP_MATCH_CWR = XT_ECN_OP_MATCH_CWR,
-  IPT_ECN_OP_MATCH_MASK = XT_ECN_OP_MATCH_MASK,
+  IPT_TTL_SET = 0,
+  IPT_TTL_INC,
+  IPT_TTL_DEC
+};
+#define IPT_TTL_MAXMODE IPT_TTL_DEC
+struct ipt_TTL_info {
+  __u8 mode;
+  __u8 ttl;
 };
 #endif

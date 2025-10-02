@@ -918,7 +918,7 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputCount(const OH_NNExecutor *executor, size
  * {@link OH_NNExecutor_CreateOutputTensorDesc}. \n
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
- * @param OutputCount Output tensor count returned.
+ * @param outputCount Output tensor count returned.
  * @return Execution result of the function.
  *         {@link OH_NN_SUCCESS} get output count successfully. The return value is saved in <b>outputCount</b>.\n
  *         {@link OH_NN_INVALID_PARAMETER} fail to get output count. The possible reason for failure is that

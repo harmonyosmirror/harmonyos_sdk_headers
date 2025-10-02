@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef CAPI_INCLUDE_IPC_KIT_H
-#define CAPI_INCLUDE_IPC_KIT_H
-
 /**
  * @addtogroup IPCKit
  * @{
@@ -35,6 +32,9 @@
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
+
+#ifndef CAPI_INCLUDE_IPC_KIT_H
+#define CAPI_INCLUDE_IPC_KIT_H
 
 #include "ipc_error_code.h"
 #include "ipc_cparcel.h"

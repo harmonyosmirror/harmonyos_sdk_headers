@@ -206,7 +206,7 @@ OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create();
 /**
  * @brief Destroy an {@link OH_UdmfRecordProvider} instance.
  *
- * @param subscriber Pointer to the {@link OH_UdmfRecordProvider} instance to destroy.
+ * @param provider Pointer to the {@link OH_UdmfRecordProvider} instance to destroy.
  * @return Returns the status code of the execution. For details, see {@link Udmf_ErrCode}.
  *         Returns {@link UDMF_E_OK} if the operation is successful.
  *         Returns {@link UDMF_E_INVALID_PARAM} if invalid args are detected.
@@ -369,6 +369,19 @@ int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
 int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
 
 /**
+ * @brief Add one {@link OH_UdsContentForm} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param contentForm Represents a pointer to an instance of {@link OH_UdsContentForm}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsContentForm Udmf_ErrCode.
+ * @since 14
+ */
+int OH_UdmfRecord_AddContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm);
+
+/**
  * @brief Get all types in the {@link OH_UdmfRecord} record.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
@@ -508,6 +521,19 @@ int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, un
  * @since 13
  */
 int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+
+/**
+ * @brief Get one {@link OH_UdsContentForm} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param contentForm Represents a pointer to an instance of {@link OH_UdsContentForm}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsContentForm Udmf_ErrCode.
+ * @since 14
+ */
+int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm);
 
 /**
  * @brief Get primary {@link OH_UdsPlainText} data from the {@link OH_UdmfData}.

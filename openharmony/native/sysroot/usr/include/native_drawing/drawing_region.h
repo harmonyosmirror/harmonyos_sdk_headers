@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_REGION_H
-#define C_INCLUDE_DRAWING_REGION_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_REGION_H
+#define C_INCLUDE_DRAWING_REGION_H
 
 #include "drawing_types.h"
 
@@ -94,8 +94,8 @@ OH_Drawing_Region* OH_Drawing_RegionCreate(void);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param int32_t x-coordinate.
- * @param int32_t y-coordinate.
+ * @param x x-coordinate.
+ * @param y y-coordinate.
  * @return Returns <b>true</b> if (x, y) is inside region; returns <b>false</b> otherwise.
  * @since 12
  * @version 1.0
@@ -119,8 +119,8 @@ bool OH_Drawing_RegionOp(OH_Drawing_Region* region, const OH_Drawing_Region* oth
  * @brief Sets the region to the specified rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @return Return true if constructed Region is not empty.
  * @since 12
  * @version 1.0
@@ -144,11 +144,11 @@ bool OH_Drawing_RegionSetPath(OH_Drawing_Region* region, const OH_Drawing_Path* 
  * @brief Destroys an <b>OH_Drawing_Region</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
+ * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RegionDestroy(OH_Drawing_Region*);
+void OH_Drawing_RegionDestroy(OH_Drawing_Region* region);
 
 #ifdef __cplusplus
 }

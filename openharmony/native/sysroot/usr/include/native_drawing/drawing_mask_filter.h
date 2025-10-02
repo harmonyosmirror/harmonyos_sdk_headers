@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_MASK_FILTER_H
-#define C_INCLUDE_DRAWING_MASK_FILTER_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_MASK_FILTER_H
+#define C_INCLUDE_DRAWING_MASK_FILTER_H
 
 #include "drawing_types.h"
 
@@ -88,11 +88,11 @@ OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurT
  * @brief Destroys an <b>OH_Drawing_MaskFilter</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_MaskFilter Indicates the pointer to an <b>OH_Drawing_MaskFilter</b> object.
+ * @param maskFilter Indicates the pointer to an <b>OH_Drawing_MaskFilter</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_MaskFilterDestroy(OH_Drawing_MaskFilter*);
+void OH_Drawing_MaskFilterDestroy(OH_Drawing_MaskFilter* maskFilter);
 
 #ifdef __cplusplus
 }

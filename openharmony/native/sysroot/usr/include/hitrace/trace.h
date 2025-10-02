@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HITRACE_H
-#define HIVIEWDFX_HITRACE_H
 /**
  * @addtogroup Hitrace
  * @{
@@ -64,6 +62,10 @@
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
+
+#ifndef HIVIEWDFX_HITRACE_H
+#define HIVIEWDFX_HITRACE_H
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -685,4 +687,6 @@ void OH_HiTrace_CountTrace(const char *name, int64_t count);
 #ifdef __cplusplus
 }
 #endif
+/** @} */
+
 #endif // HIVIEWDFX_HITRACE_H

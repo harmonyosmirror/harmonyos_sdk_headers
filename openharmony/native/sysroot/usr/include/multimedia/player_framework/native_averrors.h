@@ -14,9 +14,20 @@
  */
 
 /**
+ * @addtogroup Core
+ * @{
+ *
+ * @brief The Core module provides basic backbone capabilities for media frameworks,
+ * including functions such as memory, error codes, and media data structures.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
+/**
  * @file native_averrors.h
  *
- * @brief Provides audio and video error description.
+ * @brief Media framework error code.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so
@@ -105,6 +116,63 @@ typedef enum OH_AVErrCode {
      * @since 12
      */
     AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301,
+    /**
+     * @error can not find host, maybe the address of server is incorrect.
+     * @since 14
+     */
+    AV_ERR_IO_CANNOT_FIND_HOST = 5411001,
+    /**
+     * @error network connection timeout.
+     * @since 14
+     */
+    AV_ERR_IO_CONNECTION_TIMEOUT = 5411002,
+    /**
+     * @error failed link due to abnormal network.
+     * @since 14
+     */
+    AV_ERR_IO_NETWORK_ABNORMAL = 5411003,
+    /**
+     * @error failed link due to unavailable network.
+     * @since 14
+     */
+    AV_ERR_IO_NETWORK_UNAVAILABLE = 5411004,
+    /**
+     * @error network permission dennied.
+     * @since 14
+     */
+    AV_ERR_IO_NO_PERMISSION = 5411005,
+    /**
+     * @error the client request parameters are incorrect or exceed the processing capacity.
+     * @since 14
+     */
+    AV_ERR_IO_NETWORK_ACCESS_DENIED = 5411006,
+    /**
+     * @error cannot find available network resources.
+     * @since 14
+     */
+    AV_ERR_IO_RESOURCE_NOT_FOUND = 5411007,
+    /**
+     * @error the server failed to verify the client certificate because the certificate is not carried,
+     *  the certificate is invalid, or the certificate is expired.
+     * @since 14
+     */
+    AV_ERR_IO_SSL_CLIENT_CERT_NEEDED = 5411008,
+    /**
+     * @error the client failed to verify the server certificate because the certificate is not carried,
+     *  the certificate is invalid, or the certificate is expired.
+     * @since 14
+     */
+    AV_ERR_IO_SSL_CONNECT_FAIL = 5411009,
+    /**
+     * @error SSL server cert untrusted.
+     * @since 14
+     */
+    AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED = 5411010,
+    /**
+     * @error unsupported request due to network protocols.
+     * @since 14
+     */
+    AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011,
 } OH_AVErrCode;
 
 #ifdef __cplusplus
@@ -112,3 +180,4 @@ typedef enum OH_AVErrCode {
 #endif
 
 #endif // NATIVE_AVERRORS_H
+/** @} */

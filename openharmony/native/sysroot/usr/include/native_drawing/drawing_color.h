@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_COLOR_H
-#define C_INCLUDE_DRAWING_COLOR_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 8
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_COLOR_H
+#define C_INCLUDE_DRAWING_COLOR_H
 
 #include "drawing_types.h"
 

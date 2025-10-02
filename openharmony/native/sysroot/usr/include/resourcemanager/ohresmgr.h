@@ -50,10 +50,10 @@ extern "C" {
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resId Indicates the resource ID.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -73,10 +73,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResource
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resId Indicates the resource ID.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -96,10 +96,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeReso
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resName Indicates the resource name.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -119,10 +119,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeRe
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resName Indicates the resource name.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -142,10 +142,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const Nati
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resId Indicates the resource ID.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -165,10 +165,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManage
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resId Indicates the resource ID.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -188,10 +188,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceMa
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resName Indicates the resource name.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -211,10 +211,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResource
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resName Indicates the resource name.
- * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
- * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @param resultValue the result write to resultValue.
  * @param resultLen the media length write to resultLen.
+ * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
+ * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -234,10 +234,10 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeReso
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resId Indicates the resource ID.
+ * @param drawableDescriptor the result write to drawableDescriptor.
  * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
  * to use the density of current system dpi.
  * @param type The optional parameter means the media type, 0 means the normal media, 1 means the the theme style media.
- * @param drawableDescriptor the result write to drawableDescriptor.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -256,11 +256,11 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeR
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resId Indicates the resource ID.
+ * @param drawableDescriptor the result write to drawableDescriptor.
  * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
  * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @param type The optional parameter means the media type, 0 means the normal media, 1 means the the theme style media.
  * If this attribute is not required, set this parameter to 0.
- * @param drawableDescriptor the result write to drawableDescriptor.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -278,11 +278,11 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const Nat
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resName Indicates the resource name.
+ * @param drawableDescriptor the result write to drawableDescriptor.
  * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
  * to use the density of current system dpi.
  * @param type The optional parameter means the media type, 0 means the normal media, 1 means the the theme style media,
  * 2 means the theme dynamic media.
- * @param drawableDescriptor the result write to drawableDescriptor.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.
@@ -300,11 +300,11 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorByName(const N
  * @param mgr Indicates the pointer to {@link NativeResourceManager}
  * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param resName Indicates the resource name.
+ * @param drawableDescriptor the result write to drawableDescriptor.
  * @param density The optional parameter ScreenDensity{@link ScreenDensity}, A value of 0 means
  * to use the density of current system dpi. If this attribute is not required, set this parameter to 0.
  * @param type The optional parameter means the media type, 0 means the normal media, 1 means the the theme style media,
  * 2 means the theme dynamic media. If this attribute is not required, set this parameter to 0.
- * @param drawableDescriptor the result write to drawableDescriptor.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid. Possible causes:
  *         1.Incorrect parameter types; 2.Parameter verification failed.

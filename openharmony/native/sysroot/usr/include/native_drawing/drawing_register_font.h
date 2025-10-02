@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_REGISTER_FONT_H
-#define C_INCLUDE_DRAWING_REGISTER_FONT_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_REGISTER_FONT_H
+#define C_INCLUDE_DRAWING_REGISTER_FONT_H
 
 #include "drawing_text_declaration.h"
 #include "drawing_types.h"

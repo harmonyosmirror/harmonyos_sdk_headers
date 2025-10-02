@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_GPU_SURFACE_H
-#define C_INCLUDE_DRAWING_GPU_SURFACE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_GPU_SURFACE_H
+#define C_INCLUDE_DRAWING_GPU_SURFACE_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -50,37 +50,37 @@ extern "C" {
  * @brief Creates an <b>OH_Drawing_Surface</b> object on GPU indicated by context.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_GpuContext Indicates the pointer to an <b>OH_Drawing_GpuContext</b> object.
- * @param bool Indicates whether an allocation should count against a cache budget.
- * @param OH_Drawing_Image_Info Indicates the image info.
+ * @param gpuContext Indicates the pointer to an <b>OH_Drawing_GpuContext</b> object.
+ * @param flag Indicates whether an allocation should count against a cache budget.
+ * @param imageInfo Indicates the image info.
  * @return Returns the pointer to the <b>OH_Drawing_Surface</b> object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_Surface* OH_Drawing_SurfaceCreateFromGpuContext(
-    OH_Drawing_GpuContext*, bool, OH_Drawing_Image_Info);
+    OH_Drawing_GpuContext* gpuContext, bool flag, OH_Drawing_Image_Info imageInfo);
 
 /**
  * @brief Gets the canvas that draws into surface.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Surface Indicates the pointer to an <b>OH_Drawing_Surface</b> object.
+ * @param surface Indicates the pointer to an <b>OH_Drawing_Surface</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_Canvas</b> object. The returned pointer does not need to be managed
  *         by the caller.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface*);
+OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface* surface);
 
 /**
  * @brief Destroys an <b>OH_Drawing_Surface</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Surface Indicates the pointer to an <b>OH_Drawing_Surface</b> object.
+ * @param surface Indicates the pointer to an <b>OH_Drawing_Surface</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SurfaceDestroy(OH_Drawing_Surface*);
+void OH_Drawing_SurfaceDestroy(OH_Drawing_Surface* surface);
 
 #ifdef __cplusplus
 }

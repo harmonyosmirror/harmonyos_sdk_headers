@@ -35,7 +35,7 @@
 typedef enum ArkWeb_ErrorCode {
 /** @error Success. */
 ARKWEB_SUCCESS = 0,
- 
+
 /** @error Init error. */
 ARKWEB_INIT_ERROR = 17100001,
 
@@ -56,3 +56,4 @@ ARKWEB_INVALID_COOKIE_VALUE = 17100104,
 } ArkWeb_ErrorCode;
 
 #endif // ARKWEB_ERROR_CODE_H
+/** @} */

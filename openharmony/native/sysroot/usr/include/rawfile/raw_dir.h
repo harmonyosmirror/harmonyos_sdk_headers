@@ -31,6 +31,9 @@
  * @brief Declares native functions related to raw file directories.
  *
  * For example, you can use the functions to traverse and close a raw file directory, and reset its index.
+ *
+ * @syscap SystemCapability.Global.ResourceManager
+ * @library librawfile.z.so
  * @kit LocalizationKit
  * @since 8
  * @version 1.0

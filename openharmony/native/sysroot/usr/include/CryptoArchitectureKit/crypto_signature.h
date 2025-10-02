@@ -75,7 +75,7 @@ typedef struct OH_CryptoVerify OH_CryptoVerify;
  * @brief Create a verify context according to the given algorithm name.
  *
  * @param algoName Indicates the algorithm name for generating the verify context. Example RSA1024|PKCS1|SHA256.
- * @param ctx Indicates the pointer to the verify context.
+ * @param verify Indicates the pointer to the verify context.
  * @return {@link OH_Crypto_ErrCode#CRYPTO_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
  *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.

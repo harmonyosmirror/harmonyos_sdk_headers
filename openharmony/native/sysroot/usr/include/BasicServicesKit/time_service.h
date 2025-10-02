@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef TIME_SERVICE_H
-#define TIME_SERVICE_H
-
 /**
  * @addtogroup TimeService
  * @{
@@ -32,6 +29,9 @@
  * @syscap SystemCapability.MiscServices.Time
  * @since 12
  */
+
+#ifndef TIME_SERVICE_H
+#define TIME_SERVICE_H
 
 #include <stdint.h>
 

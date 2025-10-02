@@ -289,7 +289,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of builder is nullptr;
  *                                                 2.StreamType invalid;
- *                                                 3.Create OHAudioRenderer failed.
+ *                                                 3.Create OHAudioCapturer failed.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer** audioCapturer);
@@ -366,3 +366,4 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_Audi
 #endif
 
 #endif // NATIVE_AUDIOSTREAM_BUILDER_H
+/** @} */

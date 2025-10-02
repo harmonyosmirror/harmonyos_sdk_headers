@@ -24,7 +24,7 @@
  * @file oh_location.h
  * @kit LocationKit
  * @brief Define interfaces for querying location switch status, starting locating, and stopping locating.
- * @library libohlocation.so
+ * @library liblocation_ndk.so
  * @syscap SystemCapability.Location.Location.Core
  * @since 13
  */

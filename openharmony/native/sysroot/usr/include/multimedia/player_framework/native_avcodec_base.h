@@ -14,10 +14,21 @@
  */
 
 /**
+ * @addtogroup CodecBase
+ * @{
+ *
+ * @brief The CodecBase module provides variables, properties, and functions
+ * for audio and video muxer, demuxer, and basic encoding and decoding functions.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
+
+/**
  * @file native_avcodec_base.h
  *
- * @brief Provides audio and video codec base.
- *
+ * @brief Declare the Native API used for audio and video muxer,
+ * demuxer and basic encoding and decoding functions.
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -348,6 +359,7 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
  * @since 9
  */
 extern const char *OH_ED_KEY_TIME_STAMP;
@@ -355,6 +367,7 @@ extern const char *OH_ED_KEY_TIME_STAMP;
  * @brief Key for endOfStream in surface's extraData, value type is bool.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
  * @since 9
  */
 extern const char *OH_ED_KEY_EOS;
@@ -662,6 +675,8 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
  * @brief Key for video scale type, value type is int32_t, see {@link OH_ScalingMode}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
+ * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  * @since 10
  */
 extern const char *OH_MD_KEY_SCALING_MODE;
@@ -955,6 +970,14 @@ extern const char *OH_MD_KEY_TRACK_START_TIME;
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
 
 /**
+ * @brief Key for creation timestamp of a media file, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 14
+ */
+extern const char *OH_MD_KEY_CREATION_TIME;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -979,6 +1002,16 @@ typedef enum OH_MediaType {
  */
 typedef enum OH_AACProfile {
     AAC_PROFILE_LC = 0,
+    /**
+     * High-Efficiency AAC profile, contain the audio object types: AAC LC, SBR
+     * @since 14
+     */
+    AAC_PROFILE_HE = 3,
+    /**
+     * High-Efficiency AAC v2 profile, contain the audio object types: AAC LC, SBR, PS
+     * @since 14
+     */
+    AAC_PROFILE_HE_V2 = 4,
 } OH_AACProfile;
 
 /**
@@ -1003,7 +1036,13 @@ typedef enum OH_HEVCProfile {
     HEVC_PROFILE_MAIN = 0,
     HEVC_PROFILE_MAIN_10 = 1,
     HEVC_PROFILE_MAIN_STILL = 2,
+    /**
+     * @deprecated since 14
+     */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
+    /**
+     * @deprecated since 14
+     */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
 } OH_HEVCProfile;
 
@@ -1053,10 +1092,20 @@ typedef enum OH_AVSeekMode {
  * @brief Scaling Mode
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
+ * @useinstead OHScalingModeV2
  * @since 10
  */
 typedef enum OH_ScalingMode {
+    /**
+     * @deprecated since 14
+     * @useinstead OH_SCALING_MODE_SCALE_TO_WINDOW_V2
+     */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
+    /**
+     * @deprecated since 14
+     * @useinstead OH_SCALING_MODE_SCALE_CROP_V2
+     */
     SCALING_MODE_SCALE_CROP = 2,
 } OH_ScalingMode;
 
@@ -1216,8 +1265,26 @@ typedef enum OH_TemporalGopReferenceMode {
     UNIFORMLY_SCALED_REFERENCE = 2,
 } OH_TemporalGopReferenceMode;
 
+/**
+ * @brief The bitrate mode of encoder.
+ *
+ * Change the location of the header file, since 14.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
+typedef enum OH_BitrateMode {
+    /** Constant Bit rate mode. */
+    BITRATE_MODE_CBR = 0,
+    /** Variable Bit rate mode. */
+    BITRATE_MODE_VBR = 1,
+    /** Constant Quality mode. */
+    BITRATE_MODE_CQ = 2
+} OH_BitrateMode;
+
 #ifdef __cplusplus
 }
 #endif
 
 #endif // NATIVE_AVCODEC_BASE_H
+/** @} */

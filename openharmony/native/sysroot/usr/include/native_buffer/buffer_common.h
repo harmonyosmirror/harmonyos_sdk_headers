@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef NDK_INCLUDE_BUFFER_COMMON_H_
-#define NDK_INCLUDE_BUFFER_COMMON_H_
-
 /**
  * @addtogroup OH_NativeBuffer
  * @{
@@ -38,6 +35,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef NDK_INCLUDE_BUFFER_COMMON_H_
+#define NDK_INCLUDE_BUFFER_COMMON_H_
 
 #ifdef __cplusplus
 extern "C" {

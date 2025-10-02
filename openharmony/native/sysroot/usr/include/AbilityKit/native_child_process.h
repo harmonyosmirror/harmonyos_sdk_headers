@@ -13,11 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
-#define OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
-
-#include "IPCKit/ipc_cparcel.h"
-
 /**
  * @addtogroup ChildProcess
  * @{
@@ -39,6 +34,11 @@
  * @syscap SystemCapability.Ability.AbilityRuntime.Core
  * @since 12
  */
+
+#ifndef OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
+#define OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
+
+#include "IPCKit/ipc_cparcel.h"
 
 #ifdef __cplusplus
 extern "C" {

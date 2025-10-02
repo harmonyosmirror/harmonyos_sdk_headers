@@ -89,7 +89,7 @@ typedef struct MediaKeySession_Callback {
 
 /**
  * @brief Call back will be invoked when event triggers.
- * @param mediaKeySessoin MediaKeySession instance.
+ * @param mediaKeySession MediaKeySession instance.
  * @param eventType Event type.
  * @param info Event info gotten from media key session.
  * @param infoLen Event info len.
@@ -98,19 +98,19 @@ typedef struct MediaKeySession_Callback {
  * @since 12
  * @version 1.0
  */
-typedef Drm_ErrCode (*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKeySessoin, DRM_EventType eventType,
+typedef Drm_ErrCode (*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKeySession, DRM_EventType eventType,
     uint8_t *info, int32_t infoLen, char *extra);
 
 /**
  * @brief Call back will be invoked when key changes.
- * @param mediaKeySessoin MediaKeySession instance.
+ * @param mediaKeySession MediaKeySession instance.
  * @param keysInfo Key info gotten from media key system.
  * @param newKeysAvailable Whether new keys available.
  * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
  * @since 12
  * @version 1.0
  */
-typedef Drm_ErrCode (*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo,
+typedef Drm_ErrCode (*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo,
     bool newKeysAvailable);
 
 /**
@@ -172,7 +172,7 @@ Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse(MediaKeySession *mediaKey
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySession,
     DRM_MediaKeyStatus *mediaKeyStatus);
 
 /**
@@ -184,7 +184,7 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySess
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySessoin);
+Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession);
 
 /**
  * @brief Generate offline media key release request.
@@ -200,7 +200,7 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySessoin);
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *mediaKeySession,
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest,
     int32_t *releaseRequestLen);
 
@@ -217,7 +217,7 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *mediaKeySession,
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse,
     int32_t releaseReponseLen);
 
@@ -232,7 +232,7 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *me
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKeySession,
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen);
 
 /**
@@ -245,7 +245,7 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKey
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaKeySession,
     DRM_ContentProtectionLevel *contentProtectionLevel);
 
 /**
@@ -259,7 +259,7 @@ Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaK
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *mediaKeySession,
     const char *mimeType, bool *status);
 
 /**
@@ -271,7 +271,7 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *media
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *mediaKeySession,
     MediaKeySession_Callback *callback);
 
 /**
@@ -283,7 +283,7 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *media
  * @since 12
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySessoin,
+Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,
     OH_MediaKeySession_Callback *callback);
 
 /**
@@ -295,10 +295,11 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySessoin,
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_Destroy(MediaKeySession *mediaKeySessoin);
+Drm_ErrCode OH_MediaKeySession_Destroy(MediaKeySession *mediaKeySession);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif // OHOS_DRM_NATIVE_MEDIA_KEY_SYSTEM_H
+/** @} */

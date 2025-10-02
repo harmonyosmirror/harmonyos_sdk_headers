@@ -30,7 +30,7 @@
  * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the sleep and yield interfaces in C.
- *
+ * @library libffrt.z.so
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
  * @version 1.0
@@ -59,3 +59,4 @@ FFRT_C_API int ffrt_usleep(uint64_t usec);
  */
 FFRT_C_API void ffrt_yield(void);
 #endif
+/** @} */

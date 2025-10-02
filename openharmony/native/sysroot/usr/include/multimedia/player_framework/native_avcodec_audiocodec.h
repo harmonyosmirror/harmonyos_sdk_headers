@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup AudioCodec
+ * @{
+ *
+ * @brief The AudioCodec module provides functions for audio encoding and decoding.
+ *
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
+ * @since 11
+ */
+
+/**
  * @file native_avcodec_audiocodec.h
  *
- * @brief Provides audio encoder and decoder capabilities.
+ * @brief Declare the Native API used for audio encoding and decoding.
  *
  * @kit AVCodecKit
  * @library libnative_media_acodec.so
@@ -289,3 +299,4 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySessio
 }
 #endif
 #endif // NATIVE_AVCODEC_AUDIOCODEC_H
+/** @} */

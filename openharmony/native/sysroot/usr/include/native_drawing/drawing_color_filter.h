@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_COLOR_FILTER_H
-#define C_INCLUDE_DRAWING_COLOR_FILTER_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_COLOR_FILTER_H
+#define C_INCLUDE_DRAWING_COLOR_FILTER_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -51,25 +51,25 @@ extern "C" {
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param color Indicates the color, which is a 32-bit (ARGB) variable.
- * @param OH_Drawing_BlendMode Indicates the blend mode.
+ * @param blendMode Indicates the blend mode.
  * @return Returns the pointer to the <b>OH_Drawing_ColorFilter</b> object created.
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH_Drawing_BlendMode);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH_Drawing_BlendMode blendMode);
 
 /**
- * @brief Creates an <b>OH_Drawing_ColorFilter</b> applies the colorFilter1 and then applies colorFilter2.
+ * @brief Creates an <b>OH_Drawing_ColorFilter</b> applies the outerColorFilter and then applies innerColorFilter.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_ColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
- * @param OH_Drawing_ColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
+ * @param outerColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
+ * @param innerColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_ColorFilter</b> object created.
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilter* colorFilter1,
-    OH_Drawing_ColorFilter* colorFilter2);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilter* outerColorFilter,
+    OH_Drawing_ColorFilter* innerColorFilter);
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> with a 5x4 color matrix.
@@ -117,11 +117,11 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void);
  * @brief Destroys an <b>OH_Drawing_ColorFilter</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_ColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
+ * @param colorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_ColorFilterDestroy(OH_Drawing_ColorFilter*);
+void OH_Drawing_ColorFilterDestroy(OH_Drawing_ColorFilter* colorFilter);
 
 #ifdef __cplusplus
 }

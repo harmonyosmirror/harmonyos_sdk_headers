@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup VideoEncoder
+ * @{
+ *
+ * @brief The VideoEncoder module provides interfaces for video encoding.
+ *
+ * @syscap SystemCapability.Multimedia.VideoEncoder
+ * @since 9
+ */
+
+/**
  * @file native_avcodec_videoencoder.h
  *
- * @brief Provides video encoder capabilities.
+ * @brief Declare the interface used for video encoding.
  *
  * @kit AVCodecKit
  * @library libnative_media_venc.so
@@ -428,14 +438,25 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
 /**
  * @brief The bitrate mode of video encoder.
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
+ * @deprecated since 14
+ * @useinstead OH_BitrateMode
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
-    /* constant bit rate mode. */
+    /** constant bit rate mode.
+     * @deprecated since 14
+     * @useinstead BITRATE_MODE_CBR
+     */
     CBR = 0,
-    /* variable bit rate mode. */
+    /** variable bit rate mode.
+     * @deprecated since 14
+     * @useinstead BITRATE_MODE_VBR
+     */
     VBR = 1,
-    /* constant quality mode. */
+    /** constant quality mode.
+     * @deprecated since 14
+     * @useinstead BITRATE_MODE_CQ
+     */
     CQ = 2,
 } OH_VideoEncodeBitrateMode;
 
@@ -444,3 +465,4 @@ typedef enum OH_VideoEncodeBitrateMode {
 #endif
 
 #endif // NATIVE_AVCODEC_VIDEOENCODER_H
+/** @} */

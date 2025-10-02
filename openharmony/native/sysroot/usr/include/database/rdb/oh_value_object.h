@@ -13,9 +13,6 @@
 * limitations under the License.
 */
 
-#ifndef OH_VALUE_OBJECT_H
-#define OH_VALUE_OBJECT_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,7 +22,6 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
 
@@ -35,8 +31,13 @@
  * @brief Provides numeric type conversion functions.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
+
+#ifndef OH_VALUE_OBJECT_H
+#define OH_VALUE_OBJECT_H
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -54,6 +55,7 @@ extern "C" {
  * @since 10
  */
 typedef struct OH_VObject OH_VObject;
+
 
 /**
  * @brief Define the OH_VObject structure type.
@@ -129,5 +131,7 @@ struct OH_VObject {
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // OH_VALUE_OBJECT_H

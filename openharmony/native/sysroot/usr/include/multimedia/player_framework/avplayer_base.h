@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs of Playback capability for Media Source.
  *
- * @Syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
  * @version 1.0
  */
@@ -426,3 +426,4 @@ typedef struct AVPlayerCallback {
 }
 #endif
 #endif // MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_BASH_H
+/** @} */

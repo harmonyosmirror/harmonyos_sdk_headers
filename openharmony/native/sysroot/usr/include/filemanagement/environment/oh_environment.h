@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
-#define FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 
 /**
  * @addtogroup Environment
@@ -32,6 +30,9 @@
  * @syscap SystemCapability.FileManagement.File.Environment.FolderObtain
  * @since 12
  */
+
+#ifndef FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
+#define FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 
 #include "error_code.h"
 

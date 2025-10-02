@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup AVMuxer
+ * @{
+ *
+ * @brief The AVMuxer module provides functions for audio and video muxer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @since 10
+ */
+
+/**
  * @file native_avmuxer.h
  *
- * @brief Provides audio and video muxer capabilities.
+ * @brief Declare the Native API used for audio and video muxer.
  *
  * @kit AVCodecKit
  * @library libnative_media_avmuxer.so
@@ -65,6 +75,19 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
+
+/**
+ * @brief Set format to the muxer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @param muxer Pointer to an OH_AVMuxer instance
+ * @param format OH_AVFormat handle pointer contain format
+ * @return Returns AV_ERR_OK if the execution is successful
+ *         {@link AV_ERR_INVALID_VAL}, the muxer or format is invalid
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state
+ * @since 14
+ */
+OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
 
 /**
  * @brief Add track format to the muxer.
@@ -172,3 +195,4 @@ OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer);
 #endif
 
 #endif // NATIVE_AVMUXER_H
+/** @} */

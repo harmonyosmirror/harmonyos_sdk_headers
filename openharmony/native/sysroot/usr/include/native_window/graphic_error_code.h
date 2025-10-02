@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef INCLUDE_GRAPHIC_ERROR_CODE_H
-#define INCLUDE_GRAPHIC_ERROR_CODE_H
-
 /**
  * @addtogroup NativeWindow
  * @{
@@ -38,6 +35,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef INCLUDE_GRAPHIC_ERROR_CODE_H
+#define INCLUDE_GRAPHIC_ERROR_CODE_H
 
 #include <stdint.h>
 

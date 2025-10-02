@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_BITMAP_H
-#define C_INCLUDE_DRAWING_BITMAP_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 8
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_BITMAP_H
+#define C_INCLUDE_DRAWING_BITMAP_H
 
 #include "drawing_types.h"
 
@@ -73,114 +73,114 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreate(void);
  * @brief Destroys an <b>OH_Drawing_Bitmap</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_BitmapDestroy(OH_Drawing_Bitmap*);
+void OH_Drawing_BitmapDestroy(OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Creates an <b>OH_Drawing_Bitmap</b> object with <b>OH_Drawing_Image_Info</b> object
  * and sets the mem address or pixel storage.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Image_Info Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
+ * @param imageInfo Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
  * @param pixels the pointer to memory address or pixel storage.
  * @param rowBytes size of pixel row or larger.
  * @return Returns the pointer to the <b>OH_Drawing_Bitmap</b> object created.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info*, void* pixels, uint32_t rowBytes);
+OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imageInfo, void* pixels, uint32_t rowBytes);
 
 /**
  * @brief Initializes the width and height of an <b>OH_Drawing_Bitmap</b> object
  * and sets the pixel format for the bitmap.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @param width Indicates the width of the bitmap to be initialized.
  * @param height Indicates the height of the bitmap to be initialized.
- * @param OH_Drawing_BitmapFormat Indicates the pixel format of the bitmap to be initialized,
+ * @param bitmapFormat Indicates the pixel format of the bitmap to be initialized,
  *                                including the pixel color type and alpha type.
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_BitmapBuild(
-    OH_Drawing_Bitmap*, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat*);
+void OH_Drawing_BitmapBuild(OH_Drawing_Bitmap* bitmap,
+    const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat* bitmapFormat);
 
 /**
  * @brief Obtains the width of a bitmap.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @return Returns the width.
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_BitmapGetWidth(OH_Drawing_Bitmap*);
+uint32_t OH_Drawing_BitmapGetWidth(OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Obtains the height of a bitmap.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @return Returns the height.
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_BitmapGetHeight(OH_Drawing_Bitmap*);
+uint32_t OH_Drawing_BitmapGetHeight(OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Obtains the color format of a bitmap.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @return Returns the bitmap color format.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat(OH_Drawing_Bitmap*);
+OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat(OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Obtains the alpha format of a bitmap.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @return Returns the bitmap alpha format.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat(OH_Drawing_Bitmap*);
+OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat(OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Obtains the pixel address of a bitmap. You can use this address to obtain the pixel data of the bitmap.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @return Returns the pixel address.
  * @since 8
  * @version 1.0
  */
-void* OH_Drawing_BitmapGetPixels(OH_Drawing_Bitmap*);
+void* OH_Drawing_BitmapGetPixels(OH_Drawing_Bitmap* bitmap);
 
 /**
  * @brief Gets the image info.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
- * @param OH_Drawing_Image_Info Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param imageInfo Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap*, OH_Drawing_Image_Info*);
+void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap* bitmap, OH_Drawing_Image_Info* imageInfo);
 
 /**
  * @brief Copies a rect of pixels from bitmap to dstPixels. Copy starts at (srcX, srcY),
  * and does not exceed bitmap width and height.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
+ * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
  * @param dstInfo Indicates the pointer to an <b>OH_Drawing_Image_Info</b> object.
  * @param dstPixels Destination pixel storage.
  * @param dstRowBytes Destination row length.
@@ -190,7 +190,7 @@ void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap*, OH_Drawing_Image_Info*);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_BitmapReadPixels(OH_Drawing_Bitmap*, const OH_Drawing_Image_Info* dstInfo,
+bool OH_Drawing_BitmapReadPixels(OH_Drawing_Bitmap* bitmap, const OH_Drawing_Image_Info* dstInfo,
     void* dstPixels, size_t dstRowBytes, int32_t srcX, int32_t srcY);
 #ifdef __cplusplus
 }

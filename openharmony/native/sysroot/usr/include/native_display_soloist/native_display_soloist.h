@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_NATIVE_DISPLAY_SOLOIST_H_
-#define C_INCLUDE_NATIVE_DISPLAY_SOLOIST_H_
-
 /**
  * @addtogroup NativeDisplaySoloist
  * @{
@@ -37,6 +34,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_NATIVE_DISPLAY_SOLOIST_H_
+#define C_INCLUDE_NATIVE_DISPLAY_SOLOIST_H_
 
 #include <stdint.h>
 #include <stdbool.h>

@@ -16,17 +16,11 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _IPT_TTL_H
-#define _IPT_TTL_H
+#ifndef _XT_TCPMSS_MATCH_H
+#define _XT_TCPMSS_MATCH_H
 #include <linux/types.h>
-enum {
-  IPT_TTL_EQ = 0,
-  IPT_TTL_NE,
-  IPT_TTL_LT,
-  IPT_TTL_GT,
-};
-struct ipt_ttl_info {
-  __u8 mode;
-  __u8 ttl;
+struct xt_tcpmss_match_info {
+  __u16 mss_min, mss_max;
+  __u8 invert;
 };
 #endif

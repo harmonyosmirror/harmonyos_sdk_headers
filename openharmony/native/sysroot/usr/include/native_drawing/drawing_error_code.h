@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_ERROR_CODE_H
-#define C_INCLUDE_DRAWING_ERROR_CODE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_ERROR_CODE_H
+#define C_INCLUDE_DRAWING_ERROR_CODE_H
 
 #ifdef __cplusplus
 extern "C" {

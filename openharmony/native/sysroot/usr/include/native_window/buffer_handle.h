@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef INCLUDE_BUFFER_HANDLE_H
-#define INCLUDE_BUFFER_HANDLE_H
-
 /**
  * @addtogroup NativeWindow
  * @{
@@ -38,6 +35,9 @@
  * @since 8
  * @version 1.0
  */
+
+#ifndef INCLUDE_BUFFER_HANDLE_H
+#define INCLUDE_BUFFER_HANDLE_H
 
 #include <stdint.h>
 
@@ -65,4 +65,5 @@ typedef struct {
 }
 #endif
 
+/** @} */
 #endif // INCLUDE_BUFFER_HANDLE_H

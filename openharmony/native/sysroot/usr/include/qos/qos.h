@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef QOS_H
-#define QOS_H
 /**
  * @addtogroup QoS
  * @{
@@ -35,9 +33,14 @@
  * schedule the time and running order of tasks according to the QoS set by the tasks.
  *
  * @library libqos.so
+ * @kit KernelEnhanceKit
  * @syscap SystemCapability.Resourceschedule.QoS.Core
  * @since 12
  */
+
+#ifndef QOS_H
+#define QOS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -114,4 +117,5 @@ int OH_QoS_GetThreadQoS(QoS_Level *level);
 #ifdef __cplusplus
 };
 #endif
-#endif //QOS_H
+#endif // QOS_H
+/** @} */

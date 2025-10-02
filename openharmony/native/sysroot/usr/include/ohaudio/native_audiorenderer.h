@@ -507,4 +507,6 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
 #ifdef __cplusplus
 }
 #endif
+
 #endif // NATIVE_AUDIORENDERER_H
+/** @} */

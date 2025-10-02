@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_COLOR_SPACE_H
-#define C_INCLUDE_DRAWING_COLOR_SPACE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_COLOR_SPACE_H
+#define C_INCLUDE_DRAWING_COLOR_SPACE_H
 
 #include "drawing_types.h"
 
@@ -70,11 +70,11 @@ OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void);
  * @brief Destroy an <b>OH_Drawing_ColorSpace</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_ColorSpace Indicates the pointer to an <b>OH_Drawing_ColorSpace</b> object.
+ * @param colorSpace Indicates the pointer to an <b>OH_Drawing_ColorSpace</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ColorSpaceDestroy(OH_Drawing_ColorSpace*);
+void OH_Drawing_ColorSpaceDestroy(OH_Drawing_ColorSpace* colorSpace);
 
 #ifdef __cplusplus
 }

@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_FILTER_H
-#define C_INCLUDE_DRAWING_FILTER_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_FILTER_H
+#define C_INCLUDE_DRAWING_FILTER_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -60,55 +60,55 @@ OH_Drawing_Filter* OH_Drawing_FilterCreate(void);
  * @brief Sets an <b>OH_Drawing_ImageFilter</b> object for an <b>OH_Drawing_Filter</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
- * @param OH_Drawing_ImageFilter Indicates the pointer to an <b>OH_Drawing_ImageFilter</b> object.
+ * @param filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
+ * @param imageFilter Indicates the pointer to an <b>OH_Drawing_ImageFilter</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter*, OH_Drawing_ImageFilter*);
+void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_ImageFilter* imageFilter);
 
 /**
  * @brief Sets an <b>OH_Drawing_MaskFilter</b> object for an <b>OH_Drawing_Filter</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
- * @param OH_Drawing_MaskFilter Indicates the pointer to an <b>OH_Drawing_MaskFilter</b> object.
+ * @param filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
+ * @param maskFilter Indicates the pointer to an <b>OH_Drawing_MaskFilter</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter*, OH_Drawing_MaskFilter*);
+void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter* filter, OH_Drawing_MaskFilter* maskFilter);
 
 /**
  * @brief Sets an <b>OH_Drawing_ColorFilter</b> object for an <b>OH_Drawing_Filter</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
- * @param OH_Drawing_ColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
+ * @param filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
+ * @param colorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter*, OH_Drawing_ColorFilter*);
+void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_ColorFilter* colorFilter);
 
 /**
  * @brief Gets an <b>OH_Drawing_ColorFilter</b> object from an <b>OH_Drawing_Filter</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
- * @param OH_Drawing_ColorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
+ * @param filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
+ * @param colorFilter Indicates the pointer to an <b>OH_Drawing_ColorFilter</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FilterGetColorFilter(OH_Drawing_Filter*, OH_Drawing_ColorFilter*);
+void OH_Drawing_FilterGetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_ColorFilter* colorFilter);
 
 /**
  * @brief Destroys an <b>OH_Drawing_Filter</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
+ * @param filter Indicates the pointer to an <b>OH_Drawing_Filter</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FilterDestroy(OH_Drawing_Filter*);
+void OH_Drawing_FilterDestroy(OH_Drawing_Filter* filter);
 
 #ifdef __cplusplus
 }

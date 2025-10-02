@@ -172,4 +172,5 @@ int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **valu
 #ifdef __cplusplus
 };
 #endif
+/** @} */
 #endif // OH_PREFERENCES_VALUE_H

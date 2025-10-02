@@ -218,5 +218,6 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallbac
 #ifdef __cplusplus
 }
 #endif
-/** @} */
+
 #endif // NATIVE_AUDIO_ROUTING_MANAGER_H
+/** @} */

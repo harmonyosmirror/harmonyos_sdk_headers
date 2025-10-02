@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OH_VALUES_BUCKET_H
-#define OH_VALUES_BUCKET_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,7 +22,6 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
 
@@ -35,8 +31,13 @@
  * @brief Define the type of stored key value pairs.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
+
+#ifndef OH_VALUES_BUCKET_H
+#define OH_VALUES_BUCKET_H
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -55,6 +56,7 @@ extern "C" {
  * @since 10
  */
 typedef struct OH_VBucket OH_VBucket;
+
 
 /**
  * @brief Define the OH_VBucket structure type.
@@ -184,5 +186,7 @@ int OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Data_Asset **val
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // OH_VALUES_BUCKET_H

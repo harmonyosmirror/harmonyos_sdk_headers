@@ -137,6 +137,13 @@ typedef struct ArkUI_Context* ArkUI_ContextHandle;
 typedef struct ArkUI_SwiperIndicator ArkUI_SwiperIndicator;
 
 /**
+* @brief Define the data objects of styled string supported by text components.
+*
+* @since 14
+*/
+typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor;
+
+/**
   * @brief specifies the alignment rules for subcomponents set in relative containers.
   *
   * @since 12
@@ -185,6 +192,20 @@ typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState;
  * @since 12
  */
 typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
+
+/**
+ * @brief Define the information of the Custom Property class for custom properties.
+ *
+ * @since 14
+ */
+typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
+
+/**
+ * @brief Define ActiveChildenInfo class information.
+ *
+ * @since 14
+ */
+typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 
 /**
  * @brief Defines the event callback type.
@@ -1911,6 +1932,11 @@ typedef enum {
     ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
     /** The buffer is not large enough. */
     ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002,
+    /**
+     * @error invalid styled string.
+     * @since 14
+     */
+    ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
 } ArkUI_ErrorCode;
 
 /**
@@ -2503,16 +2529,6 @@ void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* opt
 * @since 12
 */
 ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Obtains the number of items in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the number of items in the water flow section.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
 
 /**
  * @brief Creates a navigation indicator.
@@ -3798,7 +3814,7 @@ ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void);
 /**
 * @brief Dispose accessibility value.
 *
-* @param state accessibility value object.
+* @param value accessibility value object.
 * @since 12
 */
 void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
@@ -3878,6 +3894,50 @@ void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const 
  * @since 12
 */
 const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Destroy the instance of Customs Property.
+ *
+ * @param handle The instance of Customs Property to be destroyed.
+ * @since 14
+ */
+void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
+
+/**
+ * @brief Get custom attribute value information.
+ *
+ * @param handle Custom attribute object pointer.
+ * @return Customize the value information within the attribute structure.
+ * @since 14
+ */
+const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
+
+/**
+ * @brief Destroy ActiveChildenInfo instance.
+ *
+ * @param handle ActiveChild instance to be destroyed.
+ * @since 14
+ */
+void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
+
+/**
+ * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
+ *
+ * @param handle The ActiveChildenInfo instance for obtaining information.
+ * @param index The index of child nodes.
+ * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
+ * @since 14
+ */
+ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
+
+/**
+ * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
+ *
+ * @param handle The ActiveChildenInfo instance for obtaining information.
+ * @return Number of child nodes. Default value: 0.
+ * @since 14
+ */
+int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
 #ifdef __cplusplus
 };
 #endif

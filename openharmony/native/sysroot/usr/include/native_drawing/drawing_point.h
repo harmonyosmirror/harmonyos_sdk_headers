@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_POINT_H
-#define C_INCLUDE_DRAWING_POINT_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_POINT_H
+#define C_INCLUDE_DRAWING_POINT_H
 
 #include "drawing_error_code.h"
 #include "drawing_types.h"
@@ -106,11 +106,11 @@ OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float
  * @brief Destroys an <b>OH_Drawing_Point</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
+ * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_PointDestroy(OH_Drawing_Point*);
+void OH_Drawing_PointDestroy(OH_Drawing_Point* point);
 
 #ifdef __cplusplus
 }

@@ -157,3 +157,4 @@ NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback(const char* we
 };
 #endif
 #endif // NATIVE_INTERFACE_ARKWEB_H
+/** @} */

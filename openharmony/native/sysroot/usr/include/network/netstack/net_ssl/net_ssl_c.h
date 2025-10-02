@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef NET_SSL_C_H
-#define NET_SSL_C_H
-
 /**
  * @addtogroup netstack
  * @{
@@ -37,6 +34,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef NET_SSL_C_H
+#define NET_SSL_C_H
 
 #include "net_ssl_c_type.h"
 
@@ -114,3 +114,4 @@ void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
 #endif
 
 #endif // NET_SSL_C_H
+/** @} */

@@ -537,3 +537,4 @@ typedef struct DRM_MediaKeySystemDescription {
 #endif
 
 #endif // NATIVE_DRM_COMMON_H
+/** @} */

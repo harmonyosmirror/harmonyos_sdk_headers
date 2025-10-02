@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TEXT_BLOB_H
-#define C_INCLUDE_DRAWING_TEXT_BLOB_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_TEXT_BLOB_H
+#define C_INCLUDE_DRAWING_TEXT_BLOB_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -62,14 +62,14 @@ OH_Drawing_TextBlobBuilder* OH_Drawing_TextBlobBuilderCreate(void);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param text Indicates the the pointer to text.
  * @param byteLength Indicates the text length.
- * @param OH_Drawing_Font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
- * @param OH_Drawing_TextEncoding Indicates the pointer to an <b>OH_Drawing_TextEncoding</b> object.
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param textEncoding Indicates the pointer to an <b>OH_Drawing_TextEncoding</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_TextBlob</b> object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t byteLength,
-    const OH_Drawing_Font*, OH_Drawing_TextEncoding);
+    const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding);
 
 /**
  * @brief Creates an <b>OH_Drawing_TextBlob</b> object from pos text.
@@ -77,51 +77,51 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t 
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param text Indicates the the pointer to text.
  * @param byteLength Indicates the text length.
- * @param OH_Drawing_Point2D Indicates the pointer to an <b>OH_Drawing_Point2D</b> array object.
- * @param OH_Drawing_Font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
- * @param OH_Drawing_TextEncoding Indicates the pointer to an <b>OH_Drawing_TextEncoding</b> object.
+ * @param point2D Indicates the pointer to an <b>OH_Drawing_Point2D</b> array object.
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param textEncoding Indicates the pointer to an <b>OH_Drawing_TextEncoding</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_TextBlob</b> object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText(const void* text, size_t byteLength,
-    OH_Drawing_Point2D*, const OH_Drawing_Font*, OH_Drawing_TextEncoding);
+    OH_Drawing_Point2D* point2D, const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding);
 
 /**
  * @brief Creates an <b>OH_Drawing_TextBlob</b> object from pos text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param str Indicates the the pointer to text.
- * @param OH_Drawing_Font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
- * @param OH_Drawing_TextEncoding Indicates the pointer to an <b>OH_Drawing_TextEncoding</b> object.
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param textEncoding Indicates the pointer to an <b>OH_Drawing_TextEncoding</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_TextBlob</b> object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString(const char* str,
-    const OH_Drawing_Font*, OH_Drawing_TextEncoding);
+    const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding);
 
 /**
  * @brief Gets the bounds of textblob, assigned to the pointer to an <b>OH_Drawing_Rect</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBlob Indicates the pointer to an <b>OH_Drawing_TextBlob</b> object.
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param textBlob Indicates the pointer to an <b>OH_Drawing_TextBlob</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob*, OH_Drawing_Rect*);
+void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect* rect);
 
 /**
  * @brief Gets a non-zero value unique among all <b>OH_Drawing_TextBlob</b> objects.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBlob Indicates the pointer to an <b>OH_Drawing_TextBlob</b> object.
+ * @param textBlob Indicates the pointer to an <b>OH_Drawing_TextBlob</b> object.
  * @return Returns identifier for the <b>OH_Drawing_TextBlob</b> object.
  * @since 12
  * @version 1.0
  */
-uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob*);
+uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob* textBlob);
 
 /**
  * @brief Defines a run, supplies storage for glyphs and positions.
@@ -145,46 +145,46 @@ typedef struct {
  * by the caller and is forbidden to be used after OH_Drawing_TextBlobBuilderMake is called.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBlobBuilder Indicates the pointer to an <b>OH_Drawing_TextBlobBuilder</b> object.
- * @param OH_Drawing_Font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param textBlobBuilder Indicates the pointer to an <b>OH_Drawing_TextBlobBuilder</b> object.
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
  * @param count Indicates the number of glyphs.
- * @param OH_Drawing_Rect Indicates the optional run bounding box.
+ * @param rect Indicates the optional run bounding box.
  * @since 11
  * @version 1.0
  */
-const OH_Drawing_RunBuffer* OH_Drawing_TextBlobBuilderAllocRunPos(OH_Drawing_TextBlobBuilder*, const OH_Drawing_Font*,
-    int32_t count, const OH_Drawing_Rect*);
+const OH_Drawing_RunBuffer* OH_Drawing_TextBlobBuilderAllocRunPos(OH_Drawing_TextBlobBuilder* textBlobBuilder,
+    const OH_Drawing_Font* font, int32_t count, const OH_Drawing_Rect* rect);
 
 /**
  * @brief Make an <b>OH_Drawing_TextBlob</b> from <b>OH_Drawing_TextBlobBuilder</b>.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBlobBuilder Indicates the pointer to an <b>OH_Drawing_TextBlobBuilder</b> object.
+ * @param textBlobBuilder Indicates the pointer to an <b>OH_Drawing_TextBlobBuilder</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_TextBlob</b> object.
  * @since 11
  * @version 1.0
  */
-OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder*);
+OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* textBlobBuilder);
 
 /**
  * @brief Destroys an <b>OH_Drawing_TextBlob</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBlob Indicates the pointer to an <b>OH_Drawing_TextBlob</b> object.
+ * @param textBlob Indicates the pointer to an <b>OH_Drawing_TextBlob</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TextBlobDestroy(OH_Drawing_TextBlob*);
+void OH_Drawing_TextBlobDestroy(OH_Drawing_TextBlob* textBlob);
 
 /**
  * @brief Destroys an <b>OH_Drawing_TextBlobBuilder</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBlobBuilder Indicates the pointer to an <b>OH_Drawing_TextBlobBuilder</b> object.
+ * @param textBlobBuilder Indicates the pointer to an <b>OH_Drawing_TextBlobBuilder</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder*);
+void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuilder);
 
 #ifdef __cplusplus
 }

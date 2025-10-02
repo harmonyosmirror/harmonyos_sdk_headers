@@ -13,14 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef ASSET_API_H
-#define ASSET_API_H
-
-#include <stdint.h>
-#include <stdlib.h>
-
-#include "asset_type.h"
-
 /**
  * @addtogroup AssetApi
  * @{
@@ -43,6 +35,14 @@
  * @syscap SystemCapability.Security.Asset
  * @since 11
  */
+
+#ifndef ASSET_API_H
+#define ASSET_API_H
+
+#include <stdint.h>
+#include <stdlib.h>
+
+#include "asset_type.h"
 
 #ifdef __cplusplus
 extern "C" {

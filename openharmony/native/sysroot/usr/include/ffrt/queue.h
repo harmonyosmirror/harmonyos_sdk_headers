@@ -30,7 +30,7 @@
  * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the queue interfaces in C.
- *
+ * @library libffrt.z.so
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
  * @version 1.0
@@ -72,7 +72,7 @@ FFRT_C_API void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
  * @brief Sets the QoS for a queue attribute.
  *
  * @param attr Indicates a pointer to the queue attribute.
- * @param attr Indicates the QoS.
+ * @param qos Indicates the QoS.
  * @since 10
  * @version 1.0
  */
@@ -234,3 +234,4 @@ FFRT_C_API ffrt_queue_t ffrt_get_main_queue();
 FFRT_C_API ffrt_queue_t ffrt_get_current_queue();
 
 #endif // FFRT_API_C_QUEUE_H
+/** @} */

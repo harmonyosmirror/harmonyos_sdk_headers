@@ -288,4 +288,6 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* captur
 #ifdef __cplusplus
 }
 #endif
+
 #endif // NATIVE_AUDIOCAPTURER_H
+/** @} */

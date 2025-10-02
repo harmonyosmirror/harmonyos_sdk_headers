@@ -26,7 +26,7 @@
  * @file oh_location_type.h
  * @kit LocationKit
  * @brief Declares the common location attributes.
- * @library libohlocation.so
+ * @library liblocation_ndk.so
  * @syscap SystemCapability.Location.Location.Core
  * @since 13
  */

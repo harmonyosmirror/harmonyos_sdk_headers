@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup AVDemuxer
+ * @{
+ *
+ * @brief The AVDemuxer module provides an interface for extracting samples from media file streams.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @since 10
+ */
+
+/**
  * @file native_avdemuxer.h
  *
- * @brief Provides audio and video demuxer capabilities.
+ * @brief Declare the interface for parsing audio and video media data.
  *
  * @kit AVCodecKit
  * @library libnative_media_avdemuxer.so
@@ -49,11 +59,12 @@ typedef struct OH_AVDemuxer OH_AVDemuxer;
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
-* @brief Callback for getting media key system information from media source.
-* @since 11
-* @version 1.0
-*/
-typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeySystemInfo);
+ * @brief Callback for getting media key system information from media source.
+ * @deprecated since 14
+ * @useinstead Demuxer_MediaKeySystemInfoCallback
+ * @since 11
+ */
+typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
  * @brief Call back will be invoked when updating DRM information.
@@ -191,6 +202,8 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
  * @return {@link AV_ERR_OK} 0 - Success
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
  *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid.
+ * @deprecated since 14
+ * @useinstead OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback
  * @since 11
  */
 OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
@@ -228,3 +241,4 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_Media
 #endif
 
 #endif // NATIVE_AVDEMUXER_H
+/** @} */

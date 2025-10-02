@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HIAPPEVENT_CONFIG_H
-#define HIVIEWDFX_HIAPPEVENT_CONFIG_H
-
 /**
  * @addtogroup HiAppEvent
  * @{
@@ -25,9 +22,6 @@
  * Provides the event logging function for applications to log the fault, statistical, security, and user behavior
  * events reported during running. Based on event information, you will be able to analyze the running status of
  * applications.
- *
- * @kit PerformanceAnalysisKit
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
  *
  * @since 8
  * @version 1.0
@@ -45,9 +39,15 @@
  *     bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
  * </pre>
  *
+ * @kit PerformanceAnalysisKit
+ * @library libhiappevent_ndk.z.so
+ * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 8
  * @version 1.0
  */
+
+#ifndef HIVIEWDFX_HIAPPEVENT_CONFIG_H
+#define HIVIEWDFX_HIAPPEVENT_CONFIG_H
 
 #ifdef __cplusplus
 extern "C" {

@@ -1060,6 +1060,24 @@ Camera_ErrorCode OH_Camera_GetCameraManager(Camera_Manager** cameraManager);
  */
 Camera_ErrorCode OH_Camera_DeleteCameraManager(Camera_Manager* cameraManager);
 
+/**
+ * @brief Enum for quality prioritization.
+ *
+ * @since 14
+ * @version 1.0
+ */
+typedef enum Camera_QualityPrioritization {
+    /**
+     * Hight quality priority.
+     */
+    HIGH_QUALITY = 0,
+
+    /**
+     * Power balance priority.
+     */
+    POWER_BALANCE = 1
+} Camera_QualityPrioritization;
+
 #ifdef __cplusplus
 }
 #endif
