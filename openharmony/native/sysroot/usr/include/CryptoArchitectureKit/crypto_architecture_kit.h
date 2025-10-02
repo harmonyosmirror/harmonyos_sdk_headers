@@ -37,8 +37,13 @@
 #define CRYPTO_ARCHITECTURE_KIT_H
 
 #include "crypto_common.h"
+#include "crypto_asym_cipher.h"
 #include "crypto_asym_key.h"
 #include "crypto_digest.h"
+#include "crypto_kdf.h"
+#include "crypto_key_agreement.h"
+#include "crypto_mac.h"
+#include "crypto_rand.h"
 #include "crypto_signature.h"
 #include "crypto_sym_cipher.h"
 #include "crypto_sym_key.h"

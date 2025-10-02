@@ -88,6 +88,17 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMo
     OH_Drawing_MipmapMode mipmapMode);
 
 /**
+ * @brief Creates an <b>OH_Drawing_SamplingOptions</b> copy object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param samplingOptions Indicates the pointer to an <b>OH_Drawing_SamplingOptions</b> object.
+ * @return Returns the pointer to the <b>OH_Drawing_SamplingOptions</b> object created.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOptions* samplingOptions);
+
+/**
  * @brief Destroys an <b>OH_Drawing_SamplingOptions</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing

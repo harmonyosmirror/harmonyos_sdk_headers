@@ -185,6 +185,12 @@ typedef enum {
      * @since 15
      */
     IMAGE_LOCK_UNLOCK_FAILED = 7600303,
+    /**
+     * @error unsupported allocator mode, e.g., use share memory to create a HDR image as only
+     * DMA supported hdr metadata.
+     * @since 20
+     */
+    IMAGE_ALLOCATOR_MODE_UNSUPPORTED = 7600501,
     /** unknown error */
     IMAGE_UNKNOWN_ERROR = 7600901,
     /** decode data source exception */
@@ -228,6 +234,11 @@ typedef enum {
     IMAGE_PACKER_INVALID_PARAMETER = 7800202,
     /** encode failed */
     IMAGE_ENCODE_FAILED = 7800301,
+    /**
+     * @error Invalid parameter for ImageReceiver.
+     * @since 20
+     */
+    IMAGE_RECEIVER_INVALID_PARAMETER = 7900201,
 } Image_ErrorCode;
 
 /**
@@ -236,15 +247,49 @@ typedef enum {
  * @since 13
  */
 typedef enum {
-    /*
-    * EXIF metadata.
-    */
+    /**
+     * EXIF metadata.
+     */
     EXIF_METADATA = 1,
-    /*
-    * Fragment metadata.
-    */
+
+    /**
+     * Fragment metadata.
+     */
     FRAGMENT_METADATA = 2,
+
+    /**
+     * Metadata of a GIF image.
+     *
+     * @since 20
+     */
+    GIF_METADATA = 5
 } Image_MetadataType;
+
+/**
+ * @brief Type of allocator used to allocate memory of a PixelMap.
+ *
+ * @since 20
+ */
+typedef enum {
+    /**
+     * The system determines which memory to use to create the PixelMap.
+     *
+     * @since 20
+     */
+    IMAGE_ALLOCATOR_MODE_AUTO = 0,
+    /**
+     * Use DMA buffer to create the PixelMap.
+     *
+     * @since 20
+     */
+    IMAGE_ALLOCATOR_MODE_DMA = 1,
+    /**
+     * Use share memory to create the PixelMap.
+     *
+     * @since 20
+     */
+    IMAGE_ALLOCATOR_MODE_SHARED_MEMORY = 2,
+} IMAGE_ALLOCATOR_MODE;
 
 /**
  * @brief Creates a <b>PictureMetadata</b> object.
@@ -1550,6 +1595,20 @@ static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth";
  * @since 13
  */
 static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT = "FragmentImageHeight";
+
+/**
+ * @brief Delay of each frame in a GIF image, in milliseconds.
+ *
+ * @since 20
+ */
+static const char *IMAGE_PROPERTY_GIF_DELAY_TIME = "GifDelayTime";
+
+/**
+ * @brief Disposal type of each frame in a GIF image.
+ *
+ * @since 20
+ */
+static const char *IMAGE_PROPERTY_GIF_DISPOSAL_TYPE = "GifDisposalType";
 #ifdef __cplusplus
 };
 #endif

@@ -26,9 +26,7 @@
  */
 #ifndef CANN_OPTIONS_H
 #define CANN_OPTIONS_H
-
 #include "neural_network_runtime/neural_network_runtime_type.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -80,8 +78,9 @@ NN_TensorDesc* HMS_HiAIOptions_GetInputTensorShape(const OH_NNCompilation* compi
 typedef enum {
     /** NCHW format (default value). */
     HIAI_FORMAT_MODE_NCHW = 0,
+
     /** Original model format. */
-    HIAI_FORMAT_MODE_ORIGIN = 1
+    HIAI_FORMAT_MODE_ORIGIN = 1,
 } HiAI_FormatMode;
 
 /**
@@ -115,8 +114,9 @@ HiAI_FormatMode HMS_HiAIOptions_GetFormatMode(const OH_NNCompilation* compilatio
 typedef enum {
     /** Disables variable shapes before model building. This is the default value. */
     HIAI_DYNAMIC_SHAPE_DISABLED = 0,
+
     /** Enables variable shapes before model building. */
-    HIAI_DYNAMIC_SHAPE_ENABLED = 1
+    HIAI_DYNAMIC_SHAPE_ENABLED = 1,
 } HiAI_DynamicShapeStatus;
 
 /**
@@ -126,8 +126,9 @@ typedef enum {
 typedef enum {
     /** Caches the built model. This is the default mode and features small memory usage. */
     HIAI_DYNAMIC_SHAPE_CACHE_BUILT_MODEL = 0,
+
     /** Caches the loaded model. This mode provides better performance. */
-    HIAI_DYNAMIC_SHAPE_CACHE_LOADED_MODEL = 1
+    HIAI_DYNAMIC_SHAPE_CACHE_LOADED_MODEL = 1,
 } HiAI_DynamicShapeCacheMode;
 
 /**
@@ -219,10 +220,12 @@ HiAI_DynamicShapeCacheMode HMS_HiAIOptions_GetDynamicShapeCacheMode(const OH_NNC
 typedef enum {
     /** NPU, which is the default value. */
     HIAI_EXECUTE_DEVICE_NPU = 0,
+
     /** CPU */
     HIAI_EXECUTE_DEVICE_CPU = 1,
+
     /** GPU */
-    HIAI_EXECUTE_DEVICE_GPU = 2
+    HIAI_EXECUTE_DEVICE_GPU = 2,
 } HiAI_ExecuteDevice;
 
 /**
@@ -319,8 +322,9 @@ HiAI_ExecuteDevice* HMS_HiAIOptions_GetModelDeviceOrder(const OH_NNCompilation* 
 typedef enum {
     /** Yes, which is the default value. */
     HIAI_FALLBACK_ENABLED = 0,
+
     /** No. */
-    HIAI_FALLBACK_DISABLED = 1
+    HIAI_FALLBACK_DISABLED = 1,
 } HiAI_FallbackMode;
 
 /**
@@ -356,12 +360,14 @@ HiAI_FallbackMode HMS_HiAIOptions_GetFallbackMode(const OH_NNCompilation* compil
 typedef enum {
     /** Not used, which is the default value. */
     HIAI_DEVICE_MEMORY_REUSE_PLAN_UNSET = 0,
+
     /** Low memory overcommitment rate. In this mode, the memory requested by the model is large, but the model
        inference performance is better. */
     HIAI_DEVICE_MEMORY_REUSE_PLAN_LOW = 1,
+
     /** High memory overcommitment rate. In this mode, the memory requested by the model is small, but the model
        inference performance is inferior. */
-    HIAI_DEVICE_MEMORY_REUSE_PLAN_HIGH = 2
+    HIAI_DEVICE_MEMORY_REUSE_PLAN_HIGH = 2,
 } HiAI_DeviceMemoryReusePlan;
 
 /**
@@ -398,12 +404,15 @@ HiAI_DeviceMemoryReusePlan HMS_HiAIOptions_GetDeviceMemoryReusePlan(const OH_NNC
 typedef enum {
     /** Neither in-depth convergence nor dynamic shape is supported, which is the default value. */
     HIAI_TUNING_STRATEGY_OFF = 0,
+
     /** In-depth convergence in dynamic shape mode is supported. */
     HIAI_TUNING_STRATEGY_ON_DEVICE_TUNING = 1,
+
     /** In-depth convergence is supported for dynamic update of the NPU operator library. */
     HIAI_TUNING_STRATEGY_ON_DEVICE_PREPROCESS_TUNING = 2,
+
     /** Reserved for future uses and not used currently. */
-    HIAI_TUNING_STRATEGY_ON_CLOUD_TUNING = 3
+    HIAI_TUNING_STRATEGY_ON_CLOUD_TUNING = 3,
 } HiAI_TuningStrategy;
 
 /**
@@ -475,10 +484,12 @@ size_t HMS_HiAIOptions_GetQuantConfigSize(const OH_NNCompilation* compilation);
 typedef enum {
     /** Disables the tunning mode. */
     HIAI_TUNING_MODE_UNSET = 0,
+
     /** Automatic tuning mode, which is recommended. Tuning is controlled by the internal algorithm. */
     HIAI_TUNING_MODE_AUTO = 1,
+
     /** Heterogeneous tuning mode. */
-    HIAI_TUNING_MODE_HETER = 2
+    HIAI_TUNING_MODE_HETER = 2,
 } HiAI_TuningMode;
 
 /**
@@ -539,10 +550,13 @@ const char* HMS_HiAIOptions_GetTuningCacheDir(const OH_NNCompilation* compilatio
 typedef enum {
     /** Automatically adjusted by the system. */
     HIAI_BANDMODE_UNSET = 0,
+
     /** Low bandwidth mode. */
     HIAI_BANDMODE_LOW = 1,
+
     /** Medium bandwidth mode. */
     HIAI_BANDMODE_NORMAL = 2,
+
     /** High bandwidth mode. */
     HIAI_BANDMODE_HIGH = 3,
 } HiAI_BandMode;
@@ -579,8 +593,15 @@ HiAI_BandMode HMS_HiAIOptions_GetBandMode(const OH_NNCompilation* compilation);
 typedef enum {
     /** Disables operating and maintenance. */
     HIAI_OM_TYPE_OFF = 0,
+
     /** Profiling type of operating and maintenance. */
     HIAI_OM_TYPE_PROFILING = 1,
+
+    /**
+    * Dump operation type.
+    * @since 6.0.0(20)
+    */
+    HIAI_OM_TYPE_DUMP = 2,
 } HiAI_OmType;
 
 /**

@@ -69,6 +69,11 @@ typedef enum {
     CRYPTO_NOT_SUPPORTED = 801,
     /** Indicates the memory error. */
     CRYPTO_MEMORY_ERROR = 17620001,
+    /**
+     * Indicates that parameter check failed.
+     * @since 20
+     */
+    CRYPTO_PARAMETER_CHECK_FAILED = 17620003,
     /** Indicates that crypto operation error. */
     CRYPTO_OPERTION_ERROR = 17630001,
 } OH_Crypto_ErrCode;

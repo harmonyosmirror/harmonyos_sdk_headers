@@ -86,6 +86,18 @@ typedef enum {
  *
  * @param dlpFileAccess - Indicates the access permission for the DLP file.
  * @param flags - Indicates the actions allowed for the DLP file.
+ *              0x00000000 - No file permissions.
+ *              0x00000001 - File view permission.
+ *              0x00000002 - File save permission.
+ *              0x00000004 - File save-as permission.
+ *              0x00000008 - File edit permission.
+ *              0x00000010 - File screenshot permission.
+ *              0x00000020 - File screen-sharing permission.
+ *              0x00000040 - File screen-recording permission.
+ *              0x00000080 - File copy permission.
+ *              0x00000100 - File print permission.
+ *              0x00000200 - File export permission.
+ *              0x00000400 - File permission modification permission.
  * @return {@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.
  *         {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.
  *         {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to

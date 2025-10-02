@@ -286,6 +286,92 @@ OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer,
  */
 OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* capturer, uint32_t* count);
 
+/**
+ * @brief Called when audio data is available to read. This function is similar to
+ * OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData.
+ *
+ * @param capturer Pointer to the AudioCapturer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetCapturerReadDataCallback.
+ * @param audioData Pointer to the available audio data.
+ * @param audioDataSize Size of the available audio data.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData
+ * @since 20
+ */
+typedef void (*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData,
+    int32_t audioDataSize);
+
+/**
+ * @brief Called when the input device of an AudioCapturer instance changes.
+ * This function is similar to OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnStreamEvent.
+ *
+ * @param capturer Pointer to the AudioCapturer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback.
+ * @param deviceArray Pointer to an array of the new input devices.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnStreamEvent
+ * @since 20
+ */
+typedef void (*OH_AudioCapturer_OnDeviceChangeCallback)(OH_AudioCapturer* capturer, void* userData,
+    OH_AudioDeviceDescriptorArray* deviceArray);
+
+/**
+ * @brief Called when an interrupt event occurs in an AudioCapturer instance.
+ * This function is similar to OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnInterruptEvent.
+ *
+ * @param capturer Pointer to the AudioCapturer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetCapturerInterruptCallback.
+ * @param type Type of force that causes the interrupt event.
+ * @param hint Hint provided along with the interrupt event.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnInterruptEvent.
+ * @since 20
+ */
+typedef void (*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer, void* userData,
+    OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint);
+
+/**
+ * @brief Called when an error event occurs in an AudioCapturer instance.
+ * This function is similar to OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError.
+ *
+ * @param capturer Pointer to the AudioCapturer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetCapturerErrorCallback.
+ * @param error Specific error information.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError
+ * @since 20
+ */
+typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* capturer, void* userData,
+    OH_AudioStream_Result error);
+
+/**
+ * @brief Gets audio capturer running status, check if it works in fast status.
+ *
+ * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer.
+ * @param status Pointer to a variable to receive the status.
+ * @return
+ *     {@link AUDIOSTREAM_SUCCESS} if the execution is successful.
+ *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of capturer is nullptr.
+ *     {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} function called in invalid state, only available before release state.
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioCapturer_GetFastStatus(OH_AudioCapturer* capturer,
+    OH_AudioStream_FastStatus* status);
+
+/**
+ * @brief Callback function of fast status change event for audio capturer.
+ *
+ * @param capturer Pointer to an audio capturer instance for which this callback occurs.
+ * @param userData Userdata which is passed by register.
+ * @param status Current fast status.
+ * @since 20
+ */
+typedef void (*OH_AudioCapturer_OnFastStatusChange)(
+    OH_AudioCapturer* capturer,
+    void* userData,
+    OH_AudioStream_FastStatus status
+);
+
 #ifdef __cplusplus
 }
 #endif

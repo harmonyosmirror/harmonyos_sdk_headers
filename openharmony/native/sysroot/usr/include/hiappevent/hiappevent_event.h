@@ -161,6 +161,14 @@ extern "C" {
 #define EVENT_APP_HICOLLIE "APP_HICOLLIE"
 
 /**
+ * @brief app killed event.
+ *
+ * @since 20
+ * @version 1.0
+ */
+#define EVENT_APP_KILLED "APP_KILLED"
+
+/**
  * @brief OS domain.
  *
  * @since 12

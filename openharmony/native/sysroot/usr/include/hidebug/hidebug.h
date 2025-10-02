@@ -102,6 +102,20 @@ void OH_HiDebug_GetSystemMemInfo(HiDebug_SystemMemInfo *systemMemInfo);
 void OH_HiDebug_GetAppNativeMemInfo(HiDebug_NativeMemInfo *nativeMemInfo);
 
 /**
+ * @brief Obtains the memory info of application process, with optional caching to improve performance. The cached value
+ *        remains valid for 5 minutes.
+ *
+ * @param nativeMemInfo Indicates the pointer to {@link HiDebug_NativeMemInfo}.
+ *        If there is no data in structure after the function.The Possible reason is system error.
+ * @param forceRefresh Whether to bypass the cache and retrieve fresh data.
+ *                     Set to true to force retrieve fresh data and immediate refresh the cached value;
+ *                     Set to false to retrieve the cached value when it is valid; otherwise, retrieve
+ *                     fresh data and refresh the cache.
+ * @since 20
+ */
+void OH_HiDebug_GetAppNativeMemInfoWithCache(HiDebug_NativeMemInfo *nativeMemInfo, bool forceRefresh);
+
+/**
  * @brief Obtains the memory limit of application process.
  *
  * @param memoryLimit Indicates the pointer to {@link HiDebug_MemoryLimit}
@@ -150,6 +164,87 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture();
  * @since 14
  */
 HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
+
+/**
+ * @brief Replace MallocDispatch table with developer-defined memory allocation functions.
+ *
+ * @param dispatchTable A pointer to the MallocDispatch table.
+ * @return Result code
+ *         {@link HIDEBUG_SUCCESS} The MallocDispatch table is successfully overriden.
+ *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument, dispatchTable is a null pointer.
+ * @since 20
+ */
+HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable);
+
+/**
+ * @brief Obtain current MallocDispatch table.
+ *
+ * @return Returns a pointer to MallocDispatch table on success, or NULL on failure.
+ *
+ * @since 20
+ */
+HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void);
+
+/**
+ * @brief Restore original MallocDispatch table.
+ *
+ * @since 20
+ */
+void OH_HiDebug_RestoreMallocDispatchTable(void);
+
+/**
+ * @brief Get backtrace frames start from the given frame pointer and the function is signal-safe.
+ *
+ * @param object The backtrace object create by {@link OH_HiDebug_CreateBacktraceObject}.
+ * @param startFp The entry frame pointer.
+ * @param pcArray The array to place program counter values.
+ * @param size The size of the array to place program counter values.
+ * @return The number of stack frames written to array.
+ * @since 20
+ */
+int OH_HiDebug_BacktraceFromFp(HiDebug_Backtrace_Object object, void* startFp, void** pcArray, int size);
+
+/**
+ * @brief Defines the callback of the {@link OH_HiDebug_SymbolicAddress} function.
+ *
+ * @param pc The program counter pass to {@link OH_HiDebug_SymbolicAddress}.
+ * @param arg The arg pass to {@link OH_HiDebug_SymbolicAddress}.
+ * @param frame The parsed frame content, the content is invalid after return of {@link OH_HiDebug_SymbolicAddress}.
+ * @since 20
+ */
+typedef void (*OH_HiDebug_SymbolicAddressCallback)(void* pc, void* arg, const HiDebug_StackFrame* frame);
+
+/**
+ * @brief Get detailed symbol info by given pc and the function is not signal-safe.
+ *
+ * @param object The backtrace object create by {@link OH_HiDebug_CreateBacktraceObject}.
+ * @param pc The program counter return by {@link OH_HiDebug_BacktraceFromFp}.
+ * @param arg The arg will be pass to callback.
+ * @param callback The function to pass parsed frame to caller.
+ * @return Result code
+ *         {@link HIDEBUG_SUCCESS} Get detailed frame info successfully and the callback is invoked.
+ *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument.
+ *         {@link HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS} Could not find symbol info by given pc.
+ * @since 20
+ */
+HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, void* pc, void* arg,
+    OH_HiDebug_SymbolicAddressCallback callback);
+
+/**
+ * @brief Create a backtrace object for further using and the function is not signal-safe.
+ *
+ * @return BacktraceObject if Success or NULL if is not supported on current arch
+ * @since 20
+ */
+HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void);
+
+/**
+ * @brief Destroy a backtrace object and the function is not signal-safe.
+ *
+ * @param object The object to be destroyed.
+ * @since 20
+ */
+void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object);
 
 #ifdef __cplusplus
 }

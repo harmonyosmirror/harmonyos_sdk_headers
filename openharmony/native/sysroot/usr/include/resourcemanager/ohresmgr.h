@@ -410,8 +410,27 @@ ResourceManager_ErrorCode OH_ResourceManager_GetLocalesData(const NativeResource
            {@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - If failed to access the system resource.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
  * @since 12
+ * @deprecated since 20
+ * @useinstead OH_ResourceManager_GetResourceConfiguration
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResourceManager *mgr,
+    ResourceManager_Configuration *configuration);
+
+/**
+ * @brief Obtains the device configuration.
+ *
+ * You need to call the OH_ResourceManager_ReleaseConfiguration() method to release the memory.
+ * If you use malloc to create a ResourceManager_Configuration object, you also need to call free to release it.
+ *
+ * @param {NativeResourceManager} mgr Indicates the pointer to {@link NativeResourceManager}
+ *        {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param {ResourceManager_Configuration} configuration the result write to ResourceManager_Configuration.
+ * @return {@link SUCCESS} 0 - Success.
+           {@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - If failed to access the system resource.
+           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @since 20
+ */
+ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,
     ResourceManager_Configuration *configuration);
 
 /**

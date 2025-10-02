@@ -68,6 +68,30 @@ typedef enum Udmf_Intention {
      * @brief The intention is pasteboard.
      */
     UDMF_INTENTION_PASTEBOARD,
+    /**
+     * @brief The intention is data hub.
+     *
+     * @since 20
+     */
+    UDMF_INTENTION_DATA_HUB,
+    /**
+     * @brief The intention is system share.
+     *
+     * @since 20
+     */
+    UDMF_INTENTION_SYSTEM_SHARE,
+    /**
+     * @brief The intention is picker.
+     *
+     * @since 20
+     */
+    UDMF_INTENTION_PICKER,
+    /**
+     * @brief The intention is menu.
+     *
+     * @since 20
+     */
+    UDMF_INTENTION_MENU,
 } Udmf_Intention;
 
 /**
@@ -123,6 +147,23 @@ typedef enum Udmf_ProgressIndicator {
 } Udmf_ProgressIndicator;
 
 /**
+ * @brief Describe the visibility range of data
+ *
+ * @since 20
+ */
+typedef enum Udmf_Visibility {
+    /**
+     * @brief The visibility level that specifies that any hap or native can be obtained.
+     */
+    UDMF_ALL,
+
+    /**
+     * @brief The visibility level that specifies that only data providers can be obtained.
+     */
+    UDMF_OWN_PROCESS
+} Udmf_Visibility;
+
+/**
  * @brief Describes the unified data type.
  *
  * @since 12
@@ -172,6 +213,36 @@ typedef struct OH_UdmfGetDataParams OH_UdmfGetDataParams;
  * @since 15
 */
 typedef void (*OH_Udmf_DataProgressListener)(OH_Udmf_ProgressInfo* progressInfo, OH_UdmfData* data);
+
+/**
+ * @brief Describes the optional arguments of data operation
+ *
+ * @since 20
+ */
+typedef struct OH_UdmfOptions OH_UdmfOptions;
+
+/**
+ * @brief Indicates data loading params.
+ *
+ * @since 20
+ */
+typedef struct OH_UdmfDataLoadParams OH_UdmfDataLoadParams;
+
+/**
+ * @brief Indicates data loading information.
+ *
+ * @since 20
+ */
+typedef struct OH_UdmfDataLoadInfo OH_UdmfDataLoadInfo;
+
+/**
+ * @brief Indicates the callback function for loading data.
+ *
+ * @param acceptableInfo Indicates the type and number of data that can be accepted by the receiver.
+ * @return Returns the data to be loaded.
+ * @since 20
+ */
+typedef OH_UdmfData* (*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableInfo);
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfData}.
@@ -780,6 +851,107 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
     const char* key, const char* param);
 
 /**
+ * @brief Creation a pointer to the instance of the {@link OH_UdmfOptions}.
+ *
+ * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfOptions}
+ * structure is returned. If the operation is failed, nullptr is returned.
+ * @see OH_UdmfOptions.
+ * @since 20
+ */
+OH_UdmfOptions* OH_UdmfOptions_Create();
+
+/**
+ * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfOptions}.
+ * Note that this function cannot be called repeatedly for the same pointer.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @see OH_UdmfOptions.
+ * @since 20
+ */
+void OH_UdmfOptions_Destroy(OH_UdmfOptions* pThis);
+
+/**
+ * @brief Get key from the {@link OH_UdmfOptions}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
+ * @see OH_UdmfOptions
+ * @since 20
+ */
+const char* OH_UdmfOptions_GetKey(OH_UdmfOptions* pThis);
+
+/**
+ * @brief Set the key to the {@link OH_UdmfOptions}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param key Represents a new string value of the key.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfOptions Udmf_ErrCode
+ * @since 20
+ */
+int OH_UdmfOptions_SetKey(OH_UdmfOptions* pThis, const char* key);
+
+/**
+ * @brief Get intention from the {@link OH_UdmfOptions}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @return Returns {@link Udmf_Intention} value.
+ * @see OH_UdmfOptions Udmf_Intention
+ * @since 20
+ */
+Udmf_Intention OH_UdmfOptions_GetIntention(OH_UdmfOptions* pThis);
+
+/**
+ * @brief Set intention value to {@link OH_UdmfOptions}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param intention Represents new {@link Udmf_Intention} param.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfOptions Udmf_Intention Udmf_ErrCode.
+ * @since 20
+ */
+int OH_UdmfOptions_SetIntention(OH_UdmfOptions* pThis, Udmf_Intention intention);
+
+/**
+ * @brief Reset {@link OH_UdmfOptions} to default.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfOptions Udmf_ErrCode.
+ * @since 20
+ */
+int OH_UdmfOptions_Reset(OH_UdmfOptions* pThis);
+
+/**
+ * @brief Get visibility from the {@link OH_UdmfOptions}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @return Returns {@link Udmf_Visibility} value.
+ * @see OH_UdmfOptions Udmf_Visibility
+ * @since 20
+ */
+Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis);
+
+/**
+ * @brief Set visibility value to {@link OH_UdmfOptions}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param visibility Represents new {@link Udmf_Visibility} param.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfOptions Udmf_Visibility Udmf_ErrCode.
+ * @since 20
+ */
+int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility);
+
+/**
  * @brief Get {@link OH_UdmfData} data from udmf database.
  *
  * @param key Represents database store's key value.
@@ -793,6 +965,22 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
  * @since 12
  */
 int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData);
+
+/**
+ * @brief Get {@link OH_UdmfData} data array from udmf database by intention.
+ *
+ * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param dataArray Represents output params of {@link OH_UdmfData}.
+ * This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
+ * @param dataSize Represents the data count of output params.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
+ * @see OH_UdmfData Udmf_Intention Udmf_ErrCode.
+ * @since 20
+ */
+int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
 
 /**
  * @brief Set {@link OH_UdmfData} data to database.
@@ -811,6 +999,63 @@ int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfDat
  */
 int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
     char* key, unsigned int keyLen);
+
+/**
+ * @brief Set {@link OH_UdmfData} data to database with options.
+ *
+ * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param unifiedData Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param key Represents return value after set data to database successfully,
+ * it's memory size not less than {@link UDMF_KEY_BUFFER_LEN}.
+ * @param keyLen Represents size of key param.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
+ * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
+ * @since 20
+ */
+int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen);
+
+/**
+ * @brief Update {@link OH_UdmfData} data to database with options.
+ *
+ * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param unifiedData Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
+ * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
+ * @since 20
+ */
+int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData);
+
+/**
+ * @brief Delete {@link OH_UdmfData} data of database with options.
+ *
+ * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
+ * @param dataArray Represents output params of {@link OH_UdmfData}.
+ * This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
+ * @param dataSize Represents the data count of output params.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
+ * @see OH_UdmfData Udmf_Intention Udmf_ErrCode.
+ * @since 20
+ */
+int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
+
+/**
+ * @brief Destroy data array memory.
+ *
+ * @param dataArray Represents a point to {@link OH_UdmfData}.
+ * @param dataSize Represents data size in list.
+ * @see OH_UdmfData
+ * @since 20
+ */
+void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize);
 
 /**
  * @brief Gets the progress from the {@OH_Udmf_ProgressInfo}.
@@ -892,6 +1137,116 @@ void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params,
  */
 void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params,
     const OH_Udmf_DataProgressListener dataProgressListener);
+
+/**
+ * @brief Sets the acceptable info to the {@OH_UdmfGetDataParams}.
+ *
+ * @param params Represents a pointer to an instance of {@link OH_UdmfGetDataParams}.
+ * @param acceptableInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @see OH_UdmfGetDataParams OH_UdmfDataLoadInfo
+ * @since 20
+ */
+void OH_UdmfGetDataParams_SetAcceptableInfo(OH_UdmfGetDataParams* params, OH_UdmfDataLoadInfo* acceptableInfo);
+
+/**
+ * @brief Creation a pointer to the instance of the {@link OH_UdmfDataLoadParams}.
+ *
+ * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfDataLoadParams}
+ * structure is returned. If the operation is failed, nullptr is returned.
+ * @see OH_UdmfDataLoadParams
+ * @since 20
+ */
+OH_UdmfDataLoadParams* OH_UdmfDataLoadParams_Create();
+
+/**
+ * @brief Destroy a pointer that points to an instance of {@link OH_UdmfDataLoadParams}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfDataLoadParams}.
+ * @see OH_UdmfDataLoadParams
+ * @since 20
+ */
+void OH_UdmfDataLoadParams_Destroy(OH_UdmfDataLoadParams* pThis);
+
+/**
+ * @brief Sets the data load handler to the {@OH_UdmfDataLoadParams}.
+ *
+ * @param params Represents a pointer to an instance of {@link OH_UdmfDataLoadParams}.
+ * @param dataLoadHandler Represents to the data load handler.
+ * @see OH_UdmfDataLoadParams OH_Udmf_DataLoadHandler
+ * @since 20
+ */
+void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const OH_Udmf_DataLoadHandler dataLoadHandler);
+
+/**
+ * @brief Sets the data load info to the {@OH_UdmfDataLoadParams}.
+ *
+ * @param params Represents a pointer to an instance of {@link OH_UdmfDataLoadParams}.
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @see OH_UdmfDataLoadParams OH_UdmfDataLoadInfo
+ * @since 20
+ */
+void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_UdmfDataLoadInfo* dataLoadInfo);
+
+/**
+ * @brief Creation a pointer to the instance of the {@link OH_UdmfDataLoadInfo}.
+ *
+ * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfDataLoadInfo}
+ * structure is returned. If the operation is failed, nullptr is returned.
+ * @see OH_UdmfDataLoadInfo
+ * @since 20
+ */
+OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
+
+/**
+ * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfDataLoadInfo}.
+ * Note that this function cannot be called repeatedly for the same pointer.
+ *
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @see OH_UdmfDataLoadInfo
+ * @since 20
+ */
+void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo);
+
+/**
+ * @brief Gets the types from the {@OH_UdmfDataLoadInfo}.
+ *
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @param count the types count of data.
+ * @return Returns the types of data.
+ * @see OH_UdmfDataLoadInfo
+ * @since 20
+ */
+char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int* count);
+
+/**
+ * @brief Sets the data load info to the {@OH_UdmfDataLoadInfo}.
+ *
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @param type Represents the type of data.
+ * @see OH_UdmfDataLoadInfo
+ * @since 20
+ */
+void OH_UdmfDataLoadInfo_SetType(OH_UdmfDataLoadInfo* dataLoadInfo, const char* type);
+
+/**
+ * @brief Gets the record count from the {@OH_UdmfDataLoadInfo}.
+ *
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @return Returns the record count.
+ * @see OH_UdmfDataLoadInfo
+ * @since 20
+ */
+int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo);
+
+/**
+ * @brief Sets the record count to the {@OH_UdmfDataLoadInfo}.
+ *
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @param recordCount Represents the types of data.
+ * @see OH_UdmfDataLoadInfo
+ * @since 20
+ */
+void OH_UdmfDataLoadInfo_SetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int recordCount);
 
 #ifdef __cplusplus
 };

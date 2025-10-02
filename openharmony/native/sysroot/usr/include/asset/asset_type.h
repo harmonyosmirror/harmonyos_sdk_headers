@@ -271,6 +271,12 @@ typedef enum {
     ASSET_LIMIT_EXCEEDED = 24000016,
     /** @error The capability is not supported. */
     ASSET_UNSUPPORTED = 24000017,
+    /**
+     * @error Parameter verification failed.
+     *
+     * @since 20
+     */
+    ASSET_PARAM_VERIFICATION_FAILED = 24000018,
 } Asset_ResultCode;
 
 /**
@@ -484,6 +490,26 @@ typedef struct {
      */
     Asset_Result *results;
 } Asset_ResultSet;
+
+/**
+ * @brief Represents information about the synchronization result.
+ *
+ * @since 20
+ */
+typedef struct {
+    /**
+     * The result code of synchronization.
+     */
+    int32_t resultCode;
+    /**
+     * The total count of synchronized Assets.
+     */
+    uint32_t totalCount;
+    /**
+     * The count of Assets that fail to synchronize.
+     */
+    uint32_t failedCount;
+} Asset_SyncResult;
 
 #ifdef __cplusplus
 }

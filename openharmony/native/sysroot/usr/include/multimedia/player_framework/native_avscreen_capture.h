@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @addtogroup AVScreenCapture
  * @{
@@ -74,16 +74,14 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 
 /**
  * @brief Start the av screen capture
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param type Information describing the data type of the capture
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set privacy authority enabled
  *         failed or start ScreenCapture failed.
  * @since 10
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVScreenCapture *capture);
 
@@ -102,15 +100,14 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture(struct OH_AVScr
 
 /**
  * @brief Start av screen record use to start save screen record file.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set privacy authority enabled
  *         failed or start ScreenRecording failed.
  * @since 10
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AVScreenCapture *capture);
 
@@ -288,33 +285,31 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetErrorCallback(struct OH_AVScre
     OH_AVScreenCapture_OnError callback, void *userData);
 
 /**
- * @brief Start the av screen capture, video data provided by OHNativeWindow
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param window Pointer to an OHNativeWindow instance
+ * @brief Start the av screen capture, video data provided by OHNativeWindow.
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance.
+ * @param {OHNativeWindow*} window Pointer to an OHNativeWindow instance.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input window is nullptr or
  *         input windowSurface is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set privacy authority enabled
  *         failed or start ScreenCaptureWithSurface failed.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(struct OH_AVScreenCapture *capture,
     OHNativeWindow *window);
 
 /**
  * @brief Set canvas rotation when capturing screen
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param canvasRotation whether to rotate the canvas
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {bool} canvasRotation whether to rotate the canvas
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set CanvasRotation failed.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation(struct OH_AVScreenCapture *capture,
     bool canvasRotation);
@@ -386,63 +381,59 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
 
 /**
  * @brief Resize the Resolution of the Screen
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param width Video frame width of avscreeencapture
- * @param height Video frame height of avscreeencapture
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {int32_t} width Video frame width of avscreeencapture
+ * @param {int32_t} height Video frame height of avscreeencapture
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCapture *capture,
     int32_t width, int32_t height);
 
 /**
  * @brief skip some windows' privacy mode of current app during the screen recording
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param windowIDs Pointer of windowID list
- * @param windowCount length of windowID list
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {int32_t*} windowIDs Pointer of windowID list
+ * @param {int32_t} windowCount length of windowID list
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input windowIDs are not belong current
  *         app.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScreenCapture *capture,
     int32_t *windowIDs, int32_t windowCount);
 
 /**
  * @brief set up the max number of video frame per second
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param frameRate max frame rate of video
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {int32_t} frameRate max frame rate of video
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or frameRate is not support.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 14
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate(struct OH_AVScreenCapture *capture,
     int32_t frameRate);
 
 /**
  * @brief determines whether the cursor is visible in the session
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param showCursor The switch of the cursor
+ * @param {struct OH_AVScreenCapture* } capture Pointer to an OH_AVScreenCapture instance
+ * @param {bool} showCursor The switch of the cursor
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, show cursor failed.
  * @since 15
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapture *capture,
     bool showCursor);
@@ -463,6 +454,197 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapt
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDisplayCallback(struct OH_AVScreenCapture *capture,
     OH_AVScreenCapture_OnDisplaySelected callback, void *userData);
+
+/**
+ * @brief Create a screen capture Strategy object
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @return Returns a pointer to the screen capture strategy object, or null if failure
+ * @since 20
+ */
+OH_AVScreenCapture_CaptureStrategy* OH_AVScreenCapture_CreateCaptureStrategy(void);
+
+/**
+ * @brief Release the screen capture Strategy object
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input strategy is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseCaptureStrategy(OH_AVScreenCapture_CaptureStrategy* strategy);
+
+/**
+ * @brief set the screen capture strategy for the specified screen capture
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture which need to be setted.
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy which want to
+ * set.
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} capture or strategyvalue is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_STATE} This interface should be called before Start is called.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy(
+    struct OH_AVScreenCapture *capture, OH_AVScreenCapture_CaptureStrategy *strategy);
+
+/**
+ * @brief Call Settings Policy value for whether to allow screen capture during cellular calls
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @param {bool} value The default value is false, which means that screen recording is not allowed during cellular
+ * calls.
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForKeepCaptureDuringCall(
+    OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
+
+/**
+ * @brief Set the Capture Content Changed callback function so that your application can
+ * customize event handler generated by the screen capture. This interface must be called before Start is called.
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param callback contentchanged callback function, see {@link OH_AVScreenCapture_OnCaptureContentChanged}
+ * @param userData Pointer to user specific data
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input callback is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set ErrorCallback failed.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(struct OH_AVScreenCapture *capture,
+    OH_AVScreenCapture_OnCaptureContentChanged callback, void *userData);
+
+/**
+ * @brief Set or update the captureArea
+ * @param {struct OH_AVScreenCapture*} capture capture Pointer to an OH_AVScreenCapture instance
+ * @param {uint64_t} displayId Indicates the screen index for setting area recording
+ * @param {OH_Rect*} area Pointer to an object describing the location and size of the region
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or displayid not exist or area is
+ *         invalid.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreenCapture *capture,
+    uint64_t displayId, OH_Rect* area);
+
+/**
+ * @brief Set the fill mode for screen capture when a privacy window exists
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @param {int32_t} value
+ * If set to 0, it means that when there is a privacy window interface, the output screen image is completely black.
+ * If set to 1, it means that when there is a privacy window interface, only the privacy window area of the output
+ * screen becomes black, and other values returns an error.
+ * @return Function result code.
+ * {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ * {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy is nullptr or value is invalid.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPrivacyMaskMode(
+    OH_AVScreenCapture_CaptureStrategy *strategy, int32_t value);
+
+/**
+ * @brief Set the canvas to rotate with the screen when capturing the screen
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @param {bool} value The default value is False, which means that the width and height of the VirtualDisplay
+ * remain the initial settings. If set to True, it means that the width and height of the VirtualDisplay rotates
+ * with the rotation of the screen..
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForCanvasFollowRotation(
+    OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
+
+/**
+ * @brief Register user selection notification callback function
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture*} capture Pointer to OH_AVScreenCapture which want to handle user selection info
+ * @param {OH_AVScreenCapture_OnUserSelected} callback user selection callback function, see
+ *        {@link OH_AVScreenCapture_OnUserSelected}
+ * @param {void*} userData The control block pointer passed by the application is carried to the application when it
+ *        is returned
+ * @return Function result code.
+ *          {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *          {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AVScreenCapture *capture,
+    OH_AVScreenCapture_OnUserSelected callback, void *userData);
+
+/**
+ * @brief Get the recording content type selected by the user in the confirmation interface
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture_UserSelectionInfo*} selection Pointer to an OH_AVScreenCapture_UserSelectionInfo instance
+ * @param {int32_t*} type The capture object type selected by the user, 0: represents the screen, 1: represents the
+ *        window.
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} if selections is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
+    int32_t* type);
+
+/**
+ * @brief Get the Display ID of user selections in the confirmation interface
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture_UserSelectionInfo*} selection Pointer to an OH_AVScreenCapture_UserSelectionInfo instance
+ * @param {uint64_t*} displayId Returns the screen ID value selected by the user
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} if selections is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
+    uint64_t* displayId);
+
+/**
+ * @brief Indicates whether to enable B-frame encoding, which is used to reduce the size of the recorded file.
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @param {bool} value The default value is false, which means B frames  encoding are disabled.
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForBFramesEncoding(
+    OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
+
+/**
+ * @brief set whether to pop up the screen capture Picker
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @param {bool} value
+ *          If set to false, it means that the APP don’t need to pop up the Picker after screen capture starts;
+ *          if set to True, the Picker will pop up uniformly after screen capture starts;
+ *          If not set, it means using the system recommended behavior.
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPickerPopUp(
+    OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
+
+/**
+ * @brief Set the fill mode of the captured image in the target area
+ * @param {OH_AVScreenCapture_CaptureStrategy*} strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
+ * @param {OH_AVScreenCapture_FillMode} mode Value of the captured image fill mode
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
+ * @since 20
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForFillMode(
+    OH_AVScreenCapture_CaptureStrategy *strategy, OH_AVScreenCapture_FillMode mode);
 #ifdef __cplusplus
 }
 #endif

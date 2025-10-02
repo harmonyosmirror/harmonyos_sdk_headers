@@ -1152,6 +1152,119 @@ typedef struct Camera_ConcurrentInfo {
     uint32_t modeAndCapabilitySize;
 } Camera_ConcurrentInfo;
 
+/**
+ * @brief Enumerates the white balance modes.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef enum Camera_WhiteBalanceMode {
+    /**
+     * Automatic white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_AUTO = 0,
+
+    /**
+     * Cloudy white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_CLOUDY = 1,
+
+    /**
+     * Incandescent white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_INCANDESCENT = 2,
+
+    /**
+     * Fluorescent white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_FLUORESCENT = 3,
+
+    /**
+     * Daylight white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_DAYLIGHT = 4,
+
+    /**
+     * Manual white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_MANUAL = 5,
+
+    /**
+     * Lock white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_LOCKED = 6
+} Camera_WhiteBalanceMode;
+
+/**
+ * @brief Enumerates the system pressure levels of the current camera session. When the system pressure
+ * increases, you are advised to reduce the load of the current camera session.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef enum Camera_SystemPressureLevel {
+    /**
+     * Normal level. This level indicates the system pressure is normal.
+     */
+    SYSTEM_PRESSURE_NORMAL = 0,
+
+    /**
+     * Mild level. This level indicates the system pressure is slightly elevated.
+     */
+    SYSTEM_PRESSURE_MILD = 1,
+
+    /**
+     * Severe level. This level indicates the system pressure is severely elevated.
+     */
+    SYSTEM_PRESSURE_SEVERE = 2,
+
+    /**
+     * Critical level. This level indicates the system pressure is critically elevated.
+     */
+    SYSTEM_PRESSURE_CRITICAL = 3,
+
+    /**
+     * Shutdown level. This level indicates the system pressure is fatal, so the camera session will be shut down soon.
+     */
+    SYSTEM_PRESSURE_SHUTDOWN = 4
+} Camera_SystemPressureLevel;
+
+/**
+ * @brief Enumerates the control center effect types.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef enum Camera_ControlCenterEffectType {
+    /**
+     * Control center beauty effect type.
+     */
+    CONTROL_CENTER_EFFECT_TYPE_BEAUTY = 0,
+
+    /**
+     * Control center portrait effect type.
+     */
+    CONTROL_CENTER_EFFECT_TYPE_PORTRAIT = 1
+} Camera_ControlCenterEffectType;
+
+/**
+ * @brief Control center status info.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef struct Camera_ControlCenterStatusInfo {
+    /**
+     * Control center effect type.
+     */
+    Camera_ControlCenterEffectType effectType;
+
+    /**
+     * If control center effect is active.
+     */
+    bool isActive;
+} Camera_ControlCenterStatusInfo;
+
 #ifdef __cplusplus
 }
 #endif

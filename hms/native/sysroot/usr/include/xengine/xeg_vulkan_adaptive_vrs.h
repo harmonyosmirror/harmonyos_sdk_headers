@@ -34,6 +34,7 @@
 extern "C" {
 #endif
 
+
 /**
  * @brief {@link XEG_AdaptiveVRS} handle.
  *
@@ -71,7 +72,6 @@ typedef struct XEG_AdaptiveVRSCreateInfo {
     /** Indicates whether to flip an image. true: flip; false: not flip. */
     bool flip;
 } XEG_AdaptiveVRSCreateInfo;
-
 
 /**
  * @brief This structure describes the parameter information required for delivering the command for drawing the
@@ -124,7 +124,7 @@ typedef VkResult (VKAPI_PTR *PFN_HMS_XEG_CreateAdaptiveVRS)(VkDevice device,
 * @param commandBuffer VkCommandBuffer of the current command, which must be submitted to vkQueueSubmit before being
 * executed.
 * @param xegAdaptiveVRS The {@link XEG_AdaptiveVRS} object that has been created.
-* @param pXegAdaptiveVRSDescription Pointer to the parameter structure {@link XEG_AdaptiveVRSCreateInfo} of the
+* @param pXegAdaptiveVRSDescription Pointer to the parameter structure {@link XEG_AdaptiveVRSDescription} of the
 * delivering command.
 * Its value cannot be null.
 *
@@ -143,7 +143,6 @@ typedef void (VKAPI_PTR *PFN_HMS_XEG_CmdDispatchAdaptiveVRS)(VkCommandBuffer com
 typedef void (VKAPI_PTR *PFN_HMS_XEG_DestroyAdaptiveVRS)(XEG_AdaptiveVRS xegAdaptiveVRS);
 
 #ifndef XEG_NO_PROTOTYPES
-
 /**
 * @brief Creates an {@link XEG_AdaptiveVRS} object.
 *

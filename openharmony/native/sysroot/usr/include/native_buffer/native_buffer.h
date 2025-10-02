@@ -61,6 +61,11 @@ typedef enum OH_NativeBuffer_Usage {
     NATIVEBUFFER_USAGE_CPU_READ = (1ULL << 0),        /// < CPU read buffer */
     NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL << 1),       /// < CPU write memory */
     NATIVEBUFFER_USAGE_MEM_DMA = (1ULL << 3),         /// < Direct memory access (DMA) buffer */
+    /**
+     * MMZ with cache
+     * @since 20
+     */
+    NATIVEBUFFER_USAGE_MEM_MMZ_CACHE = (1ULL << 5),
     NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),       /// < For GPU write case */
     NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),      /// < For GPU read case */
     NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16), /// < Often be mapped for direct CPU reads */
@@ -204,7 +209,17 @@ typedef enum OH_NativeBuffer_Format {
      */
     NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT,
     /**
-     * vender mask format
+     * Y8 format
+     * @since 20
+     */
+    NATIVEBUFFER_PIXEL_FMT_Y8 = 40,
+    /**
+     * Y16 format
+     * @since 20
+     */
+    NATIVEBUFFER_PIXEL_FMT_Y16 = 41,
+    /**
+     * vendor mask format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_VENDER_MASK = 0X7FFF0000,
@@ -267,7 +282,7 @@ typedef struct {
     int32_t height;          ///< Height in pixels
     int32_t format;          ///< One of PixelFormat
     int32_t usage;           ///< Combination of buffer usage
-    int32_t stride;          ///< the stride of memory
+    int32_t stride;          ///< the stride of memory in bytes
 } OH_NativeBuffer_Config;
 
 /**

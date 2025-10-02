@@ -39,7 +39,8 @@
 #define HIVIEWDFX_HIDEBUG_TYPE_H
 
 #include <stdint.h>
-
+#include <stddef.h>
+#include <unistd.h>
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
@@ -61,7 +62,12 @@ typedef enum HiDebug_ErrorCode {
     /** The status of the trace is abnormal */
     HIDEBUG_TRACE_ABNORMAL = 11400104,
     /** No trace running */
-    HIDEBUG_NO_TRACE_RUNNING = 11400105
+    HIDEBUG_NO_TRACE_RUNNING = 11400105,
+    /**
+     * The pc passed to the symbolic function is invalid
+     * @since 20
+     */
+    HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200,
 } HiDebug_ErrorCode;
 
 /**
@@ -174,6 +180,139 @@ typedef enum HiDebug_TraceFlag {
     /** Capture all thread trace */
     HIDEBUG_TRACE_FLAG_ALL_THREADS = 2
 } HiDebug_TraceFlag;
+
+/**
+ * @brief Defines structure type for MallocDispatch table.
+ *
+ * @since 20
+ */
+typedef struct HiDebug_MallocDispatch {
+    void* (*malloc)(size_t);
+    void* (*calloc)(size_t, size_t);
+    void* (*realloc)(void*, size_t);
+    void (*free)(void*);
+    void* (*mmap) (void*, size_t, int, int, int, off_t);
+    int (*munmap) (void*, size_t);
+} HiDebug_MallocDispatch;
+
+/**
+ * @brief Defines Js stack frame content
+ *
+ * @since 20
+ */
+typedef struct HiDebug_JsStackFrame {
+    /**
+     * The pc relative to the start of current file in /proc/self/maps
+     */
+    uint64_t relativePc;
+ 
+    /**
+     * The line number of the source code from url
+     */
+    int32_t line;
+ 
+    /**
+     * The column number of the source code from url
+     */
+    int32_t column;
+ 
+    /**
+     * The name parsed by pc from /proc/self/maps, maybe NULL
+     */
+    const char* mapName;
+ 
+    /**
+     * The functionName of current frame, maybe NULL
+     */
+    const char* functionName;
+ 
+    /**
+     * The url of current frame, maybe NULL
+     */
+    const char* url;
+ 
+    /**
+     * The packageName of current frame, maybe NULL
+     */
+    const char* packageName;
+} HiDebug_JsStackFrame;
+
+/**
+ * @brief Defines native frame content
+ *
+ * @since 20
+ */
+typedef struct HiDebug_NativeStackFrame {
+    /**
+     * The pc relative to the start of current file in /proc/self/maps
+     */
+    uint64_t relativePc;
+ 
+    /**
+     * The pc relative to the start of current function
+     */
+    uint64_t funcOffset;
+ 
+    /**
+     * The name parsed by pc from /proc/self/maps
+     */
+    const char* mapName;
+ 
+    /**
+     * The functionName parsed by relativePc from symbol table in elf, maybe NULL
+     */
+    const char* functionName;
+ 
+    /**
+     * The buildId parsed from .note.gnu.build-id in elf, maybe NULL
+     */
+    const char* buildId;
+ 
+    /**
+     * Reserved, maybe NULL
+     */
+    const char* reserved;
+} HiDebug_NativeStackFrame;
+
+/**
+ * @brief Enum for stack frame type.
+ *
+ * @since 20
+ */
+typedef enum HiDebug_StackFrameType {
+    /** Type of js frame */
+    HIDEBUG_STACK_FRAME_TYPE_JS = 1,
+    /** Type of native frame */
+    HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2,
+} HiDebug_StackFrameType;
+
+/**
+ * @brief Defines Stack Frame content
+ *
+ * @since 20
+ */
+typedef struct HiDebug_StackFrame {
+    /**
+     * The type of current frame
+     */
+    HiDebug_StackFrameType type;
+
+    /** frame content. */
+    union {
+        /** Js stack frame defined in {@link HiDebug_JsStackFrame} */
+        struct HiDebug_JsStackFrame js;
+        /** Native frame defined in {@link HiDebug_NativeStackFrame} */
+        struct HiDebug_NativeStackFrame native;
+    } frame;
+} HiDebug_StackFrame;
+
+/**
+ * @brief To represent a backtrace object
+ *
+ * @since 20
+ */
+typedef struct HiDebug_Backtrace_Object__* HiDebug_Backtrace_Object;
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

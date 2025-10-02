@@ -20,7 +20,6 @@
  * @brief Defines the macros, enumerated values, data structures,
  *    and error codes used by OpenHarmony Universal KeyStore (HUKS) APIs.
  *
- * @syscap SystemCapability.Security.Huks
  * @since 9
  * @version 1.0
  */
@@ -31,7 +30,7 @@
  * @brief Defines the structure and enumeration.
  *
  * @library libhuks_ndk.z.so
- * @syscap SystemCapability.Security.Huks
+ * @syscap SystemCapability.Security.Huks.Core
  *
  * @kit UniversalKeystoreKit
  * @since 9
@@ -387,8 +386,9 @@ enum OH_Huks_ImportKeyType {
 };
 
 /**
- * @brief Enumerates the key storage modes.
- *
+ * @brief Enumerates the salt_len types to set when PSS padding is used in RSA signing or signature
+ * verification.
+ * 
  * @since 10
  * @version 1.0
  */
@@ -451,6 +451,18 @@ enum  OH_Huks_ErrCode {
      * @since 11
      */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
+    /**
+     * The key with same alias is already exist.
+     *
+     * @since 20
+     */
+    OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017,
+    /**
+     * The input parameter is invalid..
+     *
+     * @since 20
+     */
+    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018
 };
 
 /**
@@ -488,6 +500,12 @@ enum OH_Huks_UserAuthType {
     OH_HUKS_USER_AUTH_TYPE_FACE = 1 << 1,
     /** PIN authentication. */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
+    /**
+     * Enum for tui pin auth type.
+     *
+     * @since 20
+     */
+    OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 << 5,
 };
 
 /**
@@ -594,11 +612,29 @@ enum OH_Huks_ChallengePosition {
  */
 enum OH_Huks_SecureSignType {
     /**
-     *  The signature carries authentication information. This field is specified when a key
-     *  is generated or imported. When the key is used to sign data, the data will be added with
-     *  the authentication information and then be signed.
+     * The signature carries authentication information. This field is specified when a key
+     * is generated or imported. When the key is used to sign data, the data will be added with
+     * the authentication information and then be signed.
+     * NOTICE:
+     * The carried authentication information contains personal identification details. Developers are required
+     * to clearly state the purpose of use, retention policy, and destruction method of such personal information in
+     * their privacy statement.
      */
     OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1,
+};
+
+/**
+ * Enum for key wrap type.
+ *
+ * @since 20
+ */
+enum OH_Huks_KeyWrapType {
+    /**
+     * The hardware unique key wrap type.
+     *
+     * @since 20
+     */
+    OH_HUKS_KEY_WRAP_TYPE_HUK_BASED = 2,
 };
 
 /**
@@ -716,7 +752,12 @@ enum OH_Huks_Tag {
     OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES | 514,
     /** Version information used in the attestation. */
     OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES | 515,
-
+    /**
+     * @brief The tag indicates whether to overwrite the key with same alias
+     *
+     * @since 20
+     */
+    OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL | 520,
     /**
      * 601 to 1000 are reserved for other tags.
      *
@@ -973,6 +1014,19 @@ struct OH_Huks_KeyMaterial25519 {
     uint32_t priKeySize;
     /** Reserved. */
     uint32_t reserved;
+};
+
+/**
+ * @brief Defines the structure of the alias set.
+ *
+ * @since 20
+ * @version 1.0
+ */
+struct OH_Huks_KeyAliasSet {
+    /** Number of aliases. */
+    uint32_t aliasesCnt;
+    /** Aliases array. */
+    struct OH_Huks_Blob *aliases;
 };
 
 #ifdef __cplusplus

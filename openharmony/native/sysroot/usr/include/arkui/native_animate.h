@@ -187,7 +187,7 @@ typedef struct {
     /**
     * @brief Disposes of an animator object.
     *
-    * @param animator Indicates the target animator object.
+    * @param animatorHandle Indicates the target animator object.
     */
     void (*disposeAnimator)(ArkUI_AnimatorHandle animatorHandle);
 } ArkUI_NativeAnimateAPI_1;
@@ -203,6 +203,7 @@ ArkUI_AnimateOption* OH_ArkUI_AnimateOption_Create();
 /**
 * @brief Disposes of an animation configuration.
 *
+* @param option Indicates the pointer to an animation configuration.
 * @since 12
 */
 void OH_ArkUI_AnimateOption_Dispose(ArkUI_AnimateOption* option);
@@ -534,6 +535,7 @@ ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize);
 /**
  * @brief Disposes of an animator parameter object.
  *
+ * @param option Indicates the target animator parameter object.
  * @since 12
  */
 void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option);

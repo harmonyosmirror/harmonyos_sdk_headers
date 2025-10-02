@@ -191,6 +191,15 @@ typedef enum AVPlayerOnInfoType {
      * {@link OH_AVPlayerOnInfo} is the same as {@OH_AudioStream_DeviceChangeReason} in audio framework.
      */
     AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17,
+    /**
+     * @brief Event type indicating playback rate configuration completed.
+     *
+     * Triggered when playback rate are successfully applied,
+     * notifying the application of the actual effective value.
+     * Use defined key {@link OH_PLAYER_PLAYBACK_RATE} to retrieve value from the event data.
+     * @since 20
+     */
+    AV_INFO_TYPE_PLAYBACK_RATE_DONE = 18,
 } AVPlayerOnInfoType;
 
 /**
@@ -306,6 +315,13 @@ extern const char* OH_PLAYER_SEEK_POSITION;
  * @since 12
  */
 extern const char* OH_PLAYER_PLAYBACK_SPEED;
+
+/**
+ * @brief Key for retrieving effective playback rate, the value type is float.
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @since 20
+ */
+extern const char* OH_PLAYER_PLAYBACK_RATE;
 
 /**
  * @brief Key to get bitrate, value type is uint32_t.

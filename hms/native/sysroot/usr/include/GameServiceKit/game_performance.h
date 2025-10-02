@@ -23,7 +23,6 @@
  * @syscap SystemCapability.GameService.GamePerformance
  * @since 5.0.2(14)
  */
-
 #ifndef GAME_PERFORMANCE_H
 #define GAME_PERFORMANCE_H
 #include <stdint.h>
@@ -120,7 +119,7 @@ typedef enum GamePerformance_EngineType {
     /**
      * Other engine type
      */
-    GAME_PERFORMANCE_ENGINE_TYPE_OTHERS = 200
+    GAME_PERFORMANCE_ENGINE_TYPE_OTHERS = 200,
 } GamePerformance_EngineType;
 
 /**
@@ -156,7 +155,7 @@ typedef enum GamePerformance_GameType {
     /**
      * Other game type
      */
-    GAME_PERFORMANCE_GAME_TYPE_OTHERS = 200
+    GAME_PERFORMANCE_GAME_TYPE_OTHERS = 200,
 } GamePerformance_GameType;
 
 /**
@@ -187,7 +186,7 @@ typedef enum GamePerformance_PictureQualityLevel {
     /**
      * UHD (Ultra High Definition)
      */
-    GAME_PERFORMANCE_PQL_UHD = 5
+    GAME_PERFORMANCE_PQL_UHD = 5,
 } GamePerformance_PictureQualityLevel;
 
 /**
@@ -218,7 +217,7 @@ typedef enum GamePerformance_SceneImportanceLevel {
     /**
      * Level 5.
      */
-    GAME_PERFORMANCE_SIL_LEVEL5 = 5
+    GAME_PERFORMANCE_SIL_LEVEL5 = 5,
 } GamePerformance_SceneImportanceLevel;
 
 /**
@@ -239,7 +238,7 @@ typedef enum GamePerformance_CpuLevel {
     /**
      * High.
      */
-    GAME_PERFORMANCE_CPU_LEVEL_HIGH = 3
+    GAME_PERFORMANCE_CPU_LEVEL_HIGH = 3,
 } GamePerformance_CpuLevel;
 
 /**
@@ -260,7 +259,7 @@ typedef enum GamePerformance_GpuLevel {
     /**
      * High.
      */
-    GAME_PERFORMANCE_GPU_LEVEL_HIGH = 3
+    GAME_PERFORMANCE_GPU_LEVEL_HIGH = 3,
 } GamePerformance_GpuLevel;
 
 /**
@@ -281,7 +280,7 @@ typedef enum GamePerformance_DdrLevel {
     /**
      * High.
      */
-    GAME_PERFORMANCE_DDR_LEVEL_HIGH = 3
+    GAME_PERFORMANCE_DDR_LEVEL_HIGH = 3,
 } GamePerformance_DdrLevel;
 
 /**
@@ -302,7 +301,7 @@ typedef enum GamePerformance_NetLoad {
     /**
      * Heavy load.
      */
-    GAME_PERFORMANCE_NET_LOAD_HEAVY = 3
+    GAME_PERFORMANCE_NET_LOAD_HEAVY = 3,
 } GamePerformance_NetLoad;
 
 /**
@@ -333,7 +332,7 @@ typedef enum GamePerformance_ErrorCode {
     /**
      * Invalid request.
      */
-    GAME_PERFORMANCE_INVALID_REQUEST = 1010300003
+    GAME_PERFORMANCE_INVALID_REQUEST = 1010300003,
 } GamePerformance_ErrorCode;
 
 /**
@@ -349,7 +348,7 @@ typedef enum GamePerformance_DeviceInfoType {
     /**
      * GPU.
      */
-    GAME_PERFORMANCE_DEVICEINFO_TYPE_GPU = 1
+    GAME_PERFORMANCE_DEVICEINFO_TYPE_GPU = 1,
 } GamePerformance_DeviceInfoType;
 
 /**
@@ -367,8 +366,8 @@ typedef void (*GamePerformance_ThermalLevelChangedCallback)(GamePerformance_Devi
  * @brief Create {@link GamePerformance_InitParameters} instance , which is used in {@link HMS_GamePerformance_Init}.
  *
  * @param initParameters Output data. {@link GamePerformance_InitParameters} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreateInitParameters(GamePerformance_InitParameters **initParameters);
@@ -378,8 +377,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateInitParameters(GamePerforman
  *
  * @param initParameters Secondary pointer to the {@link GamePerformance_InitParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyInitParameters(GamePerformance_InitParameters **initParameters);
@@ -390,8 +390,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyInitParameters(GamePerforma
  * @param initParameters Pointer to the {@link GamePerformance_InitParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param bundleName The bundleName of the app.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetBundleName(
@@ -403,8 +404,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetBundleName(
  * @param initParameters Pointer to the {@link GamePerformance_InitParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param appVersion The version of the app.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetAppVersion(
@@ -415,8 +417,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetAppVersion(
  *
  * @param initParameters Pointer to the {@link GamePerformance_InitParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_AUTH_FAILED} 1010300002 - Invalid caller.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_Init(GamePerformance_InitParameters *initParameters);
@@ -426,8 +431,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_Init(GamePerformance_InitParameter
  * which is used in {@link HMS_GamePerformance_UpdatePackageInfo}.
  *
  * @param packageInfo Output data. {@link GamePerformance_PackageInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreatePackageInfo(GamePerformance_PackageInfo **packageInfo);
@@ -437,8 +442,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreatePackageInfo(GamePerformance_
  *
  * @param packageInfo Secondary pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyPackageInfo(GamePerformance_PackageInfo **packageInfo);
@@ -449,34 +455,35 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyPackageInfo(GamePerformance
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param bundleName The bundleName of the app.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetBundleName(GamePerformance_PackageInfo *packageInfo,
                                                                         const char *bundleName);
-
 /**
  * @brief Set app version for {@link GamePerformance_PackageInfo} instance.
  *
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param appVersion The version of the app.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetAppVersion(GamePerformance_PackageInfo *packageInfo,
                                                                         const char *appVersion);
-
 /**
  * @brief Set engine type for {@link GamePerformance_PackageInfo} instance.
  *
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param engineType The type of the engine {@link GamePerformance_EngineType}.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineType(GamePerformance_PackageInfo *packageInfo,
@@ -488,46 +495,49 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineType(GamePerf
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param engineVersion The version of the engine.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineVersion(GamePerformance_PackageInfo *packageInfo,
                                                                            const char *engineVersion);
-
 /**
  * @brief Set game type for {@link GamePerformance_PackageInfo} instance.
  *
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param gameType The type of the game {@link GamePerformance_GameType}.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetGameType(GamePerformance_PackageInfo *packageInfo,
                                                                       const GamePerformance_GameType gameType);
-
 /**
  * @brief Set whether vulkan is supported  for {@link GamePerformance_PackageInfo} instance.
  *
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param vulkanSupported Whether vulkan is supported.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetVulkanSupported(GamePerformance_PackageInfo *packageInfo,
                                                                              const bool vulkanSupported);
-
 /**
  * @brief Update game package info.
  *
  * @param packageInfo Pointer to the {@link GamePerformance_PackageInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UpdatePackageInfo(GamePerformance_PackageInfo *packageInfo);
@@ -537,8 +547,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdatePackageInfo(GamePerformance_
  * which is used in {@link HMS_GamePerformance_UpdateConfigInfo}.
  *
  * @param configInfo Output data. {@link GamePerformance_ConfigInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreateConfigInfo(GamePerformance_ConfigInfo **configInfo);
@@ -548,8 +558,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateConfigInfo(GamePerformance_C
  *
  * @param configInfo Secondary pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyConfigInfo(GamePerformance_ConfigInfo **configInfo);
@@ -560,8 +571,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyConfigInfo(GamePerformance_
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param maxPictureQualityLevel Max picture quality level.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxPictureQualityLevel(
@@ -573,8 +585,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxPictureQualityLev
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param currentPictureQualityLevel Current picture quality level.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentPictureQualityLevel(
@@ -586,47 +599,48 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentPictureQualit
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param maxFrameRate Max frame rate.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxFrameRate(GamePerformance_ConfigInfo *configInfo,
                                                                          const int64_t maxFrameRate);
-
 /**
  * @brief Set current frame rate for {@link GamePerformance_ConfigInfo} instance.
  *
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param currentFrameRate Current frame rate.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentFrameRate(GamePerformance_ConfigInfo *configInfo,
                                                                              const int64_t currentFrameRate);
-
 /**
  * @brief Set max resolution for {@link GamePerformance_ConfigInfo} instance.
  *
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param maxResolution Max resolution.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxResolution(GamePerformance_ConfigInfo *configInfo,
                                                                           const char *maxResolution);
-
 /**
  * @brief Set current resolution for {@link GamePerformance_ConfigInfo} instance.
  *
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param currentResolution Current resolution.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentResolution(GamePerformance_ConfigInfo *configInfo,
@@ -638,8 +652,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentResolution(Ga
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param antiAliasingEnabled Whether antiAliasing is enabled.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetAntiAliasingEnabled(GamePerformance_ConfigInfo *configInfo,
@@ -651,8 +666,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetAntiAliasingEnabled(
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param shadowEnabled Whether shadow is enabled.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetShadowEnabled(GamePerformance_ConfigInfo *configInfo,
@@ -664,8 +680,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetShadowEnabled(GamePe
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param multithreadingEnabled Whether multi thread is enabled.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMultithreadingEnabled(
@@ -677,8 +694,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMultithreadingEnable
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param particleEnabled Whether particle is enabled.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetParticleEnabled(GamePerformance_ConfigInfo *configInfo,
@@ -690,8 +708,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetParticleEnabled(Game
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param hdModeEnabled Whether HD mode is enabled.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetHdModeEnabled(GamePerformance_ConfigInfo *configInfo,
@@ -702,8 +721,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetHdModeEnabled(GamePe
  *
  * @param configInfo Pointer to the {@link GamePerformance_ConfigInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UpdateConfigInfo(GamePerformance_ConfigInfo *configInfo);
@@ -713,8 +735,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdateConfigInfo(GamePerformance_C
  * which is used in {@link HMS_GamePerformance_UpdateSceneInfo}
  *
  * @param sceneInfo Output data. {@link GamePerformance_SceneInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreateSceneInfo(GamePerformance_SceneInfo **sceneInfo);
@@ -724,8 +746,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateSceneInfo(GamePerformance_Sc
  *
  * @param sceneInfo Secondary pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroySceneInfo(GamePerformance_SceneInfo **sceneInfo);
@@ -736,8 +759,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroySceneInfo(GamePerformance_S
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param sceneID Scene ID.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneID(GamePerformance_SceneInfo *sceneInfo,
@@ -749,21 +773,22 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneID(GamePerforman
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param description Scene description.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDescription(GamePerformance_SceneInfo *sceneInfo,
                                                                        const char *description);
-
 /**
  * @brief Set sub scene ID for {@link GamePerformance_SceneInfo} instance.
  *
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param subSceneID Sub scene ID
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubSceneID(GamePerformance_SceneInfo *sceneInfo,
@@ -775,8 +800,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubSceneID(GamePerfor
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param subDescription Sub scene description.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubDescription(GamePerformance_SceneInfo *sceneInfo,
@@ -788,8 +814,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubDescription(GamePe
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param importanceLevel Importance level of scene {@link GamePerformance_SceneImportanceLevel}
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetImportanceLevel(GamePerformance_SceneInfo *sceneInfo,
@@ -801,8 +828,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetImportanceLevel(GameP
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param sceneFrequency Scene frequency.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneFrequency(GamePerformance_SceneInfo *sceneInfo,
@@ -814,8 +842,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneFrequency(GamePe
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param sceneTime Length of time in the scene.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneTime(GamePerformance_SceneInfo *sceneInfo,
@@ -827,8 +856,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneTime(GamePerform
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param recommendedCpuLevel Recommended CPU level {@link GamePerformance_CpuLevel}.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedCpuLevel(GamePerformance_SceneInfo *sceneInfo,
@@ -840,8 +870,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedCpuLevel(G
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param recommendedGpuLevel Recommended GPU level  {@link GamePerformance_GpuLevel}
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedGpuLevel(GamePerformance_SceneInfo *sceneInfo,
@@ -853,8 +884,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedGpuLevel(G
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param recommendedDdrLevel Recommended DDR level {@link GamePerformance_DdrLevel}.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedDdrLevel(GamePerformance_SceneInfo *sceneInfo,
@@ -866,8 +898,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedDdrLevel(G
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param maxFrameRate Max frame rate in the scene.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMaxFrameRate(GamePerformance_SceneInfo *sceneInfo,
@@ -879,8 +912,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMaxFrameRate(GamePerf
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param currentFrameRate Current frame rate in the scene.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetCurrentFrameRate(GamePerformance_SceneInfo *sceneInfo,
@@ -892,8 +926,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetCurrentFrameRate(Game
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param keyThread Name of key thread.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetKeyThread(GamePerformance_SceneInfo *sceneInfo,
@@ -905,8 +940,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetKeyThread(GamePerform
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param drawCallCount DrawCall count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDrawCallCount(GamePerformance_SceneInfo *sceneInfo,
@@ -918,8 +954,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDrawCallCount(GamePer
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param vertexCount Vertex count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetVertexCount(GamePerformance_SceneInfo *sceneInfo,
@@ -931,8 +968,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetVertexCount(GamePerfo
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param triangleCount Triangle count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTriangleCount(GamePerformance_SceneInfo *sceneInfo,
@@ -944,8 +982,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTriangleCount(GamePer
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param shaderCount Shader count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetShaderCount(GamePerformance_SceneInfo *sceneInfo,
@@ -957,8 +996,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetShaderCount(GamePerfo
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param textureCount Texture count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTextureCount(GamePerformance_SceneInfo *sceneInfo,
@@ -970,8 +1010,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTextureCount(GamePerf
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param meshCount Mesh count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMeshCount(GamePerformance_SceneInfo *sceneInfo,
@@ -983,8 +1024,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMeshCount(GamePerform
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param channelCount Channel count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetChannelCount(GamePerformance_SceneInfo *sceneInfo,
@@ -996,8 +1038,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetChannelCount(GamePerf
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param participantCount Participant count.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetParticipantCount(GamePerformance_SceneInfo *sceneInfo,
@@ -1008,8 +1051,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetParticipantCount(Game
  *
  * @param sceneInfo Pointer to the {@link GamePerformance_SceneInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UpdateSceneInfo(GamePerformance_SceneInfo *sceneInfo);
@@ -1019,8 +1065,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdateSceneInfo(GamePerformance_Sc
  * which is used in {@link HMS_GamePerformance_UpdateNetInfo}.
  *
  * @param netInfo Output data. {@link GamePerformance_NetInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreateNetInfo(GamePerformance_NetInfo **netInfo);
@@ -1030,8 +1076,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateNetInfo(GamePerformance_NetI
  *
  * @param netInfo Secondary pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyNetInfo(GamePerformance_NetInfo **netInfo);
@@ -1042,8 +1089,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyNetInfo(GamePerformance_Net
  * @param netInfo Pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param total Total net latency.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetTotalLatency(GamePerformance_NetInfo *netInfo,
@@ -1055,21 +1103,22 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetTotalLatency(GamePerfor
  * @param netInfo Pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param up Up net latency.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetUplinkLatency(GamePerformance_NetInfo *netInfo,
                                                                        const int64_t up);
-
 /**
  * @brief Set down net latency for {@link GamePerformance_NetInfo} instance.
  *
  * @param netInfo Pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param down Down net latency.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetDownlinkLatency(GamePerformance_NetInfo *netInfo,
@@ -1081,8 +1130,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetDownlinkLatency(GamePer
  * @param netInfo Pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param server Server net latency.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetServerLatency(GamePerformance_NetInfo *netInfo,
@@ -1094,8 +1144,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetServerLatency(GamePerfo
  * @param netInfo Pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param netLoad Net load {@link GamePerformance_NetLoad}.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetNetLoad(GamePerformance_NetInfo *netInfo,
@@ -1106,8 +1157,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetNetLoad(GamePerformance
  *
  * @param netInfo Pointer to the {@link GamePerformance_NetInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UpdateNetInfo(GamePerformance_NetInfo *netInfo);
@@ -1117,8 +1171,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdateNetInfo(GamePerformance_NetI
  * which is used in {@link HMS_GamePerformance_UpdatePlayerInfo}.
  *
  * @param playerInfo Output data. {@link GamePerformance_PlayerInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreatePlayerInfo(GamePerformance_PlayerInfo **playerInfo);
@@ -1128,8 +1182,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreatePlayerInfo(GamePerformance_P
  *
  * @param playerInfo Secondary pointer to the {@link GamePerformance_PlayerInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyPlayerInfo(GamePerformance_PlayerInfo **playerInfo);
@@ -1140,8 +1195,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyPlayerInfo(GamePerformance_
  * @param playerInfo Pointer to the {@link GamePerformance_PlayerInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param gamePlayerId GamePlayerId.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetGamePlayerId(GamePerformance_PlayerInfo *playerInfo,
@@ -1153,8 +1209,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetGamePlayerId(GamePer
  * @param playerInfo Pointer to the {@link GamePerformance_PlayerInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param teamPlayerId TeamPlayerId.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetTeamPlayerId(GamePerformance_PlayerInfo *playerInfo,
@@ -1166,8 +1223,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetTeamPlayerId(GamePer
  * @param playerInfo Pointer to the {@link GamePerformance_PlayerInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param thirdOpenId ThirdOpenId.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetThirdOpenId(GamePerformance_PlayerInfo *playerInfo,
@@ -1178,8 +1236,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetThirdOpenId(GamePerf
  *
  * @param playerInfo Pointer to the {@link GamePerformance_PlayerInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UpdatePlayerInfo(GamePerformance_PlayerInfo *playerInfo);
@@ -1194,8 +1255,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdatePlayerInfo(GamePerformance_P
  * @param size Size of types.
  * @param callback Call back function {@link GamePerformance_ThermalLevelChangedCallback}.
  * @param userData User specific data.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_RegisterThermalLevelChangedCallback(
@@ -1208,8 +1272,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_RegisterThermalLevelChangedCallbac
  * @brief Unsubscribes thermal level change event for the callback.
  *
  * @param callback Call back function {@link GamePerformance_ThermalLevelChangedCallback}.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UnregisterThermalLevelChangedCallback(
@@ -1218,8 +1285,10 @@ GamePerformance_ErrorCode HMS_GamePerformance_UnregisterThermalLevelChangedCallb
 /**
  * @brief Unsubscribes thermal level change event for all of callbacks.
  *
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UnregisterAllThermalLevelChangedCallbacks(void);
@@ -1229,8 +1298,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UnregisterAllThermalLevelChangedCa
  * which is used in {@link HMS_GamePerformance_QueryThermalInfo}.
  *
  * @param parameters Output data. {@link GamePerformance_ThermalInfoQueryParameters} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreateThermalInfoQueryParameters(
@@ -1241,8 +1310,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateThermalInfoQueryParameters(
  *
  * @param parameters Secondary pointer to the {@link GamePerformance_ThermalInfoQueryParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfoQueryParameters(
@@ -1254,8 +1324,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfoQueryParameters(
  * @param parameters Pointer to the {@link GamePerformance_ThermalInfoQueryParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param needsPrediction If need predict thermal trend, thermalMargin and thermalTrend will be answered.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetNeedsPrediction(
@@ -1268,8 +1339,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetNeed
  * The value can not be null. Otherwise, an error code will be returned.
  * @param targetThermalLevel Target thermal level of thermal predict. If need predict thermal trend,
  * thermalMargin and thermalTrend will be answered according to the targetThermalLevel.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetTargetThermalLevel(
@@ -1281,8 +1353,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetTarg
  * @param parameters Pointer to the {@link GamePerformance_ThermalInfoQueryParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param thermalInfo Output data. {@link GamePerformance_ThermalInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_QueryThermalInfo(
@@ -1293,8 +1368,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_QueryThermalInfo(
  *
  * @param thermalInfo Secondary pointer to the {@link GamePerformance_ThermalInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfo(GamePerformance_ThermalInfo **thermalInfo);
@@ -1303,8 +1379,11 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfo(GamePerformance
  * @brief Query GPU info.
  *
  * @param gpuInfo Output data. {@link GamePerformance_GpuInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_QueryGpuInfo(GamePerformance_GpuInfo **gpuInfo);
@@ -1314,8 +1393,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_QueryGpuInfo(GamePerformance_GpuIn
  *
  * @param gpuInfo Secondary pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyGpuInfo(GamePerformance_GpuInfo **gpuInfo);
@@ -1326,8 +1406,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyGpuInfo(GamePerformance_Gpu
  * @param deviceInfo Pointer to the {@link GamePerformance_DeviceInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param gpuInfo Output data. Secondary pointer to the {@link GamePerformance_GpuInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetGpuInfo(GamePerformance_DeviceInfo *deviceInfo,
@@ -1339,8 +1420,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetGpuInfo(GamePerforma
  * @param deviceInfo Pointer to the {@link GamePerformance_DeviceInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param thermalInfo Output data. Secondary pointer to the {@link GamePerformance_GpuInfo} instance.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetThermalInfo(GamePerformance_DeviceInfo *deviceInfo,
@@ -1355,8 +1437,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetThermalInfo(GamePerf
  * provides an estimate of the thermal margin the device will have before it reaches the threshold.
  * A negative value indicates that the system cannot predict thermal margin.
  * Unit: second.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalMargin(GamePerformance_ThermalInfo *thermalInfo,
@@ -1371,8 +1454,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalMargin(GameP
  * Thermal trend, rate of current temperature rise. The value ranges from -100 to 100.
  * A negative value indicates that the temperature is decreasing.
  * The absolute value of the magnitude represents the rate of rise or fall.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalTrend(GamePerformance_ThermalInfo *thermalInfo,
@@ -1385,8 +1469,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalTrend(GamePe
  * The value can not be null. Otherwise, an error code will be returned.
  * @param thermalLevel Output data. Temperature level.
  * Temperature level. A higher value indicates a higher temperature.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalLevel(GamePerformance_ThermalInfo *thermalInfo,
@@ -1398,8 +1483,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalLevel(GamePe
  * @param gpuInfo Pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param gpuLoadLevel Output data.  GPU laod level, the value ranges from 1 to 10 in ascending order.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetGpuLoadLevel(GamePerformance_GpuInfo *gpuInfo,
@@ -1411,8 +1497,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetGpuLoadLevel(GamePerfor
  * @param gpuInfo Pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param vertexLoadLevel Output data. GPU vertex level, the value ranges from 1 to 10 in ascending order.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetVertexLoadLevel(GamePerformance_GpuInfo *gpuInfo,
@@ -1424,8 +1511,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetVertexLoadLevel(GamePer
  * @param gpuInfo Pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param fragmentLoadLevel Output data. GPU fragment load level, the value ranges from 1 to 10 in ascending order.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetFragmentLoadLevel(GamePerformance_GpuInfo *gpuInfo,
@@ -1437,8 +1525,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetFragmentLoadLevel(GameP
  * @param gpuInfo Pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param textureLoadLevel Output data. GPU texture load level, the value ranges from 1 to 10 in ascending order.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetTextureLoadLevel(GamePerformance_GpuInfo *gpuInfo,
@@ -1450,8 +1539,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetTextureLoadLevel(GamePe
  * @param gpuInfo Pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param bandwidthLoadLevel Output data. GPU bindwith load level, the value ranges from 1 to 10 in ascending order.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetBandwidthLoadLevel(GamePerformance_GpuInfo *gpuInfo,
@@ -1463,8 +1553,9 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetBandwidthLoadLevel(Game
  * @param gpuInfo Pointer to the {@link GamePerformance_GpuInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param currentFrequency Output data. current GPU current frequency,
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetCurrentFrequency(GamePerformance_GpuInfo *gpuInfo,
@@ -1475,16 +1566,15 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetCurrentFrequency(GamePe
  *
  * @param deviceInfo Secondary pointer to the {@link GamePerformance_DeviceInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @return Execution result of the function. If the operation is successful, GAME_PERFORMANCE_SUCCESS will be returned,
- * If the operation fails, an error code will be returned. For details, see {@link GamePerformance_ErrorCode}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyDeviceInfo(GamePerformance_DeviceInfo **deviceInfo);
-
 #ifdef __cplusplus
 }
 #endif
-
 #endif //GAME_PERFORMANCE_H
 
 /** @} */

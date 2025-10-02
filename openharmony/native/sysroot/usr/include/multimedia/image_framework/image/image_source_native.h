@@ -177,6 +177,18 @@ Image_ErrorCode OH_ImageSourceInfo_GetHeight(OH_ImageSource_Info *info, uint32_t
 Image_ErrorCode OH_ImageSourceInfo_GetDynamicRange(OH_ImageSource_Info *info, bool *isHdr);
 
 /**
+ * @brief Obtains the MIME type of an image source.
+ *
+ * @param info Pointer to the OH_ImageSource_Info struct.
+ * @param mimetype Pointer to the MIME type of the image source.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if info or mimetype is a null pointer.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimetype);
+
+/**
  * @brief delete OH_ImageSource_Info pointer.
  *
  * @param info The OH_ImageSource_Info pointer will be operated.
@@ -363,6 +375,30 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange(OH_DecodingOptions *op
     int32_t desiredDynamicRange);
 
 /**
+ * @brief Obtains the color space set in the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param colorSpace Pointer to the color space.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or colorSpace is null pointer.
+ * @since 20
+ */
+Image_ErrorCode OH_DecodingOptions_GetDesiredColorSpace(OH_DecodingOptions *options, int32_t *colorSpace);
+
+/**
+ * @brief Sets the desired color space for the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param colorSpace Desired color space.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options is a null pointer or colorSpace is not supported.
+ * @since 20
+ */
+Image_ErrorCode OH_DecodingOptions_SetDesiredColorSpace(OH_DecodingOptions *options, int32_t colorSpace);
+
+/**
  * @brief Sets the crop region for the decoding options.
  *
  * @param options Pointer to the decoding options.
@@ -428,6 +464,21 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromFd(int32_t fd, OH_ImageSourceNati
 Image_ErrorCode OH_ImageSourceNative_CreateFromData(uint8_t *data, size_t dataSize, OH_ImageSourceNative **res);
 
 /**
+ * @brief Create an image source from data buffer. The data buffer is directly accessed by the image source
+ * object, and therefore the data buffer must remain accessible within the lifecycle of the image source object.
+ *
+ * @param data Pointer to the data buffer.
+ * @param datalength Length of the data buffer.
+ * @param imageSource Double pointer to the image source.
+ * @return Result code.
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if data or imageSource is a null pointer or if datalength is 0.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageSourceNative_CreateFromDataWithUserBuffer(uint8_t *data, size_t datalength,
+                                                                  OH_ImageSourceNative **imageSource);
+
+/**
  * @brief Creates an void pointer
  *
  * @param rawFile Indicates the raw file's file descriptor.
@@ -466,7 +517,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} source is nullptr, or picture is nullptr.
  *         {@link IMAGE_BAD_SOURCE} data source exception.
- *         {@link IMAGE_SOURCE_UNSUPPORTED_MIMETYPE} unsupported mime type.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE} unsupported mime type.
  *         {@link IMAGE_SOURCE_TOO_LARGE} image to large.
  *         {@link IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE} unsupported allocator type,
  *         e.g., use share memory to decode a HDR image as only DMA supported hdr metadata.
@@ -512,6 +563,24 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
  * @since 13
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source, OH_DecodingOptionsForPicture *options,
+    OH_PictureNative **picture);
+
+/**
+ * @brief Decodes an image at the specified index into a Picture object.
+ *
+ * @param source Pointer to the image source.
+ * @param index Image index.
+ * @param picture Double pointer to the Picture object obtained after decoding.
+ * @return Result code. 
+ * {@link IMAGE_SUCCESS}: The execution is successful.
+ * {@link IMAGE_BAD_SOURCE}: The data source is abnormal.
+ * {@link IMAGE_SOURCE_UNSUPPORTED_MIMETYPE}: The image format is unsupported.
+ * {@link IMAGE_SOURCE_TOO_LARGE}: The image is too large.
+ * {@link IMAGE_SOURCE_UNSUPPORTED_OPTIONS}: The operation is not supported, for example, invalid index.
+ * {@link IMAGE_DECODE_FAILED}: Decoding fails.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageSourceNative_CreatePictureAtIndex(OH_ImageSourceNative *source, uint32_t index,
     OH_PictureNative **picture);
 
 /**
@@ -648,6 +717,18 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
  * @since 13
  */
 Image_ErrorCode OH_DecodingOptionsForPicture_Release(OH_DecodingOptionsForPicture *options);
+
+/**
+  * @brief Obtains the supported image formats that can be decoded.
+  *
+  * @param supportedFormats Double pointer to an array of the supported image formats.
+  * @param length Pointer to the length of the array.
+  * @return One of the following result codes:
+  *         {@link IMAGE_SUCCESS} if the execution is successful.
+  *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
+  * @since 20
+ */
+Image_ErrorCode OH_ImageSourceNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length);
 #ifdef __cplusplus
 };
 #endif

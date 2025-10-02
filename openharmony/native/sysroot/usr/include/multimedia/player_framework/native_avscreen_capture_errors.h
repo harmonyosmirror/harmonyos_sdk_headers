@@ -60,7 +60,7 @@ typedef enum OH_AVSCREEN_CAPTURE_ErrCode {
      */
     AV_SCREEN_CAPTURE_ERR_NO_MEMORY = AV_SCREEN_CAPTURE_ERR_BASE + 1,
     /**
-     * @error opertation not be permitted.
+     * @error operation not be permitted.
      */
     AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT = AV_SCREEN_CAPTURE_ERR_BASE + 2,
     /**

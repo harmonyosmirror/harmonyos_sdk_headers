@@ -479,6 +479,18 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
  */
 Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
 
+/**
+  * @brief Obtains the supported image formats that can be encoded.
+  *
+  * @param supportedFormats Double pointer to an array of the supported image formats.
+  * @param length Pointer to the length of the array.
+  * @return One of the following result codes:
+  *         {@link IMAGE_SUCCESS} if the execution is successful.
+  *         {@link IMAGE_PACKER_INVALID_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
+  * @since 20
+ */
+Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length);
+
 #ifdef __cplusplus
 };
 #endif

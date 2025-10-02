@@ -84,8 +84,12 @@ typedef enum OH_AVCapabilityFeature {
     VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0,
     /** Feature for codec supports long-term reference. It is only used in video encoder. */
     VIDEO_ENCODER_LONG_TERM_REFERENCE = 1,
-    /** Feature for codec supports low latency. It is used in video encoder and video decoder. */
+    /** Feature for codec supports low latency. It is only used in video decoder. */
     VIDEO_LOW_LATENCY = 2,
+    /** Feature for codec supports B-frame encoding. It is only used in video encoder.
+    * @since 20
+    */
+    VIDEO_ENCODER_B_FRAME = 7,
 } OH_AVCapabilityFeature;
 
 /**
@@ -206,6 +210,22 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capabili
  */
 OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates,
                                                           uint32_t *sampleRateNum);
+
+/**
+ * @brief Get the audio codec's supported sample rate ranges.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @param capability Audio codec capability pointer. Do not give a video codec capability pointer
+ * @param sampleRateRanges Output parameter. A pointer to the sample rate ranges array
+ * @param rangesNum Output parameter. The element number of the sample rate ranges array
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
+ * {@link AV_ERR_INVALID_VAL}, the capability is invalid, the sampleRateRanges is nullptr, or rangesNum is nullptr.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_NO_MEMORY}, internal use memory malloc failed.
+ * @since 20
+ */
+OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability,
+                                                               OH_AVRange **sampleRateRanges, uint32_t *rangesNum);
 
 /**
  * @brief Get the audio codec's supported audio channel count range.

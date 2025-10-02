@@ -64,6 +64,10 @@
 #endif // __WIN32
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 NAPI_EXTERN napi_status napi_create_string_utf16(napi_env env,
                                                  const char16_t* str,
                                                  size_t length,
@@ -87,10 +91,6 @@ NAPI_EXTERN napi_status napi_check_object_type_tag(napi_env env,
 NAPI_INNER_EXTERN napi_status napi_adjust_external_memory(napi_env env,
                                                           int64_t change_in_bytes,
                                                           int64_t* adjusted_value);
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /**
  * @brief Native detach callback of napi_coerce_to_native_binding_object that can be used to
@@ -316,7 +316,7 @@ NAPI_EXTERN napi_status napi_create_object_with_named_properties(napi_env env,
  * @brief This API sets native properties to a object and converts this ArkTS object to native binding object.
  *
  * @param env Current running virtual machine context.
- * @param js_object The JavaScript value to coerce.
+ * @param js_object The ArkTS value to coerce.
  * @param detach_cb Native callback that can be used to detach the ArkTS object and the native object.
  * @param attach_cb Native callback that can be used to bind the ArkTS object and the native object.
  * @param native_object User-provided native instance to pass to thr detach callback and attach callback.
@@ -338,8 +338,8 @@ NAPI_EXTERN napi_status napi_coerce_to_native_binding_object(napi_env env,
  * @param env Current running virtual machine context.
  * @param js_object The ArkTS object value.
  * @param native_object Native object to bind with the ArkTS object.
- * @param finalize_cb Native callback that can be used to free the native object when the ArkTS object is
- garbage-collected.
+ * @param finalize_cb Native callback that can be used to free the native object
+ *                    when the ArkTS object is garbage-collected.
  * @param finalize_hint Optional contextual hint that is passed to the finalize callback.
  * @param result Optional reference of the ArkTS object.
  *
@@ -399,7 +399,7 @@ NAPI_EXTERN napi_status napi_destroy_ark_runtime(napi_env* env);
  * @param data Optional data to be passed to the constructor callback as the data property of the callback info.
  * @param property_count Number of items in the properties array argument.
  * @param properties Array of property descriptors describing static and instance data properties, accessors, and
- *                    methods on the class. See napi_property_descriptor.
+ *                   methods on the class. See napi_property_descriptor.
  * @param parent A napi_value representing the Superclass.
  * @param result A napi_value representing the constructor function for the class.
  *
@@ -445,36 +445,9 @@ NAPI_EXTERN napi_status napi_create_sendable_object_with_properties(napi_env env
                                                                     size_t property_count,
                                                                     const napi_property_descriptor* properties,
                                                                     napi_value* result);
-/**
- * @brief Wraps a native instance in a ArkTS object.
- * @param env The environment that the API is invoked under.
- * @param js_object The ArkTS object that will be the wrapper for the native object.
- * @param native_object The native instance that will be wrapped in the ArkTS object.
- * @param finalize_cb Optional native callback that can be used to free the native instance when the ArkTS object
- * has been garbage-collected.
- * @param async_finalizer A bool value to determine that finalize_cb execute async or not.
- * @param finalize_hint Optional contextual hint that is passed to the finalize callback.
- * @param native_binding_size The size of native binding.
- * @param result Optional reference to the wrapped object.
- *
- * @return Returns the function execution status.
- *         {@link napi_ok } If the function executedd successfully.\n
- *         {@link napi_invalid_arg } If the param env, js_object or native_object is nullptr.\n
- *         {@link napi_object_expected } If the param js_object is not an ArkTS Object or Function.\n
- *         {@link napi_pending_exception } If have uncaught exception, or exception occured in execution.\n
- * @since 18
- */
-NAPI_EXTERN napi_status napi_wrap_enhance(napi_env env,
-                                          napi_value js_object,
-                                          void* native_object,
-                                          napi_finalize finalize_cb,
-                                          bool async_finalizer,
-                                          void* finalize_hint,
-                                          size_t native_binding_size,
-                                          napi_ref* result);
 
 /**
- * @brief Wraps a native instance in a ArkTS object.
+ * @brief Wraps a native instance in an ArkTS object.
  *
  * @param env The environment that the API is invoked under.
  * @param js_object The ArkTS object that will be the wrapper for the native object.
@@ -493,7 +466,7 @@ NAPI_EXTERN napi_status napi_wrap_sendable(napi_env env,
                                            void* finalize_hint);
 
 /**
- * @brief Wraps a native instance in a ArkTS object.
+ * @brief Wraps a native instance in an ArkTS object.
  *
  * @param env The environment that the API is invoked under.
  * @param js_object The ArkTS object that will be the wrapper for the native object.
@@ -514,7 +487,7 @@ NAPI_EXTERN napi_status napi_wrap_sendable_with_size(napi_env env,
                                                      size_t native_binding_size);
 
 /**
- * @brief Retrieves a native instance that was previously wrapped in a ArkTS object.
+ * @brief Retrieves a native instance that was previously wrapped in an ArkTS object.
  *
  * @param env The environment that the API is invoked under.
  * @param js_object The object associated with the native instance.
@@ -528,7 +501,7 @@ NAPI_EXTERN napi_status napi_unwrap_sendable(napi_env env,
                                              void** result);
 
 /**
- * @brief Retrieves a native instance that was previously wrapped in a ArkTS object and removes the wrapping.
+ * @brief Retrieves a native instance that was previously wrapped in an ArkTS object and removes the wrapping.
  *
  * @param env The environment that the API is invoked under.
  * @param js_object The object associated with the native instance.
@@ -631,7 +604,7 @@ NAPI_EXTERN napi_status napi_run_event_loop(napi_env env,
 NAPI_EXTERN napi_status napi_stop_event_loop(napi_env env);
 
 /**
- * @brief Serialize a ArkTS object.
+ * @brief Serialize an ArkTS object.
  *
  * @param env Current running virtual machine context.
  * @param object The ArkTS object to serialize.
@@ -649,7 +622,7 @@ NAPI_EXTERN napi_status napi_serialize(napi_env env,
                                        void** result);
 
 /**
- * @brief Restore serialization data to a ArkTS object.
+ * @brief Restore serialization data to an ArkTS object.
  *
  * @param env Current running virtual machine context.
  * @param buffer Data to deserialize.
@@ -682,8 +655,8 @@ NAPI_EXTERN napi_status napi_delete_serialization_data(napi_env env,
  * @param data Indicates the data anticipated to be transferred to the ArkTS thread.
  * @param priority Indicates the priority of the task dispatched.
  * @param isTail Indicates the way of the task dispatched into the native event queue. When "isTail" is true,
- *        the task will be dispatched to the tail of the native event queue. Conversely, when "isTail" is false, the
- *        tasks will be dispatched to the head of the native event queue.
+ *               the task will be dispatched to the tail of the native event queue. Conversely, when "isTail" is
+ *               false, the tasks will be dispatched to the head of the native event queue.
  *
  * @return Return the function execution status.
  * @since 12
@@ -699,13 +672,17 @@ NAPI_EXTERN napi_status napi_call_threadsafe_function_with_priority(napi_threads
  * @param err Error object which is passed to 'UncaughtException'.
  *
  * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) err is nullptr;\n
+ *                                   If the param err is not an ArkTS Error value.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before execution.\n
  * @since 12
  */
 NAPI_EXTERN napi_status napi_fatal_exception(napi_env env,
                                              napi_value err);
 
 /**
- * @brief Allows a ArkTS function to be called in the asynchronous context. The capabilities related to 'async_hook'
+ * @brief Allows an ArkTS function to be called in the asynchronous context. The capabilities related to 'async_hook'
  *        are not supported currently.
  * @param env Current running virtual machine context.
  * @param async_context The context environment for the async operation.
@@ -716,6 +693,12 @@ NAPI_EXTERN napi_status napi_fatal_exception(napi_env env,
  * @param result Result returned by the ArkTS function.
  *
  * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, func and(or) recv is nullptr;\n
+ *                                   If the param argc is greater than 0 but argv is nullptr.\n
+ *         {@link napi_object_expected } If the param recv is not an ArkTS Object.\n
+ *         {@link napi_function_expected } If the param func is not an ArkTS Function.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
  * @since 11
  */
 NAPI_EXTERN napi_status napi_make_callback(napi_env env,
@@ -753,7 +736,7 @@ NAPI_EXTERN napi_status napi_create_buffer(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, deferred or resolution is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  *         {@link napi_generic_failure } If create promise failed.\n
  * @since 10
  */
@@ -769,7 +752,7 @@ NAPI_EXTERN napi_status napi_create_promise(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, deferred or resolution is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_resolve_deferred(napi_env env,
@@ -784,7 +767,7 @@ NAPI_EXTERN napi_status napi_resolve_deferred(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, deferred or rejection is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_reject_deferred(napi_env env,
@@ -947,7 +930,7 @@ NAPI_EXTERN napi_status napi_ref_threadsafe_function(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_create_date(napi_env env,
@@ -978,7 +961,7 @@ NAPI_EXTERN napi_status napi_is_date(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  *         {@link napi_date_expected } If the 'value' is not a 'Date' object.\n
  * @since 10
  */
@@ -987,7 +970,7 @@ NAPI_EXTERN napi_status napi_get_date_value(napi_env env,
                                             double* result);
 
 /**
- * @brief Creates a ArkTS BigInt from C int64 data.
+ * @brief Creates an ArkTS BigInt from C int64 data.
  *
  * @param env Current running virtual machine context.
  * @param value C int64 data.
@@ -1002,7 +985,7 @@ NAPI_EXTERN napi_status napi_create_bigint_int64(napi_env env,
                                                  napi_value* result);
 
 /**
- * @brief Creates a ArkTS BigInt from C int64 data.
+ * @brief Creates an ArkTS BigInt from C int64 data.
  *
  * @param env Current running virtual machine context.
  * @param value C int64 data.
@@ -1027,7 +1010,7 @@ NAPI_EXTERN napi_status napi_create_bigint_uint64(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, words or result is nullptr or word_count is larger than 2147483647.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_create_bigint_words(napi_env env,
@@ -1110,7 +1093,7 @@ NAPI_EXTERN napi_status napi_get_value_bigint_words(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, data or result is nullptr, or length is larger than 2097152,
  *                                   or length is less than or equal to zero.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_create_external_buffer(napi_env env,
@@ -1181,7 +1164,7 @@ NAPI_EXTERN napi_status napi_get_buffer_info(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or object is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_object_freeze(napi_env env,
@@ -1196,7 +1179,7 @@ NAPI_EXTERN napi_status napi_object_freeze(napi_env env,
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or object is nullptr.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  * @since 10
  */
 NAPI_EXTERN napi_status napi_object_seal(napi_env env,
@@ -1250,7 +1233,7 @@ NAPI_EXTERN napi_status napi_is_detached_arraybuffer(napi_env env,
  *         {@link napi_invalid_arg } If env, object or result is nullptr;\n
  *                                   key_mode is not enumeration value of napi_key_collection_mode;\n
  *                                   key_conversion is not enumeration value of napi_key_conversion.\n
- *         {@link napi_pending_exception } If a ArkTS exception existed when the function was called.\n
+ *         {@link napi_pending_exception } If an ArkTS exception existed when the function was called.\n
  *         {@link napi_object_expected } If object is not object type and function type.\n
  * @since 10
  */
@@ -1266,7 +1249,7 @@ NAPI_EXTERN napi_status napi_get_all_property_names(napi_env env,
  *
  * @param mod Native module of type 'napi_module' to be registered.
  * @since 10
-*/
+ */
 NAPI_EXTERN void napi_module_register(napi_module* mod);
 
 /**
@@ -1279,12 +1262,12 @@ NAPI_EXTERN void napi_module_register(napi_module* mod);
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_get_last_error_info(napi_env env,
                                                  const napi_extended_error_info** result);
 
 /**
- * @brief Throws a ArkTS error.
+ * @brief Throws an ArkTS error.
  * @param env Current running virtual machine context.
  * @param error The ArkTS error to be thrown.
  *
@@ -1292,11 +1275,11 @@ NAPI_EXTERN napi_status napi_get_last_error_info(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or error is nullptr, or error is not an error object.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_throw(napi_env env, napi_value error);
 
 /**
- * @brief Throws a ArkTS Error with text information.
+ * @brief Throws an ArkTS Error with text information.
  * @param env Current running virtual machine context.
  * @param code Optional error code to set on the error.
  * @param msg C string representing the text to be associated with the error.
@@ -1305,13 +1288,13 @@ NAPI_EXTERN napi_status napi_throw(napi_env env, napi_value error);
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or msg is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_throw_error(napi_env env,
                                          const char* code,
                                          const char* msg);
 
 /**
- * @brief Throws a ArkTS TypeError with text information.
+ * @brief Throws an ArkTS TypeError with text information.
  * @param env Current running virtual machine context.
  * @param code Optional error code to set on the error.
  * @param msg C string representing the text to be associated with the error.
@@ -1320,13 +1303,13 @@ NAPI_EXTERN napi_status napi_throw_error(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or msg is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_throw_type_error(napi_env env,
                                               const char* code,
                                               const char* msg);
 
 /**
- * @brief Throws a ArkTS RangeError with text information.
+ * @brief Throws an ArkTS RangeError with text information.
  * @param env Current running virtual machine context.
  * @param code Optional error code to set on the error.
  * @param msg C string representing the text to be associated with the error.
@@ -1335,7 +1318,7 @@ NAPI_EXTERN napi_status napi_throw_type_error(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or msg is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_throw_range_error(napi_env env,
                                                const char* code,
                                                const char* msg);
@@ -1350,13 +1333,13 @@ NAPI_EXTERN napi_status napi_throw_range_error(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_is_error(napi_env env,
                                       napi_value value,
                                       bool* result);
 
 /**
- * @brief Creates a ArkTS Error with text information.
+ * @brief Creates an ArkTS Error with text information.
  * @param env Current running virtual machine context.
  * @param code Optional error code to set on the error.
  * @param msg napi_value representing the EcmaScript string to be associated with the error.
@@ -1364,17 +1347,17 @@ NAPI_EXTERN napi_status napi_is_error(napi_env env,
  *
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
- *         {@link napi_invalid_arg } If env, msg or result is nullptr, code is not string and number type or msg is
+ *         {@link napi_invalid_arg } If env, msg or result is nullptr, code is not string and number type or msg is\n
  *                                   not a string type.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_create_error(napi_env env,
                                           napi_value code,
                                           napi_value msg,
                                           napi_value* result);
 
 /**
- * @brief Creates a ArkTS TypeError with text information.
+ * @brief Creates an ArkTS TypeError with text information.
  * @param env Current running virtual machine context.
  * @param code Optional error code to set on the error.
  * @param msg napi_value representing the EcmaScript string to be associated with the error.
@@ -1382,17 +1365,17 @@ NAPI_EXTERN napi_status napi_create_error(napi_env env,
  *
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
- *         {@link napi_invalid_arg } If env, msg or result is nullptr, code is not string and number type or msg is
+ *         {@link napi_invalid_arg } If env, msg or result is nullptr, code is not string and number type or msg is\n
  *                                   not a string type.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_create_type_error(napi_env env,
                                                napi_value code,
                                                napi_value msg,
                                                napi_value* result);
 
 /**
- * @brief Creates a ArkTS RangeError with text information.
+ * @brief Creates an ArkTS RangeError with text information.
  * @param env Current running virtual machine context.
  * @param code Optional error code to set on the error.
  * @param msg napi_value representing the EcmaScript string to be associated with the error.
@@ -1400,10 +1383,10 @@ NAPI_EXTERN napi_status napi_create_type_error(napi_env env,
  *
  * @return Returns the function execution status.
  *         {@link napi_ok } If the function executed successfully.\n
- *         {@link napi_invalid_arg } If env, msg or result is nullptr, code is not string and number type or msg is
+ *         {@link napi_invalid_arg } If env, msg or result is nullptr, code is not string and number type or msg is\n
  *                                   not a string type.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_create_range_error(napi_env env,
                                                 napi_value code,
                                                 napi_value msg,
@@ -1418,7 +1401,7 @@ NAPI_EXTERN napi_status napi_create_range_error(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_is_exception_pending(napi_env env, bool* result);
 
 /**
@@ -1430,7 +1413,7 @@ NAPI_EXTERN napi_status napi_is_exception_pending(napi_env env, bool* result);
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_get_and_clear_last_exception(napi_env env,
                                                           napi_value* result);
 
@@ -1442,7 +1425,7 @@ NAPI_EXTERN napi_status napi_get_and_clear_last_exception(napi_env env,
  * @param message_len The byte length of the message, or NAPI_AUTO_LENGTH if it is terminated by a null character.
  *
  * @since 10
-*/
+ */
 NAPI_EXTERN NAPI_NO_RETURN void napi_fatal_error(const char* location,
                                                  size_t location_len,
                                                  const char* message,
@@ -1457,7 +1440,7 @@ NAPI_EXTERN NAPI_NO_RETURN void napi_fatal_error(const char* location,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_open_handle_scope(napi_env env,
                                                napi_handle_scope* result);
 
@@ -1471,7 +1454,7 @@ NAPI_EXTERN napi_status napi_open_handle_scope(napi_env env,
  *         {@link napi_invalid_arg } If env or scope is nullptr.\n
  *         {@link napi_handle_scope_mismatch } If there is no scope still existed.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_close_handle_scope(napi_env env,
                                                 napi_handle_scope scope);
 
@@ -1484,7 +1467,7 @@ NAPI_EXTERN napi_status napi_close_handle_scope(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_open_escapable_handle_scope(napi_env env,
                                                          napi_escapable_handle_scope* result);
 
@@ -1498,7 +1481,7 @@ NAPI_EXTERN napi_status napi_open_escapable_handle_scope(napi_env env,
  *         {@link napi_invalid_arg } If env or scope is nullptr.\n
  *         {@link napi_handle_scope_mismatch } If there is no scope still existed.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_close_escapable_handle_scope(napi_env env,
                                                           napi_escapable_handle_scope scope);
 
@@ -1513,7 +1496,7 @@ NAPI_EXTERN napi_status napi_close_escapable_handle_scope(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, scope, escapee or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_escape_handle(napi_env env,
                                            napi_escapable_handle_scope scope,
                                            napi_value escapee,
@@ -1530,7 +1513,7 @@ NAPI_EXTERN napi_status napi_escape_handle(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_create_reference(napi_env env,
                                               napi_value value,
                                               uint32_t initial_refcount,
@@ -1545,7 +1528,7 @@ NAPI_EXTERN napi_status napi_create_reference(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or ref is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_delete_reference(napi_env env, napi_ref ref);
 
 /**
@@ -1558,7 +1541,7 @@ NAPI_EXTERN napi_status napi_delete_reference(napi_env env, napi_ref ref);
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or ref is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_reference_ref(napi_env env,
                                            napi_ref ref,
                                            uint32_t* result);
@@ -1573,7 +1556,7 @@ NAPI_EXTERN napi_status napi_reference_ref(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env or ref is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_reference_unref(napi_env env,
                                              napi_ref ref,
                                              uint32_t* result);
@@ -1588,7 +1571,7 @@ NAPI_EXTERN napi_status napi_reference_unref(napi_env env,
  *         {@link napi_ok } If the function executed successfully.\n
  *         {@link napi_invalid_arg } If env, ref or result is nullptr.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_get_reference_value(napi_env env,
                                                  napi_ref ref,
                                                  napi_value* result);
@@ -1606,7 +1589,7 @@ NAPI_EXTERN napi_status napi_get_reference_value(napi_env env,
  *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
  *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_has_own_property(napi_env env,
                                               napi_value object,
                                               napi_value key,
@@ -1630,7 +1613,7 @@ NAPI_EXTERN napi_status napi_has_own_property(napi_env env,
  *         {@link napi_function_expected } If the param func is not an ArkTS Function.\n
  *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
  * @since 10
-*/
+ */
 NAPI_EXTERN napi_status napi_define_class(napi_env env,
                                           const char* utf8name,
                                           size_t length,
@@ -1639,6 +1622,1266 @@ NAPI_EXTERN napi_status napi_define_class(napi_env env,
                                           size_t property_count,
                                           const napi_property_descriptor* properties,
                                           napi_value* result);
+
+/**
+ * @brief Creates an ArkTS symbol.
+ * @param env Current running virtual machine context.
+ * @param description Optional napi_value representing an ArkTS string to describe the symbol.
+ * @param result A napi_value representing an ArkTS symbol.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr;\n
+ *                                   If the param description is not nullptr and is not an ArkTS String.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_symbol(napi_env env,
+                                           napi_value description,
+                                           napi_value* result);
+
+/**
+ * @brief Create an ArkTS function. This is the primary mechanism to call back into native code from ArkTS.
+ * @param env Current running virtual machine context.
+ * @param utf8name The visible within ArkTS as the new function's name property.
+ * @param length The length oh the utf8name, or NAPI_AUTO_LENGTH if it is null-terminated.
+ * @param cb The native function which should be called when this function object is called.
+ * @param data User-provided data context. This will be passed back into the function when invoked.
+ * @param result The newly created ArkTS function.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, cb and(or) result is nullptr.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_function(napi_env env,
+                                             const char* utf8name,
+                                             size_t length,
+                                             napi_callback cb,
+                                             void* data,
+                                             napi_value* result);
+
+/**
+ * @brief Similar to typeof operation, support external value, detects null as a separate type.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value whose type expects to query.
+ * @param result The type of ArkTS value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_typeof(napi_env env,
+                                    napi_value value,
+                                    napi_valuetype* result);
+
+/**
+ * @brief Obtains the double value corresponding to the given ArkTS value.
+ * @param env Current running virtual machine context.
+ * @param value ArkTS number.
+ * @param result The C primitive equivalent of ArkTS value as double.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ *         {@link napi_number_expected } If a non-number ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_double(napi_env env,
+                                              napi_value value,
+                                              double* result);
+
+/**
+ * @brief Obtains the int32_t value corresponding to the given ArkTS value.
+ * @param env Current running virtual machine context.
+ * @param value ArkTS number.
+ * @param result The C primitive equivalent of ArkTS value as int32_t.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ *         {@link napi_number_expected } If a non-number ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_int32(napi_env env,
+                                             napi_value value,
+                                             int32_t* result);
+
+/**
+ * @brief Obtains the uint32_t value corresponding to the given ArkTS value.
+ * @param env Current running virtual machine context.
+ * @param value ArkTS number.
+ * @param result The C primitive equivalent of ArkTS value as uint32_t.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ *         {@link napi_number_expected } If a non-number ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_uint32(napi_env env,
+                                              napi_value value,
+                                              uint32_t* result);
+
+/**
+ * @brief Obtains the int64_t value corresponding to the given ArkTS value.
+ * @param env Current running virtual machine context.
+ * @param value ArkTS number.
+ * @param result The C primitive equivalent of ArkTS value as int64_t.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ *         {@link napi_number_expected } If a non-number ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_int64(napi_env env,
+                                             napi_value value,
+                                             int64_t* result);
+
+/**
+ * @brief Obtains the C Boolean equivalent of an ArkTS Boolean value.
+ * @param env Current running virtual machine context.
+ * @param value A napi_value representing ArkTS Boolean.
+ * @param result The C boolean equivalent of the ArkTS Boolean.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ *         {@link napi_boolean_expected } If a non-boolean ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_bool(napi_env env,
+                                            napi_value value,
+                                            bool* result);
+
+/**
+ * @brief Obtains the ISO-8859-1-encoded string corresponding to the given ArkTS value.
+ * @param env Current running virtual machine context.
+ * @param value ArkTS string.
+ * @param buf Destination buffer that will be filled with the provided ISO-8859-1-encoded string.
+ * @param bufsize The size of the buffer 'buf'.
+ * @param result The length of the string in ISO-8859-1-encoded format.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) value is nullptr;\n
+ *                                   If the param buf and result both are nullptr.\n
+ *         {@link napi_string_expected } If a non-string ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_string_latin1(napi_env env,
+                                                     napi_value value,
+                                                     char* buf,
+                                                     size_t bufsize,
+                                                     size_t* result);
+
+/**
+ * @brief Obtains the UTF8-encoded string corresponding to the given ArkTS value.
+ * @param env Current running virtual machine context.
+ * @param value ArkTS string.
+ * @param buf Destination buffer that will be filled with the provided UTF8-encoded string.
+ * @param bufsize The size of the buffer 'buf'.
+ * @param result The length of the string in UTF8-encoded format.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) value is nullptr;\n
+ *                                   If the param buf and result both are nullptr.\n
+ *         {@link napi_string_expected } If a non-string ArkTS value passed in it.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_string_utf8(napi_env env,
+                                                   napi_value value,
+                                                   char* buf,
+                                                   size_t bufsize,
+                                                   size_t* result);
+
+/**
+ * @brief Obtains the ArkTS undefined value.
+ * @param env Current running virtual machine context.
+ * @param result The ArkTS undefined value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the parameter env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_undefined(napi_env env, napi_value* result);
+
+/**
+ * @brief Obtains the ArkTS null value.
+ * @param env Current running virtual machine context.
+ * @param result The ArkTS null value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_null(napi_env env, napi_value* result);
+
+/**
+ * @brief Obtains the ArkTS global object.
+ * @param env Current running virtual machine context.
+ * @param result The ArkTS global Object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_global(napi_env env, napi_value* result);
+
+/**
+ * @brief Obtains the ArkTS singleton value corresponding to given C primitive boolean value.
+ * @param env Current running virtual machine context.
+ * @param value C primitive boolean value.
+ * @param result The ArkTS singleton value equivalent of C primitive boolean value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_boolean(napi_env env,
+                                         bool value,
+                                         napi_value* result);
+
+// Methods to create Primitive types/Objects
+
+/**
+ * @brief Creates a default ArkTS object.
+ * @param env Current running virtual machine context.
+ * @param result napi_value representing an ArkTS object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_object(napi_env env, napi_value* result);
+
+/**
+ * @brief Creates an ArkTS array.
+ * @param env Current running virtual machine context.
+ * @param result napi_value representing an ArkTS Array.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_array(napi_env env, napi_value* result);
+
+/**
+ * @brief Creates an ArkTS array of the specified length.
+ * @param env Current running virtual machine context.
+ * @param length The length of the Array.
+ * @param result napi_value representing an ArkTS Array.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_array_with_length(napi_env env,
+                                                      size_t length,
+                                                      napi_value* result);
+
+/**
+ * @brief Creates an ArkTS number from C double data.
+ * @param env Current running virtual machine context.
+ * @param value The double value to be represented in ArkTS.
+ * @param result A napi_value representing an ArkTS number.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_double(napi_env env,
+                                           double value,
+                                           napi_value* result);
+
+/**
+ * @brief Creates an ArkTS number from C int32_t data.
+ * @param env Current running virtual machine context.
+ * @param value The int32 value to be represented in ArkTS.
+ * @param result A napi_value representing an ArkTS number.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_int32(napi_env env,
+                                          int32_t value,
+                                          napi_value* result);
+
+/**
+ * @brief Creates an ArkTS number from C uint32_t data.
+ * @param env Current running virtual machine context.
+ * @param value The uint32 value to be represented in ArkTS.
+ * @param result A napi_value representing an ArkTS number.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_uint32(napi_env env,
+                                           uint32_t value,
+                                           napi_value* result);
+
+/**
+ * @brief Creates an ArkTS number from C int64_t data.
+ * @param env Current running virtual machine context.
+ * @param value The int64 value to be represented in ArkTS.
+ * @param result A napi_value representing an ArkTS number.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_int64(napi_env env,
+                                          int64_t value,
+                                          napi_value* result);
+
+/**
+ * @brief Creates an ArkTS string from an ISO-8859-1-encoded C string.
+ * @param env Current running virtual machine context.
+ * @param str C string encoded in ISO-8859-1-encoded format.
+ * @param length The length of the C string 'str'.
+ * @param result Result of the ArkTS string from the ISO-8859-1-encoded C string.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, str and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_string_latin1(napi_env env,
+                                                  const char* str,
+                                                  size_t length,
+                                                  napi_value* result);
+
+/**
+ * @brief Creates an ArkTS string from a UTF8-encoded C string.
+ * @param env Current running virtual machine context.
+ * @param str C string encoded in UTF8 format.
+ * @param length The length of the C string 'str'.
+ * @param result Result of the ArkTS string from the UTF8-encoded C string.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, str and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_string_utf8(napi_env env,
+                                                const char* str,
+                                                size_t length,
+                                                napi_value* result);
+
+/**
+ * @brief Checks if the ArkTS value is an ArkTS ArrayBuffer.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to check.
+ * @param result Whether the given ArkTS value is an ArkTS ArrayBuffer.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_is_arraybuffer(napi_env env,
+                                            napi_value value,
+                                            bool* result);
+/**
+ * @brief Creates an ArkTS ArrayBuffer of the specified size.
+ * @param env Current running virtual machine context.
+ * @param byte_length The length in bytes of the array buffer.
+ * @param data The byte buffer of the ArrayBuffer.
+ * @param result A napi_value representing an ArkTS ArrayBuffer.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, data and(or) result is nullptr.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_arraybuffer(napi_env env,
+                                                size_t byte_length,
+                                                void** data,
+                                                napi_value* result);
+
+/**
+ * @brief Allocates a JS value with external data.
+ * @param env Current running virtual machine context.
+ * @param data Allocates a JS value that references external data.
+ * @param finalize_cb Optional callback to call when the external value is being collected.
+ * @param finalize_hint Optional hint that can be passed to the finalize callback function during the garbage
+ *                      collection process.
+ * @param result A napi_value representing an external value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env or result is nullptr.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_external(napi_env env,
+                                             void* data,
+                                             napi_finalize finalize_cb,
+                                             void* finalize_hint,
+                                             napi_value* result);
+
+/**
+ * @brief The underlying data that ArrayBuffer point to.
+ * @param env Current running virtual machine context.
+ * @param external_data Allocates an ArkTS value that references external data.
+ * @param byte_length The length in bytes of the underlying buffer.
+ * @param finalize_cb Optional callback to call when the ArrayBuffer is being collected.
+ * @param finalize_hint Optional hint that can be passed to the finalize callback function during the garbage
+ *                      collection process.
+ * @param result A napi_value representing an ArkTS ArrayBuffer.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, external_data, finalize_cb and(or) result is nullptr.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_external_arraybuffer(napi_env env,
+                                                         void* external_data,
+                                                         size_t byte_length,
+                                                         napi_finalize finalize_cb,
+                                                         void* finalize_hint,
+                                                         napi_value* result);
+
+/**
+ * @brief Obtains the underlying data buffer of ArrayBuffer and its length.
+ * @param env Current running virtual machine context.
+ * @param arraybuffer The napi_value representing the ArrayBuffer being queried.
+ * @param data The underlying data buffer of the ArrayBuffer.
+ * @param byte_length Length in bytes of the underlying data buffer.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, arraybuffer and(or) byte_length is nullptr.\n
+ *         {@link napi_arraybuffer_expected } If the param is neither ArkTS TypedArray nor SendableArrayBuffer.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_arraybuffer_info(napi_env env,
+                                                  napi_value arraybuffer,
+                                                  void** data,
+                                                  size_t* byte_length);
+
+/**
+ * @brief Checks if the ArkTS value is an ArkTS TypedArray.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to check.
+ * @param result Whether the given ArkTS value is an ArkTS TypedArray.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_is_typedarray(napi_env env,
+                                           napi_value value,
+                                           bool* result);
+/**
+ * @brief Creates an ArkTS TypeArray from an existing ArrayBuffer.
+ * @param env Current running virtual machine context.
+ * @param type The element datatype of the TypedArray.
+ * @param length Number of elements in the TypedArray.
+ * @param arraybuffer The underlying ArrayBuffer that supports the TypedArray.
+ * @param byte_offset The byte offset within the ArrayBuffer from which to start projecting the TypedArray.
+ * @param result A napi_value representing an ArkTS TypedArray.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, arraybuffer and(or) result is nullptr;\n
+ *                                   If param type is not a valid napi_typedarray_type.\n
+ *         {@link napi_arraybuffer_expected } If a non-arraybuffer ArkTS value passed in it.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_typedarray(napi_env env,
+                                               napi_typedarray_type type,
+                                               size_t length,
+                                               napi_value arraybuffer,
+                                               size_t byte_offset,
+                                               napi_value* result);
+
+/**
+ * @brief Obtains properties of a TypedArray.
+ * @param env Current running virtual machine context.
+ * @param typedarray The napi_value for the TypedArray whose properties are being checked.
+ * @param type The datatype of elements in the TypedArray.
+ * @param length The number of elements in the TypedArray.
+ * @param data The data buffer underlying the TypedArray adjusted by the byte_offset.
+ * @param arraybuffer The ArrayBuffer underlying the TypedArray.
+ * @param byte_offset The byte offset within the underlying arraybuffer
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) typedarray is nullptr;\n
+ *                                    If the param typedarray is neither ArkTS TypedArray nor SendableTypedArray.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_typedarray_info(napi_env env,
+                                                 napi_value typedarray,
+                                                 napi_typedarray_type* type,
+                                                 size_t* length,
+                                                 void** data,
+                                                 napi_value* arraybuffer,
+                                                 size_t* byte_offset);
+
+/**
+ * @brief Creates an ArkTS DataView from an existing ArrayBuffer.
+ * @param env Current running virtual machine context.
+ * @param length Number of elements in the DataView.
+ * @param arraybuffer The underlying ArrayBuffer that supports the DataView.
+ * @param byte_offset The byte offset within the ArrayBuffer from which to start projecting the DataView.
+ * @param result A napi_value representing an ArkTS DataView.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, arraybuffer and(or) result is nullptr.\n
+ *         {@link napi_arraybuffer_expected } If a non-arraybuffer ArkTS value passed in it.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ *                                         If the sum of byte_length and length is greater than the byte length of\n
+ *                                         the arraybuffer.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_dataview(napi_env env,
+                                             size_t length,
+                                             napi_value arraybuffer,
+                                             size_t byte_offset,
+                                             napi_value* result);
+
+/**
+ * @brief Checks if the ArkTS value is an ArkTS DataView.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to check.
+ * @param result Whether the given ArkTS value is an ArkTS DataView.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_is_dataview(napi_env env,
+                                         napi_value value,
+                                         bool* result);
+
+/**
+ * @brief Obtains properties of a DataView.
+ * @param env Current running virtual machine context.
+ * @param dataview The napi_value for the DataView whose properties are being checked.
+ * @param bytelength The number of elements in the DataView.
+ * @param data The data buffer underlying the DataView.
+ * @param arraybuffer The ArrayBuffer underlying the DataView.
+ * @param byte_offset The byte offset within the underlying arraybuffer
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) dataview is nullptr;\n
+ *                                   If non-dataview ArkTS value passed in.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_dataview_info(napi_env env,
+                                               napi_value dataview,
+                                               size_t* bytelength,
+                                               void** data,
+                                               napi_value* arraybuffer,
+                                               size_t* byte_offset);
+
+/**
+ * @brief Obtains the array length.
+ * @param env Current running virtual machine context.
+ * @param value The napi_value representing the ArkTS Array being queried.
+ * @param result The length of the array.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr;\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_array_length(napi_env env,
+                                              napi_value value,
+                                              uint32_t* result);
+/**
+ * @brief  Obtains the prototype of an ArkTS object.
+ * @param env Current running virtual machine context.
+ * @param object The napi_value representing an ArkTS Object whose prototype to return.
+ * @param result A napi_value representing prototype of the object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object or result is nullptr;\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_prototype(napi_env env,
+                                           napi_value object,
+                                           napi_value* result);
+
+/**
+ * @brief Obtains the external data pointer previously passed through napi_create_external().
+ * @param env Current running virtual machine context.
+ * @param value JavaScript external value.
+ * @param result The data wrapped by the JavaScript external value.
+
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value or result is nullptr;\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_value_external(napi_env env,
+                                                napi_value value,
+                                                void** result);
+
+/**
+ * @brief Coerce the given ArkTS value to an ArkTS boolean value.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to coerce.
+ * @param result The coerced ArkTS boolean value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_coerce_to_bool(napi_env env,
+                                            napi_value value,
+                                            napi_value* result);
+
+/**
+ * @brief Coerce the given ArkTS value to an ArkTS number value.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to coerce.
+ * @param result The coerced ArkTS number value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_coerce_to_number(napi_env env,
+                                              napi_value value,
+                                              napi_value* result);
+
+/**
+ * @brief Coerce the given ArkTS value to an ArkTS object value.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to coerce.
+ * @param result The coerced ArkTS object value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_coerce_to_object(napi_env env,
+                                              napi_value value,
+                                              napi_value* result);
+
+/**
+ * @brief Coerce the given ArkTS value to an ArkTS string value.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to coerce.
+ * @param result The coerced ArkTS string value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_coerce_to_string(napi_env env,
+                                              napi_value value,
+                                              napi_value* result);
+
+/**
+ * @brief Invoke instanceof operation on the object.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object to check.
+ * @param constructor The ArkTS constructor function to check against.
+ * @param result Set to true if the given ArkTS object instanceof constructor.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, constructor and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS object value.\n
+ *         {@link napi_function_expected } If the param constructor is not an ArkTS function value.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_instanceof(napi_env env,
+                                        napi_value object,
+                                        napi_value constructor,
+                                        bool* result);
+
+/**
+ * @brief Checks if the ArkTS value is an ArkTS Array.
+ * @param env Current running virtual machine context.
+ * @param value The ArkTS value to check.
+ * @param result Whether the given ArkTS value is an ArkTS Array.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_is_array(napi_env env,
+                                      napi_value value,
+                                      bool* result);
+
+/**
+ * @brief Checks if the two ArkTS values are equal.
+ * @param env Current running virtual machine context.
+ * @param lhs The ArkTS value to check.
+ * @param rhs The ArkTS value to check against.
+ * @param result Whether the two given ArkTS values are equal.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_strict_equals(napi_env env,
+                                           napi_value lhs,
+                                           napi_value rhs,
+                                           bool* result);
+
+/**
+ * @brief Obtains the names of the enumerable properties of object as an Array of Strings. The keys that are symbols
+ *        will not be included.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object from which the property is retrieved.
+ * @param result An ArkTS Array that contains the attribute names of the object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_property_names(napi_env env,
+                                                napi_value object,
+                                                napi_value* result);
+
+/**
+ * @brief Set a property on the given ArkTS Object.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param key The name of the property to set.
+ * @param value The property value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, key and(or) value is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_set_property(napi_env env,
+                                          napi_value object,
+                                          napi_value key,
+                                          napi_value value);
+
+/**
+ * @brief Get the requests property of the given ArkTS Object.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param key The name of the property to get.
+ * @param result The value of the property.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, key and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_property(napi_env env,
+                                          napi_value object,
+                                          napi_value key,
+                                          napi_value* result);
+
+/**
+ * @brief Check if the given ArkTS Object has the named property or not.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param key The name of the property to check.
+ * @param result Whether the property exists on the object or not.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, key and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_has_property(napi_env env,
+                                          napi_value object,
+                                          napi_value key,
+                                          bool* result);
+/**
+ * @brief Delete the named property of the given ArkTS Object.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param key The name of the property to delete.
+ * @param result Whether the execution is succeed or not. Can optionally be ignored by passing nullptr.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object and(or) key is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_delete_property(napi_env env,
+                                             napi_value object,
+                                             napi_value key,
+                                             bool* result);
+
+/**
+ * @brief Set a property on the given ArkTS Object.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param utf8name The name of the property to set.
+ * @param value The property value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, utf8name and(or) value is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_set_named_property(napi_env env,
+                                                napi_value object,
+                                                const char* utf8name,
+                                                napi_value value);
+
+/**
+ * @brief Get the requests property of the given ArkTS Object.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param utf8name The name of the property to get.
+ * @param result The value of the property.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, utf8name and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_named_property(napi_env env,
+                                                napi_value object,
+                                                const char* utf8name,
+                                                napi_value* result);
+
+/**
+ * @brief Check if the given ArkTS Object has the named property or not.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS object.
+ * @param utf8name The name of the property to check.
+ * @param result Whether the property exists on the object or not.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object, utf8name and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_has_named_property(napi_env env,
+                                                napi_value object,
+                                                const char* utf8name,
+                                                bool* result);
+
+/**
+ * @brief Set a element on the given ArkTS Array.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS Array.
+ * @param index The index of the element to set.
+ * @param value The element value.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object and(or) value is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_set_element(napi_env env,
+                                         napi_value object,
+                                         uint32_t index,
+                                         napi_value value);
+
+/**
+ * @brief Get the requests element of the given ArkTS Array.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS Array.
+ * @param index The index of the element to get.
+ * @param result The value of the element.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_element(napi_env env,
+                                         napi_value object,
+                                         uint32_t index,
+                                         napi_value* result);
+
+/**
+ * @brief Check if the given ArkTS Array has an element at the requested index.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS Array.
+ * @param index The name of the property to check.
+ * @param result Whether the property exists on the Array or not.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_has_element(napi_env env,
+                                         napi_value object,
+                                         uint32_t index,
+                                         bool* result);
+
+/**
+ * @brief Delete the special index from the given ArkTS Array.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS Array.
+ * @param index The index of the element to delete.
+ * @param result Whether the execution is succeed or not. Can optionally  be ignored by passing nullptr.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object and(or) key is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_delete_element(napi_env env,
+                                            napi_value object,
+                                            uint32_t index,
+                                            bool* result);
+
+/**
+ * @brief Efficient define multiple properties on the given ArkTS Object by napi_property_descriptor.
+ * @param env Current running virtual machine context.
+ * @param object The ArkTS Object.
+ * @param property_count The count of elements in the properties array.
+ * @param properties The properties array.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, object and(or) properties is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_define_properties(napi_env env,
+                                               napi_value object,
+                                               size_t property_count,
+                                               const napi_property_descriptor* properties);
+
+/**
+ * @brief Invoke an ArkTS function. This is the primary mechanism to call back into JavaScript.
+ * @param env Current running virtual machine context.
+ * @param recv The this value passed to the called function
+ * @param func The ArkTS function to be invoked.
+ * @param argc The count of elements in the argv array.
+ * @param argv ArkTS values passed in as arguments to the function.
+ * @param result Whether the provided 'type_tag' is matched with the tag on the ArkTS object 'value'.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) func is nullptr. If argv is nullptr but argc greater\n
+ *                                   than 0.\n
+ *         {@link napi_function_expected } If the param func is not an ArkTS Function.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_call_function(napi_env env,
+                                           napi_value recv,
+                                           napi_value func,
+                                           size_t argc,
+                                           const napi_value* argv,
+                                           napi_value* result);
+
+/**
+ * @brief Obtains callback details about the call like arguments, this from given callback info.
+ * @param env Current running virtual machine context.
+ * @param cbinfo The callback info.
+ * @param argc Size of the argv array.
+ * @param argv The Array which arguments will be copied to. If there are more arguments than the provided count, only
+ *             the requested number of arguments are copied. If there are fewer arguments provided, the rest argv is
+ *             filled with undefined. Can optionally be ignored by passing nullptr.
+ * @param this_arg Receives the ArkTS this argument for the call. Can optionally be ignored by passing nullptr.
+ * @param data Receives the data pointer for the callback. Can optionally be ignored by passing nullptr.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) cbinfo is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_cb_info(napi_env env,
+                                         napi_callback_info cbinfo,
+                                         size_t* argc,
+                                         napi_value* argv,
+                                         napi_value* this_arg,
+                                         void** data);
+
+/**
+ * @brief Obtains callback details about the call like arguments, this from given callback info.
+ * @param env Current running virtual machine context.
+ * @param cbinfo The callback info.
+ * @param result The new.target of the constructor call.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, cbinfo and(or) result is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_get_new_target(napi_env env,
+                                            napi_callback_info cbinfo,
+                                            napi_value* result);
+
+/**
+ * @brief Instantiate a new ArkTS value using a given napi_value that represents the constructor for the object.
+ * @param env Current running virtual machine context.
+ * @param constructor The ArkTS function to be invoked as a constructor.
+ * @param argc The count of elements in the argv array.
+ * @param argv Array of ArkTS values representing the arguments to the constructor. If argc is 0 this parameter may
+ *             be omitted by passing in nullptr.
+ * @param result The ArkTS object returned, which in this case is the constructed object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) func is nullptr. If argv is nullptr but argc greater\n
+ *                                   than 0.\n
+ *         {@link napi_function_expected } If the param func is not an ArkTS Function.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_new_instance(napi_env env,
+                                          napi_value constructor,
+                                          size_t argc,
+                                          const napi_value* argv,
+                                          napi_value* result);
+
+/**
+ * @brief Wraps a native instance in a ArkTS object. The native instance can be retrieved later using napi_unwrap.
+ * @param env Current running virtual machine context.
+ * @param js_object The ArkTS object that will be the wrapper for the native object.
+ * @param native_object The native instance that will be wrapped in the ArkTS object.
+ * @param finalize_cb Native callback that can be used to free the native instance when the JavaScript object has
+ *                    been garbage-collected.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize callback.
+ * @param result Optional reference to the wrapped object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, js_object, native_object and(or) finalize_cb is nullptr.\n
+ *         {@link napi_object_expected } If the param js_object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_wrap(napi_env env,
+                                  napi_value js_object,
+                                  void* native_object,
+                                  napi_finalize finalize_cb,
+                                  void* finalize_hint,
+                                  napi_ref* result);
+
+/**
+ * @brief Retrieves a native instance that was previously wrapped in an ArkTS object using napi_wrap.
+ * @param env Current running virtual machine context.
+ * @param js_object The ArkTS object.
+ * @param result Pointer to the wrapped native instance.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, js_object and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param js_object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_unwrap(napi_env env,
+                                    napi_value js_object,
+                                    void** result);
+
+/**
+ * @brief Retrieves a native instance that was previously wrapped in the ArkTS object js_object using napi_wrap
+ *        and removes the wrapping.
+ * @param env Current running virtual machine context.
+ * @param js_object The ArkTS object.
+ * @param result Pointer to the wrapped native instance.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, js_object and(or) result is nullptr.\n
+ *         {@link napi_object_expected } If the param js_object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 10
+*/
+NAPI_EXTERN napi_status napi_remove_wrap(napi_env env,
+                                         napi_value js_object,
+                                         void** result);
+
+/**
+ * @brief Allocate a work object that is used to execute logic asynchronously.
+ * @param env Current running virtual machine context.
+ * @param async_resource Not supported, can be ignored by passing nullptr.
+ * @param async_resource_name  Identifier for the kind of resource that is being provided for diagnostic information
+ *                             exposed by the HiTrace.
+ * @param execute The native function which should be called to execute the logic asynchronously. The given function
+ *                is called from a worker pool thread and can execute in parallel with the main event loop thread.
+ * @param complete The native function which will be called when the asynchronous logic is completed or is cancelled.
+ *                 The given function is called from the main event loop thread.
+ * @param data User-provided data context. This will be passed back into the execute and complete functions.
+ * @param result The handle to the newly created async work.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, async_resource_name, execute, complete and(or) result is\n
+ *                                   nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_create_async_work(napi_env env,
+                                               napi_value async_resource,
+                                               napi_value async_resource_name,
+                                               napi_async_execute_callback execute,
+                                               napi_async_complete_callback complete,
+                                               void* data,
+                                               napi_async_work* result);
+
+/**
+ * @brief Free a previously allocated work object.
+ * @param env Current running virtual machine context.
+ * @param work The handle returned by the call to napi_create_async_work.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) work is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_delete_async_work(napi_env env,
+                                               napi_async_work work);
+
+/**
+ * @brief Requests that the previously allocated work be scheduled for execution. Once it returns successfully,
+ *        this API must not be called again with the same napi_async_work item or the result will be undefined.
+ * @param env Current running virtual machine context.
+ * @param work The handle returned by the call to napi_create_async_work.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) work is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_queue_async_work(napi_env env,
+                                              napi_async_work work);
+
+/**
+ * @brief Cancels queued work if it has not yet been started. If it has already started executing, it cannot be
+ *        cancelled. If successful, the complete callback will be invoked with a status value of napi_cancelled.
+ *        The work should not be deleted before the complete callback invocation, even if it has been successfully
+ *        cancelled.
+ * @param env Current running virtual machine context.
+ * @param work The handle returned by the call to napi_create_async_work.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env and(or) work is nullptr.\n
+ * @since 10
+ */
+NAPI_EXTERN napi_status napi_cancel_async_work(napi_env env,
+                                               napi_async_work work);
+
+/**
+ * @brief Wraps a native instance in an ArkTS object.
+ * @param env The environment that the API is invoked under.
+ * @param js_object The ArkTS object that will be the wrapper for the native object.
+ * @param native_object The native instance that will be wrapped in the ArkTS object.
+ * @param finalize_cb Optional native callback that can be used to free the native instance when the ArkTS object
+ * has been garbage-collected.
+ * @param async_finalizer A boolean value to determine that finalize_cb execute async or not.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize callback.
+ * @param native_binding_size The size of native binding.
+ * @param result Optional reference to the wrapped object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, js_object or native_object is nullptr.\n
+ *         {@link napi_object_expected } If the param js_object is not an ArkTS Object or Function.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before(in) execution.\n
+ * @since 18
+ */
+NAPI_EXTERN napi_status napi_wrap_enhance(napi_env env,
+                                          napi_value js_object,
+                                          void* native_object,
+                                          napi_finalize finalize_cb,
+                                          bool async_finalizer,
+                                          void* finalize_hint,
+                                          size_t native_binding_size,
+                                          napi_ref* result);
+
+/**
+ * @brief To create a new virtual machine context.
+ * @param env Current running virtual machine context.
+ * @param newEnv New generated virtual machine context which is expected to be used later.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env is nullptr.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
+ * @since 20
+ */
+NAPI_EXTERN napi_status napi_create_ark_context(napi_env env, napi_env *newEnv);
+
+/**
+ * @brief To switch a virtual machine context which is expected to be used later.
+ * @param env Designated Virtual machine context which is expected to be used as the current virtual machine context.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env is nullptr.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
+ * @since 20
+ */
+NAPI_EXTERN napi_status napi_switch_ark_context(napi_env env);
+
+/**
+ * @brief To destroy a virtual machine context which will not be used again.
+ * @param env Virtual machine context expected to be destroyed.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env is nullptr.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
+ * @since 20
+ */
+NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
 #ifdef __cplusplus
 }
 #endif

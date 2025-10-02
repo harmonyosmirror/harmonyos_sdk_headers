@@ -738,6 +738,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglQueryDeviceBinaryEXT (EGLDeviceEXT device, EGLi
 #define EGL_GL_COLORSPACE_BT2020_PQ_EXT   0x3340
 #endif /* EGL_EXT_gl_colorspace_bt2020_pq */
 
+#ifndef EGL_EXT_gl_colorspace_bt2020_hlg
+#define EGL_EXT_gl_colorspace_bt2020_hlg 1
+#define EGL_GL_COLORSPACE_BT2020_HLG_EXT   0x3540
+#endif /* EGL_EXT_gl_colorspace_bt2020_hlg */
+
 #ifndef EGL_EXT_gl_colorspace_display_p3
 #define EGL_EXT_gl_colorspace_display_p3 1
 #define EGL_GL_COLORSPACE_DISPLAY_P3_EXT  0x3363

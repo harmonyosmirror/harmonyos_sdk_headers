@@ -395,7 +395,15 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle
                                                                const char *weight_file, bool is_inference,
                                                                bool enable_fp16, char **changeable_weights_name,
                                                                size_t num);
-
+/**
+ * @brief Load the config file of the model.
+ *
+ * @param model Model object handle.
+ * @param config_path The config file path.
+ * @return OH_AI_Status.
+ * @since 20
+ */
+OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path);
 #ifdef __cplusplus
 }
 #endif

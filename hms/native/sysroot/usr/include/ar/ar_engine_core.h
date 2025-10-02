@@ -35,10 +35,10 @@
  * @syscap SystemCapability.AREngine.Core
  * @since 5.0.0(12)
  */
-
 #ifndef NDK_INCLUDE_AR_ENGINE_CORE_H
 #define NDK_INCLUDE_AR_ENGINE_CORE_H
 #include <stdint.h>
+#include <native_buffer/native_buffer.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -180,6 +180,12 @@ typedef struct AREngine_ARAugmentedImageDatabase AREngine_ARAugmentedImageDataba
 typedef struct AREngine_ARSceneMesh AREngine_ARSceneMesh;
 
 /**
+ * @brief Indicates a collection of semantic dense data.
+ * @since 6.0.0(20)
+ */
+typedef struct AREngine_ARSemanticDenseData AREngine_ARSemanticDenseData;
+
+/**
  * @brief Distance to the clipping planes.
  *
  * Used as the input for <b>HMS_AREngine_ARCamera_GetProjectionMatrix<b>.
@@ -273,7 +279,7 @@ typedef enum {
     ARENGINE_TRACKABLE_TARGET = 0x50000008,
 
     /** Invalid trackable object type. */
-    ARENGINE_TRACKABLE_INVALID = 0
+    ARENGINE_TRACKABLE_INVALID = 0,
 } AREngine_ARTrackableType;
 
 /**
@@ -288,7 +294,7 @@ typedef enum {
     ARENGINE_TRACKING_STATE_PAUSED = 1,
 
     /** Tracking status: stopped. */
-    ARENGINE_TRACKING_STATE_STOPPED = 2
+    ARENGINE_TRACKING_STATE_STOPPED = 2,
 } AREngine_ARTrackingState;
 
 /**
@@ -303,7 +309,7 @@ typedef enum {
     ARENGINE_TRACKING_STATE_REASON_EXCESSIVE_MOTION = 1,
 
     /** Tracking failure cause: insufficient visual features (such as weak texture). */
-    ARENGINE_TRACKING_STATE_REASON_INSUFFICIENT_FEATURES = 2
+    ARENGINE_TRACKING_STATE_REASON_INSUFFICIENT_FEATURES = 2,
 } AREngine_ARTrackingStateReason;
 
 /**
@@ -321,7 +327,7 @@ typedef enum {
     ARENGINE_PLANE_FINDING_MODE_VERTICAL = 2,
 
     /** Both horizontal and vertical planes are detected. */
-    ARENGINE_PLANE_FINDING_MODE_HORIZONTAL_AND_VERTICAL = 3
+    ARENGINE_PLANE_FINDING_MODE_HORIZONTAL_AND_VERTICAL = 3,
 } AREngine_ARPlaneFindingMode;
 
 /**
@@ -362,7 +368,7 @@ typedef enum {
     ARENGINE_POWER_MODE_BOOST = 3,
 
     /** Ultra power saving mode. */
-    ARENGINE_POWER_MODE_ULTRA_POWER_SAVING = 11
+    ARENGINE_POWER_MODE_ULTRA_POWER_SAVING = 11,
 } AREngine_ARPowerMode;
 
 /**
@@ -374,7 +380,7 @@ typedef enum {
     ARENGINE_FOCUS_MODE_FIXED = 0,
 
     /** Auto focus. */
-    ARENGINE_FOCUS_MODE_AUTO = 1
+    ARENGINE_FOCUS_MODE_AUTO = 1,
 } AREngine_ARFocusMode;
 
 /**
@@ -392,7 +398,7 @@ typedef enum {
     ARENGINE_PLANE_FACING_VERTICAL = 2,
 
     /** Unsupported type. */
-    ARENGINE_PLANE_FACING_INVALID = 3
+    ARENGINE_PLANE_FACING_INVALID = 3,
 } AREngine_ARPlaneType;
 
 /**
@@ -408,7 +414,7 @@ typedef enum {
      * such as <b>HMS_AREngine_ARSession_GetAllTrackables</b> is <b>ARENGINE_TRACKABLE_AUGMENTED_IMAGE</b>.
      * @since 5.1.0(18)
      */
-    ARENGINE_TYPE_IMAGE = 0x80
+    ARENGINE_TYPE_IMAGE = 0x80,
 } AREngine_ARType;
 
 /**
@@ -424,7 +430,7 @@ typedef enum {
     ARENGINE_SEMANTIC_MODE_PLANE = 1,
 
     /** Uses object semantics. */
-    ARENGINE_SEMANTIC_MODE_TARGET = 2
+    ARENGINE_SEMANTIC_MODE_TARGET = 2,
 } AREngine_ARSemanticMode;
 
 /**
@@ -436,7 +442,7 @@ typedef enum {
     ARENGINE_POINT_ORIENTATION_INITIALIZED_TO_IDENTITY = 0,
 
     /** The orientation is determined by the estimated plane's normal vector. */
-    ARENGINE_POINT_ORIENTATION_ESTIMATED_SURFACE_NORMAL = 1
+    ARENGINE_POINT_ORIENTATION_ESTIMATED_SURFACE_NORMAL = 1,
 } AREngine_ARPointOrientationMode;
 
 /**
@@ -469,7 +475,25 @@ typedef enum {
     ARENGINE_PLANE_WINDOW = 7,
 
     /** Bed. */
-    ARENGINE_PLANE_BED = 8
+    ARENGINE_PLANE_BED = 8,
+
+    /**
+     * Plane Space
+     * @since 6.0.0(20)
+     */
+    ARENGINE_PLANE_SPACE = 9,
+
+    /**
+     * Cube Volume
+     * @since 6.0.0(20)
+     */
+    ARENGINE_CUBE_VOLUME = 10,
+
+    /**
+     * Cube Space
+     * @since 6.0.0(20)
+     */
+    ARENGINE_CUBE_SPACE = 11,
 } AREngine_ARSemanticPlaneLabel;
 
 /**
@@ -487,7 +511,7 @@ typedef enum {
     ARENGINE_TARGET_SHAPE_CIRCLE = 2,
 
     /** Rectangle. */
-    ARENGINE_TARGET_SHAPE_RECTANGLE = 3
+    ARENGINE_TARGET_SHAPE_RECTANGLE = 3,
 } AREngine_ARTargetShapeLabel;
 
 /**
@@ -505,7 +529,7 @@ typedef enum {
     ARENGINE_POSE_TYPE_ROTATE_180 = 2,
 
     /** Pose that performs a 270-degree rotation. */
-    ARENGINE_POSE_TYPE_ROTATE_270 = 3
+    ARENGINE_POSE_TYPE_ROTATE_270 = 3,
 } AREngine_ARPoseType;
 
 /**
@@ -592,7 +616,19 @@ typedef enum {
      * The pictures cannot be added when the tracking state is running.
      * @since 5.1.0(18)
      */
-    ARENGINE_ERROR_IMAGE_ADD_IMAGE_TRACKING_STATE = 1009200014
+    ARENGINE_ERROR_IMAGE_ADD_IMAGE_TRACKING_STATE = 1009200014,
+
+    /**
+     * Failed to create nativeBuffer.
+     * @since 6.0.0(20)
+     */
+    ARENGINE_ERROR_NATIVEBUFFER_CREATE_FAILED = 1009200015,
+
+    /**
+     * Failed to write nativeBuffer.
+     * @since 6.0.0(20)
+     */
+    ARENGINE_ERROR_NATIVEBUFFER_WRITE_FAILED = 1009200016,
 } AREngine_ARStatus;
 
 /**
@@ -633,7 +669,7 @@ typedef enum {
     ARENGINE_ADD_AUGMENTED_IMAGE_REASON_FEATURE_LIMIT = 3,
 
     /** Attempted to add an image with insufficient quality (other scenarios) to the image database. */
-    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_OTHER = 4
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_OTHER = 4,
 } AREngine_ARAddAugmentedImageReason;
 
 /**
@@ -704,7 +740,7 @@ typedef enum {
     ARENGINE_DEPTH_CONFIDENCE_MEDIUM = 1,
 
     /** The confidence of this depth image is high. */
-    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2
+    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2,
 } AREngine_ARConfidenceLevel;
 
 /**
@@ -716,8 +752,73 @@ typedef enum {
     ARENGINE_MESH_MODE_DISABLED = 0,
 
     /** Enable mesh. */
-    ARENGINE_MESH_MODE_ENABLED = 1
+    ARENGINE_MESH_MODE_ENABLED = 1,
 } AREngine_ARMeshMode;
+
+/**
+ * @brief semantic dense mode.
+ * @since 6.0.0(20)
+ */
+typedef enum {
+    /** Disable Semantic Dense. */
+    ARENGINE_SEMANTIC_DENSE_MODE_DISABLED = 0,
+
+    /** Normal Semantic Dense. */
+    ARENGINE_SEMANTIC_DENSE_MODE_NORMAL = 1,
+
+    /** Semantic Dense For Cube Volume. */
+    ARENGINE_SEMANTIC_DENSE_MODE_CUBE_VOLUME = 2,
+
+    /** Semantic Dense For Cube Space. */
+    ARENGINE_SEMANTIC_DENSE_MODE_CUBE_SPACE = 3,
+} AREngine_ARSemanticDenseMode;
+
+/**
+ * @brief semantic dense point data.
+ * @since 6.0.0(20)
+ */
+typedef struct {
+    /** The Id Of Current Point. */
+    int32_t id;
+
+    /** The Coordinates Of Current Point. */
+    float x;
+    float y;
+    float z;
+
+    /** The Color Of Current Point. */
+    int32_t r;
+    int32_t g;
+    int32_t b;
+    int32_t a;
+
+    /** The Confidence Of Current Point. */
+    float confidence;
+}AREngine_ARSemanticDensePointData;
+
+/**
+ * @brief semantic dense cube data.
+ * @since 6.0.0(20)
+ */
+typedef struct {
+    /** The Id Of Current Cube. */
+    int32_t id;
+
+    /** The VertexSize Of Current Cube. */
+    int32_t vertexSize;
+
+    /**
+    * The VertexData Of Current Cube.Corresponding to the 8 vertices of the cube.
+    * The index starts from the behind surface in a counterclockwise direction.
+    */
+    float* vertexData;
+
+    /** The Confidence Of Current Cube. */
+    float confidence;
+
+    /** The Semantic Label Of Current Cube. */
+    AREngine_ARSemanticPlaneLabel label;
+}AREngine_ARSemanticDenseCubeData;
 
 /**
  * @brief Creates a configuration object with a proper default configuration.
@@ -934,6 +1035,34 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPoseMode(const AREngine_ARSession *se
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetPoseMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
     AREngine_ARPoseMode *poseMode);
+
+/**
+ * @brief Sets the semantic dense mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param semanticDenseMode Semantic dense mode. For details, please refer to <b>AREngine_ARSemanticMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticDenseMode(const AREngine_ARSession *session,
+    AREngine_ARConfig *config, AREngine_ARSemanticDenseMode semanticDenseMode);
+
+/**
+ * @brief Obtains the semantic dense mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param outSemanticDenseMode Semantic dense mode. For details, please refer to <b>AREngine_ARSemanticDenseMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticDenseMode(const AREngine_ARSession *session,
+    const AREngine_ARConfig *config, AREngine_ARSemanticDenseMode *outSemanticDenseMode);
 
 /**
  * @brief Sets the preview image size.
@@ -1728,6 +1857,21 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetUpdatedTrackables(const AREngine_ARSes
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCameraImage(const AREngine_ARSession *session,
     const AREngine_ARFrame *frame, AREngine_ARImage **outImage);
+
+/**
+ * @brief Returns the semantic dense data of the current frame.
+ * @param session The AREngine session.
+ * @param frame Current frame object.
+ * @param outSemanticDenseData Semantic dense object of the current frame.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARFrame_AcquireSemanticDenseData(const AREngine_ARSession *session,
+    const AREngine_ARFrame *frame, AREngine_ARSemanticDenseData **outSemanticDenseData);
 
 /**
  * @brief Obtains the coordinates of all points in a point cloud, as well as their confidence array.
@@ -2601,6 +2745,23 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetTimestamp(const AREngine_ARSession *se
     int64_t *outTimestamp);
 
 /**
+ * @brief Obtains the nativeBuffer of the image object.
+ * @param session The AREngine session.
+ * @param image Image object of the current frame.
+ * @param outNativeBuffer Transfer the native buffer of the image.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ *         {@link ARENGINE_ERROR_NATIVEBUFFER_CREATE_FAILED} Failed to create nativeBuffer.\n
+ *         {@link ARENGINE_ERROR_NATIVEBUFFER_WRITE_FAILED} Failed to write nativeBuffer.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARImage_GetNativeBuffer(const AREngine_ARSession *session,
+    const AREngine_ARImage *image, OH_NativeBuffer **outNativeBuffer);
+
+/**
  * @brief Releases the image object of the current frame, that is, the object created by
  * <b>HMS_AREngine_ARFrame_AcquireCameraImage</b>.
  * @param image Image object of the current frame.
@@ -2978,6 +3139,69 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetAddMode(const AREngin
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetCapacity(const AREngine_ARAugmentedImageDatabase *database,
     uint32_t *outCapacity);
+
+/**
+ * @brief Obtains the point data of semantic dense.
+ * @param session The AREngine session.
+ * @param semanticDenseData The semantic dense data. For details, please refer to <b>AREngine_ARSemanticDenseData</b>.
+ * @param outPointData The out pointdata. For details, please refer to <b>AREngine_ARSemanticDensePointData</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquirePointData(const AREngine_ARSession *session,
+    const AREngine_ARSemanticDenseData* semanticDenseData, AREngine_ARSemanticDensePointData **outPointData);
+
+/**
+ * @brief Obtains the point data size of semantic dense.
+ * @param session The AREngine session.
+ * @param semanticDenseData The semantic dense data. For details, please refer to <b>AREngine_ARSemanticDenseData</b>.
+ * @param outSize The out pointdata size.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquirePointDataSize(const AREngine_ARSession *session,
+    const AREngine_ARSemanticDenseData* semanticDenseData, int64_t *outSize);
+
+/**
+ * @brief Obtains the cube data of semantic dense.
+ * @param session The AREngine session.
+ * @param semanticDenseData The semantic dense data. For details, please refer to <b>AREngine_ARSemanticDenseData</b>.
+ * @param outCubeData The out cubedata. For details, please refer to <b>AREngine_ARSemanticDenseCubeData</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquireCubeData(const AREngine_ARSession *session,
+    const AREngine_ARSemanticDenseData* semanticDenseData, AREngine_ARSemanticDenseCubeData **outCubeData);
+
+/**
+ * @brief Obtains the cube data size of semantic dense.
+ * @param session The AREngine session.
+ * @param semanticDenseData The semantic dense data. For details, please refer to <b>AREngine_ARSemanticDenseData</b>.
+ * @param outSize The out cubedata size.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.0(20)
+ */
+AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquireCubeDataSize(const AREngine_ARSession *session,
+    const AREngine_ARSemanticDenseData* semanticDenseData, int64_t *outSize);
+
+/**
+ * @brief Releases the memory used by the semantic object.
+ * @param semanticDenseData To-be-released point cloud object.
+ * @since 6.0.0(20)
+ */
+void HMS_AREngine_ARSemanticDense_Release(AREngine_ARSemanticDenseData *semanticDenseData);
 #ifdef __cplusplus
 }
 #endif

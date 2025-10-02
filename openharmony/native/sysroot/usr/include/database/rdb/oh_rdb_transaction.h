@@ -105,25 +105,25 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void);
 /**
  * @brief Destroys an OH_RDB_TransOptions instance object.
  *
- * @param opitons Represents a pointer to an instance of OH_RDB_TransOptions.
+ * @param options Represents a pointer to an instance of OH_RDB_TransOptions.
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons);
+int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options);
 
 /**
- * @brief Sets integer data to the opitons object.
+ * @brief Sets integer data to the options object.
  *
- * @param opitons Represents a pointer to an instance of OH_RDB_TransOptions.
+ * @param options Represents a pointer to an instance of OH_RDB_TransOptions.
  * @param type Represents relation database transaction type.
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType type);
+int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type);
 
 /**
  * @brief Commits a transaction of a relational database.
@@ -194,6 +194,36 @@ int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans);
 int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId);
 
 /**
+ * @brief Inserts a row of data into the target table and support conflict resolution.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param table Represents the target table.
+ * @param row Represents the row data to be inserted into the table.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param rowId Represents row line number when insert successfully.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ * @since 20
+ */
+int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row,
+    Rdb_ConflictResolution resolution, int64_t *rowId);
+
+/**
  * @brief Inserts a batch of data into the target table.
  *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
@@ -250,6 +280,36 @@ int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const 
  */
 int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates,
     int64_t *changes);
+
+/**
+ * @brief Updates data in the database based on specified conditions and support conflict resolution.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param row Represents the row data to be updated into the table.
+ * @param predicates Represents the specified update condition by the instance object of OH_Predicates.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param changes Represents the number of successful insertions.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ * @since 20
+ */
+int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH_VBucket *row,
+    const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes);
 
 /**
  * @brief Deletes data from the database based on specified conditions

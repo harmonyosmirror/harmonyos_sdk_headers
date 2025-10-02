@@ -69,6 +69,22 @@ typedef struct OH_AVSource OH_AVSource;
 OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
 
 /**
+ * @brief Creates an OH_AVSource instance with dataSource and userData.
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @param dataSource A pointer to the data source structure, which can obtain the input data.
+ * @param userData A pointer to user-defined data.
+ * @return Returns a pointer to an OH_AVSource instance if the execution is successful, otherwise returns nullptr.
+ * Possible failure causes:
+ *  1. dataSource is nullptr.
+ *  2. dataSource->size == 0.
+ *  3. set data source failed.
+ *  4. out of memory.
+ *  5. demuxer engine is nullptr.
+ * @since 20
+ */
+OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData);
+
+/**
  * @brief Creates an OH_AVSource instance that models the media at the URI.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param uri An URI for a remote media resource.

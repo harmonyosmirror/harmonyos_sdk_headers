@@ -3568,6 +3568,20 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetHandlerForOOMError(JSVM_VM vm,
                                                       JSVM_HandlerForOOMError handler);
 
 /**
+ * @brief This API is used to enable/disable the given debug option for a certain JSVM_Env.
+ *
+ * @param env The environment that the API is invoked under.
+ * @param debugOption The debug option to be changed.
+ * @param isEnabled Whether to enable or disable the debug option.
+ * @return Returns JSVM funtions result code.
+ *         {@link JSVM_OK } if the function executed successfully.\n
+ *         {@link JSVM_INVALID_ARG } if env is NULL.\n
+ *
+ * @since 20
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_SetDebugOption(JSVM_Env env, JSVM_DebugOption debugOption, bool isEnabled);
+
+/**
  * @brief Set Handler For Fatal Error. If this function is invoked repeatedly,
  * only the last time takes effect. When handler is null, the previous setting is canceled.
  *

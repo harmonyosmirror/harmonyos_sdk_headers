@@ -118,6 +118,7 @@ FFRT_C_API uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
 /**
  * @brief Sets the timeout callback function of a serial queue attribute.
  *
+ * @warning Do not call `exit` in `f` - this my cause unexpected behavior.
  * @param attr Serial queue attribute pointer.
  * @param f Serial queue timeout callback function.
  * @since 10
@@ -150,6 +151,33 @@ FFRT_C_API void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, con
  * @since 12
  */
 FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
+
+/**
+ * @brief Sets the execution mode of a queue attribute.
+ *
+ * This interface specifies whether tasks in the queue are executed in coroutine mode or thread mode.
+ * By default, tasks are executed in coroutine mode.
+ * Set <b>mode</b> to <b>true</b> to enable thread-based execution.
+ *
+ * @param attr Queue attribute pointer.
+ * @param mode Indicates whether to enable thread-based execution mode.
+ *           - <b>true</b>: Tasks are executed as native threads (thread mode).
+ *           - <b>false</b>: Tasks are executed as coroutines (default).
+ * @since 20
+ */
+FFRT_C_API void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr,  bool mode);
+ 
+/**
+ * @brief Gets the execution mode of a queue attribute.
+ *
+ * This interface returns whether tasks in the queue are configured to run in thread-based execution mode (thread mode).
+ *
+ * @param attr Queue attribute pointer.
+ * @return Returns <b>true</b> if tasks are executed as native threads (thread mode);
+ *         returns <b>false</b> if tasks are executed as coroutines (default).
+ * @since 20
+ */
+FFRT_C_API bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr);
 
 /**
  * @brief Creates a queue.
@@ -193,6 +221,45 @@ FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f,
  */
 FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h(
     ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
+
+/**
+ * @brief Submits a task to a queue, simplified from of the ffrt_queue_submit interface.
+ *
+ * This interface wraps the provided task function and its argument into a task wrapper designed
+ * for queue submission (ffrt_function_kind_queue). The task destroy callback (after_func), which
+ * would normally handle any post-execution cleanup, is automatically set to NULL in this wrapper,
+ * thus omitting any additional cleanup actions. The resulting task wrapper is then submitted to
+ * the specified queue via the ffrt_queue_submit interface.
+ *
+ * @param queue Indicates a queue handle.
+ * @param func Indicates a task function to be executed.
+ * @param arg Indicates a pointer to the argument or closure data that will be passed to the task function.
+ * @param attr Indicates a pointer to the task attribute.
+ * @see ffrt_queue_submit
+ * @since 20
+ */
+FFRT_C_API void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+
+/**
+ * @brief Submits a task to a queue, and obtains a task handle, simplified from the ffrt_queue_submit_h interface.
+ *
+ * This interface wraps the provided task function and its argument into a task wrapper designed
+ * for queue submission (ffrt_function_kind_queue). The task destroy callback (after_func), which
+ * would normally handle any post-execution cleanup, is automatically set to NULL in this wrapper,
+ * thus omitting any additional cleanup actions. The resulting task wrapper is then submitted to
+ * the specified queue via the ffrt_queue_submit_h interface.
+ *
+ * @param queue Indicates a queue handle.
+ * @param func Indicates a task function to be executed.
+ * @param arg Indicates a pointer to the argument or closure data that will be passed to the task function.
+ * @param attr Indicates a pointer to the task attribute.
+ * @return Returns a non-null task handle if the task is submitted;
+           returns a null pointer otherwise.
+ * @see ffrt_queue_submit_h
+ * @since 20
+ */
+FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h_f(
+    ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
 
 /**
  * @brief Waits until a task in the queue is complete.

@@ -12,6 +12,7 @@
 
 #include "unicode/utypes.h"
 #include "unicode/uloc.h"
+#include "unicode/utext.h"
 
 #if U_SHOW_CPLUSPLUS_API
 #include "unicode/localpointer.h"
@@ -336,6 +337,28 @@ U_CAPI void U_EXPORT2
 ubrk_setText(UBreakIterator* bi,
              const UChar*    text,
              int32_t         textLength,
+             UErrorCode*     status);
+
+/**
+ * Sets an existing iterator to point to a new piece of text.
+ *
+ * All index positions returned by break iterator functions are
+ * native indices from the UText. For example, when breaking UTF-8
+ * encoded text, the break positions returned by \ref ubrk_next, \ref ubrk_previous, etc.
+ * will be UTF-8 string indices, not UTF-16 positions.
+ *
+ * @param bi The iterator to use
+ * @param text The text to be set.
+ *             This function makes a shallow clone of the supplied UText.  This means
+ *             that the caller is free to immediately close or otherwise reuse the
+ *             UText that was passed as a parameter, but that the underlying text itself
+ *             must not be altered while being referenced by the break iterator.
+ * @param status The error code
+ * @stable ICU 3.4
+ */
+U_CAPI void U_EXPORT2
+ubrk_setUText(UBreakIterator* bi,
+             UText*          text,
              UErrorCode*     status);
 
 /**

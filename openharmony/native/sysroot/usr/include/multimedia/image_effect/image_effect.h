@@ -344,6 +344,36 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect
 ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture);
 
 /**
+ * @brief Sets the ID of the input texture that contains the image information.
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param { OH_ImageEffect } imageEffect Pointer to an instance of the OH_ImageEffect struct.
+ * @param textureId ID of the texture that contains the image information. This ID must be valid and have been
+ * bound bound to a texture of a GL_TEXTURE_2D type.
+ * @param colorSpace Color space of the image.
+ * @return Returns EFFECT_SUCCESS if the operation is successful; returns EFFECT_ERROR_PARAM_INVALID if the
+ * parameter parameter is missing or incorrect.
+ * @since 20
+ */
+ImageEffect_ErrorCode OH_ImageEffect_SetInputTextureId(OH_ImageEffect *imageEffect, int32_t textureId,
+    int32_t colorSpace);
+
+/**
+ * @brief Sets the ID of the output texture that contains the rendered image information.
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param imageEffect Pointer to an instance of the OH_ImageEffect struct.
+ * @param textureId ID of the texture that contains the rendered image information. This ID must be valid. If
+ * it it is not bound to a texture, it will automatically be bound to a GL_TEXTURE_2D type. If the texture is
+ * already already bound and the size is inappropriate, the rendered result may be cropped or partially filled
+ * into into this texture.
+ * @return Returns EFFECT_SUCCESS if the operation is successful; returns EFFECT_ERROR_PARAM_INVALID if the
+ * parameter parameter is missing or incorrect.
+ * @since 20
+ */
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputTextureId(OH_ImageEffect *imageEffect, int32_t textureId);
+
+/**
  * @brief Render the filter effects that can be a single filter or a chain of filters
  *
  * @syscap SystemCapability.Multimedia.ImageEffect.Core

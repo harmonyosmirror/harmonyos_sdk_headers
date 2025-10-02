@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -167,6 +167,20 @@ typedef enum Input_KeyboardType {
 } Input_KeyboardType;
 
 /**
+ * @brief Enumerates the injection authorization status.
+ *
+ * @since 20
+ */
+typedef enum Input_InjectionStatus {
+    /** Unauthorized */
+    UNAUTHORIZED = 0,
+    /** Authorizing */
+    AUTHORIZING = 1,
+    /** Authorized */
+    AUTHORIZED = 2,
+} Input_InjectionStatus;
+
+/**
  * @brief Enumerates event source types.
  *
  * @since 12
@@ -269,7 +283,37 @@ typedef enum Input_Result {
      * @error No keyboard device connected
      * @since 15
      */
-    INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002
+    INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002,
+     /**
+     * @error Authorizing
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZING = 3900005,
+    /**
+     * @error Too many operations
+     * @since 20
+     */
+    INPUT_INJECTION_OPERATION_FREQUENT = 3900006,
+    /**
+     * @error Authorized
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZED = 3900007,
+    /**
+     * @error Authorized to other applications
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008,
+    /**
+     * @error App is not the focused app
+     * @since 20
+     */
+    INPUT_APP_NOT_FOCUSED = 3900009,
+    /**
+     * @error The device has no pointer
+     * @since 20
+     */
+    INPUT_DEVICE_NO_POINTER = 3900010,
 } Input_Result;
 
 /**
@@ -330,6 +374,13 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId);
  * @since 13
  */
 typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
+
+/**
+ * @brief Defines the event injection callback.
+ * @param authorizedStatus Authorization status.
+ * @since 20
+ */
+typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
 
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
@@ -455,6 +506,10 @@ int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
 
 /**
  * @brief Inject system keys.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param keyEvent - the key event to be injected.
  * @return OH_Input_InjectKeyEvent function result code.
@@ -587,6 +642,10 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
 
 /**
  * @brief Inject mouse event.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param mouseEvent - the mouse event to be injected.
  * @return OH_Input_InjectMouseEvent function result code.
@@ -597,6 +656,22 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
+
+/**
+ * @brief Inject mouse event using global coordinate.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
+ *
+ * @param mouseEvent - the mouse event to be injected, set up effective globalX globalY.
+ * @return OH_Input_InjectMouseEventGlobal function result code.
+ *         {@link INPUT_SUCCESS} inject mouseEvent success.\n
+ *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
+ *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
+ * @since 20
+ */
+int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent);
 
 /**
  * @brief Creates a mouse event object.
@@ -799,7 +874,47 @@ void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_
 int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent);
 
 /**
+ * @brief Set the global X coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @param globalX Global X coordinate.
+ * @since 20
+ */
+void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX);
+
+/**
+ * @brief Queries the global X coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @return Global X coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent);
+
+/**
+ * @brief Set the global Y coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @param globalY Global Y coordinate.
+ * @since 20
+ */
+void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY);
+
+/**
+ * @brief Queries the global Y coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @return Global Y coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent);
+
+/**
  * @brief Inject touch event.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param touchEvent - the touch event to be injected.
  * @return OH_Input_InjectTouchEvent function result code.
@@ -809,6 +924,22 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Inject touch event using global coordinate.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
+ *
+ * @param touchEvent - the touch event to be injected, set up effective globalX globalY.
+ * @return OH_Input_InjectTouchEventGlobal function result code.
+ *         {@link INPUT_SUCCESS} inject touchEvent success.\n
+ *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
+ *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
+ * @since 20
+ */
+int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief Creates a touch event object.
@@ -970,12 +1101,79 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
 int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent);
 
 /**
+ * @brief Set the global X coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param globalX Global X coordinate.
+ * @since 20
+ */
+void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX);
+
+/**
+ * @brief Queries the global X coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return Global X coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the global Y coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param globalY Global Y coordinate.
+ * @since 20
+ */
+void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY);
+
+/**
+ * @brief Queries the global Y coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return Global Y coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent);
+
+/**
  * @brief Cancels event injection and revokes authorization.
  *
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_CancelInjection();
+
+/**
+ * @brief Requests for injection authorization.
+ *
+ * @param callback - callback used to return the result.
+ * @return OH_Input_RequestInjection function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The callback is NULL.\n
+ *         {@INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
+ *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ *         {@link INPUT_INJECTION_AUTHORIZING} Authorizing.\n
+ *         {@link INPUT_INJECTION_OPERATION_FREQUENT} Too many operations.\n
+ *         {@link INPUT_INJECTION_AUTHORIZED} Authorized.\n
+ *         {@link INPUT_INJECTION_AUTHORIZED_OTHERS} Authorized to other applications.\n
+ * @since 20
+ */
+
+Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
+
+/**
+ * @brief Queries the injection authorization status.
+ *
+ * @param status Injection authorization status. For details, see {@Link Input_InjectionStatus}.
+ * @return OH_Input_QueryAuthorizedStatus function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The status is NULL\n
+ *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ * @since 20
+ */
+
+Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
 
 /**
  * @brief Creates an axis event object.
@@ -1191,7 +1389,7 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param windowId The windowId for the axis event.
- * @return OH_Input_SetAxisEventDisplayY function result code.
+ * @return OH_Input_SetAxisEventWindowId function result code.
  *         {@link INPUT_SUCCESS} Sets the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1204,7 +1402,7 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param windowId The windowId for the axis event.
- * @return OH_Input_GetAxisEventDisplayY function result code.
+ * @return OH_Input_GetAxisEventWindowId function result code.
  *         {@link INPUT_SUCCESS} Obtains the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the displayY is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1217,7 +1415,7 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param displayId The displayId for the axis event.
- * @return OH_Input_SetAxisEventDisplayY function result code.
+ * @return OH_Input_SetAxisEventDisplayId function result code.
  *         {@link INPUT_SUCCESS} Sets the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1230,13 +1428,61 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param displayId The displayId for the axis event.
- * @return OH_Input_GetAxisEventDisplayY function result code.
+ * @return OH_Input_GetAxisEventDisplayId function result code.
  *         {@link INPUT_SUCCESS} Obtains the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the displayY is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId);
+
+/**
+ * @brief Set the global X coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalX Global X coordinate.
+ * @return OH_Input_SetAxisEventGlobalX function result code.
+ *        {@link INPUT_SUCCESS} Success.\n
+ *        {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX);
+
+/**
+ * @brief Queries the global X coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalX Global X coordinate.
+ * @return OH_Input_GetAxisEventGlobalX function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the globalX is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX);
+
+/**
+ * @brief Set the global Y coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalY Global Y coordinate.
+ * @return OH_Input_SetAxisEventGlobalY function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY);
+
+/**
+ * @brief Queries the global Y coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalY Global Y coordinate.
+ * @return OH_Input_GetAxisEventGlobalY function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the globalY is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY);
 
 /**
  * @brief Adds a listener of key events.
@@ -1529,7 +1775,7 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  *
  * @param hotkey Hotkey key object.
  * @param finalKeyCode Returns the key value of the decorated key.
- * @return OH_Input_GetfinalKey status code, specifically,
+ * @return OH_Input_GetFinalKey status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the finalKeyCode is NULL;\n
  *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
@@ -1594,7 +1840,7 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  *
  * @param hotkey Shortcut key object.
  * @param isRepeat Whether a key event is repeated.
- * @return OH_Input_GetIsRepeat status code, specifically,
+ * @return OH_Input_GetRepeat status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} otherwise;\n
  *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
@@ -1815,7 +2061,7 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
 /**
  * @brief Unregisters the listener for all device hot swap events.
  *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ * @return OH_Input_UnregisterDeviceListeners status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1837,6 +2083,34 @@ Input_Result OH_Input_UnregisterDeviceListeners();
  * @since 15
  */
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
+
+/**
+ * @brief Queries the maximum number of touch points supported by the current device.
+ *      If -1 is returned, the number is unknown.
+ *
+ * @param count Maximum number of touch points supported.
+ * @return OH_Input_QueryMaxTouchPoints function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
+ * @since 20
+ */
+Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
+
+/**
+ * @brief Get pointer location.
+ *
+ * @param displayId The displayId for the pointer location.
+ * @param displayX The displayX for the pointer location.
+ * @param displayY The displayY for the pointer location.
+ * @return OH_Input_GetPointerLocation function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null pointer;
+ *         {@link INPUT_APP_NOT_FOCUSED} if the app is not the focused app;
+ *         {@link INPUT_DEVICE_NO_POINTER} if the device has no pointer;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 20
+ */
+Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
 #ifdef __cplusplus
 }
 #endif

@@ -535,6 +535,30 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_SetTimestamp(OH_EffectBufferInfo *info
 ImageEffect_ErrorCode OH_EffectBufferInfo_GetTimestamp(OH_EffectBufferInfo *info, int64_t *timestamp);
 
 /**
+ * @brief Sets the texture ID of the image for an OH_EffectBufferInfo struct.
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param info Pointer to an instance of the OH_EffectBufferInfo struct.
+ * @param textureId Pointer to the texture ID of the image.
+ * @return Returns EFFECT_SUCCESS if the operation is successful; returns EFFECT_ERROR_PARAM_INVALID if the
+ * parameter parameter is missing.
+ * @since 20
+ */
+ImageEffect_ErrorCode OH_EffectBufferInfo_SetTextureId(OH_EffectBufferInfo *info, int32_t textureId);
+
+/**
+ * @brief Obtains the texture ID of an image from an OH_EffectBufferInfo struct.
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param info Pointer to an instance of the OH_EffectBufferInfo struct.
+ * @param textureId Texture ID of the image.
+ * @return Returns EFFECT_SUCCESS if the operation is successful; returns EFFECT_ERROR_PARAM_INVALID if the
+ * parameter parameter is missing.
+ * @since 20
+ */
+ImageEffect_ErrorCode OH_EffectBufferInfo_GetTextureId(OH_EffectBufferInfo *info, int32_t *textureId);
+
+/**
  * @brief Clear the internal resources of the OH_EffectBufferInfo and destroy the OH_EffectBufferInfo instance
  *
  * @syscap SystemCapability.Multimedia.ImageEffect.Core
@@ -764,6 +788,25 @@ ImageEffect_ErrorCode OH_EffectFilter_LookupFilterInfo(const char *name, OH_Effe
  */
 ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap,
     OH_PixelmapNative *outputPixelmap);
+
+/**
+ * @brief Applies the filter effect using texture IDs. This function does not support using the same texture
+ * for for both input and output.
+ *
+ * @syscap SystemCapability.Multimedia.ImageEffect.Core
+ * @param filter Pointer to an instance of the OH_EffectFilter struct.
+ * @param inputTextureId ID of the input texture. This ID must be valid and bound to a texture of the
+ * GL_TEXTURE_2D GL_TEXTURE_2D type.
+ * @param outputTextureId ID of the output texture. This ID must be valid. If it is not bound to a texture, it
+ * will will automatically be bound to a GL_TEXTURE_2D type. If the texture is already bound and the size is
+ * inappropriate, inappropriate, the rendered result may be cropped or partially filled into this texture.
+ * @param colorSpace Color space of the image.
+ * @return Returns EFFECT_SUCCESS if the operation is successful; returns EFFECT_ERROR_PARAM_INVALID if the
+ * parameter parameter is missing.
+ * @since 20
+ */
+ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId,
+    int32_t outputTextureId, int32_t colorSpace);
 
 /**
  * @brief Clear the internal resources of the OH_EffectFilter and destroy the OH_EffectFilter instance

@@ -433,6 +433,87 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
 
 /**
+ * @brief Queries the index of the next available input buffer.
+ *
+ * This API must be followed by calling {@link OH_VideoDecoder_GetInputBuffer} to obtain the buffer handle,
+ * which should then be passed to the decoder via {@link OH_VideoDecoder_PushInputBuffer}.\n
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @param codec Pointer to an OH_AVCodec instance.
+ * @param index The index of the input buffer.
+ * @param timeoutUs Timeout duration in microseconds, negative value indicates infinite wait.
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_NO_MEMORY}, internal errors in the input decode instance, such as an abnormal NULL.
+ * {@link AV_ERR_INVALID_VAL}, the decoder is nullptr or invalid.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
+ * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
+ * @since 20
+ */
+OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+
+/**
+ * @brief Acquires the handle of an available input buffer.
+ *
+ * Note: It's only applicable in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index Buffer index obtained via {@link OH_VideoDecoder_QueryInputBuffer}.
+ * @return Returns a Pointer to an OH_AVBuffer instance.
+ * Return nullptr if no buffer available.
+ * @since 20
+ */
+OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+
+/**
+ * @brief Queries the index of the next available output buffer.
+ *
+ * The obtained buffer handle through {@link OH_VideoDecoder_GetOutputBuffer} must be:
+ *          - Return to the decoder via {@link OH_VideoDecoder_FreeOutputBuffer}, or
+ *          - Rendered using {@link OH_VideoDecoder_RenderOutputBuffer}, or
+ *          - Scheduled for rendering with {@link OH_VideoDecoder_RenderOutputBufferAtTime}\n
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index The index of the output buffer
+ * @param timeoutUs Timeout duration in microseconds, negative value indicates infinite wait.
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_NO_MEMORY}, internal errors in the input decode instance, such as an abnormal NULL.
+ * {@link AV_ERR_INVALID_VAL}, the decoder is nullptr or invalid.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
+ * {@link AV_ERR_STREAM_CHANGED}, stream format changed, call {@link OH_VideoDecoder_GetOutputDescription} to
+ * retrieve new steam information.
+ * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
+ * @since 20
+ */
+OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+
+/**
+ * @brief Acquires the handle of an available output buffer.
+ *
+ * Note: It's only applicable in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index Buffer index obtained via {@link OH_VideoDecoder_QueryOutputBuffer}.
+ * @return Returns a Pointer to an OH_AVBuffer instance.
+ * Return nullptr if no buffer available.
+ * @since 20
+ */
+OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+
+/**
  * @brief Check whether the current codec instance is valid. It can be used fault recovery or app
  * switchback from the background.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder

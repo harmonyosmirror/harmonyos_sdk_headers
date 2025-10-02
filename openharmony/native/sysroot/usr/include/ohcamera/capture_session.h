@@ -105,6 +105,16 @@ typedef void (*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureS
     Camera_AutoDeviceSwitchStatusInfo* autoDeviceSwitchStatusInfo);
 
 /**
+ * @brief Capture session system pressure level callback.
+ *
+ * @param session the {@link Camera_CaptureSession} which deliver the callback.
+ * @param systemPressureLevel the {@link Camera_SystemPressureLevel} which delivered by the callback.
+ * @since 20
+ */
+typedef void (*OH_CaptureSession_OnSystemPressureLevelChange)(Camera_CaptureSession* session,
+    Camera_SystemPressureLevel systemPressureLevel);
+
+/**
  * @brief A listener for capture session.
  *
  * @see OH_CaptureSession_RegisterCallback
@@ -955,6 +965,236 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
  * @since 19
  */
 Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled);
+
+/**
+ * @brief Checks whether the specified white balance mode is supported.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param whiteBalanceMode White balance mode.
+ * @param isSupported Pointer to the check result.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_IsWhiteBalanceModeSupported(
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode, bool *isSupported);
+
+/**
+ * @brief Obtains the white balance mode in use.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param whiteBalanceMode Pointer to the white balance mode.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceMode(
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode *whiteBalanceMode);
+
+/**
+ * @brief Obtains the supported white balance color temperature range.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param minColorTemperature Pointer to the minimum color temperature.
+ * @param maxColorTemperature Pointer to the maximum color temperature.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(
+    Camera_CaptureSession *session, int32_t *minColorTemperature, int32_t *maxColorTemperature);
+
+/**
+ * @brief Obtains the white balance color temperature.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param colorTemperature Pointer to the color temperature.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalance(Camera_CaptureSession *session, int32_t *colorTemperature);
+
+/**
+ * @brief Sets the white balance color temperature.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param colorTemperature Color temperature.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession *session, int32_t colorTemperature);
+
+/**
+ * @brief Sets a white balance mode.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param whiteBalanceMode White balance mode.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode);
+
+/**
+ * @brief Register system pressure level changes callback.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param systemPressureLevelChange the {@link OH_CaptureSession_OnSystemPressureLevelChange} to be registered.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,
+    OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange);
+
+/**
+ * @brief Unregister system pressure level changes callback.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param systemPressureLevelChange the {@link OH_CaptureSession_OnSystemPressureLevelChange} to be unregistered.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,
+    OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange);
+
+/**
+ * @brief Checks whether the control center is supported.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param isSupported Pointer to the check result. The value true means that the control center is supported, and false means the opposite.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_IsControlCenterSupported(Camera_CaptureSession* session, bool* isSupported);
+
+/**
+ * @brief Get the supported effect types .
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param types the supported {@link Camera_ControlCenterEffectType} list to be filled if the method call succeeds.
+ * @param size the size of supported effect types queried.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetSupportedEffectTypes(
+    Camera_CaptureSession* session, Camera_ControlCenterEffectType** types, uint32_t* size);
+
+/**
+ * @brief Delete the effect types.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param types the target {@link Camera_ControlCenterEffectType} list to be deleted if the method call succeeds.
+ * @param size the size of supported effect types to be deleted.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_DeleteSupportedEffectTypes(Camera_CaptureSession* session,
+    Camera_ControlCenterEffectType* types, uint32_t size);
+
+/**
+ * @brief Enables or disables the control center.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param enabled Whether to enable the control center. The value true means to enable the control center, and false means to disable it.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_EnableControlCenter(Camera_CaptureSession* session, bool enabled);
+
+/**
+ * @brief Capture session control center effect status info callback.
+ *
+ * @param session the {@link Camera_CaptureSession} which deliver the callback.
+ * @param controlCenterStatusInfo the {@link Camera_ControlCenterStatusInfo} which delivered by the callback.
+ * @since 20
+ */
+typedef void (*OH_CaptureSession_OnControlCenterEffectStatusChange)(Camera_CaptureSession* session,
+    Camera_ControlCenterStatusInfo* controlCenterStatusInfo);
+
+/**
+ * @brief Register control center effect status information event callback.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param controlCenterEffectStatusChange the {@link OH_CaptureSession_OnControlCenterEffectStatusChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,
+    OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange);
+
+/**
+ * @brief Unregister control center effect status information event callback.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param controlCenterEffectStatusChange the {@link OH_CaptureSession_OnControlCenterEffectStatusChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,
+    OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange);
+
+/**
+ * @brief Capture session macro status change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
+ * @param isMacroDetected The macro detection result which delivered by the callback.
+ * @since 20
+ */
+typedef void (*OH_CaptureSession_OnMacroStatusChange)(Camera_CaptureSession* session, bool isMacroDetected);
+
+/**
+ * @brief Register macro status change event callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param macroStatusChange The {@link OH_CaptureSession_OnMacroStatusChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterMacroStatusChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
+
+/**
+ * @brief Unregister macro status change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param macroStatusChange The {@link OH_CaptureSession_OnMacroStatusChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
 
 #ifdef __cplusplus
 }

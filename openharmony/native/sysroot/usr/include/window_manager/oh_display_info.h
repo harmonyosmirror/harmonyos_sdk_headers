@@ -126,6 +126,13 @@ typedef enum {
 
     /** @error Operation system abnormal */
     DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL = 1400003,
+
+    /**
+     * @error Operation illegal param.
+     *
+     * @since 20
+     */
+    DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM = 1400004,
 } NativeDisplayManager_ErrorCode;
 
 /**
@@ -233,6 +240,29 @@ typedef enum {
     /** display state on suspend */
     DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6,
 } NativeDisplayManager_DisplayState;
+
+/**
+ * @brief Enumerates of the display source mode.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef enum {
+    /** display is not in use */
+    DISPLAY_SOURCE_MODE_NONE = 0,
+
+    /** display is in main mode */
+    DISPLAY_SOURCE_MODE_MAIN = 1,
+
+    /** display is in mirror mode */
+    DISPLAY_SOURCE_MODE_MIRROR = 2,
+
+    /** display is in extend mode */
+    DISPLAY_SOURCE_MODE_EXTEND = 3,
+
+    /** display stands alone */
+    DISPLAY_SOURCE_MODE_ALONE = 4,
+} NativeDisplayManager_SourceMode;
 
 /**
  * @brief Defines the display hdr structure.

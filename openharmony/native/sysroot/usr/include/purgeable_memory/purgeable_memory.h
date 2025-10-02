@@ -50,7 +50,7 @@
 extern "C" {
 #endif /* End of #ifdef __cplusplus */
 
-/*
+/**
  * @brief Purgeable mem struct
  *
  * @since 10
@@ -58,12 +58,12 @@ extern "C" {
  */
 typedef struct PurgMem OH_PurgeableMemory;
 
-/*
+/**
  * @brief: function pointer, it points to a function which is used to build content of a PurgMem obj.
  *
  *
  * @param void *: data ptr, points to start address of a PurgMem obj's content.
- * @param size_t: data size of the content.
+ * @param size_t Data size of the content.
  * @param void *: other private parameters.
  * @return: build content result, true means success, while false is fail.
  *
@@ -72,13 +72,13 @@ typedef struct PurgMem OH_PurgeableMemory;
  */
 typedef bool (*OH_PurgeableMemory_ModifyFunc)(void *, size_t, void *);
 
-/*
+/**
  * @brief: create a PurgMem obj.
  *
  *
- * @param size: data size of a PurgMem obj's content.
- * @param func: function pointer, it is used to recover data when the PurgMem obj's content is purged.
- * @param funcPara: parameters used by @func.
+ * @param size Data size of a PurgMem obj's content.
+ * @param func Function pointer, it is used to recover data when the PurgMem obj's content is purged.
+ * @param funcPara Parameters used by @func.
  * @return: a PurgMem obj.
  *
  * @since 10
@@ -87,11 +87,11 @@ typedef bool (*OH_PurgeableMemory_ModifyFunc)(void *, size_t, void *);
 OH_PurgeableMemory *OH_PurgeableMemory_Create(
     size_t size, OH_PurgeableMemory_ModifyFunc func, void *funcPara);
 
-/*
+/**
  * @brief: destroy a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj to be destroyed.
+ * @param purgObj A PurgMem obj to be destroyed.
  * @return: true is success, while false is fail. return true if @purgObj is NULL.
  * If return true, @purgObj will be set to NULL to avoid Use-After-Free.
  *
@@ -100,11 +100,11 @@ OH_PurgeableMemory *OH_PurgeableMemory_Create(
  */
 bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: begin read a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
+ * @param purgObj A PurgMem obj.
  * @return: return true if @purgObj's content is present.
  *          If content is purged(no present), system will recover its data,
  *          return false if content is purged and recovered failed.
@@ -117,11 +117,11 @@ bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory *purgObj);
  */
 bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: end read a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
+ * @param purgObj A PurgMem obj.
  * OS may reclaim the memory of @purgObj's content
  * at a later time when this function returns.
  *
@@ -130,11 +130,11 @@ bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory *purgObj);
  */
 void OH_PurgeableMemory_EndRead(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: begin write a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
+ * @param purgObj A PurgMem obj.
  * @return: return true if @purgObj's content is present.
  *          if content is purged(no present), system will recover its data,
  *          return false if content is purged and recovered failed.
@@ -147,11 +147,11 @@ void OH_PurgeableMemory_EndRead(OH_PurgeableMemory *purgObj);
  */
 bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: end write a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
+ * @param purgObj A PurgMem obj.
  * OS may reclaim the memory of @purgObj's content
  * at a later time when this function returns.
  *
@@ -160,11 +160,11 @@ bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory *purgObj);
  */
 void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: get content ptr of a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
+ * @param purgObj A PurgMem obj.
  * @return: return start address of a PurgMem obj's content.
  *          Return NULL if @purgObj is NULL.
  * This function should be protect by PurgMemBeginRead()/PurgMemEndRead()
@@ -175,11 +175,11 @@ void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory *purgObj);
  */
 void *OH_PurgeableMemory_GetContent(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: get content size of a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
+ * @param purgObj A PurgMem obj.
  * @return: return content size of @purgObj.
  *          Return 0 if @purgObj is NULL.
  *
@@ -188,14 +188,13 @@ void *OH_PurgeableMemory_GetContent(OH_PurgeableMemory *purgObj);
  */
 size_t OH_PurgeableMemory_ContentSize(OH_PurgeableMemory *purgObj);
 
-/*
+/**
  * @brief: append a modify to a PurgMem obj.
  *
  *
- * @param purgObj: a PurgMem obj.
- * @param size: data size of a PurgMem obj's content.
- * @param func: function pointer, it will modify content of @PurgMem.
- * @param funcPara: parameters used by @func.
+ * @param purgObj A PurgMem obj.
+ * @param func Function pointer, it will modify content of @PurgMem.
+ * @param funcPara Parameters used by @func.
  * @return:  append result, true is success, while false is fail.
  *
  * @since 10

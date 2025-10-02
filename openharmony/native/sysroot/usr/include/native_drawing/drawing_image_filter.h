@@ -64,6 +64,24 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sig
     OH_Drawing_ImageFilter* imageFilter);
 
 /**
+ * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that blurs its input by the separate x and y sigmas.
+ * Supports an optional crop rectangle to restrict the blur effect to a specific region of the input.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param sigmaX Indicates the Gaussian sigma value for blurring along the x axis.
+ * @param sigmaY Indicates the Gaussian sigma value for blurring along the y axis.
+ * @param tileMode Indicates the tile mode applied at edges.
+ * @param input Indicates the input filter that is blurred, uses source bitmap if this is null.
+ * @param rect Indicates optional rectangle that crops the input and output.
+ *             If rect is null, the blur effect applies to the entire input image.
+ * @return Returns the pointer to the <b>OH_Drawing_ImageFilter</b> object created.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlurWithCrop(float sigmaX, float sigmaY,
+    OH_Drawing_TileMode tileMode, OH_Drawing_ImageFilter* input, const OH_Drawing_Rect* rect);
+
+/**
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that applies the color filter to the input.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -78,6 +96,35 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sig
  */
 OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter(OH_Drawing_ColorFilter* colorFilter,
     OH_Drawing_ImageFilter* imageFilter);
+
+/**
+ * @brief Creates an <b>OH_Drawing_ImageFilter</b> object with the provided x and y offset.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param x Indicates the x offset.
+ * @param y Indicates the y offset.
+ * @param imageFilter Indicates the input filter, or uses the source bitmap if this is null.
+ * @return Returns the pointer to the <b>OH_Drawing_ImageFilter</b> object created.
+ *         If nullptr is returned, the creation fails.
+ *         The possible cause of the failure is that the available memory is empty.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateOffset(float x, float y, OH_Drawing_ImageFilter* imageFilter);
+
+/**
+ * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that applies the shader to the input.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param shaderEffect Indicates the shader effect to be applied to the image.
+ * @return Returns the pointer to the <b>OH_Drawing_ImageFilter</b> object created.
+ *         If nullptr is returned, the creation fails.
+ *         The possible cause of the failure is that the available memory is empty or
+ *         a nullptr <b>OH_Drawing_ShaderEffect</b> is passed.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromShaderEffect(OH_Drawing_ShaderEffect* shaderEffect);
 
 /**
  * @brief Destroys an <b>OH_Drawing_ImageFilter</b> object and reclaims the memory occupied by the object.

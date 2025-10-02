@@ -53,6 +53,7 @@ extern "C" {
 #define NETCONN_MAX_ROUTE_SIZE 64
 #define NETCONN_MAX_EXCLUSION_SIZE 256
 #define NETCONN_MAX_STR_LEN 256
+#define NETCONN_MAX_RTT_NUM 4
 
 /**
  * @brief Defines network capabilities.
@@ -129,6 +130,18 @@ typedef enum NetConn_ErrorCode {
      */
     NETCONN_INTERNAL_ERROR = 2100003
 } NetConn_ErrorCode;
+
+/**
+ * @brief Enumerates packets type of trace route.
+ *
+ * @since 20
+ */
+typedef enum NetConn_PacketsType {
+    /** ICMP */
+    NETCONN_PACKETS_ICMP = 0,
+    /** UDP */
+    NETCONN_PACKETS_UDP = 1
+} NetConn_PacketsType;
 
 /**
  * @brief Defines the network handle.
@@ -379,6 +392,44 @@ typedef struct NetConn_NetConnCallback {
     /** Callback for network blocked status changed */
     OH_NetConn_NetBlockStatusChange onNetBlockStatusChange;
 } NetConn_NetConnCallback;
+
+/**
+ * @brief Defines the probe result information.
+ *
+ * @since 20
+ */
+typedef struct NetConn_ProbeResultInfo {
+    /** Number of jumps */
+    uint8_t lossRate;
+    /** RTT in micro seconds, min/avg/max/std */
+    uint32_t rtt[NETCONN_MAX_RTT_NUM];
+} NetConn_ProbeResultInfo;
+
+/**
+ * @brief Defines the network trace route option.
+ *
+ * @since 20
+ */
+typedef struct NetConn_TraceRouteOption {
+    /** Maximum number of jumps, default is 30 */
+    uint8_t maxJumpNumber;
+    /** Packets type */
+    NetConn_PacketsType packetsType;
+} NetConn_TraceRouteOption;
+ 
+/**
+ * @brief Defines the trace route information.
+ *
+ * @since 20
+ */
+typedef struct NetConn_TraceRouteInfo {
+    /** Number of jumps */
+    uint8_t jumpNo;
+    /** host name or address */
+    char address[NETCONN_MAX_STR_LEN];
+    /** RTT in micro seconds */
+    uint32_t rtt[NETCONN_MAX_RTT_NUM];
+} NetConn_TraceRouteInfo;
 
 #ifdef __cplusplus
 }

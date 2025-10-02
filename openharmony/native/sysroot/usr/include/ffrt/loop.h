@@ -36,8 +36,9 @@
 #ifndef FFRT_API_C_LOOP_H
 #define FFRT_API_C_LOOP_H
 
-#include "queue.h"
+#include <stdbool.h>
 #include "type_def.h"
+#include "queue.h"
 
 /**
  * @brief Defines the loop handle, which identifies different loops.
@@ -87,6 +88,8 @@ FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop);
 /**
  * @brief Controls an epoll file descriptor on ffrt loop.
  *
+ * @warning Do not call `exit` in `cb` - this my cause unexpected behavior.
+ *
  * @param loop Indicates a loop handle.
  * @param op Indicates operation on the target file descriptor.
  * @param fd Indicates the target file descriptor on which to perform the operation.
@@ -102,6 +105,7 @@ FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t ev
 /**
  * @brief Starts a timer on ffrt loop.
  *
+ * @warning Do not call `exit` in `cb` - this my cause unexpected behavior.
  * @param loop Indicates a loop handle.
  * @param timeout Indicates the number of milliseconds that specifies timeout.
  * @param data Indicates user data used in cb.

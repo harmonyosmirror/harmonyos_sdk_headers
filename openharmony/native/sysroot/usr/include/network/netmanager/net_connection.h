@@ -371,6 +371,36 @@ NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl);
  * @since 15
  */
 NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
+
+/**
+ * @brief Query a network probe result.
+ *
+ * @param destination Pointer to the destination.
+ * @param duration probe duration. Unit: second.
+ * @param probeResultInfo Pointer to probe loss rate and rtt.
+ * @return 0 - Success.
+ *         201 - Missing permissions.
+ *         401 - Parameter error.
+ *         2100003 - Internal error.
+ * @permission ohos.permission.INTERNET
+ * @since 20
+ */
+int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
+
+/**
+ * @brief Query a network trace route.
+ *
+ * @param destination Pointer to the destination.
+ * @param option Pointer to the trace route option
+ * @param traceRouteInfo Pointer to trace route result.
+ * @return 0 - Success.
+ *         201 - Missing permissions.
+ * @permission ohos.permission.INTERNET and ohos.permission.LOCATION and ohos.permission.ACCESS_TRACE_ROUTE_INFO
+ * @since 20
+ */
+int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,
+    NetConn_TraceRouteInfo *traceRouteInfo);
+
 #ifdef __cplusplus
 }
 #endif

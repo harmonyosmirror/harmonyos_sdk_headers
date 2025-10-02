@@ -358,6 +358,8 @@ int32_t OH_ConsumerSurface_SetDefaultSize(OH_NativeImage* image, int32_t width, 
  * This mode can not simultaneously guarantee high frame rate requirements.\n
  * This interface suggest be called after the <b>OH_NativeImage_Create</b> call immediately.\n
  * This interface will only take effect when used together with the <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
+ * The listener callback set through <b>OH-NativeImage_SetOnFrameAvailableListener</b> will not decrease
+ * due to the frame loss mode being set.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage

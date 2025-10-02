@@ -407,6 +407,84 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
 OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
 
 /**
+ * @brief Queries the index of the next available input buffer.
+ *
+ * This API must be followed by calling {@link OH_VideoEncoder_GetInputBuffer} to obtain the buffer handle,
+ * which should then be passed to the encoder via {@link OH_VideoEncoder_PushInputBuffer}.\n
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoEncoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index The index of the input buffer
+ * @param timeoutUs Timeout duration in microseconds, negative value indicates infinite wait.
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
+ * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay..
+ * @since 20
+ */
+OH_AVErrCode OH_VideoEncoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+
+/**
+ * @brief Acquires the handle of an available input buffer.
+ *
+ * Note: It's only applicable in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoEncoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index Buffer index obtained via {@link OH_VideoEncoder_QueryInputBuffer}.
+ * @return Returns a Pointer to an OH_AVBuffer instance.
+ * Return nullptr if no buffer available.
+ * @since 20
+ */
+OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+
+/**
+ * @brief Queries the index of the next available output buffer.
+ *
+ * The obtained buffer handle through {@link OH_VideoEncoder_GetOutputBuffer} must be
+ * return to the encoder via {@link OH_VideoEncoder_FreeOutputBuffer}.\n
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoEncoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index The index value corresponding to the output buffer
+ * @param timeoutUs Timeout duration in microseconds, negative value indicates infinite wait.
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
+ * {@link AV_ERR_STREAM_CHANGED}, stream format changed, call {@link OH_VideoEncoder_GetOutputDescription} to
+ * retrieve new steam information.
+ * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
+ * @since 20
+ */
+OH_AVErrCode OH_VideoEncoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+
+/**
+ * @brief Acquires the handle of an available output buffer.
+ *
+ * Note: It's only applicable in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.VideoEncoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index Buffer index obtained via {@link OH_VideoEncoder_QueryOutputBuffer}.
+ * @return Returns a Pointer to an OH_AVBuffer instance.
+ * Return nullptr if no buffer available.
+ * @since 20
+ */
+OH_AVBuffer *OH_VideoEncoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+
+/**
  * @brief Get the input data description of the encoder after call {@OH_VideoEncoder_Configure},
  * refer to {@link OH_AVFormat} for details. It should be noted that the life cycle of the OH_AVFormat
  * instance pointed to by the return value needs to be manually released by the caller.

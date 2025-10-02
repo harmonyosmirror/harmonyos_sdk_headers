@@ -137,6 +137,18 @@ int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted);
  */
 int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted);
 
+/**
+ * @brief Checks whether the component is configured for Cleartext traffic interception.
+ *
+ * @return 0 - Success.
+ *         2100001 - Invalid parameter value.
+ * @param component Indicates the component name.
+ * @param componentCfg Indicates output parameter,
+ *        {@code true} if the component is configured for Cleartext traffic interception, {@code false} otherwise.
+ * @since 20
+ */
+int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg);
+
 #ifdef __cplusplus
 }
 #endif

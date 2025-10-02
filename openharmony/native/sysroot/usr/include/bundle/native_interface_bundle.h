@@ -29,13 +29,16 @@
  * @brief Declares the <b>Bundle</b>-specific function, including function for obtaining application info.
  *
  * @kit AbilityKit
- * @library libbundle.z.so
+ * @library libbundle_ndk.z.so
  * @syscap SystemCapability.BundleManager.BundleFramework.Core
  * @since 9
  * @version 1.0
  */
 #ifndef FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
 #define FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
+
+#include <stdbool.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -75,6 +78,46 @@ struct OH_NativeBundle_ElementName {
     /** Indicates the name of ability. */
     char* abilityName;
 };
+
+/**
+ * @brief Indicates information of metadata.
+ *
+ * @since 20
+ */
+typedef struct OH_NativeBundle_Metadata {
+    /**
+     * @brief Indicates the metadata name.
+     */
+    char* name;
+    /**
+     * @brief Indicates the metadata value.
+     */
+    char* value;
+    /**
+     * @brief Indicates the metadata resource.
+     */
+    char* resource;
+} OH_NativeBundle_Metadata;
+
+/**
+ * @brief Indicates information of module metadata.
+ *
+ * @since 20
+ */
+typedef struct OH_NativeBundle_ModuleMetadata {
+    /**
+     * @brief Indicates the moduleName of module.
+     */
+    char* moduleName;
+    /**
+     * @brief Indicates the metadata array of module.
+     */
+    OH_NativeBundle_Metadata* metadataArray;
+    /**
+     * @brief Indicates the metadata array size of module.
+     */
+    size_t metadataArraySize;
+} OH_NativeBundle_ModuleMetadata;
 
 /**
  * @brief Indicates information of application
@@ -159,6 +202,28 @@ OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
  * @version 1.0
  */
 char* OH_NativeBundle_GetCompatibleDeviceType();
+
+/**
+ * @brief Obtains the application debug mode.
+ *
+ * @param isDebugMode Indicates whether the application is in debug mode.
+ * @return Returns true if call successful, false otherwise.
+ * @since 20
+ */
+bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
+
+/**
+ * @brief Obtains the module metadata array of the current application.
+ * After utilizing this interface, to prevent memory leaks,
+ * it is necessary to manually release the pointer returned by the interface.
+ *
+ * @param size Indicates the module metadata array size.
+ * @return Returns the newly created module metadata array, if the returned object is NULL,
+ * it indicates creation failure. The possible cause of failure could be that the application address space is full,
+ * leading to space allocation failure.
+ * @since 20
+ */
+OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
 #ifdef __cplusplus
 };
 #endif

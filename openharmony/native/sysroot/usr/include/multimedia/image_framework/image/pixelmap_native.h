@@ -572,6 +572,18 @@ Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint3
 Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint32_t *height);
 
 /**
+ * @brief Get alphaMode number for imageinfo struct.
+ *
+ * @param info The imageinfo pointer will be operated.
+ * @param alphaMode The number of imageinfo alphaMode.
+ * @return Image functions result code.
+ *     {@link IMAGE_SUCCESS} if the execution is successful.
+ *     {@link IMAGE_BAD_PARAMETER} info is nullptr, or alphaMode is nullptr.
+ * @since 20
+ */
+Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, int32_t *alphaMode);
+
+/**
  * @brief Get rowStride number for imageinfo struct.
  *
  * @param info The imageinfo pointer will be operated.
@@ -633,6 +645,30 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info);
  */
 Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength,
     OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+
+/**
+ * @brief Creates a pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used by the
+ * pixelmap can be specified by allocatorType {@link IMAGE_ALLOCATOR_MODE}. By default, the system selects the memory
+ * type based on the image type, image size, platform capability, etc. When processing the pixelmap returned by this
+ * interface, please always consider the impact of stride.
+ *
+ * @param data Input color buffer in BGRA_8888 format by default.
+ * @param dataLength Length of input buffer in bytes.
+ * @param options Pixelmap initialization properties including size, pixel format, alpha type, and editable flags.
+ * @param allocator Indicate which memory type will be used by the returned pixelmap.
+ * @param pixelmap Output parameter receiving the created pixelmap object pointer.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
+ *         {@link IMAGE_TOO_LARGE} too large data or image.
+ *         {@link IMAGE_UNSUPPORTED_OPERATION} unsupported operations.
+ *         {@link IMAGE_DMA_OPERATION_FAILED} DMA operation failed.
+ *         {@link IMAGE_ALLOCATOR_MODE_UNSUPPORTED} unsupported allocator mode, e.g.,
+ *         use share memory to create a HDR image as only DMA supported hdr metadata.
+ * @since 20
+ */
+Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, size_t dataLength,
+    OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap);
 
 /**
  * @brief Convert a native <b>PixelMap</b> object to <b>PixelMap</b> napi object.
@@ -880,6 +916,27 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
  */
 Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
     OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+
+/**
+ * @brief Creates a empty pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used
+ * by the pixelmap can be specified by allocatorType {@link IMAGE_ALLOCATOR_MODE}. By default,
+ * the system selects the memory type based on the image type, image size, platform capability, etc. When processing
+ * the pixelmap returned by this interface, please always consider the impact of stride.
+ *
+ * @param options Pixelmap initialization properties including size, pixel format, alpha type, and editable flags.
+ * @param allocator Indicate which memory type will be used by the returned pixelmap.
+ * @param pixelmap Output parameter receiving the created pixelmap object pointer.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
+ *         {@link IMAGE_TOO_LARGE} too large data or image.
+ *         {@link IMAGE_UNSUPPORTED_OPERATION} unsupported operations.
+ *         {@link IMAGE_ALLOCATOR_MODE_UNSUPPORTED} unsupported allocator mode, e.g., use
+ *         share memory to create a HDR image as only DMA supported hdr metadata.
+ * @since 20
+ */
+Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(
+    OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap);
 
 /**
  * @brief Get metadata.

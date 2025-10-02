@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -50,6 +50,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Define commponents max function size.
+ *
+ * @since 12
+ */
 #define MAX_NODE_SCOPE_NUM 1000
 
 /**
@@ -138,6 +143,16 @@ typedef enum {
     ARKUI_NODE_GRID_ITEM,
     /** Custom span. */
     ARKUI_NODE_CUSTOM_SPAN,
+    /**
+     * EmbeddedComponent.
+     * @since 20
+     */
+    ARKUI_NODE_EMBEDDED_COMPONENT,
+    /**
+     * Undefined.
+     * @since 20
+     */
+    ARKUI_NODE_UNDEFINED,
 } ArkUI_NodeType;
 
 /**
@@ -1101,13 +1116,13 @@ typedef enum {
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].?i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      *
      */
     NODE_BLEND_MODE,
@@ -1813,6 +1828,8 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:\n
      * .value[0].i32: component ID. \n
      *
+     * @deprecated since 20
+     * @useinstead OH_ArkUI_NodeUtils_GetNodeUniqueId
      */
     NODE_UNIQUE_ID = 95,
 
@@ -1928,6 +1945,60 @@ typedef enum {
      * @since 17
      */
     NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO = 102,
+
+    /**
+     * @brief Defines the translate attribute, which supports for percentile translation input, and can be set, reset,
+     * and obtained as required through APIs.\n
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: distance to translate along the x-axis. The default unit is percentage.
+     * The unit is vp only if value[3] exists and value[3] is 0. The default value of value[0] is <b>0</b>.\n
+     * .value[1].f32: distance to translate along the y-axis. The default unit is percentage.
+     * The unit is vp only if value[4] exists and value[4] is 0. The default value of value[1] is <b>0</b>.\n
+     * .value[2].f32: distance to translate along the z-axis, in vp. The default value is <b>0</b>.\n
+     * .value[3]?.i32: Whether the translation distance along the x-axis is specified as a percentage.
+     *  The value can be 0 or 1. When the value is 1, it is specified as a percentage.
+     *  For example, value[0].f32=0.1 and value[3].i32=1 indicates a 10% shift in the x direction.
+     *  The default value is <b>1</b>.\n
+     * .value[4]?.i32: Whether the translation distance along the y-axis is specified as a percentage.
+     *  The value can be 0 or 1. When the value is 1, it is specified as a percentage.
+     *  For example, value[1].f32=0.1 and value[4].i32=1 indicates a 10% shift in the y direction.
+     *  The default value is <b>1</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: distance to translate along the x-axis. The unit depends on value[3].\n
+     * .value[1].f32: distance to translate along the y-axis. The unit depends on value[4].\n
+     * .value[2].f32: distance to translate along the z-axis. The unit is vp.\n
+     * .value[3].i32: Whether the unit of the X-axis translation distance is in percentage. When value[3].i32 is 0,
+     *  the unit of the X-axis translation distance is vp; when value[3].i32 is 1, the unit of the X-axis translation
+     *  distance is percentage;\n
+     * .value[4].i32: Whether the unit of the Y-axis translation distance is in percentage. When value[4].i32 is 0,
+     *  the unit of the Y-axis translation distance is vp; when value[4].i32 is 1, the unit of the Y-axis translation
+     *  distance is percentage;\n
+     *
+     * @since 20
+     */
+    NODE_TRANSLATE_WITH_PERCENT = 103,
+
+    /**
+     * @brief Sets component rotation with multi-axis angle control. This attribute can be set, reset,
+     * and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>.
+     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
+     *
+     * @since 20
+     */
+    NODE_ROTATE_ANGLE = 104,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -2315,6 +2386,113 @@ typedef enum {
      * @since 15
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
+ 
+    /**
+     * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.
+     *               The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
+
+    /**
+     * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: line count of the node.
+     *
+     * @since 20
+     */
+    NODE_TEXT_LINE_COUNT = 1031,
+
+    /**
+     * @brief Sets a linear gradient effect for text.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: start angle of the linear gradient.
+     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
+     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
+     * .value[1].i32: direction of the linear gradient. When a direction other than
+     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
+     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
+     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: start angle of the linear gradient.
+     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
+     * otherwise, it is at default value. \n
+     * .value[1].i32: direction of the linear gradient. \n
+     * .value[2].i32: whether the colors are repeated. \n
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_LINEAR_GRADIENT = 1033,
+
+    /**
+     * @brief Sets a radial gradient effect for text.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
+     * .value[3]?.i32: whether the colors are repeated.
+     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
+     * .value[3].i32: whether the colors are repeated.
+     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_RADIAL_GRADIENT = 1034,
+
+    /**
+     * @brief Sets the vertical alignment of the text content.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
+     * enum. The default value is <b>ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
+     * enum. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_VERTICAL_ALIGN = 1035,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -2573,6 +2751,19 @@ typedef enum {
      *
      */
     NODE_IMAGE_RESIZABLE,
+    /**
+     * @brief Defines the synchronous image loading attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to load the image synchronously. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to load the image synchronously. \n
+     *
+     * @since 20
+     */
+    NODE_IMAGE_SYNC_LOAD = 4012,
     /**
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3125,6 +3316,33 @@ typedef enum {
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
     /**
+     * @brief Set whether to enable the auto fill animation or not.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Whether to enable the auto fill animation.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: Get the flag of whether the auto fill animation is enabled.\n
+     *
+     * @since 20
+     */
+    NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
+
+    /**
+     * @brief Set the line height of the input node.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: line height value.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: line height value
+     *
+     * @since 20
+     */
+    NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3474,6 +3692,73 @@ typedef enum {
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
+     * @brief Set the max lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: max lines count.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: max lines count.\n
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_MAX_LINES = 8027,
+
+    /**
+     * @brief Set line spacing of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: line spacing value. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: line spacing value. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_LINE_SPACING = 8028,
+
+    /**
+     * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: min lines count.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: min line count.\n
+     *
+     * @since 20
+     * 
+     */
+    NODE_TEXT_AREA_MIN_LINES = 8029,
+ 
+    /**
+     * @brief Set the max lines of the node with scroll.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: max lines count with scroll.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: max line count with scroll.\n
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
+
+    /**
+     * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: line height value.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: line height value
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_LINE_HEIGHT = 8031,
+
+    /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -3700,25 +3985,19 @@ typedef enum {
      */
     NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT,
     /**
-     * @brief Defines the type of the <b><XComponent></b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Specifies the type of the <b>XComponent</b> component. This attribute is read-only. \n
+     * The type of the <b>XComponent</b> component must be explicitly set during creation using {@link ARKUI_NODE_XCOMPONENT} or {@link ARKUI_NODE_XCOMPONENT_TEXTURE}, and cannot be modified afterward. \n
+     * Attempting to change the type through {@link setAttribute} will cause rendering exceptions.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type {@link ArkUI_XComponentType}. The default value is <b>ARKUI_XCOMPONENT_TYPE_SURFACE</b>. \n
-     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: type {@link ArkUI_XComponentType}. \n
      *
      */
     NODE_XCOMPONENT_TYPE,
     /**
-     * @brief Defines the width and height of the <b><XComponent></b> component.
-     * This attribute can be set and obtained as required through APIs.
+     * @brief Specifies the size of the <b>XComponent</b> component. This attribute is read-only. \n
+     * Attempting to modify the size through {@link setAttribute} will have no effect.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: width, in px. \n
-     * .value[1].u32: height, in px. \n
-     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: width, in px. \n
      * .value[1].u32: height, in px. \n
@@ -3904,6 +4183,20 @@ typedef enum {
      * @since 18
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
+    /**
+     * @brief Defines whether to support scroll looping for the date picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
+     * <b>false</b> means the opposite.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     *
+     * @since 20
+     */
+     NODE_DATE_PICKER_CAN_LOOP = 13009,
     /**
      * @brief Defines the time of the selected item. in the timer picker.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4214,6 +4507,28 @@ typedef enum {
      * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
+    /**
+     * @brief Defines the background color and border radius of the selected items.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * 1: .value[1].f32: radius of the four corners. \n
+     * 2: .value[1].f32: radius of the upper left corner. \n
+     * .value[2].f32: radius of the upper right corner. \n
+     * .value[3].f32: radius of the lower left corner. \n
+     * .value[4].f32: radius of the lower right corner. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
+     * .value[1].f32: radius of the upper left corner. \n
+     * .value[2].f32: radius of the upper right corner. \n
+     * .value[3].f32: radius of the lower left corner. \n
+     * .value[4].f32: radius of the lower right corner. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
     /**
      * @brief Defines the style of the background in the selected state of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4554,6 +4869,32 @@ typedef enum {
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
 
     /**
+     * @brief Sets a custom component on the leading side of the Slider component.
+     *
+     * Attribute setting method {@link ArkUI_AttributeItem} parameter format:\n
+     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     *
+     * The prefix component will be placed at the start position of the Slider，
+     * typically on the left side in LTR layouts.
+	 *
+	 * @since 20
+     */
+    NODE_SLIDER_PREFIX,
+
+    /**
+     * @brief Sets a custom component on the trailing side of the Slider component.
+     *
+     * Attribute setting method {@link link ArkUI_AttributeItem} parameter format:\n
+     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     *
+     * The suffix component will be placed at the end position of the Slider,
+     * typically on the right side in LTR layouts.
+	 *
+	 * @since 20
+     */
+    NODE_SLIDER_SUFFIX,
+
+    /**
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
      * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
@@ -4866,7 +5207,8 @@ typedef enum {
      * The parameter type is {@link ArkUI_EdgeEffect}. The default value is <b>ARKUI_EDGE_EFFECT_NONE</b>.\n
      * .value[1]?.i32: whether to enable the scroll effect when the component content size is smaller than the
      * component itself. Optional. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the
-     * opposite. The default value is <b>1</b>. \n
+     * opposite. The default value for the List/Grid/WaterFlow component is <b>0</b>, and the default value for the
+     * Scroll component is <b>1</b>. \n
      * .value[2]?.i32: direction in which the effect takes effect. The parameter type is {@link ArkUI_EffectEdge}.
      * The default value is <b>ARKUI_EFFECT_EDGE_START | ARKUI_EFFECT_EDGE_END</b>. This parameter is supported since
      * API version 16. \n
@@ -4964,10 +5306,13 @@ typedef enum {
      * .value[1].f32: vertical scrolling offset, in vp. \n
      * .value[2]?.i32: scrolling duration, in milliseconds. Optional. \n
      * .value[3]?.i32: scrolling curve. Optional. The parameter type is {@link ArkUI_AnimationCurve}.
-     * The default value is <b>ARKUI_CURVE_EASE</b>. \n
-     * .value[4]?.i32: whether to enable the default spring animation. Optional. The default value <b>0</b> means not
-     * to enable the default spring animation. \n
-     * .value[5]?.i32: Optional value, sets whether scrolling can cross the boundary. \n
+     *                 The default value is <b>ARKUI_CURVE_EASE</b>. \n
+     * .value[4]?.i32: whether to enable the default spring animation. Optional.
+     *                 The default value <b>0</b> means not to enable the default spring animation. \n
+     * .value[5]?.i32: whether to convert the scroll animation to an overshoot animation when the boundary is reached.
+     *                 Optional. \n
+     * .value[6]?.i32: whether the component can stop at an overscrolled position.
+     *                 This parameter is supported since API version 20. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: horizontal scrolling offset, in vp. \n
@@ -5141,8 +5486,78 @@ typedef enum {
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
     /**
-     * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
-     * obtained as required through APIs.
+     * @brief Defines the margin of the scrollbar.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: start margin of the scrollbar, in vp. The default value is <b>0</b>. \n
+     * .value[1].f32: end margin of the scrollbar, in vp. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: start margin of the scrollbar, in vp. \n
+     * .value[1].f32: end margin of the scrollbar, in vp. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_BAR_MARGIN = 1002022,
+
+    /**
+     * @brief Sets the maximum zoom scale for scrollable content.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: maximum zoom scale to set. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: current maximum zoom scale. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_MAX_ZOOM_SCALE = 1002023,
+
+    /**
+     * @brief Sets the minimum zoom scale for scrollable content.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: minimum zoom scale to set. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: current minimum zoom scale. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_MIN_ZOOM_SCALE = 1002024,
+
+    /**
+     * @brief Sets the zoom scale for scrollable content.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: zoom scale to set. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: current zoom scale. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_ZOOM_SCALE = 1002025,
+
+    /**
+     * @brief Sets whether to enable the zoom bounce effect when the scaling exceeds the limits.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to enable the zoom bounce effect when the scaling exceeds the limits.
+     * The value <b>1</b> means to enable the effect, and <b>0</b> means the opposite. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to enable the zoom bounce effect when the scaling exceeds the limits.
+     * The value <b>1</b> means to enable the effect, and <b>0</b> means the opposite. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
+
+    /**
+     * @brief Sets the direction in which the list items are arranged.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: direction in which the list items are arranged. The parameter type is {@link ArkUI_Axis}.
@@ -5367,6 +5782,38 @@ typedef enum {
      * @since 19
      */
     NODE_LIST_STACK_FROM_END = 1003014,
+    
+    /**
+     * @brief Defines the focus wrap mode for the <b>List</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: focus wrap mode of the <b>List</b> component.
+     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: focus wrap mode of the <b>List</b> component.
+     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+     *
+     * @since 20
+     */
+    NODE_LIST_FOCUS_WRAP_MODE = 1003015,
+
+    /**
+     * @brief Defines whether the <b>List</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_LIST_SYNC_LOAD = 1003016,
 
     /**
      * @brief Defines whether to enable loop playback for the swiper.
@@ -5509,13 +5956,13 @@ typedef enum {
     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
     * .value[0].i32: number of elements to display per page. \n
     * .value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
-    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 18. \n
+    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 19. \n
     * .string?: this parameter can only be set to 'auto'. When 'auto' is set, the value[] parameters are ignored.
-    * This parameter is supported since API version 18. \n
+    * This parameter is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: number of elements to display per page. \n
-    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 18. \n
+    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 19. \n
     * .string: 'auto' or empty string.
     *
     */
@@ -5545,14 +5992,14 @@ typedef enum {
     * The parameter type is {@link ArkUI_SwiperArrow}.\n
     * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
     * .?object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 18. \n
+    * This parameter is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
     * The parameter type is {@link ArkUI_SwiperArrow}.\n
     * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
     * .object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 18. \n
+    * This parameter is supported since API version 19. \n
     *
     */
     NODE_SWIPER_SHOW_DISPLAY_ARROW,
@@ -5590,11 +6037,11 @@ typedef enum {
     * .value[1]?.i32: whether the cached items will be displayed. \n
     * The value <b>0</b> indicates that cached items will not be displayed, \n
     * and <b>1</b> indicates that cached nodes will be displayed. The default value is <b>0</b>. \n
-    * This parameter is supported from API version 18. \n
+    * This parameter is supported from API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: number of cached items in the swiper adapter. \n
-    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 18. \n
+    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 19. \n
     */
     NODE_SWIPER_CACHED_COUNT,
 
@@ -5637,14 +6084,14 @@ typedef enum {
     * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
     * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 18. \n
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.\n
     * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
     * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 18. \n
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
     *
     */
     NODE_SWIPER_INDICATOR,
@@ -5713,6 +6160,24 @@ typedef enum {
      * @since 19
      */
     NODE_SWIPER_AUTO_FILL,
+
+    /**
+     * @brief Sets whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
+     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
+     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
+     *
+     * @since 20
+     */
+    NODE_SWIPER_MAINTAIN_VISIBLE_CONTENT_POSITION = 1001023,
 
     /**
      * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
@@ -5939,6 +6404,19 @@ typedef enum {
      *
      */
     NODE_REFRESH_PULL_TO_REFRESH = 1009004,
+    /**
+     * @brief Sets the maximum pull-down distance for refreshing.
+     * This attribute can be set, reset, and obtained through the API as required.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: maximum pull-down distance, in vp.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: maximum pull-down distance, in vp.
+     *
+     * @since 20
+     */
+    NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
 
     /**
      * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
@@ -6114,6 +6592,22 @@ typedef enum {
     NODE_WATER_FLOW_LAYOUT_MODE,
 
     /**
+     * @brief Defines whether the <b>WaterFlow</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_WATER_FLOW_SYNC_LOAD = 1010012,
+
+    /**
      * @brief Set the auxiliary line in the RelativeContaine container, supporting property setting,
      * property reset and property acquisition interfaces.
      *
@@ -6219,6 +6713,38 @@ typedef enum {
     NODE_GRID_CACHED_COUNT,
 
     /**
+    * @brief Defines the focus wrap mode for the <b>Grid</b> component.
+    * This attribute can be set, reset, and obtained as required through APIs.
+    *
+    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+    * \n
+    * Format of the return value {@link ArkUI_AttributeItem}:\n
+    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+    *
+    * @since 20
+    */
+    NODE_GRID_FOCUS_WRAP_MODE = 1013006,
+
+    /**
+     * @brief Defines whether the <b>Grid</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_GRID_SYNC_LOAD = 1013007,
+
+    /**
     * @brief Defines the column width of the text picker.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
@@ -6268,8 +6794,36 @@ typedef enum {
      * @since 19
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
+
+    /**
+     * @brief Defines the want used to start EmbeddedAbility.
+     * This attribute can be set as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The want of EmbeddedComponent, with parameter type {@AbilityBase_Want}.
+     * The default value is <b>nullptr</b>.\n
+     *
+     * @since 20
+     */
+    NODE_EMBEDDED_COMPONENT_WANT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_EMBEDDED_COMPONENT,
+
+    /**
+     * @brief Set onError and onTerminated callbacks for EMBEDDED_COMPONENT.
+     * This attribute can be set as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The option for EmbeddedComponent, with parameter type {@ArkUI_EmbeddedComponentOption}.\n
+     *
+     * @since 20
+     */
+    NODE_EMBEDDED_COMPONENT_OPTION,
 } ArkUI_NodeAttributeType;
 
+/**
+ * @brief Define commponent event max args size.
+ *
+ * @since 12
+ */
 #define MAX_COMPONENT_EVENT_ARG_NUM 12
 /**
  * @brief Defines the parameter type of the component callback event.
@@ -6673,6 +7227,15 @@ typedef enum {
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
+     * @brief Defines the long press event for span.
+     *
+     * The event is triggered when the span is long pressed.
+     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
+     * {@link ArkUI_UIInputEvent} object. \n
+     * @since 20
+     */
+    NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
+    /**
      * @brief Defines the image loading success event.
      *
      * This event is triggered when an image is successfully loaded or decoded. \n
@@ -6916,6 +7479,19 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
     /**
+     * @brief Defines the event triggered before content changes
+     *
+     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
+     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
+     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
+     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
+     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
+     * 
+     * @since 20
+     */
+    NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
+
+    /**
      * @brief Defines the event triggered when the input in the text box changes.
      *
       \n
@@ -7080,6 +7656,19 @@ typedef enum {
      * @since 15
      */
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
+
+    /**
+     * @brief Defines the event triggered before content changes.
+     *
+     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
+     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
+     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
+     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
+     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
     /**
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
@@ -7362,6 +7951,20 @@ typedef enum {
     NODE_SWIPER_EVENT_ON_UNSELECTED = 1001006,
 
     /**
+     * @brief Defines the <b>ARKUI_NODE_SWIPER</b> scroll state change event.
+     * This event is triggered when the scroll state of the <b>Swiper</b> component changes during user dragging,
+     * during the animation phase after the user lifts their finger, or upon stopping of scrolling.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}. \n
+     *
+     * @since 20
+     */
+    NODE_SWIPER_EVENT_ON_SCROLL_STATE_CHANGED = 1001008,
+
+    /**
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
      *
      * Notes for triggering the event:\n
@@ -7494,6 +8097,49 @@ typedef enum {
      * {@Link ArkUI_NodeComponentEvent} contains no parameters. \n
      */
     NODE_SCROLL_EVENT_ON_REACH_END,
+    /**
+     * @brief Defines the callback for when the user is about to release the drag on the scrollable container component.
+     *
+     * This event is triggered when the user is about to release the drag on the scrollable container component. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: speed at which the user releases the drag, in vp. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_EVENT_ON_WILL_STOP_DRAGGING,
+    /**
+     * @brief Defines the callback for the <b>Scroll</b> component's zoom event,
+     * triggered at the end of each frame during zooming. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
+     * is {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: current zoom scale. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_EVENT_ON_DID_ZOOM,
+    /**
+     * @brief Defines the callback for the <b>Scroll</b> component's zoom start event,
+     * triggered when zooming begins. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
+     * is {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_EVENT_ON_ZOOM_START,
+    /**
+     * @brief Defines the callback for the <b>Scroll</b> component's zoom end event,
+     * triggered when zooming ends. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
+     * is {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_EVENT_ON_ZOOM_STOP,
     /**
      * @brief Defines the enumerated values of the event triggered, \n
      * when a subcomponent of ARKUI_NODE_LIST is moved into or out of the list display area. \n
@@ -7824,6 +8470,16 @@ typedef enum {
     ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW = 1 << 3,
     /** Overlay type. */
     ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW = 1 << 4,
+    /**
+     * Draw front type.
+     * @since 20
+     */
+    ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT = 1 << 5,
+    /**
+     * Draw behind type.
+     * @since 20
+     */
+    ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND = 1 << 6,
 } ArkUI_NodeCustomEventType;
 
 /**
@@ -8842,6 +9498,19 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkU
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset);
 
 /**
+ * @brief Obtains the offset of a component relative to the global display.
+ * The relative position does not count in transformation attributes, such as translate.
+ *
+ * @param node Pointer to the <b>ArkUI_NodeHandle</b> representing the component.
+ * @param offset Offset of the component relative to the global display, in px.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay(ArkUI_NodeHandle node, ArkUI_IntOffset* offset);
+
+/**
  * @brief Obtain the position of the component in the window, including the properties of graphic translation changes.
  *
  * @param node ArkUI_NodeHandle pointer.
@@ -9035,7 +9704,6 @@ ArkUI_ContextHandle OH_ArkUI_GetContextByNode(ArkUI_NodeHandle node);
 * @return Error code.
 *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
 *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
-*         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
 * @since 12
 */
 int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,
@@ -9059,7 +9727,6 @@ void OH_ArkUI_UnregisterSystemColorModeChangeEvent(ArkUI_NodeHandle node);
 * @return Error code.
 *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
 *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
-*         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
 * @since 12
 */
 int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,
@@ -9137,8 +9804,8 @@ int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
  * @param userData Indicates the custom data used in onLayoutCompleted callback function.
  * @param onLayoutCompleted Indicates the function when layout completed is callback.
  * @return error code
-           {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is incorrect.
  * @since 15
  */
 int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
@@ -9151,8 +9818,8 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
  * @param userData Indicates the custom data used in onDrawCompleted callback function.
  * @param onDrawCompleted Indicates the function when draw completed is callback.
  * @return error code
-           {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is incorrect.
  * @since 15
  */
 int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
@@ -9163,8 +9830,8 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
  *
  * @param node Indicates the target node.
  * @return error code
-           {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is incorrect.
  * @since 15
  */
 int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
@@ -9174,8 +9841,8 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *
  * @param node Indicates the target node.
  * @return error code
-           {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is incorrect.
  * @since 15
  */
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
@@ -9221,6 +9888,112 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
+
+/**
+ * @brief Adds the UI state style supported by the component. To handle states change efficiently, need to specify the
+ * states of interest and the corresponding handler. When a state of interest occurs, the handler will be executed.
+ *  - You can adjust the UI style based on the current state within the callback. If this API is called multiple
+ * times on the same node, the last set of states and handler will take precedence.
+ *  - Some component types have default system handling for certain states. For example, the <b>Button</b>
+ * component has a default style effect for the PRESSED state. When custom state handling is implemented on such
+ * components, the default style effect will be applied first, followed by the custom style changes, resulting in
+ * a combined effect. To disable the default style effects, set <b>excludeInner</b> to <b>true</b>, if this is allowed
+ * by the system implementation.
+ *  - And when this API is called, the provided handler function will be executed immediately.
+ *  - There is no need to explicitly register a listener for the NORMAL state. Once a non-NORMAL state is registered,
+ * the system will automatically notify your application when the state changes back to NORMAL.
+ *
+ * @param node Target node.
+ * @param uiStates Target UI states to be handled on the node.
+ *        The combined result of all target UI states can be calculated using the <b>|</b> operator.
+ *        Example: <b>targetUIStates = ArkUI_UIState::PRESSED | ArkUI_UIState::FOCUSED</b>.
+ * @param statesChangeHandler Handler for UI state changes.
+ *        It rturns the current UI status. The value is the result of combining all current state enum values using the
+ *        <b>|</b> operator. You can determine the state using the <b>&</b> operator.
+ *        Example: <b>if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)</b>.
+ *        However, for checking the normal state, use the equality operator directly.
+ *        Example: <b>if (currentStates == ArkUI_UIState::NORMAL)</b>.
+ * @param excludeInner Whether to disable the default state styles.
+ * @param userData Custom data used in the <b>statesChangeHandler</b> callback.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates,
+    void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData);
+
+/**
+ * @brief Removes registered UI states. When all states registered using <b>OH_ArkUI_AddSupportedUIStates</b>
+ * are removed, the registered <b>stateChangeHandler</b> will no longer be executed.
+ * 
+ * @param node Target node.
+ * @param uiStates Target UI states to be removed.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
+
+/**
+ * @brief Run a custom function inside the UIContext scope.
+ *
+ * @param uiContext ArkUI_ContextHandle.
+ * @param userData Indicates the pointer to the custom data.
+ * @param callback The custom function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ *         Returns {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the uiContext is invalid.
+ *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
+ * @since 20
+ */
+int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData));
+
+/**
+ * @brief Get the node handle by uniqueId.
+ *
+ * @param uniqueId The uniqueId of the target node handle.
+ * @param node The handle of target node handle.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @since 20
+ */
+int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkUI_NodeHandle* node);
+
+/**
+ * @brief Get the uniqueId of the target node handle.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @param uniqueId The uniqueId of the target node handle, default value is -1.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @since 20
+ */
+int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
+
+/**
+ * @brief Sets the inverse color algorithm for components and instances.
+ *
+ * @param uiContext Indicates the context in which the inverse color feature should take effect.
+ *     If the value is null, the feature applies to the entire application process.
+ * @param forceDark Indicates whether the inverse color feature is enabled.
+ * @param nodeType Indicates the component type for which to enable the inverse color feature.
+ *     If the value is ARKUI_NODE_UNDEFINED, enabling the feature for all components.
+ * @param colorInvertFunc Indicates the user-defined inverse color algorithm.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         Returns {@link ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID} if force dark config is invalid.
+ * @since 20
+ */
+int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDark, ArkUI_NodeType nodeType,
+    uint32_t (*colorInvertFunc)(uint32_t color));
 
 #ifdef __cplusplus
 };

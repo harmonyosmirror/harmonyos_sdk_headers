@@ -69,7 +69,62 @@ ARKWEB_LIBRARY_OPEN_FAILURE = 17100105,
  * @since 15
  */
 ARKWEB_LIBRARY_SYMBOL_NOT_FOUND = 17100106,
+
+/**
+ * @brief The CookieManager not initialized.
+ *
+ * @since 20
+ */
+ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED = 17100107,
+
+/**
+ * @brief The CookieManager initialize failed.
+ *
+ * @since 20
+ */
+ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED = 17100108,
+
+/**
+ * @brief Save cookie failed.
+ *
+ * @since 20
+ */
+ARKWEB_COOKIE_SAVE_FAILED = 17100109,
 } ArkWeb_ErrorCode;
+
+/**
+ * @brief Defines an enum for the error codes of the white screen optimization solution.
+ *
+ * @since 20
+ */
+typedef enum ArkWeb_BlanklessErrorCode {
+/** @error The operation is successful. */
+ARKWEB_BLANKLESS_SUCCESS = 0,
+
+/** @error Unidentified error. */
+ARKWEB_BLANKLESS_ERR_UNKNOWN = -1,
+
+/** @error Invalid parameter. */
+ARKWEB_BLANKLESS_ERR_INVALID_ARGS = -2,
+
+/** @error The web controller is not bound to a component. */
+ARKWEB_BLANKLESS_ERR_CONTROLLER_NOT_INITED = -3,
+
+/**
+ * @error The key value is not matched. The OH_NativeArkWeb_SetBlanklessLoadingWithKey
+ * and OH_NativeArkWeb_GetBlanklessInfoWithKey APIs must be used in pair and use the same key value.
+ */
+ARKWEB_BLANKLESS_ERR_KEY_NOT_MATCH = -4,
+
+/**
+ * @error If the similarity is low, the system determines that the change is too large.
+ * As a result, the OH_NativeArkWeb_SetBlanklessLoadingWithKey API fails to enable frame interpolation.
+ */
+ARKWEB_BLANKLESS_ERR_SIGNIFICANT_CHANGE = -5,
+
+/** @error The device does not support this feature. */
+ARKWEB_BLANKLESS_ERR_DEVICE_NOT_SUPPORT = 801,
+} ArkWeb_BlanklessErrorCode;
 
 #endif // ARKWEB_ERROR_CODE_H
 /** @} */

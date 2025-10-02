@@ -1014,6 +1014,16 @@ typedef void(JSVM_CDECL* JSVM_HandlerForGC)(JSVM_VM vm,
  * @since 18
  */
 typedef struct JSVM_Data__* JSVM_Data;
+
+/**
+ * @brief Debug options.
+ *
+ * @since 20
+ */
+typedef enum {
+    /** Scope check. */
+    JSVM_SCOPE_CHECK,
+} JSVM_DebugOption;
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_TYPE_H */
 

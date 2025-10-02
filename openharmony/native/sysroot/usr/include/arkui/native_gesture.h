@@ -115,7 +115,7 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /* Sequential recognition. Gestures are recognized in the registration sequence until all gestures are recognized
+    /** Sequential recognition. Gestures are recognized in the registration sequence until all gestures are recognized
      * successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.
      * Only the last gesture in the gesture group can respond to the end event. */
     SEQUENTIAL_GROUP = 0,
@@ -209,6 +209,20 @@ typedef enum {
 
     /** A group of gestures. */
     GROUP_GESTURE,
+
+    /**
+     * The click gesture registed through onClick.
+     *
+     * @since 20
+     */
+    CLICK_GESTURE,
+
+    /**
+     * Drag gesture used for drag and drop.
+     *
+     * @since 20
+     */
+    DRAG_DROP,
 } ArkUI_GestureRecognizerType;
 
 /**
@@ -300,6 +314,9 @@ typedef ArkUI_TouchRecognizerHandle* ArkUI_TouchRecognizerHandleArray;
 
 /**
  * @brief Defines a callback function for notifying gesture recognizer destruction.
+ *
+ * @param recognizer Indicates the pointer to a gesture recognizer.
+ * @param userData Indicates the custom data.
  * @since 12
  */
 typedef void (*ArkUI_GestureRecognizerDisposeNotifyCallback)(ArkUI_GestureRecognizer* recognizer, void* userData);
@@ -869,6 +886,34 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(
     ArkUI_GestureRecognizer* recognizer, int toolType, double* distance);
 
 /**
+ * @brief Registers a callback that is executed after all gesture recognizers are collected.
+ * When the user begins touching the screen, the system performs hit testing and collects gesture recognizers
+ * based on the touch location. Subsequently, before processing any move events, the component can use this API
+ * to determine the gesture recognizers that will participate in and compete for recognition.
+ *
+ * @param node Handle to the node on which the callback is to be set.
+ * @param userData Custom data.
+ * @param touchTestDone Callback for completion of gesture recognizer collection.
+ *                      - event: Basic information of the gesture.
+ *                      - recognizers: Array of gesture recognizers.
+ *                      - count: Number of gesture recognizers.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(
+    ArkUI_NodeHandle node,
+    void* userData,
+    void (*touchTestDone)(
+        ArkUI_GestureEvent* event,
+        ArkUI_GestureRecognizerHandleArray recognizers,
+        int32_t count,
+        void* userData
+    )
+);
+
+/**
  * @brief Defines the gesture APIs.
  *
  * @since 12
@@ -1161,6 +1206,20 @@ typedef struct {
 * @since 18
 */
 void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event);
+
+/**
+ * @brief Prevents a gesture recognizer from participating in the current gesture recognition before all fingers are
+ * lifted.
+ * If the system has already determined the result of the gesture recognizer (regardless of success or failure),
+ * calling this API will be ineffective.
+ *
+ * @param recognizer Pointer to a gesture recognizer.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* recognizer);
 
 #ifdef __cplusplus
 };

@@ -20,7 +20,7 @@
  * @brief Provides APIs of request capability for Screen Capture.
  * @since 10
  */
- 
+
 /**
  * @file native_avscreen_capture_base.h
  *
@@ -31,7 +31,7 @@
  * @kit MediaKit
  * @since 10
  */
- 
+
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 
@@ -482,6 +482,39 @@ typedef enum OH_AVScreenCaptureFilterableAudioContent {
 } OH_AVScreenCaptureFilterableAudioContent;
 
 /**
+ * @brief Enumerates screen capture content state.
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ *
+ * @since 20
+ */
+typedef enum OH_AVScreenCaptureContentChangedEvent_Enum {
+    /* Content is hidden */
+    OH_SCREEN_CAPTURE_CONTENT_HIDE = 0,
+    /* Content is visible */
+    OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1,
+    /* ScreenCapture stopped by user */
+    OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2,
+} OH_AVScreenCaptureContentChangedEvent;
+
+/**
+ * @brief content fill mode.
+ *
+ * @since 20
+ */
+typedef enum OH_AVScreenCapture_FillMode {
+    /**
+     * Keep the original image aspect ratio to match the target
+     * image size. If the ratio is inconsistent, there may be black edges.
+     */
+    OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0,
+    /**
+     * The image is stretched to match the target output size.
+     * If the ratios are inconsistent, the image will be deformed.
+     */
+    OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1,
+} OH_AVScreenCapture_FillMode;
+
+/**
  * @brief When state of OH_AVScreenCapture is changed, the function pointer will be called.
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param capture Pointer to an OH_AVScreenCapture instance
@@ -532,6 +565,49 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
  */
 typedef void (*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData);
 
+/**
+ * @brief Initialization of OH_AVScreenCapture_CaptureStrategy
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ *
+ * @since 20
+ */
+typedef struct OH_AVScreenCapture_CaptureStrategy OH_AVScreenCapture_CaptureStrategy;
+
+/**
+ * @brief When Capture Content info changes, the function will be called to notify user
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param {OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {OH_AVScreenCaptureContentChangedEvent} event enum for content change event
+ * @param {OH_Rect*} area capture content rect position
+ * @param { void*} userData Pointer to user specific data
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture,
+    OH_AVScreenCaptureContentChangedEvent event, OH_Rect* area, void *userData);
+
+/**
+ * @brief Initialization of OH_AVScreenCapture_UserSelectionInfo
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ *
+ * @since 20
+ */
+typedef struct OH_AVScreenCapture_UserSelectionInfo OH_AVScreenCapture_UserSelectionInfo;
+
+/**
+* @brief When the user selects parameters in the authorization interface (selection interface),
+*  the function interface returns the parameters to the application.
+* @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+* @param {OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+* @param {OH_AVScreenCapture_UserSelectionInfo*} selections The recording parameter information
+*        selected by the user on the authorization interface
+* @param {void*} userData Pointer to user specific data
+*
+* @since 20
+*/
+typedef void (*OH_AVScreenCapture_OnUserSelected)(OH_AVScreenCapture* capture,
+    OH_AVScreenCapture_UserSelectionInfo* selections, void *userData);
 #ifdef __cplusplus
 }
 #endif

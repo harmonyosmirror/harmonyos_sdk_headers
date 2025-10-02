@@ -92,6 +92,41 @@ typedef enum {
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003,
+    /**
+     * @error Picture-In-Picture failed to destroy.
+     *
+     * @since 20
+     */
+    WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED = 1300011,
+    /**
+     * @error Picture-In-Picture state is abnormal.
+     *
+     * @since 20
+     */
+    WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL = 1300012,
+    /**
+     * @error Picture-In-Picture failed to create.
+     *
+     * @since 20
+     */
+    WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED = 1300013,
+    /**
+     * @error Picture-In-Picture internal error.
+     *
+     * @since 20
+     */
+    WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR = 1300014,
+    /**
+     * @error Picture-In-Picture repeated operation.
+     *
+     * @since 20
+     */
+    WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION = 1300015,
+    /**
+     * @error Parameter is incorrect.
+     * @since 20
+     */
+    WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016,
 } WindowManager_ErrorCode;
 
 /**

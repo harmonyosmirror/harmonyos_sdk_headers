@@ -203,8 +203,8 @@ OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec);
  * be manually released by calling {@link OH_AVFormat_Destroy}.
  * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @param codec Pointer to an OH_AVCodec instance
- * @return Returns the OH_AVFormat handle pointer, the life cycle is refreshed with the next GetOutputMediaDescription,
- * or destroyed with OH_AVCodec;
+ * @return Returns the OH_AVFormat handle pointer, the life cycle is refreshed with
+ * the next {@link OH_AudioCodec_GetOutputDescription}, or destroyed with OH_AVCodec;
  * @since 11
  */
 OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec);
@@ -295,6 +295,80 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
 */
 OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
     bool secureAudio);
+
+/**
+ * @brief Queries the index of the next available input buffer.
+ *
+ * This API must be followed by calling {@link OH_AudioCodec_GetInputBuffer} to obtain the buffer handle,
+ * which should then be passed to the codec via {@link OH_AudioCodec_PushInputBuffer}.\n
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
+ * @param codec Pointer to an OH_AVCodec instance.
+ * @param index The index of the input buffer.
+ * @param timeoutUs Timeout duration in microseconds, negative value indicates infinite wait.
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_INVALID_VAL}, input parameter is empty or invalid.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
+ * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
+ * @since 20
+ */
+OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+
+/**
+ * @brief Acquires the handle of an available input buffer.
+ *
+ * Note: It's only applicable in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index Buffer index obtained via {@link OH_AudioCodec_QueryInputBuffer}.
+ * @return Returns a Pointer to an OH_AVBuffer instance.
+ * Return nullptr if no buffer available.
+ * @since 20
+ */
+OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+
+/**
+ * @brief Queries the index of the next available output buffer.
+ *
+ * The obtained buffer handle through {@link OH_AudioCodec_GetOutputBuffer} must be
+ * return to the audio codec via {@link OH_AudioCodec_FreeOutputBuffer}.\n
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index The index of the output buffer
+ * @param timeoutUs Timeout duration in microseconds, negative value indicates infinite wait.
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_INVALID_VAL}, input parameter is empty or invalid.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
+ * {@link AV_ERR_STREAM_CHANGED}, stream format changed, call {@link OH_AudioCodec_GetOutputDescription} to
+ * retrieve new steam information.
+ * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
+ * @since 20
+ */
+OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+
+/**
+ * @brief Get the available output buffer handle.
+ *
+ * Note: This operation is only supported in synchronous mode.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index The index value corresponding to the output buffer,
+ * should be given by {@link OH_AudioCodec_QueryOutputBuffer}.
+ * @return Returns a Pointer to an OH_AVBuffer instance.
+ * Return nullptr if no buffer available.
+ * @since 20
+ */
+OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+
 #ifdef __cplusplus
 }
 #endif

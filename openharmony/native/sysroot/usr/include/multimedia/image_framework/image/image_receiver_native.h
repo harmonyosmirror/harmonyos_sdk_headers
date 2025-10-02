@@ -77,6 +77,13 @@ typedef struct OH_ImageReceiverOptions OH_ImageReceiverOptions;
 typedef void (*OH_ImageReceiver_OnCallback)(OH_ImageReceiverNative *receiver);
 
 /**
+ * @brief Defines the callback for the ImageArrive event.
+ *
+ * @since 20
+ */
+typedef void (*OH_ImageReceiver_ImageArriveCallback)(OH_ImageReceiverNative *receiver, void *userData);
+
+/**
  * @brief Creates an <b>OH_ImageReceiverOptions</b> object at the application layer.
  *
  * @param options Indicates the pointer to the <b>OH_ImageReceiverOptions</b> object obtained.
@@ -222,6 +229,32 @@ Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_I
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver);
+
+/**
+ * Registers an {@link OH_ImageReceiver_ImageArriveCallback} callback.
+ *
+ * @param receiver Pointer to an OH_ImageReceiverNative object that processes the callback.
+ * @param callback OH_ImageReceiver_ImageArriveCallback to register.
+ * @param userData Pointer to the user data passed to the callback.
+ * @return Result code. {@link Image_ErrorCode} IMAGE_SUCCESS is returned if the operation is successful.
+ * {@link Image_ErrorCode} IMAGE_RECEIVER_INVALID_PARAMETER is returned if receiver or callback is null.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative *receiver,
+    OH_ImageReceiver_ImageArriveCallback callback, void *userData);
+
+/**
+ * Unregisters an {@link OH_ImageReceiver_ImageArriveCallback} callback.
+ *
+ * @param receiver Pointer to an <b>OH_ImageReceiverNative</b> object that processes the callback.
+ * @param callback <b>OH_ImageReceiver_ImageArriveCallback</b> callback to unregister.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - Operation succeeded.
+ * {@link Image_ErrorCode} IMAGE_RECEIVER_INVALID_PARAMETER - <b>receiver</b> is empty or <b>callback</b> is not
+ * registered.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *receiver,
+    OH_ImageReceiver_ImageArriveCallback callback);
 
 /**
  * @brief Obtains the size of the image receiver through an {@link OH_ImageReceiverNative} object.

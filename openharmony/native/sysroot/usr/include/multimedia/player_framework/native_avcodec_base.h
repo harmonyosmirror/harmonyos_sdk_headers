@@ -213,6 +213,34 @@ typedef struct OH_AVDataSource {
 } OH_AVDataSource;
 
 /**
+ * @brief the function pointer will be called to get sequence media data.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @param data    OH_AVBuffer buffer to fill
+ * @param length   expected to read size;
+ * @param pos    current read offset
+ * @param userData user-defined data
+ * @return  Actual size of data read to the buffer.
+ * @since 20
+ */
+typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData);
+
+/**
+ * @brief User customized data source.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+typedef struct OH_AVDataSourceExt {
+    /**
+     * Total size of the data source.
+     */
+    int64_t size;
+    /**
+     * Callback interface for reading data from datasource.
+     */
+    OH_AVDataSourceReadAtExt readAt;
+} OH_AVDataSourceExt;
+
+/**
  * @brief Enumerates the mime types of video avc codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -362,6 +390,15 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @since 18
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+
+/**
+ * @brief Enumerates the mime types of audio G711 A-law codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
+
 /**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
@@ -907,8 +944,8 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
 extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT;
 /**
  * @brief Key to enable the low latency mode, value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
- * If enabled, the video encoder or video decoder doesn't hold input and output data more than required by
- * the codec standards. This is an optional key that applies only to video encoder or video decoder.
+ * If enabled, the video decoder doesn't hold input and output data more than required by
+ * the codec standards. This is an optional key that applies only to video decoder.
  * It is used in configure.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1031,6 +1068,137 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
  * @since 18
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
+/**
+ * @brief Key to enable B-frame encoding, value type is int32_t (0 or 1): 1 is enabled, 0 otherwise.
+ *
+ * This is an optional key that applies only to video encoder, default is 0.\n
+ * If enabled, the video encoder will use B-frame, the decode order will be different from the display order.\n
+ * For unsupported platforms, Configuring this key will have no effect.\n
+ * Platform capability can be checked via {@link OH_AVCapability_IsFeatureSupported} with
+ * {@link OH_AVCapabilityFeature::VIDEO_ENCODER_B_FRAME}.\n
+ * It's only used in configuration phase.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
+ 
+/**
+ * @brief Key for describing the maximum B-frame count of video encoder, value type is int32_t.
+ *
+ * Note: This key is only for querying the capability of the codec currently.
+ * Usage specifications:
+ * 1. Check feature support via {@link OH_AVCapability_IsFeatureSupported} with
+ * {@link OH_AVCapabilityFeature::VIDEO_ENCODER_B_FRAME}.\n
+ * 2. Obtain OH_AVFormat handle via {@link OH_AVCapability_GetFeatureProperties} with
+ * {@link OH_AVCapabilityFeature::VIDEO_ENCODER_B_FRAME}.\n
+ * 3. Get maximum B-frame count via {@link OH_AVFormat_GetIntValue} with this key.\n
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
+/**
+ * @brief Key to set the region of interest(ROI) as QpOffset-Rects, value type is string in the format
+ * "Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;". Each "Top,Left-Bottom,Right=Offset"
+ * represents the coordinate information and quantization parameter of one ROI. Each "=Offset" in the string
+ * can be omitted, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=Offset2;", the encoder
+ * will use the default quantization parameter to perform the ROI encoding on the first ROI and
+ * use Offset2 on the second ROI.
+ *
+ * This is an optional key that applies only to video encoder.
+ * It is used in running process and is set with each frame.
+ * In surface mode, it is used in {@link OH_VideoEncoder_OnNeedInputParameter}.
+ * In buffer mode, it is configured via {@link OH_AVBuffer_SetParameter}.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
+/**
+ *
+ * @brief Key for front moov of the mp4 and m4a media file, value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
+ * This key may affect the performance of the stop function of the mp4 and m4a muxer.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
+/**
+ * @brief Key for the desired encoding quality, value type is int32_t, this key is only
+ * supported for encoders that are configured in Stable Quality RateControl, the higher
+ * values generally result in more efficient(smaller-sized) encoding.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_SQR_FACTOR;
+/**
+ * @brief Key for maximum bitrate, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_MAX_BITRATE;
+/**
+ * @brief Key for describing the reference relationship between tracks, value type is int32_t*.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS;
+/**
+ * @brief Key for describing the track reference type, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
+/**
+ * @brief Key for describing the track description, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
+
+/**
+ * @brief Key to enable Bitrate Control Based on Presentation Time Stamp(PTS),
+ * value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
+ *
+ * This is an optional key that applies only to video encoder, default is 0.
+ * If enabled, the PTS information must be carried in each video frame and sent to the encoder.
+ * It is used in configure.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
+
+/**
+ * @brief Key to enable synchronous mode, value type is (0 or 1): 1 is enabled, 0 otherwise.
+ *
+ * This is an optional key, default is 0.\n
+ * When enabled:
+ *       - Callbacks should NOT be set for codecs
+ *       - Buffer query APIs must be used instead
+ *       - Only used in configuration phase
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
+
+/**
+ * @brief Key for specifying whether to output a blank frame during video decoder shutdown,
+ * value type is int32_t (0 or 1): 1 is enabled, 0 otherwise.
+ *
+ * This is an optional key, only used when configuring a video decoder in surface mode.\n
+ * By default, this feature is disabled (0).\n
+ * When enabled, the video decoder will output a blank frame (typically black)
+ * when stop or release to ensure a smooth transition to no-signal state on display devices.\n
+ * This prevents display retention or flickering caused by abrupt termination.\n
+ *
+ * @since 20
+ */
+extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
 
 /**
  * @brief Media type.
@@ -1047,6 +1215,14 @@ typedef enum OH_MediaType {
      * @since 12
      */
     MEDIA_TYPE_SUBTITLE = 2,
+    /** track is timed meta.
+     * @since 20
+     */
+    MEDIA_TYPE_TIMED_METADATA = 5,
+    /** track is auxiliary.
+     * @since 20
+     */
+    MEDIA_TYPE_AUXILIARY = 6,
 } OH_MediaType;
 
 /**
@@ -1243,6 +1419,11 @@ typedef enum OH_AVOutputFormat {
      * @since 18
      */
     AV_OUTPUT_FORMAT_AAC = 11,
+    /**
+     * The muxer output flac file format.
+     * @since 20
+     */
+    AV_OUTPUT_FORMAT_FLAC = 12,
 } OH_AVOutputFormat;
 
 /**
@@ -1562,7 +1743,11 @@ typedef enum OH_BitrateMode {
     /** Variable Bit rate mode. */
     BITRATE_MODE_VBR = 1,
     /** Constant Quality mode. */
-    BITRATE_MODE_CQ = 2
+    BITRATE_MODE_CQ = 2,
+    /** Stable Quality RateControl.
+     * @since 20
+     */
+    BITRATE_MODE_SQR = 3
 } OH_BitrateMode;
 
 #ifdef __cplusplus

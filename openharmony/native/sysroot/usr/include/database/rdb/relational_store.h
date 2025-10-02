@@ -45,6 +45,7 @@
 #include "database/rdb/oh_values_bucket.h"
 #include "database/rdb/oh_rdb_transaction.h"
 #include "database/rdb/oh_rdb_types.h"
+#include "database/rdb/oh_rdb_crypto_param.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -337,6 +338,55 @@ int OH_Rdb_SetArea(OH_Rdb_ConfigV2 *config, int area);
 int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
 
 /**
+ * @brief Sets the customized directory relative to the database.
+ *
+ * @param config Represents a pointer to a configuration of the database related to this relation database store.
+ * @param customDir Represents the customized relative to the database directory, the value cannot exceed 128 bytes.
+ * @return Returns the error code.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ * @since 20
+ */
+int OH_Rdb_SetCustomDir(OH_Rdb_ConfigV2 *config, const char *customDir);
+
+/**
+ * @brief Sets the relation database store is read-only mode.
+ *
+ * @param config Represents a pointer to a configuration of the database related to this relation database store.
+ * @param readOnly Represents whether the relation database store is read-only.
+ * @return Returns the error code.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ * @since 20
+ */
+int OH_Rdb_SetReadOnly(OH_Rdb_ConfigV2 *config, bool readOnly);
+
+/**
+ * @brief Sets the dynamic libraries with capabilities such as Full-Text Search (FTS).
+ *
+ * @param config Represents a pointer to a configuration of the database related to this relation database store.
+ * @param plugins Represents the dynamic libraries.
+ * @param length the size of plugins that the maximum value is 16.
+ * @return Returns the error code.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ * @since 20
+ */
+int OH_Rdb_SetPlugins(OH_Rdb_ConfigV2 *config, const char **plugins, int32_t length);
+
+/**
+ * @brief Sets the custom encryption parameters.
+ *
+ * @param config Represents a pointer to a configuration of the database related to this relation database store.
+ * @param cryptoParam Represents the custom encryption parameters.
+ * @return Returns the error code.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ * @since 20
+ */
+int OH_Rdb_SetCryptoParam(OH_Rdb_ConfigV2 *config, const OH_Rdb_CryptoParam *cryptoParam);
+
+/**
  * @brief Set property tokenizer into config
  * @param config Represents a pointer to {@link OH_Rdb_ConfigV2} instance.
  * @param tokenizer Indicates the tokenizer {@link Rdb_Tokenizer} of the database
@@ -362,6 +412,19 @@ int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
 int OH_Rdb_SetPersistent(OH_Rdb_ConfigV2 *config, bool isPersistent);
 
 /**
+ * @brief Set whether the database enable the capabilities for semantic indexing processing.
+ *
+ * @param config Represents a pointer to {@link OH_Rdb_ConfigV2} instance.
+ * Indicates the configuration of the database related to this RDB store.
+ * @param enableSemanticIndex Indicates whether the database enable the capabilities for semantic indexing processing.
+ * @return Returns the status code of the execution. Successful execution returns RDB_OK,
+ *     {@link RDB_OK} - success.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ * @since 20
+ */
+int OH_Rdb_SetSemanticIndex(OH_Rdb_ConfigV2 *config, bool enableSemanticIndex);
+
+/**
  * @brief Check if a tokenizer is supported or not.
  *
  * @param tokenizer the tokenizer type of {@Link Rdb_Tokenizer}.
@@ -375,7 +438,7 @@ int OH_Rdb_IsTokenizerSupported(Rdb_Tokenizer tokenizer, bool *isSupported);
 
 /**
  * @brief Get support db type list
- * @param typeCount The output parameter, which is used to recieve the length of the support db type array.
+ * @param typeCount The output parameter, which is used to receive the length of the support db type array.
  * @return Return Rdb_DBType array contains supported db type, array length is number of support type
  * @since 14
  */
@@ -505,6 +568,36 @@ int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config);
 int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBucket);
 
 /**
+ * @brief Inserts a row of data into the target table and support conflict resolution.
+ *
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
+ * @param table Represents the target table.
+ * @param row Represents the row data to be inserted into the table.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param rowId Represents the number of successful insertion.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ * @since 20
+ */
+int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, OH_VBucket *row,
+    Rdb_ConflictResolution resolution, int64_t *rowId);
+
+/**
  * @brief Inserts a batch of data into the target table.
  *
  * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
@@ -550,6 +643,36 @@ int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
  */
 int OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates);
  
+/**
+ * @brief Updates data in the database based on specified conditions and support conflict resolution.
+ *
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
+ * @param row Represents the row data to be inserted into the table.
+ * @param predicates Represents  a pointer to an link OH_Predicates instance.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param changes Represents the number of successful update.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ * @since 20
+ */
+int OH_Rdb_UpdateWithConflictResolution(OH_Rdb_Store *store, OH_VBucket *row, OH_Predicates *predicates,
+    Rdb_ConflictResolution resolution, int64_t *changes);
+
 /**
  * @brief Deletes data from the database based on specified conditions.
  *
@@ -631,7 +754,7 @@ int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values 
  * @return Returns the status code of the execution.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- *     {@link RDB_E_NOT_SUPPORTED} - The error code for not supprt.
+ *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support.
  * @see OH_Rdb_Store.
  * @since 14
  */
@@ -706,7 +829,7 @@ int OH_Rdb_Commit(OH_Rdb_Store *store);
  * @return Returns the status code of the execution.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- *     {@link RDB_E_NOT_SUPPORTED} - The error code for not supprt.
+ *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support.
  * @see OH_Rdb_Store.
  * @since 14
  */
@@ -720,7 +843,7 @@ int OH_Rdb_BeginTransWithTrxId(OH_Rdb_Store *store, int64_t *trxId);
  * @return Returns the status code of the execution.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- *     {@link RDB_E_NOT_SUPPORTED} - The error code for not supprt.
+ *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support.
  * @see OH_Rdb_Store.
  * @since 14
  */
@@ -734,7 +857,7 @@ int OH_Rdb_RollBackByTrxId(OH_Rdb_Store *store, int64_t trxId);
  * @return Returns the status code of the execution.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- *     {@link RDB_E_NOT_SUPPORTED} - The error code for not supprt.
+ *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support.
  * @see OH_Rdb_Store.
  * @since 14
  */
@@ -1312,7 +1435,7 @@ int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[
  * A callback will be invoked when there is a notification of the automatic synchronization progress.
  *
  * @param store Indicates the pointer to the target {@Link OH_Rdb_Store} instance.
- * @param observer The {@link Rdb_ProgressObserver} for the automatic synchornizaiton progress.
+ * @param observer The {@link Rdb_ProgressObserver} for the automatic synchronization progress.
  * Indicates the callback invoked to return the automatic synchronization progress.
  * @return Returns the status code of the execution. See {@link OH_Rdb_ErrCode}.
  *     {@link RDB_OK} - success.
@@ -1324,11 +1447,11 @@ int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[
 int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer);
 
 /**
- * @brief Unsubscribes from the automatic synchronziation progress of an RDB store.
+ * @brief Unsubscribes from the automatic synchronization progress of an RDB store.
  *
  * @param store Indicates the pointer to the target {@Link OH_Rdb_Store} instance.
- * @param observer Indicates the {@link Rdb_ProgressObserver} callback for the automatic synchornizaiton progress.
- * If it is a null pointer, all callbacks for the automatic synchornizaiton progress will be unregistered.
+ * @param observer Indicates the {@link Rdb_ProgressObserver} callback for the automatic synchronization progress.
+ * If it is a null pointer, all callbacks for the automatic synchronization progress will be unregistered.
  * @return Returns the status code of the execution. See {@link OH_Rdb_ErrCode}.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
@@ -1407,6 +1530,85 @@ OH_Cursor *OH_Rdb_QueryLockedRow(
  * @since 18
  */
 int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans);
+
+/**
+ * @brief Attaches a database file to the currently linked database.
+ *
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param attachName Represents the alias of the database.
+ * @param waitTime Represents the maximum time allowed for attaching the database, valid range is 1 to 300.
+ * @param attachedNumber Represents the number of attached databases, It is an output parameter.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} - The error code for not support.
+ *         Returns {@link RDB_E_DATABASE_BUSY} database does not respond.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ * @since 20
+ */
+int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char *attachName, int64_t waitTime,
+    size_t *attachedNumber);
+
+/**
+ * @brief Detaches a database from this database.
+ *
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
+ * @param attachName Represents the alias of the database.
+ * @param waitTime Represents the maximum time allowed for detaching the database, valid range is 1 to 300.
+ * @param attachedNumber Represents the number of attached databases, It is an output parameter.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} - The error code for not support.
+ *         Returns {@link RDB_E_DATABASE_BUSY} database does not respond.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ * @see OH_Rdb_Store, OH_Rdb_ErrCode.
+ * @since 20
+ */
+int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime, size_t *attachedNumber);
+
+/**
+ * @brief Support for collations in different languages.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param locale Language related to the locale, for example, zh. The value complies with the ISO 639 standard.
+ * @return Returns a specific error code.
+ *     {@link RDB_OK} if the execution is successful.
+ *     {@link RDB_ERR} - Indicates that the function execution exception.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ *     {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *     {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *     {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Store.
+ * @since 20
+ */
+int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale);
 
 #ifdef __cplusplus
 };

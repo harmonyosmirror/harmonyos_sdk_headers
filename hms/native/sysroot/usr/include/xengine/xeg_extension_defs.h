@@ -116,6 +116,34 @@ extern "C" {
 */
 #define XEG_ADAPTIVE_VRS_EXTENSION_NAME "XEG_adaptive_vrs"
 
+/**
+* @brief Extension name of Ray-Traced Global Illumination of XEngine.
+*
+* @since 6.0.0(20)
+*/
+#define XEG_RTGI_EXTENSION_NAME "XEG_rtgi"
+
+/**
+* @brief Extension name of Ray-Traced Shadow and Ambient Occlusion of XEngine.
+*
+* @since 6.0.0(20)
+*/
+#define XEG_RT_SHADOW_AO_EXTENSION_NAME "XEG_rt_shadow_ao"
+
+/**
+* @brief Extension name of Ray-Traced Reflections of XEngine.
+*
+* @since 6.0.0(20)
+*/
+#define XEG_RT_REFLECTION_EXTENSION_NAME "XEG_rt_reflection"
+
+/**
+* @brief Extension name of HPS Radix Sort of XEngine.
+*
+* @since 6.0.0(20)
+*/
+#define XEG_HPS_RADIX_SORT_EXTENSION_NAME "XEG_hps_radix_sort"
+
 #ifdef __cplusplus
 }
 #endif

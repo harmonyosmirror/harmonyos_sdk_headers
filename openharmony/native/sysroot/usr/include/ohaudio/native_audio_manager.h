@@ -53,6 +53,19 @@ extern "C" {
 typedef struct OH_AudioManager OH_AudioManager;
 
 /**
+ * @brief Prototype for the audio scene change function that is passed to
+ *     {@link OH_AudioManager_RegisterAudioSceneChangeCallback}.
+ *
+ * @param userData userdata which is passed by register.
+ * @param scene the latest audio scene.
+ * @since 20
+ */
+typedef void (*OH_AudioManager_OnAudioSceneChangeCallback) (
+    void *userData,
+    OH_AudioScene scene
+);
+
+/**
  * @brief Get audio manager handle.
  *
  * @param audioManager the {@link OH_AudioManager} handle received from this function.
@@ -77,6 +90,39 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
  * @since 12
  */
 OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *scene);
+
+/**
+ * @brief Register callback to receive audio scene changed events.
+ *
+ * @param manager {@link OH_AudioManager} handle received from {@link OH_GetAudioManager}.
+ * @param callback callback function which will be called when audio scene changed.
+ * @param userData pointer to a data structure that will be passed to the callback functions.
+ * @return
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS} if the execution is successful
+ *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *                                                   1.param of manager is nullptr
+ *                                                   2.param of callback is nullptr
+ *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioManager_RegisterAudioSceneChangeCallback(OH_AudioManager *manager,
+    OH_AudioManager_OnAudioSceneChangeCallback callback, void *userData);
+
+/**
+ * @brief Unregister audio scene change callback.
+ *
+ * @param manager {@link OH_AudioManager} handle received from {@link OH_GetAudioManager}.
+ * @param callback callback function which registered in {@link OH_AudioManager_RegisterAudioSceneChangeCallback}.
+ * @return
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS} if the execution is successful
+ *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *                                                   1.param of manager is nullptr
+ *                                                   2.param of callback is nullptr
+ *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioManager_UnregisterAudioSceneChangeCallback(OH_AudioManager *manager,
+    OH_AudioManager_OnAudioSceneChangeCallback callback);
 
 #ifdef __cplusplus
 }

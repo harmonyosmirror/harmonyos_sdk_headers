@@ -263,6 +263,21 @@ typedef void (*ArkWeb_OnRequestStop)(const ArkWeb_SchemeHandler* schemeHandler,
 typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* httpBodyStream,
                                                   uint8_t* buffer,
                                                   int bytesRead);
+                                                  
+/**
+ * @brief Callback when the read operation done.
+ * @param httpBodyStream The ArkWeb_HttpBodyStream.
+ * @param buffer The buffer to receive data.
+ * @param bytesRead Callback after OH_ArkWebHttpBodyStream_AsyncRead. bytesRead greater than 0 means that
+ *                  the buffer is filled with data of bytesRead size. Caller can read from the buffer, and if
+ *                  OH_ArkWebHttpBodyStream_IsEOF is false, caller can continue to read the remaining data.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 20
+ */
+typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStream *httpBodyStream,
+                                                       uint8_t *buffer,
+                                                       int bytesRead);
 
 /**
  * @brief  Callback when the init operation done.
@@ -432,6 +447,23 @@ void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyS
  */
 int32_t OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyStream,
                                                 ArkWeb_HttpBodyStreamReadCallback readCallback);
+                                                
+/**
+ * @brief Set the callback for OH_ArkWebHttpBodyStream_AsyncRead.
+ *
+ * The result of OH_ArkWebHttpBodyStream_AsyncRead will be notified to caller through the\n
+ * readCallback. The callback will runs in the ArkWeb worker thread.\n
+ *
+ * @param httpBodyStream The ArkWeb_HttpBodyStream.
+ * @param readCallback The callback of read function.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ * {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 20
+ */
+int32_t OH_ArkWebHttpBodyStream_SetAsyncReadCallback(ArkWeb_HttpBodyStream *httpBodyStream,
+                                                     ArkWeb_HttpBodyStreamAsyncReadCallback readCallback);
 
 /**
  * @brief Init the http body stream.
@@ -463,6 +495,21 @@ int32_t OH_ArkWebHttpBodyStream_Init(ArkWeb_HttpBodyStream* httpBodyStream,
  * @since 12
  */
 void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, uint8_t* buffer, int bufLen);
+
+/**
+ * @brief Read the http body to the buffer.
+ *
+ * The buffer must be larger than the bufLen. We will read data from a worker thread to the buffer,\n
+ * so should not use the buffer in other threads before the callback to avoid concurrency issues.\n
+ *
+ * @param httpBodyStream The ArkWeb_HttpBodyStream.
+ * @param buffer The buffer to receive data.
+ * @param bufLen The size of bytes to read.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 20
+ */
+void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bufLen);
 
 /**
  * @brief Get the total size of the data stream.
@@ -971,6 +1018,21 @@ int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourc
  */
 int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* resourceHandler,
                                                   ArkWeb_NetError errorCode);
+
+/**
+ * @brief Notify the ArkWeb that this request should be failed.
+ * @param resourceHandler The ArkWeb_ResourceHandler for the request.
+ * @param errorCode The error code for this request. Refer to arkweb_net_error_list.h.
+ * @param completeIfNoResponse If completeIfNoResponse is true, when DidFailWithErrorV2 is called,
+ *        if DidReceiveResponse has not been called,
+ *        a response is automatically constructed and the current request is terminated.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, the resourceHandler is nullptr.
+ * @since 20
+ */
+int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,
+                                                    ArkWeb_NetError errorCode,
+                                                    bool completeIfNoResponse);
 
 /**
  * @brief Release the string acquired by native function.

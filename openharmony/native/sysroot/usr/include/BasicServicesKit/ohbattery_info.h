@@ -19,7 +19,6 @@
  *
  * @brief Provides the definition of the C interface for the BatteryInfo module.
  *
- * @syscap SystemCapability.PowerManager.BatteryManager.Core
  * @since 13
  * @version 1.0
  */
@@ -100,7 +99,6 @@ typedef enum {
  * @brief This API returns the current battery capacity.
  *
  * @return Returns number between 0 and 100.
- * @syscap SystemCapability.PowerManager.BatteryManager.Core
  * @since 13
  */
 int32_t OH_BatteryInfo_GetCapacity();
@@ -113,7 +111,6 @@ int32_t OH_BatteryInfo_GetCapacity();
  *         {@link PLUGGED_TYPE_USB} if the power source is an USB DC charger.
  *         {@link PLUGGED_TYPE_WIRELESS} if the power source is wireless charger.
  *         {@link PLUGGED_TYPE_BUTT} if the type is unknown.
- * @syscap SystemCapability.PowerManager.BatteryManager.Core
  * @since 13
  */
 BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();

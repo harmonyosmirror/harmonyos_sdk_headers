@@ -33,6 +33,7 @@
 extern "C" {
 #endif
 
+
 /**
  * @brief Handle to {@link XEG_SpatialUpscale}.
  *
@@ -53,7 +54,7 @@ typedef struct XEG_SpatialUpscaleCreateInfo {
     VkExtent2D inputSize;
     
     /** Sampling region of the upscaling image.
-    * The value of this parameter must be greater than 0 and less or equal than the image size.
+    * The value of this parameter must be greater than 0 and less than or equal to the image size.
     * Otherwise, the rendering fails or the rendering effect is unexpected.
     * This parameter has two structures: VkOffset2D offset and VkExtent2D extent.
     * offset defines the x and y coordinates of the upper left corner of the image region,
@@ -67,7 +68,7 @@ typedef struct XEG_SpatialUpscaleCreateInfo {
     VkExtent2D outputSize;
     
     /** Drawing region of the upscaling image.
-    * The value of this parameter must be greater than 0 and less or equal than the image size.
+    * The value of this parameter must be greater than 0 and less than or equal to the image size.
     * Otherwise, the rendering fails or the rendering effect is unexpected.
     * This parameter has two structures: VkOffset2D offset and VkExtent2D extent.
     * offset defines the x and y coordinates of the upper left corner of the image region,
@@ -80,11 +81,10 @@ typedef struct XEG_SpatialUpscaleCreateInfo {
     
     /** Sharpness for upscaling. The recommended value range is [0, 1].
     * The sharpness needs to be adjusted for images of different styles.
-    * Otherwise, over-sharpening will occur, for example, the image has a lot of noises.
+    * Otherwise, over-sharpening will occur, for example, the image may contain excessive noise.
     */
     float sharpness;
 } XEG_SpatialUpscaleCreateInfo;
-
 /**
  * @brief This structure describes the image information
  * required for delivering the GPU spatial upscaling rendering command.
@@ -141,7 +141,6 @@ typedef void (VKAPI_PTR *PFN_HMS_XEG_CmdRenderSpatialUpscale)(VkCommandBuffer co
 typedef void (VKAPI_PTR *PFN_HMS_XEG_DestroySpatialUpscale)(XEG_SpatialUpscale  xegSpatialUpscale);
 
 #ifndef XEG_NO_PROTOTYPES
-
 /**
 * @brief Creates an {@link XEG_SpatialUpscale} object.
 *

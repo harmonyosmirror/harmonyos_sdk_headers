@@ -326,7 +326,9 @@ Data_Asset *OH_Data_Asset_CreateOne(void);
  *
  * @param asset Represents a pointer to an {@link Data_Asset} instance.
  * @return Returns the status code of the execution. Successful execution returns RDB_OK,
- * while failure returns a specific error code. Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * while failure returns a specific error code.
+ *     {@link RDB_OK} - success.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
  * @see Data_Asset, OH_Rdb_ErrCode.
  * @since 11
  */
@@ -349,7 +351,9 @@ Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count);
  * @param assets Represents a pointer to an {@link Data_Asset} instance.
  * @param count Represents the count of {@link Data_Asset} to destroy.
  * @return Returns the status code of the execution. Successful execution returns RDB_OK,
- * while failure returns a specific error code. Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * while failure returns a specific error code.
+ *     {@link RDB_OK} - success.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
  * @see Data_Asset, OH_Rdb_ErrCode.
  * @since 11
  */

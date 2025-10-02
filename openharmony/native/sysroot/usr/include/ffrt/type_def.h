@@ -128,6 +128,25 @@ typedef enum {
      * @since 18
      */
     ffrt_rwlock_storage_size = 64,
+    /** Fiber storage size.
+     *
+     * This constant defines the fiber storage size.
+     * The actual value depends on the target architecture:
+     * - __aarch64__: 22
+     * - __arm__: 64
+     * - __x86_64__: 8
+     *
+     * @since 20
+     */
+#if defined(__aarch64__)
+    ffrt_fiber_storage_size = 22,
+#elif defined(__arm__)
+    ffrt_fiber_storage_size = 64,
+#elif defined(__x86_64__)
+    ffrt_fiber_storage_size = 8,
+#else
+#error "unsupported architecture"
+#endif
 } ffrt_storage_size_t;
 
 /**
@@ -301,6 +320,16 @@ typedef struct {
     /** An array of uint32_t used to store the condition variable. */
     uint32_t storage[(ffrt_cond_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
 } ffrt_cond_t;
+
+/**
+ * @brief Defines the fiber structure.
+ *
+ * @since 20
+ */
+typedef struct {
+    /** An array of uint32_t used to store the fiber. */
+    uintptr_t storage[ffrt_fiber_storage_size];
+} ffrt_fiber_t;
 
 /**
  * @brief Defines the poller callback function type.

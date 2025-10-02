@@ -741,6 +741,21 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
 int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
 
 /**
+ * @brief The interface to set config Name for processor.
+ *
+ * @param processor The pointer to the HiAppEvent_Processor instance.
+ * @param configName The configName of processor.
+ * @return set result.
+ *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
+ *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
+ *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
+ *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
+ * @since 20
+ */
+int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* configName);
+
+/**
  * @brief The interface to set user info for processor.
  *
  * @param processor The pointer to the HiAppEvent_Processor instance.

@@ -231,6 +231,19 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecord
  */
 OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnUri callback, void *userData);
 
+/**
+ * @brief Set recorder configuration, if app want its recorder only to be muted instead of interrupted.
+ *
+ * @param recorder Pointer to an OH_AVRecorder instance
+ * @param muteWhenInterrupted use {@code true} if application want to be muted instead of interrupted.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr.
+ *         {@link AV_ERR_INVALID_STATE} function called in invalid state, only available before prepare state.
+ * @since 20
+ */
+OH_AVErrCode OH_AVRecorder_SetWillMuteWhenInterrupted(OH_AVRecorder *recorder, bool muteWhenInterrupted);
+
 #ifdef __cplusplus
 }
 #endif

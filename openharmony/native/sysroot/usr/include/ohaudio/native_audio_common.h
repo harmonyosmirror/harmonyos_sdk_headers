@@ -130,6 +130,32 @@ typedef enum {
     AUDIO_SCENE_VOICE_CHAT = 3,
 } OH_AudioScene;
 
+/**
+ * @brief Defines the ringer mode.
+ *
+ * @since 20
+ */
+typedef enum {
+    /**
+     * Silent ringer mode.
+     *
+     * @since 20
+     */
+    AUDIO_RINGER_MODE_SILENT = 0,
+    /**
+     * Vibrate ringer mode.
+     *
+     * @since 20
+     */
+    AUDIO_RINGER_MODE_VIBRATE = 1,
+    /**
+     * Normal ringer mode.
+     *
+     * @since 20
+     */
+    AUDIO_RINGER_MODE_NORMAL = 2,
+} OH_AudioRingerMode;
+
 #ifdef __cplusplus
 }
 #endif

@@ -41,6 +41,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/**
+ * @brief max number for transient task.
+ *
+ * @since 20
+ */
+#define TRANSIENT_TASK_MAX_NUM 3
+
 /**
  * @brief Enum for transient task error code.
  * @since 13
@@ -76,6 +84,16 @@ typedef enum TransientTask_ErrorCode {
      * Transient task verification failed.
      */
     ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002,
+    /**
+     * @error Failed to write data into parcel. Possible reasons:
+     * 1. Invalid parameters;
+     * 2. Failed to apply for memory.
+     */
+    ERR_TRANSIENT_TASK_PARCELABLE_FAILED = 9900003,
+    /**
+     * @error System service operation failed.
+     */
+    ERR_TRANSIENT_TASK_SERVICE_NOT_READY = 9900004,
 } TransientTask_ErrorCode;
 
 /**
@@ -90,6 +108,19 @@ typedef struct TransientTask_DelaySuspendInfo {
     /** The actual delay duration (ms) */
     int32_t actualDelayTime;
 } TransientTask_DelaySuspendInfo;
+
+/**
+ * @brief Define TransientTaskInfo for an application.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef struct TransientTask_TransientTaskInfo {
+    /** The remaining quota of the delay request */
+    int32_t remainingQuota;
+    /** The info of delay suspend */
+    TransientTask_DelaySuspendInfo transientTasks[TRANSIENT_TASK_MAX_NUM];
+} TransientTask_TransientTaskInfo;
 
 /**
  * @brief Define a callback function when delay time expired.

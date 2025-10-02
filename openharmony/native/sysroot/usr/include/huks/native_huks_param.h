@@ -23,7 +23,6 @@
  *    a parameter set, and destroying a parameter set.
  *    They can also be used to obtain parameters, copy parameter sets, and check parameter validity.
  *
- * @syscap SystemCapability.Security.Huks
  * @since 9
  * @version 1.0
  */
@@ -34,7 +33,7 @@
  * @brief Provides APIs for constructing, using, and destroying parameter sets.
  *
  * @library libhuks_ndk.z.so
- * @syscap SystemCapability.Security.Huks
+ * @syscap SystemCapability.Security.Huks.Core
  *
  * include "huks/include/native_huks_type.h"
  * @kit UniversalKeystoreKit
@@ -180,6 +179,15 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *par
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param);
+
+/**
+ * @brief Destroys a parameter set.
+ *
+ * @param keyAliasSet Indicates the pointer to the parameter set to destroy.
+ * @since 20
+ * @version 1.0
+ */
+void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet);
 
 #ifdef __cplusplus
 }

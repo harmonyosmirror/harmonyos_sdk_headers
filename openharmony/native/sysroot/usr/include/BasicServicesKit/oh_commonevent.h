@@ -59,6 +59,13 @@ typedef enum CommonEvent_ErrCode {
     /** @error invalid input parameter. */
     COMMONEVENT_ERR_INVALID_PARAMETER = 401,
 
+    /**
+     * @error The common event send frequency too high.
+     *
+     * @since 20
+     */
+    COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED = 1500003,
+
     /** @error the application cannot send system common events. */
     COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004,
 
@@ -220,19 +227,19 @@ CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* sub
 const char* OH_CommonEvent_GetEventFromRcvData(const CommonEvent_RcvData* rcvData);
 
 /**
- * @brief Get event result code from callback data.
+ * @brief Get event code from callback data.
  *
  * @param rcvData Indicates the callback data.
- * @return Returns the event of result code, default is 0.
+ * @return Returns the event of code, default is 0.
  * @since 12
  */
 int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData);
 
 /**
- * @brief Get event result data from callback data.
+ * @brief Get event data from callback data.
  *
  * @param rcvData Indicates the callback data.
- * @return Returns the event of result data, default is null.
+ * @return Returns the event of data, default is null.
  * @since 12
  */
 const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvData);
@@ -621,12 +628,14 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
     const double* value, size_t num);
 
 /**
- * @brief Publish a standard commen event.
+ * @brief Publish a commen event.
  *
  * @param event Indicates the name of the common event.
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
+ *         Returns {@link COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED} if the common event sending frequency too high,
+ *                 add since api 20.
  *         Returns {@link COMMONEVENT_ERR_FAIL_SEND_REQUEST } if IPC request failed to send.
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
  * @since 18
@@ -641,6 +650,8 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
+ *         Returns {@link COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED} if the common event sending frequency too high,
+ *                  add since api 20.
  *         Returns {@link COMMONEVENT_ERR_FAIL_SEND_REQUEST } if IPC request failed to send.
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
  * @since 18
@@ -693,39 +704,39 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber);
 bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber);
 
 /**
- * @brief Get result code from an ordered event by a subscriber.
+ * @brief Get code from an ordered event by a subscriber.
  *
  * @param subscriber Indicates the subscriber.
- * @return Returns the result code, default is 0.
+ * @return Returns the code, default is 0.
  * @since 18
  */
 int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subscriber);
 
 /**
- * @brief Set result code to an ordered event by a subscriber.
+ * @brief Set code to an ordered event by a subscriber.
  *
  * @param subscriber Indicates the subscriber.
- * @param code Indicates the result code.
+ * @param code Indicates the code.
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */
 bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int32_t code);
 
 /**
- * @brief Get result data from an ordered event by a subscriber.
+ * @brief Get data from an ordered event by a subscriber.
  *
  * @param subscriber Indicates the subscriber.
- * @return Returns the result data, default is null.
+ * @return Returns the data, default is null.
  * @since 18
  */
 const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber);
 
 /**
- * @brief Set result data to an ordered event by a subscriber.
+ * @brief Set data to an ordered event by a subscriber.
  *
  * @param subscriber Indicates the subscriber.
- * @param data Indicates the result data.
- * @param length Indicates the length of result data.
+ * @param data Indicates the data.
+ * @param length Indicates the length of data.
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */

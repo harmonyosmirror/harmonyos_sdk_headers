@@ -76,6 +76,20 @@ typedef enum {
 OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void);
 
 /**
+ * @brief Creates an <b>OH_Drawing_Canvas</b> object from <b>OH_Drawing_PixelMap</b>.
+ * The OH_Drawing_PixelMap should be dissolved by OH_Drawing_PixelMapDissolve after the OH_Drawing_Canvas is destroyed.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param pixelMap Indicates the pointer to an <b>OH_Drawing_PixelMap</b> object.
+ * @return Returns the pointer to the <b>OH_Drawing_Canvas</b> object created.
+ *         If nullptr is returned, the creation fails.
+ *         The possible cause of the failure is that the available memory is empty or pixelMap is nullptr.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixelMap);
+
+/**
  * @brief Destroys an <b>OH_Drawing_Canvas</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -256,6 +270,27 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapNine(OH_Drawing_Canvas* canvas
  */
 void OH_Drawing_CanvasDrawPixelMapRect(OH_Drawing_Canvas* canvas, OH_Drawing_PixelMap* pixelMap,
     const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst, const OH_Drawing_SamplingOptions* samplingOptions);
+
+/**
+ * @brief Draw the specified area of the Media::PixelMap to the specified area of the canvas.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
+ * @param pixelMap Indicates the pointer to an <b>OH_Drawing_PixelMap</b> object.
+ * @param src Indicates the area of source pixelmap.
+ * @param dst Indicates the area of destination canvas.
+ * @param samplingOptions Indicates the sampling mode.
+ * @param constraint Indicates constraint type.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if any of canvas, pixelMap
+ *                 and dst is nullptr.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapRectConstraint(OH_Drawing_Canvas* canvas,
+    OH_Drawing_PixelMap* pixelMap, const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst,
+    const OH_Drawing_SamplingOptions* samplingOptions, OH_Drawing_SrcRectConstraint constraint);
 
 /**
  * @brief Fills clipped canvas area with brush.
@@ -486,6 +521,26 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawNestedRoundRect(OH_Drawing_Canvas* can
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacter(OH_Drawing_Canvas* canvas, const char* str,
     const OH_Drawing_Font* font, float x, float y);
+
+/**
+ * @brief Draws a single character with font features.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
+ * @param str Indicates the single character encoded in UTF-8.
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param x Indicates the horizontal offset applied to the single character.
+ * @param y Indicates the vertical offset applied to the single character.
+ * @param fontFeatures Indicates the pointer to an <b>OH_Drawing_FontFeatures</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if any of canvas, str, font
+ *                 or fontFeatures is nullptr, or if strlen(str) is 0.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacterWithFeatures(OH_Drawing_Canvas* canvas, const char* str,
+    const OH_Drawing_Font* font, float x, float y, OH_Drawing_FontFeatures* fontFeatures);
 
 /**
  * @brief Draws a textblob.

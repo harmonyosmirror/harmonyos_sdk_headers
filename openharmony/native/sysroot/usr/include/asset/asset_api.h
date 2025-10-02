@@ -204,6 +204,25 @@ int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultS
 int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt);
 
 /**
+ * @brief Query the result of synchronization.
+ *
+ * @param query Pointer to the search criteria.
+ * @param queryCnt Number of the search criteria.
+ * @param syncResult Pointer to the synchronization result obtained.
+ * @return {@link ASSET_SUCCESS} 0 - The operation is successful.
+ *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - The ASSET service is unavailable.
+ *     {@link ASSET_OUT_OF_MEMORY} 24000006 - Insufficient memory.
+ *     {@link ASSET_IPC_ERROR} 24000010 - IPC failed.
+ *     {@link ASSET_BMS_ERROR} 24000011 - Calling the Bundle Manager service failed.
+ *     {@link ASSET_ACCOUNT_ERROR} 24000012 - Calling the OS Account service failed.
+ *     {@link ASSET_ACCESS_TOKEN_ERROR} 24000013 - Calling the Access Token service failed.
+ *     {@link ASSET_FILE_OPERATION_ERROR} 24000014 - The file operation failed.
+ *     {@link ASSET_PARAM_VERIFICATION_FAILED} 24000018 - Parameter verification failed.
+ * @since 20
+ */
+int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, Asset_SyncResult *syncResult);
+
+/**
  * @brief Parses the query result to obtain the specified attribute value.
  *
  * @param result Pointer to the query result to parse, which is obtained by <b>OH_Asset_Query</b>.
