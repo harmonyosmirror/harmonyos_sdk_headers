@@ -15,6 +15,7 @@
 
 /**
  * @addtogroup FileIO
+ * @{
  *
  * @brief This module provides the basic file operations.
  * @since 12
@@ -78,3 +79,4 @@ FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength,
 #endif
 
 #endif //FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
+/** @} */

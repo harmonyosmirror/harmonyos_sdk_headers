@@ -211,6 +211,18 @@ typedef enum {
      * @since 14
      */
     ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL | 0x47,
+    /**
+     * A tag whose value is a byte array indicating the group id an asset belongs to.
+     *
+     * @since 18
+     */
+    ASSET_TAG_GROUP_ID = ASSET_TYPE_BYTES | 0x48,
+    /**
+     * A tag whose value is a 32-bit unsigned integer indicating the type of Asset encapsulation.
+     *
+     * @since 18
+     */
+    ASSET_TAG_WRAP_TYPE = ASSET_TYPE_NUMBER | 0x49,
 } Asset_Tag;
 
 /**
@@ -323,6 +335,22 @@ typedef enum {
      */
     ASSET_SYNC_TYPE_TRUSTED_ACCOUNT = 1 << 2,
 } Asset_SyncType;
+
+/**
+ * @brief An enum type indicates the type of Asset encapsulation.
+ *
+ * @since 18
+ */
+typedef enum {
+    /**
+     * An Asset with this attribute value is never allowed to be wrapped up.
+     */
+    ASSET_WRAP_TYPE_NEVER = 0,
+    /**
+     * An Asset with this attribute value can only be wrapped or unwrapped on devices logged in with trusted accounts.
+     */
+    ASSET_WRAP_TYPE_TRUSTED_ACCOUNT = 1,
+} Asset_WrapType;
 
 /**
  * @brief Enumerates the policies for resolving the conflict (for example, duplicate alias) occurred when

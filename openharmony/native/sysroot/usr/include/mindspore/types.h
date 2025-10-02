@@ -18,7 +18,7 @@
  * @addtogroup MindSpore
  * @{
  *
- * @brief provide the model reasoning related interfaces of MindSpore Lite.
+ * @brief Provides APIs related to MindSpore Lite model inference.
  *
  * @Syscap SystemCapability.Ai.MindSpore
  * @since 9
@@ -27,7 +27,7 @@
 /**
  * @file types.h
  * @kit MindSporeLiteKit
- * @brief provides the model file types and device types supported by MindSpore Lite.
+ * @brief Provides the model file types and device types supported by MindSpore Lite.
  *
  * @library libmindspore_lite_ndk.so
  * @since 9

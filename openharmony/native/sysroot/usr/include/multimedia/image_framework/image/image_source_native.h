@@ -119,6 +119,24 @@ typedef enum {
 } IMAGE_ALLOCATOR_TYPE;
 
 /**
+ * @brief The strategy for executing the two operations when both desiredSize and desiredRegion
+ * are specified.
+ *
+ * @since 18
+ */
+typedef enum {
+    /**
+     * Scale first, then crop.
+     */
+    IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,
+
+    /**
+     * Crop first, then scale.
+     */
+    IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2,
+} Image_CropAndScaleStrategy;
+
+/**
  * @brief Create a pointer for OH_ImageSource_Info struct.
  *
  * @param info The OH_ImageSource_Info pointer will be operated.
@@ -304,6 +322,35 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredDynamicRange(OH_DecodingOptions *op
     int32_t *desiredDynamicRange);
 
 /**
+ * @brief Sets a cropping and scaling strategy for decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropAndScaleStrategy Strategy for executing the cropping and scaling operations when both desiredSize and
+ * desiredRegion are specified.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: The execution is successful.
+ * {@link IMAGE_BAD_PARAMETER}: options is a null pointer or cropAndScaleStrategy is not in the range of
+ * Image_CropAndScaleStrategy.
+ * @since 18
+ */
+Image_ErrorCode OH_DecodingOptions_SetCropAndScaleStrategy(OH_DecodingOptions *options,
+    int32_t cropAndScaleStrategy);
+
+/**
+ * @brief Obtains the cropping and scaling strategy of decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropAndScaleStrategy Pointer to the strategy for executing the cropping and scaling operations when both
+ * desiredSize and desiredRegion are specified.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: The execution is successful.
+ * {@link IMAGE_BAD_PARAMETER}: options or cropAndScaleStrategy is a null pointer.
+ * @since 18
+ */
+Image_ErrorCode OH_DecodingOptions_GetCropAndScaleStrategy(OH_DecodingOptions *options,
+    int32_t *cropAndScaleStrategy);
+
+/**
  * @brief Set desiredDynamicRange number for OH_DecodingOptions struct.
  *
  * @param options The OH_DecodingOptions pointer will be operated. Pointer connot be null.
@@ -373,7 +420,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
  * @param source Indicates a void pointer(from ImageSource pointer convert).
  * @param  options Indicates a pointer to the options for decoding the image source.
  * For details, see {@link OH_DecodingOptions}.
- * @param resPixMap Indicates a void pointer to the <b>Pixelmap</b> object obtained at the C++ native layer.
+ * @param pixelmap Indicates a void pointer to the <b>Pixelmap</b> object obtained at the C++ native layer.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
@@ -497,7 +544,7 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty(OH_ImageSourceNative *s
  * @brief Obtains the number of frames from an <b>ImageSource</b> object.
  *
  * @param source Indicates a pointer to the {@link OH_ImageSource} object at the C++ native layer.
- * @param res Indicates a pointer to the number of frames obtained.
+ * @param frameCount The number of image frameCount.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */

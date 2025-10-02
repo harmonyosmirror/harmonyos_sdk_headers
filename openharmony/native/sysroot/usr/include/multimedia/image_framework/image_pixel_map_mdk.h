@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for obtaining pixel map data and information.
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 1.0
  */
@@ -30,6 +30,8 @@
  * @brief Declares the APIs that can lock, access, and unlock a pixel map.
  * Need link <b>libpixelmapndk.z.so</b>
  *
+ * @library libpixelmap_ndk.so
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @kit ImageKit
  * @since 10
  * @version 1.0

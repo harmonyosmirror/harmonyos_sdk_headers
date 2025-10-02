@@ -65,9 +65,15 @@ typedef enum {
     ARKWEB_NATIVE_WEB_MESSAGE,
     /** API type related to ArkWeb cookie manager. */
     ARKWEB_NATIVE_COOKIE_MANAGER,
+    /**
+     * @brief API type related to ArkWeb JavaScript value.
+     *
+     * @since 18
+     */
+    ARKWEB_NATIVE_JAVASCRIPT_VALUE,
 } ArkWeb_NativeAPIVariantKind;
 
-/*
+/**
  * @brief Obtains the native API set of a specified type.
  * @param type Indicates the type of the native API set provided by ArkWeb.
  * @return Return the pointer to the native API abstract object that carries the size.
@@ -77,6 +83,20 @@ typedef enum {
  * @since 12
  */
 ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
+
+
+/**
+ * @brief Register a scrolling event callback.
+ * @param webTag The name of the web component.
+ * @param callback The ArkWeb scrolling callback.
+ * @param userData The data set by user.
+ * @return Returns whether the registration was successful, false indicates failure.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 18
+ */
+bool OH_ArkWeb_RegisterScrollCallback(
+    const char* webTag, ArkWeb_OnScrollCallback callback, void* userData);
 
 #ifdef __cplusplus
 };

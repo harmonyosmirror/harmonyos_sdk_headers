@@ -60,7 +60,40 @@ typedef enum {
     STYLISH = 1 << 2,
     /** Installed font types */
     INSTALLED = 1 << 3,
+    /**
+     * Customized font types
+     * @since 18
+    */
+    CUSTOMIZED = 1 << 4,
 } OH_Drawing_SystemFontType;
+
+/**
+ * @brief Obtain all system font descriptive symbols that match the specified font descriptor. Where the 'path'
+ * fields are not considered as valid matching values, It takes effect when the remaining fields are not
+ * default values, If all the fields of the parameters <b>OH_Drawing_FontDescriptor</b> are default, obtain all system
+ * font descriptors. If the match fails, return nullptr.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param desc The pointer to the <b>OH_Drawing_FontDescriptor</b> object. It is recommended to
+ * use <b>OH_Drawing_CreateFontDescriptor</b> to obtain a valid <b>OH_Drawing_FontDescriptor</b> instance.
+ * If you create your own <b>OH_Drawing_FontDescriptor</b> object, ensure that fields not intended for matching are
+ * set to their default values.
+ * @param num Indicates the count of obtained <b>OH_Drawing_FontDescriptor</b>.
+ * @return Returns an array of <b>OH_Drawing_FontDescriptor</b>. Released through the
+ * <b>OH_Drawing_DestroyFontDescriptors</b> interface after use.
+ * @since 18
+ */
+OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors(OH_Drawing_FontDescriptor* desc, size_t* num);
+
+/**
+ * @brief Releases the <b>OH_Drawing_FontDescriptor</b> array.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param descriptors <b>OH_Drawing_FontDescriptor</b> object array.
+ * @param num Represents the number of members of the <b>OH_Drawing_FontDescriptor</b> array.
+ * @since 18
+ */
+void OH_Drawing_DestroyFontDescriptors(OH_Drawing_FontDescriptor* descriptors, size_t num);
 
 /**
  * @brief Get the <b>OH_Drawing_FontDescriptor</b> object by the font full name and the font type, supporting generic
@@ -73,7 +106,7 @@ typedef enum {
  * @since 14
  */
 OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName(const OH_Drawing_String* fullName,
-                                                                  OH_Drawing_SystemFontType fontType);
+    OH_Drawing_SystemFontType fontType);
 
 /**
  * @brief Obtain the corresponding font full name array by the font type.

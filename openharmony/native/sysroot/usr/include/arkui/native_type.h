@@ -550,6 +550,20 @@ typedef enum {
 } ArkUI_ShadowType;
 
 /**
+ * @brief Enumerates the modes of the date picker.
+ *
+ * @since 18
+ */
+typedef enum {
+    /** A mode that displays the date in months, days of month, and years. */
+    ARKUI_DATEPICKER_MODE_DATE = 0,
+    /** A mode that displays the date in months and years. */
+    ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
+    /** A mode that displays the date in months and days of the month. */
+    ARKUI_DATEPICKER_MONTH_AND_DAY = 2,
+} ArkUI_DatePickerMode;
+
+/**
  * @brief Enumerates the types of the text picker.
  *
  * @since 12
@@ -606,6 +620,18 @@ typedef enum {
     /** No effect after the scrollbar is moved to the edge. */
     ARKUI_EDGE_EFFECT_NONE,
 } ArkUI_EdgeEffect;
+
+/**
+ * @brief Enumerates the edges for which the effect takes effect when the boundary of the scrollable content is reached.
+ *
+ * @since 18
+ */
+typedef enum {
+    /** Start edge. */
+    ARKUI_EFFECT_EDGE_START = 1,
+    /** End edge. */
+    ARKUI_EFFECT_EDGE_END = 2,
+} ArkUI_EffectEdge;
 
 /**
  * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
@@ -678,6 +704,32 @@ typedef enum {
     /** In the list item group, the footer is pinned to the bottom, and the header is pinned to the top. */
     ARKUI_STICKY_STYLE_BOTH = 3,
 } ArkUI_StickyStyle;
+
+/**
+ * @brief Enumerates the content clipping modes of scrollable components.
+ *
+ * @since 18
+ */
+typedef enum {
+    /** clip by content */
+    ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY = 0,
+    /** clip by boundary */
+    ARKUI_CONTENT_CLIP_MODE_BOUNDARY,
+    /** clip by safe area padding */
+    ARKUI_CONTENT_CLIP_MODE_SAFE_AREA,
+} ArkUI_ContentClipMode;
+
+/**
+ * @brief Enumerates the layout modes of the WaterFlow component.
+ *
+ * @since 18
+ */
+typedef enum {
+    /** Layout items from top to viewport. */
+    ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN = 0,
+    /** Layout items in viewport. */
+    ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW,
+} ArkUI_WaterFlowLayoutMode;
 
 /**
  * @brief Enumerates the border styles.
@@ -1539,6 +1591,12 @@ typedef enum {
      *  lines at appropriate characters (for example, spaces) whenever possible.
         CJK text behavior is the same as for <b>NORMAL</b>. */
     ARKUI_WORD_BREAK_BREAK_WORD,
+    /**
+     * @brief Line breaks can occur between any two syllabic units for non-CJK text.
+     * CJK text behavior is the same as for <b>NORMAL</b>.
+     * @since 18
+     */
+    ARKUI_WORD_BREAK_HYPHENATION,
 } ArkUI_WordBreak;
 
 /**
@@ -1873,6 +1931,77 @@ typedef enum {
     /** Standard address. The scenario-based autofill feature, when enabled, can automatically save and fill in standard
      *  addresses. */
     ARKUI_TEXTINPUT_CONTENT_TYPE_FORMAT_ADDRESS,
+    /**
+     * Passport number. The scenario-based autofill feature, when enabled, can automatically save and fill in passport
+     * numbers.
+     * @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER,
+    /**
+     *  Passport validity. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  passport validities.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY,
+    /**
+     *  Place of issue. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  place of issues.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT,
+    /**
+     *  Tax organization. The scenario-based autofill feature, when enabled, can automatically save and fill in tax
+     *  organizations.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION,
+    /**
+     *  Tax id. The scenario-based autofill feature, when enabled, can automatically save and fill in standard Tax ids.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID,
+    /**
+     *  City name and state name or state code. The scenario-based autofill feature, when enabled, can automatically
+     *  save and fill in city names and state names or state codes.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE,
+    /**
+     *  Flight number. The scenario-based autofill feature, when enabled, can automatically save and fill in flight
+     *  numbers.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER,
+    /**
+     *  License number. The scenario-based autofill feature, when enabled, can automatically save and fill in license
+     *  numbers.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER,
+    /**
+     *  License file number. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  license file numbers.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER,
+    /**
+     *  License plate number. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  license plate numbers.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE,
+    /**
+     *  Engine number. The scenario-based autofill feature, when enabled, can automatically save and fill in engine
+     *  numbers.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER,
+    /**
+     *  License chassis number. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  license chassis numbers.
+     *  @since 18
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER,
 } ArkUI_TextInputContentType;
 
 /**
@@ -1983,6 +2112,11 @@ typedef enum {
     /** @error Parameter error. */
     ARKUI_ERROR_CODE_PARAM_INVALID = 401,
     /**
+     * @error CAPI init error.
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500,
+    /**
      * @error Internal error occurs, such as failure occurs because of the internal environment error,
      * or operation failed because of the internal execution failed.
      * @since 15
@@ -2059,6 +2193,21 @@ typedef enum {
      * @since 14
      */
     ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
+    /**
+     * @error The gesture recognizer type is not supported.
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
+    /**
+     * @error The uiContext is invalid.
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001,
+    /**
+     * @error The callback function is invalid.
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
 } ArkUI_ErrorCode;
 
 /**
@@ -2342,6 +2491,25 @@ typedef enum {
     ARKUI_SAFE_AREA_EDGE_END = 1 << 3,
 } ArkUI_SafeAreaEdge;
 
+/**
+ * @brief Define an enum for the focus movement directions.
+ *
+ * @since 18
+*/
+typedef enum {
+    /** Move focus forward. */
+    ARKUI_FOCUS_MOVE_FORWARD = 0,
+    /** Move focus backward. */
+    ARKUI_FOCUS_MOVE_BACKWARD,
+    /** Move focus up. */
+    ARKUI_FOCUS_MOVE_UP,
+    /** Move focus down. */
+    ARKUI_FOCUS_MOVE_DOWN,
+    /** Move focus left. */
+    ARKUI_FOCUS_MOVE_LEFT,
+    /** Move focus right. */
+    ARKUI_FOCUS_MOVE_RIGHT,
+} ArkUI_FocusMove;
 
 /**
  * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
@@ -2917,7 +3085,7 @@ uint32_t OH_ArkUI_SwiperIndicator_GetColor(ArkUI_SwiperIndicator* indicator);
  * @brief Sets the color of the selected dot for the navigation indicator.
  *
  * @param indicator Indicates the pointer to the indicator.
- * @param color the color of the selected dot, in 0xARGB format.
+ * @param selectedColor the color of the selected dot, in 0xARGB format.
  * @since 12
 */
 void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator, uint32_t selectedColor);
@@ -3161,7 +3329,7 @@ void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetStart(
@@ -3172,7 +3340,7 @@ void OH_ArkUI_AlignmentRuleOption_SetStart(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetEnd(
@@ -3183,7 +3351,7 @@ void OH_ArkUI_AlignmentRuleOption_SetEnd(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to anchor component
+* @param alignment Alignment relative to anchor component
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
@@ -3194,7 +3362,7 @@ void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, const char* id,
@@ -3205,7 +3373,7 @@ void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, cons
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBottom(
@@ -3216,7 +3384,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to the anchor component.
+* @param alignment Alignment relative to the anchor component.
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
@@ -3235,7 +3403,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* o
  * @brief Set the vertical offset parameter of the component under the anchor point constraint.
  *
  * @param option Alignment rule information of subcomponents in the relative container.
- * @param horizontal bias value in the vertical direction.
+ * @param vertical bias value in the vertical direction.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical);
@@ -3378,7 +3546,7 @@ ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create();
 /**
 * @brief Destroy the ListitemSwipeActionItem instance.
 *
-* @param option List Item SwipeActionItem instance to be destroyed.
+* @param item List Item SwipeActionItem instance to be destroyed.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* item);
@@ -3386,8 +3554,8 @@ void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* ite
 /**
 * @brief Set the layout content of ListItem SwipeActionItem.
 *
-* @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item List Item SwipeActionItem instance.
+* @param node Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* item, ArkUI_NodeHandle node);
@@ -3395,7 +3563,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* 
 /**
 * @brief Set the threshold for long-distance sliding deletion distance of components.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param distance Component long-distance sliding deletion distance threshold.
 * @since 12
 */
@@ -3404,7 +3572,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeA
 /**
 * @brief Obtain the threshold for long-distance sliding deletion distance of components.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @return Component long-distance sliding deletion distance threshold. If -1.0f is returned, the return fails.
 *         The possible cause of the failure is that the item parameter is abnormal, such as a null pointer.
 * @since 12
@@ -3414,7 +3582,7 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipe
 /**
 * @brief Set the event to be called when a sliding entry enters the deletion area.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3423,7 +3591,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
 /**
  * @brief Set the event triggered when a sliding entry enters the deletion area.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3434,7 +3602,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_Lis
 /**
 * @brief Set the event to be called when a component enters the long-range deletion area and deletes a ListItem.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3443,7 +3611,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
 /**
  * @brief Set the event triggered when a component enters the long-range deletion area and deletes a ListItem.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3454,7 +3622,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwip
 /**
 * @brief Set the event to be called when a sliding entry exits the deletion area.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3463,7 +3631,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
 /**
  * @brief Set the event triggered when a sliding entry exits the deletion area.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3474,7 +3642,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_List
 /**
 * @brief Set the event triggered when the sliding state of a list item changes.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 *        swipeActionState The changed state.
 * @since 12
@@ -3485,7 +3653,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeAction
 /**
  * @brief Set the event triggered when the sliding state of a list item changes.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  *        swipeActionState The changed state.
@@ -3516,7 +3684,7 @@ void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption*
 * of the ListItem SwipeActionItem.
 *
 * @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption* option,
@@ -3527,7 +3695,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption
 * of the ListItem SwipeActionItem.
 *
 * @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetEnd(ArkUI_ListItemSwipeActionOption* option,
@@ -3697,7 +3865,7 @@ ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
 /**
  * @brief Disposes of measurement metrics of this custom span.
  *
- * @param info The CustomSpanMetrics instance to be destroyed.
+ * @param metrics The CustomSpanMetrics instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
@@ -4063,6 +4231,63 @@ void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int
 int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value);
 
 /**
+ * @brief Set accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @param rangeMin minimum value based on range components, The default value is -1.
+ * @since 18
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin);
+
+/**
+ * @brief Get accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @return minimum value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 18
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility maximum value.
+ *
+ * @param value accessibility value object.
+ * @param rangeMax maximum value based on range components, The default value is -1.
+ * @since 18
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax);
+
+/**
+ * @brief Get accessibility maximum value.
+ *
+ * @param value accessibility value object.
+ * @return maximum value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 18
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @param rangeCurrent value based on range components, The default value is -1.
+ * @since 18
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent);
+
+/**
+ * @brief Get accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @return current value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 18
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value);
+
+/**
  * @brief Set accessibility text value.
  *
  * @param value accessibility value object.
@@ -4097,7 +4322,7 @@ void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
  * @since 14
  */
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
- 
+
 /**
  * @brief Get window name from HostWindowInfo.
  *
@@ -4106,7 +4331,7 @@ const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle)
  * @since 15
  */
 const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
- 
+
 /**
  * @brief Destroy the instance of HostWindowInfo.
  *
@@ -4235,6 +4460,41 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 
 /**
+ * @brief Create a cross-language option instance.
+ *
+ * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @since 15
+ */
+ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
+
+/**
+ * @brief Destroy the cross-language option instance.
+ *
+ * @param option The cross-language option instance.
+ * @since 15
+ */
+void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
+
+/**
+ * @brief Enable the attribute setting in the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @param enabled The attribute setting in the cross-language option.
+ * Default value: false.
+ * @since 15
+ */
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
+
+/**
+ * @brief Get the attribute setting enable of the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @return The attribute setting enable of the cross-language option.
+ * @since 15
+ */
+bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
+
+/**
  * @brief Creates an option for taking snapshot, the returned value must be released through
  *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
  *
@@ -4343,41 +4603,6 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions
  * @since 17
  */
 int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_VisibleAreaEventOptions* option);
-
-/**
- * @brief Create a cross-language option instance.
- *
- * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
- * @since 15
- */
-ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
-
-/**
- * @brief Destroy the cross-language option instance.
- *
- * @param option The cross-language option instance.
- * @since 15
- */
-void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
-
-/**
- * @brief Enable the attribute setting in the cross-language option.
- *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
- * @since 15
- */
-void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
-
-/**
- * @brief Get the attribute setting enable of the cross-language option.
- *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
- * @since 15
- */
-bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
 #ifdef __cplusplus
 };
 #endif

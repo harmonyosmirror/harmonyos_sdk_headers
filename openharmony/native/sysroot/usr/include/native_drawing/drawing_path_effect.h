@@ -47,6 +47,48 @@ extern "C" {
 #endif
 
 /**
+ * @brief Enumerate path dash style.
+ *
+ * @since 18
+ * @version 1.0
+ */
+typedef enum {
+    /** Indicates translation effect. */
+    DRAWING_PATH_DASH_STYLE_TRANSLATE,
+    /** Indicates rotation effect. */
+    DRAWING_PATH_DASH_STYLE_ROTATE,
+    /** Indicates morph effect. */
+    DRAWING_PATH_DASH_STYLE_MORPH,
+} OH_Drawing_PathDashStyle;
+
+/**
+ * @brief Creates an <b>OH_Drawing_PathEffect</b> object that is a combination of paths,
+ * applying the inner path effect first and then the outer path effect.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param outer Indicates an <b>OH_Drawing_PathEffect</b> object
+ * @param inner Indicates an <b>OH_Drawing_PathEffect</b> object
+ * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect* outer, OH_Drawing_PathEffect* inner);
+
+/**
+ * @brief Creates an <b>OH_Drawing_PathEffect</b> object
+ * that turns the included angle of the path into a fillet of a specified radius.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param radius Indicates the degree of curvature of the arc, the radius must be greater than zero.
+ * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ *         If nullptr is returned, the creation fails.
+ *         The possible cause of the failure is radius is zero or less.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect(float radius);
+
+/**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -58,6 +100,49 @@ extern "C" {
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int count, float phase);
+
+/**
+ * @brief Creates an <b>OH_Drawing_PathEffect</b> object
+ * that breaks the path and creates an irregular distribution on the path.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param segLength Indicates the maximum segment length of the path.
+ * @param deviation Indicates the deviation during drawing.
+ * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, float deviation);
+
+/**
+ * @brief Creates an <b>OH_Drawing_PathEffect</b> object and sets the path effect to a dash effect.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
+ * @param advance Indicates the distance between the dashed segments.
+ * @param phase Indicates the offset into intervals array.
+ * @param type Indicates the type of the path dash effect.
+ * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ *         If nullptr is returned, the creation fails.
+ *         The possible cause of the failure is advance and phase are zero or less.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect(const OH_Drawing_Path* path, float advance, float phase,
+    OH_Drawing_PathDashStyle type);
+
+/**
+ * @brief Creates an <b>OH_Drawing_PathEffect</b> object by overlaying two path effects.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param firstPathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
+ * @param secondPathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
+ * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect(OH_Drawing_PathEffect* firstPathEffect,
+    OH_Drawing_PathEffect* secondPathEffect);
 
 /**
  * @brief Destroys an <b>OH_Drawing_PathEffect</b> object and reclaims the memory occupied by the object.

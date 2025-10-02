@@ -279,6 +279,11 @@ typedef enum {
     WORD_BREAK_TYPE_BREAK_ALL = 1,
     /** Break Word type */
     WORD_BREAK_TYPE_BREAK_WORD = 2,
+    /**
+     * Break word with hyphens
+     * @since 18
+     */
+    WORD_BREAK_TYPE_BREAK_HYPHEN = 3,
 } OH_Drawing_WordBreakType;
 
 /**
@@ -757,6 +762,28 @@ void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle* style, int baseline);
  */
 void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
 
+/**
+ * @brief Add the text decoration.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param decoration Indicates the text decoration to add. For details, see the enum <b>OH_Drawing_TextDecoration</b>.
+ * @since 18
+ * @version 1.0
+ */
+void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
+
+/**
+ * @brief Remove the text decoration.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param decoration Indicates the text decoration to remove, shoud be match existing text decorations.
+ * For details, see the enum <b>OH_Drawing_TextDecoration</b>.
+ * @since 18
+ * @version 1.0
+ */
+void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
 
 /**
  * @brief Sets the color for the text decoration.
@@ -1245,6 +1272,8 @@ size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox* textBox);
  * @return Returns the glyphposition at coordinate.
  * @since 11
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster
  */
 OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinate(OH_Drawing_Typography* typography,
     double dx, double dy);
@@ -1394,6 +1423,8 @@ void OH_Drawing_SetTextStyleHalfLeading(OH_Drawing_TextStyle* style, bool halfLe
  * @param ellipsis Indicates the pointer to ellipsis style.
  * @since 11
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_SetTypographyTextEllipsis
  */
 void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* ellipsis);
 
@@ -1405,6 +1436,8 @@ void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* el
  * @param ellipsisModal Indicates the ellipsis model to set. For details, see the enum <b>OH_Drawing_EllipsisModal</b>.
  * @since 11
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_SetTypographyTextEllipsisModal
  */
 void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellipsisModal);
 
@@ -1656,6 +1689,8 @@ OH_Drawing_TextStyle* OH_Drawing_TypographyGetTextStyle(OH_Drawing_TypographySty
  * @return Returns line text align.
  * @since 12
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_TypographyStyleGetEffectiveAlignment
  */
 int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style);
 
@@ -2799,6 +2834,67 @@ void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox);
  */
 void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset,
     double blurRadius);
+
+/**
+ * @brief Creates an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param alignment Indicates enumerates text tab alignment modes. TAB alignment, Support left alignment
+ * right alignment center alignment, other enumeration values are left alignment effect.
+ * @param location Indicates location of text tab.
+ * @return Returns the pointer to the <b>OH_Drawing_TextTab</b> object created. If the object returns NULL,
+ * the creation failed. The possible cause of the failure is that the application address space is used up.
+ * As a result, space cannot be allocated.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, float location);
+
+/**
+ * @brief Releases the memory occupied by an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @since 18
+ * @version 1.0
+ */
+void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab);
+
+/**
+ * @brief Get alignment of an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @return Returns align of an <b>OH_Drawing_TextTab</b> object.
+ * @since 18
+ * @version 1.0
+ */
+OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab);
+
+/**
+ * @brief Get location of an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @return Returns location of an <b>OH_Drawing_TextTab</b> object.
+ * @since 18
+ * @version 1.0
+ */
+float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
+
+/**
+ * @brief Sets the text tab of <b>OH_Drawing_TypographyStyle</b> object.
+ * Tab alignment does not take effect when text alignment is also set, Or when the ellipsis style is configured.
+ * When the tab is not set or the tab's location property is less than or equal to 0, it is the default space effect.
+ * And all tabs in the paragraph after the setting are aligned according to this tab effect.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+ * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @since 18
+ * @version 1.0
+ */
+void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawing_TextTab* tab);
 
 /**
  * @brief Get DrawingArray size.

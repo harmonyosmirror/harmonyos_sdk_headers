@@ -69,11 +69,32 @@ typedef enum ArkWeb_WebMessageType {
 } ArkWeb_WebMessageType;
 
 /**
+ * @brief Defines the data type carried in a ArkWeb_JavaScriptValue.
+ *
+ * @since 18
+ */
+typedef enum ArkWeb_JavaScriptValueType {
+    /** Represent error data */
+    ARKWEB_JAVASCRIPT_NONE = 0,
+    /** The data carried in the ArkWeb_JavaScriptValue is string. */
+    ARKWEB_JAVASCRIPT_STRING,
+    /** The data carried in the ArkWeb_JavaScriptValue is bool. */
+    ARKWEB_JAVASCRIPT_BOOL
+} ArkWeb_JavaScriptValueType;
+
+/**
  * @brief Defines the ArkWeb_WebMessage.
  *
  * @since 12
  */
 typedef struct ArkWeb_WebMessage* ArkWeb_WebMessagePtr;
+
+/**
+ * @brief Defines the ArkWeb_JavaScriptValuePtr.
+ *
+ * @since 18
+ */
+typedef struct ArkWeb_JavaScriptValue* ArkWeb_JavaScriptValuePtr;
 
 /**
  * @brief Defines the javascript callback of the native ArkWeb.
@@ -92,11 +113,36 @@ typedef void (*ArkWeb_OnJavaScriptProxyCallback)(
     const char* webTag, const ArkWeb_JavaScriptBridgeData* dataArray, size_t arraySize, void* userData);
 
 /**
+ * @brief Defines the JavaScript proxy callback of the native ArkWeb.
+ *
+ * @param webTag The name of the web component.
+ * @param dataArray The JavaScript bridge data array from HTML.
+ * @param arraySize The number of elements in the array.
+ * @param userData The data set by user.
+ *
+ * @since 18
+ */
+typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
+    const char* webTag, const ArkWeb_JavaScriptBridgeData* dataArray, size_t arraySize, void* userData);
+
+/**
  * @brief Defines the component callback of the native ArkWeb.
  *
  * @since 12
  */
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
+
+/**
+ * @brief Defines the scroll callback of the native ArkWeb.
+ *
+ * @param webTag The name of the web component.
+ * @param userData The data set by user.
+ * @param x X-axis scrolling offset.
+ * @param y Y-axis scrolling offset.
+ *
+ * @since 18
+ */
+typedef void (*ArkWeb_OnScrollCallback)(const char* webTag, void* userData, double x, double y);
 
 /**
  * @brief Defines the ArkWeb_WebMessagePort that represent a HTML5 message port.
@@ -149,6 +195,20 @@ typedef struct {
 } ArkWeb_ProxyMethod;
 
 /**
+ * @brief Defines the JavaScript proxy method with a return value.
+ *
+ * @since 18
+ */
+typedef struct {
+    /** The method of the application side JavaScript object participating in the registration. */
+    const char* methodName;
+    /** The callback function with a return value registered by developer is called back when HTML side uses. */
+    ArkWeb_OnJavaScriptProxyCallbackWithResult callback;
+    /** The user data to set. */
+    void* userData;
+} ArkWeb_ProxyMethodWithResult;
+
+/**
  * @brief Defines the javascript proxy registered object.
  *
  * @since 12
@@ -161,6 +221,20 @@ typedef struct {
     /** The size of the methodList. */
     size_t size;
 } ArkWeb_ProxyObject;
+
+/**
+ * @brief Defines the JavaScript proxy registered object with methodList that has a return value.
+ *
+ * @since 18
+ */
+typedef struct {
+    /** The name of the registered object. */
+    const char* objName;
+    /** The JavaScript proxy registered method object list with a callback function that has a return value */
+    const ArkWeb_ProxyMethodWithResult* methodList;
+    /** The size of the methodList. */
+    size_t size;
+} ArkWeb_ProxyObjectWithResult;
 
 /**
  * @brief Defines the controller API for native ArkWeb.
@@ -223,6 +297,32 @@ typedef struct {
      * @since 14
      */
     const char* (*getLastJavascriptProxyCallingFrameUrl)();
+
+    /**
+     * @brief Register the JavaScript object and method list, the method is callback function that has a return value.
+     *
+     * @param webTag The name of the web component.
+     * @param proxyObject The JavaScript object to register, the object has callback functions with return value.
+     * @param permission The JSON string, which defaults to null, is used to configure the permission control for
+     * JSBridge, allowing for the definition of URL whitelists at the object and method levels.
+     *
+     * @since 18
+     */
+    void (*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject,
+        const char* permission);
+
+    /**
+     * @brief Register the JavaScript object and async method list.
+     *
+     * @param webTag The name of the web component.
+     * @param proxyObject The JavaScript object to register.
+     * @param permission The JSON string, which defaults to null, is used to configure the permission control
+     * for JSBridge, allowing for the definition of URL whitelists at the object and method levels.
+     *
+     * @since 18
+     */
+    void (*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObject* proxyObject,
+        const char* permission);
 } ArkWeb_ControllerAPI;
 
 /**
@@ -407,6 +507,30 @@ typedef struct {
      */
     void (*clearSessionCookiesSync)();
 } ArkWeb_CookieManagerAPI;
+
+/**
+ * @brief Defines the native JavaScriptValue API for ArkWeb.
+ * Before invoking an API, you are advised to use ARKWEB_MEMBER_MISSING to check
+ * whether the function structure has a corresponding function pointer to avoid crash
+ * caused by mismatch between the SDK and the device ROM.
+ *
+ * @since 18
+ */
+typedef struct {
+    /** The ArkWeb_JavaScriptValueAPI struct size. */
+    size_t size;
+
+    /**
+     * @brief Create the JavaScript value responding to HTML.
+     *
+     * @param type The type of ArkWeb_JavaScriptValue.
+     * @param data The data buffer of ArkWeb_JavaScriptValue.
+     * @param dataLength The length of data buffer.
+     * @return ArkWeb_JavaScriptValuePtr created by ArkWeb, the memory of ArkWeb_JavaScriptValue
+     * is managed by ArkWeb itself.
+     */
+    ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType type, void* data, size_t dataLength);
+} ArkWeb_JavaScriptValueAPI;
 
 /**
  * @brief Check whether the member variables of the current struct exist.

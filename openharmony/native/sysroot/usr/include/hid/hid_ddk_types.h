@@ -591,19 +591,81 @@ typedef struct Hid_EventProperties {
 typedef enum {
     /** @error Operation successful */
     HID_DDK_SUCCESS = 0,
-    /** @error Operation failed */
-    HID_DDK_FAILURE = -1,
-    /** @error Invalid parameter */
-    HID_DDK_INVALID_PARAMETER = -2,
-    /** @error Invalid operation */
-    HID_DDK_INVALID_OPERATION = -3,
-    /** @error Null pointer exception */
-    HID_DDK_NULL_PTR = -4,
-    /** @error Timeout */
-    HID_DDK_TIMEOUT = -5,
     /** @error Permission denied */
-    HID_DDK_NO_PERM = -6
+    HID_DDK_NO_PERM = 201,
+    /** @error Invalid parameter */
+    HID_DDK_INVALID_PARAMETER = 401,
+    /** @error Operation failed */
+    HID_DDK_FAILURE = 27300001,
+    /** @error Null pointer exception */
+    HID_DDK_NULL_PTR = 27300002,
+    /** @error Invalid operation */
+    HID_DDK_INVALID_OPERATION = 27300003,
+    /** @error Timeout */
+    HID_DDK_TIMEOUT = 27300004,
+    /** @error Init operation
+     *  @since 18
+     */
+    HID_DDK_INIT_ERROR = 27300005,
+    /** @error Service error operation
+     *  @since 18
+     */
+    HID_DDK_SERVICE_ERROR = 27300006,
+    /** @error Buff is outside accessible address space
+     *  @since 18
+     */
+    HID_DDK_MEMORY_ERROR  = 27300007,
+    /** @error Physical I/O error has occurred.
+     *  @since 18
+     */
+    HID_DDK_IO_ERROR = 27300008,
+    /** @error Device not found.
+     *  @since 18
+     */
+    HID_DDK_DEVICE_NOT_FOUND = 27300009
 } Hid_DdkErrCode;
+
+/**
+ * @brief max report buffer size.
+ *
+ * @since 18
+ */
+#define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)
+
+/**
+ * @brief Opaque usb HID device structure.
+ *
+ * @since 18
+ */
+typedef struct Hid_DeviceHandle Hid_DeviceHandle;
+
+/**
+ * @brief Defines the report type.
+ *
+ * @since 18
+ */
+typedef enum {
+    /** Input report */
+    HID_INPUT_REPORT = 0,
+    /** Output report */
+    HID_OUTPUT_REPORT = 1,
+    /** Feature report */
+    HID_FEATURE_REPORT = 2
+} Hid_ReportType;
+
+/**
+ * @brief Defines the raw dev info.
+ *
+ * @since 18
+ */
+typedef struct Hid_RawDevInfo {
+    /** Bus type */
+    uint32_t busType;
+    /** Vendor ID */
+    uint16_t vendor;
+    /** Product ID */
+    uint16_t product;
+} Hid_RawDevInfo;
 #ifdef __cplusplus
 }
 /** @} */

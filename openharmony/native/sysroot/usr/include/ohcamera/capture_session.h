@@ -550,7 +550,7 @@ Camera_ErrorCode OH_CaptureSession_IsFocusModeSupported(Camera_CaptureSession* s
  * @brief Get current focus mode.
  *
  * @param session the {@link Camera_CaptureSession} instance.
- * @param exposureBias the current {@link Camera_FocusMode}.
+ * @param focusMode the current {@link Camera_FocusMode}.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.

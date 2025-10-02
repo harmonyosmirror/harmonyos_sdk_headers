@@ -45,6 +45,10 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Buffer handle used to transfer and obtain information about the buffer.
+ * @since 8
+ */
 typedef struct {
     int32_t fd;           /**< buffer fd, -1 if not supported */
     int32_t width;        /**< the width of memory */

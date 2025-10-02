@@ -936,6 +936,7 @@ int32_t OH_ArkUI_Animator_Reverse(ArkUI_AnimatorHandle animatorHandle);
  * @param curve Indicates the curve type.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCurveByType(ArkUI_AnimationCurve curve);
 
@@ -947,6 +948,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCurveByType(ArkUI_AnimationCurve curve);
  * <b>true</b>: Jumping occurs when the interpolation ends. <b>false</b>: Jumping occurs when the interpolation starts.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end);
 
@@ -962,6 +964,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end);
  * @param y2 Indicates the Y coordinate of the second point on the Bezier curve.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, float x2, float y2);
 
@@ -983,6 +986,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, floa
  * the oscillation amplitude.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, float stiffness, float damping);
 
@@ -1002,6 +1006,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, f
  * transit smoothly over this duration if they are different.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampingFraction, float overlapDuration);
 
@@ -1021,6 +1026,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampin
  * transit smoothly over this duration if they are different.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
     float response, float dampingFraction, float overlapDuration);
@@ -1047,6 +1053,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
  * the oscillation amplitude.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float mass, float stiffness, float damping);
 
@@ -1064,6 +1071,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float
  * which will result in an effect of transition from that end value to the value of the state variable.
  * @return Returns the pointer to the interpolation object of the curve.
  *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
     void* userData, float (*interpolate)(float fraction, void* userdata));
@@ -1071,7 +1079,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
 /**
  * @brief Disposes of a custom curve.
  *
- * @param curve Indicates the pointer to the interpolation object of the curve.
+ * @param curveHandle Indicates the pointer to the interpolation object of the curve.
+ * @since 12
  */
 void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle);
 
@@ -1180,3 +1189,4 @@ int32_t OH_ArkUI_TransitionEffect_SetAnimation(
 #endif
 
 #endif // ARKUI_NATIVE_ANIMATE_H
+/** @} */

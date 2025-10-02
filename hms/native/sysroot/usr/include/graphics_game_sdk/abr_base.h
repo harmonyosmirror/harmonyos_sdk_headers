@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for Graphics Accelerate capability.
  *
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 
@@ -22,7 +22,7 @@
  *
  * @kit GraphicsAccelerateKit
  * @library libabr.so
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 
@@ -104,7 +104,7 @@ typedef enum ABR_ErrorCode {
  * This method is used to create a ABR context instance. If {@link ABR_Context} not been used,
  * call {@link HMS_ABR_DestroyContext} to release the pointer. Otherwise, memory leak may occur.
  *
- * @param [@link ABR_RenderAPI_Type] Render API type.
+ * @param type {@link ABR_RenderAPI_Type} Render API type.
  * @return Returns the pointer to {@link ABR_Context} if the operation is successful; returns a null pointer otherwise.
  * @see HMS_ABR_DestroyContext
  * @since 5.0.0(12)
@@ -116,8 +116,8 @@ ABR_Context* HMS_ABR_CreateContext(ABR_RenderAPI_Type type);
  *
  *  This method is used to configure target framerate for ABR context instance.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [in] targetFps  Target framerate of the ABR context instance. The value range is [30, 120].
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param targetFps Target framerate of the ABR context instance. The value range is [30, 120].
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -130,9 +130,9 @@ ABR_ErrorCode HMS_ABR_SetTargetFps(ABR_Context* context, const uint32_t targetFp
  *  This method is used to configure scale factor range for ABR context instance.
  *  Only one set of scale factor range can be set in the lifecycle of ABR context.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [in] minValue  Minimum scale factor of the ABR context instance. The value range is [0.5, 1.0].
- * @param [in] maxValue  Maximum scale factor of the ABR context instance. The value range is [0.5, 1.0].
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param minValue Minimum scale factor of the ABR context instance. The value range is [0.5, 1.0].
+ * @param maxValue Maximum scale factor of the ABR context instance. The value range is [0.5, 1.0].
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -145,7 +145,7 @@ ABR_ErrorCode HMS_ABR_SetScaleRange(ABR_Context* context, const float minValue, 
  * This method is used to activate ABR context instance. In order to activate it, {@link HMS_ABR_SetTargetFps}
  * and {@link HMS_ABR_SetScaleRange} must be called. In case of any errors, the instance is considered to be inactive.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -157,8 +157,8 @@ ABR_ErrorCode HMS_ABR_Activate(ABR_Context* context);
  *
  * This method is used to check whether ABR context instance is activated.
  *
- * @param [in]  context   Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [out] isActive  Returns true if ABR context instance is active; returns false otherwise.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param isActive Returns true if ABR context instance is active; returns false otherwise.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -170,7 +170,7 @@ ABR_ErrorCode HMS_ABR_IsActive(ABR_Context* context, bool* isActive);
  *
  * This method is used to deactivate ABR context instance.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -183,8 +183,8 @@ ABR_ErrorCode HMS_ABR_Deactivate(ABR_Context* context);
  * This method is used to update camera motion data of game for ABR context instance.
  * Camera motion data of game is used by ABR to dynamically calculate scale factor.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [in] data    Camera motion data {@link ABR_CameraData} of per frame. If the value is null, ABR
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param data Camera motion data {@link ABR_CameraData} of per frame. If the value is null, ABR
  * cannot use the camera motion data of the current frame to calculate the scaling factor.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
@@ -197,8 +197,8 @@ ABR_ErrorCode HMS_ABR_UpdateCameraData(ABR_Context* context, ABR_CameraData* dat
  *
  * This method is used to get latest scale factor used by ABR context instance.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [out] scale  The latest scale factor used by ABR context instance.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param scale The latest scale factor used by ABR context instance.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -210,8 +210,8 @@ ABR_ErrorCode HMS_ABR_GetScale(ABR_Context* context, float* scale);
  *
  * This method is used to get scale factor of next frame used by ABR context instance.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [out] scale  The scale factor of next frame used by ABR context instance.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param scale The scale factor of next frame used by ABR context instance.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -223,7 +223,7 @@ ABR_ErrorCode HMS_ABR_GetNextScale(ABR_Context* context, float* scale);
  *
  * This method is used to release {@link ABR_Context} created by using {@link HMS_ABR_CreateContext}.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)

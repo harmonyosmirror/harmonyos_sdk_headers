@@ -8,18 +8,23 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_aipp_param.h}
  */
 
 /**
  * @file hiai_aipp_param.h
- * @kit HiAIFoundationKit
- * @library libhiai_foundation.so
+ *
  * @brief APIs for creating dynamic AIPP objects and setting and querying relevant parameters for HiAI Foundation model
  * inference.
  *
+ * @library libhiai_foundation.so
+ * @syscap SystemCapability.AI.HiAIFoundation
+ * @kit HiAIFoundationKit
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_aipp_param.h}
  */
 
 #ifndef HIAI_FOUNDATION_AIPP_PARAM_H
@@ -37,6 +42,8 @@ extern "C" {
 /**
  * @brief AIPP parameter object.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_AippParam}
  */
 typedef struct HiAI_AippParam HiAI_AippParam;
 
@@ -52,6 +59,8 @@ typedef struct HiAI_AippParam HiAI_AippParam;
  * otherwise.
  * @see HMS_HiAIAippParam_Destroy
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_Create}
  */
 HiAI_AippParam* HMS_HiAIAippParam_Create(uint32_t batchNum);
 
@@ -66,6 +75,8 @@ HiAI_AippParam* HMS_HiAIAippParam_Create(uint32_t batchNum);
  * @return Returns the memory address requested for AippParam if the operation is successful; returns a null pointer
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetData}
  */
 void* HMS_HiAIAippParam_GetData(HiAI_AippParam* aippParam);
 
@@ -79,6 +90,8 @@ void* HMS_HiAIAippParam_GetData(HiAI_AippParam* aippParam);
  * returned.
  * @return Returns the memory size requested for AippParam if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDataSize}
  */
 uint32_t HMS_HiAIAippParam_GetDataSize(HiAI_AippParam* aippParam);
 
@@ -91,6 +104,8 @@ uint32_t HMS_HiAIAippParam_GetDataSize(HiAI_AippParam* aippParam);
  * returned.
  * @return Returns the input index of the AippParam object if the operation is successful; returns -1 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputIndex}
  */
 int HMS_HiAIAippParam_GetInputIndex(HiAI_AippParam* aippParam);
 
@@ -104,6 +119,8 @@ int HMS_HiAIAippParam_GetInputIndex(HiAI_AippParam* aippParam);
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputIndex}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetInputIndex(HiAI_AippParam* aippParam, uint32_t inputIndex);
 
@@ -118,6 +135,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputIndex(HiAI_AippParam* aippParam, uint
  * returned.
  * @return Returns the data node's index of the AippParam object if the operation is successful; returns -1 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputAippIndex}
  */
 int HMS_HiAIAippParam_GetInputAippIndex(HiAI_AippParam* aippParam);
 
@@ -133,6 +152,8 @@ int HMS_HiAIAippParam_GetInputAippIndex(HiAI_AippParam* aippParam);
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputAippIndex}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetInputAippIndex(HiAI_AippParam* aippParam, uint32_t inputAippIndex);
 
@@ -143,6 +164,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputAippIndex(HiAI_AippParam* aippParam, 
  *
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_Destroy}
  */
 void HMS_HiAIAippParam_Destroy(HiAI_AippParam** aippParam);
 
@@ -152,6 +175,8 @@ void HMS_HiAIAippParam_Destroy(HiAI_AippParam** aippParam);
  *        HiAI Foundation only supports the image format enums declared below.
  *
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_ImageFormat}
  */
 typedef enum {
     /** YUV420SP_U8 image */
@@ -193,6 +218,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputFormat}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetInputFormat(HiAI_AippParam* aippParam, HiAI_ImageFormat inputFormat);
 
@@ -207,6 +234,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputFormat(HiAI_AippParam* aippParam, HiA
  * @return Returns {@link HiAI_ImageFormat} if the operation is successful; returns {@link HIAI_IMAGE_FORMAT_INVALID}
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputFormat}
  */
 HiAI_ImageFormat HMS_HiAIAippParam_GetInputFormat(HiAI_AippParam* aippParam);
 
@@ -223,6 +252,8 @@ HiAI_ImageFormat HMS_HiAIAippParam_GetInputFormat(HiAI_AippParam* aippParam);
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputShape}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetInputShape(
     HiAI_AippParam* aippParam, uint32_t srcImageW, uint32_t srcImageH);
@@ -235,11 +266,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputShape(
  *
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [out] srcImageW Width of the input image.
- * @param [out] srcImageH Height of the input image.
+ * @param srcImageW Width of the input image.
+ * @param srcImageH Height of the input image.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputShape}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetInputShape(
     HiAI_AippParam* aippParam, uint32_t* srcImageW, uint32_t* srcImageH);
@@ -254,12 +287,16 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetInputShape(
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @return Returns the number of images if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetBatchCount}
  */
 uint32_t HMS_HiAIAippParam_GetBatchCount(HiAI_AippParam* aippParam);
 
 /**
  * @brief Image's color space type.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_ImageColorSpace}
  */
 typedef enum {
     /** JPEG's color space */
@@ -294,6 +331,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetCscConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetCscConfig(
     HiAI_AippParam* aippParam, HiAI_ImageFormat inputFormat, HiAI_ImageFormat outputFormat, HiAI_ImageColorSpace space);
@@ -306,12 +345,14 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetCscConfig(
  *
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [out] inputFormat Image input format. For details, see {@link HiAI_ImageFormat}.
- * @param [out] outputFormat Image output format. For details, see {@link HiAI_ImageFormat}.
- * @param [out] space Image's color space type. For details, see {@link HiAI_ImageColorSpace}.
+ * @param inputFormat Image input format. For details, see {@link HiAI_ImageFormat}.
+ * @param outputFormat Image output format. For details, see {@link HiAI_ImageFormat}.
+ * @param space Image's color space type. For details, see {@link HiAI_ImageColorSpace}.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetCscConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetCscConfig(HiAI_AippParam* aippParam, HiAI_ImageFormat* inputFormat,
     HiAI_ImageFormat* outputFormat, HiAI_ImageColorSpace* space);
@@ -346,6 +387,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetCscConfig(HiAI_AippParam* aippParam, HiAI_
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetChannelSwapConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelSwapConfig(
     HiAI_AippParam* aippParam, bool rbuvSwapSwitch, bool axSwapSwitch);
@@ -358,11 +401,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelSwapConfig(
  *
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null. Otherwise, an error code
  * is returned.
- * @param [out] rbuvSwapSwitch Flag indicating RB/UV channel swapping.
- * @param [out] axSwapSwitch Flag indicating AX channel swapping.
+ * @param rbuvSwapSwitch Flag indicating RB/UV channel swapping.
+ * @param axSwapSwitch Flag indicating AX channel swapping.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetChannelSwapConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelSwapConfig(
     HiAI_AippParam* aippParam, bool* rbuvSwapSwitch, bool* axSwapSwitch);
@@ -382,6 +427,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelSwapConfig(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetSingleBatchMultiCrop}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetSingleBatchMultiCrop(
     HiAI_AippParam* aippParam, bool singleBatchMultiCrop);
@@ -395,6 +442,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetSingleBatchMultiCrop(
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @return Returns true if the operation is successful; returns false otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetSingleBatchMultiCrop}
  */
 bool HMS_HiAIAippParam_GetSingleBatchMultiCrop(HiAI_AippParam* aippParam);
 
@@ -421,6 +470,8 @@ bool HMS_HiAIAippParam_GetSingleBatchMultiCrop(HiAI_AippParam* aippParam);
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetCropConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetCropConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
     uint32_t startPosW, uint32_t startPosH, uint32_t croppedW, uint32_t croppedH);
@@ -435,13 +486,15 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetCropConfig(HiAI_AippParam* aippParam, uint
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] startPosW Horizontal coordinate of the crop start.
- * @param [out] startPosH Vertical coordinate of the crop start.
- * @param [out] croppedW Width of the cropped out image.
- * @param [out] croppedH Height of the cropped out image.
+ * @param startPosW Horizontal coordinate of the crop start.
+ * @param startPosH Vertical coordinate of the crop start.
+ * @param croppedW Width of the cropped out image.
+ * @param croppedH Height of the cropped out image.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetCropConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetCropConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
     uint32_t* startPosW, uint32_t* startPosH, uint32_t* croppedW, uint32_t* croppedH);
@@ -463,6 +516,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetCropConfig(HiAI_AippParam* aippParam, uint
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetResizeConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetResizeConfig(
     HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t resizedW, uint32_t resizedH);
@@ -477,11 +532,13 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetResizeConfig(
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] resizedW Width of the resized image.
- * @param [out] resizedH Height of the resized image.
+ * @param resizedW Width of the resized image.
+ * @param resizedH Height of the resized image.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetResizeConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetResizeConfig(
     HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t* resizedW, uint32_t* resizedH);
@@ -508,6 +565,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetResizeConfig(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetPadConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetPadConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
     uint32_t leftPadSize, uint32_t rightPadSize, uint32_t topPadSize, uint32_t bottomPadSize);
@@ -523,13 +582,15 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetPadConfig(HiAI_AippParam* aippParam, uint3
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] leftPadSize Number of pixels padded on the left of the image.
- * @param [out] rightPadSize Number of pixels padded on the right of the image.
- * @param [out] topPadSize Number of pixels padded on the top of the image.
- * @param [out] bottomPadSize Number of pixels padded on the bottom of the image.
+ * @param leftPadSize Number of pixels padded on the left of the image.
+ * @param rightPadSize Number of pixels padded on the right of the image.
+ * @param topPadSize Number of pixels padded on the top of the image.
+ * @param bottomPadSize Number of pixels padded on the bottom of the image.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetPadConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetPadConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
     uint32_t* leftPadSize, uint32_t* rightPadSize, uint32_t* topPadSize, uint32_t* bottomPadSize);
@@ -551,6 +612,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetPadConfig(HiAI_AippParam* aippParam, uint3
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetChannelPadding}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelPadding(
     HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t paddingValues[], uint32_t channelCount);
@@ -565,13 +628,15 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelPadding(
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] paddingValues Arrays of channel padding value. The value range is [-65504, 65504]. The default value is
+ * @param paddingValues Arrays of channel padding value. The value range is [-65504, 65504]. The default value is
  * 0.
  * @param channelCount Number of channels to be padded. The value range is [1, 4]. For example, if channelCount is
  * set to 3, channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetChannelPadding}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelPadding(
     HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t paddingValues[], uint32_t channelCount);
@@ -590,6 +655,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelPadding(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetRotationAngle}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetRotationAngle(
     HiAI_AippParam* aippParam, uint32_t batchIndex, float rotationAngle);
@@ -603,10 +670,12 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetRotationAngle(
  * @param aippParam Pointer to {@link HiAI_AippParam}. The value cannot be null.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] rotationAngle Rotation angle.
+ * @param rotationAngle Rotation angle.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetRotationAngle}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetRotationAngle(
     HiAI_AippParam* aippParam, uint32_t batchIndex, float* rotationAngle);
@@ -642,6 +711,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetRotationAngle(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetDtcMeanPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMeanPixel(
     HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t meanPixel[], uint32_t channelCount);
@@ -659,12 +730,14 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMeanPixel(
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] meanPixel Array of the average pixel values of channels. The array size is channelCount.
+ * @param meanPixel Array of the average pixel values of channels. The array size is channelCount.
  * @param channelCount Number of channels. The value range is [1, 4], and the channel starts from chn0. For
  * example, if channelCount is 3, the data of channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDtcMeanPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMeanPixel(
     HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t meanPixel[], uint32_t channelCount);
@@ -688,6 +761,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMeanPixel(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetDtcMinPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMinPixel(
     HiAI_AippParam* aippParam, uint32_t batchIndex, float minPixel[], uint32_t channelCount);
@@ -704,12 +779,14 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMinPixel(
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] minPixel Array of the minimum pixel values of channels. The array size is channelCount.
+ * @param minPixel Array of the minimum pixel values of channels. The array size is channelCount.
  * @param channelCount Number of channels. The value range is [1,4], and the channel starts from chn0. For example,
  * if channelCount is 3, the data of channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDtcMinPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMinPixel(
     HiAI_AippParam* aippParam, uint32_t batchIndex, float minPixel[], uint32_t channelCount);
@@ -733,6 +810,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMinPixel(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetDtcVarReciPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcVarReciPixel(
     HiAI_AippParam* aippParam, uint32_t batchIndex, float varReciPixel[], uint32_t channelCount);
@@ -749,12 +828,14 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcVarReciPixel(
  * is returned.
  * @param batchIndex Index of the input image in the multi-batch single-crop scenario or index of the cropped image
  * in the single-batch multi-crop scenario.
- * @param [out] varReciPixel Array of pixel variances of channels. The array size is channelCount.
+ * @param varReciPixel Array of pixel variances of channels. The array size is channelCount.
  * @param channelCount Number of channels. The value range is [1, 4], and the channel starts from chn0. For
  * example, if channelCount is 3, the data of channels chn0, chn1, and chn2 will be queried.
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDtcVarReciPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcVarReciPixel(
     HiAI_AippParam* aippParam, uint32_t batchIndex, float varReciPixel[], uint32_t channelCount);

@@ -8,21 +8,25 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_tensor.h}
  */
 
 /**
  * @file hiai_tensor.h
- * @kit HiAIFoundationKit
- * @library libhiai_foundation.so
  *
  * @brief Auxiliary APIs related to input and output memory during HiAI Foundation model inference.
  *
  * You can call the following APIs to associate aippParam with a tensor or calculate the tensor memory size required for
  * the image format.
  *
+ * @library libhiai_foundation.so
+ * @syscap SystemCapability.AI.HiAIFoundation
+ * @kit HiAIFoundationKit
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_tensor.h}
  */
 
 #ifndef HIAI_FOUNDATION_TENSOR_H
@@ -41,6 +45,8 @@ extern "C" {
  * @param format Image format {@link HiAI_ImageFormat}.
  * @return Returns the size of the tensor to be applied for if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAITensor_GetSizeWithImageFormat}
  */
 size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageFormat format);
 
@@ -58,6 +64,8 @@ size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageForm
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @see OH_NNCore_DestroyTensor
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAITensor_SetAippParams}
  */
 OH_NN_ReturnCode HMS_HiAITensor_SetAippParams(
     NN_Tensor* tensor, HiAI_AippParam* aippParams[], size_t aippNum);

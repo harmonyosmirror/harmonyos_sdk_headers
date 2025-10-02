@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,14 +21,13 @@
  *
  * Covers basic AR capabilities, including motion tracking, environment tracking, and hit testing.
  *
- *
  * @since 5.0.0(12)
  */
 
 /**
  * @file ar_engine_core.h
  * @kit AREngine
-
+ *
  * @brief Declares the APIs for accessing AREngine, and provides basic AREngine capabilities, including motion tracking,
  * environment tracking, and hit testing.
  *
@@ -36,10 +35,10 @@
  * @syscap SystemCapability.AREngine.Core
  * @since 5.0.0(12)
  */
+
 #ifndef NDK_INCLUDE_AR_ENGINE_CORE_H
 #define NDK_INCLUDE_AR_ENGINE_CORE_H
 #include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -151,8 +150,7 @@ typedef struct AREngine_ARAnchor AREngine_ARAnchor;
 typedef struct AREngine_ARAnchorList AREngine_ARAnchorList;
 
 /**
- * @brief Indicates the hit testing result object, which describes the hit testing result of a single trackable
- * object.
+ * @brief Indicates the hit testing result object, which describes the hit testing result of a single trackable object.
  * @since 5.0.0(12)
  */
 typedef struct AREngine_ARHitResult AREngine_ARHitResult;
@@ -162,6 +160,24 @@ typedef struct AREngine_ARHitResult AREngine_ARHitResult;
  * @since 5.0.0(12)
  */
 typedef struct AREngine_ARHitResultList AREngine_ARHitResultList;
+
+/**
+ * @brief Indicates an augmented image object.
+ * @since 5.1.0(18)
+ */
+typedef struct AREngine_ARAugmentedImage AREngine_ARAugmentedImage;
+
+/**
+ * @brief Indicates an augmented image database object.
+ * @since 5.1.0(18)
+ */
+typedef struct AREngine_ARAugmentedImageDatabase AREngine_ARAugmentedImageDatabase;
+
+/**
+ * @brief Indicates a collection of environment mesh data.
+ * @since 5.1.0(18)
+ */
+typedef struct AREngine_ARSceneMesh AREngine_ARSceneMesh;
 
 /**
  * @brief Distance to the clipping planes.
@@ -210,10 +226,12 @@ typedef enum {
     /** Unknown image format */
     ARENGINE_IMAGE_UNKNOWN = 0,
 
-    /** The <b>ARENGINE_IMAGE_YUV_420_888</b> format consists of three data buffers, with the Y plane indexed as 0,
-        the U plane indexed as 1, and the V plane indexed as 2. The Y plane does not intersect with the U/V plane.
-        That is, the pixel stride of the Y plane is always 1. The U and V planes share the same row stride and
-        pixel stride. */
+    /**
+     * The <b>ARENGINE_IMAGE_YUV_420_888</b> format consists of three data buffers, with the Y plane indexed as 0,
+     * the U plane indexed as 1, and the V plane indexed as 2. The Y plane does not intersect with the U/V plane.
+     * That is, the pixel stride of the Y plane is always 1. The U and V planes share the same row stride and
+     * pixel stride.
+     */
     ARENGINE_IMAGE_YUV_420_888 = 2,
 
     /**
@@ -222,13 +240,13 @@ typedef enum {
      * @since 5.0.5(17)
      */
     ARENGINE_IMAGE_Y_8 = 3,
- 
+
     /**
      * The <b>ARENGINE_IMAGE_Y_16</b> format consists of one data buffer, with the plane indexed as 0.
      * The data buffer type is a 16-bit unsigned integer.
      * @since 5.0.5(17)
      */
-    ARENGINE_IMAGE_Y_16 = 4
+    ARENGINE_IMAGE_Y_16 = 4,
 } AREngine_ARImageFormat;
 
 /**
@@ -244,6 +262,12 @@ typedef enum {
 
     /** Trackable object of the point type. */
     ARENGINE_TRACKABLE_POINT = 0x41520102,
+
+    /**
+     * Trackable object of the augment image type.
+     * @since 5.1.0(18)
+     */
+    ARENGINE_TRACKABLE_AUGMENTED_IMAGE = 0x41520104,
 
     /** Trackable object of the object type. */
     ARENGINE_TRACKABLE_TARGET = 0x50000008,
@@ -274,10 +298,12 @@ typedef enum {
 typedef enum {
     /** Tracking failure cause: none. */
     ARENGINE_TRACKING_STATE_REASON_NONE = 0,
+
     /** Tracking failure cause: targets moving fast. */
     ARENGINE_TRACKING_STATE_REASON_EXCESSIVE_MOTION = 1,
+
     /** Tracking failure cause: insufficient visual features (such as weak texture). */
-    ARENGINE_TRACKING_STATE_REASON_INSUFFICIENT_FEATURES = 2,
+    ARENGINE_TRACKING_STATE_REASON_INSUFFICIENT_FEATURES = 2
 } AREngine_ARTrackingStateReason;
 
 /**
@@ -306,9 +332,11 @@ typedef enum {
     /** <b>The HMS_AREngine_ARSession_Update</b> returns results only when new frames are available. */
     ARENGINE_UPDATE_MODE_BLOCKING = 0,
 
-    /** <b>HMS_AREngine_ARSession_Update</b> returns results immediately (returns the previous frame when no new frame
-        is available). */
-    ARENGINE_UPDATE_MODE_LATEST = 1
+    /**
+     * <b>HMS_AREngine_ARSession_Update</b> returns results immediately (returns the previous frame when no new frame
+     * is available).
+     */
+    ARENGINE_UPDATE_MODE_LATEST = 1,
 } AREngine_ARUpdateMode;
 
 /**
@@ -325,10 +353,12 @@ typedef enum {
     /** Performance-preferred mode. */
     ARENGINE_POWER_MODE_PERFORMANCE_FIRST = 2,
 
-    /** Outputs the device pose information only.
+    /**
+     * Outputs the device pose information only.
      * The power consumption in this mode is lower than that in <b>ARENGINE_POWER_MODE_NORMAL</b> mode.
      * In this mode, plane-related settings, such as <b>HMS_AREngine_ARConfig_SetPlaneFindingMode</b>, do not take
-     * effect. */
+     * effect.
+     */
     ARENGINE_POWER_MODE_BOOST = 3,
 
     /** Ultra power saving mode. */
@@ -371,7 +401,14 @@ typedef enum {
  */
 typedef enum {
     /** Environment tracking capability. */
-    ARENGINE_TYPE_WORLD = 0x01
+    ARENGINE_TYPE_WORLD = 0x01,
+
+    /**
+     * Image feature tracking type. In this type, the traceable object type returned through interfaces
+     * such as <b>HMS_AREngine_ARSession_GetAllTrackables</b> is <b>ARENGINE_TRACKABLE_AUGMENTED_IMAGE</b>.
+     * @since 5.1.0(18)
+     */
+    ARENGINE_TYPE_IMAGE = 0x80
 } AREngine_ARType;
 
 /**
@@ -395,8 +432,7 @@ typedef enum {
  * @since 5.0.0(12)
  */
 typedef enum {
-    /**
-     * The orientation is consistent with that of the world coordinate system, but with minor adjustments. */
+    /** The orientation is consistent with that of the world coordinate system, but with minor adjustments. */
     ARENGINE_POINT_ORIENTATION_INITIALIZED_TO_IDENTITY = 0,
 
     /** The orientation is determined by the estimated plane's normal vector. */
@@ -451,7 +487,7 @@ typedef enum {
     ARENGINE_TARGET_SHAPE_CIRCLE = 2,
 
     /** Rectangle. */
-    ARENGINE_TARGET_SHAPE_RECTANGLE = 3,
+    ARENGINE_TARGET_SHAPE_RECTANGLE = 3
 } AREngine_ARTargetShapeLabel;
 
 /**
@@ -480,9 +516,11 @@ typedef enum {
     /** Enables camera preview. */
     ARENGINE_PREVIEW_MODE_ENABLED = 0,
 
-    /** Disables camera preview, for example, when in VR mode and the preview stream is not required.
-        In this mode, OpenGL textures set through <b>HMS_AREngine_ARSession_SetCameraGLTexture</b> won't be updated. */
-    ARENGINE_PREVIEW_MODE_DISABLED = 1
+    /**
+     * Disables camera preview, for example, when in VR mode and the preview stream is not required.
+     * In this mode, OpenGL textures set through <b>HMS_AREngine_ARSession_SetCameraGLTexture</b> won't be updated.
+     */
+    ARENGINE_PREVIEW_MODE_DISABLED = 1,
 } AREngine_ARPreviewMode;
 
 /**
@@ -530,21 +568,128 @@ typedef enum {
     ARENGINE_ERROR_NOT_AVAILABLE = 1009200009,
 
     /** Camera unavailable. */
-    ARENGINE_ERROR_CAMERA_NOT_AVAILABLE = 1009200010
+    ARENGINE_ERROR_CAMERA_NOT_AVAILABLE = 1009200010,
+
+    /**
+     * The number of images added exceeds the maximum.
+     * @since 5.1.0(18)
+     */
+    ARENGINE_ERROR_IMAGE_EXCEED_NUM_LIMIT = 1009200011,
+
+    /**
+     * Attempted to add an image with insufficient quality to the image database.
+     * @since 5.1.0(18)
+     */
+    ARENGINE_ERROR_IMAGE_INSUFFICIENT_QUALITY = 1009200012,
+
+    /**
+     * No valid image database.
+     * @since 5.1.0(18)
+     */
+    ARENGINE_ERROR_IMAGE_INVALID_DATABASE = 1009200013,
+
+    /**
+     * The pictures cannot be added when the tracking state is running.
+     * @since 5.1.0(18)
+     */
+    ARENGINE_ERROR_IMAGE_ADD_IMAGE_TRACKING_STATE = 1009200014
 } AREngine_ARStatus;
+
+/**
+ * @brief Sets the alignment direction of the output pose coordinate system.
+ * @since 5.1.0(18)
+ */
+typedef enum {
+    /**
+     * The output pose information (returned by the
+     * <b>HMS_AREngine_ARCamera_GetDisplayOrientedPose</b>/HMS_AREngine_ARCamera_GetPose</b> interface)
+     * is the data in the ENU coordinate system.
+     */
+    ARENGINE_POSE_MODE_GRAVITY = 0,
+
+    /**
+     * The output pose information (returned by the
+     * <b>HMS_AREngine_ARCamera_GetDisplayOrientedPose</b>/HMS_AREngine_ARCamera_GetPose</b> interface)
+     * is the data in the gravity coordinate system.
+     */
+    ARENGINE_POSE_MODE_GRAVITY_HEADING = 1,
+} AREngine_ARPoseMode;
+
+/**
+ * @brief Possible causes of tracking failures.
+ * @since 5.1.0(18)
+ */
+typedef enum {
+    /** The added images meet the quality requirements. */
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_NONE = 0,
+
+    /** Attempted to add an image with insufficient quality (size not match) to the image database. */
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_SIZE_NOT_MATCH = 1,
+
+    /** Attempted to add an image with insufficient quality (too bright or too dark) to the image database. */
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_LIGHT_ANOMALY = 2,
+
+    /** Attempted to add an image with insufficient quality (image color is relatively single) to the image database. */
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_FEATURE_LIMIT = 3,
+
+    /** Attempted to add an image with insufficient quality (other scenarios) to the image database. */
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_OTHER = 4
+} AREngine_ARAddAugmentedImageReason;
+
+/**
+ * @brief Image data.
+ * @since 5.1.0(18)
+ */
+typedef struct {
+    /** Image imageName, a maximum of 255 characters are allowed. */
+    const char *imageName;
+
+    /** Address of grayscale image element array. */
+    const uint8_t *imageData;
+
+    /** Image pixel width. */
+    int32_t pixelWidth;
+
+    /** Image pixel height. */
+    int32_t pixelHeight;
+
+    /** Image stride. */
+    int32_t stride;
+
+    /** Actual physical width of the object in an image. The default value is A4 paper size. */
+    float realWidthInMeters;
+} AREngine_ARAugmentedImageSource;
+
+/**
+ * @brief Feature database image adding mode used for tracking.
+ * @since 5.1.0(18)
+ */
+typedef enum {
+    /**
+     * In normal adding mode, an error code(<b>ARENGINE_ERROR_IMAGE_EXCEED_NUM_LIMIT</b>) is returned when more than 50
+     * photos are displayed.
+     */
+    ARENGINE_ADD_NORMAL = 0,
+
+    /**
+     * Cyclic deletion mode; When the number of photos exceeds 50, delete the previously added pictures from the first
+     * one.
+     */
+    ARENGINE_ADD_AUTO = 1,
+} AREngine_ARImageDatabaseMode;
 
 /**
  * @brief Depth image mode.
  * @since 5.0.5(17)
  */
 typedef enum {
-    /** Does not provide depth information. */
+    /** Disable depth. */
     ARENGINE_DEPTH_MODE_DISABLED = 0,
- 
-    /** There are two depth sources, one from the motion algorithm and one from the hardware depth sensor (TOF).
-     * Currently, only the depth from the motion used by master RGB camera is supported.
+
+    /**
+     * Enable depth.
      */
-    ARENGINE_DEPTH_MODE_AUTOMATIC = 1
+    ARENGINE_DEPTH_MODE_AUTOMATIC = 1,
 } AREngine_ARDepthMode;
 
 /**
@@ -554,19 +699,35 @@ typedef enum {
 typedef enum {
     /** The confidence of this depth image is low. */
     ARENGINE_DEPTH_CONFIDENCE_LOW = 0,
- 
+
     /** The confidence of this depth image is medium. */
     ARENGINE_DEPTH_CONFIDENCE_MEDIUM = 1,
- 
+
     /** The confidence of this depth image is high. */
-    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2,
+    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2
 } AREngine_ARConfidenceLevel;
+
+/**
+ * @brief mesh mode.
+ * @since 5.1.0(18)
+ */
+typedef enum {
+    /** Disable mesh. */
+    ARENGINE_MESH_MODE_DISABLED = 0,
+
+    /** Enable mesh. */
+    ARENGINE_MESH_MODE_ENABLED = 1
+} AREngine_ARMeshMode;
 
 /**
  * @brief Creates a configuration object with a proper default configuration.
  * @param session The AREngine session.
  * @param outConfig Pointer to the newly allocated address of the configuration object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_Create(const AREngine_ARSession *session, AREngine_ARConfig **outConfig);
@@ -583,7 +744,10 @@ void HMS_AREngine_ARConfig_Destroy(AREngine_ARConfig *config);
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param planeFindingMode Plane finding mode. For details, please refer to <b>REngine_ARPlaneFindingMode<b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetPlaneFindingMode(const AREngine_ARSession *session,
@@ -594,7 +758,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetPlaneFindingMode(const AREngine_ARSes
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param planeFindingMode Plane finding mode. For details, please refer to <b>AREngine_ARPlaneFindingMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPlaneFindingMode(const AREngine_ARSession *session,
@@ -605,7 +772,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPlaneFindingMode(const AREngine_ARSes
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param updateMode Preview update mode. For details, please refer to <b>AREngine_ARUpdateMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetUpdateMode(const AREngine_ARSession *session,
@@ -616,8 +786,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetUpdateMode(const AREngine_ARSession *
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param updateMode Preview update mode. For details, please refer to <b>AREngine_ARUpdateMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
- *
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetUpdateMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
@@ -628,7 +800,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetUpdateMode(const AREngine_ARSession *
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param powerMode Power consumption mode. For details, please refer to <b>AREngine_ARPowerMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetPowerMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
@@ -639,7 +814,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetPowerMode(const AREngine_ARSession *s
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param powerMode Power consumption mode. For details, please refer to <b>AREngine_ARPowerMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPowerMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
@@ -650,7 +828,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPowerMode(const AREngine_ARSession *s
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param focusMode Focus mode. For details, please refer to <b>AREngine_ARFocusMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetFocusMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
@@ -661,7 +842,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetFocusMode(const AREngine_ARSession *s
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param focusMode Focus mode. For details, please refer to <b>AREngine_ARFocusMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetFocusMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
@@ -672,22 +856,84 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetFocusMode(const AREngine_ARSession *s
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param outDepthMode Depth mode. For details, please refer to <b>AREngine_ARDepthMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetDepthMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
     AREngine_ARDepthMode *outDepthMode);
- 
+
 /**
  * @brief Sets the depth mode.
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param depthMode Depth mode. For details, please refer to <b>AREngine_ARDepthMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetDepthMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
     AREngine_ARDepthMode depthMode);
+
+/**
+ * @brief Obtains the current mesh mode status.
+ * @param session The AREngine session. <b>AREngine_ARSession</b>
+ * @param config Indicates the configuration object whose configuration information is to be obtained.
+ * @param outMeshMode Mesh mode. For details, please refer to <b>AREngine_ARMeshMode<b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetMeshMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
+    AREngine_ARMeshMode *outMeshMode);
+
+/**
+ * @brief Set the current mesh mode status.
+ * @param session The AREngine session. <b>AREngine_ARSession</b>
+ * @param config config Indicates the configuration object whose configuration information is to be obtained.
+ * @param meshMode Mesh mode. For details, please refer to <b>AREngine_ARMeshMode<b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetMeshMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
+    AREngine_ARMeshMode meshMode);
+
+/**
+ * @brief Sets the camera pose mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param poseMode Camera pose mode. For details, please refer to <b>AREngine_ARPoseMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetPoseMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
+    AREngine_ARPoseMode poseMode);
+
+/**
+ * @brief Obtains the camera pose mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param poseMode Camera pose mode. For details, please refer to <b>AREngine_ARPoseMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetPoseMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
+    AREngine_ARPoseMode *poseMode);
 
 /**
  * @brief Sets the preview image size.
@@ -697,7 +943,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetDepthMode(const AREngine_ARSession *s
  * <b>OH_CameraManager_GetSupportedCameraOutputCapability</b>.
  * @param height Height of the preview image, in pixels. You can check the value by calling
  * <b>OH_CameraManager_GetSupportedCameraOutputCapability</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPreviewSize(const AREngine_ARSession *session, AREngine_ARConfig *config,
@@ -708,7 +957,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPreviewSize(const AREngine_ARSession 
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param type Type of the AREngine capability in use. For details, please refer to <b>AREngine_ARType</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetARType(const AREngine_ARSession *session, const AREngine_ARConfig *config,
@@ -719,8 +971,12 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetARType(const AREngine_ARSession *sess
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param type Type of capabilities supported by AREngine. For details, please refer to <b>AREngine_ARType</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
- * @since 5.0.0(12)
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_UNSUPPORTED_CONFIGURATION} Configuration not supported.\n
+* @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetARType(const AREngine_ARSession *session, AREngine_ARConfig *config,
     AREngine_ARType type);
@@ -731,8 +987,11 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetARType(const AREngine_ARSession *sess
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param mode Semantic mode. For details, please refer to <b>AREngine_ARSemanticMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
- * @since 5.0.0(12)
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+* @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticMode(const AREngine_ARSession *session,
     const AREngine_ARConfig *config, AREngine_ARSemanticMode *mode);
@@ -742,7 +1001,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticMode(const AREngine_ARSession
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param mode Semantic mode. For details, please refer to <b>AREngine_ARSemanticMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
@@ -756,7 +1018,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticMode(const AREngine_ARSession
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param maxMapSize Maximum memory size for storing map data, in MB.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetMaxMapSize(const AREngine_ARSession *session,
@@ -772,7 +1037,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetMaxMapSize(const AREngine_ARSession *
  * @param maxMapSize Maximum memory size for storing map data, in MB. The value ranges from 100 MB to 16 GB.
  * You are advised to set the memory size according to the device's memory capacity.
  * Exceeding the hardware limits may result in unexpected errors.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetMaxMapSize(const AREngine_ARSession *session, AREngine_ARConfig *config,
@@ -783,7 +1051,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetMaxMapSize(const AREngine_ARSession *
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param mode Camera preview mode. For details, please refer to <b>AREngine_ARPreviewMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetCameraPreviewMode(const AREngine_ARSession *session,
@@ -794,7 +1065,10 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetCameraPreviewMode(const AREngine_ARSe
  * @param session The AREngine session.
  * @param config Points to the configuration object with the target configuration information.
  * @param outMode Camera preview mode. For details, please refer to <b>AREngine_ARPreviewMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetCameraPreviewMode(const AREngine_ARSession *session,
@@ -802,12 +1076,17 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetCameraPreviewMode(const AREngine_ARSe
 
 /**
  * @brief Creates an <b>AREngine_ARSession</b> session.
- * @Permission This function depends on the camera, acceleration sensor, and gyroscope sensor permissions.
+ * @permission ohos.permission.CAMERA and ohos.permission.GYROSCOPE and ohos.permission.ACCELEROMETER
  * @param env JNI environment for the current APK.
  * @param applicationContext App context.
  * @param outSessionPointer Created session object.
- * @return Status type, indicating the calling status of the method.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_PERMISSION_NOT_GRANTED} Permissions not granted, such as the camera permission\n
+ *         {@link ARENGINE_ERROR_DEVICE_NOT_SUPPORTED} Device not compatible.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Create(void *env, void *applicationContext,
@@ -819,7 +1098,11 @@ AREngine_ARStatus HMS_AREngine_ARSession_Create(void *env, void *applicationCont
  * After this method is called, you need to create <b>AREngine_ARSession</b> if you want to start AREngine again.
  *
  * @param session The AREngine session.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Stop(AREngine_ARSession *session);
@@ -827,7 +1110,6 @@ AREngine_ARStatus HMS_AREngine_ARSession_Stop(AREngine_ARSession *session);
 /**
  * @brief Releases the resources used by the <b>AREngine_ARSession</b> session.
  * @param session The AREngine session.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
  * @since 5.0.0(12)
  */
 void HMS_AREngine_ARSession_Destroy(AREngine_ARSession *session);
@@ -836,7 +1118,12 @@ void HMS_AREngine_ARSession_Destroy(AREngine_ARSession *session);
  * @brief Starts <b>AREngine_ARSession</b>, or restores <b>AREngine_ARSession</b> after
  * <b>HMS_AREngine_ARSession_Pause</b> is called.
  * @param session The AREngine session.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ *         {@link ARENGINE_ERROR_CAMERA_NOT_AVAILABLE} Camera unavailable.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Resume(AREngine_ARSession *session);
@@ -845,7 +1132,11 @@ AREngine_ARStatus HMS_AREngine_ARSession_Resume(AREngine_ARSession *session);
  * @brief Pauses the session, stops the camera preview stream, and releases the camera (otherwise, other apps will not
  * be able to use the camera service), without clearing the plane and anchor data.
  * @param session The AREngine session.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Pause(AREngine_ARSession *session);
@@ -861,7 +1152,15 @@ AREngine_ARStatus HMS_AREngine_ARSession_Pause(AREngine_ARSession *session);
  *
  * @param session The AREngine session.
  * @param outFrame Updated frame object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_SESSION_PAUSED} Session paused.\n
+ *         {@link ARENGINE_ERROR_MISSING_GL_CONTEXT} GL context missing.\n
+ *         {@link ARENGINE_ERROR_CAMERA_NOT_AVAILABLE} Camera unavailable.\n
+ *         {@link ARENGINE_ERROR_IMAGE_INVALID_DATABASE} No valid image database,  add since api 18.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Update(AREngine_ARSession *session, AREngine_ARFrame *outFrame);
@@ -870,7 +1169,12 @@ AREngine_ARStatus HMS_AREngine_ARSession_Update(AREngine_ARSession *session, ARE
  * @brief Configures an <b>AREngine_ARSession</b> session.
  * @param session The AREngine session.
  * @param config Configuration object to be applied on the device.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_SESSION_NOT_PAUSED} Session not paused.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Configure(AREngine_ARSession *session, const AREngine_ARConfig *config);
@@ -880,7 +1184,12 @@ AREngine_ARStatus HMS_AREngine_ARSession_Configure(AREngine_ARSession *session, 
  * @param session The AREngine session.
  * @param pose Pose object used for creating an anchor.
  * @param outAnchor Created anchor object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_NOT_TRACKING} Not tracking.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_AcquireNewAnchor(AREngine_ARSession *session, const AREngine_ARPose *pose,
@@ -896,7 +1205,10 @@ AREngine_ARStatus HMS_AREngine_ARSession_AcquireNewAnchor(AREngine_ARSession *se
  *
  * @param session The AREngine session.
  * @param textureId OpenGL texture of the camera preview data stream.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_SetCameraGLTexture(AREngine_ARSession *session, uint32_t textureId);
@@ -908,7 +1220,10 @@ AREngine_ARStatus HMS_AREngine_ARSession_SetCameraGLTexture(AREngine_ARSession *
  * @param rotation Display rotation constant. The value is an enum defined in <b>AREngine_ARPoseType</b>.
  * @param width Display width, in pixels.
  * @param height Display height, in pixels.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_SetDisplayGeometry(AREngine_ARSession *session, AREngine_ARPoseType rotation,
@@ -919,9 +1234,13 @@ AREngine_ARStatus HMS_AREngine_ARSession_SetDisplayGeometry(AREngine_ARSession *
  *
  * During app processing, only anchors in the <b>ARENGINE_TRACKING_STATE_TRACKING<b/> state need to be drawn,
  * and anchors in the <b>ARENGINE_TRACKING_STATE_STOPPED</b> state need to be deleted.
+ *
  * @param session The AREngine session.
  * @param outAnchorList List of all anchor objects.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_GetAllAnchors(const AREngine_ARSession *session,
@@ -932,7 +1251,10 @@ AREngine_ARStatus HMS_AREngine_ARSession_GetAllAnchors(const AREngine_ARSession 
  * @param session The AREngine session.
  * @param filterType Type of the current trackable object.
  * @param outTrackableList A list of trackable objects of a specified type.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_GetAllTrackables(const AREngine_ARSession *session,
@@ -942,7 +1264,10 @@ AREngine_ARStatus HMS_AREngine_ARSession_GetAllTrackables(const AREngine_ARSessi
  * @brief Obtains the camera configuration information.
  * @param session The AREngine session.
  * @param outCameraConfig Camera configuration.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_GetCameraConfig(const AREngine_ARSession *session,
@@ -952,13 +1277,17 @@ AREngine_ARStatus HMS_AREngine_ARSession_GetCameraConfig(const AREngine_ARSessio
  * @brief Allocates and initializes a new pose object. You can leave poseRaw empty to create an uninitialized pose
  * object, and then call <b>HMS_AREngine_ARPoint_GetPose</b> and <b>HMS_AREngine_ARAnchor_GetPose</b> to assign a value
  * to the pose object.
+ *
  * @param session The AREngine session.
  * @param poseRaw Pose data, including translation components and rotation components. The obtained pose data is
  * an array with 7 elements: poseRaw[0] to poseRaw[3] are rotation quaternions, and poseRaw[4] to poseRaw[6] are
  * translation components (x, y, z).
  * @param poseRawSize Array size, which should be greater than or equal to <b>ARENGINE_POSE_RAW_SIZE</b>.
  * @param outPose Newly created pose object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPose_Create(const AREngine_ARSession *session, const float *poseRaw,
@@ -975,11 +1304,15 @@ void HMS_AREngine_ARPose_Destroy(AREngine_ARPose *pose);
  * @brief Obtains pose data from the pose object, including translation components and rotation components.
  * The obtained pose data is an array with 7 elements: poseRaw[0] to poseRaw[3] are rotation quaternions,
  * and poseRaw[4] to poseRaw[6] are translation components (x, y, z).
+ *
  * @param session The AREngine session.
  * @param pose Pose object.
  * @param outPoseRaw Pose data.
  * @param poseRawSize Array size: <b>ARENGINE_POSE_RAW_SIZE</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPose_GetPoseRaw(const AREngine_ARSession *session, const AREngine_ARPose *pose,
@@ -989,11 +1322,16 @@ AREngine_ARStatus HMS_AREngine_ARPose_GetPoseRaw(const AREngine_ARSession *sessi
  * @brief Converts the pose data into a 4 x 4 matrix. outMatrixColMajor4x4 is the array for storing the matrix, where
  * data is stored in column-major order. Coordinates in the local coordinate system can be converted into ones in the
  * world coordinate system by multiplying this matrix with the coordinates in the local coordinate system.
+ *
  * @param session The AREngine session.
  * @param pose Pose object.
  * @param outMatrixColMajor4x4 Array with 16 floating point numbers, which are stored in a column-major order.
  * @param matrixColMajor4x4Size Array size: <b>ARENGINE_VIEW_MATRIX_SIZE</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPose_GetMatrix(const AREngine_ARSession *session, const AREngine_ARPose *pose,
@@ -1012,7 +1350,10 @@ AREngine_ARStatus HMS_AREngine_ARPose_GetMatrix(const AREngine_ARSession *sessio
  * @param session The AREngine session.
  * @param camera Camera corresponding to the session.
  * @param outPose Pose of the physical camera in the world space.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetPose(const AREngine_ARSession *session, const AREngine_ARCamera *camera,
@@ -1031,7 +1372,10 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetPose(const AREngine_ARSession *sessio
  * @param session The AREngine session.
  * @param camera Camera corresponding to the session.
  * @param outPose Pose of the virtual camera in the world space.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetDisplayOrientedPose(const AREngine_ARSession *session,
@@ -1049,7 +1393,10 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetDisplayOrientedPose(const AREngine_AR
  * @param outColMajor4x4 Array consisting of 16 floating point numbers, indicating a column-major uniform transformation
  * matrix in OpenGL.
  * @param colMajor4x4Num Array size. The array size must be greater than or equal to <b>ARENGINE_VIEW_MATRIX_SIZE</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetViewMatrix(const AREngine_ARSession *session,
@@ -1062,7 +1409,10 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetViewMatrix(const AREngine_ARSession *
  * @param camera Camera corresponding to the session.
  * @param outTrackingState current tracking status of the camera. For details, please refer to
  * <b>AREngine_ARTrackingState</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingState(const AREngine_ARSession *session,
@@ -1078,7 +1428,10 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingState(const AREngine_ARSessio
  * @param camera Camera corresponding to the session.
  * @param outTrackingStateReason Cause of the tracking failure. For details, please refer to
  * AREngine_ARTrackingStateReason.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingStateReason(const AREngine_ARSession *session,
@@ -1094,7 +1447,11 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingStateReason(const AREngine_AR
  * @param outDestColMajor4x4 Array consisting of 16 floating point numbers, indicating a column-major
  * uniform transformation matrix in OpenGL.
  * @param destColMajor4x4Num Array size: <b>ARENGINE_VIEW_MATRIX_SIZE</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetProjectionMatrix(const AREngine_ARSession *session,
@@ -1108,7 +1465,11 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetProjectionMatrix(const AREngine_ARSes
  * @param camera Camera corresponding to the session.
  * @param outIntrinsics Object of the intrinsic camera parameters. For details, please refer to
  * <b>AREngine_ARCameraIntrinsics</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetImageIntrinsics(const AREngine_ARSession *session,
@@ -1118,7 +1479,7 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetImageIntrinsics(const AREngine_ARSess
  * @brief Releases the reference to the camera. You need to call <b>HMS_AREngine_ARCamera_Release</b> if you have called
  * <b>HMS_AREngine_ARFrame_AcquireCamera</b>. Calling this method before  <b>HMS_AREngine_ARFrame_AcquireCamera</b>
  * is called does not take effect.
- * @param camera Camera reference to be released..
+ * @param camera Camera reference to be released.
  * @since 5.0.0(12)
  */
 void HMS_AREngine_ARCamera_Release(AREngine_ARCamera *camera);
@@ -1127,7 +1488,11 @@ void HMS_AREngine_ARCamera_Release(AREngine_ARCamera *camera);
  * @brief Creates an object of the intrinsic camera parameters.
  * @param session The AREngine session.
  * @param outIntrinsics Pointer to the newly allocated address of the object of intrinsic camera parameters.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_Create(const AREngine_ARSession *session,
@@ -1146,7 +1511,10 @@ void HMS_AREngine_ARCameraIntrinsics_Destroy(AREngine_ARCameraIntrinsics *intrin
  * @param intrinsics Pointer to the object of intrinsic camera parameters.
  * @param outFocalX Pixel focal length in the x(u) direction of the intrinsic camera parameter matrix.
  * @param outFocalY Pixel focal length in the y(v) direction of the intrinsic camera parameter matrix.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetFocalLength(const AREngine_ARSession *session,
@@ -1158,7 +1526,10 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetFocalLength(const AREngine_
  * @param intrinsics Pointer to the object of intrinsic camera parameters.
  * @param outPrincipalX x-axis coordinate of the camera's principal point.
  * @param outPrincipalY y-axis coordinate of the camera's principal point.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetPrincipalPoint(const AREngine_ARSession *session,
@@ -1170,7 +1541,10 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetPrincipalPoint(const AREngi
  * @param intrinsics Pointer to the object of intrinsic camera parameters.
  * @param outWidth Camera image width, in pixels.
  * @param outHeight Camera image height, in pixels.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetImageDimensions(const AREngine_ARSession *session,
@@ -1180,12 +1554,16 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetImageDimensions(const AREng
  * @brief Obtains a camera's distortion coefficients, which include 5 components: outDistortion[0] to outDistortion [2]
  * represent k1, k2, and k3 (radial distortion coefficients), and outDistortion [3] to outDistortion [4] are the
  * tangential distortion coefficients.
+ *
  * @param session The AREngine session.
  * @param intrinsics Pointer to the object of intrinsic camera parameters.
  * @param outDistortion Array of camera distortion parameters.
  * @param distortionNum Numbers of camera distortion parameters. For details, please refer to
  * <b>ARENGINE_DISTORTION_COUNT</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetDistortion(const AREngine_ARSession *session,
@@ -1195,7 +1573,11 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetDistortion(const AREngine_A
  * @brief Creates an <b>AREngine_ARFrame</b> object and stores the pointer in *outFrame.
  * @param session The AREngine session.
  * @param outFrame Current frame object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_Create(const AREngine_ARSession *session, AREngine_ARFrame **outFrame);
@@ -1211,11 +1593,15 @@ void HMS_AREngine_ARFrame_Destroy(AREngine_ARFrame *frame);
  * @brief Obtains whether the display (length, width, and rotation) changes. If so, you need to call
  * <b>HMS_AREngine_ARFrame_TransformDisplayUvCoords</b> again to obtain the correct coordinates of the texture map.
  * If the return value of outGeometryChangeState is 0, no changes have occurred. Otherwise, changes have occurred.
+ *
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outGeometryChangeState Indicates whether the display (length, width, and rotation) changes. Value 0 indicates
  * that no change has occurred. Other values indicate that changes have occurred.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_GetDisplayGeometryChanged(const AREngine_ARSession *session,
@@ -1226,7 +1612,10 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetDisplayGeometryChanged(const AREngine_
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outTimestampNs Timestamp information, in nanoseconds.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_GetTimestamp(const AREngine_ARSession *session, const AREngine_ARFrame *frame,
@@ -1245,7 +1634,11 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetTimestamp(const AREngine_ARSession *se
  * @param elementSize Number of texture coordinates to be converted. The value must be a multiple of 2 (uv coordinates).
  * @param uvsIn Original input UV coordinate. The array size is elementSize.
  * @param uvsOut Converted UV coordinates. The array size is elementSize.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_TransformDisplayUvCoords(const AREngine_ARSession *session,
@@ -1265,7 +1658,11 @@ AREngine_ARStatus HMS_AREngine_ARFrame_TransformDisplayUvCoords(const AREngine_A
  * @param pixelX X coordinate.
  * @param pixelY Y coordinate.
  * @param hitResultList Hit result list.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_HitTest(const AREngine_ARSession *session, const AREngine_ARFrame *frame,
@@ -1276,7 +1673,11 @@ AREngine_ARStatus HMS_AREngine_ARFrame_HitTest(const AREngine_ARSession *session
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outPointCloud Point cloud object of the current frame.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquirePointCloud(const AREngine_ARSession *session,
@@ -1287,7 +1688,11 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquirePointCloud(const AREngine_ARSessio
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outCamera Camera parameter object of the current frame.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCamera(const AREngine_ARSession *session, const AREngine_ARFrame *frame,
@@ -1300,7 +1705,10 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCamera(const AREngine_ARSession *s
  * @param frame Current frame object.
  * @param filterType Type of the trackable object to be returned.
  * @param outTrackableList List of trackable objects.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_GetUpdatedTrackables(const AREngine_ARSession *session,
@@ -1311,7 +1719,11 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetUpdatedTrackables(const AREngine_ARSes
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outImage Image object of the current frame. For details, please refer to <b>AREngine_ARImage</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_UNSUPPORTED_CONFIGURATION} Configuration not supported.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCameraImage(const AREngine_ARSession *session,
@@ -1327,7 +1739,10 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCameraImage(const AREngine_ARSessi
  * @param pointCloud Point cloud object.
  * @param outPointCloudData Coordinates of all points in a point cloud, as well as their confidence array, in the format
  * [x0, y0, z0, c0, x1, y1, z1, c1, x2,...].
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPointCloud_GetData(const AREngine_ARSession *session,
@@ -1339,7 +1754,10 @@ AREngine_ARStatus HMS_AREngine_ARPointCloud_GetData(const AREngine_ARSession *se
  * @param session The AREngine session.
  * @param pointCloud Point cloud object.
  * @param outNumberOfPoints Coordinates of all points in a point cloud, as well as their confidence array size.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPointCloud_GetNumberOfPoints(const AREngine_ARSession *session,
@@ -1350,7 +1768,10 @@ AREngine_ARStatus HMS_AREngine_ARPointCloud_GetNumberOfPoints(const AREngine_ARS
  * @param session The AREngine session.
  * @param pointCloud Point cloud object.
  * @param outTimestampNs Timestamp when the current feature point cloud is detected.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPointCloud_GetTimestamp(const AREngine_ARSession *session,
@@ -1372,7 +1793,11 @@ void HMS_AREngine_ARPointCloud_Release(AREngine_ARPointCloud *pointCloud);
  * @param session The AREngine session.
  * @param anchor Anchor, whose pose needs to be obtained.
  * @param outPose Pose object of the anchor.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchor_GetPose(const AREngine_ARSession *session, const AREngine_ARAnchor *anchor,
@@ -1384,7 +1809,11 @@ AREngine_ARStatus HMS_AREngine_ARAnchor_GetPose(const AREngine_ARSession *sessio
  * @param anchor Anchor, the tracking status of whose pose needs to be obtained.
  * @param outTrackingState Tracking status of the anchor's current pose. For details, please refer to
  * <b>AREngine_ARTrackingState</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchor_GetTrackingState(const AREngine_ARSession *session,
@@ -1395,7 +1824,11 @@ AREngine_ARStatus HMS_AREngine_ARAnchor_GetTrackingState(const AREngine_ARSessio
  * anchor. You need to release the anchor by calling <b>HMS_AREngine_ARAnchor_Release</b>.
  * @param session The AREngine session.
  * @param anchor Anchor object to be unbound.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchor_Detach(AREngine_ARSession *session, AREngine_ARAnchor *anchor);
@@ -1412,7 +1845,11 @@ void HMS_AREngine_ARAnchor_Release(AREngine_ARAnchor *anchor);
  * @brief Creates a list of trackable objects.
  * @param session The AREngine session.
  * @param outTrackableList List of trackable objects.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackableList_Create(const AREngine_ARSession *session,
@@ -1430,7 +1867,10 @@ void HMS_AREngine_ARTrackableList_Destroy(AREngine_ARTrackableList *trackableLis
  * @param session The AREngine session.
  * @param trackableList List of trackable objects.
  * @param outSize Number of trackable objects in the trackable object list.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackableList_GetSize(const AREngine_ARSession *session,
@@ -1442,7 +1882,10 @@ AREngine_ARStatus HMS_AREngine_ARTrackableList_GetSize(const AREngine_ARSession 
  * @param trackableList List of trackable objects.
  * @param index Location of a trackable object in the trackable object list.
  * @param outTrackable Target trackable object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackableList_AcquireItem(const AREngine_ARSession *session,
@@ -1460,7 +1903,10 @@ void HMS_AREngine_ARTrackable_Release(AREngine_ARTrackable *trackable);
  * @param session The AREngine session.
  * @param trackable Trackable object.
  * @param outTrackableType Type of the trackable object. For details, please refer to <b>AREngine_ARTrackableType</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_GetType(const AREngine_ARSession *session,
@@ -1472,7 +1918,10 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_GetType(const AREngine_ARSession *ses
  * @param trackable Trackable object.
  * @param outTrackingState Tracking status of the trackable object. For details, please refer to
  * <b>AREngine_ARTrackingState</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_GetTrackingState(const AREngine_ARSession *session,
@@ -1481,12 +1930,19 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_GetTrackingState(const AREngine_ARSes
 /**
  * @brief Creates an anchor object using the pose information of the trackable object. This anchor will be bound to the
  * current trackable object.
+ *
  * This anchor will be bound to the current trackable object.
+ *
  * @param session The AREngine session.
  * @param trackable Trackable object.
  * @param pose Pose information of a trackable object.
  * @param outAnchor Newly created anchor object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_NOT_TRACKING} Not tracking.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_AcquireNewAnchor(AREngine_ARSession *session,
@@ -1498,7 +1954,10 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_AcquireNewAnchor(AREngine_ARSession *
  * @param trackable Trackable object.
  * @param outAnchorList List of anchor objects. This list must be created using <b>HMS_AREngine_ARAnchorList_Create</b>.
  * If you use a list that has been created, values will be reassigned for this list.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_GetAnchors(AREngine_ARSession *session,
@@ -1510,7 +1969,10 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_GetAnchors(AREngine_ARSession *sessio
  * @param session The AREngine session.
  * @param plane Plane object to be processed.
  * @param outSubsumedBy Parent plane object of a specific plane.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_AcquireSubsumedBy(const AREngine_ARSession *session,
@@ -1521,7 +1983,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_AcquireSubsumedBy(const AREngine_ARSessio
  * @param session The AREngine session.
  * @param plane Plane object to be processed.
  * @param outPlaneType Plane type. For details, please refer to <b>AREngine_ARPlaneType</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetType(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1539,7 +2004,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetType(const AREngine_ARSession *session
  * @param plane Plane object to be processed.
  * @param outPose Pose information for the conversion from the local coordinate system of a plane to the world
  * coordinate system.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetCenterPose(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1551,7 +2019,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetCenterPose(const AREngine_ARSession *s
  * @param session The AREngine session.
  * @param plane Plane object to be processed.
  * @param label Semantic type of the current plane. For details, please refer to <b>AREngine_ARSemanticPlaneLabel</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetLabel(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1564,7 +2035,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetLabel(const AREngine_ARSession *sessio
  * @param plane Plane object to be processed.
  * @param outExtentX Length of the plane's bounding rectangle along the x-axis of the plane's local coordinate system,
  * in meters.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentX(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1577,7 +2051,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentX(const AREngine_ARSession *sess
  * @param plane Plane object to be processed.
  * @param outExtentZ Length of the plane's bounding rectangle along the z-axis of the plane's local coordinate system,
  * in meters.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentZ(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1589,7 +2066,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentZ(const AREngine_ARSession *sess
  * @param session The AREngine session.
  * @param plane Plane object to be processed.
  * @param outPolygonSize Size of a 2D vertex array.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygonSize(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1609,7 +2089,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygonSize(const AREngine_ARSession *
  * @param plane Plane object to be processed.
  * @param outPolygonXz Array consisting of 2D vertices of the detected plane.
  * @param polygonSize Size of the 2D vertex array, which is obtained through <b>HMS_AREngine_ARPlane_GetPolygonSize</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygon(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1626,7 +2109,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygon(const AREngine_ARSession *sess
  * @param pose Pose information.
  * @param outPoseInExtents Indicates whether the pose is within the plane's bounding rectangle.
  * Value 0 indicates that it is out of the range, and other values indicate that it is within the range.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInExtents(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1639,7 +2125,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInExtents(const AREngine_ARSession 
  * @param pose Pose information.
  * @param outPoseInPolygon Indicates whether the pose is within the plane's bounding polygon. Value 0 indicates that
  * it is out of the range, and other values indicate that it is within the range.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInPolygon(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
@@ -1651,7 +2140,10 @@ AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInPolygon(const AREngine_ARSession 
  * @param point Input point object.
  * @param outOrientationMode Orientation mode of an input point. For details, please refer to
  * <b>AREngine_ARPointOrientationMode</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPoint_GetOrientationMode(const AREngine_ARSession *session,
@@ -1662,7 +2154,10 @@ AREngine_ARStatus HMS_AREngine_ARPoint_GetOrientationMode(const AREngine_ARSessi
  * @param session The AREngine session.
  * @param point Input point object.
  * @param outPose Pose information of the input point.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPoint_GetPose(const AREngine_ARSession *session, const AREngine_ARPoint *point,
@@ -1672,7 +2167,11 @@ AREngine_ARStatus HMS_AREngine_ARPoint_GetPose(const AREngine_ARSession *session
  * @brief Creates a list of hit testing result objects.
  * @param session The AREngine session.
  * @param outHitResultList To-be-created list of hit testing result objects.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResultList_Create(const AREngine_ARSession *session,
@@ -1690,7 +2189,10 @@ void HMS_AREngine_ARHitResultList_Destroy(AREngine_ARHitResultList *hitResultLis
  * @param session The AREngine session.
  * @param hitResultList List of hit testing result objects.
  * @param outSize List size.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResultList_GetSize(const AREngine_ARSession *session,
@@ -1702,7 +2204,11 @@ AREngine_ARStatus HMS_AREngine_ARHitResultList_GetSize(const AREngine_ARSession 
  * @param hitResultList List of hit testing result objects.
  * @param index Index of the hit testing result object to be obtained.
  * @param outHitResult Hit testing result object to be obtained.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResultList_GetItem(const AREngine_ARSession *session,
@@ -1712,7 +2218,11 @@ AREngine_ARStatus HMS_AREngine_ARHitResultList_GetItem(const AREngine_ARSession 
  * @brief Creates an empty hit testing result object.
  * @param session The AREngine session.
  * @param outHitResult Hit testing result object to be created.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_Create(const AREngine_ARSession *session,
@@ -1730,7 +2240,10 @@ void HMS_AREngine_ARHitResult_Destroy(AREngine_ARHitResult *hitResult);
  * @param session The AREngine session.
  * @param hitResult Hit testing result object.
  * @param outDistance Distance from the camera to the hit object, in meters.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_GetDistance(const AREngine_ARSession *session,
@@ -1758,7 +2271,10 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_GetDistance(const AREngine_ARSession 
  * @param session The AREngine session.
  * @param hitResult Hit testing result object.
  * @param outPose Intersection pose.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_GetHitPose(const AREngine_ARSession *session,
@@ -1769,7 +2285,10 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_GetHitPose(const AREngine_ARSession *
  * @param session The AREngine session.
  * @param hitResult Hit testing result object.
  * @param outTrackable Trackable object that is hit.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireTrackable(const AREngine_ARSession *session,
@@ -1780,7 +2299,11 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireTrackable(const AREngine_ARSes
  * @param session The AREngine session.
  * @param hitResult Hit testing result object.
  * @param outAnchor Newly created anchor object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireNewAnchor(AREngine_ARSession *session,
@@ -1793,7 +2316,10 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireNewAnchor(AREngine_ARSession *
  * @param target Target semantic object to be processed.
  * @param outARPose Pose for the conversion from the local coordinate system of the target semantic object to the world
  * coordinate system.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetCenterPose(const AREngine_ARSession *session,
@@ -1806,7 +2332,10 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetCenterPose(const AREngine_ARSession *
  * @param target Target semantic object to be processed.
  * @param outAabb Coordinate set of the minimum bounding box of a semantic object.
  * @param aabbSize Array size: <b>ARENGINE_AABB_POINT_SIZE</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetAxisAlignedBoundingBox(const AREngine_ARSession *session,
@@ -1817,7 +2346,10 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetAxisAlignedBoundingBox(const AREngine
  * @param session The AREngine session.
  * @param target Target semantic object to be processed.
  * @param radius Sphere radius of the target semantic object, in meters.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetRadius(const AREngine_ARSession *session, const AREngine_ARTarget *target,
@@ -1829,7 +2361,10 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetRadius(const AREngine_ARSession *sess
  * @param target Target semantic object to be processed.
  * @param shape Shape type of the target semantic object. For details, please refer to
  * <b>AREngine_ARTargetShapeLabel</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetShapeType(const AREngine_ARSession *session, const AREngine_ARTarget *target,
@@ -1839,7 +2374,11 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetShapeType(const AREngine_ARSession *s
  * @brief Creates a list of anchor objects.
  * @param session The AREngine session.
  * @param outAnchorList Reference to the anchor object list to be created.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchorList_Create(const AREngine_ARSession *session,
@@ -1857,7 +2396,10 @@ void HMS_AREngine_ARAnchorList_Destroy(AREngine_ARAnchorList *anchorList);
  * @param session The AREngine session.
  * @param anchorList List of anchor objects.
  * @param outSize Number of anchors in the anchor object list.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchorList_GetSize(const AREngine_ARSession *session,
@@ -1869,7 +2411,10 @@ AREngine_ARStatus HMS_AREngine_ARAnchorList_GetSize(const AREngine_ARSession *se
  * @param anchorList List of anchor objects.
  * @param index Index of the anchor to be obtained in the anchor object list.
  * @param outAnchor Anchor information to be returned.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchorList_AcquireItem(const AREngine_ARSession *session,
@@ -1879,7 +2424,11 @@ AREngine_ARStatus HMS_AREngine_ARAnchorList_AcquireItem(const AREngine_ARSession
  * @brief Creates a camera configuration object.
  * @param session The AREngine session.
  * @param outCameraConfig Pointer to the newly allocated address of the camera configuration object.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraConfig_Create(const AREngine_ARSession *session,
@@ -1898,7 +2447,10 @@ void HMS_AREngine_ARCameraConfig_Destroy(AREngine_ARCameraConfig *cameraConfig);
  * @param cameraConfig Pointer to the camera configuration object.
  * @param outWidth Image width, in pixels.
  * @param outHeight Image height, in pixels.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetImageDimensions(const AREngine_ARSession *session,
@@ -1911,7 +2463,10 @@ AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetImageDimensions(const AREngine_
  * @param cameraConfig Pointer to the camera configuration object.
  * @param outWidth Image texture width, in pixels.
  * @param outHeight Image texture height, in pixels.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetTextureDimensions(const AREngine_ARSession *session,
@@ -1922,7 +2477,11 @@ AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetTextureDimensions(const AREngin
  * @param session The AREngine session.
  * @param image Input image data.
  * @param outFormat Image format of the current frame.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetFormat(const AREngine_ARSession *session, const AREngine_ARImage *image,
@@ -1933,7 +2492,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetFormat(const AREngine_ARSession *sessi
  * @param session The AREngine session.
  * @param image Image object of the current frame.
  * @param outWidth Image width (in pixels) of the current frame.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetWidth(const AREngine_ARSession *session, const AREngine_ARImage *image,
@@ -1944,7 +2507,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetWidth(const AREngine_ARSession *sessio
  * @param session The AREngine session.
  * @param image Image object of the current frame.
  * @param outHeight Image height (in pixels) of the current frame.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetHeight(const AREngine_ARSession *session, const AREngine_ARImage *image,
@@ -1955,7 +2522,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetHeight(const AREngine_ARSession *sessi
  * @param session The AREngine session.
  * @param image Image object of the current frame.
  * @param outCount Number of planes in the current frame.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneCount(const AREngine_ARSession *session, const AREngine_ARImage *image,
@@ -1968,7 +2539,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneCount(const AREngine_ARSession *s
  * @param planeIndex Plane index. The value ranges from 0 to n-1, where n is the number of planes in the image.
  * @param outData Pointer to the current image data.
  * @param outLength Length of the current image (in bytes).
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneData(const AREngine_ARSession *session, const AREngine_ARImage *image,
@@ -1981,7 +2556,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneData(const AREngine_ARSession *se
  * @param image Image object of the current frame.
  * @param planeIndex Plane index. The value ranges from 0 to n-1, where n is the number of planes in the image.
  * @param outPixelStride Image stride (in bytes).
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlanePixelStride(const AREngine_ARSession *session,
@@ -1994,7 +2573,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlanePixelStride(const AREngine_ARSess
  * @param image Image object of the current frame.
  * @param planeIndex Plane index. The value ranges from 0 to n-1, where n is the number of planes in the image.
  * @param outRowStride Row stride (in bytes).
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneRowStride(const AREngine_ARSession *session,
@@ -2007,7 +2590,11 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneRowStride(const AREngine_ARSessio
  * @param session The AREngine session.
  * @param image Image object of the current frame.
  * @param outTimestamp Timestamp of the image (in nanoseconds).
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetTimestamp(const AREngine_ARSession *session, const AREngine_ARImage *image,
@@ -2022,33 +2609,377 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetTimestamp(const AREngine_ARSession *se
 void HMS_AREngine_ARImage_Release(AREngine_ARImage *image);
 
 /**
+ * @brief Obtain position and posture information of the tracked image center point in the world coordinate system.
+ *
+ * After transformation to the world coordinate system, the positive direction of the Y axis of the pose corresponds
+ * to the normal vector of the image, and the positive direction of the X axis of the pose corresponds
+ * to the direction of the image from left to right, the positive direction of the Z axis of the pose corresponds
+ * to the direction of the image from top to bottom. If the tracking status of the image is
+ * <b>ARENGINE_TRACKING_STATE_PAUSED</b> or <b>ARENGINE_TRACKING_STATE_STOPED</b>, the returned pose information
+ * is the pose during the last tracking.
+ *
+ * @param session The AREngine session.
+ * @param augmentedImage Traceable objects of the image type.
+ * @param outPose Pose of the tracked image.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetCenterPose(const AREngine_ARSession *session,
+    const AREngine_ARAugmentedImage *augmentedImage, AREngine_ARPose *outPose);
+
+/**
+ * @brief The center point of the obtained image is the coordinate origin, and the width (in meters) of the physical
+ * image estimated on the X axis is obtained.
+ *
+ * The AR Engine continuously updates the estimated physical image width based
+ * on its understanding of the world. If the tracking status of an image is <b>ARENGINE_TRACKING_STATE_PAUSED</b>
+ * or <b>ARENGINE_TRACKING_STATE_STOPED</b>, the width information returned is the width of the last tracking.
+ * Returns 0 if the image has never been tracked.
+ *
+ * @param session The AREngine session.
+ * @param augmentedImage Traceable objects of the image type.
+ * @param outExtendX Estimated height of the physical image on the X axis (in meters)
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetExtendX(const AREngine_ARSession *session,
+    const AREngine_ARAugmentedImage *augmentedImage, float *outExtendX);
+
+/**
+ * @brief The center point of the obtained image is the coordinate origin, and the width (in meters) of the physical
+ * image estimated on the Z axis is obtained.
+ *
+ * The AR Engine continuously updates the estimated physical image width based
+ * on its understanding of the world. If the tracking status of an image is <b>ARENGINE_TRACKING_STATE_PAUSED</b>
+ * or <b>ARENGINE_TRACKING_STATE_STOPED</b>, the width information returned is the width of the last tracking.
+ * Returns 0 if the image has never been tracked.
+ *
+ * @param session The AREngine session.
+ * @param augmentedImage Traceable objects of the image type.
+ * @param outExtendZ Estimated height of the physical image on the Z axis (in meters).
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetExtendZ(const AREngine_ARSession *session,
+    const AREngine_ARAugmentedImage *augmentedImage, float *outExtendZ);
+
+/**
+ * @brief Gets the imageIndex of the augmented image in the augmented image database.
+ *
+ * The imageIndex value is the unique identifier for the image in the database.
+ * @param session The AREngine session.
+ * @param augmentedImage Traceable objects of the image type.
+ * @param outIndex Image index.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetIndex(const AREngine_ARSession *session,
+    const AREngine_ARAugmentedImage *augmentedImage, uint32_t *outIndex);
+
+/**
+ * @brief Returns the imageName of the augmented image.
+ *
+ * The image imageName is specified when you call <b>HMS_AREngine_ARAugmentedImageDatabase_AddImage</b> to add an image.
+ * The image imageName may not be unique.
+ *
+ * @param session The AREngine session.
+ * @param augmentedImage Traceable objects of the image type.
+ * @param augmentedImageName Image imageName, the recommended size cannot exceed 255 bytes.
+ * @param outNameLength Image name length.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImage_AcquireName(const AREngine_ARSession *session,
+    const AREngine_ARAugmentedImage *augmentedImage, char *augmentedImageName, uint32_t *outNameLength);
+
+/**
+ * @brief Releases a image database object.
+ * @param database Pointer to the image database object.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Destroy(AREngine_ARAugmentedImageDatabase *database);
+
+/**
  * @brief Acquires a depth image object that corresponds to the current frame.
  * The depth image is a single 16-bit plane at index 0. Each pixel contains the distance in millimeters to the camera
  * plane, with the representable depth range between 0 millimeters and 65535 millimeters, or about 65 meters.
+ *
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outDepthImage Depth image object of the current frame, please refer to <b>AREngine_ARImage</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthImage16Bits(const AREngine_ARSession *session,
     const AREngine_ARFrame *frame, AREngine_ARImage **outDepthImage);
- 
+
 /**
  * @brief Obtains the depth confidence image of the current frame. The confidence value is between
  * 0<b>ARENGINE_DEPTH_CONFIDENCE_LOW</b> and 2<b>ARENGINE_DEPTH_CONFIDENCE_HIGH</b>, inclusive, with 0 representing the
  * lowest confidence and 2 representing the highest confidence in the measured depth value. The width and height of the
  * depth confidence image are consistent with the depth image.
+ *
  * @param session The AREngine session.
  * @param frame Current frame object.
  * @param outConfidenceImage Depth confidence image of the current frame, please refer to <b>AREngine_ARImage</b>.
- * @return Execution status. For details, please refer to <b>AREngine_ARStatus</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthConfidenceImage(const AREngine_ARSession *session,
     const AREngine_ARFrame *frame, AREngine_ARImage **outConfidenceImage);
+
+/**
+ * @brief Obtains the scene mesh data of the current frame.
+ * @param session The AREngine session.
+ * @param frame Current frame object.
+ * @param outSceneMesh scene mesh data of the current frame.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARFrame_AcquireSceneMesh(const AREngine_ARSession *session,
+    const AREngine_ARFrame *frame, AREngine_ARSceneMesh **outSceneMesh);
+
+/**
+ * @brief Obtains the size of vertices in the scene mesh.
+ * @param session The AREngine session.
+ * @param sceneMesh scene mesh data of the current frame.
+ * @param outSize the size of vertices
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVerticesSize(const AREngine_ARSession *session,
+    const AREngine_ARSceneMesh *sceneMesh, int32_t *outSize);
+
+/**
+ * @brief Obtains the set of vertices in the scene mesh.
+ * @param session The AREngine session.
+ * @param sceneMesh scene mesh data of the current frame.
+ * @param outData the set of vertices
+ * @param dataSize the size of outData
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVertexList(const AREngine_ARSession *session,
+    const AREngine_ARSceneMesh *sceneMesh, float *outData, int32_t dataSize);
+
+/**
+ * @brief Obtains the set of vertexnormals in the scene mesh.
+ * @param session The AREngine session.
+ * @param sceneMesh scene mesh data of the current frame.
+ * @param outData the set of vertexnormals
+ * @param dataSize the size of outData
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVertexNormalList(const AREngine_ARSession *session,
+    const AREngine_ARSceneMesh *sceneMesh, float *outData, int32_t dataSize);
+
+/**
+ * @brief Obtains the size of triangle indices in the scene mesh.
+ * @param session The AREngine session.
+ * @param sceneMesh scene mesh data of the current frame.
+ * @param outSize the size of triangle indices
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireIndexListSize(const AREngine_ARSession *session,
+    const AREngine_ARSceneMesh *sceneMesh, int32_t *outSize);
+
+/**
+ * @brief Obtains the set of triangle indices in the scene mesh.
+ * @param session The AREngine session.
+ * @param sceneMesh scene mesh data of the current frame.
+ * @param outData the set of triangle indices
+ * @param dataSize the size of outData
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireIndexList(const AREngine_ARSession *session,
+    const AREngine_ARSceneMesh *sceneMesh, int32_t *outData, int32_t dataSize);
+
+/**
+ * @brief Releases the scenemesh object of the current frame, that is, the object created by
+ * <b>HMS_AREngine_ARFrame_AcquireSceneMesh</b>.
+ * @param sceneMesh scenemesh object of the current frame.
+ * @since 5.1.0(18)
+ */
+void HMS_AREngine_ARSceneMesh_Release(AREngine_ARSceneMesh *sceneMesh);
+
+/**
+ * @brief This interface is used to obtain the number of images stored in the database.
+ * @param database The image database.
+ * @param outImageCount Number of images.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetImageCount(const AREngine_ARAugmentedImageDatabase *database,
+    uint32_t *outImageCount);
+
+/**
+ * @brief Adds the image to the image database and outputs the index of the corresponding image.
+ *
+ * The maximum number of images to be added can be obtained
+ * through:<b>HMS_AREngine_ARAugmentedImageDatabase_GetCapacity</b>. You can use the
+ * <b>HMS_AREngine_ARAugmentedImageDatabase_SetAddMode</b> interface to set the behavior after this interface is
+ * invoked.
+ *
+ * @param database The image database.
+ * @param image The image information.
+ * @param outIndex The index of added image.
+ * @param outReason Indicates the reason why the image fails to be added. This data can be viewed when the
+ * return value of this function is <b>ARENGINE_ERROR_IMAGE_INSUFFICIENT_QUALITY</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_IMAGE_INSUFFICIENT_QUALITY} Attempted to add an image with
+ *         insufficient quality to the image database.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ *         {@link ARENGINE_ERROR_IMAGE_EXCEED_NUM_LIMIT} The number of images added exceeds the maximum.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_AddImage(AREngine_ARAugmentedImageDatabase *database,
+    const AREngine_ARAugmentedImageSource *image, uint32_t *outIndex, AREngine_ARAddAugmentedImageReason *outReason);
+
+/**
+ * @brief Deserialize the augmented image database buffer returned through the
+ * <b>HMS_AREngine_ARAugmentedImageDatabase_Serialize</b> interface to create a new augmented image database. The
+ * operations performed by this function are time-consuming. You are advised to run this function in the background
+ * thread.
+ *
+ * @param buffer Augmented image database buffer.
+ * @param bufSize Augmented image database buffer length.
+ * @param outDatabase Augmented image database. For details, please refer to <b>AREngine_ARAugmentedImageDatabase</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Deserialize(const uint8_t *buffer, const uint64_t bufSize,
+    AREngine_ARAugmentedImageDatabase **outDatabase);
+
+/**
+ * @brief Serializing the augmented image database into a buffer, you can save the buffer for future use.
+ * For details about how to use it, please refer to <b>HMS_AREngine_ARAugmentedImageDatabase_Deserialize</b>.
+ * @param database Augmented image database.
+ * @param outBuffer Augmented image database buffer.
+ * @param outBufSize Augmented image database buffer length.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Serialize(const AREngine_ARAugmentedImageDatabase *database,
+    uint8_t **outBuffer, uint64_t *outBufSize);
+
+/**
+ * @brief Sets the add augmented image mode.
+ * @param database Augmented image database.
+ * @param addMode Augmented image database. For details, please refer to <b>AREngine_ARImageDatabaseMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_SetAddMode(const AREngine_ARAugmentedImageDatabase *database,
+    AREngine_ARImageDatabaseMode addMode);
+
+/**
+ * @brief Create an empty tracking image database.
+ * @param outDatabase Pointer to the image library to be created.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Create(AREngine_ARAugmentedImageDatabase **outDatabase);
+
+/**
+ * @brief Obtains the add augmented image mode.
+ * @param database Augmented image database.
+ * @param outAddMode Augmented image database. For details, please refer to <b>AREngine_ARImageDatabaseMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetAddMode(const AREngine_ARAugmentedImageDatabase *database,
+    AREngine_ARImageDatabaseMode *outAddMode);
+
+/**
+ * @brief Obtains the maximum number of images that can be added by invoking the
+ * <b>HMS_AREngine_ARAugmentedImageDatabase_AddImage</b> interface.
+ * @param database Augmented image database.
+ * @param outCapacity Max num of images.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 5.1.0(18)
+ */
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetCapacity(const AREngine_ARAugmentedImageDatabase *database,
+    uint32_t *outCapacity);
 #ifdef __cplusplus
 }
 #endif
-/** @} */
 #endif // NDK_INCLUDE_AR_ENGINE_CORE_H
+/** @} */

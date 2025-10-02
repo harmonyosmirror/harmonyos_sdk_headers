@@ -29,6 +29,7 @@
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @kit ArkUI
  * @since 15
  */
 
@@ -41,7 +42,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 /**
  * @brief Determines the priority of key event processing when component cannot handle the key event.
@@ -96,6 +96,7 @@ void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool i
  * @since 15
  */
 void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTransfer);
+
 
 /**
  * @brief Set the priority of key event processing when component cannot handle the key event.

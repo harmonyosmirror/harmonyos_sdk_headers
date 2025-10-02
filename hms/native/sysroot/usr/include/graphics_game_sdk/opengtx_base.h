@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for graphics accelerate capability.
  *
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 
@@ -110,7 +110,7 @@ typedef struct OpenGTX_ResolutionValue {
 typedef enum OpenGTX_GameType {
     /** Multiplayer Online Battle Arena. */
     MOBA = 1,
-    /**  Role-Playing Game. */
+    /** Role-Playing Game. */
     RPG = 2,
     /** First-person shooting game. */
     FPS = 3,
@@ -302,8 +302,6 @@ typedef enum OpenGTX_ErrorCode {
  * @ingroup Callbacks
  * @brief
  * This callback is to device report temperature level to game.
- *
- * @param[in] temperature level to be reported to game {@link OpenGTX_TempLevel}.
  * @since 5.0.0(12)
  */
 typedef void (*OpenGTX_DeviceInfoCallback)(OpenGTX_TempLevel);
@@ -312,7 +310,7 @@ typedef void (*OpenGTX_DeviceInfoCallback)(OpenGTX_TempLevel);
  * @brief Creates a OpenGTX context instance. The context structure is the main object used to interact with
  * OpenGTX APIs, and is responsible for the management of the internal resources used by the OpenGTX algorithm.
  *
- * @param [in] callback function of device information {@link OpenGTX_DeviceInfoCallback}.
+ * @param deviceInfoCallback function of device information {@link OpenGTX_DeviceInfoCallback}.
  * @return Returns the pointer to a {@link OpenGTX_Context} context instance.
  * @since 5.0.0(12)
  */
@@ -322,9 +320,9 @@ OpenGTX_Context* HMS_OpenGTX_CreateContext(OpenGTX_DeviceInfoCallback deviceInfo
  * @brief Configure OpenGTX context instance for initialing. For instance, sets the LTPO's mode to control
  * frame rate, sets the target frame rate of game, etc.
  *
- * @param [in] context Pointer to the {@link OpenGTX_Context} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link OpenGTX_Context} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] config Pointer to the {@link OpenGTX_ConfigDescription} instance. The object specifies the configure
+ * @param config Pointer to the {@link OpenGTX_ConfigDescription} instance. The object specifies the configure
  * attributes added to the context instance. The value can not be null. Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>OPENGTX_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
@@ -335,7 +333,7 @@ OpenGTX_ErrorCode HMS_OpenGTX_SetConfiguration(OpenGTX_Context* context, const O
 /**
  * @brief Destroy OpenGTX instance and memory resource reclamation.
  *
- * @param [in] context Level-2 pointer to the {@link OpenGTX_Context} instance to destroy.
+ * @param context Level-2 pointer to the {@link OpenGTX_Context} instance to destroy.
  * @return Execution result of the function. If the operation is successful, <b>OPENGTX_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
  * @since 5.0.0(12)
@@ -347,7 +345,7 @@ OpenGTX_ErrorCode HMS_OpenGTX_DestroyContext(OpenGTX_Context** context);
  * In order to activate it, {@link HMS_OpenGTX_SetConfiguration} must be called. In case of any errors,
  * the instance is considered to be inactive.
  *
- * @param [in] context Pointer to the {@link OpenGTX_Context} instance. The value cannot be null.
+ * @param context Pointer to the {@link OpenGTX_Context} instance. The value cannot be null.
  * Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>OPENGTX_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
@@ -358,7 +356,7 @@ OpenGTX_ErrorCode HMS_OpenGTX_Activate(OpenGTX_Context* context);
 /**
  * @brief Deactivate OpenGTX algorithm.
  *
- * @param [in] context  Pointer to the {@link OpenGTX_Context} instance. The value cannot be null.
+ * @param context Pointer to the {@link OpenGTX_Context} instance. The value cannot be null.
  * Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>OPENGTX_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
@@ -369,8 +367,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_Deactivate(OpenGTX_Context* context);
 /**
  * @brief Set all required data of frame rendering for OpenGTX algorithm to reduce device load, such as LTPO.
  *
- * @param [in] context Pointer to the {@link OpenGTX_Context} instance. The value can not be null.
- * @param [in] desc Pointer to the {@link OpenGTX_FrameRenderInfo}. The object specifies the dispatch attributes
+ * @param context Pointer to the {@link OpenGTX_Context} instance. The value can not be null.
+ * @param frameRenderInfo Pointer to the {@link OpenGTX_FrameRenderInfo}. The object specifies the dispatch attributes
  * used by OpenGTX algorithm per frame. The value can not be null.
  * @return Function execution result. If the operation is successful, OPENGTX_SUCCESS is returned.
  * If the operation fails, an error code is returned. For details about the error codes, see {@link OpenGTX_ErrorCode}.
@@ -382,8 +380,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_DispatchFrameRenderInfo(OpenGTX_Context* context,
 /**
  * @brief Set all required data of game scene for OpenGTX algorithm to reduce device load.
  *
- * @param [in] context Pointer to the {@link OpenGTX_Context} instance. The value can not be null.
- * @param [in] desc Pointer to the {@link OpenGTX_GameSceneInfo}. The object specifies the dispatch attributes
+ * @param context Pointer to the {@link OpenGTX_Context} instance. The value can not be null.
+ * @param gameSceneInfo Pointer to the {@link OpenGTX_GameSceneInfo}. The object specifies the dispatch attributes
  * used by OpenGTX algorithm per scene. The value can not be null.
  * @return Function execution result. If the operation is successful, OPENGTX_SUCCESS is returned.
  * If the operation fails, an error code is returned. For details about the error codes, see {@link OpenGTX_ErrorCode}.
@@ -395,8 +393,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_DispatchGameSceneInfo(OpenGTX_Context* context,
 /**
  * @brief Set all required data of network for OpenGTX algorithm to reduce device load.
  *
- * @param [in] context Pointer to the {@link OpenGTX_Context} instance. The value can not be null.
- * @param [in] desc Pointer to the {@link OpenGTX_NetworkInfo}. The object specifies the dispatch attributes
+ * @param context Pointer to the {@link OpenGTX_Context} instance. The value can not be null.
+ * @param networkInfo Pointer to the {@link OpenGTX_NetworkInfo}. The object specifies the dispatch attributes
  * used by OpenGTX algorithm when total latency changes. The value can not be null.
  * @return Function execution result. If the operation is successful, OPENGTX_SUCCESS is returned.
  * If the operation fails, an error code is returned. For details about the error codes, see {@link OpenGTX_ErrorCode}.

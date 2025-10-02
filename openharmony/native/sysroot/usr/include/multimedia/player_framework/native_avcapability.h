@@ -143,7 +143,8 @@ int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability);
 /**
  * @brief Get the encoder's supported bitrate range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Encoder capability pointer. Do not give a decoder capability pointer
+ * @param capability Encoder capability pointer. If a decoder capability pointer is given,
+ * undefined behavior occurs
  * @param bitrateRange Output parameter. Encoder bitrate range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -155,7 +156,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange(OH_AVCapability *capability,
 /**
  * @brief Check if the encoder supports the specific bitrate mode.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Encoder capability pointer. Do not give a decoder capability pointer
+ * @param capability Encoder capability pointer. If a decoder capability pointer is given,
+ * undefined behavior occurs
  * @param bitrateMode Bitrate mode
  * @return Returns true if the bitrate mode is supported, false if the bitrate mode is not supported
  * @since 10
@@ -165,7 +167,8 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, 
 /**
  * @brief Get the encoder's supported quality range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Encoder capability pointer. Do not give a decoder capability pointer
+ * @param capability Encoder capability pointer. If a decoder capability pointer is given,
+ * undefined behavior occurs
  * @param qualityRange Output parameter. Encoder quality range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -177,7 +180,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability,
 /**
  * @brief Get the encoder's supported encoder complexity range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Encoder capability pointer. Do not give a decoder capability pointer
+ * @param capability Encoder capability pointer. If a decoder capability pointer is given,
+ * undefined behavior occurs
  * @param complexityRange Output parameter. Encoder complexity range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -189,7 +193,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capabili
 /**
  * @brief Get the audio codec's supported sample rates.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Audio codec capability pointer. Do not give a video codec capability pointer
+ * @param capability Audio codec capability pointer. If a video codec capability pointer is given,
+ * undefined behavior occurs
  * @param sampleRates Output parameter. A pointer to the sample rates array
  * @param sampleRateNum Output parameter. The element number of the sample rates array
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -205,7 +210,8 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capab
 /**
  * @brief Get the audio codec's supported audio channel count range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Audio codec capability pointer. Do not give a video codec capability pointer
+ * @param capability Audio codec capability pointer. If a video codec capability pointer is given,
+ * undefined behavior occurs
  * @param channelCountRange Output parameter. Audio channel count range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -217,7 +223,8 @@ OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capabili
 /**
  * @brief Get the video codec's supported video width alignment.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param widthAlignment Output parameter. Video width alignment
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -229,7 +236,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability,
 /**
  * @brief Get the video codec's supported video height alignment.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param heightAlignment Output parameter. Video height alignment
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -241,7 +249,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability
 /**
  * @brief Get the video codec's supported video width range for a specific height.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param height Vertical pixel number of the video
  * @param widthRange Output parameter. Video width range
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -256,7 +265,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capabi
 /**
  * @brief Get the video codec's supported video height range for a specific width.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param width Horizontal pixel number of the video
  * @param heightRange Output parameter. Video height range
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -271,7 +281,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capabi
 /**
  * @brief Get the video codec's supported video width range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. DO not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param widthRange Output parameter. Video width range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -283,7 +294,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_
 /**
  * @brief Get the video codec's supported video height range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param heightRange Output parameter. Video height range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -295,7 +307,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRange(OH_AVCapability *capability, OH
 /**
  * @brief Check if the video codec supports the specific video size.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param width Horizontal pixel number of the video
  * @param height Vertical pixel number of the video
  * @return Returns true if the video size is supported, false if the video size is not supported
@@ -306,7 +319,8 @@ bool OH_AVCapability_IsVideoSizeSupported(OH_AVCapability *capability, int32_t w
 /**
  * @brief Get the video codec's supported video frame rate range.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param frameRateRange Output parameter. Video frame rate range
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
@@ -318,7 +332,8 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange(OH_AVCapability *capability,
 /**
  * @brief Get the Video codec's supported video frame rate range for a specified video size.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param width Horizontal pixel number of the video
  * @param height Vertical pixel number of the video
  * @param frameRateRange Output parameter. Frame rate range
@@ -334,7 +349,8 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize(OH_AVCapability *capa
 /**
  * @brief Check if the video codec supports the specific combination of video size and frame rate.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param width Horizontal pixel number of the video
  * @param height Vertical pixel number of the video
  * @param frameRate Frame number per second
@@ -348,7 +364,8 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported(OH_AVCapability *capabili
 /**
  * @brief Get the video codec's supported video pixel format.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param capability Video codec capability pointer. Do not give an audio codec capability pointer
+ * @param capability Video codec capability pointer. If an audio codec capability pointer is given,
+ * undefined behavior occurs
  * @param pixelFormats Output parameter. A pointer to the video pixel format array
  * @param pixelFormatNum Output parameter. The element number of the pixel format array
  * @return Returns AV_ERR_OK if the execution is successful,

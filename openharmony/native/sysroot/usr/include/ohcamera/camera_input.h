@@ -136,6 +136,20 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
 Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint64_t* secureSeqId);
 
 /**
+ * @brief Open camera with specified concurrent type.
+ *
+ * @param cameraInput the {@link Camera_Input} instance to be opened.
+ * @param type the {@link Camera_ConcurrentType} instance.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
+ *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 18
+ */
+Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type);
+
+/**
  * @brief Close camera.
  *
  * @param cameraInput the {@link Camera_Input} instance to be closed.

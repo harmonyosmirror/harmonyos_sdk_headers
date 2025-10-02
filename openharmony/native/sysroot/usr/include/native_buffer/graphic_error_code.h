@@ -19,13 +19,12 @@
  *
  * @brief Provides the error codes for native window.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @since 12
  * @version 1.0
  */
 
 /**
- * @file external_window.h
+ * @file graphic_error_code.h
  *
  * @brief Defines the error codes.
  *

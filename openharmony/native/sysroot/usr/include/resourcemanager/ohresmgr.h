@@ -552,6 +552,8 @@ ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
  * @since 12
+ * @deprecated since 18
+ * @useinstead OH_ResourceManager_GetIntPluralString
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t num, char **resultValue);
@@ -575,9 +577,107 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourc
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
  * @since 12
+ * @deprecated since 18
+ * @useinstead OH_ResourceManager_GetIntPluralStringByName
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeResourceManager *mgr,
     const char *resName, uint32_t num, char **resultValue);
+
+/**
+ * @brief Obtains the singular-plural character string represented.
+ *
+ * Obtains the singular-plural character string represented by the ID string corresponding to the specified number.
+ * You need to call free() to release the memory for the string.
+ *
+ * @param mgr Indicates the pointer to {@link NativeResourceManager}
+ *        {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Indicates the resource ID.
+ * @param num - an integer used to get the correct string for the current plural rules.
+ * @param resultValue the result write to resultValue.
+ * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
+ * @return {@link SUCCESS} 0 - Success.
+ *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
+           Possible causes: Incorrect parameter types.
+           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
+           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @since 18
+ */
+ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeResourceManager *mgr, uint32_t resId,
+    uint32_t num, char **resultValue, ...);
+
+/**
+ * @brief Obtains the singular-plural character string represented.
+ *
+ * Obtains the singular-plural character string represented by the ID string corresponding to the specified number.
+ * You need to call free() to release the memory for the string.
+ *
+ * @param mgr Indicates the pointer to {@link NativeResourceManager}
+ *        {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Indicates the resource ID.
+ * @param num - a double parameter used to get the correct string for the current plural rules.
+ * @param resultValue the result write to resultValue.
+ * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
+ * @return {@link SUCCESS} 0 - Success.
+ *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
+           Possible causes: Incorrect parameter types.
+           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
+           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @since 18
+ */
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeResourceManager *mgr, uint32_t resId,
+    double num, char **resultValue, ...);
+
+/**
+ * @brief Obtains the singular-plural character string represented.
+ *
+ * Obtains the singular-plural character string represented by the Name string corresponding to the specified number.
+ * You need to call free() to release the memory for the string.
+ *
+ * @param mgr Indicates the pointer to {@link NativeResourceManager}
+ *        {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Indicates the resource name.
+ * @param num - an integer used to get the correct string for the current plural rules.
+ * @param resultValue the result write to resultValue.
+ * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
+ * @return {@link SUCCESS} 0 - Success.
+ *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
+           Possible causes: Incorrect parameter types.
+           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
+           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @since 18
+ */
+ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const NativeResourceManager *mgr,
+    const char *resName, uint32_t num, char **resultValue, ...);
+
+/**
+ * @brief Obtains the singular-plural character string represented.
+ *
+ * Obtains the singular-plural character string represented by the Name string corresponding to the specified number.
+ * You need to call free() to release the memory for the string.
+ *
+ * @param mgr Indicates the pointer to {@link NativeResourceManager}
+ *        {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Indicates the resource name.
+ * @param num - a double parameter used to get the correct string for the current plural rules.
+ * @param resultValue the result write to resultValue.
+ * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
+ * @return {@link SUCCESS} 0 - Success.
+ *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
+           Possible causes: Incorrect parameter types.
+           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
+           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @since 18
+ */
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const NativeResourceManager *mgr,
+    const char *resName, double num, char **resultValue, ...);
 
 /**
  * @brief Obtains the color resource.

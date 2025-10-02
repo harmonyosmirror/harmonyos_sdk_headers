@@ -307,7 +307,119 @@ typedef enum OH_Rdb_ErrCode {
     /**
      * @brief The error when the connection count is used up.
      */
-    RDB_E_CON_OVER_LIMIT = (E_BASE + 48)
+    RDB_E_CON_OVER_LIMIT = (E_BASE + 48),
+
+    /**
+     * @brief Database already closed.
+     *
+     * @since 18
+     */
+    RDB_E_ALREADY_CLOSED = (E_BASE + 50),
+
+    /**
+     * @brief The database does not respond.
+     *
+     * @since 18
+     */
+    RDB_E_DATABASE_BUSY = (E_BASE + 51),
+
+    /**
+     * @brief Database corrupted.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_CORRUPT = (E_BASE + 52),
+
+    /**
+     * @brief SQLite: Access permission denied.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_PERM = (E_BASE + 53),
+
+    /**
+     * @brief SQLite: The database file is locked.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_BUSY = (E_BASE + 54),
+
+    /**
+     * @brief SQLite: A table in the database is locked.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_LOCKED = (E_BASE + 55),
+
+    /**
+     * @brief SQLite: The database is out of memory.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_NOMEM = (E_BASE + 56),
+
+    /**
+     * @brief SQLite: Attempt to write a readonly database.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_READONLY = (E_BASE + 57),
+
+    /**
+     * @brief SQLite: Some kind of disk I/O error occurred.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_IOERR = (E_BASE + 58),
+
+    /**
+     * @brief SQLite: The database is full.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_FULL = (E_BASE + 59),
+
+    /**
+     * @brief SQLite: Unable to open the database file.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_CANT_OPEN = (E_BASE + 60),
+
+    /**
+     * @brief SQLite: TEXT or BLOB exceeds size limit.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_TOO_BIG = (E_BASE + 61),
+
+    /**
+     * @brief SQLite: Data type mismatch.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_MISMATCH = (E_BASE + 62),
+
+    /**
+     * @brief Data value type is null.
+     *
+     * @since 18
+     */
+    RDB_E_DATA_TYPE_NULL = (E_BASE + 63),
+
+    /**
+     * @brief Data value type mismatch.
+     *
+     * @since 18
+     */
+    RDB_E_TYPE_MISMATCH = (E_BASE + 64),
+
+    /**
+     * @brief SQLite: Abort due to constraint violation.
+     *
+     * @since 18
+     */
+    RDB_E_SQLITE_CONSTRAINT = (E_BASE + 65),
 } OH_Rdb_ErrCode;
 
 #ifdef __cplusplus

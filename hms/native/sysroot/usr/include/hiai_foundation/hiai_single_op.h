@@ -8,19 +8,23 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @syscap SystemCapability.AI.HiAIFoundation
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_single_op.h}
  */
 
 /**
  * @file hiai_single_op.h
- * @kit HiAIFoundationKit
- * @library libhiai_foundation.so
  *
  * @brief Defines the single-operator APIs of HiAI Foundation, which is used for creating and calculating single
  * operators, and managing tensors and buffers.
  *
+ * @library libhiai_foundation.so
+ * @syscap SystemCapability.AI.HiAIFoundation
+ * @kit HiAIFoundationKit
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_single_op.h}
  */
 
 #ifndef HIAI_FOUNDATION_SINGLE_OP_H
@@ -36,6 +40,8 @@ extern "C" {
 /**
  * @brief Defines the single op tensor data type enums.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpDataType}
  */
 typedef enum {
     /** float. */
@@ -49,6 +55,8 @@ typedef enum {
 /**
  * @brief Defines the single op tensor formats.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpFormat}
  */
 typedef enum {
     /** NCHW format. */
@@ -70,6 +78,8 @@ typedef enum {
 /**
  * @brief Single op tensor description handle.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpTensorDesc}
  */
 typedef struct HiAI_SingleOpTensorDesc HiAI_SingleOpTensorDesc;
 
@@ -100,6 +110,8 @@ typedef struct HiAI_SingleOpTensorDesc HiAI_SingleOpTensorDesc;
  * @return Returns the pointer to {@link HiAI_SingleOpTensorDesc} if the operation is successful; returns a null
  * pointer otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_Create}
  */
 HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensorDesc_Create(const int64_t* dims, size_t dimNum,
     HiAI_SingleOpDataType dataType, HiAI_SingleOpFormat format, bool isVirtual);
@@ -113,6 +125,8 @@ HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensorDesc_Create(const int64_t* dims, 
  * Otherwise, 0 is returned.
  * @return Number of dimensions of the tensor. If the execution fails, 0 is returned.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetDimensionCount}
  */
 size_t HMS_HiAISingleOpTensorDesc_GetDimensionCount(const HiAI_SingleOpTensorDesc* tensorDesc);
 
@@ -127,6 +141,8 @@ size_t HMS_HiAISingleOpTensorDesc_GetDimensionCount(const HiAI_SingleOpTensorDes
  * @param index Index of a dimension. The index starts from 0.
  * @return Length of the dimension whose index is <b>index</b>. If the execution fails, 0 is returned.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetDimension}
  */
 int64_t HMS_HiAISingleOpTensorDesc_GetDimension(const HiAI_SingleOpTensorDesc* tensorDesc, size_t index);
 
@@ -139,6 +155,8 @@ int64_t HMS_HiAISingleOpTensorDesc_GetDimension(const HiAI_SingleOpTensorDesc* t
  * Otherwise, <b>HIAI_SINGLEOP_DT_UNDEFINED</b> is returned.
  * @return Data type of the tensor.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetDataType}
  */
 HiAI_SingleOpDataType HMS_HiAISingleOpTensorDesc_GetDataType(const HiAI_SingleOpTensorDesc* tensorDesc);
 
@@ -151,6 +169,8 @@ HiAI_SingleOpDataType HMS_HiAISingleOpTensorDesc_GetDataType(const HiAI_SingleOp
  * Otherwise, <b>HIAI_SINGLEOP_FORMAT_RESERVED</b> is returned.
  * @return Tensor format.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetFormat}
  */
 HiAI_SingleOpFormat HMS_HiAISingleOpTensorDesc_GetFormat(const HiAI_SingleOpTensorDesc* tensorDesc);
 
@@ -167,6 +187,8 @@ HiAI_SingleOpFormat HMS_HiAISingleOpTensorDesc_GetFormat(const HiAI_SingleOpTens
  * Otherwise, false is returned.
  * @return Returns true if the tensor is a virtual tensor; returns false otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_IsVirtual}
  */
 bool HMS_HiAISingleOpTensorDesc_IsVirtual(const HiAI_SingleOpTensorDesc* tensorDesc);
 
@@ -181,6 +203,8 @@ bool HMS_HiAISingleOpTensorDesc_IsVirtual(const HiAI_SingleOpTensorDesc* tensorD
  * Otherwise, 0 is returned.
  * @return Number of data bytes of the tensor.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetByteSize}
  */
 size_t HMS_HiAISingleOpTensorDesc_GetByteSize(const HiAI_SingleOpTensorDesc* tensorDesc);
 
@@ -193,12 +217,16 @@ size_t HMS_HiAISingleOpTensorDesc_GetByteSize(const HiAI_SingleOpTensorDesc* ten
  * @param tensorDesc Double pointer to the {@link HiAI_SingleOpTensorDesc} object. <b>tensorDesc</b> and
  * <b>*tensorDesc</b> cannot be null pointers.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_Destroy}
  */
 void HMS_HiAISingleOpTensorDesc_Destroy(HiAI_SingleOpTensorDesc** tensorDesc);
 
 /**
  * @brief Single op buffer handle.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpBuffer}
  */
 typedef struct HiAI_SingleOpBuffer HiAI_SingleOpBuffer;
 
@@ -214,6 +242,8 @@ typedef struct HiAI_SingleOpBuffer HiAI_SingleOpBuffer;
  * @return Returns the pointer to {@link HiAI_SingleOpBuffer} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_Create}
  */
 HiAI_SingleOpBuffer* HMS_HiAISingleOpBuffer_Create(size_t dataSize);
 
@@ -226,6 +256,8 @@ HiAI_SingleOpBuffer* HMS_HiAISingleOpBuffer_Create(size_t dataSize);
  * 0 is returned.
  * @return Size of the buffer, in bytes.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_GetSize}
  */
 size_t HMS_HiAISingleOpBuffer_GetSize(const HiAI_SingleOpBuffer* buffer);
 
@@ -238,6 +270,8 @@ size_t HMS_HiAISingleOpBuffer_GetSize(const HiAI_SingleOpBuffer* buffer);
  * null pointer is returned.
  * @return Memory address of the buffer.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_GetData}
  */
 void* HMS_HiAISingleOpBuffer_GetData(const HiAI_SingleOpBuffer* buffer);
 
@@ -252,12 +286,16 @@ void* HMS_HiAISingleOpBuffer_GetData(const HiAI_SingleOpBuffer* buffer);
  * @return Function execution result. If the operation is successful, OH_NN_SUCCESS is returned. If the operation
  * fails, an error code is returned. For details about the error codes, please refer to {@link OH_NN_ReturnCode}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_Destroy}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpBuffer_Destroy(HiAI_SingleOpBuffer** buffer);
 
 /**
  * @brief Single op tensor handle.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpTensor}
  */
 typedef struct HiAI_SingleOpTensor HiAI_SingleOpTensor;
 
@@ -281,6 +319,8 @@ typedef struct HiAI_SingleOpTensor HiAI_SingleOpTensor;
  * @return Returns the pointer to {@link HiAI_SingleOpTensor} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_CreateFromTensorDesc}
  */
 HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromTensorDesc(const HiAI_SingleOpTensorDesc* desc);
 
@@ -308,6 +348,8 @@ HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromTensorDesc(const HiAI_Sing
  * @return Returns the pointer to {@link HiAI_SingleOpTensor} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_CreateFromSingleOpBuffer}
  */
 HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromSingleOpBuffer(const HiAI_SingleOpTensorDesc* desc,
     void* data, size_t dataSize);
@@ -334,6 +376,8 @@ HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromSingleOpBuffer(const HiAI_
  * @return Returns the pointer to {@link HiAI_SingleOpTensor} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_CreateFromConst}
  */
 HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromConst(const HiAI_SingleOpTensorDesc* desc, void* data,
     size_t dataSize);
@@ -348,6 +392,8 @@ HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromConst(const HiAI_SingleOpT
  * null pointer is returned.
  * @return Returns the pointer to the {@link HiAI_SingleOpTensorDesc} object.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_GetTensorDesc}
  */
 HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensor_GetTensorDesc(const HiAI_SingleOpTensor* tensor);
 
@@ -360,6 +406,8 @@ HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensor_GetTensorDesc(const HiAI_SingleO
  * null pointer is returned.
  * @return Returns the pointer to the {@link HiAI_SingleOpBuffer} object.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_GetBuffer}
  */
 HiAI_SingleOpBuffer* HMS_HiAISingleOpTensor_GetBuffer(const HiAI_SingleOpTensor* tensor);
 
@@ -374,12 +422,16 @@ HiAI_SingleOpBuffer* HMS_HiAISingleOpTensor_GetBuffer(const HiAI_SingleOpTensor*
  * @return Function execution result. If the operation is successful, OH_NN_SUCCESS is returned. If the operation
  * fails, an error code is returned. For details about the error codes, please refer to {@link OH_NN_ReturnCode}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_Destroy}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpTensor_Destroy(HiAI_SingleOpTensor** tensor);
 
 /**
  * @brief Single op option handle.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpOptions}
  */
 typedef struct HiAI_SingleOpOptions HiAI_SingleOpOptions;
 
@@ -392,6 +444,8 @@ typedef struct HiAI_SingleOpOptions HiAI_SingleOpOptions;
  * @return Returns the pointer to {@link HiAI_SingleOpOptions} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpOptions_Create}
  */
 HiAI_SingleOpOptions* HMS_HiAISingleOpOptions_Create(void);
 
@@ -404,12 +458,16 @@ HiAI_SingleOpOptions* HMS_HiAISingleOpOptions_Create(void);
  * @param options Double pointer to the {@link HiAI_SingleOpOptions} object. <b>options</b> and <b>*options</b> cannot
  * be null pointers, otherwise the destroying fails.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpOptions_Destroy}
  */
 void HMS_HiAISingleOpOptions_Destroy(HiAI_SingleOpOptions** options);
 
 /**
  * @brief Defines the single op convolution mode enums.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpConvMode}
  */
 typedef enum {
     /** Common convolution. */
@@ -423,6 +481,8 @@ typedef enum {
 /**
  * @brief Defines the single op padding mode enums.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpPadMode}
  */
 typedef enum {
     /** If no padding algorithm is set, padding settings specified by parameter <b>pads</b> will apply. */
@@ -452,12 +512,16 @@ typedef enum {
 /**
  * @brief Single op operation description handle.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpDescriptor}
  */
 typedef struct HiAI_SingleOpDescriptor HiAI_SingleOpDescriptor;
 
 /**
  * @brief HiAISingleOpDescriptor_CreateConvolution input parameters.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAISingleOpDescriptor_ConvolutionParam}
  */
 typedef struct HiAISingleOpDescriptor_ConvolutionParam {
     /** Convolution mode.*/
@@ -504,6 +568,8 @@ typedef struct HiAISingleOpDescriptor_ConvolutionParam {
  * @return Returns the pointer to {@link HiAI_SingleOpDescriptor} if the operation is successful; returns a null
  * pointer otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpDescriptor_CreateConvolution}
  */
 HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateConvolution(
     HiAISingleOpDescriptor_ConvolutionParam param);
@@ -511,6 +577,8 @@ HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateConvolution(
 /**
  * @brief Defines the single op activation mode enums.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpActivationType}
  */
 typedef enum {
     /** ReLU. */
@@ -532,6 +600,8 @@ typedef enum {
  * @return Returns the pointer to {@link HiAI_SingleOpDescriptor} if the operation is successful; returns a null
  * pointer otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpDescriptor_CreateActivation}
  */
 HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateActivation(
     HiAI_SingleOpActivationType activationType, float coef);
@@ -545,12 +615,16 @@ HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateActivation(
  * @param opDesc Double pointer to the {@link HiAI_SingleOpDescriptor} object. <b>opDesc</b> and <b>*opDesc</b> cannot
  * be null pointers, otherwise the destroying fails.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpDescriptor_Destroy}
  */
 void HMS_HiAISingleOpDescriptor_Destroy(HiAI_SingleOpDescriptor** opDesc);
 
 /**
  * @brief Defines the single op support status enums.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpSupportStatus}
  */
 typedef enum {
     /**
@@ -567,6 +641,8 @@ typedef enum {
 /**
  * @brief HMS_HiAISingleOpExecutor_CreateConvolution input parameters.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpExecutorConvolutionParam}
  */
 typedef struct HiAI_SingleOpExecutorConvolutionParam {
     /**
@@ -601,6 +677,8 @@ typedef struct HiAI_SingleOpExecutorConvolutionParam {
 /**
  * @brief HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation input parameters.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpExecutorFusedConvolutionActivationParam}
  */
 typedef struct HiAI_SingleOpExecutorFusedConvolutionActivationParam {
     /**
@@ -647,6 +725,8 @@ typedef struct HiAI_SingleOpExecutorFusedConvolutionActivationParam {
  * @param param Refer to {@link HiAI_SingleOpExecutorConvolutionParam} for details of the input parameters.
  * @return Support status. For details about the status, please refer to {@link HiAI_SingleOpSupportStatus}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_PreCheckConvolution}
  */
 HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckConvolution(
     HiAI_SingleOpExecutorConvolutionParam param);
@@ -663,6 +743,8 @@ HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckConvolution(
  * input parameters.
  * @return Support status. For details about the status, please refer to {@link HiAI_SingleOpSupportStatus}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_PreCheckFusedConvolutionActivation}
  */
 HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckFusedConvolutionActivation(
     HiAI_SingleOpExecutorFusedConvolutionActivationParam param);
@@ -670,6 +752,8 @@ HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckFusedConvolutionActi
 /**
  * @brief Single op executor handle.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_SingleOpExecutor}
  */
 typedef struct HiAI_SingleOpExecutor HiAI_SingleOpExecutor;
 
@@ -689,6 +773,8 @@ typedef struct HiAI_SingleOpExecutor HiAI_SingleOpExecutor;
  * @return Returns the pointer to {@link HiAI_SingleOpExecutor} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_CreateConvolution}
  */
 HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateConvolution(
     HiAI_SingleOpExecutorConvolutionParam param);
@@ -710,6 +796,8 @@ HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateConvolution(
  * @return Returns the pointer to {@link HiAI_SingleOpExecutor} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation}
  */
 HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation(
     HiAI_SingleOpExecutorFusedConvolutionActivationParam param);
@@ -729,6 +817,8 @@ HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation
  * @return Function execution result. If the operation is successful, OH_NN_SUCCESS is returned. If the operation
  * fails, an error code is returned. For details about the error codes, please refer to {@link OH_NN_ReturnCode}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_UpdateOutputTensorDesc}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_UpdateOutputTensorDesc(const HiAI_SingleOpExecutor* executor,
     uint32_t index, HiAI_SingleOpTensorDesc* output);
@@ -747,6 +837,8 @@ OH_NN_ReturnCode HMS_HiAISingleOpExecutor_UpdateOutputTensorDesc(const HiAI_Sing
  * 0 is returned.
  * @return Size of the workspace, in bytes.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_GetWorkspaceSize}
  */
 size_t HMS_HiAISingleOpExecutor_GetWorkspaceSize(const HiAI_SingleOpExecutor* executor);
 
@@ -765,6 +857,8 @@ size_t HMS_HiAISingleOpExecutor_GetWorkspaceSize(const HiAI_SingleOpExecutor* ex
  * @return Function execution result. If the operation is successful, OH_NN_SUCCESS is returned. If the operation
  * fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_Init}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Init(HiAI_SingleOpExecutor* executor, void* workspace,
     size_t workspaceSize);
@@ -778,13 +872,15 @@ OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Init(HiAI_SingleOpExecutor* executor, 
  *
  * @param executor Pointer to the {@link HiAI_SingleOpExecutor} object. The value cannot be a null pointer. Otherwise,
  * an error code is returned.
- * @param input[] Array of input tensors.
+ * @param input Array of input tensors.
  * @param inputNum Number of input tensors.
- * @param output[] Array of output tensors.
+ * @param output Array of output tensors.
  * @param outputNum Number of output tensors.
  * @return Function execution result. If the operation is successful, OH_NN_SUCCESS is returned. If the operation
  * fails, an error code is returned. For details about the error codes, please refer to {@link OH_NN_ReturnCode}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_Execute}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Execute(HiAI_SingleOpExecutor* executor,
     HiAI_SingleOpTensor* input[], int32_t inputNum, HiAI_SingleOpTensor* output[], int32_t outputNum);
@@ -803,6 +899,8 @@ OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Execute(HiAI_SingleOpExecutor* executo
  * @return Function execution result. If the operation is successful, OH_NN_SUCCESS is returned. If the operation
  * fails, an error code is returned. For details about the error codes, please refer to {@link OH_NN_ReturnCode}.
  * @since 5.0.0(12)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_Destroy}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Destroy(HiAI_SingleOpExecutor** executor);
 

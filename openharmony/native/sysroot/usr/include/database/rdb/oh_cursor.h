@@ -48,49 +48,10 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "database/data/data_asset.h"
+#include "database/data/oh_data_value.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief Indicates the column type.
- *
- * @since 10
- */
-typedef enum OH_ColumnType {
-    /**
-     * Indicates the column type is NULL.
-     */
-    TYPE_NULL = 0,
-    /**
-     * Indicates the column type is INT64.
-     */
-    TYPE_INT64,
-    /**
-     * Indicates the column type is REAL.
-     */
-    TYPE_REAL,
-    /**
-     * Indicates the column type is TEXT.
-     */
-    TYPE_TEXT,
-    /**
-     * Indicates the column type is BLOB.
-     */
-    TYPE_BLOB,
-    /**
-     * Indicates the column type is {@link Data_Asset}.
-     *
-     * @since 11
-     */
-    TYPE_ASSET,
-    /**
-     * Indicates the column type is array of {@link Data_Asset}.
-     *
-     * @since 11
-     */
-    TYPE_ASSETS
-} OH_ColumnType;
 
 /**
  * @brief Define the OH_Cursor structure type.
@@ -302,6 +263,58 @@ struct OH_Cursor {
      */
     int (*getAssets)(OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uint32_t *length);
 };
+
+/**
+ * @brief Get float array data size of the requested column from OH_Cursor object.
+ *
+ * @param cursor Represents a pointer to an instance of OH_Cursor.
+ * @param columnIndex Indicates the zero-based column index.
+ * @param length Represents the size of float array. It is an output parameter.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_STEP_RESULT_CLOSED} the result set has been closed.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ * @since 18
+ */
+int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length);
+
+/**
+ * @brief Obtains the value of the requested column as a float array.
+ *
+ * @param cursor Represents a pointer to an instance of OH_Cursor.
+ * @param columnIndex Indicates the zero-based column index.
+ * @param val Represents a pointer to float array. The caller needs to apply for data memory.
+ * This function only fills data. Otherwise, the execution fails.
+ * @param inLen Represents the size of val. It can be obtained through the OH_Cursor_GetFloatVectorCount function.
+ * @param outLen Represents the actual amount of data obtained. It is an output parameter.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_STEP_RESULT_CLOSED} the result set has been closed.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ * @see OH_Cursor_GetFloatVectorCount.
+ * @since 18
+ */
+int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen);
 
 #ifdef __cplusplus
 };

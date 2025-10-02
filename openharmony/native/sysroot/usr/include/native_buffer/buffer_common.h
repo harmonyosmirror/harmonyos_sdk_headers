@@ -19,13 +19,12 @@
  *
  * @brief Provides the common types for native buffer.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 12
  * @version 1.0
  */
 
 /**
- * @file native_buffer.h
+ * @file buffer_common.h
  *
  * @brief Defines the common types for native buffer.
  *

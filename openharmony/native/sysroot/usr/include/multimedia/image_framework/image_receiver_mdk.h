@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for obtaining image data from the native layer.
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */
@@ -30,7 +30,9 @@
  * @brief Declares the APIs for obtaining image data from the native layer.
  * Need link <b>libimagendk.z.so</b> and <b>libimage_receiverndk.z.so</b>
  *
+ * @library libimage_receiver_ndk.z.so
  * @kit ImageKit
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */

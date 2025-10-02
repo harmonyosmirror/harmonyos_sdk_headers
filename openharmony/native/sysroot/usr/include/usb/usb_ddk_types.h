@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -298,23 +298,45 @@ typedef struct UsbDeviceMemMap {
 typedef enum {
     /** @error The operation is successful. */
     USB_DDK_SUCCESS = 0,
-    /** @error The operation failed. */
+    /** @error The operation failed.
+     *  @deprecate since 16
+     */
     USB_DDK_FAILED = -1,
+    /** @error Permission denied. */
+    USB_DDK_NO_PERM = 201,
     /** @error Invalid parameter. */
-    USB_DDK_INVALID_PARAMETER = -2,
+    USB_DDK_INVALID_PARAMETER = 401,
     /** @error Memory-related error, for example, insufficient memory, memory data copy failure,\n
      * or memory application failure.
      */
-    USB_DDK_MEMORY_ERROR = -3,
-    /** @error Invalid operation. */
-    USB_DDK_INVALID_OPERATION = -4,
-    /** @error Null pointer exception */
+    USB_DDK_MEMORY_ERROR = 27400001,
+    /** @error Null pointer exception
+     *  @deprecate since 16
+     */
     USB_DDK_NULL_PTR = -5,
-    /** @error Device busy. */
+    /** @error Device busy.
+     *  @deprecate since 16
+     */
     USB_DDK_DEVICE_BUSY = -6,
+    /** @error Invalid operation. */
+    USB_DDK_INVALID_OPERATION = 27400002,
+    /** @error Device I/O operation failed. */
+    USB_DDK_IO_FAILED = 27400003,
     /** @error Transmission timeout. */
-    USB_DDK_TIMEOUT = -7
+    USB_DDK_TIMEOUT = 27400004,
 } UsbDdkErrCode;
+
+/**
+ * @brief all usb devices.
+ *
+ * @since 18
+ */
+typedef struct Usb_DeviceArray {
+    /** device id array */
+    uint64_t* deviceIds;
+    /** Number of devices. If the value is 0, no device exists */
+    uint32_t num;
+} Usb_DeviceArray;
 #ifdef __cplusplus
 }
 /** @} */

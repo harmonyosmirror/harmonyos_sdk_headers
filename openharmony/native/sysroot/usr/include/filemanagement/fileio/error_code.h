@@ -24,7 +24,7 @@
 /**
  * @file error_code.h
  * @kit CoreFileKit
- *
+ * @library NA
  * @brief Declare the error codes of file management module.
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 12
@@ -81,3 +81,4 @@ typedef enum FileManagement_ErrCode {
 #endif
 
 #endif // FILE_MANAGEMENT_FILEIO_ERROR_CODE_H
+/** @} */

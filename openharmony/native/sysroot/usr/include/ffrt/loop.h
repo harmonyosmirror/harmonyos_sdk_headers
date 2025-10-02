@@ -14,27 +14,25 @@
  */
 
 /**
- * @addtogroup Ffrt
+ * @addtogroup FFRT
  * @{
  *
- * @brief ffrt provides APIs.
- *
- *
- * @syscap SystemCapability.Resourceschedule.Ffrt.Core
+ * @brief Provides FFRT C APIs.
  *
  * @since 12
  */
 
- /**
+/**
  * @file loop.h
- * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the loop interfaces in C.
+ *
  * @library libffrt.z.so
+ * @kit FunctionFlowRuntimeKit
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 12
- * @version 1.0
  */
+
 #ifndef FFRT_API_C_LOOP_H
 #define FFRT_API_C_LOOP_H
 
@@ -42,7 +40,7 @@
 #include "type_def.h"
 
 /**
- * @brief Defines the ffrt loop type.
+ * @brief Defines the loop handle, which identifies different loops.
  *
  * @since 12
  */
@@ -55,43 +53,39 @@ typedef void* ffrt_loop_t;
  * @return Returns a non-null loop handle if the loop is created;
            returns a null pointer otherwise.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API ffrt_loop_t ffrt_loop_create(ffrt_queue_t queue);
 
 /**
- * @brief Destroys a loop.
+ * @brief Destroys a loop, the user needs to invoke this interface.
  *
  * @param loop Indicates a loop handle.
- * @return returns 0 if the loop is destroyed;
+ * @return Returns 0 if the loop is destroyed;
            returns -1 otherwise.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API int ffrt_loop_destroy(ffrt_loop_t loop);
 
 /**
- * @brief start loop run.
+ * @brief Starts a loop run.
  *
  * @param loop Indicates a loop handle.
- * @return returns -1 if loop run fail;
+ * @return Returns -1 if loop run fail;
            returns 0 otherwise.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API int ffrt_loop_run(ffrt_loop_t loop);
 
 /**
- * @brief stop loop run.
+ * @brief Stops a loop run.
  *
  * @param loop Indicates a loop handle.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop);
 
 /**
- * @brief control an epoll file descriptor on ffrt loop
+ * @brief Controls an epoll file descriptor on ffrt loop.
  *
  * @param loop Indicates a loop handle.
  * @param op Indicates operation on the target file descriptor.
@@ -102,12 +96,11 @@ FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop);
  * @return Returns 0 if success;
            returns -1 otherwise.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void *data, ffrt_poller_cb cb);
 
 /**
- * @brief Start a timer on ffrt loop
+ * @brief Starts a timer on ffrt loop.
  *
  * @param loop Indicates a loop handle.
  * @param timeout Indicates the number of milliseconds that specifies timeout.
@@ -116,22 +109,20 @@ FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t ev
  * @param repeat Indicates whether to repeat this timer.
  * @return Returns a timer handle.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API ffrt_timer_t ffrt_loop_timer_start(
     ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
 
 /**
- * @brief Stop a target timer on ffrt loop
+ * @brief Stops a timer on ffrt loop.
  *
  * @param loop Indicates a loop handle.
  * @param handle Indicates the target timer handle.
  * @return Returns 0 if success;
            returns -1 otherwise.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
-#endif
+#endif // FFRT_API_C_LOOP_H
 /** @} */

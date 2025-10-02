@@ -114,42 +114,42 @@ typedef enum OH_NativeBuffer_Format {
      */
     NATIVEBUFFER_PIXEL_FMT_YUV_422_I,
     /**
-     * YCBCR422 semi-plannar format
+     * YCBCR422 semi-planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP,
     /**
-     * YCRCB422 semi-plannar format
+     * YCRCB422 semi-planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP,
     /**
-     * YCBCR420 semi-plannar format
+     * YCBCR420 semi-planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP,
     /**
-     * YCRCB420 semi-plannar format
+     * YCRCB420 semi-planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP,
     /**
-     * YCBCR422 plannar format
+     * YCBCR422 planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P,
     /**
-     * YCRCB422 plannar format
+     * YCRCB422 planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P,
     /**
-     * YCBCR420 plannar format
+     * YCBCR420 planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P,
     /**
-     * YCRCB420 plannar format
+     * YCRCB420 planar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P,
@@ -256,7 +256,7 @@ typedef enum OH_NativeBuffer_ColorGamut {
 
 /**
  * @brief <b>OH_NativeBuffer</b> config. \n
- * Used to allocating new <b>OH_NativeBuffer</b> andquery parameters if existing ones.
+ * Used to allocating new <b>OH_NativeBuffer</b> and query parameters if existing ones.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 9
@@ -298,7 +298,7 @@ typedef struct {
 /**
  * @brief Alloc a <b>OH_NativeBuffer</b> that matches the passed BufferRequestConfig. \n
  * A new <b>OH_NativeBuffer</b> instance is created each time this function is called.\n
- * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *
@@ -313,7 +313,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc(const OH_NativeBuffer_Config* config);
 
 /**
  * @brief Adds the reference count of a OH_NativeBuffer.\n
- * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *
@@ -353,7 +353,7 @@ void OH_NativeBuffer_GetConfig(OH_NativeBuffer *buffer, OH_NativeBuffer_Config* 
 
 /**
  * @brief Provide direct cpu access to the OH_NativeBuffer in the process's address space.\n
- * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unmap<\b>.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unmap</b>.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
@@ -379,7 +379,7 @@ int32_t OH_NativeBuffer_Map(OH_NativeBuffer *buffer, void **virAddr);
 int32_t OH_NativeBuffer_Unmap(OH_NativeBuffer *buffer);
 
 /**
- * @brief Get the systen wide unique sequence number of the OH_NativeBuffer.\n
+ * @brief Get the system wide unique sequence number of the OH_NativeBuffer.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
@@ -391,14 +391,14 @@ int32_t OH_NativeBuffer_Unmap(OH_NativeBuffer *buffer);
 uint32_t OH_NativeBuffer_GetSeqNum(OH_NativeBuffer *buffer);
 
 /**
- * @brief Provide direct cpu access to the potentially multi-plannar OH_NativeBuffer in the process's address space.\n
+ * @brief Provide direct cpu access to the potentially multi-planar OH_NativeBuffer in the process's address space.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
  * @param virAddr Indicates the address of the <b>OH_NativeBuffer</b> in virtual memory.
  * @param outPlanes Indicates all image planes that contain the pixel data.
- * @return Returns an error code, 0 is sucess, otherwise, failed.
+ * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 12
  * @version 1.0
  */
@@ -411,7 +411,7 @@ int32_t OH_NativeBuffer_MapPlanes(OH_NativeBuffer *buffer, void **virAddr, OH_Na
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param nativeWindowBuffer Indicates the pointer to a <b>OHNativeWindowBuffer</b> instance.
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> pointer.
- * @return Returns an error code, 0 is sucess, otherwise, failed.
+ * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 12
  * @version 1.0
  */

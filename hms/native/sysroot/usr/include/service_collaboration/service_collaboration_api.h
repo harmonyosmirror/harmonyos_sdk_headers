@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for service collaboration capability.
  *
- * @Syscap SystemCapability.Collaboration.Service
+ * @syscap SystemCapability.Collaboration.Service
  * @since 5.0.0(12)
  */
 
@@ -19,6 +19,7 @@
  * @brief Defines the service collaboration APIs of cross device service.
  *
  * @kit ServiceCollaborationKit
+ * @library libservice_collaboration_ndk.z.so
  * @syscap SystemCapability.Collaboration.Service
  * @since 5.0.0(12)
  */
@@ -86,6 +87,16 @@ typedef enum ServiceCollaborationEventCode {
     DATA_READ_FAILED = 1001202009,
     /** Indicates link shutdown. */
     LINK_SHUTDOWN = 1001202011,
+    /**
+     * Link conflict because the peer device has activated its hotspot.
+     * @since 5.1.0(18)
+     */
+    REMOTE_HOTSPOT_CONFLICT = 1001202013,
+    /**
+     * The peer device is connecting to another distributed device.
+     * @since 5.1.0(18)
+     */
+    REMOTE_DISTRIBUTED_SERVICES_CONFLICT = 1001202014,
 } ServiceCollaborationEventCode;
 
 /**
@@ -144,13 +155,20 @@ typedef struct ServiceCollaborationCallback {
     /**
      * @brief Called when the collaboration service state is changed.
      *
-     * @param [in] {@link ServiceCollaborationCode} State of the collaboration service. The value 1001202001
-     * indicates service cancellation from the peer, 1001202002 indicates an network error,
-     * 1001202004 indicates peer wifi not open, 1001202005 indicates local wifi not open,
-     * 1001202006 indicates data will be back with {@link extraCode} indicates data count, 1001202008 indicates auto
-     * canceled by 3 mins timeout, 1001202009 indicates data read failed, 1001202011 indicates link shutdown.
-     * @param [in] The extraCode, value could be total data count with code 1001202006, others for reserved.
-     * @return The return value reserved.
+     * @param [in] {@link ServiceCollaborationCode} State of the collaboration service.
+     * The following values are available:
+     * 1001202001 indicates service cancellation from the peer.
+     * 1001202002 indicates a network error.
+     * 1001202004 indicates that WiFi is not open on the peer device.
+     * 1001202005 indicates that WiFi is not open on the local device.
+     * 1001202006 indicates that data will be sent back, along with {@link extraCode}, which indicates the data count.
+     * 1001202008 indicates the request is automatically canceled due to 3-minute timeout.
+     * 1001202009 indicates a failure in reading data.
+     * 1001202011 indicates that the link is shut down.
+     * 1001202013 indicates link conflict because the peer device has activated its hotspot.
+     * 1001202014 indicates that the peer device is connecting to another distributed device.
+     * @param [in] Extra code. The value could be the total data count within code 1001202006; others are reserved.
+     * @return The return value is reserved.
      *
      * @since 5.0.0(12)
      */
@@ -175,8 +193,8 @@ typedef struct ServiceCollaborationCallback {
 /**
  * @brief Get collaboration devices with supported service filter types.
  *
- * @param [in] The service filter types size.
- * @param [in] {@link ServiceCollaborationFilterType} The service filter types.
+ * @param fileterNum The service filter types size.
+ * @param serviceFileterTypes {@link ServiceCollaborationFilterType} The service filter types.
  * @return The peer devices with its service filter types.
  *
  * @since 5.0.0(12)
@@ -187,8 +205,8 @@ ServiceCollaboration_CollaborationDeviceInfoSets* HMS_ServiceCollaboration_GetCo
 /**
  * @brief start collaboration to selected device.
  *
- * @param [in] {@link ServiceCollaboration_SelectInfo} The selected service info.
- * @param [in] {@link ServiceCollaborationCallback} The service collaboration callback.
+ * @param selectService {@link ServiceCollaboration_SelectInfo} The selected service info.
+ * @param callback {@link ServiceCollaborationCallback} The service collaboration callback.
  * @return The collaborationId.
  *
  * @since 5.0.0(12)
@@ -199,7 +217,7 @@ uint32_t HMS_ServiceCollaboration_StartCollaboration(
 /**
  * @brief stop collaboration to selected device.
  *
- * @param [in] The collaboration id.
+ * @param collaborationId The collaboration id.
  * @return The stop result. 0 indicates success
  *
  * @since 5.0.0(12)

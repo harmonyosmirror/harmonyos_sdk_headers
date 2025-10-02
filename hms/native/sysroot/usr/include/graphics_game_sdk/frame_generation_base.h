@@ -8,20 +8,18 @@
  *
  * @brief Provides APIs for graphics accelerate capability.
  *
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 
 /**
  * @file frame_generation_base.h
- * @kit GraphicsAccelerateKit
  *
  * @brief Defines the graphic-platform-insensitive APIs for Frame Generation.
- *
- * Defines the graphic-platform-insensitive structure and enumration for Frame Generation.
+ *        Defines the graphic-platform-insensitive structure and enumration for Frame Generation.
  *
  * @library libframegeneration.so
  * @syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @kit GraphicsAccelerateKit
  * @since 5.0.0(12)
  */
 
@@ -196,8 +194,8 @@ typedef struct FG_ResolutionInfo {
 
 /**
  * @brief Defines the extended camera information. In cases where the translation component of view-projection
- * matrices may be very large, more detailed camera information can be provided to get more precise predicted
- * effects.
+ *        matrices may be very large, more detailed camera information can be provided to get more precise
+ *        predicted effects.
  * @since 5.0.0(12)
  */
 typedef struct FG_PerFrameExtendedCameraInfo {
@@ -223,6 +221,34 @@ typedef struct FG_PerFrameExtendedCameraInfo {
     /** Translation of the camera relative to origin of world coordinates. */
     FG_Vec3D worldPosition;
 } FG_PerFrameExtendedCameraInfo;
+
+/**
+ * @brief Define the prediction frame present mode, which includes two modes:
+ *        game-side prediction frame present and system-side prediction frame present.
+ * @since 5.1.0(18)
+ */
+typedef enum FG_PresentMode {
+  /** Game allocates and manages prediction frame texture, and is responsible for presenting prediction frames. */
+  FG_PRESENT_BY_GAME = 0,
+  /** System allocates and manages prediction frame texture, and is responsible for presenting prediction frames. */
+  FG_PRESENT_BY_SYSTEM = 1,
+} FG_PresentMode;
+/**
+ * @brief Define the integration information for prediction,  including the present mode,
+ *        whether the game will additionally cache depth and color texture, and whether
+ *        the color texture needs to be flipped.
+ * @since 5.1.0(18)
+ */
+typedef struct {
+    /** Determine which present mode to choose. */
+    FG_PresentMode presentMode;
+    /** Whether the game additionally caches the depth and color texture of the previous frame. */
+    bool textureCachedByGame;
+    /** Whether the input color texture needs to be flipped. */
+    bool needFlipInputColor;
+    /** Whether the output color texture needs to be flipped. */
+    bool needFlipOutputColor;
+} FG_IntegrationInfo;
 
 #ifdef __cplusplus
 }

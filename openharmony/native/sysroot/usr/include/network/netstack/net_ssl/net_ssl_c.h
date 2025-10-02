@@ -109,6 +109,34 @@ int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Ce
  */
 void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
 
+/**
+ * @brief Checks whether the Cleartext traffic is permitted.
+ *
+ * @permission ohos.permission.INTERNET
+ * @return 0 - Success.
+ *         201 - Permission denied.
+ *         401 - Parameter error.
+ * @param isCleartextPermitted Indicates output parameter,
+ *        {@code true} if the Cleartext traffic is permitted, {@code false} otherwise.
+ * @since 18
+ */
+int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted);
+ 
+ 
+/**
+ * @brief Checks whether the Cleartext traffic for a specified hostname is permitted.
+ *
+ * @permission ohos.permission.INTERNET
+ * @return 0 - Success.
+ *         201 - Permission denied.
+ *         401 - Parameter error.
+ * @param hostname Indicates the host name.
+ * @param isCleartextPermitted Indicates output parameter,
+ *        {@code true} if the Cleartext traffic for a specified hostname is permitted, {@code false} otherwise.
+ * @since 18
+ */
+int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted);
+
 #ifdef __cplusplus
 }
 #endif

@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for Device Security.
  *
- * @Syscap SystemCapability.Security.SafetyDetect
+ * @syscap SystemCapability.Security.SafetyDetect
  * @since 5.0.1(13)
  */
 
@@ -21,7 +21,7 @@
  *
  * @kit DeviceSecurityKit
  * @library libdevice_security_mode_ndk.z.so
- * @Syscap SystemCapability.Security.SafetyDetect
+ * @syscap SystemCapability.Security.SafetyDetect
  * @since 5.0.1(13)
  */
 

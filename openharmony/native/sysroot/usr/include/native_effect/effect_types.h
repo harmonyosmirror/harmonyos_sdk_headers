@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_EFFECT_TYPES_H
-#define C_INCLUDE_EFFECT_TYPES_H
-
 /**
  * @addtogroup image
  * @{
@@ -36,6 +33,9 @@
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
+
+#ifndef C_INCLUDE_EFFECT_TYPES_H
+#define C_INCLUDE_EFFECT_TYPES_H
 
 #include <stdint.h>
 #include <stddef.h>

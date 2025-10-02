@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for graphics accelerate capability.
  *
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 
@@ -141,7 +141,10 @@ typedef struct FG_DispatchDescription_VK {
     FG_Mat4x4 invViewProj;
     /** Vulkan command buffer to which Frame Generation will record its commands. */
     VkCommandBuffer vkCommandBuffer;
-    /** Current frame's index. Must be less than `framesInFlight` which was passed to {@link FG_ContextDescription_VK}. */
+    /**
+     * Current frame's index. Must be less than `framesInFlight` which was passed to
+     * {@link FG_ContextDescription_VK}.
+     */
     uint8_t frameIdx;
 } FG_DispatchDescription_VK;
 
@@ -150,7 +153,7 @@ typedef struct FG_DispatchDescription_VK {
  * used to interact with Frame Generation APIs, and is reponsible for the management of the internal resources used by
  * the Frame Generation algorithm.
  *
- * @param [in] contextDescription Pointer to the {@link FG_ContextDescription_VK}.The object specifies the attributes
+ * @param contextDescription Pointer to the {@link FG_ContextDescription_VK}.The object specifies the attributes
  * used to create a frame prediction context instance. The value can not be null.
  * @return Returns the pointer to a {@link FG_Context_VK} context instance.
  * @since 5.0.0(12)
@@ -160,9 +163,9 @@ FG_Context_VK* HMS_FG_CreateContext_VK(const FG_ContextDescription_VK* contextDe
 /**
  * @brief Provide the selection of the prediction mode and motion vector estimation mode of Frame Generation.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] predictionModeInfo Pointer to the {@link FG_AlgorithmModeInfo} instance. The object specifies prediction
+ * @param predictionModeInfo Pointer to the {@link FG_AlgorithmModeInfo} instance. The object specifies prediction
  * mode and motion vector estimation mode. The value can not be null. Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
@@ -173,9 +176,9 @@ FG_ErrorCode HMS_FG_SetAlgorithmMode_VK(FG_Context_VK* context, const FG_Algorit
 /**
  * @brief Provide the resolution in pixels of frame generation input and output images.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] resolutionInfo Pointer to the {@link FG_ResolutionInfo} instance. The object specifies the resolution
+ * @param resolutionInfo Pointer to the {@link FG_ResolutionInfo} instance. The object specifies the resolution
  * in pixels of frame generation input and output images. The value can't be null. Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
@@ -186,9 +189,9 @@ FG_ErrorCode HMS_FG_SetResolution_VK(FG_Context_VK* context, const FG_Resolution
 /**
  * @brief Provide the Z range semantic of projection matrix used by application.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] semantic One of the enumeration values.
+ * @param semantic One of the enumeration values.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
@@ -198,9 +201,9 @@ FG_ErrorCode HMS_FG_SetCvvZSemantic_VK(FG_Context_VK* context, FG_CvvZSemantic s
 /**
  * @brief Provide frame generation input and output image formats.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] format Image format of input scene color, input depth/stencil and final predicted image.
+ * @param format Image format of input scene color, input depth/stencil and final predicted image.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
@@ -210,9 +213,9 @@ FG_ErrorCode HMS_FG_SetImageFormat_VK(FG_Context_VK* context, const FG_ImageForm
 /**
  * @brief This should be called when color buffer is Y axis inverted relative to Depth/Stencil buffer.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] inverted The value is 'true' when color buffer is Y axis inverted relative to Depth/Stencil buffer.
+ * @param inverted The value is 'true' when color buffer is Y axis inverted relative to Depth/Stencil buffer.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
@@ -223,10 +226,10 @@ FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_VK(FG_Context_VK* context,
  * @brief Make connection between user provided images and internal implementation and returns an image instance
  * handle which represents this connection.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] image image handle.
- * @param [in] view image view handle.
+ * @param image Image handle.
+ * @param view Image view handle.
  * @return The image instance handle which represents the connection.
  * @since 5.0.0(12)
  */
@@ -235,9 +238,9 @@ FG_Image_VK* HMS_FG_CreateImage_VK(FG_Context_VK* context, VkImage image, VkImag
 /**
  * @brief Destroy connection between user provided images and internal implementation and destroy the image instance.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null. Otherwise, an error
  * code is returned.
- * @param [in] image FG_Image_VK image instance handle.
+ * @param image FG_Image_VK image instance handle.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
@@ -249,7 +252,7 @@ FG_ErrorCode HMS_FG_DestroyImage_VK(FG_Context_VK* context, FG_Image_VK* image);
  * In order to activate it, some set functions must be called. In case of any errors,
  * the instance is considered to be inactive.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value cannot be null.
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value cannot be null.
  * Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
@@ -260,7 +263,7 @@ FG_ErrorCode HMS_FG_Activate_VK(FG_Context_VK* context);
 /**
  * @brief Deactivate Frame Generation instance on Vulkan platform.
  *
- * @param [in] context  Pointer to the {@link FG_Context_VK} instance. The value cannot be null.
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value cannot be null.
  * Otherwise, an error code is returned.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
@@ -271,8 +274,8 @@ FG_ErrorCode HMS_FG_Deactivate_VK(FG_Context_VK* context);
 /**
  * @brief Query if the frame generation instance is currently activated.
  *
- * @param [in]  context Pointer to the {@link FG_Context_VK} instance.
- * @param [out] isActive Active status of {@link FG_Context_VK} instance.
+ * @param context Pointer to the {@link FG_Context_VK} instance.
+ * @param isActive Active status of {@link FG_Context_VK} instance.
  * 'true' : instance is activated;
  * 'false' : instance is deactivated.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
@@ -284,8 +287,8 @@ FG_ErrorCode HMS_FG_IsActive_VK(FG_Context_VK* context, bool* isActive);
 /**
  * @brief Sets all required data for prediction of a frame to draw predicted frames on Vulkan platform.
  *
- * @param [in] context Pointer to the {@link FG_Context_VK} instance. The value can not be null.
- * @param [in] desc Pointer to the {@link FG_DispatchDescription_VK}. The object specifies the dispatch attributes
+ * @param context Pointer to the {@link FG_Context_VK} instance. The value can not be null.
+ * @param desc Pointer to the {@link FG_DispatchDescription_VK}. The object specifies the dispatch attributes
  * used by executing frame prediction. The value can not be null.
  * @return Function execution result. If the operation is successful, FG_SUCCESS is returned. If the operation fails,
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
@@ -296,13 +299,49 @@ FG_ErrorCode HMS_FG_Dispatch_VK(FG_Context_VK* context, const FG_DispatchDescrip
 /**
  * @brief Destroy Frame Generation instance and memory resource reclamation on Vulkan platform.
  *
- * @param [in] context Level-2 pointer to the {@link FG_Context_VK} instance to destroy.
+ * @param context Level-2 pointer to the {@link FG_Context_VK} instance to destroy.
  * @return Execution result of the function. If the operation is successful, <b>FG_SUCCESS</b> is returned.
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
 FG_ErrorCode HMS_FG_DestroyContext_VK(FG_Context_VK** context);
 
+/**
+ * @brief Set the frame prediction integration information on the vulkan platform.
+ * @param context Pointer to the {@link FG_Context_VK} instance.
+ * The value can not be null. Otherwise, an error code is returned.
+ * @param integrationInfo Include integration information such as present mode,
+ * whether the game caches textures, and whether the color textures need to be flipped.
+ * @return Function execution result. If the operation is successful, FG_SUCCESS is returned. If the operation fails,
+ * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
+ * @since 5.1.0(18)
+ */
+FG_ErrorCode HMS_FG_SetIntegrationMode_VK(FG_Context_VK* context, const FG_IntegrationInfo* integrationInfo);
+
+/**
+ * @brief Select whether to enable the UI prediction feature on the vulkan platform.
+ * This feature can only be enabled in the system present mode. It has no effect in the game present mode.
+ * @param context Pointer to the {@link FG_Context_VK} instance.
+ * The value can not be null. Otherwise, an error code is returned.
+ * @param isEnabled If the parameter is true, the UI prediction feature is enabled. If false, this feature is disabled.
+ * @return Function execution result. If the operation is successful, FG_SUCCESS is returned. If the operation fails,
+ * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
+ * @since 5.1.0(18)
+ */
+FG_ErrorCode HMS_FG_SetUiPredictionEnabled_VK(FG_Context_VK* context, bool isEnabled);
+
+/**
+ * @brief Set the target frame rate after enabling frame prediction on the vulkan platform.
+ * This setting only takes effect in the system present mode and has no impact in the game present mode.
+ * @param context Pointer to the {@link FG_Context_VK} instance.
+ * The value can not be null. Otherwise, an error code is returned.
+ * @param targetFps The parameter is the target frame rate after enabling frame prediction,
+ * setting how many frames present per second.
+ * @return Function execution result. If the operation is successful, FG_SUCCESS is returned. If the operation fails,
+ * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
+ * @since 5.1.0(18)
+ */
+FG_ErrorCode HMS_FG_SetTargetFps_VK(FG_Context_VK* context, int targetFps);
 
 #ifdef __cplusplus
 };

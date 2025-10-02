@@ -111,6 +111,8 @@ OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
 
 /**
  * @brief Get the format info of source.
+ * It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
+ * to be manually released by the caller.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns the source's format info if the execution is successful, otherwise returns nullptr.
@@ -122,6 +124,8 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
 
 /**
  * @brief Get the format info of track.
+ * It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
+ * to be manually released by the caller.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param source Pointer to an OH_AVSource instance.
  * @param trackIndex The track index to get format.
@@ -132,6 +136,21 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
  * @since 10
 */
 OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex);
+
+/**
+ * @brief Get the format info of custom metadata.
+ *
+ * It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
+ * to be manually released by the caller.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @param source Pointer to an OH_AVSource instance.
+ * @return Returns the metadata's format info if the execution is successful, otherwise returns nullptr.
+ * Possible failure causes:
+ * 1. source is invalid.
+ * @since 18
+ */
+OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source);
 
 #ifdef __cplusplus
 }

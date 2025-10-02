@@ -14,57 +14,66 @@
  */
 
 /**
- * @addtogroup Ffrt
+ * @addtogroup FFRT
  * @{
  *
- * @brief ffrt provides APIs.
- *
- *
- * @syscap SystemCapability.Resourceschedule.Ffrt.Core
+ * @brief Provides FFRT C APIs.
  *
  * @since 10
  */
 
 /**
  * @file queue.h
- * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the queue interfaces in C.
+ *
  * @library libffrt.z.so
+ * @kit FunctionFlowRuntimeKit
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
- * @version 1.0
  */
+
 #ifndef FFRT_API_C_QUEUE_H
 #define FFRT_API_C_QUEUE_H
 
 #include "type_def.h"
 
+/**
+ * @brief Enumerates the queue types.
+ *
+ * @since 12
+ */
 typedef enum {
+    /** Serial queue. */
     ffrt_queue_serial,
+    /** Concurrent queue. */
     ffrt_queue_concurrent,
+    /** Invalid queue. */
     ffrt_queue_max
 } ffrt_queue_type_t;
 
+/**
+ * @brief Defines the queue handle, which identifies different queues.
+ *
+ * @since 10
+ */
 typedef void* ffrt_queue_t;
 
 /**
- * @brief Initializes the queue attribute.
+ * @brief Initializes a queue attribute.
  *
  * @param attr Indicates a pointer to the queue attribute.
  * @return Returns <b>0</b> if the queue attribute is initialized;
            returns <b>-1</b> otherwise.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 
 /**
- * @brief Destroys a queue attribute.
+ * @brief Destroys a queue attribute, the user needs to invoke this interface.
  *
  * @param attr Indicates a pointer to the queue attribute.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 
@@ -74,77 +83,71 @@ FFRT_C_API void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
  * @param attr Indicates a pointer to the queue attribute.
  * @param qos Indicates the QoS.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos);
 
 /**
- * @brief Obtains the QoS of a queue attribute.
+ * @brief Gets the QoS of a queue attribute.
  *
  * @param attr Indicates a pointer to the queue attribute.
  * @return Returns the QoS.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
 
 /**
- * @brief Set the serial queue task execution timeout.
+ * @brief Sets the execution timeout of a serial queue attribute.
  *
- * @param attr Serial Queue Property Pointer.
+ * The lower limit of timeout value is 1 ms, if the value is less than 1 ms, it will be set to 1 ms.
+ *
+ * @param attr Serial queue attribute pointer.
  * @param timeout_us Serial queue task execution timeout.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us);
 
 /**
- * @brief Get the serial queue task execution timeout.
+ * @brief Gets the execution timeout of a serial queue attribute.
  *
- * @param attr Serial Queue Property Pointer.
+ * @param attr Serial queue attribute pointer.
  * @return Returns the serial queue task execution timeout.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
 
 /**
- * @brief Set the serial queue timeout callback function.
+ * @brief Sets the timeout callback function of a serial queue attribute.
  *
- * @param attr Serial Queue Property Pointer.
+ * @param attr Serial queue attribute pointer.
  * @param f Serial queue timeout callback function.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f);
 
 /**
- * @brief Get the serial queue task timeout callback function.
+ * @brief Gets the timeout callback function of a serial queue attribute.
  *
- * @param attr Serial Queue Property Pointer.
+ * @param attr Serial queue attribute pointer.
  * @return Returns the serial queue task timeout callback function.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr);
 
 /**
- * @brief Set the queue max concurrency.
+ * @brief Sets the queue max concurrency of a queue attribute.
  *
- * @param attr Queue Property Pointer.
+ * @param attr Queue attribute pointer.
  * @param max_concurrency queue max_concurrency.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
 
 /**
- * @brief Get the queue max concurrency.
+ * @brief Gets the queue max concurrency of a queue attribute.
  *
- * @param attr Queue Property Pointer.
+ * @param attr Queue attribute pointer.
  * @return Returns the queue max concurrency.
  * @since 12
- * @version 1.0
  */
 FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 
@@ -157,16 +160,14 @@ FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr
  * @return Returns a non-null queue handle if the queue is created;
            returns a null pointer otherwise.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr);
 
 /**
- * @brief Destroys a queue.
+ * @brief Destroys a queue, the user needs to invoke this interface.
  *
  * @param queue Indicates a queue handle.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_destroy(ffrt_queue_t queue);
 
@@ -177,7 +178,6 @@ FFRT_C_API void ffrt_queue_destroy(ffrt_queue_t queue);
  * @param f Indicates a pointer to the task executor.
  * @param attr Indicates a pointer to the task attribute.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 
@@ -190,7 +190,6 @@ FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f,
  * @return Returns a non-null task handle if the task is submitted;
            returns a null pointer otherwise.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h(
     ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
@@ -200,7 +199,6 @@ FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h(
  *
  * @param handle Indicates a task handle.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle);
 
@@ -211,27 +209,25 @@ FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle);
  * @return Returns <b>0</b> if the task is canceled;
            returns <b>-1</b> otherwise.
  * @since 10
- * @version 1.0
  */
 FFRT_C_API int ffrt_queue_cancel(ffrt_task_handle_t handle);
 
 /**
- * @brief Get application main thread queue.
+ * @brief Gets the application main thread queue.
  *
  * @return Returns application main thread queue.
  * @since 12
- * @version 1.0
  */
-FFRT_C_API ffrt_queue_t ffrt_get_main_queue();
+FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void);
 
 /**
- * @brief Get application worker(ArkTs) thread queue.
+ * @brief Gets the application worker(ArkTs) thread queue.
  *
  * @return Returns application worker(ArkTs) thread queue.
+ * @deprecated since 18
  * @since 12
- * @version 1.0
  */
-FFRT_C_API ffrt_queue_t ffrt_get_current_queue();
+FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void);
 
 #endif // FFRT_API_C_QUEUE_H
 /** @} */

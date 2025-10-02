@@ -8,21 +8,25 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_options.h}
  */
 
 /**
  * @file hiai_options.h
- * @kit HiAIFoundationKit
- * @library libhiai_foundation.so
  *
  * @brief Defines the API for build options.
  *
  * Allows you to update model shapes, and set dynamic shapes, data layout formats, operator fusion strategies,
  * quantization configurations, operator-level tuning, model-level tuning, assisted tuning, and bandwidth modes.
  *
+ * @library libhiai_foundation.so
+ * @syscap SystemCapability.AI.HiAIFoundation
+ * @kit HiAIFoundationKit
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_options.h}
  */
 #ifndef HIAI_FOUNDATION_OPTIONS_H
 #define HIAI_FOUNDATION_OPTIONS_H
@@ -47,6 +51,8 @@ extern "C" {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetInputTensorShapes}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetInputTensorShapes(
     OH_NNCompilation* compilation, NN_TensorDesc* inputTensorDescs[], size_t shapeCount);
@@ -58,6 +64,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetInputTensorShapes(
  * @return Returns the number of shape descriptions among the build options if the operation is successful; returns 0
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetInputTensorShapeSize}
  */
 size_t HMS_HiAIOptions_GetInputTensorShapeSize(const OH_NNCompilation* compilation);
 
@@ -70,12 +78,16 @@ size_t HMS_HiAIOptions_GetInputTensorShapeSize(const OH_NNCompilation* compilati
  * @return Returns the shape description among the build options if the operation is successful; returns a null pointer
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetInputTensorShape}
  */
 NN_TensorDesc* HMS_HiAIOptions_GetInputTensorShape(const OH_NNCompilation* compilation, size_t index);
 
 /**
  * @brief Data layout formats during model building.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_FormatMode}
  */
 typedef enum {
     /** NCHW format (default value). */
@@ -95,6 +107,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetFormatMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetFormatMode(OH_NNCompilation* compilation, HiAI_FormatMode formatMode);
 
@@ -105,12 +119,16 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetFormatMode(OH_NNCompilation* compilation, Hi
  * is returned.
  * @return Returns {@link HiAI_FormatModeOption} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetFormatMode}
  */
 HiAI_FormatMode HMS_HiAIOptions_GetFormatMode(const OH_NNCompilation* compilation);
 
 /**
  * @brief Indicates whether to enable variable shapes before model building.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_DynamicShapeStatus}
  */
 typedef enum {
     /** Disables variable shapes before model building. This is the default value. */
@@ -122,6 +140,8 @@ typedef enum {
 /**
  * @brief Modes supported for the variable shapes before model building.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_DynamicShapeCacheMode}
  */
 typedef enum {
     /** Caches the built model. This is the default mode and features small memory usage. */
@@ -144,6 +164,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDynamicShapeStatus}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeStatus(
     OH_NNCompilation* compilation, HiAI_DynamicShapeStatus status);
@@ -161,6 +183,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeStatus(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDynamicShapeMaxCache}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeMaxCache(
     OH_NNCompilation* compilation, size_t maxCacheCount);
@@ -178,6 +202,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeMaxCache(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDynamicShapeCacheMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeCacheMode(
     OH_NNCompilation* compilation, HiAI_DynamicShapeCacheMode mode);
@@ -189,6 +215,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeCacheMode(
  * is returned.
  * @return Returns {@link HiAI_DynamicShapeStatus} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDynamicShapeStatus}
  */
 HiAI_DynamicShapeStatus HMS_HiAIOptions_GetDynamicShapeStatus(const OH_NNCompilation* compilation);
 
@@ -198,6 +226,8 @@ HiAI_DynamicShapeStatus HMS_HiAIOptions_GetDynamicShapeStatus(const OH_NNCompila
  * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the maximum number of caches if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDynamicShapeMaxCache}
  */
 size_t HMS_HiAIOptions_GetDynamicShapeMaxCache(const OH_NNCompilation* compilation);
 
@@ -209,12 +239,16 @@ size_t HMS_HiAIOptions_GetDynamicShapeMaxCache(const OH_NNCompilation* compilati
  * @return Returns {@link HiAI_DynamicShapeCacheMode} if the operation is successful; returns the default value
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDynamicShapeCacheMode}
  */
 HiAI_DynamicShapeCacheMode HMS_HiAIOptions_GetDynamicShapeCacheMode(const OH_NNCompilation* compilation);
 
 /**
  * @brief Device types supported for model running.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_ExecuteDevice}
  */
 typedef enum {
     /** NPU, which is the default value. */
@@ -243,6 +277,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetOperatorDeviceOrder}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetOperatorDeviceOrder(
     OH_NNCompilation* compilation, const char* operatorName, HiAI_ExecuteDevice* executeDevices, size_t deviceCount);
@@ -255,6 +291,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetOperatorDeviceOrder(
  * @param operatorName Operator name. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the number of devices to execute the operator if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetOperatorDeviceCount}
  */
 size_t HMS_HiAIOptions_GetOperatorDeviceCount(const OH_NNCompilation* compilation, const char* operatorName);
 
@@ -268,6 +306,8 @@ size_t HMS_HiAIOptions_GetOperatorDeviceCount(const OH_NNCompilation* compilatio
  * @return Returns the device list {@link HiAI_ExecuteDevice} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetOperatorDeviceOrder}
  */
 HiAI_ExecuteDevice* HMS_HiAIOptions_GetOperatorDeviceOrder(
     const OH_NNCompilation* compilation, const char* operatorName);
@@ -287,6 +327,8 @@ HiAI_ExecuteDevice* HMS_HiAIOptions_GetOperatorDeviceOrder(
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetModelDeviceOrder}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetModelDeviceOrder(
     OH_NNCompilation* compilation, HiAI_ExecuteDevice* executeDevices, size_t deviceCount);
@@ -297,6 +339,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetModelDeviceOrder(
  * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the number of devices to execute the model if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetModelDeviceCount}
  */
 size_t HMS_HiAIOptions_GetModelDeviceCount(const OH_NNCompilation* compilation);
 
@@ -308,6 +352,8 @@ size_t HMS_HiAIOptions_GetModelDeviceCount(const OH_NNCompilation* compilation);
  * @return Returns the device list {@link HiAI_ExecuteDevice} if the operation is successful; returns a null pointer
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetModelDeviceOrder}
  */
 HiAI_ExecuteDevice* HMS_HiAIOptions_GetModelDeviceOrder(const OH_NNCompilation* compilation);
 
@@ -315,6 +361,8 @@ HiAI_ExecuteDevice* HMS_HiAIOptions_GetModelDeviceOrder(const OH_NNCompilation* 
  * @brief Indicates whether to allow HiAI Foundation to select other devices, such as the CPU, when the specified device
  * cannot build a model.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_FallbackMode}
  */
 typedef enum {
     /** Yes, which is the default value. */
@@ -335,6 +383,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetFallbackMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetFallbackMode(
     OH_NNCompilation* compilation, HiAI_FallbackMode fallbackMode);
@@ -346,12 +396,16 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetFallbackMode(
  * is returned.
  * @return Returns {@link HiAI_FallbackMode} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetFallbackMode}
  */
 HiAI_FallbackMode HMS_HiAIOptions_GetFallbackMode(const OH_NNCompilation* compilation);
 
 /**
  * @brief Device memory overcommitment option.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_DeviceMemoryReusePlan}
  */
 typedef enum {
     /** Not used, which is the default value. */
@@ -376,6 +430,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDeviceMemoryReusePlan}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDeviceMemoryReusePlan(
     OH_NNCompilation* compilation, HiAI_DeviceMemoryReusePlan deviceMemoryReusePlan);
@@ -388,12 +444,16 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDeviceMemoryReusePlan(
  * @return Returns {@link HiAI_DeviceMemoryReusePlan} if the operation is successful; returns the default value
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDeviceMemoryReusePlan}
  */
 HiAI_DeviceMemoryReusePlan HMS_HiAIOptions_GetDeviceMemoryReusePlan(const OH_NNCompilation* compilation);
 
 /**
  * @brief Configuration options of the model tuning strategy.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_TuningStrategy}
  */
 typedef enum {
     /** Neither in-depth convergence nor dynamic shape is supported, which is the default value. */
@@ -417,6 +477,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetTuningStrategy}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetTuningStrategy(
     OH_NNCompilation* compilation, HiAI_TuningStrategy tuningStrategy);
@@ -428,6 +490,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningStrategy(
  * is returned.
  * @return Returns {@link HiAI_TuningStrategy} if the operation is successful; returns the default value otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetTuningStrategy}
  */
 HiAI_TuningStrategy HMS_HiAIOptions_GetTuningStrategy(const OH_NNCompilation* compilation);
 
@@ -445,6 +509,8 @@ HiAI_TuningStrategy HMS_HiAIOptions_GetTuningStrategy(const OH_NNCompilation* co
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetQuantConfig}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetQuantConfig(OH_NNCompilation* compilation, void* data, size_t size);
 
@@ -456,6 +522,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetQuantConfig(OH_NNCompilation* compilation, v
  * @return Returns the data address of the quantization configuration if the operation is successful; returns a null
  * pointer otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetQuantConfigData}
  */
 void* HMS_HiAIOptions_GetQuantConfigData(const OH_NNCompilation* compilation);
 
@@ -465,12 +533,16 @@ void* HMS_HiAIOptions_GetQuantConfigData(const OH_NNCompilation* compilation);
  * @param compilation Pointer to {@link OH_NNCompilation}. The value cannot be null. Otherwise, 0 is returned.
  * @return Returns the data size of the quantization configuration if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetQuantConfigSize}
  */
 size_t HMS_HiAIOptions_GetQuantConfigSize(const OH_NNCompilation* compilation);
 
 /**
  * @brief Assisted tuning mode.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_TuningMode}
  */
 typedef enum {
     /** Disables the tunning mode. */
@@ -493,6 +565,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetTuningMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetTuningMode(OH_NNCompilation* compilation, HiAI_TuningMode tuningMode);
 
@@ -508,6 +582,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningMode(OH_NNCompilation* compilation, Hi
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetTuningCacheDir}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetTuningCacheDir(OH_NNCompilation* compilation, const char* cacheDir);
 
@@ -519,6 +595,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningCacheDir(OH_NNCompilation* compilation
  * @return Returns the assisted tuning mode {@link HiAI_TuningMode} if the operation is successful; returns the default
  * value otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetTuningMode}
  */
 HiAI_TuningMode HMS_HiAIOptions_GetTuningMode(const OH_NNCompilation* compilation);
 
@@ -529,12 +607,16 @@ HiAI_TuningMode HMS_HiAIOptions_GetTuningMode(const OH_NNCompilation* compilatio
  * returned.
  * @return Returns the cache directory if the operation is successful; returns a null pointer otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetTuningCacheDir}
  */
 const char* HMS_HiAIOptions_GetTuningCacheDir(const OH_NNCompilation* compilation);
 
 /**
  * @brief Defines the inter-device bandwidth mode.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_BandMode}
  */
 typedef enum {
     /** Automatically adjusted by the system. */
@@ -558,6 +640,8 @@ typedef enum {
  * @return Function execution result. Returns OH_NN_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link OH_NN_ReturnCode}.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_SetBandMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetBandMode(OH_NNCompilation* compilation, HiAI_BandMode bandMode);
 
@@ -569,6 +653,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetBandMode(OH_NNCompilation* compilation, HiAI
  * @return Returns the bandwidth mode {@link HiAI_BandMode} if the operation is successful; returns the default value
  * otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAIOptions_GetBandMode}
  */
 HiAI_BandMode HMS_HiAIOptions_GetBandMode(const OH_NNCompilation* compilation);
 

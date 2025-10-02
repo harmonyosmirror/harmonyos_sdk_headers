@@ -42,7 +42,7 @@
  *
  * @library libimage_packer_ndk.z.so
  * @kit ImageKit
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 11
  * @version 4.1
  */
@@ -95,7 +95,7 @@ typedef struct ImagePacker_Opts_ ImagePacker_Opts;
  * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */

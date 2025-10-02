@@ -18,7 +18,7 @@
  * @addtogroup MindSpore
  * @{
  *
- * @brief 提供MindSpore Lite的模型推理相关接口。
+ * @brief Provides APIs related to MindSpore Lite model inference.
  *
  * @Syscap SystemCapability.Ai.MindSpore
  * @since 9
@@ -27,7 +27,7 @@
 /**
  * @file status.h
  * @kit MindSporeLiteKit
- * @brief 提供了Mindspore Lite运行时的状态码。
+ * @brief Provides the status codes of MindSpore Lite.
  *
  * @library libmindspore_lite_ndk.so
  * @since 9

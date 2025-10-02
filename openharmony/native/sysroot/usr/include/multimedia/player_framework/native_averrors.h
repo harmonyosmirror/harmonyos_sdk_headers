@@ -95,14 +95,21 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_INPUT_DATA_ERROR = 10,
     /**
+     * @error unsupported format.
+     * @since 18
+     */
+    AV_ERR_UNSUPPORTED_FORMAT = 11,
+    /**
      * @error extend err start.
      */
     AV_ERR_EXTEND_START = 100,
-    /** drm error base.
+    /**
+     * @error drm error base.
      * @since 12
      */
     AV_ERR_DRM_BASE = 200,
-    /** drm decypt failed.
+    /**
+     * @error drm decypt failed.
      * @since 12
      */
     AV_ERR_DRM_DECRYPT_FAILED = 201,

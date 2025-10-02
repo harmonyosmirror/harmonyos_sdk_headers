@@ -417,3 +417,4 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* e
 #endif
 
 #endif // ARKUI_NATIVE_DIALOG_H
+/** @} */

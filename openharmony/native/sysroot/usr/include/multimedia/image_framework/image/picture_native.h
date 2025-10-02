@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for obtaining picture data and information.
  *
- * @Syscap SystemCapability.Multimedia.Image.Core
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 13
  */
 
@@ -29,7 +29,8 @@
  * @brief Declares the APIs that can access a picture.
  *
  * @library libpicture.so
- * @Syscap SystemCapability.Multimedia.Image.Core
+ * @kit ImageKit
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 13
  */
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PICTURE_NATIVE_H_

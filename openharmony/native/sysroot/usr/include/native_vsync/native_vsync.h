@@ -63,10 +63,12 @@ typedef void (*OH_NativeVSync_FrameCallback)(long long timestamp, void *data);
 OH_NativeVSync* OH_NativeVSync_Create(const char* name, unsigned int length);
 
 /**
- * @brief Delete the NativeVsync instance.
+ * @brief Destroys an <b>OH_NativeVSync</b> instance.
+ * Once the <b>OH_NativeVSync</b> pointer is destroyed, it must not be used to prevent dangling pointer problems.
+ * Pay special attention to the management of the <b>OH_NativeVSync</b> pointer in concurrent multithreaded scenarios.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
- * @param nativeVsync Indicates the pointer to a <b>NativeVsync</b> instance.
+ * @param nativeVsync Pointer to an <b>OH_NativeVSync</b> instance.
  * @since 9
  * @version 1.0
  */
@@ -119,7 +121,12 @@ int OH_NativeVSync_RequestFrameWithMultiCallback(
     OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data);
 
 /**
- * @brief Get vsync period.
+ * @brief Obtains the VSync period.
+ * The VSync period is refreshed only when the <b>OH_NativeVSync_FrameCallback</b> callback is received
+ * following a request for a VSync signal via <b>OH_NativeVSync_RequestFrame</b>.
+ * To obtain the VSync period for the first time using this function,
+ * you need to call <b>OH_NativeVSync_RequestFrame</b> to request a VSync signal.
+ * Once the <b>OH_NativeVSync_FrameCallback</b> callback is received, the vsync period can be obtained.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
  * @param nativeVsync Indicates the pointer to a NativeVsync.

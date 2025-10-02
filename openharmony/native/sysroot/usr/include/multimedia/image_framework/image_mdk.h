@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for access to the image interface.
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */
@@ -30,7 +30,9 @@
  * @brief Declares functions that access the image rectangle, size, format, and component data.
  * Need link <b>libimagendk.z.so</b>
  *
+ * @library libimage_ndk.z.so
  * @kit ImageKit
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */

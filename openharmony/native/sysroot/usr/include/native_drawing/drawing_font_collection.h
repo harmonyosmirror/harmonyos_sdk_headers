@@ -72,6 +72,8 @@ void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection)
  * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
  * @since 12
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_DisableFontCollectionSystemFont
  */
 void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCollection);
 

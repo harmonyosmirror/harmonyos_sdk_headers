@@ -89,5 +89,5 @@ typedef enum {
     napi_priority_idle = 3,
 } napi_task_priority;
 
-#endif /* FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H */
 /** @} */
+#endif /* FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H */

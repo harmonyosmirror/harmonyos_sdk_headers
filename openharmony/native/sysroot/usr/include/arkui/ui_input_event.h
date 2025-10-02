@@ -159,6 +159,10 @@ enum {
     UI_MOUSE_EVENT_ACTION_RELEASE = 2,
     /** Move. */
     UI_MOUSE_EVENT_ACTION_MOVE = 3,
+    /** Cancel.
+     * @since 18
+    */
+    UI_MOUSE_EVENT_ACTION_CANCEL = 13,
 };
 
 /**
@@ -198,20 +202,6 @@ typedef enum {
 } ArkUI_ModifierKeyName;
 
 /**
- * @brief Defines whether the touch event is from the left or right hand.
- *
- * @since 15
- */
-typedef enum {
-    /** Unknown. */
-    ARKUI_EVENT_HAND_NONE = 0,
-    /** Left hand. */
-    ARKUI_EVENT_HAND_LEFT = 1,
-    /** Right hand. */
-    ARKUI_EVENT_HAND_RIGHT = 2,
-} ArkUI_InteractionHand;
- 
-/**
  * @brief Defines an enum for the axis types for focus axis events.
  *
  * @since 15
@@ -234,6 +224,20 @@ enum {
     /** ABS_HAT0Y. */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
 };
+
+/**
+ * @brief Defines whether the touch event is from the left or right hand.
+ *
+ * @since 15
+ */
+typedef enum {
+    /** Unknown. */
+    ARKUI_EVENT_HAND_NONE = 0,
+    /** Left hand. */
+    ARKUI_EVENT_HAND_LEFT = 1,
+    /** Right hand. */
+    ARKUI_EVENT_HAND_RIGHT = 2,
+} ArkUI_InteractionHand;
 
 /**
  * @brief Enumerates the action types for axis events.
@@ -544,7 +548,7 @@ float OH_ArkUI_PointerEvent_GetTouchAreaHeight(const ArkUI_UIInputEvent* event, 
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event, ArkUI_InteractionHand *hand);
- 
+
 /**
  * @brief Obtains whether the current touch event is from the left or right hand.
  *
@@ -558,7 +562,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event
  */
 int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex(
     const ArkUI_UIInputEvent *event, int32_t pointerIndex, ArkUI_InteractionHand *hand);
- 
+
 /**
  * @brief Obtains the number of historical events from a directional input event (such as a touch event, mouse event,
  * or axis event).
@@ -842,9 +846,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation(const ArkUI_UIInputEvent* event
 int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the pressed status of modifier keys from UI input event.
- * The following modifier keys are supported: Ctrl, Alt, Shift, Fn. However, the <b>Fn</b> key on external keyboards
- * is not supported.
+ * @brief Obtains all keys that are pressed from UI input event. Only supports key events currently.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @param pressedKeyCodes Array of all keys that are pressed. You need to allocate the memory space.
@@ -852,7 +854,7 @@ int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
  *               number of the keys pressed (when used as an output parameter).
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the giving buffer is not enough.
+ *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the giving buffer is not enough.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 14
  */
@@ -889,7 +891,7 @@ int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation(const ArkUI_UIInputEvent* eve
 * @since 17
 */
 float OH_ArkUI_UIInputEvent_GetEventTargetWidth(const ArkUI_UIInputEvent* event);
- 
+
 /**
 * @brief Obtains the height of the component hit by an event.
 *
@@ -898,7 +900,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetWidth(const ArkUI_UIInputEvent* event)
 * @since 17
 */
 float OH_ArkUI_UIInputEvent_GetEventTargetHeight(const ArkUI_UIInputEvent* event);
- 
+
 /**
 * @brief Obtains the X coordinate of the component hit by an event.
 *
@@ -907,7 +909,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetHeight(const ArkUI_UIInputEvent* event
 * @since 17
 */
 float OH_ArkUI_UIInputEvent_GetEventTargetPositionX(const ArkUI_UIInputEvent* event);
- 
+
 /**
 * @brief Obtains the Y coordinate of the component hit by an event.
 *
@@ -917,7 +919,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetPositionX(const ArkUI_UIInputEvent* ev
 * @since 17
 */
 float OH_ArkUI_UIInputEvent_GetEventTargetPositionY(const ArkUI_UIInputEvent* event);
- 
+
 /**
 * @brief Obtains the global X coordinate of the component hit by an event.
 *
@@ -927,7 +929,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetPositionY(const ArkUI_UIInputEvent* ev
 * @since 17
 */
 float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX(const ArkUI_UIInputEvent* event);
- 
+
 /**
 * @brief Obtains the global Y coordinate of the component hit by an event.
 *
@@ -937,7 +939,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX(const ArkUI_UIInputEve
 * @since 17
 */
 float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEvent* event);
- 
+
 /**
 * @brief Checks whether the cursor is hovering over this component.
 *
@@ -947,7 +949,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEve
 * @since 17
 */
 bool OH_ArkUI_HoverEvent_IsHovered(const ArkUI_UIInputEvent* event);
- 
+
 /**
  * @brief Obtains the state of the modifier keys in a UI input event.
  *
@@ -1017,6 +1019,27 @@ int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
  * @since 15
  */
 int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Sets whether to enable axis event propagation.
+ *
+ * @param event Pointer to the UI input event.
+ * @param propagation Whether to enable event propagation.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 17
+ */
+int32_t OH_ArkUI_AxisEvent_SetPropagation(const ArkUI_UIInputEvent* event, bool propagation);
+ 
+/**
+ * @brief Obtains the scroll step configuration of the mouse wheel axis event.
+ *
+ * @param event Pointer to the UI input event.
+ * @return Returns the scroll step configuration of the mouse wheel axis event.
+ * @since 17
+ */
+int32_t OH_ArkUI_AxisEvent_GetScrollStep(const ArkUI_UIInputEvent* event);
 
 /**
  * @brief Creates a cloned event pointer based on an event pointer.
@@ -1137,27 +1160,6 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
-
-/**
- * @brief Sets whether to enable axis event propagation.
- *
- * @param event Pointer to the UI input event.
- * @param propagation Whether to enable event propagation.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 17
- */
-int32_t OH_ArkUI_AxisEvent_SetPropagation(const ArkUI_UIInputEvent* event, bool propagation);
-
-/**
- * @brief Obtains the scroll step configuration of the mouse wheel axis event.
- *
- * @param event Pointer to the UI input event.
- * @return Returns the scroll step configuration of the mouse wheel axis event.
- * @since 17
- */
-int32_t OH_ArkUI_AxisEvent_GetScrollStep(const ArkUI_UIInputEvent* event);
 
 #ifdef __cplusplus
 };

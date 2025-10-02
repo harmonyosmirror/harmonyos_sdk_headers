@@ -502,6 +502,30 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
     int32_t alphaType);
 
 /**
+ * @brief Get editable for InitializationOptions struct.
+ *
+ * @param options The InitializationOptions pointer will be operated.
+ * @param editable The boolean value representing the editable status.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if options or editable is invalid.
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options,
+    bool *editable);
+
+/**
+ * @brief Set editable for InitializationOptions struct.
+ *
+ * @param options The InitializationOptions pointer will be operated.
+ * @param editable The boolean value representing the editable status.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if options is invalid.
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_InitializationOptions *options,
+    bool editable);
+
+/**
  * @brief delete InitializationOtions pointer.
  *
  * @param options The InitializationOtions pointer will be operated.
@@ -739,6 +763,41 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
     OH_PixelmapNative_AntiAliasingLevel level);
 
 /**
+ * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height.
+ *
+ * @param srcPixelmap The source native pixelmap.
+ * @param dstPixelmap The destination native pixelmap for create.
+ * @param scaleX Scaling ratio of the width.
+ * @param scaleY Scaling ratio of the height.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
+ * @see OH_PixelmapNative
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap,
+    float scaleX, float scaleY);
+
+/**
+ * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height with anti-aliasing.
+ *
+ * @param srcPixelmap The source native pixelmap.
+ * @param dstPixelmap The destination native pixelmap for create.
+ * @param scaleX Scaling ratio of the width.
+ * @param scaleY Scaling ratio of the height.
+ * @param level The anti-aliasing algorithm to be used.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
+ *         {@link IMAGE_TOO_LARGE} If image is too large.
+ *         {@link IMAGE_ALLOC_FAILED} If device has no memory.
+ * @see OH_PixelmapNative
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap,
+    OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
+
+/**
  * @brief Translates this image based on the input coordinates.
  *
  * @param pixelmap The Pixelmap pointer will be operated.
@@ -788,6 +847,16 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap);
+
+/**
+ * @brief Destroys an <b>OH_PixelmapNative</b> object and deallocates its resources.
+ *
+ * @param pixelmap A pointer to the OH_PixelmapNative pointer to destroy.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if pixelmap is null or *pixelmap is null.
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap);
 
 /**
  * @brief Converting images to alpha format
@@ -900,6 +969,32 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
  * @since 13
  */
 Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size);
+
+/**
+ * @brief Get the total number of bytes occupied by all pixels in the Pixelmap, without any padding.
+ *
+ * @param pixelmap The Pixelmap pointer to be operated.
+ * @param byteCount The total number of bytes to be retrieved.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or byteCount are invalid.
+ * @see OH_PixelmapNative
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount);
+
+/**
+ * @brief Get the size of the allocated memory used to store this pixelmap's pixels.
+ *
+ * @param pixelmap The Pixelmap pointer to be operated.
+ * @param allocationByteCount The size of the allocated memory.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or allocationByteCount are invalid.
+ * @see OH_PixelmapNative
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount);
 
 /**
  * @brief Obtains the memory address of a PixelMap and locks the memory.

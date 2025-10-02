@@ -60,6 +60,20 @@ struct OH_PackingOptions;
 typedef struct OH_PackingOptions OH_PackingOptions;
 
 /**
+ * @brief Defines the image sequence packing options.
+ *
+ * @since 18
+ */
+struct OH_PackingOptionsForSequence;
+
+/**
+ * @brief Defines the image sequence packing options.
+ *
+ * @since 18
+ */
+typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence;
+
+/**
  * @brief Enumerates packing dynamic range.
  *
  * @since 12
@@ -183,9 +197,137 @@ Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *opti
 Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
 
 /**
+ * @brief Create a pointer for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options);
+
+/**
+ * @brief Set FrameCount number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param frameCount The number of image frameCount.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options,
+    uint32_t frameCount);
+
+/**
+ * @brief Get FrameCount number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param frameCount The number of image frameCount.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options or frameCount is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options,
+    uint32_t *frameCount);
+
+/**
+ * @brief Set DelayTimeList number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param delayTimeList The pointer of image delayTime list.
+ * @param delayTimeListLength The number of image delayTimeListLength.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options,
+    int32_t *delayTimeList, size_t delayTimeListLength);
+
+/**
+ * @brief Get DelayTimeList number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param delayTimeList The pointer of image delayTime list.
+ * @param delayTimeListLength The number of image delayTimeListLength.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options,
+    int32_t *delayTimeList, size_t delayTimeListLength);
+
+/**
+ * @brief Set DisposalTypes number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param disposalTypes The pointer of image disposalTypes.
+ * @param disposalTypesLength The number of image disposalTypesLength.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options,
+    uint32_t *disposalTypes, size_t disposalTypesLength);
+
+/**
+ * @brief Get DisposalTypes number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param disposalTypes The pointer of image disposalTypes.
+ * @param disposalTypesLength The number of image disposalTypesLength.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options,
+    uint32_t *disposalTypes, size_t disposalTypesLength);
+
+/**
+ * @brief Set LoopCount number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param loopCount The number of image loopCount.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount);
+
+/**
+ * @brief Get LoopCount number for OH_PackingOptionsForSequence struct.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @param loopCount The number of image loopCount.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options or loopCount is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount);
+
+/**
+ * @brief delete OH_PackingOptionsForSequence pointer.
+ *
+ * @param options The OH_PackingOptionsForSequence pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 18
+ */
+Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options);
+
+/**
  * @brief Create a pointer for OH_ImagePackerNative struct.
  *
- * @param options The OH_ImagePackerNative pointer will be operated.
+ * @param imagePacker The imagePacker to be created.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
@@ -238,6 +380,25 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
     OH_PackingOptions *options, OH_PictureNative *picture, uint8_t *outData, size_t *size);
 
 /**
+ * @brief Encoding a <b>PixelMap</b> sequence into the data
+ *
+ * @param imagePacker The imagePacker to use for packing.
+ * @param options Indicates the encoding {@link OH_PackingOptionsForSequence}.
+ * @param pixelmapSequence The pixelmap sequence to be packed.
+ * @param sequenceLength The pixelmap sequence size to be packed.
+ * @param outData The output data buffer to store the packed image.
+ * @param outDataSize A pointer to the size of the output data buffer.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or size/length is invalid
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ * @since 18
+ */
+Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
+    OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence,
+    size_t sequenceLength, uint8_t *outData, size_t *outDataSize);
+
+/**
  * @brief Encoding an <b>ImageSource</b> into the a file with fd with required format.
  *
  * @param imagePacker The image packer to use for packing.
@@ -280,6 +441,23 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
     OH_PackingOptions *options, OH_PictureNative *picture, int32_t fd);
 
 /**
+  * @brief Encoding a <b>PixelMap</b> sequence into the a file with fd
+  *
+  * @param imagePacker The image packer to use for packing.
+  * @param options Indicates the encoding {@link OH_PackingOptionsForSequence}.
+  * @param pixelmapSequence The pixelmap sequence to be packed.
+  * @param sequenceLength The pixelmap sequence size to be packed.
+  * @param fd Indicates a writable file descriptor.
+  * @return Image functions result code.
+  *         {@link IMAGE_SUCCESS} if the execution is successful.
+  *         {@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or length is invalid
+  *         {@link IMAGE_ENCODE_FAILED} encode failed.
+  * @since 18
+ */
+Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
+    OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd);
+
+/**
   * @brief Releases an imagePacker object.
   *
   * @param imagePacker A pointer to the image packer object to be released.
@@ -291,5 +469,5 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
 #ifdef __cplusplus
 };
 #endif
-/* *@} */
+/** @} */
 #endif // INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_PACKER_NATIVE_H_

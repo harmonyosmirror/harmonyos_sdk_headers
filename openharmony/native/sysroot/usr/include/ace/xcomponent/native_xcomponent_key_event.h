@@ -16,13 +16,19 @@
 /**
  * @addtogroup OH_NativeXComponent Native XComponent
  * @{
+ *
+ * @brief Describes the key event held by the ArkUI XComponent, which can be used for the EGL/OpenGL ES.
+ *
+ * @since 10
+ * @version 1.0
  */
 
 /**
  * @file native_xcomponent_key_event.h
  *
  * @brief Declares enums for key event of Native XComponent.
- *
+ * @library libace_ndk.z.so
+ * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
  * @since 10
  * @version 1.0
@@ -390,3 +396,4 @@ typedef enum {
 };
 #endif
 #endif // _NATIVE_INTERFACE_XCOMPONENT_KEY_EVENT_H_
+/** @} */

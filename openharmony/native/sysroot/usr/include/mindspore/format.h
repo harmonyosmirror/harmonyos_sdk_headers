@@ -18,7 +18,7 @@
  * @addtogroup MindSpore
  * @{
  *
- * @brief 提供MindSpore Lite的模型推理相关接口。
+ * @brief Provides APIs related to MindSpore Lite model inference.
  *
  * @Syscap SystemCapability.Ai.MindSpore
  * @since 9
@@ -27,7 +27,7 @@
 /**
  * @file format.h
  * @kit MindSporeLiteKit
- * @brief 提供张量数据的排列格式。
+ * @brief Declares tensor data formats.
  *
  * @library libmindspore_lite_ndk.so
  * @since 9

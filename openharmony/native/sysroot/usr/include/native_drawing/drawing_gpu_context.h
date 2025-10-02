@@ -51,6 +51,7 @@ extern "C" {
  *
  * @since 12
  * @version 1.0
+ * @deprecated since 18
  */
 typedef struct {
     /** If true this allows path mask textures to be cached */
@@ -65,6 +66,8 @@ typedef struct {
  * @return Returns the pointer to the <b>OH_Drawing_GpuContext</b> object created.
  * @since 12
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_GpuContextCreate
  */
 OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions gpuContextOptions);
 

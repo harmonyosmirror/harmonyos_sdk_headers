@@ -79,7 +79,7 @@ typedef struct OH_OnFrameAvailableListener {
 
 /**
  * @brief Create a <b>OH_NativeImage</b> related to an Opengl ES texture and target. \n
- * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *
@@ -135,7 +135,7 @@ int32_t OH_NativeImage_DetachContext(OH_NativeImage* image);
 /**
  * @brief Update the related Opengl ES texture with the OH_NativeImage acquired buffer.\n
  * This interface needs to be called in the Opengl ES context thread.\n
- * This interface needs to be called after receiving the <b>OH_OnFrameAvailableListener<\b> callback.\n
+ * This interface needs to be called after receiving the <b>OH_OnFrameAvailableListener</b> callback.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
@@ -226,7 +226,7 @@ void OH_NativeImage_Destroy(OH_NativeImage** image);
 
 /**
  * @brief Obtains the transform matrix of the texture image by producer transform type.\n
- * The matrix will not be update until <b>OH_NativeImage_UpdateSurfaceImage<\b> is called.\n
+ * The matrix will not be update until <b>OH_NativeImage_UpdateSurfaceImage</b> is called.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
@@ -265,7 +265,7 @@ int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
  * by <b>OH_NativeWindow_NativeObjectReference</b>.\n
  * When the <b>OHNativeWindowBuffer</b> is used up, its reference count needs to be decremented
  * by <b>OH_NativeWindow_NativeObjectUnreference</b>.\n
- * This interface needs to be used in conjunction with <b>OH_NativeImage_ReleaseNativeWindowBuffer<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeImage_ReleaseNativeWindowBuffer</b>,
  * otherwise memory leaks will occur.\n
  * When the fenceFd is used up, you need to close it.\n
  * This interface is a non-thread-safe type interface.\n
@@ -286,7 +286,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,
 /**
  * @brief Release the <b>OHNativeWindowBuffer</b> to the buffer queue through an
  * <b>OH_NativeImage</b> instance for reuse.\n
- * The fenceFd will be close by system.\n
+ * The fenceFd will be closed by system.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
@@ -308,9 +308,9 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
  * This interface is only used for memory rotation on the surface consumer,
  * the <b>OH_NativeImage</b> will not actively perform memory rendering processing.\n
  * This method can not be used at the same time with <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
- * This interface is used in conjunction with <b>OH_NativeImage_AcquireNativeWindowBuffer<\b> and
- * <b>OH_NativeImage_ReleaseNativeWindowBuffer<\b>.\n
- * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy<\b>,
+ * This interface is used in conjunction with <b>OH_NativeImage_AcquireNativeWindowBuffer</b> and
+ * <b>OH_NativeImage_ReleaseNativeWindowBuffer</b>.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *

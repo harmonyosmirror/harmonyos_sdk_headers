@@ -24,7 +24,7 @@
 
  /**
  * @file native_gcp_api.h
- * @kit PenKit
+ * @kit Penkit
  *
  * @brief Defines the functions of GlobalColorPicker.
  *
@@ -149,7 +149,8 @@ typedef void (*HMS_GCP_OnResult)(void* userData, HMS_GCP_PickedColorInfo colorIn
  * @param initialPosY Indicates the y-axis of initial position for color picker.
  * @param onResultCallback Indicates the callback to receive picked color information.
  * @param userData Pointer to the user data. It can be NULL.
- * @return Returns if the operation is successful,
+ * @return return code description:
+ * 0 - successful operation
  * 1013900001 - IPC communication failed
  * 1013900002 - memory is insufficient
  * 1013900003 - service is invalid
@@ -158,6 +159,27 @@ typedef void (*HMS_GCP_OnResult)(void* userData, HMS_GCP_PickedColorInfo colorIn
  * @since 5.0.0(12)
  */
 int32_t HMS_GCP_StartColorPicker(
+    int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData);
+	
+/**
+ * @brief Start global color picker.
+ *
+ * This API is used to start color picker with value shown when picker moving.
+ *
+ * @param initialPosX Indicates the x-axis of initial position for color picker.
+ * @param initialPosY Indicates the y-axis of initial position for color picker.
+ * @param onResultCallback Indicates the callback to receive picked color information.
+ * @param userData Pointer to the user data. It can be NULL.
+ * @return return code description:
+ * 0 - successful operation
+ * 1013900001 - IPC communication failed
+ * 1013900002 - memory is insufficient
+ * 1013900003 - service is invalid
+ * 1013900004 - multi app call
+ * 1013900005 - background service call
+ * @since 5.1.0(18)
+ */
+int32_t HMS_GCP_StartColorPickerWithColorValue(
     int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData);
 
 #ifdef __cplusplus

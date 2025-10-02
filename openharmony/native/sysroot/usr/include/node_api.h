@@ -12,6 +12,11 @@
 #include "js_native_api.h"
 #include "node_api_types.h"
 
+ /**
+ * @brief Struct declaration used in the napi_get_uv_event_loop interface
+ * @deprecated since 16
+ * @since 8
+ */
 struct uv_loop_s;  // Forward declaration.
 
 #ifdef _WIN32
@@ -180,7 +185,14 @@ napi_status napi_get_node_version(napi_env env,
 
 #if NAPI_VERSION >= 2
 
-// Return the current libuv event loop for a given environment
+/**
+ * @brief Get the current event loop associated with a specific napi_env.
+ * @param env The environment that the API is invoked under.
+ * @param loop The current libuv loop instance.
+ * @return A napi_status value is returned, which is used to check whether the UV is successfully obtained.
+ * @deprecated since 16
+ * @since 8
+ */
 NAPI_EXTERN napi_status napi_get_uv_event_loop(napi_env env,
                                                struct uv_loop_s** loop);
 

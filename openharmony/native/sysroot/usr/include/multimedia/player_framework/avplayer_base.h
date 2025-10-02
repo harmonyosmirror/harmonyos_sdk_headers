@@ -31,6 +31,7 @@
  *
  * @kit MediaKit
  * @library libavplayer.so
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
  * @version 1.0
  */

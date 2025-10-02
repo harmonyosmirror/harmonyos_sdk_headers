@@ -8,7 +8,7 @@
  *
  * @brief Provides APIs for Graphics Accelerate capability.
  *
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 
@@ -19,7 +19,7 @@
  *
  * @kit GraphicsAccelerateKit
  * @library libabr.so
- * @Syscap SystemCapability.GraphicsGame.RenderAccelerate
+ * @syscap SystemCapability.GraphicsGame.RenderAccelerate
  * @since 5.0.0(12)
  */
 #ifndef ABR_GLES_H
@@ -37,7 +37,7 @@ extern "C" {
  *
  * This method is used to mark the binded GLES Buffer, and needs to be invoked before buffer rendering.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
@@ -49,9 +49,9 @@ ABR_ErrorCode HMS_ABR_MarkFrameBuffer_GLES(ABR_Context* context);
  *
  * This method is used to get ABR scaled texture corresponding to the original texture.
  *
- * @param [in] context Pointer to {@link ABR_Context}. The value cannot be null.
- * @param [in] originTexture   The original texture.
- * @param [out] scaledTexture  The ABR scaled texture corresponding to the original texture.
+ * @param context Pointer to {@link ABR_Context}. The value cannot be null.
+ * @param originTexture The original texture.
+ * @param scaledTexture The ABR scaled texture corresponding to the original texture.
  * @return Function execution result. Returns ABR_SUCCESS if the operation is successful; returns an error code
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)

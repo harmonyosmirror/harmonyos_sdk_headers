@@ -153,6 +153,14 @@ extern "C" {
 #define EVENT_MAIN_THREAD_JANK "MAIN_THREAD_JANK"
 
 /**
+ * @brief app hicollie event.
+ *
+ * @since 18
+ * @version 1.0
+ */
+#define EVENT_APP_HICOLLIE "APP_HICOLLIE"
+
+/**
  * @brief OS domain.
  *
  * @since 12

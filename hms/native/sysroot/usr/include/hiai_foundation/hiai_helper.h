@@ -8,18 +8,22 @@
  *
  * @brief Provides APIs for HiAI Foundation model inference.
  *
- * @syscap SystemCapability.AI.HiAIFoundation
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_helper.h}
  */
 
 /**
  * @file hiai_helper.h
- * @kit HiAIFoundationKit
- * @library libhiai_foundation.so
  *
  * @brief Defines the APIs for querying the HiAI Foundation version and checking the model compatibility.
  *
+ * @library libhiai_foundation.so
+ * @syscap SystemCapability.AI.HiAIFoundation
+ * @kit HiAIFoundationKit
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/hiai_helper.h}
  */
 #ifndef HIAI_FOUNDATION_HELPER_H
 #define HIAI_FOUNDATION_HELPER_H
@@ -34,12 +38,16 @@ extern "C" {
  * @brief Obtains the HiAI Foundation version number.
  * @return Returns the HiAI Foundation version number if the operation is successful; returns a null pointer otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAI_GetVersion}
  */
 const char* HMS_HiAI_GetVersion(void);
 
 /**
  * @brief Model compatibility.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HiAI_Compatibility}
  */
 typedef enum {
     /** Model compatible */
@@ -56,6 +64,8 @@ typedef enum {
  * @return Returns {@link HiAI_Compatibility} if the operation is successful; returns a message indicating that the
  * model is incompatible otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAICompatibility_CheckFromFile}
  */
 HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
 
@@ -69,6 +79,8 @@ HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
  * @return Returns {@link HiAI_Compatibility} if the operation is successful; returns a message indicating that the
  * model is incompatible otherwise.
  * @since 4.1.0(11)
+ * @deprecated since 18
+ * @useinstead {@link CANNKit/HMS_HiAICompatibility_CheckFromBuffer}
  */
 HiAI_Compatibility HMS_HiAICompatibility_CheckFromBuffer(const void* data, size_t size);
 

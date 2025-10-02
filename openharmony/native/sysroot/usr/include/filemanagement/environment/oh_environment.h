@@ -15,6 +15,7 @@
 
 /**
  * @addtogroup Environment
+ * @{
  *
  * @brief This module provides the ability to access the environment directory and obtain the native interface
    for public root directory.
@@ -80,3 +81,4 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result);
 #endif
 
 #endif //FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
+/** @} */
