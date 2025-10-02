@@ -47,7 +47,7 @@ extern "C" {
  *
  * @since 15
  */
- typedef enum {
+typedef enum {
     /** Key events are used to move focus. */
     ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION = 0,
     /** Key events bubble up to ancestors. */
@@ -105,7 +105,6 @@ void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTrans
  * @since 15
 */
 void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_KeyProcessingMode mode);
-
 #ifdef __cplusplus
 };
 #endif

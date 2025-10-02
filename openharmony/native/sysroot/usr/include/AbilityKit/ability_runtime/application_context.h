@@ -117,6 +117,125 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want);
 
+/**
+ * @brief Obtain the temp directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the temp directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Obtain the files directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the files directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Obtain the database directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the database directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Obtain the preferences directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the preferences directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Obtain the bundle code directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the bundle code directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Obtain the distributed files directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the distributed files directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Obtain the cloud file directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the cloud file directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 16
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
 #ifdef __cplusplus
 } // extern "C"
 #endif

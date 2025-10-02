@@ -497,6 +497,7 @@ typedef struct OH_Drawing_Font_Metrics {
  */
 float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* fontMetrics);
 
+
 /**
  * @brief Sets whether to follow the theme font. If the value is true, the theme font is used when typeface is not set.
  *
@@ -505,7 +506,6 @@ float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* 
  * @param followed Indicates whether to follow the theme font.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
-
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font is nullptr.
  * @since 15
  */

@@ -16,14 +16,17 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _XT_RATEEST_TARGET_H
-#define _XT_RATEEST_TARGET_H
+#ifndef _IPT_TTL_H
+#define _IPT_TTL_H
 #include <linux/types.h>
-#include <linux/if.h>
-struct xt_rateest_target_info {
-  char name[IFNAMSIZ];
-  __s8 interval;
-  __u8 ewma_log;
-  struct xt_rateest * est __attribute__((aligned(8)));
+enum {
+  IPT_TTL_EQ = 0,
+  IPT_TTL_NE,
+  IPT_TTL_LT,
+  IPT_TTL_GT,
+};
+struct ipt_ttl_info {
+  __u8 mode;
+  __u8 ttl;
 };
 #endif

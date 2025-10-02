@@ -757,7 +757,6 @@ void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle* style, int baseline);
  */
 void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
 
-
 /**
  * @brief Sets the color for the text decoration.
  *

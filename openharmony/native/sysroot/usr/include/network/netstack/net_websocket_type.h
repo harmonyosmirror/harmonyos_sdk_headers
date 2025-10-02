@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef NET_WEBSOCKET_TYPE_H
+#define NET_WEBSOCKET_TYPE_H
+
 /**
  * @addtogroup netstack
  * @{
@@ -33,9 +36,6 @@
  * @since 11
  * @version 1.0
  */
-
-#ifndef NET_WEBSOCKET_TYPE_H
-#define NET_WEBSOCKET_TYPE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -280,5 +280,4 @@ typedef enum WebSocket_ErrCode {
 }
 #endif
 
-/** @} */
 #endif // NET_WEBSOCKET_TYPE_H

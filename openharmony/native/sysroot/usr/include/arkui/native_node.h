@@ -1843,7 +1843,7 @@ typedef enum {
      * @since 14
      */
     NODE_TAB_STOP = 98,
-    
+
     /**
      * @brief Defines the backdrop blur attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -4779,7 +4779,7 @@ typedef enum {
     * @since 14
     */
     NODE_SCROLL_FADING_EDGE,
-
+ 
     /**
      * @brief Obtains the total size of all child components when fully expanded in the scrollable component.
      *
@@ -4836,7 +4836,7 @@ typedef enum {
      * @since 15
      */
     NODE_SCROLL_BACK_TO_TOP = 1002021,
-    
+
     /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
      * obtained as required through APIs.
@@ -8690,4 +8690,4 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntO
 #endif
 
 #endif // ARKUI_NATIVE_NODE_H
-/** @} */
+/** @}*/

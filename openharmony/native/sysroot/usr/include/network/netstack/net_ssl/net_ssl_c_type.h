@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef NET_SSL_C_TYPE_H
+#define NET_SSL_C_TYPE_H
+
 /**
  * @addtogroup netstack
  * @{
@@ -33,9 +36,6 @@
  * @since 11
  * @version 1.0
  */
-
-#ifndef NET_SSL_C_TYPE_H
-#define NET_SSL_C_TYPE_H
 
 #include <stdint.h>
 #ifdef __cplusplus
@@ -134,6 +134,4 @@ typedef struct NetStack_Certificates {
 }
 #endif
 
-/** @} */
 #endif // NET_SSL_C_TYPE_H
-

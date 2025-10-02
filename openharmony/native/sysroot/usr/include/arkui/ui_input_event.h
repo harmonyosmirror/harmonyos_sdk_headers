@@ -828,7 +828,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation(const ArkUI_UIInputEvent* event
  * @since 14
  */
 int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Obtains the pressed status of modifier keys from UI input event.
  * The following modifier keys are supported: Ctrl, Alt, Shift, Fn. However, the <b>Fn</b> key on external keyboards
@@ -1045,6 +1045,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
+
 
 #ifdef __cplusplus
 };

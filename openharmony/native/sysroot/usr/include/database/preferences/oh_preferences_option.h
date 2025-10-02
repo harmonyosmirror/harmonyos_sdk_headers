@@ -115,5 +115,4 @@ int OH_PreferencesOption_Destroy(OH_PreferencesOption *option);
 #ifdef __cplusplus
 };
 #endif
-/** @} */
 #endif // OH_PREFERENCES_OPTION_H

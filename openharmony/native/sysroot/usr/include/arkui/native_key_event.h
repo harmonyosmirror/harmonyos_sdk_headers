@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  * @addtogroup ArkUI_NativeModule
  * @{
@@ -21,7 +21,7 @@
  *
  * @since 14
  */
-
+ 
 /**
  * @file native_key_event.h
  *
@@ -32,19 +32,19 @@
  * @kit ArkUI
  * @since 14
  */
-
+ 
 #ifndef ARKUI_NATIVE_KEY_EVENT_H
 #define ARKUI_NATIVE_KEY_EVENT_H
-
+ 
 #include <stdint.h>
-
+ 
 #include "native_type.h"
 #include "ui_input_event.h"
-
+ 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+ 
 /**
  * @brief Defines an enum for the key codes in key events.
  *
@@ -383,7 +383,7 @@ typedef enum {
     */
     ARKUI_KEYCODE_BUTTON_THUMBR = 2315,
 } ArkUI_KeyCode;
-
+ 
 /**
  * @brief Defines an enum for the key event types.
  *
@@ -401,7 +401,7 @@ typedef enum {
     /** Click of a key **/
     ARKUI_KEY_EVENT_CLICK = 3,
 } ArkUI_KeyEventType;
-
+ 
 /**
  * @brief Defines an enum for the types of devices that trigger a key event.
  *
@@ -421,7 +421,7 @@ typedef enum {
     */
     ARKUI_KEY_SOURCE_TYPE_JOYSTICK = 5,
 } ArkUI_KeySourceType;
-
+ 
 /**
  * @brief Defines an enum for key intentions.
  *
@@ -458,7 +458,7 @@ typedef enum {
     ARKUI_KEY_INTENSION_ZOOM_OUT = 13,
     /** Zoom in **/
     ARKUI_KEY_INTENSION_ZOOM_IN = 14,
-
+ 
     /** Play or pause **/
     ARKUI_KEY_INTENTION_MEDIA_PLAY_PAUSE = 100,
     /** Fast-forward **/
@@ -475,13 +475,13 @@ typedef enum {
     ARKUI_KEY_INTENTION_VOLUME_UP = 107,
     /** Volume down **/
     ARKUI_KEY_INTENTION_VOLUME_DOWN = 108,
-
+ 
     /** Answer a call **/
     ARKUI_KEY_INTENTION_CALL = 200,
     /** Camera **/
     ARKUI_KEY_INTENTION_CAMERA = 300,
 } ArkUI_KeyIntension;
-
+ 
 /**
  * @brief Obtains the type of a key event.
  *
@@ -490,7 +490,7 @@ typedef enum {
  * @since 14
  */
 ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Obtains the key code from a key event.
  *
@@ -499,7 +499,7 @@ ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
  * @since 14
  */
 int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Obtains the key value from a key event.
  *
@@ -508,7 +508,7 @@ int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
  * @since 14
  */
 const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Obtains the type of device that triggers a key event.
  *
@@ -517,7 +517,7 @@ const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
  * @since 14
  */
 ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Prevents a key event from bubbling up.
  *
@@ -526,7 +526,7 @@ ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* eve
  * @since 14
  */
 void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
-
+ 
 /**
  * @brief Obtains the intention code associated with a key event.
  *
@@ -535,7 +535,7 @@ void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool sto
  * @since 14
  */
 ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Obtains the Unicode value associated with a key event.
  * Non-space basic Latin characters in the 0x0021-0x007E range are supported. Characters with a value of 0 are not
@@ -547,7 +547,7 @@ ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEven
  * @since 14
  */
 uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Sets whether a key event is consumed in the key event callback.
  *
@@ -565,10 +565,9 @@ void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsu
  * @since 15
  */
 void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
- 
 #ifdef __cplusplus
 };
 #endif
-
+ 
 #endif // ARKUI_NATIVE_KEY_EVENT_H
 /** @} */

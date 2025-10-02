@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef NATIVE_NET_CONN_API_H
+#define NATIVE_NET_CONN_API_H
+
 /**
  * @addtogroup NetConnection
  * @{
@@ -34,9 +37,6 @@
  * @since 11
  * @version 1.0
  */
-
-#ifndef NATIVE_NET_CONN_API_H
-#define NATIVE_NET_CONN_API_H
 
 #include <netdb.h>
 

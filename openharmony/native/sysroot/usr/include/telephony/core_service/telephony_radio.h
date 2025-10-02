@@ -13,14 +13,8 @@
  * limitations under the License.
  */
 
-/**
- * @addtogroup Telephony
- * @{
- *
- * @brief Provides C interface for the telephony radio.
- *
- * @since 13
- */
+#ifndef NATIVE_TELEPHONY_RADIO_API_H
+#define NATIVE_TELEPHONY_RADIO_API_H
 
 /**
  * @file telephony_radio.h
@@ -32,9 +26,6 @@
  * @library libtelephony_radio.so
  * @since 13
  */
-
-#ifndef NATIVE_TELEPHONY_RADIO_API_H
-#define NATIVE_TELEPHONY_RADIO_API_H
 
 #include "telephony_radio_type.h"
 #include "stdint.h"
@@ -81,4 +72,3 @@ Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Teleph
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_API_H
-/** @} */

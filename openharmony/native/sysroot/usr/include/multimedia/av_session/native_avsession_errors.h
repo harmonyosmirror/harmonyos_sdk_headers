@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @addtogroup OHAVSession
  * @{
@@ -20,7 +20,7 @@
  * @brief Provide the definition of the C interface for the avsession module.
  * @since 13
  */
- 
+
 /**
  * @file native_avsession_errors.h
  *
@@ -31,14 +31,14 @@
  * @kit AVSessionKit
  * @since 13
  */
- 
+
 #ifndef NATIVE_AVSESSION_ERRORS_H
 #define NATIVE_AVSESSION_ERRORS_H
- 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
- 
+
 /**
  * @brief AVSession error code
  *
@@ -60,7 +60,7 @@ typedef enum {
      * @error Service exception.
      */
     AV_SESSION_ERR_SERVICE_EXCEPTION = 6600101,
- 
+
     /**
      * @error The session does not exist.
      */
@@ -81,10 +81,10 @@ typedef enum {
      */
     AV_SESSION_ERR_CODE_MESSAGE_OVERLOAD = 6600107,
 } AVSession_ErrCode;
- 
+
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif // NATIVE_AVSESSION_ERRORS_H
 /** @} */

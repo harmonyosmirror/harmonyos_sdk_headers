@@ -30,9 +30,9 @@
  *
  * @brief Define the type of stored key value pairs.
  *
- * @kit ArkData
  * @library libnative_rdb_ndk.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
+ * @kit ArkData
  * @since 10
  */
 

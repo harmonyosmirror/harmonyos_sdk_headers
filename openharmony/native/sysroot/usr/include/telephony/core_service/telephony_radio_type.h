@@ -13,14 +13,8 @@
  * limitations under the License.
  */
 
-/**
- * @addtogroup Telephony
- * @{
- *
- * @brief Provides the data structures for the C APIs of the the telephony radio.
- *
- * @since 13
- */
+#ifndef NATIVE_TELEPHONY_RADIO_TYPE_H
+#define NATIVE_TELEPHONY_RADIO_TYPE_H
 
 /**
  * @file telephony_radio_type.h
@@ -32,9 +26,6 @@
  * @library libtelephony_radio.so
  * @since 13
  */
-
-#ifndef NATIVE_TELEPHONY_RADIO_TYPE_H
-#define NATIVE_TELEPHONY_RADIO_TYPE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -164,4 +155,3 @@ typedef struct {
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_TYPE_H
-/** @} */

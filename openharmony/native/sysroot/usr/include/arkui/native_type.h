@@ -2342,6 +2342,7 @@ typedef enum {
     ARKUI_SAFE_AREA_EDGE_END = 1 << 3,
 } ArkUI_SafeAreaEdge;
 
+
 /**
  * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
  *
@@ -4096,7 +4097,7 @@ void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
  * @since 14
  */
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
-
+ 
 /**
  * @brief Get window name from HostWindowInfo.
  *
@@ -4105,7 +4106,7 @@ const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle)
  * @since 15
  */
 const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
-
+ 
 /**
  * @brief Destroy the instance of HostWindowInfo.
  *
@@ -4296,7 +4297,6 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
-
 #ifdef __cplusplus
 };
 #endif
