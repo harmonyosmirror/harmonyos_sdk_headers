@@ -29,7 +29,7 @@
  * @brief Declares the USB SERIAL DDK interfaces for the usb host to access an usb serial device.
  *
  * @kit DriverDevelopmentKit
- * @library libusb_serial.z.so
+ * @library libusb_serial_ndk.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
  * @since 18
  */

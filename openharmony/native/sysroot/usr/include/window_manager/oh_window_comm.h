@@ -229,6 +229,32 @@ typedef struct {
     WindowManager_Rect bottomRect;
 } WindowManager_AvoidArea;
 
+/**
+ * @brief Main window info
+ *
+ * @since 21
+ */
+typedef struct {
+    /** Display id of the window. */
+    uint64_t displayId;
+    /** Window id. */
+    int32_t windowId;
+    /** Showing state of the window. */
+    bool showing;
+    /** Label of the window. */
+    const char* label;
+} WindowManager_MainWindowInfo;
+
+/**
+ * @brief Window snapshot config info
+ *
+ * @since 21
+ */
+typedef struct {
+    /** Use cached windows' snapshot. */
+    bool useCache;
+} WindowManager_WindowSnapshotConfig;
+
 #ifdef __cplusplus
 }
 #endif

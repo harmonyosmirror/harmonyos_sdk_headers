@@ -28,9 +28,9 @@
  * @file image_pixel_map_mdk.h
  *
  * @brief Declares the APIs that can lock, access, and unlock a pixel map.
- * Need link <b>libpixelmapndk.z.so</b>
+ * Need link <b>libpixelmap_ndk.z.so</b>
  *
- * @library libpixelmap_ndk.so
+ * @library libpixelmap_ndk.z.so
  * @syscap SystemCapability.Multimedia.Image.Core
  * @kit ImageKit
  * @since 10

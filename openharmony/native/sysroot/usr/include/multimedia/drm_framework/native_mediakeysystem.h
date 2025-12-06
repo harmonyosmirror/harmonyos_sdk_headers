@@ -30,7 +30,7 @@
  * get and set configurations, get statistics, get content protection level,
  * generate provision request, process provision response, event listening,
  * get content protection level, manage offline media key etc..
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0

@@ -24,7 +24,7 @@
  * @file oh_bluetooth.h
  * @kit ConnectivityKit
  * @brief Define interfaces for querying bluetooth switch status.
- * @library libbluetooth.so
+ * @library libbluetooth_ndk.so
  * @syscap SystemCapability.Communication.Bluetooth.Core
  * @since 13
  */

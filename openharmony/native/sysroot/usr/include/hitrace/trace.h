@@ -28,19 +28,17 @@
  * During debugging and fault locating, you can use the unique chain ID to quickly correlate various information related
  * to the service process.
  *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 10
  */
 
 /**
  * @file trace.h
  *
- * @kit PerformanceAnalysisKit
- *
  * @brief Defines APIs of the HiTraceMeter module for performance trace.
  *
- * @library libhitracechain.so
+ * @kit PerformanceAnalysisKit
+ * @include <hitrace/trace.h>
+ * @library libhitrace_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */

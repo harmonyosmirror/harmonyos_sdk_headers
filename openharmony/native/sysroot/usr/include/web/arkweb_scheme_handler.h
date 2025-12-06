@@ -272,7 +272,6 @@ typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* h
  *                  the buffer is filled with data of bytesRead size. Caller can read from the buffer, and if
  *                  OH_ArkWebHttpBodyStream_IsEOF is false, caller can continue to read the remaining data.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 20
  */
 typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStream *httpBodyStream,
@@ -459,7 +458,6 @@ int32_t OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyS
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  * {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 20
  */
 int32_t OH_ArkWebHttpBodyStream_SetAsyncReadCallback(ArkWeb_HttpBodyStream *httpBodyStream,
@@ -506,7 +504,6 @@ void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, u
  * @param buffer The buffer to receive data.
  * @param bufLen The size of bytes to read.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 20
  */
 void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bufLen);

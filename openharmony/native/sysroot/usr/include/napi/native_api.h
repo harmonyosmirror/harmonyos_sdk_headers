@@ -112,6 +112,18 @@ NAPI_EXTERN napi_status napi_run_script_path(napi_env env, const char* path, nap
 NAPI_EXTERN napi_status napi_queue_async_work_with_qos(napi_env env, napi_async_work work, napi_qos_t qos);
 
 /**
+ * @brief Native critical scope provides a scope within that an ArkTS string buffer cache can be obtained.
+ * @since 21
+ */
+typedef struct napi_critical_scope__* napi_critical_scope;
+
+/**
+ * @brief Native strong reference of an ArkTS object.
+ * @since 21
+ */
+typedef struct napi_strong_ref__* napi_strong_ref;
+
+/**
  * @brief Loads an .abc file as a module. This API returns the namespace of the module.
  * @param env Current running virtual machine context.
  * @param path Path of the .abc file or name of the module to load.
@@ -2882,6 +2894,86 @@ NAPI_EXTERN napi_status napi_switch_ark_context(napi_env env);
  * @since 20
  */
 NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
+
+/**
+ * @brief To open a critical scope.
+ * @param env Current running virtual machine context.
+ * @param scope A critical scope of type of napi_critical_scope is generated.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param scope is nullptr.\n
+ * @since 21
+ */
+NAPI_EXTERN napi_status napi_open_critical_scope(napi_env env, napi_critical_scope* scope);
+
+/**
+ * @brief To close a critical scope.
+ * @param env Current running virtual machine context.
+ * @param scope A critical scope to be closed.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param scope is nullptr.\n
+ * @since 21
+ */
+NAPI_EXTERN napi_status napi_close_critical_scope(napi_env env, napi_critical_scope scope);
+
+/**
+ * @brief To obtain a ArkTS string buffer cache within the critical scope.
+ * @param env Current running virtual machine context.
+ * @param value An ArkTS string object which need be encoded with UTF16 format.
+ * @param buffer String buffer cache of the ArkTS string object value.
+ * @param length Length size of the string buffer cache which needs to be obtained.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, value, buffer and length is nullptr.\n
+ * @since 21
+ */
+NAPI_EXTERN napi_status napi_get_buffer_string_utf16_in_critical_scope(napi_env env,
+                                                                       napi_value value,
+                                                                       const char16_t** buffer,
+                                                                       size_t* length);
+
+/**
+ * @brief Creates a strong reference for an ArkTS object to extend its lifespan. The caller needs to manage the
+ *        reference lifespan.
+ * @param env Current running virtual machine context.
+ * @param value The napi_value that is being referenced.
+ * @param result napi_strong_ref pointing to the new strong reference.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
+ * @since 21
+ */
+NAPI_EXTERN napi_status napi_create_strong_reference(napi_env env, napi_value value, napi_strong_ref* result);
+
+/**
+ * @brief Deletes the strong reference passed in.
+ * @param env Current running virtual machine context.
+ * @param ref The napi_strong_ref to be deleted.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env or ref is nullptr.\n
+ * @since 21
+ */
+NAPI_EXTERN napi_status napi_delete_strong_reference(napi_env env, napi_strong_ref ref);
+
+/**
+ * @brief Obtains the ArkTS Object associated with the strong reference.
+ * @param env Current running virtual machine context.
+ * @param ref The napi_strong_ref of the value being requested.
+ * @param result The napi_value referenced by the napi_strong_ref.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, ref or result is nullptr.\n
+ * @since 21
+ */
+NAPI_EXTERN napi_status napi_get_strong_reference_value(napi_env env, napi_strong_ref ref, napi_value* result);
 #ifdef __cplusplus
 }
 #endif

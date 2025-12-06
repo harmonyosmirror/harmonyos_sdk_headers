@@ -441,6 +441,16 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  */
 OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params,
     int* status);
+
+/**
+ * @brief Notifies the system pasteboard to synchronize all time-lapse paste data from application.
+ *
+ * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @param callback Indicates the pointer to the callback that is called after the synchronize is finished.
+ * @since 21
+ */
+void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode));
+
 #ifdef __cplusplus
 };
 #endif

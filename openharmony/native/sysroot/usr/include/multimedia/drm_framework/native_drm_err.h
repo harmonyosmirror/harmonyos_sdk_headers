@@ -26,7 +26,7 @@
 /**
  * @file native_drm_err.h
  * @brief Defines the Drm errors.
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0

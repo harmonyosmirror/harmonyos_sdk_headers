@@ -29,7 +29,7 @@
  * @brief Provides the enumerated variables, structures, and macros used in USB SERIAL DDK APIs.
  *
  * @kit DriverDevelopmentKit
- * @library libusb_serial.z.so
+ * @library libusb_serial_ndk.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
  * @since 18
  */

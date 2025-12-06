@@ -28,7 +28,7 @@
  * @brief Defines the Drm MediaKeySession APIs. Provide following function:
  * generate media key request, process media key response, event listening,
  * get content protection level, check media key status, remove media key etc..
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0

@@ -27,7 +27,7 @@
  * @file native_drm_common.h
  *
  * @brief Defines the Drm common struct.
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0

@@ -313,6 +313,23 @@ typedef struct HiDebug_StackFrame {
  */
 typedef struct HiDebug_Backtrace_Object__* HiDebug_Backtrace_Object;
 
+/**
+ * @brief Defines the graphics memory summary structure type.
+ *
+ * @since 21
+ */
+typedef struct HiDebug_GraphicsMemorySummary {
+    /**
+     * GL memory
+     */
+    uint32_t gl;
+
+    /**
+     * graph memory
+     */
+    uint32_t graph;
+} HiDebug_GraphicsMemorySummary;
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

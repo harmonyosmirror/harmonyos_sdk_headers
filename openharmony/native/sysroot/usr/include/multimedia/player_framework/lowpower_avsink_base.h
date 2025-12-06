@@ -54,6 +54,13 @@ extern "C" {
 typedef struct OH_AVSamplesBuffer OH_AVSamplesBuffer;
 
 /**
+ * @brief Forward declaration of OH_LowPowerAVSink_Capability.
+ *
+ * @since 20
+ */
+typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
+
+/**
  * @brief Append one OH_AVBuffer data to framePacketBuffer instance.
  *
  * @param samplesBuffer OH_AVSamplesBuffer instance
@@ -77,6 +84,19 @@ OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffe
  */
 int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer);
 
+/**
+ * @brief Query the supported capabilities of a lowpower audio/video sink.
+ *
+ * This function queries and returns the capability set supported by the current
+ * lowpower audio/video sink, including but not limited to supported media formats, etc.
+ *
+ * @return {OH_LowPowerAVSink_Capability*}
+ * - A pointer to the capability structure if the sink supports capability queries and the query is successful.
+ * - nullptr if the sink does not support capability queries or the query fails.
+ *
+ * @since 21
+ */
+OH_LowPowerAVSink_Capability *OH_LowPowerAVSink_GetCapability();
 #ifdef __cplusplus
 }
 #endif

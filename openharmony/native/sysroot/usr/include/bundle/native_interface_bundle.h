@@ -40,6 +40,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "ability_resource_info.h"
+#include "bundle_manager_common.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -224,6 +227,20 @@ bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
  * @since 20
  */
 OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
+
+/**
+ * @brief Obtain a list of ability that support opening files in a certain format.
+ *
+ * @permisssion {@code ohos.permission.GET_ABILITY_INFO}.
+ * @param fileType Indicates the file type.
+ * @param abilityResourceInfo Indicates the ability resource array.
+ * @param size Indicates the ability resource array size.
+ * @return Returns {@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR} if the call is successful.
+ * Returns {@link BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED} if the caller has no correct permission.
+ * @since 21
+ */
+BundleManager_ErrorCode OH_NativeBundle_GetAbilityResourceInfo(char* fileType,
+    OH_NativeBundle_AbilityResourceInfo** abilityResourceInfo, size_t* size);
 #ifdef __cplusplus
 };
 #endif

@@ -16,7 +16,7 @@
  *
  * @brief Provides knowledge retrieval-related interfaces.
  *
- * @library libretrieval_ndk.so
+ * @library libnative_aip_retrieval_ndk.so
  * @kit DataAugmentationKit
  * @syscap SystemCapability.DataAugmentation.Retrieval
  * @since 6.0.0(20)

@@ -99,6 +99,19 @@ const char *OH_CryptoRand_GetAlgoName(OH_CryptoRand *ctx);
 OH_Crypto_ErrCode OH_CryptoRand_SetSeed(OH_CryptoRand *ctx, Crypto_DataBlob *seed);
 
 /**
+ * @brief Enables the hardware entropy source.
+ *
+ * @param ctx Indicates the random number generator context.
+ * @return {@link OH_Crypto_ErrCode#CRYPTO_SUCCESS} 0 - If the operation is successful.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_PARAMETER_CHECK_FAILED} 17620003 - If parameter check failed.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
+ * @since 21
+ */
+OH_Crypto_ErrCode OH_CryptoRand_EnableHardwareEntropy(OH_CryptoRand *ctx);
+
+/**
  * @brief Destroys the random number generator context.
  *
  * @param ctx Indicates the random number generator context.

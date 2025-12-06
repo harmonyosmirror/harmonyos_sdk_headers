@@ -138,6 +138,21 @@ typedef enum {
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079,
+    /**
+     * @error Failed to obtain the target application information.
+     * @since 21
+     */
+    ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED = 16000081,
+    /**
+     * @error Start UIAbility timeout.
+     * @since 21
+     */
+    ABILITY_RUNTIME_ERROR_CODE_START_TIMEOUT = 16000133,
+    /**
+     * @error The API does not support being called in the main thread.
+     * @since 21
+     */
+    ABILITY_RUNTIME_ERROR_CODE_MAIN_THREAD_NOT_SUPPORTED = 16000134,
 } AbilityRuntime_ErrorCode;
 
 #ifdef __cplusplus

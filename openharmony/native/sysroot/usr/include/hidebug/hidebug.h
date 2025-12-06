@@ -246,6 +246,21 @@ HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void);
  */
 void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object);
 
+/**
+ * @brief Obtain the graphics memory summary of application.
+ *
+ * @param interval If the cache of graphics memory is longer than interval (unit: second), the latest
+ *                 graphics memory data will be obtained. The interval value range is 2 seconds to
+ *                 3600 seconds, If interval is an invalid value, the default value is 300 seconds.
+ * @param summary Indicates value of graphics memory summary, in kibibytes.
+ * @return Result code
+ *         {@link HIDEBUG_SUCCESS} Get graphics memory success.
+ *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument, value is null.
+ *         {@link HIDEBUG_TRACE_ABNORMAL} Failed to get the application memory due to a remote exception.
+ * @since 21
+ */
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary);
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

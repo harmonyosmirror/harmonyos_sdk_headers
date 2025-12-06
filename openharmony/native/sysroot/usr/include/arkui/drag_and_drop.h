@@ -512,7 +512,6 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading(
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_OPERATION_FAILED} if no any data sync is in progress.
  * @since 15
  */
 int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* key);

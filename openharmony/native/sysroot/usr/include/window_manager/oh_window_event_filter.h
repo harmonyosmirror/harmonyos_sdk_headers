@@ -47,15 +47,14 @@ extern "C" {
 #endif
 
 /**
- * @brief the callback funcation type when keyEvent was filter
+ * @brief Defines a function for filtering multimodal key events
  * @param keyEvent multimodal keyEvent
  * @since 12
  */
 typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 
 /**
- * @brief Registers a  filter callback for the window ,the callback is called when the
- * window is dispatched to the event
+ * @brief Registers a function for filtering multimodal key events
  *
  * @param windowId windowId when window is created
  * @param keyEventFilter key event callback ,called when the window is dispatched
@@ -67,7 +66,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
     OH_NativeWindowManager_KeyEventFilter keyEventFilter);
 
 /**
- * @brief clear callback for the window
+ * @brief Unregisters a function for filtering multimodal key events
  *
  * @param windowId windowId when window is created
  * @return Returns the status code of the execution.
@@ -76,15 +75,14 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId);
 
 /**
- * @brief the callback function type when mouseEvent was filter
+ * @brief Defines a function for filtering multimodal mouse events
  * @param mouseEvent multimodal mouseEvent
  * @since 15
  */
 typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseEvent);
 
 /**
- * @brief Registers a filter callback for the window, the callback is called when the
- * window is dispatched to the event
+ * @brief Registers a function for filtering multimodal mouse events
  *
  * @param windowId windowId when window is created
  * @param mouseEventFilter mouse event callback, called when the window is dispatched
@@ -99,7 +97,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
     OH_NativeWindowManager_MouseEventFilter mouseEventFilter);
 
 /**
- * @brief clear callback for the window
+ * @brief Unregisters a function for filtering multimodal mouse events
  *
  * @param windowId windowId when window is created
  * @return Returns the status code of the execution.
@@ -111,15 +109,14 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId);
 
 /**
- * @brief the callback function type when touchEvent was filter
+ * @brief Defines a function for filtering multimodal touch events
  * @param touchEvent multimodal touchEvent
  * @since 15
  */
 typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchEvent);
 
 /**
- * @brief Registers a filter callback for the window, the callback is called when the
- * window is dispatched to the event
+ * @brief Registers a function for filtering multimodal touch events
  *
  * @param windowId windowId when window is created
  * @param touchEventFilter touch event callback, called when the window is dispatched
@@ -134,7 +131,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
     OH_NativeWindowManager_TouchEventFilter touchEventFilter);
 
 /**
- * @brief clear callback for the window
+ * @brief Unregisters a function for filtering multimodal touch events
  *
  * @param windowId windowId when window is created
  * @return Returns the status code of the execution.

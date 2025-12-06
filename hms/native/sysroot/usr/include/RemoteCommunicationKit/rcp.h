@@ -1798,6 +1798,37 @@ typedef struct Rcp_OnBinaryReceiveCallback {
 uint32_t HMS_Rcp_SetRequestOnBinaryDataRecvCallback(Rcp_Request *request,
                                                     Rcp_OnBinaryReceiveCallback onBinaryReceiveCallback);
 
+/**
+ * @brief Callback function triggered when a status code is received.
+ *
+ * @param usrObject User-defined object.
+ * @param statusCode Status code of the response to the request.
+ * @since 6.0.1(21)
+ */
+typedef void (*Rcp_OnStatusCodeReceiveCallbackFunc)(void *usrObject, uint32_t statusCode);
+
+/**
+ * @brief Callback function for receiving the status code.
+ * @since 6.0.1(21)
+ */
+typedef struct Rcp_OnStatusCodeReceiveCallback {
+    /** Callback function for receiving status code */
+    Rcp_OnStatusCodeReceiveCallbackFunc callback;
+    /** User-defined object, used within a callback function */
+    void *usrObject;
+} Rcp_OnStatusCodeReceiveCallback;
+
+/**
+ * @brief Sets the callback function for receiving the status code.
+ *
+ * @param request Pointer to {@link Rcp_Request} to be set.
+ * @param onStatusCodeReceiveCallback Callback function for receiving the status code.
+ * @return 401 - Parameter error.
+ * @since 6.0.1(21)
+ */
+uint32_t HMS_Rcp_SetRequestOnStatusCodeReceiveCallback(Rcp_Request *request,
+                                                       Rcp_OnStatusCodeReceiveCallback onStatusCodeReceiveCallback);
+
 #ifdef __cplusplus
 }
 #endif

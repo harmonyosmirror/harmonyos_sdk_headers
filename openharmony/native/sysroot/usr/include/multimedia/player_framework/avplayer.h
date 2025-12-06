@@ -47,6 +47,7 @@
 #include "avplayer_base.h"
 #include "native_window/external_window.h"
 #include "ohaudio/native_audiostream_base.h"
+#include "native_avcodec_base.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -620,6 +621,41 @@ OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnEr
  * @since 19
  */
 OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_VolumeMode volumeMode);
+
+/**
+ * @brief Sets the loudness gain of current media. The default gain is 0.0 dB.
+ * This API can be called only when the AVPlayer is in the prepared, playing, paused completed or stopped state.
+ * The default loudness gain is 0.0dB. The stream usage of the player must be
+ * {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MUSIC}, {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MOVIE}
+ * or {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_AUDIOBOOK}.
+ * The latency mode of the audio renderer must be {@link OH_AudioStream_LatencyMode#AUDIOSTREAM_LATENCY_MODE_NORMAL}.
+ * If AudioRenderer is played through the high-resolution pipe, this operation is not supported.
+ *
+ * @param player Pointer to an <b>OH_AVPlayer</b> instance.
+ * @param loudnessGain Loudness gain to set which changes from -90.0 to 24.0, expressing in dB.
+ * @return Function result code:
+ *         {@link AV_ERR_OK} If the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL}:The value of <b>player</b> is a null pointer or
+ *                                    the value of <b>loudnessGain</b> is invalid.
+ *         {@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state. or the stream usage of
+ *                                      audioRendererInfo is not one of {@link StreamUsage#STREAM_USAGE_MUSIC},
+ *                                 {@link StreamUsage#STREAM_USAGE_MOVIE} or {@link StreamUsage#STREAM_USAGE_AUDIOBOOK}.
+ *         {@link AV_ERR_SERVICE_DIED}:  System errors such as media service breakdown.
+ * @since 21
+ */
+OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain);
+
+/**
+ * @brief Set the media source of the player. The data of this media source is provided by the application.
+ * @param {OH_AVPlayer*} player Pointer to an OH_AVPlayer instance
+ * @param {OH_AVDataSourceExt*} datasrc Pointer to an OH_AVDataSourceExt instance
+ * @param {void*} userData The handle passed in by the user is used to pass in the callback
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or datasrc is nullptr.
+ * @since 21
+ */
+OH_AVErrCode OH_AVPlayer_SetDataSource(OH_AVPlayer *player, OH_AVDataSourceExt* datasrc, void* userData);
 
 #ifdef __cplusplus
 }

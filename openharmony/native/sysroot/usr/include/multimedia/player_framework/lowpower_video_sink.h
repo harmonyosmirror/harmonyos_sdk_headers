@@ -342,6 +342,20 @@ OH_AVErrCode OH_LowPowerVideoSink_ReturnSamples(OH_LowPowerVideoSink* sink, OH_A
 OH_AVErrCode OH_LowPowerVideoSink_RegisterCallback(OH_LowPowerVideoSink* sink, OH_LowPowerVideoSinkCallback* callback);
 
 /**
+ * @brief Get the latest presentation timestamp (PTS) from lowpower video sink.
+ *
+ * @param {OH_LowPowerVideoSink*} sink Pointer to an OH_LowPowerVideoSink instance.
+ * @param {int64_t*} pts Pointer to store the latest PTS value (in microseconds).
+ * @return Returns AV_ERR_OK if the timestamp is obtained successfully;
+ * otherwise, returns a specific error code as defined in {@link OH_AVErrCode}:
+ * {@link AV_ERR_INVALID_VAL} the sink is nullptr, or sink is invalid.
+ * {@link AV_ERR_SERVICE_DIED} media service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @since 21
+ */
+OH_AVErrCode OH_LowPowerVideoSink_GetLatestPts(OH_LowPowerVideoSink *sink, int64_t *pts);
+
+/**
  * @brief Creates a lowpower video sink callback instance.
  *
  * @return Returns a Pointer to an OH_LowPowerVideoSinkCallback instance.
@@ -375,7 +389,7 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_Destroy(OH_LowPowerVideoSinkCallback* 
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetDataNeededListener(
-    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnDataNeeded onDataNeeded,void* userData);
+    OH_LowPowerVideoSinkCallback *callback, OH_LowPowerVideoSink_OnDataNeeded onDataNeeded, void *userData);
 
 /**
  * @brief Add onError listener to the lowpower video sink callback instance.

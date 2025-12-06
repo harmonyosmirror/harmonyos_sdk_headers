@@ -306,7 +306,7 @@ int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId);
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL} the PiP window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED} failed to create the PiP window.
- *         {@link WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION} repeated PiP operation.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
@@ -321,7 +321,7 @@ int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED} failed to destroy the PiP window.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL} the PiP window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION} repeated PiP operation.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
