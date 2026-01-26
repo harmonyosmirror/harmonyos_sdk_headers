@@ -34,6 +34,7 @@
 #ifndef OH_SENSOR_H
 #define OH_SENSOR_H
 
+#include "info/application_target_sdk_version.h"
 #include "oh_sensor_type.h"
 
 #ifdef __cplusplus
@@ -52,7 +53,8 @@ extern "C" {
  *
  * @since 11
  */
-Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count);
+Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Subscribes to sensor data. The system will report sensor data to the subscriber at the specified frequency.
@@ -77,7 +79,8 @@ Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count);
  * @since 11
  */
 Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id,
-    const Sensor_SubscriptionAttribute *attribute, const Sensor_Subscriber *subscriber);
+    const Sensor_SubscriptionAttribute *attribute, const Sensor_Subscriber *subscriber)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unsubscribes from sensor data.
@@ -100,7 +103,8 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id,
  *
  * @since 11
  */
-Sensor_Result OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Sensor_Subscriber *subscriber);
+Sensor_Result OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Sensor_Subscriber *subscriber)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 #ifdef __cplusplus
 }
 #endif

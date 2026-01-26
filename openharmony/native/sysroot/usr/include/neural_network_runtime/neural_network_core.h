@@ -42,6 +42,7 @@
 #ifndef NEURAL_NETWORK_CORE_H
 #define NEURAL_NETWORK_CORE_H
 
+#include "info/application_target_sdk_version.h"
 #include "neural_network_runtime_type.h"
 
 #ifdef __cplusplus
@@ -71,7 +72,8 @@ extern "C" {
  * @since 9
  * @version 1.0
  */
-OH_NNCompilation *OH_NNCompilation_Construct(const OH_NNModel *model);
+OH_NNCompilation *OH_NNCompilation_Construct(const OH_NNModel *model)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Creates a compilation instance based on an offline model file.
@@ -91,7 +93,8 @@ OH_NNCompilation *OH_NNCompilation_Construct(const OH_NNModel *model);
  * @since 11
  * @version 1.0
  */
-OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelFile(const char *modelPath);
+OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelFile(const char *modelPath)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a compilation instance based on an offline model file buffer.
@@ -109,7 +112,8 @@ OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelFile(const char *mod
  * @since 11
  * @version 1.0
  */
-OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelBuffer(const void *modelBuffer, size_t modelSize);
+OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelBuffer(const void *modelBuffer, size_t modelSize)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a empty compilation instance for restoration from cache later.
@@ -126,7 +130,7 @@ OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelBuffer(const void *m
  * @since 11
  * @version 1.0
  */
-OH_NNCompilation *OH_NNCompilation_ConstructForCache();
+OH_NNCompilation *OH_NNCompilation_ConstructForCache() __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Exports the cache to a given buffer.
@@ -152,7 +156,8 @@ OH_NNCompilation *OH_NNCompilation_ConstructForCache();
 OH_NN_ReturnCode OH_NNCompilation_ExportCacheToBuffer(OH_NNCompilation *compilation,
                                                       const void *buffer,
                                                       size_t length,
-                                                      size_t *modelSize);
+                                                      size_t *modelSize)
+                                                      __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Imports the cache from a given buffer.
@@ -178,7 +183,8 @@ OH_NN_ReturnCode OH_NNCompilation_ExportCacheToBuffer(OH_NNCompilation *compilat
  */
 OH_NN_ReturnCode OH_NNCompilation_ImportCacheFromBuffer(OH_NNCompilation *compilation,
                                                         const void *buffer,
-                                                        size_t modelSize);
+                                                        size_t modelSize)
+                                                        __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Adds an extension config for a custom hardware attribute.
@@ -205,7 +211,8 @@ OH_NN_ReturnCode OH_NNCompilation_ImportCacheFromBuffer(OH_NNCompilation *compil
 OH_NN_ReturnCode OH_NNCompilation_AddExtensionConfig(OH_NNCompilation *compilation,
                                                      const char *configName,
                                                      const void *configValue,
-                                                     const size_t configValueSize);
+                                                     const size_t configValueSize)
+                                                     __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Specifies the device for model compilation and computing.
@@ -224,7 +231,8 @@ OH_NN_ReturnCode OH_NNCompilation_AddExtensionConfig(OH_NNCompilation *compilati
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNCompilation_SetDevice(OH_NNCompilation *compilation, size_t deviceID);
+OH_NN_ReturnCode OH_NNCompilation_SetDevice(OH_NNCompilation *compilation, size_t deviceID)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the cache directory and version of the compiled model.
@@ -262,7 +270,8 @@ OH_NN_ReturnCode OH_NNCompilation_SetDevice(OH_NNCompilation *compilation, size_
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNCompilation_SetCache(OH_NNCompilation *compilation, const char *cachePath, uint32_t version);
+OH_NN_ReturnCode OH_NNCompilation_SetCache(OH_NNCompilation *compilation, const char *cachePath, uint32_t version)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets the performance mode for model computing.
@@ -285,7 +294,8 @@ OH_NN_ReturnCode OH_NNCompilation_SetCache(OH_NNCompilation *compilation, const 
  * @version 1.0
  */
 OH_NN_ReturnCode OH_NNCompilation_SetPerformanceMode(OH_NNCompilation *compilation,
-                                                     OH_NN_PerformanceMode performanceMode);
+                                                     OH_NN_PerformanceMode performanceMode)
+                                                     __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets the model computing priority.
@@ -307,7 +317,8 @@ OH_NN_ReturnCode OH_NNCompilation_SetPerformanceMode(OH_NNCompilation *compilati
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNCompilation_SetPriority(OH_NNCompilation *compilation, OH_NN_Priority priority);
+OH_NN_ReturnCode OH_NNCompilation_SetPriority(OH_NNCompilation *compilation, OH_NN_Priority priority)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Enables float16 for computing.
@@ -329,7 +340,8 @@ OH_NN_ReturnCode OH_NNCompilation_SetPriority(OH_NNCompilation *compilation, OH_
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNCompilation_EnableFloat16(OH_NNCompilation *compilation, bool enableFloat16);
+OH_NN_ReturnCode OH_NNCompilation_EnableFloat16(OH_NNCompilation *compilation, bool enableFloat16)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Compiles a model.
@@ -350,7 +362,8 @@ OH_NN_ReturnCode OH_NNCompilation_EnableFloat16(OH_NNCompilation *compilation, b
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNCompilation_Build(OH_NNCompilation *compilation);
+OH_NN_ReturnCode OH_NNCompilation_Build(OH_NNCompilation *compilation)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Releases the <b>Compilation</b> object.
@@ -366,7 +379,7 @@ OH_NN_ReturnCode OH_NNCompilation_Build(OH_NNCompilation *compilation);
  * @since 9
  * @version 1.0
  */
-void OH_NNCompilation_Destroy(OH_NNCompilation **compilation);
+void OH_NNCompilation_Destroy(OH_NNCompilation **compilation) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 
 /**
@@ -389,7 +402,7 @@ void OH_NNCompilation_Destroy(OH_NNCompilation **compilation);
  * @since 11
  * @version 1.0
  */
-NN_TensorDesc *OH_NNTensorDesc_Create();
+NN_TensorDesc *OH_NNTensorDesc_Create() __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases an {@link NN_TensorDesc} instance.
@@ -407,7 +420,8 @@ NN_TensorDesc *OH_NNTensorDesc_Create();
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_Destroy(NN_TensorDesc **tensorDesc);
+OH_NN_ReturnCode OH_NNTensorDesc_Destroy(NN_TensorDesc **tensorDesc)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the name of a {@link NN_TensorDesc}.
@@ -426,7 +440,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_Destroy(NN_TensorDesc **tensorDesc);
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_SetName(NN_TensorDesc *tensorDesc, const char *name);
+OH_NN_ReturnCode OH_NNTensorDesc_SetName(NN_TensorDesc *tensorDesc, const char *name)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the name of a {@link NN_TensorDesc}.
@@ -449,7 +464,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetName(NN_TensorDesc *tensorDesc, const char *
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_GetName(const NN_TensorDesc *tensorDesc, const char **name);
+OH_NN_ReturnCode OH_NNTensorDesc_GetName(const NN_TensorDesc *tensorDesc, const char **name)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the data type of a {@link NN_TensorDesc}.
@@ -467,7 +483,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetName(const NN_TensorDesc *tensorDesc, const 
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_SetDataType(NN_TensorDesc *tensorDesc, OH_NN_DataType dataType);
+OH_NN_ReturnCode OH_NNTensorDesc_SetDataType(NN_TensorDesc *tensorDesc, OH_NN_DataType dataType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the data type of a {@link NN_TensorDesc}.
@@ -485,7 +502,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetDataType(NN_TensorDesc *tensorDesc, OH_NN_Da
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_GetDataType(const NN_TensorDesc *tensorDesc, OH_NN_DataType *dataType);
+OH_NN_ReturnCode OH_NNTensorDesc_GetDataType(const NN_TensorDesc *tensorDesc, OH_NN_DataType *dataType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the shape of a {@link NN_TensorDesc}.
@@ -504,7 +522,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetDataType(const NN_TensorDesc *tensorDesc, OH
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_SetShape(NN_TensorDesc *tensorDesc, const int32_t *shape, size_t shapeLength);
+OH_NN_ReturnCode OH_NNTensorDesc_SetShape(NN_TensorDesc *tensorDesc, const int32_t *shape, size_t shapeLength)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the shape of a {@link NN_TensorDesc}.
@@ -527,7 +546,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetShape(NN_TensorDesc *tensorDesc, const int32
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_GetShape(const NN_TensorDesc *tensorDesc, int32_t **shape, size_t *shapeLength);
+OH_NN_ReturnCode OH_NNTensorDesc_GetShape(const NN_TensorDesc *tensorDesc, int32_t **shape, size_t *shapeLength)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the format of a {@link NN_TensorDesc}.
@@ -545,7 +565,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetShape(const NN_TensorDesc *tensorDesc, int32
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_SetFormat(NN_TensorDesc *tensorDesc, OH_NN_Format format);
+OH_NN_ReturnCode OH_NNTensorDesc_SetFormat(NN_TensorDesc *tensorDesc, OH_NN_Format format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the format of a {@link NN_TensorDesc}.
@@ -563,7 +584,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetFormat(NN_TensorDesc *tensorDesc, OH_NN_Form
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_GetFormat(const NN_TensorDesc *tensorDesc, OH_NN_Format *format);
+OH_NN_ReturnCode OH_NNTensorDesc_GetFormat(const NN_TensorDesc *tensorDesc, OH_NN_Format *format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the element count of a {@link NN_TensorDesc}.
@@ -585,7 +607,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetFormat(const NN_TensorDesc *tensorDesc, OH_N
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_GetElementCount(const NN_TensorDesc *tensorDesc, size_t *elementCount);
+OH_NN_ReturnCode OH_NNTensorDesc_GetElementCount(const NN_TensorDesc *tensorDesc, size_t *elementCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the byte size of a {@link NN_TensorDesc}.
@@ -608,7 +631,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetElementCount(const NN_TensorDesc *tensorDesc
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensorDesc_GetByteSize(const NN_TensorDesc *tensorDesc, size_t *byteSize);
+OH_NN_ReturnCode OH_NNTensorDesc_GetByteSize(const NN_TensorDesc *tensorDesc, size_t *byteSize)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a {@link NN_Tensor} instance from {@link NN_TensorDesc}.
@@ -635,7 +659,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetByteSize(const NN_TensorDesc *tensorDesc, si
  * @since 11
  * @version 1.0
  */
-NN_Tensor *OH_NNTensor_Create(size_t deviceID, NN_TensorDesc *tensorDesc);
+NN_Tensor *OH_NNTensor_Create(size_t deviceID, NN_TensorDesc *tensorDesc)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a {@link NN_Tensor} instance with specified size and {@link NN_TensorDesc}.
@@ -663,7 +688,8 @@ NN_Tensor *OH_NNTensor_Create(size_t deviceID, NN_TensorDesc *tensorDesc);
  * @since 11
  * @version 1.0
  */
-NN_Tensor *OH_NNTensor_CreateWithSize(size_t deviceID, NN_TensorDesc *tensorDesc, size_t size);
+NN_Tensor *OH_NNTensor_CreateWithSize(size_t deviceID, NN_TensorDesc *tensorDesc, size_t size)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a {@link NN_Tensor} instance with specified file descriptor and {@link NN_TensorDesc}.
@@ -697,7 +723,8 @@ NN_Tensor *OH_NNTensor_CreateWithFd(size_t deviceID,
                                     NN_TensorDesc *tensorDesc,
                                     int fd,
                                     size_t size,
-                                    size_t offset);
+                                    size_t offset)
+                                    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases a {@link NN_Tensor} instance.
@@ -716,7 +743,7 @@ NN_Tensor *OH_NNTensor_CreateWithFd(size_t deviceID,
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensor_Destroy(NN_Tensor **tensor);
+OH_NN_ReturnCode OH_NNTensor_Destroy(NN_Tensor **tensor) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the {@link NN_TensorDesc} instance of a {@link NN_Tensor}.
@@ -737,7 +764,8 @@ OH_NN_ReturnCode OH_NNTensor_Destroy(NN_Tensor **tensor);
  * @since 11
  * @version 1.0
  */
-NN_TensorDesc *OH_NNTensor_GetTensorDesc(const NN_Tensor *tensor);
+NN_TensorDesc *OH_NNTensor_GetTensorDesc(const NN_Tensor *tensor)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the data buffer of a {@link NN_Tensor}.
@@ -756,7 +784,7 @@ NN_TensorDesc *OH_NNTensor_GetTensorDesc(const NN_Tensor *tensor);
  * @since 11
  * @version 1.0
  */
-void *OH_NNTensor_GetDataBuffer(const NN_Tensor *tensor);
+void *OH_NNTensor_GetDataBuffer(const NN_Tensor *tensor) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the file descriptor of the shared memory of a {@link NN_Tensor}.
@@ -775,7 +803,8 @@ void *OH_NNTensor_GetDataBuffer(const NN_Tensor *tensor);
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensor_GetFd(const NN_Tensor *tensor, int *fd);
+OH_NN_ReturnCode OH_NNTensor_GetFd(const NN_Tensor *tensor, int *fd)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the size of the shared memory of a {@link NN_Tensor}.
@@ -801,7 +830,8 @@ OH_NN_ReturnCode OH_NNTensor_GetFd(const NN_Tensor *tensor, int *fd);
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensor_GetSize(const NN_Tensor *tensor, size_t *size);
+OH_NN_ReturnCode OH_NNTensor_GetSize(const NN_Tensor *tensor, size_t *size)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the data offset of a tensor.
@@ -823,7 +853,8 @@ OH_NN_ReturnCode OH_NNTensor_GetSize(const NN_Tensor *tensor, size_t *size);
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNTensor_GetOffset(const NN_Tensor *tensor, size_t *offset);
+OH_NN_ReturnCode OH_NNTensor_GetOffset(const NN_Tensor *tensor, size_t *offset)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an executor instance of the {@link OH_NNExecutor} type.
@@ -839,7 +870,8 @@ OH_NN_ReturnCode OH_NNTensor_GetOffset(const NN_Tensor *tensor, size_t *offset);
  * @since 9
  * @version 1.0
  */
-OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation);
+OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the dimension information about the output tensor.
@@ -878,7 +910,8 @@ OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation);
 OH_NN_ReturnCode OH_NNExecutor_GetOutputShape(OH_NNExecutor *executor,
                                               uint32_t outputIndex,
                                               int32_t **shape,
-                                              uint32_t *shapeLength);
+                                              uint32_t *shapeLength)
+                                              __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroys an executor instance to release the memory occupied by the executor.
@@ -892,7 +925,7 @@ OH_NN_ReturnCode OH_NNExecutor_GetOutputShape(OH_NNExecutor *executor,
  * @since 9
  * @version 1.0
  */
-void OH_NNExecutor_Destroy(OH_NNExecutor **executor);
+void OH_NNExecutor_Destroy(OH_NNExecutor **executor) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Gets the input tensor count.
@@ -909,7 +942,8 @@ void OH_NNExecutor_Destroy(OH_NNExecutor **executor);
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNExecutor_GetInputCount(const OH_NNExecutor *executor, size_t *inputCount);
+OH_NN_ReturnCode OH_NNExecutor_GetInputCount(const OH_NNExecutor *executor, size_t *inputCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the output tensor count.
@@ -926,7 +960,8 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputCount(const OH_NNExecutor *executor, size
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNExecutor_GetOutputCount(const OH_NNExecutor *executor, size_t *outputCount);
+OH_NN_ReturnCode OH_NNExecutor_GetOutputCount(const OH_NNExecutor *executor, size_t *outputCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an input tensor descriptor with its index.
@@ -942,7 +977,8 @@ OH_NN_ReturnCode OH_NNExecutor_GetOutputCount(const OH_NNExecutor *executor, siz
  * @since 11
  * @version 1.0
  */
-NN_TensorDesc *OH_NNExecutor_CreateInputTensorDesc(const OH_NNExecutor *executor, size_t index);
+NN_TensorDesc *OH_NNExecutor_CreateInputTensorDesc(const OH_NNExecutor *executor, size_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an output tensor descriptor with its index.
@@ -958,7 +994,8 @@ NN_TensorDesc *OH_NNExecutor_CreateInputTensorDesc(const OH_NNExecutor *executor
  * @since 11
  * @version 1.0
  */
-NN_TensorDesc *OH_NNExecutor_CreateOutputTensorDesc(const OH_NNExecutor *executor, size_t index);
+NN_TensorDesc *OH_NNExecutor_CreateOutputTensorDesc(const OH_NNExecutor *executor, size_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the dimension ranges of an input tensor.
@@ -998,7 +1035,8 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputDimRange(const OH_NNExecutor *executor,
                                                 size_t index,
                                                 size_t **minInputDims,
                                                 size_t **maxInputDims,
-                                                size_t *shapeLength);
+                                                size_t *shapeLength)
+                                                __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the callback function handle for the post-process when the asynchronous execution has been done.
@@ -1015,7 +1053,8 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputDimRange(const OH_NNExecutor *executor,
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNExecutor_SetOnRunDone(OH_NNExecutor *executor, NN_OnRunDone onRunDone);
+OH_NN_ReturnCode OH_NNExecutor_SetOnRunDone(OH_NNExecutor *executor, NN_OnRunDone onRunDone)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the callback function handle for the post-process when the device driver service is dead during asynchronous execution.
@@ -1032,7 +1071,8 @@ OH_NN_ReturnCode OH_NNExecutor_SetOnRunDone(OH_NNExecutor *executor, NN_OnRunDon
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNExecutor_SetOnServiceDied(OH_NNExecutor *executor, NN_OnServiceDied onServiceDied);
+OH_NN_ReturnCode OH_NNExecutor_SetOnServiceDied(OH_NNExecutor *executor, NN_OnServiceDied onServiceDied)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Synchronous execution of the model inference.
@@ -1063,7 +1103,8 @@ OH_NN_ReturnCode OH_NNExecutor_RunSync(OH_NNExecutor *executor,
                                        NN_Tensor *inputTensor[],
                                        size_t inputCount,
                                        NN_Tensor *outputTensor[],
-                                       size_t outputCount);
+                                       size_t outputCount)
+                                       __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Asynchronous execution of the model inference.
@@ -1115,7 +1156,8 @@ OH_NN_ReturnCode OH_NNExecutor_RunAsync(OH_NNExecutor *executor,
                                         NN_Tensor *outputTensor[],
                                         size_t outputCount,
                                         int32_t timeout,
-                                        void *userData);
+                                        void *userData)
+                                        __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the IDs of all devices connected.
@@ -1138,7 +1180,8 @@ OH_NN_ReturnCode OH_NNExecutor_RunAsync(OH_NNExecutor *executor,
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32_t *deviceCount);
+OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32_t *deviceCount)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the name of the specified device.
@@ -1162,7 +1205,8 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNDevice_GetName(size_t deviceID, const char **name);
+OH_NN_ReturnCode OH_NNDevice_GetName(size_t deviceID, const char **name)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the type information of the specified device.
@@ -1185,7 +1229,8 @@ OH_NN_ReturnCode OH_NNDevice_GetName(size_t deviceID, const char **name);
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNDevice_GetType(size_t deviceID, OH_NN_DeviceType *deviceType);
+OH_NN_ReturnCode OH_NNDevice_GetType(size_t deviceID, OH_NN_DeviceType *deviceType)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 #ifdef __cplusplus
 }

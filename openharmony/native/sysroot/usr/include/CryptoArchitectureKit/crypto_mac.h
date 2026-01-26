@@ -36,6 +36,7 @@
 #ifndef CRYPTO_MAC_H
 #define CRYPTO_MAC_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 #include "crypto_sym_key.h"
 
@@ -75,7 +76,8 @@ typedef enum {
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx);
+OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the specified parameter to the MAC context.
@@ -90,7 +92,8 @@ OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoMac_SetParam(OH_CryptoMac *ctx, CryptoMac_ParamType type, const Crypto_DataBlob *value);
+OH_Crypto_ErrCode OH_CryptoMac_SetParam(OH_CryptoMac *ctx, CryptoMac_ParamType type, const Crypto_DataBlob *value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Initializes the MAC context with a symmetric key.
@@ -106,7 +109,8 @@ OH_Crypto_ErrCode OH_CryptoMac_SetParam(OH_CryptoMac *ctx, CryptoMac_ParamType t
  * @see OH_CryptoMac_Final
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *key);
+OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *key)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Updates the MAC context with data.
@@ -122,7 +126,8 @@ OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *ke
  * @see OH_CryptoMac_Final
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *in);
+OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *in)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Finalizes the MAC operation.
@@ -138,7 +143,8 @@ OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *
  * @see OH_CryptoMac_Update
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoMac_Final(OH_CryptoMac *ctx, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoMac_Final(OH_CryptoMac *ctx, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the length of the MAC.
@@ -152,7 +158,8 @@ OH_Crypto_ErrCode OH_CryptoMac_Final(OH_CryptoMac *ctx, Crypto_DataBlob *out);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoMac_GetLength(OH_CryptoMac *ctx, uint32_t *length);
+OH_Crypto_ErrCode OH_CryptoMac_GetLength(OH_CryptoMac *ctx, uint32_t *length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the MAC context.
@@ -160,7 +167,7 @@ OH_Crypto_ErrCode OH_CryptoMac_GetLength(OH_CryptoMac *ctx, uint32_t *length);
  * @param ctx Indicates the MAC context.
  * @since 20
  */
-void OH_CryptoMac_Destroy(OH_CryptoMac *ctx);
+void OH_CryptoMac_Destroy(OH_CryptoMac *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

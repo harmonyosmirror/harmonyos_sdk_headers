@@ -39,6 +39,7 @@
 #ifndef CAPI_INCLUDE_IPC_CREMOTE_OBJECT_H
 #define CAPI_INCLUDE_IPC_CREMOTE_OBJECT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "ipc_cparcel.h"
@@ -103,7 +104,8 @@ typedef void (*OH_OnRemoteDestroyCallback)(void *userData);
  * @since 12
  */
 OHIPCRemoteStub* OH_IPCRemoteStub_Create(const char *descriptor, OH_OnRemoteRequestCallback requestCallback,
-    OH_OnRemoteDestroyCallback destroyCallback, void *userData);
+    OH_OnRemoteDestroyCallback destroyCallback, void *userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OHIPCRemoteStub</b> object.
@@ -112,7 +114,7 @@ OHIPCRemoteStub* OH_IPCRemoteStub_Create(const char *descriptor, OH_OnRemoteRequ
  * @param stub Pointer to the <b>OHIPCRemoteStub</b> object to destroy.
  * @since 12
  */
-void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub);
+void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OHIPCRemoteProxy</b> object.
@@ -121,7 +123,7 @@ void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub);
  * @param proxy Pointer to the <b>OHIPCRemoteProxy</b> object to destroy.
  * @since 12
  */
-void OH_IPCRemoteProxy_Destroy(OHIPCRemoteProxy *proxy);
+void OH_IPCRemoteProxy_Destroy(OHIPCRemoteProxy *proxy) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates the IPC request modes.
@@ -169,7 +171,8 @@ typedef struct {
  * @since 12
  */
 int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy *proxy, uint32_t code, const OHIPCParcel *data,
-    OHIPCParcel *reply, const OH_IPC_MessageOption *option);
+    OHIPCParcel *reply, const OH_IPC_MessageOption *option)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interface descriptor from the stub.
@@ -192,7 +195,8 @@ int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy *proxy, uint32_t code, 
  * @since 12
  */
 int OH_IPCRemoteProxy_GetInterfaceDescriptor(OHIPCRemoteProxy *proxy, char **descriptor, int32_t *len,
-    OH_IPC_MemAllocator allocator);
+    OH_IPC_MemAllocator allocator)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Called when the <b>OHIPCRemoteStub</b> object dies unexpectedly.
@@ -226,7 +230,8 @@ typedef void (*OH_OnDeathRecipientDestroyCallback)(void *userData);
  * @since 12
  */
 OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback deathRecipientCallback,
-    OH_OnDeathRecipientDestroyCallback destroyCallback, void *userData);
+    OH_OnDeathRecipientDestroyCallback destroyCallback, void *userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OHIPCDeathRecipient</b> object.
@@ -235,7 +240,8 @@ OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback dea
  * @param recipient Pointer to the <b>OHIPCDeathRecipient</b> object to destroy.
  * @since 12
  */
-void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
+void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Subscribes to the death of an <b>OHIPCRemoteStub</b> object for an <b>OHIPCRemoteProxy</b> object.
@@ -250,7 +256,8 @@ void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
  * @since 12
  */
-int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient);
+int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unsubscribes from the death of the <b>OHIPCRemoteStub</b> object for an <b>OHIPCRemoteProxy</b> object.
@@ -265,7 +272,8 @@ int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecip
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
  * @since 12
  */
-int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient);
+int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether the <b>OHIPCRemoteStub</b> object corresponding to the <b>OHIPCRemoteProxy</b> object is dead.
@@ -277,7 +285,8 @@ int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRe
  * In this case, <b>1</b> is returned.
  * @since 12
  */
-int OH_IPCRemoteProxy_IsRemoteDead(const OHIPCRemoteProxy *proxy);
+int OH_IPCRemoteProxy_IsRemoteDead(const OHIPCRemoteProxy *proxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

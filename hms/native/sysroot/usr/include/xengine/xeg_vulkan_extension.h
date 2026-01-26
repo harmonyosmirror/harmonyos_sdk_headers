@@ -25,6 +25,7 @@
 #ifndef XEG_VULKAN_EXTENSION_H
 #define XEG_VULKAN_EXTENSION_H
 
+#include "info/application_target_sdk_version.h"
 #include <vulkan/vulkan.h>
 #include "xeg_extension_defs.h"
 
@@ -100,7 +101,8 @@ typedef VkResult (VKAPI_PTR *PFN_HMS_XEG_EnumerateDeviceExtensionProperties)(
 VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_EnumerateDeviceExtensionProperties(
     VkPhysicalDevice physicalDevice,
     uint32_t* pPropertyCount,
-    XEG_ExtensionProperties* pProperties);
+    XEG_ExtensionProperties* pProperties)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

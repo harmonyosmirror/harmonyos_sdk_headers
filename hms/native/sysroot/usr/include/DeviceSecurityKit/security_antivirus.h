@@ -23,6 +23,7 @@
  */
 #ifndef SECURITY_ANTIVIRUS_H
 #define SECURITY_ANTIVIRUS_H
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #ifdef __cplusplus
@@ -83,7 +84,8 @@ typedef enum SecurityAntivirus_ErrCode {
  * - 1019900003 is returned if an internal error occurs. 
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_RegisterAntivirus(const char* bundleName);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_RegisterAntivirus(const char* bundleName)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregisters antivirus software information from the system.
@@ -99,7 +101,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_RegisterAntivirus(const char* bu
  * - 1019900003 is returned if an internal error occurs. 
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_UnregisterAntivirus(const char* bundleName);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_UnregisterAntivirus(const char* bundleName)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Updates antivirus software information.
@@ -115,7 +118,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_UnregisterAntivirus(const char* 
  * - 1019900003 is returned if an internal error occurs. 
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_UpdateAntivirus(const SecurityAntivirus_Antivirus* antivirus);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_UpdateAntivirus(const SecurityAntivirus_Antivirus* antivirus)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the third-party antivirus software information.
@@ -131,7 +135,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_UpdateAntivirus(const SecurityAn
  * - 1019900003 is returned if an internal error occurs.
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_QueryAntivirus(SecurityAntivirus_Antivirus** list, uint32_t* length);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_QueryAntivirus(SecurityAntivirus_Antivirus** list, uint32_t* length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the preinstalled antivirus software information of all users.
@@ -148,7 +153,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_QueryAntivirus(SecurityAntivirus
  * @since 6.0.0(20)
  */
 SecurityAntivirus_ErrCode HMS_SecurityAntivirus_QueryPreinstalledAntivirus(
-    SecurityAntivirus_Antivirus **list, uint32_t *length);
+    SecurityAntivirus_Antivirus **list, uint32_t *length)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Enables the preinstalled antivirus function.
@@ -161,7 +167,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_QueryPreinstalledAntivirus(
  * 1019900003 is returned if an internal error occurs.
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_EnablePreinstalledAntivirus(void);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_EnablePreinstalledAntivirus(void)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Disables the preinstalled antivirus function.
@@ -174,7 +181,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_EnablePreinstalledAntivirus(void
  * 1019900003 is returned if an internal error occurs.
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_DisablePreinstalledAntivirus(void);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_DisablePreinstalledAntivirus(void)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Enables the preinstalled antivirus software by account ID.
@@ -189,7 +197,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_DisablePreinstalledAntivirus(voi
  * - 1019900003 is returned if an internal error occurs.
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_EnablePreinstalledAntivirusByAccount(int32_t accountId);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_EnablePreinstalledAntivirusByAccount(int32_t accountId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Disables the preinstalled antivirus software by account ID.
@@ -204,7 +213,8 @@ SecurityAntivirus_ErrCode HMS_SecurityAntivirus_EnablePreinstalledAntivirusByAcc
  * - 1019900003 is returned if an internal error occurs.
  * @since 6.0.0(20)
  */
-SecurityAntivirus_ErrCode HMS_SecurityAntivirus_DisablePreinstalledAntivirusByAccount(int32_t accountId);
+SecurityAntivirus_ErrCode HMS_SecurityAntivirus_DisablePreinstalledAntivirusByAccount(int32_t accountId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

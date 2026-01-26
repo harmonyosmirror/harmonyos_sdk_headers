@@ -39,6 +39,7 @@
 #ifndef NDK_INCLUDE_NATIVE_BUFFER_H_
 #define NDK_INCLUDE_NATIVE_BUFFER_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <native_window/external_window.h>
 #include <native_buffer/buffer_common.h>
@@ -71,182 +72,6 @@ typedef enum OH_NativeBuffer_Usage {
     NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16), /// < Often be mapped for direct CPU reads */
     NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),  /// < 512 bytes alignment */
 } OH_NativeBuffer_Usage;
-
-/**
- * @brief Indicates the format of a native buffer.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
- * @since 10
- * @version 1.0
- */
-typedef enum OH_NativeBuffer_Format {
-    /**
-     * CLUT8 format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_CLUT8 = 0,
-    /**
-     * CLUT1 format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_CLUT1,
-    /**
-     * CLUT4 format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_CLUT4,
-    NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3,               /// < RGB565 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_5658,                 /// < RGBA5658 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_4444,                 /// < RGBX4444 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_4444,                 /// < RGBA4444 format */
-    NATIVEBUFFER_PIXEL_FMT_RGB_444,                   /// < RGB444 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_5551,                 /// < RGBX5551 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_5551,                 /// < RGBA5551 format */
-    NATIVEBUFFER_PIXEL_FMT_RGB_555,                   /// < RGB555 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_8888,                 /// < RGBX8888 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_8888,                 /// < RGBA8888 format */
-    NATIVEBUFFER_PIXEL_FMT_RGB_888,                   /// < RGB888 format */
-    NATIVEBUFFER_PIXEL_FMT_BGR_565,                   /// < BGR565 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_4444,                 /// < BGRX4444 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_4444,                 /// < BGRA4444 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_5551,                 /// < BGRX5551 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_5551,                 /// < BGRA5551 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_8888,                 /// < BGRX8888 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_8888,                 /// < BGRA8888 format */
-    /**
-     * YUV422 interleaved format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YUV_422_I,
-    /**
-     * YCBCR422 semi-planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP,
-    /**
-     * YCRCB422 semi-planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP,
-    /**
-     * YCBCR420 semi-planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP,
-    /**
-     * YCRCB420 semi-planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP,
-    /**
-     * YCBCR422 planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P,
-    /**
-     * YCRCB422 planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P,
-    /**
-     * YCBCR420 planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P,
-    /**
-     * YCRCB420 planar format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P,
-    /**
-     * YUYV422 packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YUYV_422_PKG,
-    /**
-     * UYVY422 packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_UYVY_422_PKG,
-    /**
-     * YVYU422 packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YVYU_422_PKG,
-    /**
-     * VYUY422 packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_VYUY_422_PKG,
-    /**
-     * RGBA_1010102 packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_1010102,
-    /**
-     * YCBCR420 semi-planar 10bit packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCBCR_P010,
-    /**
-     * YCRCB420 semi-planar 10bit packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_YCRCB_P010,
-    /**
-     * Raw 10bit packed format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_RAW10,
-    /**
-     * BLOB format
-     * @since 15
-     */
-    NATIVEBUFFER_PIXEL_FMT_BLOB,
-    /**
-     * RGBA16 float format
-     * @since 15
-     */
-    NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT,
-    /**
-     * Y8 format
-     * @since 20
-     */
-    NATIVEBUFFER_PIXEL_FMT_Y8 = 40,
-    /**
-     * Y16 format
-     * @since 20
-     */
-    NATIVEBUFFER_PIXEL_FMT_Y16 = 41,
-    /**
-     * vendor mask format
-     * @since 12
-     */
-    NATIVEBUFFER_PIXEL_FMT_VENDER_MASK = 0X7FFF0000,
-    NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF          /// < Invalid pixel format */
-} OH_NativeBuffer_Format;
-
-/**
- * @brief Indicates the transform type of a native buffer.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
- * @since 12
- * @version 1.0
- */
-typedef enum OH_NativeBuffer_TransformType {
-    NATIVEBUFFER_ROTATE_NONE = 0,         /**< No rotation */
-    NATIVEBUFFER_ROTATE_90,               /**< Rotation by 90 degrees */
-    NATIVEBUFFER_ROTATE_180,              /**< Rotation by 180 degrees */
-    NATIVEBUFFER_ROTATE_270,              /**< Rotation by 270 degrees */
-    NATIVEBUFFER_FLIP_H,                  /**< Flip horizontally */
-    NATIVEBUFFER_FLIP_V,                  /**< Flip vertically */
-    NATIVEBUFFER_FLIP_H_ROT90,            /**< Flip horizontally and rotate 90 degrees */
-    NATIVEBUFFER_FLIP_V_ROT90,            /**< Flip vertically and rotate 90 degrees */
-    NATIVEBUFFER_FLIP_H_ROT180,           /**< Flip horizontally and rotate 180 degrees */
-    NATIVEBUFFER_FLIP_V_ROT180,           /**< Flip vertically and rotate 180 degrees */
-    NATIVEBUFFER_FLIP_H_ROT270,           /**< Flip horizontally and rotate 270 degrees */
-    NATIVEBUFFER_FLIP_V_ROT270,           /**< Flip vertically and rotate 270 degrees */
-} OH_NativeBuffer_TransformType;
 
 /**
  * @brief Indicates the color gamut of a native buffer.
@@ -324,7 +149,8 @@ typedef struct {
  * @since 9
  * @version 1.0
  */
-OH_NativeBuffer* OH_NativeBuffer_Alloc(const OH_NativeBuffer_Config* config);
+OH_NativeBuffer* OH_NativeBuffer_Alloc(const OH_NativeBuffer_Config* config)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Adds the reference count of a OH_NativeBuffer.\n
@@ -338,7 +164,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc(const OH_NativeBuffer_Config* config);
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeBuffer_Reference(OH_NativeBuffer *buffer);
+int32_t OH_NativeBuffer_Reference(OH_NativeBuffer *buffer) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Decreases the reference count of a OH_NativeBuffer and, when the reference count reaches 0,
@@ -351,7 +177,7 @@ int32_t OH_NativeBuffer_Reference(OH_NativeBuffer *buffer);
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeBuffer_Unreference(OH_NativeBuffer *buffer);
+int32_t OH_NativeBuffer_Unreference(OH_NativeBuffer *buffer) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Return a config of the OH_NativeBuffer in the passed OHNativeBufferConfig struct.\n
@@ -364,7 +190,8 @@ int32_t OH_NativeBuffer_Unreference(OH_NativeBuffer *buffer);
  * @since 9
  * @version 1.0
  */
-void OH_NativeBuffer_GetConfig(OH_NativeBuffer *buffer, OH_NativeBuffer_Config* config);
+void OH_NativeBuffer_GetConfig(OH_NativeBuffer *buffer, OH_NativeBuffer_Config* config)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Provide direct cpu access to the OH_NativeBuffer in the process's address space.\n
@@ -379,7 +206,8 @@ void OH_NativeBuffer_GetConfig(OH_NativeBuffer *buffer, OH_NativeBuffer_Config* 
  * @version 1.0
  */
 
-int32_t OH_NativeBuffer_Map(OH_NativeBuffer *buffer, void **virAddr);
+int32_t OH_NativeBuffer_Map(OH_NativeBuffer *buffer, void **virAddr)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Remove direct cpu access ability of the OH_NativeBuffer in the process's address space.\n
@@ -391,7 +219,7 @@ int32_t OH_NativeBuffer_Map(OH_NativeBuffer *buffer, void **virAddr);
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeBuffer_Unmap(OH_NativeBuffer *buffer);
+int32_t OH_NativeBuffer_Unmap(OH_NativeBuffer *buffer) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Get the system wide unique sequence number of the OH_NativeBuffer.\n
@@ -403,7 +231,7 @@ int32_t OH_NativeBuffer_Unmap(OH_NativeBuffer *buffer);
  * @since 9
  * @version 1.0
  */
-uint32_t OH_NativeBuffer_GetSeqNum(OH_NativeBuffer *buffer);
+uint32_t OH_NativeBuffer_GetSeqNum(OH_NativeBuffer *buffer) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Provide direct cpu access to the potentially multi-planar OH_NativeBuffer in the process's address space.\n
@@ -417,7 +245,8 @@ uint32_t OH_NativeBuffer_GetSeqNum(OH_NativeBuffer *buffer);
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeBuffer_MapPlanes(OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes);
+int32_t OH_NativeBuffer_MapPlanes(OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Converts an <b>OHNativeWindowBuffer</b> instance to an <b>OH_NativeBuffer</b>.\n
@@ -430,7 +259,8 @@ int32_t OH_NativeBuffer_MapPlanes(OH_NativeBuffer *buffer, void **virAddr, OH_Na
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeBuffer_FromNativeWindowBuffer(OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer);
+int32_t OH_NativeBuffer_FromNativeWindowBuffer(OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the color space of the OH_NativeBuffer.\n
@@ -443,7 +273,8 @@ int32_t OH_NativeBuffer_FromNativeWindowBuffer(OHNativeWindowBuffer *nativeWindo
  * @since 11
  * @version 1.0
  */
-int32_t OH_NativeBuffer_SetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace colorSpace);
+int32_t OH_NativeBuffer_SetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace colorSpace)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the color space of the OH_NativeBuffer.\n
@@ -458,7 +289,8 @@ int32_t OH_NativeBuffer_SetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_C
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeBuffer_GetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace *colorSpace);
+int32_t OH_NativeBuffer_GetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace *colorSpace)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the metadata type of the OH_NativeBuffer.\n
@@ -477,7 +309,8 @@ int32_t OH_NativeBuffer_GetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_C
  * @version 1.0
  */
 int32_t OH_NativeBuffer_SetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey,
-    int32_t size, uint8_t *metadata);
+    int32_t size, uint8_t *metadata)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the metadata type of the OH_NativeBuffer.\n
@@ -496,7 +329,8 @@ int32_t OH_NativeBuffer_SetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffe
  * @version 1.0
  */
 int32_t OH_NativeBuffer_GetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey,
-    int32_t *size, uint8_t **metadata);
+    int32_t *size, uint8_t **metadata)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

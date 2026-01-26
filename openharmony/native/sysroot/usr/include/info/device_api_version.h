@@ -16,6 +16,7 @@
 #ifndef _INFO_DEVICE_API_VERSION_H
 #define _INFO_DEVICE_API_VERSION_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,7 +28,7 @@ extern "C" {
   * @since 12
   * @deprecated since 15
   */
-int get_device_api_version(void);
+int get_device_api_version(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

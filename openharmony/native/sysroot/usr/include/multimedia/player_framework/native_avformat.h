@@ -38,6 +38,7 @@
 #ifndef NATIVE_AVFORMAT_H
 #define NATIVE_AVFORMAT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -93,7 +94,7 @@ typedef enum OH_AVPixelFormat {
  * @since 9
  * @version 1.0
  */
-struct OH_AVFormat *OH_AVFormat_Create(void);
+struct OH_AVFormat *OH_AVFormat_Create(void) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @briefCreate an audio OH_AVFormat handle pointer to read and write data
@@ -108,7 +109,8 @@ struct OH_AVFormat *OH_AVFormat_Create(void);
  */
 struct OH_AVFormat *OH_AVFormat_CreateAudioFormat(const char *mimeType,
                                                   int32_t sampleRate,
-                                                  int32_t channelCount);
+                                                  int32_t channelCount)
+                                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @briefCreate an video OH_AVFormat handle pointer to read and write data
@@ -123,7 +125,8 @@ struct OH_AVFormat *OH_AVFormat_CreateAudioFormat(const char *mimeType,
  */
 struct OH_AVFormat *OH_AVFormat_CreateVideoFormat(const char *mimeType,
                                                   int32_t width,
-                                                  int32_t height);
+                                                  int32_t height)
+                                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroy the specified OH_AVFormat handle resource
@@ -133,7 +136,7 @@ struct OH_AVFormat *OH_AVFormat_CreateVideoFormat(const char *mimeType,
  * @since 9
  * @version 1.0
  */
-void OH_AVFormat_Destroy(struct OH_AVFormat *format);
+void OH_AVFormat_Destroy(struct OH_AVFormat *format) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Copy OH_AVFormat handle resource
@@ -145,7 +148,8 @@ void OH_AVFormat_Destroy(struct OH_AVFormat *format);
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
+bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Write Int data to OH_AVFormat
@@ -158,7 +162,8 @@ bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_t value);
+bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_t value)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Write Long data to OH_AVFormat
@@ -171,7 +176,8 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64_t value);
+bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64_t value)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Write Float data to OH_AVFormat
@@ -184,7 +190,8 @@ bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, float value);
+bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, float value)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Write Double data to OH_AVFormat
@@ -197,7 +204,8 @@ bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, floa
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, double value);
+bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, double value)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Write String data to OH_AVFormat
@@ -211,7 +219,8 @@ bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, dou
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, const char *value);
+bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, const char *value)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Write a block of data of a specified length to OH_AVFormat
@@ -226,7 +235,8 @@ bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, con
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size);
+bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read Int data from OH_AVFormat
@@ -240,7 +250,8 @@ bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const ui
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out);
+bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read Long data from OH_AVFormat
@@ -254,7 +265,8 @@ bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64_t *out);
+bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64_t *out)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read Float data from OH_AVFormat
@@ -268,7 +280,8 @@ bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, float *out);
+bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, float *out)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read Double data from OH_AVFormat
@@ -282,7 +295,8 @@ bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, floa
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, double *out);
+bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, double *out)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read String data from OH_AVFormat
@@ -297,7 +311,8 @@ bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, dou
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, const char **out);
+bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, const char **out)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read a block of data of specified length from OH_AVFormat
@@ -313,7 +328,8 @@ bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, con
  * @since 9
  * @version 1.0
  */
-bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t **addr, size_t *size);
+bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t **addr, size_t *size)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Output the information contained in OH_AVFormat as a string.
@@ -324,7 +340,7 @@ bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t 
  * @since 9
  * @version 1.0
  */
-const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format);
+const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Read an array of int32_t values from an OH_AVFormat object.
@@ -348,7 +364,8 @@ const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format);
  * 5. size is nullptr.
  * @since 20
  */
-bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size);
+bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Write an array of int32_t values to an OH_AVFormat object.
@@ -367,7 +384,8 @@ bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32
  * 5. size is zero.
  * @since 20
  */
-bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size);
+bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

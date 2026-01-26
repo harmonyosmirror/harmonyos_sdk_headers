@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_GPU_CONTEXT_H
 #define C_INCLUDE_DRAWING_GPU_CONTEXT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -69,7 +70,8 @@ typedef struct {
  * @deprecated since 18
  * @useinstead OH_Drawing_GpuContextCreate
  */
-OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions gpuContextOptions);
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions gpuContextOptions)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_GpuContext</b> object, whose GPU backend context depends on device.
@@ -79,7 +81,7 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOp
  * @since 16
  * @version 1.0
  */
-OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void);
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void) __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_GpuContext</b> object and reclaims the memory occupied by the object.
@@ -89,7 +91,8 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_GpuContextDestroy(OH_Drawing_GpuContext* gpuContext);
+void OH_Drawing_GpuContextDestroy(OH_Drawing_GpuContext* gpuContext)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

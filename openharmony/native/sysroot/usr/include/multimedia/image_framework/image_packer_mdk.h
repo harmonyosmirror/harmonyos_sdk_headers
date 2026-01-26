@@ -49,6 +49,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PACKER_MDK_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PACKER_MDK_H_
+#include "info/application_target_sdk_version.h"
 #include "napi/native_api.h"
 #include "image_mdk_common.h"
 
@@ -99,7 +100,7 @@ typedef struct ImagePacker_Opts_ ImagePacker_Opts;
  * @since 11
  * @version 4.1
  */
-int32_t OH_ImagePacker_Create(napi_env env, napi_value *res);
+int32_t OH_ImagePacker_Create(napi_env env, napi_value *res) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Parses an {@link ImagePacker_Native} object at the native layer
@@ -113,7 +114,8 @@ int32_t OH_ImagePacker_Create(napi_env env, napi_value *res);
  * @since 11
  * @version 4.1
  */
-ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer);
+ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Encoding an <b>ImageSource</b> or a <b>PixelMap</b> into the data with required format
@@ -135,7 +137,8 @@ ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer);
  * @version 4.1
  */
 int32_t OH_ImagePacker_PackToData(ImagePacker_Native* native, napi_value source,
-    ImagePacker_Opts* opts, uint8_t* outData, size_t* size);
+    ImagePacker_Opts* opts, uint8_t* outData, size_t* size)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Encoding an <b>ImageSource</b> or a <b>PixelMap</b> into the a file with fd with required format
@@ -156,7 +159,8 @@ int32_t OH_ImagePacker_PackToData(ImagePacker_Native* native, napi_value source,
  * @version 4.1
  */
 int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source,
-    ImagePacker_Opts* opts, int fd);
+    ImagePacker_Opts* opts, int fd)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 
 /**
@@ -171,7 +175,7 @@ int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source,
  * @since 11
  * @version 4.1
  */
-int32_t OH_ImagePacker_Release(ImagePacker_Native* native);
+int32_t OH_ImagePacker_Release(ImagePacker_Native* native) __attribute__((__availability__(ohos, introduced=11.0.0)));
 #ifdef __cplusplus
 };
 #endif

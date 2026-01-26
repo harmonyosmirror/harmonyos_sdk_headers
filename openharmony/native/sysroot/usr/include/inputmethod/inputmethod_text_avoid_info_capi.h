@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_AVOID_INFO_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_AVOID_INFO_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {
@@ -57,14 +58,16 @@ typedef struct InputMethod_TextAvoidInfo InputMethod_TextAvoidInfo;
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double height);
+InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroy a {@link InputMethod_TextAvoidInfo} instance.
  *
  * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be destroyed.
  * @since 12
  */
-void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
+void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set positionY value into {@link InputMethod_TextAvoidInfo}.
  *
@@ -76,7 +79,8 @@ void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *info, double positionY);
+InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *info, double positionY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set height value into {@link InputMethod_TextAvoidInfo}.
  *
@@ -88,7 +92,8 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *i
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info, double height);
+InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info, double height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get positionY value from {@link InputMethod_TextAvoidInfo}.
  *
@@ -100,7 +105,8 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *info, double *positionY);
+InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *info, double *positionY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get height value into {@link InputMethod_TextAvoidInfo}.
  *
@@ -112,7 +118,8 @@ InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *i
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextAvoidInfo_GetHeight(InputMethod_TextAvoidInfo *info, double *height);
+InputMethod_ErrorCode OH_TextAvoidInfo_GetHeight(InputMethod_TextAvoidInfo *info, double *height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

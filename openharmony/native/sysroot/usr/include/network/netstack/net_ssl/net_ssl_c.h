@@ -38,6 +38,7 @@
 #ifndef NET_SSL_C_H
 #define NET_SSL_C_H
 
+#include "info/application_target_sdk_version.h"
 #include "net_ssl_c_type.h"
 
 #ifdef __cplusplus
@@ -69,7 +70,8 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob *cert, const struct NetStack_CertBlob *caCert);
+uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob *cert, const struct NetStack_CertBlob *caCert)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets pin set for hostname.
@@ -83,7 +85,8 @@ uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob *cert, cons
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetStack_GetPinSetForHostName(const char *hostname, NetStack_CertificatePinning *pin);
+int32_t OH_NetStack_GetPinSetForHostName(const char *hostname, NetStack_CertificatePinning *pin)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets certificates for hostname.
@@ -97,7 +100,8 @@ int32_t OH_NetStack_GetPinSetForHostName(const char *hostname, NetStack_Certific
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Certificates *certs);
+int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Certificates *certs)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Frees content of the certificates.
@@ -107,7 +111,8 @@ int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Ce
  * @since 12
  * @version 1.0
  */
-void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
+void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether the Cleartext traffic is permitted.
@@ -120,7 +125,8 @@ void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
  *        {@code true} if the Cleartext traffic is permitted, {@code false} otherwise.
  * @since 18
  */
-int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted);
+int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
  
 /**
@@ -135,7 +141,8 @@ int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted);
  *        {@code true} if the Cleartext traffic for a specified hostname is permitted, {@code false} otherwise.
  * @since 18
  */
-int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted);
+int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Checks whether the component is configured for Cleartext traffic interception.
@@ -147,7 +154,8 @@ int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *i
  *        {@code true} if the component is configured for Cleartext traffic interception, {@code false} otherwise.
  * @since 20
  */
-int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg);
+int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

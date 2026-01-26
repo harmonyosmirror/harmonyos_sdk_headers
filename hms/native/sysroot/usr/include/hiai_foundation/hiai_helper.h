@@ -28,6 +28,7 @@
 #ifndef HIAI_FOUNDATION_HELPER_H
 #define HIAI_FOUNDATION_HELPER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -41,7 +42,7 @@ extern "C" {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAI_GetVersion}
  */
-const char* HMS_HiAI_GetVersion(void);
+const char* HMS_HiAI_GetVersion(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Model compatibility.
@@ -67,7 +68,8 @@ typedef enum {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAICompatibility_CheckFromFile}
  */
-HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
+HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the compatibility of the model stored in the memory.
@@ -82,7 +84,8 @@ HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAICompatibility_CheckFromBuffer}
  */
-HiAI_Compatibility HMS_HiAICompatibility_CheckFromBuffer(const void* data, size_t size);
+HiAI_Compatibility HMS_HiAICompatibility_CheckFromBuffer(const void* data, size_t size)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

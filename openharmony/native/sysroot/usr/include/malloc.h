@@ -33,6 +33,7 @@
 #ifndef _MALLOC_H
 #define _MALLOC_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -77,7 +78,7 @@ int mallopt(int param, int value);
  *          -1 - The function is not implemented or other error.
  * @since 19
  */
-int malloc_check_from_ptr(void *ptr);
+int malloc_check_from_ptr(void *ptr) __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 struct mallinfo {
   int arena;
@@ -110,7 +111,7 @@ struct mallinfo2 {
  * @return A mallinfo struct containing details about memory allocation.
  * @since 20
  */
-struct mallinfo mallinfo(void);
+struct mallinfo mallinfo(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the memory information allocated by malloc-related operations.
@@ -118,7 +119,7 @@ struct mallinfo mallinfo(void);
  * size_t for its counters, providing a larger range.
  * @since 20
  */
-struct mallinfo2 mallinfo2(void);
+struct mallinfo2 mallinfo2(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

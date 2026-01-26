@@ -38,6 +38,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVMETADATA_EXTRACTOR_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVMETADATA_EXTRACTOR_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -67,7 +68,7 @@ typedef struct OH_AVMetadataExtractor OH_AVMetadataExtractor;
  * Possible failure causes: failed to HstEngineFactory::CreateAVMetadataHelperEngine.
  * @since 18
  */
-OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
+OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the media file descriptor source for the metadata extractor.
@@ -85,7 +86,8 @@ OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extractor,
-    int32_t fd, int64_t offset, int64_t size);
+    int32_t fd, int64_t offset, int64_t size)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Extract metadata info from the media source.
@@ -102,7 +104,8 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
  *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
  * @since 18
  */
-OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata);
+OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Fetch album cover from the audio source.
@@ -119,7 +122,8 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extrac
  *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
  * @since 18
  */
-OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extractor, OH_PixelmapNative** pixelMap);
+OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extractor, OH_PixelmapNative** pixelMap)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Release the resource used for AVMetadataExtractor.
@@ -131,7 +135,8 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
  *         {@link AV_ERR_INVALID_VAL} if input extractor is nullptr or input param is invalid.
  * @since 18
  */
-OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor);
+OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

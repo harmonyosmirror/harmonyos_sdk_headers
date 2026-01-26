@@ -29,6 +29,7 @@
 #ifndef ABR_BASE_H
 #define ABR_BASE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -109,7 +110,7 @@ typedef enum ABR_ErrorCode {
  * @see HMS_ABR_DestroyContext
  * @since 5.0.0(12)
  */
-ABR_Context* HMS_ABR_CreateContext(ABR_RenderAPI_Type type);
+ABR_Context* HMS_ABR_CreateContext(ABR_RenderAPI_Type type) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Configures target framerate of ABR context instance for initialing.
@@ -122,7 +123,8 @@ ABR_Context* HMS_ABR_CreateContext(ABR_RenderAPI_Type type);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_SetTargetFps(ABR_Context* context, const uint32_t targetFps);
+ABR_ErrorCode HMS_ABR_SetTargetFps(ABR_Context* context, const uint32_t targetFps)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Configures scale factor range of ABR context instance for initialing.
@@ -137,7 +139,8 @@ ABR_ErrorCode HMS_ABR_SetTargetFps(ABR_Context* context, const uint32_t targetFp
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_SetScaleRange(ABR_Context* context, const float minValue, const float maxValue);
+ABR_ErrorCode HMS_ABR_SetScaleRange(ABR_Context* context, const float minValue, const float maxValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Activates ABR context instance.
@@ -150,7 +153,7 @@ ABR_ErrorCode HMS_ABR_SetScaleRange(ABR_Context* context, const float minValue, 
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_Activate(ABR_Context* context);
+ABR_ErrorCode HMS_ABR_Activate(ABR_Context* context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether ABR context instance is activated.
@@ -163,7 +166,8 @@ ABR_ErrorCode HMS_ABR_Activate(ABR_Context* context);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_IsActive(ABR_Context* context, bool* isActive);
+ABR_ErrorCode HMS_ABR_IsActive(ABR_Context* context, bool* isActive)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deactivates ABR context instance.
@@ -175,7 +179,7 @@ ABR_ErrorCode HMS_ABR_IsActive(ABR_Context* context, bool* isActive);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_Deactivate(ABR_Context* context);
+ABR_ErrorCode HMS_ABR_Deactivate(ABR_Context* context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Updates camera motion data for ABR context instance.
@@ -190,7 +194,8 @@ ABR_ErrorCode HMS_ABR_Deactivate(ABR_Context* context);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_UpdateCameraData(ABR_Context* context, ABR_CameraData* data);
+ABR_ErrorCode HMS_ABR_UpdateCameraData(ABR_Context* context, ABR_CameraData* data)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets latest scale factor of ABR context instance.
@@ -203,7 +208,8 @@ ABR_ErrorCode HMS_ABR_UpdateCameraData(ABR_Context* context, ABR_CameraData* dat
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_GetScale(ABR_Context* context, float* scale);
+ABR_ErrorCode HMS_ABR_GetScale(ABR_Context* context, float* scale)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets scale factor of next frame of ABR context instance.
@@ -216,7 +222,8 @@ ABR_ErrorCode HMS_ABR_GetScale(ABR_Context* context, float* scale);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_GetNextScale(ABR_Context* context, float* scale);
+ABR_ErrorCode HMS_ABR_GetNextScale(ABR_Context* context, float* scale)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the ABR context instance.
@@ -228,7 +235,7 @@ ABR_ErrorCode HMS_ABR_GetNextScale(ABR_Context* context, float* scale);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_DestroyContext(ABR_Context** context);
+ABR_ErrorCode HMS_ABR_DestroyContext(ABR_Context** context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

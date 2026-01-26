@@ -27,6 +27,7 @@
 #ifndef XEG_GLES_SPATIAL_UPSCALE_H
 #define XEG_GLES_SPATIAL_UPSCALE_H
 
+#include "info/application_target_sdk_version.h"
 #include <GLES3/gl3.h>
 
 #ifdef __cplusplus
@@ -88,7 +89,8 @@ typedef void (GL_APIENTRYP PFN_HMS_XEG_RENDERSPATIALUPSCALE)(GLuint inputTexture
 * @param param Input parameter value. For details, see the description of the enumerated names of the input parameters.
 * @since 5.0.0(12)
 */
-GL_APICALL void GL_APIENTRY HMS_XEG_SpatialUpscaleParameter(GLenum pname, GLvoid *param);
+GL_APICALL void GL_APIENTRY HMS_XEG_SpatialUpscaleParameter(GLenum pname, GLvoid *param)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Executes the GPU spatial upscaling rendering command.
@@ -97,7 +99,8 @@ GL_APICALL void GL_APIENTRY HMS_XEG_SpatialUpscaleParameter(GLenum pname, GLvoid
 * must be created before this API is called. Otherwise, the rendering will fail, for example, a black screen occurs.
 * @since 5.0.0(12)
 */
-GL_APICALL void GL_APIENTRY HMS_XEG_RenderSpatialUpscale(GLuint inputTexture);
+GL_APICALL void GL_APIENTRY HMS_XEG_RenderSpatialUpscale(GLuint inputTexture)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

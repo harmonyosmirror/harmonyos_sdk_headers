@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_COLOR_SPACE_H
 #define C_INCLUDE_DRAWING_COLOR_SPACE_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -54,7 +55,7 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgb(void);
+OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgb(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorSpace</b> object with the SRGB primaries, but a linear (1.0) gamma.
@@ -64,7 +65,8 @@ OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgb(void);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void);
+OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy an <b>OH_Drawing_ColorSpace</b> object.
@@ -74,7 +76,8 @@ OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ColorSpaceDestroy(OH_Drawing_ColorSpace* colorSpace);
+void OH_Drawing_ColorSpaceDestroy(OH_Drawing_ColorSpace* colorSpace)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

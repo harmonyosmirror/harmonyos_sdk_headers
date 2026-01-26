@@ -38,6 +38,7 @@
 #ifndef C_INCLUDE_NATIVE_COLOR_SPACE_MANAGER_H_
 #define C_INCLUDE_NATIVE_COLOR_SPACE_MANAGER_H_
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -161,7 +162,8 @@ typedef struct {
  * @since 13
  * @version 1.0
  */
-OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpaceName colorSpaceName);
+OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpaceName colorSpaceName)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creates a <b>NativeColorSpaceManager</b> instance by primaries and gamma.
@@ -176,7 +178,8 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpace
  * @version 1.0
  */
 OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromPrimariesAndGamma(
-    ColorSpacePrimaries primaries, float gamma);
+    ColorSpacePrimaries primaries, float gamma)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Delete the NativeColorSpaceManager instance.
@@ -186,7 +189,8 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromPrimariesAndGam
  * @since 13
  * @version 1.0
  */
-void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorSpaceManager);
+void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorSpaceManager)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get colorSpace name.
@@ -198,7 +202,8 @@ void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorS
  * @version 1.0
  */
 int OH_NativeColorSpaceManager_GetColorSpaceName(
-    OH_NativeColorSpaceManager* nativeColorSpaceManager);
+    OH_NativeColorSpaceManager* nativeColorSpaceManager)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get white point.
@@ -210,7 +215,8 @@ int OH_NativeColorSpaceManager_GetColorSpaceName(
  * @version 1.0
  */
 WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(
-    OH_NativeColorSpaceManager* nativeColorSpaceManager);
+    OH_NativeColorSpaceManager* nativeColorSpaceManager)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get gamma.
@@ -221,7 +227,8 @@ WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(
  * @since 13
  * @version 1.0
  */
-float OH_NativeColorSpaceManager_GetGamma(OH_NativeColorSpaceManager* nativeColorSpaceManager);
+float OH_NativeColorSpaceManager_GetGamma(OH_NativeColorSpaceManager* nativeColorSpaceManager)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

@@ -41,6 +41,7 @@
 #ifndef QOS_H
 #define QOS_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -91,7 +92,7 @@ typedef enum QoS_Level {
  * @see QoS_Level
  * @since 12
  */
-int OH_QoS_SetThreadQoS(QoS_Level level);
+int OH_QoS_SetThreadQoS(QoS_Level level) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Cancel the QoS level of the current thread.
@@ -101,7 +102,7 @@ int OH_QoS_SetThreadQoS(QoS_Level level);
  * @see QoS_Level
  * @since 12
  */
-int OH_QoS_ResetThreadQoS();
+int OH_QoS_ResetThreadQoS() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the QoS level of the current thread.
@@ -113,7 +114,7 @@ int OH_QoS_ResetThreadQoS();
  * @see QoS_Level
  * @since 12
  */
-int OH_QoS_GetThreadQoS(QoS_Level *level);
+int OH_QoS_GetThreadQoS(QoS_Level *level) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Session id
@@ -217,7 +218,8 @@ typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
  *
  * @since 20
  */
-OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
+OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy the specified session.
@@ -236,7 +238,8 @@ OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
  *
  * @since 20
  */
-OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
+OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Abort the specified request.
@@ -252,7 +255,8 @@ OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
  *
  * @since 20
  */
-OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request);
+OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Submit a request.
@@ -298,7 +302,8 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  * @since 20
  */
 OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession session, const char* request,
-    OH_QoS_GewuOnResponse callback, void* context);
+    OH_QoS_GewuOnResponse callback, void* context)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

@@ -41,6 +41,7 @@
 #ifndef GLOBAL_RAW_DIR_H
 #define GLOBAL_RAW_DIR_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -71,7 +72,8 @@ typedef struct RawDir RawDir;
  * @since 8
  * @version 1.0
  */
-const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index);
+const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief get the count of the raw files in {@link RawDir}.
@@ -83,7 +85,7 @@ const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index);
  * @since 8
  * @version 1.0
  */
-int OH_ResourceManager_GetRawFileCount(RawDir *rawDir);
+int OH_ResourceManager_GetRawFileCount(RawDir *rawDir) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Closes an opened {@link RawDir} and releases all associated resources.
@@ -95,7 +97,7 @@ int OH_ResourceManager_GetRawFileCount(RawDir *rawDir);
  * @since 8
  * @version 1.0
  */
-void OH_ResourceManager_CloseRawDir(RawDir *rawDir);
+void OH_ResourceManager_CloseRawDir(RawDir *rawDir) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 #ifdef __cplusplus
 };

@@ -39,6 +39,7 @@
 #ifndef OH_NATIVE_DISPLAY_CAPTURE_H
 #define OH_NATIVE_DISPLAY_CAPTURE_H
 
+#include "info/application_target_sdk_version.h"
 #include "multimedia/image_framework/image/pixelmap_native.h"
 #include "oh_display_info.h"
 
@@ -60,7 +61,8 @@ extern "C" {
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,
-    OH_PixelmapNative **pixelMap);
+    OH_PixelmapNative **pixelMap)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 #ifdef __cplusplus
 }

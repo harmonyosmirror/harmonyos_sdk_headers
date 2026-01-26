@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_INTERFACE_H
 #define ARKUI_NATIVE_INTERFACE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -57,6 +58,12 @@ typedef enum {
     ARKUI_NATIVE_GESTURE,
     /** API related to animations. For details, see the struct definition in <arkui/native_animate.h>.*/
     ARKUI_NATIVE_ANIMATE,
+    /**
+     * API related to supported multi thread UI components.
+     * For details, see the struct definition in <arkui/native_node.h>.
+     * @since 22
+     */
+    ARKUI_MULTI_THREAD_NATIVE_NODE,
 } ArkUI_NativeAPIVariantKind;
 
 /**
@@ -84,7 +91,8 @@ typedef enum {
  *
  * @since 12
  */
-void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName);
+void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the macro function corresponding to a struct pointer based on the struct type.

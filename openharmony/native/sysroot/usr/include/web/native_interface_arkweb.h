@@ -32,6 +32,7 @@
 #ifndef NATIVE_INTERFACE_ARKWEB_H
 #define NATIVE_INTERFACE_ARKWEB_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -131,7 +132,8 @@ typedef enum {
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
  */
-void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback);
+void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers the JavaScript object and method list.
@@ -147,7 +149,8 @@ void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, Nativ
  * @since 11
  */
 void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* objName, const char** methodList,
-    NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh);
+    NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Deletes the registered object which th given name.
@@ -158,7 +161,8 @@ void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* obj
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
  */
-void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName);
+void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers the valid callback.
@@ -169,7 +173,8 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* o
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
  */
-void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeArkWeb_OnValidCallback callback);
+void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeArkWeb_OnValidCallback callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the valid callback.
@@ -181,7 +186,8 @@ void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeA
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
  */
-NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(const char* webTag);
+NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(const char* webTag)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers the destroy callback.
@@ -192,7 +198,8 @@ NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(con
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
  */
-void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCallback callback);
+void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCallback callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the destroy callback.
@@ -205,7 +212,8 @@ void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestr
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
  */
-NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback(const char* webTag);
+NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback(const char* webTag)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Loads the data or URL.
@@ -235,7 +243,8 @@ ArkWeb_ErrorCode OH_NativeArkWeb_LoadData(const char* webTag,
                                           const char* mimeType,
                                           const char* encoding,
                                           const char* baseUrl,
-                                          const char* historyUrl);
+                                          const char* historyUrl)
+                                          __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Registers a JavaScript object with callback methods, which may return values. This object will be injected
@@ -252,7 +261,8 @@ ArkWeb_ErrorCode OH_NativeArkWeb_LoadData(const char* webTag,
  * @since 20
  */
 void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
-    const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission);
+    const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets whether to enable blankless page loading. This API must be used in pair with the
@@ -271,7 +281,8 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
  */
 ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char* webTag,
                                                                      const char* key,
-                                                                     bool isStarted);
+                                                                     bool isStarted)
+                                                                     __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clears the blankless loading cache of the page with a specified key value.
@@ -286,7 +297,8 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
  * @param size Size of the key list.
  * @since 20
  */
-void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size);
+void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the prediction information about the blankless loading solution and enables the generation
@@ -303,7 +315,8 @@ void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size
  * @return Return value of the ArkWeb_BlanklessInfo type.
  * @since 20
  */
-ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key);
+ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the cache capacity of the blankless loading solution and returns the value that takes effect.
@@ -317,7 +330,8 @@ ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag,
  * @return The effective value that ranges from 0 MB to 100 MB.
  * @since 20
  */
-uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity);
+uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Ensure that all cookies currently accessible via the CookieManager API have been persisted to disk.
@@ -333,7 +347,7 @@ uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity);
  *  													 OH_ArkWeb_GetNativeAPI first.
  * @since 20
  */
-ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
+ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Ensure that all cookies currently accessible via the CookieManager API have been persisted to disk.
@@ -341,7 +355,8 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
  * @param callback Callback execute when save cookie done.
  * @since 20
  */
-void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
+void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * Set active ArkWeb engine version.
@@ -358,14 +373,27 @@ void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callb
  * @param { ArkWebEngineVersion } webEngineVersion - the ArkWebEngineVersion
  * @since 20
  */
-void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
+void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * Get currently active ArkWeb engine version.
  * @return { ArkWebEngineVersion } Active ArkWeb Engine version as defined by ArkWebEngineVersion
  * @since 20
  */
-ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
+ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * Delays the initialization of the web engine. By default, the web engine is initialized when the CookieManager
+ * interface is called. By setting the 'lazy' parameter to true, the web engine will not be initialized when the
+ * CookieManager interface is called. Instead, the web engine will be initialized either when the web component is
+ * created or when initializeWebEngine is called.
+ * @param { bool } lazy - Controls whether to delay the initialization of the web engine.
+ * @since 22
+ */
+void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 };

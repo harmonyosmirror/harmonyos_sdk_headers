@@ -35,6 +35,7 @@
  */
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PICTURE_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PICTURE_NATIVE_H_
+#include "info/application_target_sdk_version.h"
 #include "image_common.h"
 #include "pixelmap_native.h"
  
@@ -126,7 +127,8 @@ typedef enum {
  *         {@link IMAGE_BAD_PARAMETER} mainPixelmap is nullptr, or picture is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, OH_PictureNative **picture);
+Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, OH_PictureNative **picture)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the pixel map of the main image.
@@ -138,7 +140,8 @@ Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, 
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or mainPixelmap is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_PixelmapNative **mainPixelmap);
+Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_PixelmapNative **mainPixelmap)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the hdr pixel map.
@@ -151,7 +154,8 @@ Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_P
  *         {@link IMAGE_UNSUPPORTED_OPERATION} Unsupported operation, e.g. the picture does not has a gainmap
  * @since 13
  */
-Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *picture, OH_PixelmapNative **hdrPixelmap);
+Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *picture, OH_PixelmapNative **hdrPixelmap)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the gainmap pixel map.
@@ -163,7 +167,8 @@ Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *pictur
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or gainmapPixelmap is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, OH_PixelmapNative **gainmapPixelmap);
+Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, OH_PixelmapNative **gainmapPixelmap)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture.
@@ -177,7 +182,8 @@ Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, O
  * @since 13
  */
 Image_ErrorCode OH_PictureNative_SetAuxiliaryPicture(OH_PictureNative *picture, Image_AuxiliaryPictureType type,
-    OH_AuxiliaryPictureNative *auxiliaryPicture);
+    OH_AuxiliaryPictureNative *auxiliaryPicture)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the auxiliary picture based on type.
@@ -191,7 +197,8 @@ Image_ErrorCode OH_PictureNative_SetAuxiliaryPicture(OH_PictureNative *picture, 
  * @since 13
  */
 Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, Image_AuxiliaryPictureType type,
-    OH_AuxiliaryPictureNative **auxiliaryPicture);
+    OH_AuxiliaryPictureNative **auxiliaryPicture)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the metadata of main picture.
@@ -206,7 +213,8 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
  * @since 13
  */
 Image_ErrorCode OH_PictureNative_GetMetadata(OH_PictureNative *picture, Image_MetadataType metadataType,
-    OH_PictureMetadata **metadata);
+    OH_PictureMetadata **metadata)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set main picture metadata.
@@ -221,7 +229,8 @@ Image_ErrorCode OH_PictureNative_GetMetadata(OH_PictureNative *picture, Image_Me
  * @since 13
  */
 Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_MetadataType metadataType,
-    OH_PictureMetadata *metadata);
+    OH_PictureMetadata *metadata)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Releases this Picture object.
@@ -232,7 +241,8 @@ Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_Me
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture);
+Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Create a <b>AuxiliaryPicture</b> object.
@@ -249,7 +259,8 @@ Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture);
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLength, Image_Size *size,
-    Image_AuxiliaryPictureType type, OH_AuxiliaryPictureNative **auxiliaryPicture);
+    Image_AuxiliaryPictureType type, OH_AuxiliaryPictureNative **auxiliaryPicture)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Write pixels to auxiliary picture.
@@ -265,7 +276,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative *auxiliaryPicture, uint8_t *source,
-    size_t bufferSize);
+    size_t bufferSize)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Read pixels from auxiliary picture.
@@ -282,7 +294,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative 
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *auxiliaryPicture, uint8_t *destination,
-    size_t *bufferSize);
+    size_t *bufferSize)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the type of auxiliary picture.
@@ -295,7 +308,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *auxiliaryPicture,
-    Image_AuxiliaryPictureType *type);
+    Image_AuxiliaryPictureType *type)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the info of auxiliary picture.
@@ -308,7 +322,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *aux
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *auxiliaryPicture,
-    OH_AuxiliaryPictureInfo **info);
+    OH_AuxiliaryPictureInfo **info)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture info.
@@ -321,7 +336,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *aux
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *auxiliaryPicture,
-    OH_AuxiliaryPictureInfo *info);
+    OH_AuxiliaryPictureInfo *info)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the metadata of auxiliary picture.
@@ -337,7 +353,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *aux
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative *auxiliaryPicture,
-    Image_MetadataType metadataType, OH_PictureMetadata **metadata);
+    Image_MetadataType metadataType, OH_PictureMetadata **metadata)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture metadata.
@@ -353,7 +370,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative 
  * @since 13
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative *auxiliaryPicture,
-    Image_MetadataType metadataType, OH_PictureMetadata *metadata);
+    Image_MetadataType metadataType, OH_PictureMetadata *metadata)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Releases this AuxiliaryPicture object.
@@ -364,7 +382,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *picture);
+Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *picture)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Create a <b>AuxiliaryPictureInfo</b> object.
@@ -375,7 +394,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *pic
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info);
+Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the type of auxiliary picture info.
@@ -387,7 +407,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info);
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or type is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, Image_AuxiliaryPictureType *type);
+Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, Image_AuxiliaryPictureType *type)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture info type.
@@ -399,7 +420,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, I
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or type is invalid.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, Image_AuxiliaryPictureType type);
+Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, Image_AuxiliaryPictureType type)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the size of auxiliary picture info.
@@ -411,7 +433,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, I
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or size is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, Image_Size *size);
+Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, Image_Size *size)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture info size.
@@ -423,7 +446,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, I
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or size is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, Image_Size *size);
+Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, Image_Size *size)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the rowStride of auxiliary picture info.
@@ -435,7 +459,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, I
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or rowStride is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *info, uint32_t *rowStride);
+Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *info, uint32_t *rowStride)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture info rowStride.
@@ -447,7 +472,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *in
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or rowStride is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *info, uint32_t rowStride);
+Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *info, uint32_t rowStride)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the pixelFormat of auxiliary picture info.
@@ -459,7 +485,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *in
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or pixelFormat is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *info, PIXEL_FORMAT *pixelFormat);
+Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *info, PIXEL_FORMAT *pixelFormat)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set auxiliary picture info pixelFormat.
@@ -471,7 +498,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *info, PIXEL_FORMAT pixelFormat);
+Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *info, PIXEL_FORMAT pixelFormat)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Releases this AuxiliaryPictureInfo object.
@@ -482,7 +510,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_AuxiliaryPictureInfo_Release(OH_AuxiliaryPictureInfo *info);
+Image_ErrorCode OH_AuxiliaryPictureInfo_Release(OH_AuxiliaryPictureInfo *info)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 };

@@ -40,6 +40,7 @@
 #ifndef USB_DDK_API_H
 #define USB_DDK_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "ddk_types.h"
@@ -60,7 +61,7 @@ extern "C" {
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_Init(void);
+int32_t OH_Usb_Init(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases the DDK.
@@ -69,7 +70,7 @@ int32_t OH_Usb_Init(void);
  * @since 10
  * @version 1.0
  */
-void OH_Usb_Release(void);
+void OH_Usb_Release(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases the DDK.
@@ -81,7 +82,7 @@ void OH_Usb_Release(void);
  * @since 18
  * @version 1.0
  */
-int32_t OH_Usb_ReleaseResource(void);
+int32_t OH_Usb_ReleaseResource(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the USB device descriptor.
@@ -96,7 +97,8 @@ int32_t OH_Usb_ReleaseResource(void);
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc);
+int32_t OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the configuration descriptor. To avoid memory leakage, use <b>OH_Usb_FreeConfigDescriptor</b>\n
@@ -117,7 +119,8 @@ int32_t OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor
  * @version 1.0
  */
 int32_t OH_Usb_GetConfigDescriptor(
-    uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor ** const config);
+    uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor ** const config)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases the configuration descriptor. To avoid memory leakage, use <b>OH_Usb_FreeConfigDescriptor</b>\n
@@ -128,7 +131,8 @@ int32_t OH_Usb_GetConfigDescriptor(
  * @since 10
  * @version 1.0
  */
-void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
+void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Claims a USB interface.
@@ -146,7 +150,8 @@ void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle);
+int32_t OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases a USB interface.
@@ -160,7 +165,7 @@ int32_t OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_ReleaseInterface(uint64_t interfaceHandle);
+int32_t OH_Usb_ReleaseInterface(uint64_t interfaceHandle) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Activates the alternate setting of the USB interface.
@@ -176,7 +181,8 @@ int32_t OH_Usb_ReleaseInterface(uint64_t interfaceHandle);
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex);
+int32_t OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the activated alternate setting of the USB interface.
@@ -192,7 +198,8 @@ int32_t OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingI
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *settingIndex);
+int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *settingIndex)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sends a control read transfer request. This API works in a synchronous manner.
@@ -215,7 +222,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *set
  * @version 1.0
  */
 int32_t OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup *setup,
-    uint32_t timeout, uint8_t *data, uint32_t *dataLen);
+    uint32_t timeout, uint8_t *data, uint32_t *dataLen)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sends a control write transfer request. This API works in a synchronous manner.
@@ -237,7 +245,8 @@ int32_t OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct Usb
  * @version 1.0
  */
 int32_t OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup *setup,
-    uint32_t timeout, const uint8_t *data, uint32_t dataLen);
+    uint32_t timeout, const uint8_t *data, uint32_t dataLen)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sends a pipe request. This API works in a synchronous manner. This API applies to interrupt transfer\n
@@ -256,7 +265,8 @@ int32_t OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct Us
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap);
+int32_t OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sends a pipe request. This API works in a synchronous manner. This API applies to interrupt transfer\n
@@ -274,7 +284,8 @@ int32_t OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMa
  *         {@link USB_DDK_TIMEOUT} interface timeout.
  * @since 12
  */
-int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a buffer. To avoid resource leakage, destroy a buffer by calling\n
@@ -291,7 +302,8 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
  * @since 10
  * @version 1.0
  */
-int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap);
+int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.
@@ -301,7 +313,7 @@ int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMa
  * @since 10
  * @version 1.0
  */
-void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
+void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain USB devices.
@@ -314,7 +326,7 @@ void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
  *         {@link USB_DDK_INVALID_PARAMETER} devices is null.
  * @since 18
  */
-int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
+int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices) __attribute__((__availability__(ohos, introduced=18.0.0)));
 /** @} */
 #ifdef __cplusplus
 }

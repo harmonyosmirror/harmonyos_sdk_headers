@@ -37,6 +37,7 @@
 #ifndef NDK_INCLUDE_RCP_H
 #define NDK_INCLUDE_RCP_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -291,14 +292,14 @@ typedef struct Rcp_RequestContent {
  * @return Rcp_Form* Pointer to {@link Rcp_Form}.
  * @since 5.0.0(12)
  */
-Rcp_Form *HMS_Rcp_CreateForm(void);
+Rcp_Form *HMS_Rcp_CreateForm(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroys a form.
  *
  * @param form A Form to be destroyed. Pointer to {@link Rcp_Form}.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyForm(Rcp_Form *form);
+void HMS_Rcp_DestroyForm(Rcp_Form *form) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Sets the key-value pair of the form.
  *
@@ -308,7 +309,8 @@ void HMS_Rcp_DestroyForm(Rcp_Form *form);
  * @return uint32_t 0 - success. 401 - Parameter error. 1007900027 - Out of memory.
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_SetFormValue(Rcp_Form *form, const char *key, const Rcp_FormFieldValue *value);
+uint32_t HMS_Rcp_SetFormValue(Rcp_Form *form, const char *key, const Rcp_FormFieldValue *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Obtains the value of a form by key.
  *
@@ -317,7 +319,8 @@ uint32_t HMS_Rcp_SetFormValue(Rcp_Form *form, const char *key, const Rcp_FormFie
  * @return Rcp_FormFieldValue* Value. Pointer to {@link Rcp_FormFieldValue}.
  * @since 5.0.0(12)
  */
-Rcp_FormFieldValue *HMS_Rcp_GetFormValue(Rcp_Form *form, const char *key);
+Rcp_FormFieldValue *HMS_Rcp_GetFormValue(Rcp_Form *form, const char *key)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a multi-part form.
@@ -325,14 +328,15 @@ Rcp_FormFieldValue *HMS_Rcp_GetFormValue(Rcp_Form *form, const char *key);
  * @return Rcp_MultipartForm* Pointer to {@link Rcp_MultipartForm}.
  * @since 5.0.0(12)
  */
-Rcp_MultipartForm *HMS_Rcp_CreateMultipartForm(void);
+Rcp_MultipartForm *HMS_Rcp_CreateMultipartForm(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroys a multi-part form.
  *
  * @param multipartForm A multi-part form to be destroyed. Pointer to {@link Rcp_MultipartForm}.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyMultipartForm(Rcp_MultipartForm *multipartForm);
+void HMS_Rcp_DestroyMultipartForm(Rcp_MultipartForm *multipartForm)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Sets the Key-Value pairs for a multi-part Form.
  *
@@ -343,7 +347,8 @@ void HMS_Rcp_DestroyMultipartForm(Rcp_MultipartForm *multipartForm);
  * @since 5.0.0(12)
  */
 uint32_t HMS_Rcp_SetMultipartFormValue(Rcp_MultipartForm *multipartForm, const char *key,
-                                       const Rcp_MultipartFormFieldValue *value);
+                                       const Rcp_MultipartFormFieldValue *value)
+                                       __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Obtains the key-value pair of a multi-part form through the key.
  *
@@ -352,7 +357,8 @@ uint32_t HMS_Rcp_SetMultipartFormValue(Rcp_MultipartForm *multipartForm, const c
  * @return Rcp_MultipartFormFieldValue* Pointer to {@link Rcp_MultipartFormFieldValue}.
  * @since 5.0.0(12)
  */
-Rcp_MultipartFormFieldValue *HMS_Rcp_GetMultipartFormValue(Rcp_MultipartForm *multipartForm, const char *key);
+Rcp_MultipartFormFieldValue *HMS_Rcp_GetMultipartFormValue(Rcp_MultipartForm *multipartForm, const char *key)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Headers of the request or response.
@@ -390,14 +396,14 @@ typedef struct Rcp_HeaderEntry {
  * @return Rcp_Headers* Pointer to {@link Rcp_Headers}.
  * @since 5.0.0(12)
  */
-Rcp_Headers *HMS_Rcp_CreateHeaders(void);
+Rcp_Headers *HMS_Rcp_CreateHeaders(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroys the headers of a request or response.
  *
  * @param headers Pointer to the {@link Rcp_Headers} to be destroyed.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyHeaders(Rcp_Headers *headers);
+void HMS_Rcp_DestroyHeaders(Rcp_Headers *headers) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Sets the key-value pair of the request or response header.
  *
@@ -407,7 +413,8 @@ void HMS_Rcp_DestroyHeaders(Rcp_Headers *headers);
  * @return uint32_t 0 - success. 401 - Parameter error. 1007900027 - Out of memory.
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_SetHeaderValue(Rcp_Headers *headers, const char *name, const char *value);
+uint32_t HMS_Rcp_SetHeaderValue(Rcp_Headers *headers, const char *name, const char *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Obtains the value of a request or response header by key.
  *
@@ -416,7 +423,8 @@ uint32_t HMS_Rcp_SetHeaderValue(Rcp_Headers *headers, const char *name, const ch
  * @return Rcp_HeaderValue* Pointer to the obtained {@link Rcp_HeaderValue}.
  * @since 5.0.0(12)
  */
-Rcp_HeaderValue *HMS_Rcp_GetHeaderValue(Rcp_Headers *headers, const char *name);
+Rcp_HeaderValue *HMS_Rcp_GetHeaderValue(Rcp_Headers *headers, const char *name)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Obtains all the key-value pairs of a request or response header.
  *
@@ -424,14 +432,16 @@ Rcp_HeaderValue *HMS_Rcp_GetHeaderValue(Rcp_Headers *headers, const char *name);
  * @return Rcp_HeaderEntry* Pointers to all obtained key-value pairs {@link Rcp_HeaderEntry}.
  * @since 5.0.0(12)
  */
-Rcp_HeaderEntry *HMS_Rcp_GetHeaderEntries(Rcp_Headers *headers);
+Rcp_HeaderEntry *HMS_Rcp_GetHeaderEntries(Rcp_Headers *headers)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroys all key-value pairs obtained in {@link HMS_Rcp_GetHeaderEntries}.
  *
  * @param headerEntry Pointer to the {@link Rcp_HeaderEntry} to be destroyed.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyHeaderEntries(Rcp_HeaderEntry *headerEntry);
+void HMS_Rcp_DestroyHeaderEntries(Rcp_HeaderEntry *headerEntry)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Maximum length of an IP address.
@@ -1055,14 +1065,14 @@ typedef struct Rcp_RequestCookieEntry {
  * @return Rcp_Request* Pointer to {@link Rcp_Request}.
  * @since 5.0.0(12)
  */
-Rcp_Request *HMS_Rcp_CreateRequest(const char *url);
+Rcp_Request *HMS_Rcp_CreateRequest(const char *url) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a request.
  * @param request Pointer to the {@link Rcp_Request} to be destroyed.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyRequest(Rcp_Request *request);
+void HMS_Rcp_DestroyRequest(Rcp_Request *request) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates empty request cookies.
@@ -1070,7 +1080,7 @@ void HMS_Rcp_DestroyRequest(Rcp_Request *request);
  * @return Pointer to the created {@link Rcp_RequestCookies}.
  * @since 5.0.0(12)
  */
-Rcp_RequestCookies *HMS_Rcp_CreateRequestCookies(void);
+Rcp_RequestCookies *HMS_Rcp_CreateRequestCookies(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys request cookies.
@@ -1078,7 +1088,8 @@ Rcp_RequestCookies *HMS_Rcp_CreateRequestCookies(void);
  * @param cookies Pointer to the {@link Rcp_RequestCookies} to be destroyed.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyRequestCookies(Rcp_RequestCookies *cookies);
+void HMS_Rcp_DestroyRequestCookies(Rcp_RequestCookies *cookies)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the request cookie.
@@ -1089,7 +1100,8 @@ void HMS_Rcp_DestroyRequestCookies(Rcp_RequestCookies *cookies);
  * @return uint32_t 0 - success. 401 - Parameter error. 1007900027 - Out of memory.
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_SetRequestCookieValue(Rcp_RequestCookies *cookies, const char *name, const char *value);
+uint32_t HMS_Rcp_SetRequestCookieValue(Rcp_RequestCookies *cookies, const char *name, const char *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the value of the request cookie by name.
@@ -1099,7 +1111,8 @@ uint32_t HMS_Rcp_SetRequestCookieValue(Rcp_RequestCookies *cookies, const char *
  * @return char* The value of the request cookie.
  * @since 5.0.0(12)
  */
-char *HMS_Rcp_GetRequestCookieValue(Rcp_RequestCookies *cookies, const char *name);
+char *HMS_Rcp_GetRequestCookieValue(Rcp_RequestCookies *cookies, const char *name)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains all key-value pairs in request cookies.
@@ -1107,7 +1120,8 @@ char *HMS_Rcp_GetRequestCookieValue(Rcp_RequestCookies *cookies, const char *nam
  * @return Rcp_RequestCookieEntry* Pointer to {@link Rcp_RequestCookieEntry}
  * @since 5.0.0(12)
  */
-Rcp_RequestCookieEntry *HMS_Rcp_GetRequestCookieEntries(Rcp_RequestCookies *cookies);
+Rcp_RequestCookieEntry *HMS_Rcp_GetRequestCookieEntries(Rcp_RequestCookies *cookies)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys all key-value pairs related to request cookies obtained from the
@@ -1115,7 +1129,8 @@ Rcp_RequestCookieEntry *HMS_Rcp_GetRequestCookieEntries(Rcp_RequestCookies *cook
  * @param cookieEntry Pointer to {@link Rcp_RequestCookieEntry}.
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyRequestCookieEntries(Rcp_RequestCookieEntry *cookieEntry);
+void HMS_Rcp_DestroyRequestCookieEntries(Rcp_RequestCookieEntry *cookieEntry)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Status code of the response to the request.
@@ -1247,7 +1262,8 @@ typedef struct Rcp_CookieAttributes Rcp_CookieAttributes;
  * @return char* Value in the cookie attribute
  * @since 5.0.0(12)
  */
-const char *HMS_Rcp_GetResponseCookieAttrValue(Rcp_CookieAttributes *cookieAttributes, const char *name);
+const char *HMS_Rcp_GetResponseCookieAttrValue(Rcp_CookieAttributes *cookieAttributes, const char *name)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Response cookie attribute entry
@@ -1269,7 +1285,8 @@ typedef struct Rcp_CookieAttributeEntry {
  * @return {@link Rcp_CookieAttributeEntry} Response CookieAttributes List
  * @since 5.0.0(12)
  */
-Rcp_CookieAttributeEntry *HMS_Rcp_GetResponseCookieAttrEntries(Rcp_CookieAttributes *cookieAttributes);
+Rcp_CookieAttributeEntry *HMS_Rcp_GetResponseCookieAttrEntries(Rcp_CookieAttributes *cookieAttributes)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release Response CookieAttributes List
@@ -1277,7 +1294,8 @@ Rcp_CookieAttributeEntry *HMS_Rcp_GetResponseCookieAttrEntries(Rcp_CookieAttribu
  * @param entries pointer refer to {@link Rcp_CookieAttributeEntry}
  * @since 5.0.0(12)
  */
-void HMS_Rcp_DestroyResponseCookieAttrEntries(Rcp_CookieAttributeEntry *entries);
+void HMS_Rcp_DestroyResponseCookieAttrEntries(Rcp_CookieAttributeEntry *entries)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Describe response cookies in {@link Rcp_Response}.
@@ -1525,7 +1543,8 @@ typedef struct Rcp_SyncInterceptorArray {
  * @since 5.0.0(12)
  */
 uint32_t HMS_Rcp_CallNextRequestHandler(Rcp_Request *request, const Rcp_RequestHandler *next,
-                                        const Rcp_ResponseCallbackObject *responseCallback);
+                                        const Rcp_ResponseCallbackObject *responseCallback)
+                                        __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The next interceptor or defaultHandler can be called in the function of the interceptor
@@ -1538,7 +1557,8 @@ uint32_t HMS_Rcp_CallNextRequestHandler(Rcp_Request *request, const Rcp_RequestH
  * @since 5.0.0(12)
  */
 Rcp_Response *HMS_Rcp_CallNextSyncRequestHandler(Rcp_Request *request, const Rcp_SyncRequestHandler *next,
-                                                 uint32_t *errCode);
+                                                 uint32_t *errCode)
+                                                 __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Session type
@@ -1641,7 +1661,8 @@ typedef struct Rcp_SessionConfiguration {
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-Rcp_Session *HMS_Rcp_CreateSession(const Rcp_SessionConfiguration *configuration, uint32_t *errCode);
+Rcp_Session *HMS_Rcp_CreateSession(const Rcp_SessionConfiguration *configuration, uint32_t *errCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets session id
@@ -1651,7 +1672,7 @@ Rcp_Session *HMS_Rcp_CreateSession(const Rcp_SessionConfiguration *configuration
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-const char *HMS_Rcp_GetSessionId(Rcp_Session *session);
+const char *HMS_Rcp_GetSessionId(Rcp_Session *session) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets session configuration
@@ -1661,7 +1682,8 @@ const char *HMS_Rcp_GetSessionId(Rcp_Session *session);
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-const Rcp_SessionConfiguration *HMS_Rcp_GetSessionConfiguration(Rcp_Session *session);
+const Rcp_SessionConfiguration *HMS_Rcp_GetSessionConfiguration(Rcp_Session *session)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Send an async request and get a response
@@ -1713,7 +1735,8 @@ const Rcp_SessionConfiguration *HMS_Rcp_GetSessionConfiguration(Rcp_Session *ses
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-Rcp_Response *HMS_Rcp_FetchSync(Rcp_Session *session, Rcp_Request *request, uint32_t *errCode);
+Rcp_Response *HMS_Rcp_FetchSync(Rcp_Session *session, Rcp_Request *request, uint32_t *errCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Send a sync request and get a response
@@ -1729,7 +1752,8 @@ Rcp_Response *HMS_Rcp_FetchSync(Rcp_Session *session, Rcp_Request *request, uint
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_Fetch(Rcp_Session *session, Rcp_Request *request, const Rcp_ResponseCallbackObject *responseCallback);
+uint32_t HMS_Rcp_Fetch(Rcp_Session *session, Rcp_Request *request, const Rcp_ResponseCallbackObject *responseCallback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Cancels a request.
@@ -1741,7 +1765,8 @@ uint32_t HMS_Rcp_Fetch(Rcp_Session *session, Rcp_Request *request, const Rcp_Res
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_CancelRequest(Rcp_Session *session, const Rcp_Request *request);
+uint32_t HMS_Rcp_CancelRequest(Rcp_Session *session, const Rcp_Request *request)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Cancels a session.
@@ -1752,7 +1777,7 @@ uint32_t HMS_Rcp_CancelRequest(Rcp_Session *session, const Rcp_Request *request)
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_CancelSession(Rcp_Session *session);
+uint32_t HMS_Rcp_CancelSession(Rcp_Session *session) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Closes a session
  *
@@ -1761,7 +1786,7 @@ uint32_t HMS_Rcp_CancelSession(Rcp_Session *session);
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
-uint32_t HMS_Rcp_CloseSession(Rcp_Session **session);
+uint32_t HMS_Rcp_CloseSession(Rcp_Session **session) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Callback function that is invoked when a response body is received. The callback point is the same as that of
@@ -1796,7 +1821,8 @@ typedef struct Rcp_OnBinaryReceiveCallback {
  * @since 5.0.1(13)
  */
 uint32_t HMS_Rcp_SetRequestOnBinaryDataRecvCallback(Rcp_Request *request,
-                                                    Rcp_OnBinaryReceiveCallback onBinaryReceiveCallback);
+                                                    Rcp_OnBinaryReceiveCallback onBinaryReceiveCallback)
+                                                    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Callback function triggered when a status code is received.
@@ -1827,7 +1853,8 @@ typedef struct Rcp_OnStatusCodeReceiveCallback {
  * @since 6.0.1(21)
  */
 uint32_t HMS_Rcp_SetRequestOnStatusCodeReceiveCallback(Rcp_Request *request,
-                                                       Rcp_OnStatusCodeReceiveCallback onStatusCodeReceiveCallback);
+                                                       Rcp_OnStatusCodeReceiveCallback onStatusCodeReceiveCallback)
+                                                       __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

@@ -42,6 +42,7 @@
 #ifndef NEURAL_NETWORK_RUNTIME_H
 #define NEURAL_NETWORK_RUNTIME_H
 
+#include "info/application_target_sdk_version.h"
 #include "neural_network_runtime_type.h"
 #include "neural_network_core.h"
 
@@ -60,7 +61,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-NN_QuantParam *OH_NNQuantParam_Create();
+NN_QuantParam *OH_NNQuantParam_Create() __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the scales of the {@link NN_QuantParam} instance.
@@ -78,7 +79,8 @@ NN_QuantParam *OH_NNQuantParam_Create();
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNQuantParam_SetScales(NN_QuantParam *quantParams, const double *scales, size_t quantCount);
+OH_NN_ReturnCode OH_NNQuantParam_SetScales(NN_QuantParam *quantParams, const double *scales, size_t quantCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the zero points of the {@link NN_QuantParam} instance.
@@ -96,7 +98,8 @@ OH_NN_ReturnCode OH_NNQuantParam_SetScales(NN_QuantParam *quantParams, const dou
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNQuantParam_SetZeroPoints(NN_QuantParam *quantParams, const int32_t *zeroPoints, size_t quantCount);
+OH_NN_ReturnCode OH_NNQuantParam_SetZeroPoints(NN_QuantParam *quantParams, const int32_t *zeroPoints, size_t quantCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the number bits of the {@link NN_QuantParam} instance.
@@ -114,7 +117,8 @@ OH_NN_ReturnCode OH_NNQuantParam_SetZeroPoints(NN_QuantParam *quantParams, const
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNQuantParam_SetNumBits(NN_QuantParam *quantParams, const uint32_t *numBits, size_t quantCount);
+OH_NN_ReturnCode OH_NNQuantParam_SetNumBits(NN_QuantParam *quantParams, const uint32_t *numBits, size_t quantCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases a {@link NN_QuantParam} instance.
@@ -132,7 +136,8 @@ OH_NN_ReturnCode OH_NNQuantParam_SetNumBits(NN_QuantParam *quantParams, const ui
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNQuantParam_Destroy(NN_QuantParam **quantParams);
+OH_NN_ReturnCode OH_NNQuantParam_Destroy(NN_QuantParam **quantParams)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a model instance of the {@link OH_NNModel} type and uses other APIs provided by OH_NNModel to construct the model instance.
@@ -148,7 +153,7 @@ OH_NN_ReturnCode OH_NNQuantParam_Destroy(NN_QuantParam **quantParams);
  * @since 9
  * @version 1.0
  */
-OH_NNModel *OH_NNModel_Construct(void);
+OH_NNModel *OH_NNModel_Construct(void) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Adds a tensor to the model instance.
@@ -174,7 +179,8 @@ OH_NNModel *OH_NNModel_Construct(void);
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNModel_AddTensorToModel(OH_NNModel *model, const NN_TensorDesc *tensorDesc);
+OH_NN_ReturnCode OH_NNModel_AddTensorToModel(OH_NNModel *model, const NN_TensorDesc *tensorDesc)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the tensor value.
@@ -196,7 +202,8 @@ OH_NN_ReturnCode OH_NNModel_AddTensorToModel(OH_NNModel *model, const NN_TensorD
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNModel_SetTensorData(OH_NNModel *model, uint32_t index, const void *dataBuffer, size_t length);
+OH_NN_ReturnCode OH_NNModel_SetTensorData(OH_NNModel *model, uint32_t index, const void *dataBuffer, size_t length)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets the quantization parameter of a tensor.
@@ -213,7 +220,8 @@ OH_NN_ReturnCode OH_NNModel_SetTensorData(OH_NNModel *model, uint32_t index, con
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNModel_SetTensorQuantParams(OH_NNModel *model, uint32_t index, NN_QuantParam *quantParam);
+OH_NN_ReturnCode OH_NNModel_SetTensorQuantParams(OH_NNModel *model, uint32_t index, NN_QuantParam *quantParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the tensor type. See {@link OH_NN_TensorType} for details.
@@ -230,7 +238,8 @@ OH_NN_ReturnCode OH_NNModel_SetTensorQuantParams(OH_NNModel *model, uint32_t ind
  * @since 11
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNModel_SetTensorType(OH_NNModel *model, uint32_t index, OH_NN_TensorType tensorType);
+OH_NN_ReturnCode OH_NNModel_SetTensorType(OH_NNModel *model, uint32_t index, OH_NN_TensorType tensorType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Adds an operator to a model instance.
@@ -268,7 +277,8 @@ OH_NN_ReturnCode OH_NNModel_AddOperation(OH_NNModel *model,
                                          OH_NN_OperationType op,
                                          const OH_NN_UInt32Array *paramIndices,
                                          const OH_NN_UInt32Array *inputIndices,
-                                         const OH_NN_UInt32Array *outputIndices);
+                                         const OH_NN_UInt32Array *outputIndices)
+                                         __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Specifies the inputs and outputs of a model.
@@ -295,7 +305,8 @@ OH_NN_ReturnCode OH_NNModel_AddOperation(OH_NNModel *model,
  */
 OH_NN_ReturnCode OH_NNModel_SpecifyInputsAndOutputs(OH_NNModel *model,
                                                     const OH_NN_UInt32Array *inputIndices,
-                                                    const OH_NN_UInt32Array *outputIndices);
+                                                    const OH_NN_UInt32Array *outputIndices)
+                                                    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Completes model composition.
@@ -320,7 +331,7 @@ OH_NN_ReturnCode OH_NNModel_SpecifyInputsAndOutputs(OH_NNModel *model,
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNModel_Finish(OH_NNModel *model);
+OH_NN_ReturnCode OH_NNModel_Finish(OH_NNModel *model) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Releases a model instance.
@@ -333,7 +344,7 @@ OH_NN_ReturnCode OH_NNModel_Finish(OH_NNModel *model);
  * @since 9
  * @version 1.0
  */
-void OH_NNModel_Destroy(OH_NNModel **model);
+void OH_NNModel_Destroy(OH_NNModel **model) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Queries whether the device supports operators in the model. The support status is indicated by the Boolean value.
@@ -366,7 +377,8 @@ void OH_NNModel_Destroy(OH_NNModel **model);
 OH_NN_ReturnCode OH_NNModel_GetAvailableOperations(OH_NNModel *model,
                                                    size_t deviceID,
                                                    const bool **isSupported,
-                                                   uint32_t *opCount);
+                                                   uint32_t *opCount)
+                                                   __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Adds a tensor to a model instance.
@@ -396,7 +408,8 @@ OH_NN_ReturnCode OH_NNModel_GetAvailableOperations(OH_NNModel *model,
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNModel_AddTensor(OH_NNModel *model, const OH_NN_Tensor *tensor);
+OH_NN_ReturnCode OH_NNModel_AddTensor(OH_NNModel *model, const OH_NN_Tensor *tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets the single input data for a model.
@@ -442,7 +455,8 @@ OH_NN_ReturnCode OH_NNExecutor_SetInput(OH_NNExecutor *executor,
                                         uint32_t inputIndex,
                                         const OH_NN_Tensor *tensor,
                                         const void *dataBuffer,
-                                        size_t length);
+                                        size_t length)
+                                        __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets the buffer for a single output of a model.
@@ -482,7 +496,8 @@ OH_NN_ReturnCode OH_NNExecutor_SetInput(OH_NNExecutor *executor,
 OH_NN_ReturnCode OH_NNExecutor_SetOutput(OH_NNExecutor *executor,
                                          uint32_t outputIndex,
                                          void *dataBuffer,
-                                         size_t length);
+                                         size_t length)
+                                         __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Performs inference.
@@ -501,7 +516,7 @@ OH_NN_ReturnCode OH_NNExecutor_SetOutput(OH_NNExecutor *executor,
  * @since 9
  * @version 1.0
  */
-OH_NN_ReturnCode OH_NNExecutor_Run(OH_NNExecutor *executor);
+OH_NN_ReturnCode OH_NNExecutor_Run(OH_NNExecutor *executor) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Allocates shared memory to a single input on a device.
@@ -524,7 +539,8 @@ OH_NN_ReturnCode OH_NNExecutor_Run(OH_NNExecutor *executor);
  * @since 9
  * @version 1.0
  */
-OH_NN_Memory *OH_NNExecutor_AllocateInputMemory(OH_NNExecutor *executor, uint32_t inputIndex, size_t length);
+OH_NN_Memory *OH_NNExecutor_AllocateInputMemory(OH_NNExecutor *executor, uint32_t inputIndex, size_t length)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Allocates shared memory to a single output on a device.
@@ -547,7 +563,8 @@ OH_NN_Memory *OH_NNExecutor_AllocateInputMemory(OH_NNExecutor *executor, uint32_
  * @since 9
  * @version 1.0
  */
-OH_NN_Memory *OH_NNExecutor_AllocateOutputMemory(OH_NNExecutor *executor, uint32_t outputIndex, size_t length);
+OH_NN_Memory *OH_NNExecutor_AllocateOutputMemory(OH_NNExecutor *executor, uint32_t outputIndex, size_t length)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Releases the input memory to which the {@link OH_NN_Memory} instance points.
@@ -572,7 +589,8 @@ OH_NN_Memory *OH_NNExecutor_AllocateOutputMemory(OH_NNExecutor *executor, uint32
  * @since 9
  * @version 1.0
  */
-void OH_NNExecutor_DestroyInputMemory(OH_NNExecutor *executor, uint32_t inputIndex, OH_NN_Memory **memory);
+void OH_NNExecutor_DestroyInputMemory(OH_NNExecutor *executor, uint32_t inputIndex, OH_NN_Memory **memory)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Releases the output memory to which the {@link OH_NN_Memory} instance points.
@@ -597,7 +615,8 @@ void OH_NNExecutor_DestroyInputMemory(OH_NNExecutor *executor, uint32_t inputInd
  * @since 9
  * @version 1.0
  */
-void OH_NNExecutor_DestroyOutputMemory(OH_NNExecutor *executor, uint32_t outputIndex, OH_NN_Memory **memory);
+void OH_NNExecutor_DestroyOutputMemory(OH_NNExecutor *executor, uint32_t outputIndex, OH_NN_Memory **memory)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Specifies the hardware shared memory pointed to by the {@link OH_NN_Memory} instance as the shared memory
@@ -632,7 +651,8 @@ void OH_NNExecutor_DestroyOutputMemory(OH_NNExecutor *executor, uint32_t outputI
 OH_NN_ReturnCode OH_NNExecutor_SetInputWithMemory(OH_NNExecutor *executor,
                                                   uint32_t inputIndex,
                                                   const OH_NN_Tensor *tensor,
-                                                  const OH_NN_Memory *memory);
+                                                  const OH_NN_Memory *memory)
+                                                  __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Specifies the hardware shared memory pointed to by the {@link OH_NN_Memory} instance as the shared memory
@@ -665,7 +685,8 @@ OH_NN_ReturnCode OH_NNExecutor_SetInputWithMemory(OH_NNExecutor *executor,
  */
 OH_NN_ReturnCode OH_NNExecutor_SetOutputWithMemory(OH_NNExecutor *executor,
                                                    uint32_t outputIndex,
-                                                   const OH_NN_Memory *memory);
+                                                   const OH_NN_Memory *memory)
+                                                   __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 #ifdef __cplusplus
 }

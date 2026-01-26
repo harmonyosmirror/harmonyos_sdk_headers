@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_SURFACE_H
 #define C_INCLUDE_DRAWING_SURFACE_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -59,7 +60,8 @@ extern "C" {
  * @version 1.0
  */
 OH_Drawing_Surface* OH_Drawing_SurfaceCreateFromGpuContext(
-    OH_Drawing_GpuContext* gpuContext, bool flag, OH_Drawing_Image_Info imageInfo);
+    OH_Drawing_GpuContext* gpuContext, bool flag, OH_Drawing_Image_Info imageInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Surface</b> object on GPU indicated by context which is on-screen.
@@ -73,7 +75,8 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateFromGpuContext(
  * @version 1.0
  */
 OH_Drawing_Surface* OH_Drawing_SurfaceCreateOnScreen(
-    OH_Drawing_GpuContext* gpuContext, OH_Drawing_Image_Info imageInfo, void* window);
+    OH_Drawing_GpuContext* gpuContext, OH_Drawing_Image_Info imageInfo, void* window)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Gets the canvas that draws into surface.
@@ -85,7 +88,8 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateOnScreen(
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface* surface);
+OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface* surface)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resolves all pending GPU operations on the surface.
@@ -98,7 +102,8 @@ OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface* surface);
  * @since 16
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_SurfaceFlush(OH_Drawing_Surface* surface);
+OH_Drawing_ErrorCode OH_Drawing_SurfaceFlush(OH_Drawing_Surface* surface)
+__attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Surface</b> object and reclaims the memory occupied by the object.
@@ -108,7 +113,7 @@ OH_Drawing_ErrorCode OH_Drawing_SurfaceFlush(OH_Drawing_Surface* surface);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SurfaceDestroy(OH_Drawing_Surface* surface);
+void OH_Drawing_SurfaceDestroy(OH_Drawing_Surface* surface) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

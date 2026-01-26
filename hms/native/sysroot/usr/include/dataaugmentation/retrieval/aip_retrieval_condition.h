@@ -25,6 +25,7 @@
 #ifndef AIP_RETRIEVAL_CONDITION_H
 #define AIP_RETRIEVAL_CONDITION_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -51,7 +52,7 @@ typedef struct OH_Retrieval_SubCondition OH_Retrieval_SubCondition;
  * @see OH_Retrieval_Condition
  * @since 6.0.0(20)
  */
-OH_Retrieval_Condition *OH_Retrieval_CreateCondition();
+OH_Retrieval_Condition *OH_Retrieval_CreateCondition() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_Condition which is created by OH_Retrieval_CreateCondition.
@@ -63,7 +64,8 @@ OH_Retrieval_Condition *OH_Retrieval_CreateCondition();
  * @see OH_Retrieval_Condition, OH_Aip_ErrCode, OH_Retrieval_CreateCondition.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyCondition(OH_Retrieval_Condition *condition);
+int OH_Retrieval_DestroyCondition(OH_Retrieval_Condition *condition)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_SubCondition.
@@ -75,7 +77,8 @@ int OH_Retrieval_DestroyCondition(OH_Retrieval_Condition *condition);
  * @see OH_Retrieval_SubCondition, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroySubCondition(OH_Retrieval_SubCondition *condition);
+int OH_Retrieval_DestroySubCondition(OH_Retrieval_SubCondition *condition)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add a subcondition to the retrieval condition.
@@ -90,7 +93,8 @@ int OH_Retrieval_DestroySubCondition(OH_Retrieval_SubCondition *condition);
  * @see OH_Retrieval_Condition, OH_Retrieval_SubCondition, OH_Retrieval_VectorCondition, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_AddSubCondition(OH_Retrieval_Condition *condition, OH_Retrieval_SubCondition *subCondition);
+int OH_Retrieval_AddSubCondition(OH_Retrieval_Condition *condition, OH_Retrieval_SubCondition *subCondition)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

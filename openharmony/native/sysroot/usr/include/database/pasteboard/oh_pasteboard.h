@@ -39,6 +39,7 @@
 #ifndef OH_PASTEBOARD_H
 #define OH_PASTEBOARD_H
 
+#include "info/application_target_sdk_version.h"
 #include <inttypes.h>
 #include <stdbool.h>
 #include "database/udmf/udmf.h"
@@ -46,6 +47,37 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/**
+ * @brief MIME type of plain text.
+ *
+ * @since 22
+ */
+#define PASTEBOARD_MIMETYPE_TEXT_PLAIN "text/plain"
+/**
+ * @brief MIME type of URI.
+ *
+ * @since 22
+ */
+#define PASTEBOARD_MIMETYPE_TEXT_URI "text/uri"
+/**
+ * @brief MIME type of HTML text.
+ *
+ * @since 22
+ */
+#define PASTEBOARD_MIMETYPE_TEXT_HTML "text/html"
+/**
+ * @brief MIME type of PixelMap.
+ *
+ * @since 22
+ */
+#define PASTEBOARD_MIMETYPE_PIXELMAP "pixelMap"
+/**
+ * @brief MIME type of want.
+ *
+ * @since 22
+ */
+#define PASTEBOARD_MIMETYPE_TEXT_WANT "text/want"
 
 /**
  * @brief Enumerates the types of data changes that can be observed.
@@ -148,7 +180,7 @@ typedef struct OH_PasteboardObserver OH_PasteboardObserver;
  * @see OH_PasteboardObserver.
  * @since 13
  */
-OH_PasteboardObserver* OH_PasteboardObserver_Create();
+OH_PasteboardObserver* OH_PasteboardObserver_Create() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy a {@link OH_PasteboardObserver} instance.
@@ -160,7 +192,8 @@ OH_PasteboardObserver* OH_PasteboardObserver_Create();
  * @see OH_PasteboardObserver PASTEBOARD_ErrCode.
  * @since 13
  */
-int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer);
+int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets a callback function to return the Pasteboard data changed.
@@ -177,7 +210,8 @@ int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer);
  * @since 13
  */
 int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context,
-    const Pasteboard_Notify callback, const Pasteboard_Finalize finalize);
+    const Pasteboard_Notify callback, const Pasteboard_Finalize finalize)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Represents the Pasteboard information.
@@ -194,7 +228,7 @@ typedef struct OH_Pasteboard OH_Pasteboard;
  * @see OH_Pasteboard.
  * @since 13
  */
-OH_Pasteboard* OH_Pasteboard_Create();
+OH_Pasteboard* OH_Pasteboard_Create() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy a {@link OH_Pasteboard} instance.
@@ -203,7 +237,7 @@ OH_Pasteboard* OH_Pasteboard_Create();
  * @see OH_Pasteboard.
  * @since 13
  */
-void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
+void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Subscribes to the Pasteboard data change.
@@ -219,7 +253,8 @@ void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
  * @see OH_Pasteboard OH_PasteboardObserver Pasteboard_NotifyType PASTEBOARD_ErrCode.
  * @since 13
  */
-int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer);
+int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unsubscribes from the Pasteboard data change.
@@ -235,7 +270,8 @@ int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_Pasteb
  * @see OH_Pasteboard OH_PasteboardObserver Pasteboard_NotifyType PASTEBOARD_ErrCode.
  * @since 13
  */
-int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer);
+int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Checks whether the Pasteboard data is from a remote device.
@@ -247,7 +283,7 @@ int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_Past
  * @see OH_Pasteboard.
  * @since 13
  */
-bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
+bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the source of Pasteboard data.
@@ -261,7 +297,8 @@ bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
  * @see OH_Pasteboard PASTEBOARD_ErrCode.
  * @since 13
  */
-int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigned int len);
+int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigned int len)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Checks whether the Pasteboard has the specified type of data.
@@ -274,7 +311,8 @@ int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigne
  * @see OH_Pasteboard.
  * @since 13
  */
-bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type);
+bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Checks whether there is data in the Pasteboard.
@@ -286,7 +324,7 @@ bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type);
  * @see OH_Pasteboard.
  * @since 13
  */
-bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard);
+bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains data from the Pasteboard.
@@ -297,7 +335,8 @@ bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard);
  * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
  * @since 13
  */
-OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
+OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Writes data to the Pasteboard.
@@ -310,7 +349,8 @@ OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
  * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
  * @since 13
  */
-int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
+int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Clears the data in the Pastedboard.
@@ -322,7 +362,7 @@ int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
  * @see OH_Pasteboard PASTEBOARD_ErrCode.
  * @since 13
  */
-int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
+int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains all MIME types of Pasteboard data.
@@ -334,7 +374,8 @@ int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
  * @see OH_Pasteboard.
  * @since 14
  */
-char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count);
+char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Gets the number of Pasteboard data changes.
@@ -344,7 +385,8 @@ char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count
  * Returns 0 means initial value or invalid value.In this case, no action is required.
  * @since 18
  */
-uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
+uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Create a pointer to the instance of the {@link Pasteboard_GetDataParams}.
@@ -354,7 +396,8 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
-Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
+Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy a pointer that points to an instance of {@link Pasteboard_GetDataParams}.
@@ -363,7 +406,8 @@ Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
-void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params);
+void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the progress indicator to the {@link Pasteboard_GetDataParams}.
@@ -374,7 +418,8 @@ void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params);
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* params,
-    Pasteboard_ProgressIndicator progressIndicator);
+    Pasteboard_ProgressIndicator progressIndicator)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the destination uri to the {@link Pasteboard_GetDataParams}.
@@ -385,7 +430,8 @@ void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* 
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
-void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, const char* destUri, uint32_t destUriLen);
+void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, const char* destUri, uint32_t destUriLen)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the file conflict options to the {@link Pasteboard_GetDataParams}.
@@ -396,7 +442,8 @@ void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, co
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams* params,
-    Pasteboard_FileConflictOptions option);
+    Pasteboard_FileConflictOptions option)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the progress indicator to the {@link Pasteboard_GetDataParams}.
@@ -407,7 +454,8 @@ void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetProgressListener(Pasteboard_GetDataParams* params,
-    const OH_Pasteboard_ProgressListener listener);
+    const OH_Pasteboard_ProgressListener listener)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the progress from the {@link Pasteboard_ProgressInfo}.
@@ -417,7 +465,8 @@ void OH_Pasteboard_GetDataParams_SetProgressListener(Pasteboard_GetDataParams* p
  * @see Pasteboard_ProgressInfo.
  * @since 15
  */
-int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo);
+int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Defines the cancel function used to cancel the progress when getting PasteData.
@@ -426,7 +475,8 @@ int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
-void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
+void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains data from the Pasteboard with system progress indicator.
@@ -440,7 +490,8 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  * @since 15
  */
 OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params,
-    int* status);
+    int* status)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Notifies the system pasteboard to synchronize all time-lapse paste data from application.
@@ -449,7 +500,8 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
  * @param callback Indicates the pointer to the callback that is called after the synchronize is finished.
  * @since 21
  */
-void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode));
+void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode))
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 };

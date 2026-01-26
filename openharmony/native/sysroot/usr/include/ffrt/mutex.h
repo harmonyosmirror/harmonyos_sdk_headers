@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_MUTEX_H
 #define FFRT_API_C_MUTEX_H
 
+#include "info/application_target_sdk_version.h"
 #include "type_def.h"
 
 /**
@@ -46,7 +47,7 @@
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_mutexattr_init(ffrt_mutexattr_t* attr);
+FFRT_C_API int ffrt_mutexattr_init(ffrt_mutexattr_t* attr) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the type of a mutex attribute.
@@ -58,7 +59,8 @@ FFRT_C_API int ffrt_mutexattr_init(ffrt_mutexattr_t* attr);
            the mutex attribute type is not <b>ffrt_mutex_normal</b> or <b>ffrt_mutex_recursive</b>.
  * @since 12
  */
-FFRT_C_API int ffrt_mutexattr_settype(ffrt_mutexattr_t* attr, int type);
+FFRT_C_API int ffrt_mutexattr_settype(ffrt_mutexattr_t* attr, int type)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the type of a mutex attribute.
@@ -69,7 +71,8 @@ FFRT_C_API int ffrt_mutexattr_settype(ffrt_mutexattr_t* attr, int type);
            returns <b>ffrt_error_inval</b> if <b>attr</b> or <b>type</b> is a null pointer.
  * @since 12
  */
-FFRT_C_API int ffrt_mutexattr_gettype(ffrt_mutexattr_t* attr, int* type);
+FFRT_C_API int ffrt_mutexattr_gettype(ffrt_mutexattr_t* attr, int* type)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a mutex attribute, the user needs to invoke this interface.
@@ -79,7 +82,7 @@ FFRT_C_API int ffrt_mutexattr_gettype(ffrt_mutexattr_t* attr, int* type);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_mutexattr_destroy(ffrt_mutexattr_t* attr);
+FFRT_C_API int ffrt_mutexattr_destroy(ffrt_mutexattr_t* attr) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Initializes a mutex.
@@ -90,7 +93,8 @@ FFRT_C_API int ffrt_mutexattr_destroy(ffrt_mutexattr_t* attr);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr);
+FFRT_C_API int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Locks a mutex.
@@ -100,7 +104,7 @@ FFRT_C_API int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr
            returns <b>ffrt_error_inval</b> or blocks the calling thread otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_mutex_lock(ffrt_mutex_t* mutex);
+FFRT_C_API int ffrt_mutex_lock(ffrt_mutex_t* mutex) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Unlocks a mutex.
@@ -110,7 +114,7 @@ FFRT_C_API int ffrt_mutex_lock(ffrt_mutex_t* mutex);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_mutex_unlock(ffrt_mutex_t* mutex);
+FFRT_C_API int ffrt_mutex_unlock(ffrt_mutex_t* mutex) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Attempts to lock a mutex.
@@ -120,7 +124,7 @@ FFRT_C_API int ffrt_mutex_unlock(ffrt_mutex_t* mutex);
            returns <b>ffrt_error_inval</b> or <b>ffrt_error_busy</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
+FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroys a mutex, the user needs to invoke this interface.
@@ -130,7 +134,7 @@ FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
+FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #endif // FFRT_API_C_MUTEX_H
 /** @} */

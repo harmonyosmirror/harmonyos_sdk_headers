@@ -29,6 +29,7 @@
 
 #ifndef HIAI_FOUNDATION_SINGLE_OP_H
 #define HIAI_FOUNDATION_SINGLE_OP_H
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 
 #include "neural_network_runtime/neural_network_runtime_type.h"
@@ -114,7 +115,8 @@ typedef struct HiAI_SingleOpTensorDesc HiAI_SingleOpTensorDesc;
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_Create}
  */
 HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensorDesc_Create(const int64_t* dims, size_t dimNum,
-    HiAI_SingleOpDataType dataType, HiAI_SingleOpFormat format, bool isVirtual);
+    HiAI_SingleOpDataType dataType, HiAI_SingleOpFormat format, bool isVirtual)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the number of dimensions of the {@link HiAI_SingleOpTensorDesc} object.
@@ -128,7 +130,8 @@ HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensorDesc_Create(const int64_t* dims, 
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetDimensionCount}
  */
-size_t HMS_HiAISingleOpTensorDesc_GetDimensionCount(const HiAI_SingleOpTensorDesc* tensorDesc);
+size_t HMS_HiAISingleOpTensorDesc_GetDimensionCount(const HiAI_SingleOpTensorDesc* tensorDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the length of a dimension with a specific index of the {@link HiAI_SingleOpTensorDesc} object.
@@ -144,7 +147,8 @@ size_t HMS_HiAISingleOpTensorDesc_GetDimensionCount(const HiAI_SingleOpTensorDes
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetDimension}
  */
-int64_t HMS_HiAISingleOpTensorDesc_GetDimension(const HiAI_SingleOpTensorDesc* tensorDesc, size_t index);
+int64_t HMS_HiAISingleOpTensorDesc_GetDimension(const HiAI_SingleOpTensorDesc* tensorDesc, size_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the data type of the {@link HiAI_SingleOpTensorDesc} object.
@@ -158,7 +162,8 @@ int64_t HMS_HiAISingleOpTensorDesc_GetDimension(const HiAI_SingleOpTensorDesc* t
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetDataType}
  */
-HiAI_SingleOpDataType HMS_HiAISingleOpTensorDesc_GetDataType(const HiAI_SingleOpTensorDesc* tensorDesc);
+HiAI_SingleOpDataType HMS_HiAISingleOpTensorDesc_GetDataType(const HiAI_SingleOpTensorDesc* tensorDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries format of the {@link HiAI_SingleOpTensorDesc} object.
@@ -172,7 +177,8 @@ HiAI_SingleOpDataType HMS_HiAISingleOpTensorDesc_GetDataType(const HiAI_SingleOp
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetFormat}
  */
-HiAI_SingleOpFormat HMS_HiAISingleOpTensorDesc_GetFormat(const HiAI_SingleOpTensorDesc* tensorDesc);
+HiAI_SingleOpFormat HMS_HiAISingleOpTensorDesc_GetFormat(const HiAI_SingleOpTensorDesc* tensorDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries whether {@link HiAI_SingleOpTensorDesc} describes a virtual tensor.
@@ -190,7 +196,8 @@ HiAI_SingleOpFormat HMS_HiAISingleOpTensorDesc_GetFormat(const HiAI_SingleOpTens
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_IsVirtual}
  */
-bool HMS_HiAISingleOpTensorDesc_IsVirtual(const HiAI_SingleOpTensorDesc* tensorDesc);
+bool HMS_HiAISingleOpTensorDesc_IsVirtual(const HiAI_SingleOpTensorDesc* tensorDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the number of bytes occupied by the data calculated based on the dimension and data type of
@@ -206,7 +213,8 @@ bool HMS_HiAISingleOpTensorDesc_IsVirtual(const HiAI_SingleOpTensorDesc* tensorD
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_GetByteSize}
  */
-size_t HMS_HiAISingleOpTensorDesc_GetByteSize(const HiAI_SingleOpTensorDesc* tensorDesc);
+size_t HMS_HiAISingleOpTensorDesc_GetByteSize(const HiAI_SingleOpTensorDesc* tensorDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a {@link HiAI_SingleOpTensorDesc} object.
@@ -220,7 +228,8 @@ size_t HMS_HiAISingleOpTensorDesc_GetByteSize(const HiAI_SingleOpTensorDesc* ten
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensorDesc_Destroy}
  */
-void HMS_HiAISingleOpTensorDesc_Destroy(HiAI_SingleOpTensorDesc** tensorDesc);
+void HMS_HiAISingleOpTensorDesc_Destroy(HiAI_SingleOpTensorDesc** tensorDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Single op buffer handle.
@@ -245,7 +254,8 @@ typedef struct HiAI_SingleOpBuffer HiAI_SingleOpBuffer;
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_Create}
  */
-HiAI_SingleOpBuffer* HMS_HiAISingleOpBuffer_Create(size_t dataSize);
+HiAI_SingleOpBuffer* HMS_HiAISingleOpBuffer_Create(size_t dataSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the byte size of {@link HiAI_SingleOpBuffer}.
@@ -259,7 +269,8 @@ HiAI_SingleOpBuffer* HMS_HiAISingleOpBuffer_Create(size_t dataSize);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_GetSize}
  */
-size_t HMS_HiAISingleOpBuffer_GetSize(const HiAI_SingleOpBuffer* buffer);
+size_t HMS_HiAISingleOpBuffer_GetSize(const HiAI_SingleOpBuffer* buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the memory address of {@link HiAI_SingleOpBuffer}.
@@ -273,7 +284,8 @@ size_t HMS_HiAISingleOpBuffer_GetSize(const HiAI_SingleOpBuffer* buffer);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_GetData}
  */
-void* HMS_HiAISingleOpBuffer_GetData(const HiAI_SingleOpBuffer* buffer);
+void* HMS_HiAISingleOpBuffer_GetData(const HiAI_SingleOpBuffer* buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a {@link HiAI_SingleOpBuffer} object.
@@ -289,7 +301,8 @@ void* HMS_HiAISingleOpBuffer_GetData(const HiAI_SingleOpBuffer* buffer);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpBuffer_Destroy}
  */
-OH_NN_ReturnCode HMS_HiAISingleOpBuffer_Destroy(HiAI_SingleOpBuffer** buffer);
+OH_NN_ReturnCode HMS_HiAISingleOpBuffer_Destroy(HiAI_SingleOpBuffer** buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Single op tensor handle.
@@ -322,7 +335,8 @@ typedef struct HiAI_SingleOpTensor HiAI_SingleOpTensor;
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_CreateFromTensorDesc}
  */
-HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromTensorDesc(const HiAI_SingleOpTensorDesc* desc);
+HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromTensorDesc(const HiAI_SingleOpTensorDesc* desc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a {@link HiAI_SingleOpTensor} object based on {@link HiAI_SingleOpTensorDesc}, the memory address
@@ -352,7 +366,8 @@ HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromTensorDesc(const HiAI_Sing
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_CreateFromSingleOpBuffer}
  */
 HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromSingleOpBuffer(const HiAI_SingleOpTensorDesc* desc,
-    void* data, size_t dataSize);
+    void* data, size_t dataSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a {@link HiAI_SingleOpTensor} object based on {@link HiAI_SingleOpTensorDesc}, the memory address and
@@ -380,7 +395,8 @@ HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromSingleOpBuffer(const HiAI_
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_CreateFromConst}
  */
 HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromConst(const HiAI_SingleOpTensorDesc* desc, void* data,
-    size_t dataSize);
+    size_t dataSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the tensor description of {@link HiAI_SingleOpTensor}.
@@ -395,7 +411,8 @@ HiAI_SingleOpTensor* HMS_HiAISingleOpTensor_CreateFromConst(const HiAI_SingleOpT
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_GetTensorDesc}
  */
-HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensor_GetTensorDesc(const HiAI_SingleOpTensor* tensor);
+HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensor_GetTensorDesc(const HiAI_SingleOpTensor* tensor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the buffer of {@link HiAI_SingleOpTensor}.
@@ -409,7 +426,8 @@ HiAI_SingleOpTensorDesc* HMS_HiAISingleOpTensor_GetTensorDesc(const HiAI_SingleO
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_GetBuffer}
  */
-HiAI_SingleOpBuffer* HMS_HiAISingleOpTensor_GetBuffer(const HiAI_SingleOpTensor* tensor);
+HiAI_SingleOpBuffer* HMS_HiAISingleOpTensor_GetBuffer(const HiAI_SingleOpTensor* tensor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a {@link HiAI_SingleOpTensor} object.
@@ -425,7 +443,8 @@ HiAI_SingleOpBuffer* HMS_HiAISingleOpTensor_GetBuffer(const HiAI_SingleOpTensor*
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpTensor_Destroy}
  */
-OH_NN_ReturnCode HMS_HiAISingleOpTensor_Destroy(HiAI_SingleOpTensor** tensor);
+OH_NN_ReturnCode HMS_HiAISingleOpTensor_Destroy(HiAI_SingleOpTensor** tensor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Single op option handle.
@@ -447,7 +466,7 @@ typedef struct HiAI_SingleOpOptions HiAI_SingleOpOptions;
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpOptions_Create}
  */
-HiAI_SingleOpOptions* HMS_HiAISingleOpOptions_Create(void);
+HiAI_SingleOpOptions* HMS_HiAISingleOpOptions_Create(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a {@link HiAI_SingleOpOptions} object.
@@ -461,7 +480,8 @@ HiAI_SingleOpOptions* HMS_HiAISingleOpOptions_Create(void);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpOptions_Destroy}
  */
-void HMS_HiAISingleOpOptions_Destroy(HiAI_SingleOpOptions** options);
+void HMS_HiAISingleOpOptions_Destroy(HiAI_SingleOpOptions** options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines the single op convolution mode enums.
@@ -572,7 +592,8 @@ typedef struct HiAISingleOpDescriptor_ConvolutionParam {
  * @useinstead {@link CANNKit/HMS_HiAISingleOpDescriptor_CreateConvolution}
  */
 HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateConvolution(
-    HiAISingleOpDescriptor_ConvolutionParam param);
+    HiAISingleOpDescriptor_ConvolutionParam param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines the single op activation mode enums.
@@ -604,7 +625,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAISingleOpDescriptor_CreateActivation}
  */
 HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateActivation(
-    HiAI_SingleOpActivationType activationType, float coef);
+    HiAI_SingleOpActivationType activationType, float coef)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a {@link HiAI_SingleOpDescriptor} object.
@@ -618,7 +640,8 @@ HiAI_SingleOpDescriptor* HMS_HiAISingleOpDescriptor_CreateActivation(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpDescriptor_Destroy}
  */
-void HMS_HiAISingleOpDescriptor_Destroy(HiAI_SingleOpDescriptor** opDesc);
+void HMS_HiAISingleOpDescriptor_Destroy(HiAI_SingleOpDescriptor** opDesc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines the single op support status enums.
@@ -729,7 +752,8 @@ typedef struct HiAI_SingleOpExecutorFusedConvolutionActivationParam {
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_PreCheckConvolution}
  */
 HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckConvolution(
-    HiAI_SingleOpExecutorConvolutionParam param);
+    HiAI_SingleOpExecutorConvolutionParam param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Pre-checks whether a fused convolution-and-activation operation is supported or optimized.
@@ -747,7 +771,8 @@ HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckConvolution(
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_PreCheckFusedConvolutionActivation}
  */
 HiAI_SingleOpSupportStatus HMS_HiAISingleOpExecutor_PreCheckFusedConvolutionActivation(
-    HiAI_SingleOpExecutorFusedConvolutionActivationParam param);
+    HiAI_SingleOpExecutorFusedConvolutionActivationParam param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Single op executor handle.
@@ -777,7 +802,8 @@ typedef struct HiAI_SingleOpExecutor HiAI_SingleOpExecutor;
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_CreateConvolution}
  */
 HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateConvolution(
-    HiAI_SingleOpExecutorConvolutionParam param);
+    HiAI_SingleOpExecutorConvolutionParam param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a {@link HiAI_SingleOpExecutor} object of the fused convolution-and-activation operation.
@@ -800,7 +826,8 @@ HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateConvolution(
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation}
  */
 HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation(
-    HiAI_SingleOpExecutorFusedConvolutionActivationParam param);
+    HiAI_SingleOpExecutorFusedConvolutionActivationParam param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Updates the output tensor description of {@link HiAI_SingleOpExecutor}.
@@ -821,7 +848,8 @@ HiAI_SingleOpExecutor* HMS_HiAISingleOpExecutor_CreateFusedConvolutionActivation
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_UpdateOutputTensorDesc}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_UpdateOutputTensorDesc(const HiAI_SingleOpExecutor* executor,
-    uint32_t index, HiAI_SingleOpTensorDesc* output);
+    uint32_t index, HiAI_SingleOpTensorDesc* output)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the size (in bytes) of the ION workspace memory required by {@link HiAI_SingleOpExecutor}.
@@ -840,7 +868,8 @@ OH_NN_ReturnCode HMS_HiAISingleOpExecutor_UpdateOutputTensorDesc(const HiAI_Sing
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_GetWorkspaceSize}
  */
-size_t HMS_HiAISingleOpExecutor_GetWorkspaceSize(const HiAI_SingleOpExecutor* executor);
+size_t HMS_HiAISingleOpExecutor_GetWorkspaceSize(const HiAI_SingleOpExecutor* executor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Loads {@link HiAI_SingleOpExecutor}.
@@ -861,7 +890,8 @@ size_t HMS_HiAISingleOpExecutor_GetWorkspaceSize(const HiAI_SingleOpExecutor* ex
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_Init}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Init(HiAI_SingleOpExecutor* executor, void* workspace,
-    size_t workspaceSize);
+    size_t workspaceSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Performs synchronous inference.
@@ -883,7 +913,8 @@ OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Init(HiAI_SingleOpExecutor* executor, 
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_Execute}
  */
 OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Execute(HiAI_SingleOpExecutor* executor,
-    HiAI_SingleOpTensor* input[], int32_t inputNum, HiAI_SingleOpTensor* output[], int32_t outputNum);
+    HiAI_SingleOpTensor* input[], int32_t inputNum, HiAI_SingleOpTensor* output[], int32_t outputNum)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys the {@link HiAI_SingleOpExecutor} object to release the memory occupied by the executor.
@@ -902,7 +933,8 @@ OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Execute(HiAI_SingleOpExecutor* executo
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAISingleOpExecutor_Destroy}
  */
-OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Destroy(HiAI_SingleOpExecutor** executor);
+OH_NN_ReturnCode HMS_HiAISingleOpExecutor_Destroy(HiAI_SingleOpExecutor** executor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 #ifdef __cplusplus

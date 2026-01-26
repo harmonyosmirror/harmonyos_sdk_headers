@@ -24,6 +24,7 @@
 #ifndef CANN_HELPER_H
 #define CANN_HELPER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -35,7 +36,7 @@ extern "C" {
  * @return Returns the CANN version number if the operation is successful; returns a null pointer otherwise.
  * @since 4.1.0(11)
  */
-const char* HMS_HiAI_GetVersion(void);
+const char* HMS_HiAI_GetVersion(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Model compatibility.
@@ -57,7 +58,8 @@ typedef enum {
  * model is incompatible otherwise.
  * @since 4.1.0(11)
  */
-HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
+HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the compatibility of the model stored in the memory.
@@ -70,7 +72,8 @@ HiAI_Compatibility HMS_HiAICompatibility_CheckFromFile(const char* file);
  * model is incompatible otherwise.
  * @since 4.1.0(11)
  */
-HiAI_Compatibility HMS_HiAICompatibility_CheckFromBuffer(const void* data, size_t size);
+HiAI_Compatibility HMS_HiAICompatibility_CheckFromBuffer(const void* data, size_t size)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

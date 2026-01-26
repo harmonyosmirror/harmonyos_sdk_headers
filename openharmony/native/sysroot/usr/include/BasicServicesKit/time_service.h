@@ -33,6 +33,7 @@
 #ifndef TIME_SERVICE_H
 #define TIME_SERVICE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -69,7 +70,8 @@ typedef enum TimeService_ErrCode {
  * @syscap SystemCapability.MiscServices.Time
  * @since 12
  */
-TimeService_ErrCode OH_TimeService_GetTimeZone(char *timeZone, uint32_t len);
+TimeService_ErrCode OH_TimeService_GetTimeZone(char *timeZone, uint32_t len)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

@@ -37,6 +37,7 @@
 #ifndef OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_API_H
 #define OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "transient_task_type.h"
@@ -63,7 +64,8 @@ extern "C" {
  * @version 1.0
  */
 int32_t OH_BackgroundTaskManager_RequestSuspendDelay(const char* reason,
-    TransientTask_Callback callback, TransientTask_DelaySuspendInfo *info);
+    TransientTask_Callback callback, TransientTask_DelaySuspendInfo *info)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the remaining time before an application enters the suspended state.
@@ -81,7 +83,8 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay(const char* reason,
  * @since 13
  * @version 1.0
  */
-int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_t *delayTime);
+int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_t *delayTime)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Cancels delayed transition to the suspended state.
@@ -98,7 +101,8 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_
  * @since 13
  * @version 1.0
  */
-int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
+int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains transient task info.
@@ -111,7 +115,8 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
  * @since 20
  * @version 1.0
  */
-int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo *transientTaskInfo);
+int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo *transientTaskInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

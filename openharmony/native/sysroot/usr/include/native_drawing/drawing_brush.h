@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_BRUSH_H
 #define C_INCLUDE_DRAWING_BRUSH_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -61,7 +62,7 @@ typedef struct OH_NativeColorSpaceManager OH_NativeColorSpaceManager;
  * @since 8
  * @version 1.0
  */
-OH_Drawing_Brush* OH_Drawing_BrushCreate(void);
+OH_Drawing_Brush* OH_Drawing_BrushCreate(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Brush</b> copy object.
@@ -74,7 +75,8 @@ OH_Drawing_Brush* OH_Drawing_BrushCreate(void);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Brush* OH_Drawing_BrushCopy(OH_Drawing_Brush* brush);
+OH_Drawing_Brush* OH_Drawing_BrushCopy(OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Brush</b> object and reclaims the memory occupied by the object.
@@ -84,7 +86,7 @@ OH_Drawing_Brush* OH_Drawing_BrushCopy(OH_Drawing_Brush* brush);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_BrushDestroy(OH_Drawing_Brush* brush);
+void OH_Drawing_BrushDestroy(OH_Drawing_Brush* brush) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Checks whether anti-aliasing is enabled for a brush. If anti-aliasing is enabled,
@@ -96,7 +98,8 @@ void OH_Drawing_BrushDestroy(OH_Drawing_Brush* brush);
  * @since 8
  * @version 1.0
  */
-bool OH_Drawing_BrushIsAntiAlias(const OH_Drawing_Brush* brush);
+bool OH_Drawing_BrushIsAntiAlias(const OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Enables or disables anti-aliasing for a brush. If anti-aliasing is enabled,
@@ -109,7 +112,8 @@ bool OH_Drawing_BrushIsAntiAlias(const OH_Drawing_Brush* brush);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_BrushSetAntiAlias(OH_Drawing_Brush* brush, bool antiAlias);
+void OH_Drawing_BrushSetAntiAlias(OH_Drawing_Brush* brush, bool antiAlias)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the color of a brush. The color is used by the brush to fill in a shape.
@@ -120,7 +124,8 @@ void OH_Drawing_BrushSetAntiAlias(OH_Drawing_Brush* brush, bool antiAlias);
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_BrushGetColor(const OH_Drawing_Brush* brush);
+uint32_t OH_Drawing_BrushGetColor(const OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the color for a brush. The color will be used by the brush to fill in a shape.
@@ -131,7 +136,8 @@ uint32_t OH_Drawing_BrushGetColor(const OH_Drawing_Brush* brush);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_BrushSetColor(OH_Drawing_Brush* brush, uint32_t color);
+void OH_Drawing_BrushSetColor(OH_Drawing_Brush* brush, uint32_t color)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the alpha of a brush. The alpha is used by the brush to fill in a shape.
@@ -142,7 +148,8 @@ void OH_Drawing_BrushSetColor(OH_Drawing_Brush* brush, uint32_t color);
  * @since 11
  * @version 1.0
  */
-uint8_t OH_Drawing_BrushGetAlpha(const OH_Drawing_Brush* brush);
+uint8_t OH_Drawing_BrushGetAlpha(const OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the alpha for a brush. The alpha will be used by the brush to fill in a shape.
@@ -153,7 +160,8 @@ uint8_t OH_Drawing_BrushGetAlpha(const OH_Drawing_Brush* brush);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_BrushSetAlpha(OH_Drawing_Brush* brush, uint8_t alpha);
+void OH_Drawing_BrushSetAlpha(OH_Drawing_Brush* brush, uint8_t alpha)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the color for a brush. The color will be used by the brush to fill in a shape.
@@ -174,7 +182,8 @@ void OH_Drawing_BrushSetAlpha(OH_Drawing_Brush* brush, uint8_t alpha);
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_BrushSetColor4f(OH_Drawing_Brush* brush, float a, float r, float g, float b,
-    OH_NativeColorSpaceManager* colorSpaceManager);
+    OH_NativeColorSpaceManager* colorSpaceManager)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the alpha component of a brush.
@@ -188,7 +197,8 @@ OH_Drawing_ErrorCode OH_Drawing_BrushSetColor4f(OH_Drawing_Brush* brush, float a
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_BrushGetAlphaFloat(const OH_Drawing_Brush* brush, float* a);
+OH_Drawing_ErrorCode OH_Drawing_BrushGetAlphaFloat(const OH_Drawing_Brush* brush, float* a)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the red component of a brush.
@@ -202,7 +212,8 @@ OH_Drawing_ErrorCode OH_Drawing_BrushGetAlphaFloat(const OH_Drawing_Brush* brush
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_BrushGetRedFloat(const OH_Drawing_Brush* brush, float* r);
+OH_Drawing_ErrorCode OH_Drawing_BrushGetRedFloat(const OH_Drawing_Brush* brush, float* r)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the green component of a brush.
@@ -216,7 +227,8 @@ OH_Drawing_ErrorCode OH_Drawing_BrushGetRedFloat(const OH_Drawing_Brush* brush, 
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_BrushGetGreenFloat(const OH_Drawing_Brush* brush, float* g);
+OH_Drawing_ErrorCode OH_Drawing_BrushGetGreenFloat(const OH_Drawing_Brush* brush, float* g)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the blue component of a brush.
@@ -230,7 +242,8 @@ OH_Drawing_ErrorCode OH_Drawing_BrushGetGreenFloat(const OH_Drawing_Brush* brush
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_BrushGetBlueFloat(const OH_Drawing_Brush* brush, float* b);
+OH_Drawing_ErrorCode OH_Drawing_BrushGetBlueFloat(const OH_Drawing_Brush* brush, float* b)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the shaderEffect for a brush.
@@ -241,7 +254,8 @@ OH_Drawing_ErrorCode OH_Drawing_BrushGetBlueFloat(const OH_Drawing_Brush* brush,
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_BrushSetShaderEffect(OH_Drawing_Brush* brush, OH_Drawing_ShaderEffect* shaderEffect);
+void OH_Drawing_BrushSetShaderEffect(OH_Drawing_Brush* brush, OH_Drawing_ShaderEffect* shaderEffect)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the shadowLayer for a brush.
@@ -252,7 +266,8 @@ void OH_Drawing_BrushSetShaderEffect(OH_Drawing_Brush* brush, OH_Drawing_ShaderE
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_BrushSetShadowLayer(OH_Drawing_Brush* brush, OH_Drawing_ShadowLayer* shadowLayer);
+void OH_Drawing_BrushSetShadowLayer(OH_Drawing_Brush* brush, OH_Drawing_ShadowLayer* shadowLayer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the filter for a brush.
@@ -263,7 +278,8 @@ void OH_Drawing_BrushSetShadowLayer(OH_Drawing_Brush* brush, OH_Drawing_ShadowLa
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_BrushSetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filter);
+void OH_Drawing_BrushSetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filter)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the filter from a brush.
@@ -274,7 +290,8 @@ void OH_Drawing_BrushSetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filte
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_BrushGetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filter);
+void OH_Drawing_BrushGetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets a blender that implements the specified blendmode enum for a brush.
@@ -285,7 +302,8 @@ void OH_Drawing_BrushGetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filte
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_BrushSetBlendMode(OH_Drawing_Brush* brush, OH_Drawing_BlendMode blendMode);
+void OH_Drawing_BrushSetBlendMode(OH_Drawing_Brush* brush, OH_Drawing_BlendMode blendMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets all brush contents to their initial values.
@@ -295,7 +313,7 @@ void OH_Drawing_BrushSetBlendMode(OH_Drawing_Brush* brush, OH_Drawing_BlendMode 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_BrushReset(OH_Drawing_Brush* brush);
+void OH_Drawing_BrushReset(OH_Drawing_Brush* brush) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

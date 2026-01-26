@@ -43,6 +43,7 @@
 #ifndef OHOS_UTILS_MEMORY_LIBPURGEABLEMEM_C_INCLUDE_PURGEABLE_MEMORY_H
 #define OHOS_UTILS_MEMORY_LIBPURGEABLEMEM_C_INCLUDE_PURGEABLE_MEMORY_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h> /* bool */
 #include <stddef.h> /* size_t */
 
@@ -85,7 +86,8 @@ typedef bool (*OH_PurgeableMemory_ModifyFunc)(void *, size_t, void *);
  * @version 1.0
  */
 OH_PurgeableMemory *OH_PurgeableMemory_Create(
-    size_t size, OH_PurgeableMemory_ModifyFunc func, void *funcPara);
+    size_t size, OH_PurgeableMemory_ModifyFunc func, void *funcPara)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: destroy a PurgMem obj.
@@ -98,7 +100,7 @@ OH_PurgeableMemory *OH_PurgeableMemory_Create(
  * @since 10
  * @version 1.0
  */
-bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory *purgObj);
+bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory *purgObj) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: begin read a PurgMem obj.
@@ -115,7 +117,8 @@ bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory *purgObj);
  * @since 10
  * @version 1.0
  */
-bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory *purgObj);
+bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory *purgObj)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: end read a PurgMem obj.
@@ -128,7 +131,7 @@ bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory *purgObj);
  * @since 10
  * @version 1.0
  */
-void OH_PurgeableMemory_EndRead(OH_PurgeableMemory *purgObj);
+void OH_PurgeableMemory_EndRead(OH_PurgeableMemory *purgObj) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: begin write a PurgMem obj.
@@ -145,7 +148,8 @@ void OH_PurgeableMemory_EndRead(OH_PurgeableMemory *purgObj);
  * @since 10
  * @version 1.0
  */
-bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory *purgObj);
+bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory *purgObj)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: end write a PurgMem obj.
@@ -158,7 +162,7 @@ bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory *purgObj);
  * @since 10
  * @version 1.0
  */
-void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory *purgObj);
+void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory *purgObj) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: get content ptr of a PurgMem obj.
@@ -173,7 +177,8 @@ void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory *purgObj);
  * @since 10
  * @version 1.0
  */
-void *OH_PurgeableMemory_GetContent(OH_PurgeableMemory *purgObj);
+void *OH_PurgeableMemory_GetContent(OH_PurgeableMemory *purgObj)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: get content size of a PurgMem obj.
@@ -186,7 +191,8 @@ void *OH_PurgeableMemory_GetContent(OH_PurgeableMemory *purgObj);
  * @since 10
  * @version 1.0
  */
-size_t OH_PurgeableMemory_ContentSize(OH_PurgeableMemory *purgObj);
+size_t OH_PurgeableMemory_ContentSize(OH_PurgeableMemory *purgObj)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief: append a modify to a PurgMem obj.
@@ -201,7 +207,8 @@ size_t OH_PurgeableMemory_ContentSize(OH_PurgeableMemory *purgObj);
  * @version 1.0
  */
 bool OH_PurgeableMemory_AppendModify(OH_PurgeableMemory *purgObj,
-    OH_PurgeableMemory_ModifyFunc func, void *funcPara);
+    OH_PurgeableMemory_ModifyFunc func, void *funcPara)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #ifdef __cplusplus
 }

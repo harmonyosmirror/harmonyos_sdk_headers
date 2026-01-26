@@ -24,6 +24,7 @@
 #ifndef SECURITY_AUDIT_H
 #define SECURITY_AUDIT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -459,7 +460,8 @@ typedef enum {
  * If the number of clients exceeds the upper limit of the current process, 1012000003 is returned.
  * @since 6.0.0(20)
  */
-int32_t HMS_SecurityAudit_NewClient(SecurityAudit_Client** client, SecurityAudit_Handler handler);
+int32_t HMS_SecurityAudit_NewClient(SecurityAudit_Client** client, SecurityAudit_Handler handler)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes a notification client.
@@ -473,7 +475,8 @@ int32_t HMS_SecurityAudit_NewClient(SecurityAudit_Client** client, SecurityAudit
  * If an internal error occurs, 1012000001 is returned.
  * @since 6.0.0(20)
  */
-int32_t HMS_SecurityAudit_DeleteClient(SecurityAudit_Client* client);
+int32_t HMS_SecurityAudit_DeleteClient(SecurityAudit_Client* client)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Subscribes to notification events.
@@ -490,7 +493,8 @@ int32_t HMS_SecurityAudit_DeleteClient(SecurityAudit_Client* client);
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_Subscribe(const SecurityAudit_Client* client, const SecurityAudit_Notify_Event *events,
-    uint64_t count);
+    uint64_t count)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unsubscribes from notification events.
@@ -507,7 +511,8 @@ int32_t HMS_SecurityAudit_Subscribe(const SecurityAudit_Client* client, const Se
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_Unsubscribe(const SecurityAudit_Client* client, const SecurityAudit_Notify_Event *events,
-    uint64_t count);
+    uint64_t count)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Adds a filter condition to a notify event.
@@ -526,7 +531,8 @@ int32_t HMS_SecurityAudit_Unsubscribe(const SecurityAudit_Client* client, const 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_AddFilter(const SecurityAudit_Client* client, SecurityAudit_Notify_Event event,
-    const SecurityAudit_Filter *filter);
+    const SecurityAudit_Filter *filter)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes the filter condition of a notify event.
@@ -544,7 +550,8 @@ int32_t HMS_SecurityAudit_AddFilter(const SecurityAudit_Client* client, Security
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_RemoveFilter(const SecurityAudit_Client* client, SecurityAudit_Notify_Event event,
-    const SecurityAudit_Filter *filter);
+    const SecurityAudit_Filter *filter)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates a new auth client.
@@ -561,7 +568,8 @@ int32_t HMS_SecurityAudit_RemoveFilter(const SecurityAudit_Client* client, Secur
  * If the number of clients exceeds the upper limit of the current process, 1012000003 is returned.
  * @since 6.0.0(20)
  */
-int32_t HMS_SecurityAudit_NewAuthClient(SecurityAudit_AuthClient** client, SecurityAudit_Handler handler);
+int32_t HMS_SecurityAudit_NewAuthClient(SecurityAudit_AuthClient** client, SecurityAudit_Handler handler)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes an auth client.
@@ -575,7 +583,8 @@ int32_t HMS_SecurityAudit_NewAuthClient(SecurityAudit_AuthClient** client, Secur
  * If an internal error occurs, 1012000001 is returned.
  * @since 6.0.0(20)
  */
-int32_t HMS_SecurityAudit_DeleteAuthClient(SecurityAudit_AuthClient* client);
+int32_t HMS_SecurityAudit_DeleteAuthClient(SecurityAudit_AuthClient* client)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Subscribes to auth events.
@@ -592,7 +601,8 @@ int32_t HMS_SecurityAudit_DeleteAuthClient(SecurityAudit_AuthClient* client);
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_SubscribeAuthEvent(const SecurityAudit_AuthClient* client,
-    const SecurityAudit_Auth_Event *events, uint64_t count);
+    const SecurityAudit_Auth_Event *events, uint64_t count)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unsubscribes from auth events.
@@ -609,7 +619,8 @@ int32_t HMS_SecurityAudit_SubscribeAuthEvent(const SecurityAudit_AuthClient* cli
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_UnsubscribeAuthEvent(const SecurityAudit_AuthClient* client,
-    const SecurityAudit_Auth_Event *events, uint64_t count);
+    const SecurityAudit_Auth_Event *events, uint64_t count)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Adds a filter condition to an auth event.
@@ -628,7 +639,8 @@ int32_t HMS_SecurityAudit_UnsubscribeAuthEvent(const SecurityAudit_AuthClient* c
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_AddAuthEventFilter(const SecurityAudit_AuthClient* client, SecurityAudit_Auth_Event event,
-    const SecurityAudit_Filter *filter);
+    const SecurityAudit_Filter *filter)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes the filter condition of an auth event.
@@ -646,7 +658,8 @@ int32_t HMS_SecurityAudit_AddAuthEventFilter(const SecurityAudit_AuthClient* cli
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_RemoveAuthEventFilter(const SecurityAudit_AuthClient* client, SecurityAudit_Auth_Event event,
-    const SecurityAudit_Filter *filter);
+    const SecurityAudit_Filter *filter)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the authorization result for an audit event.
@@ -664,7 +677,8 @@ int32_t HMS_SecurityAudit_RemoveAuthEventFilter(const SecurityAudit_AuthClient* 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_Auth(const SecurityAudit_AuthClient* client, const SecurityAudit_Event *event,
-    SecurityAudit_AuthResult authResult);
+    SecurityAudit_AuthResult authResult)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries all processes.
@@ -678,7 +692,7 @@ int32_t HMS_SecurityAudit_Auth(const SecurityAudit_AuthClient* client, const Sec
  * 1012000001 is returned if an internal error occurs.
  * @since 6.0.0(20)
  */
-int32_t HMS_SecurityAudit_QueryAllProcesses(char** result);
+int32_t HMS_SecurityAudit_QueryAllProcesses(char** result) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Query process information in batches.
@@ -695,7 +709,8 @@ int32_t HMS_SecurityAudit_QueryAllProcesses(char** result);
  * If the number of queried processes exceeds the threshold, 1012000006 is returned.
  * @since 6.0.0(20)
  */
-int32_t HMS_SecurityAudit_QueryProcesses(uint64_t* pids, uint64_t count, char** result);
+int32_t HMS_SecurityAudit_QueryProcesses(uint64_t* pids, uint64_t count, char** result)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

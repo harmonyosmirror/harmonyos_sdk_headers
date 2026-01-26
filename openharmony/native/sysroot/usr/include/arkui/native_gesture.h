@@ -36,6 +36,7 @@
 #ifndef ARKUI_NATIVE_GESTTURE_H
 #define ARKUI_NATIVE_GESTTURE_H
 
+#include "info/application_target_sdk_version.h"
 #include "ui_input_event.h"
 #include "native_type.h"
 #include <stdbool.h>
@@ -329,7 +330,8 @@ typedef void (*ArkUI_GestureRecognizerDisposeNotifyCallback)(ArkUI_GestureRecogn
 
 * @since 12
 */
-bool OH_ArkUI_GestureInterruptInfo_GetSystemFlag(const ArkUI_GestureInterruptInfo* event);
+bool OH_ArkUI_GestureInterruptInfo_GetSystemFlag(const ArkUI_GestureInterruptInfo* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the pointer to interrupted gesture recognizer.
@@ -338,7 +340,8 @@ bool OH_ArkUI_GestureInterruptInfo_GetSystemFlag(const ArkUI_GestureInterruptInf
 * @return Returns the pointer to interrupted gesture recognizer.
 * @since 12
 */
-ArkUI_GestureRecognizer* OH_ArkUI_GestureInterruptInfo_GetRecognizer(const ArkUI_GestureInterruptInfo* event);
+ArkUI_GestureRecognizer* OH_ArkUI_GestureInterruptInfo_GetRecognizer(const ArkUI_GestureInterruptInfo* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the pointer to the interrupted gesture event.
@@ -347,7 +350,8 @@ ArkUI_GestureRecognizer* OH_ArkUI_GestureInterruptInfo_GetRecognizer(const ArkUI
 * @return Returns the pointer to the interrupted gesture event.
 * @since 12
 */
-ArkUI_GestureEvent* OH_ArkUI_GestureInterruptInfo_GetGestureEvent(const ArkUI_GestureInterruptInfo* event);
+ArkUI_GestureEvent* OH_ArkUI_GestureInterruptInfo_GetGestureEvent(const ArkUI_GestureInterruptInfo* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the type of the system gesture to trigger.
@@ -357,7 +361,8 @@ ArkUI_GestureEvent* OH_ArkUI_GestureInterruptInfo_GetGestureEvent(const ArkUI_Ge
 *         <b>-1</b> is returned.
 * @since 12
 */
-int32_t OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(const ArkUI_GestureInterruptInfo* event);
+int32_t OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(const ArkUI_GestureInterruptInfo* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Get the touch recognizer handles from the gesture interrupt info.
@@ -370,7 +375,8 @@ int32_t OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(const ArkUI_Gestur
 * @since 15
 */
 int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInterruptInfo* info,
-    ArkUI_TouchRecognizerHandleArray* recognizers, int32_t* size);
+    ArkUI_TouchRecognizerHandleArray* recognizers, int32_t* size)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
 * @brief Get component object of the specific touch recognizer.
@@ -379,7 +385,8 @@ int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInt
 * @return Get component object of the specific touch recognizer.
 * @since 15
 */
-ArkUI_NodeHandle OH_ArkUI_TouchRecognizer_GetNodeHandle(const ArkUI_TouchRecognizerHandle recognizer);
+ArkUI_NodeHandle OH_ArkUI_TouchRecognizer_GetNodeHandle(const ArkUI_TouchRecognizerHandle recognizer)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
 * @brief Send touch-cancel event to the touch recognizer in a gesture interruption callback.
@@ -390,7 +397,8 @@ ArkUI_NodeHandle OH_ArkUI_TouchRecognizer_GetNodeHandle(const ArkUI_TouchRecogni
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
 * @since 15
 */
-int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo* info);
+int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo* info)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
 * @brief Obtains the gesture event type.
@@ -399,7 +407,8 @@ int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recogni
 * @return Returns the gesture event type.
 * @since 12
 */
-ArkUI_GestureEventActionType OH_ArkUI_GestureEvent_GetActionType(const ArkUI_GestureEvent* event);
+ArkUI_GestureEventActionType OH_ArkUI_GestureEvent_GetActionType(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains gesture input.
@@ -408,7 +417,8 @@ ArkUI_GestureEventActionType OH_ArkUI_GestureEvent_GetActionType(const ArkUI_Ges
 * @return Returns the pointer to the input event of the gesture event.
 * @since 12
 */
-const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent(const ArkUI_GestureEvent* event);
+const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the number of times that a long press gesture is triggered periodically.
@@ -417,7 +427,8 @@ const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent(const ArkUI_Ges
 * @return Returns the number of times that the long press gesture is triggered periodically.
 * @since 12
 */
-int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event);
+int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the velocity of a pan gesture along the main axis.
@@ -427,7 +438,8 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event);
 *         The value is the square root of the sum of the squares of the velocity on the x-axis and y-axis.
 * @since 12
 */
-float OH_ArkUI_PanGesture_GetVelocity(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PanGesture_GetVelocity(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the velocity of a pan gesture along the x-axis.
@@ -436,7 +448,8 @@ float OH_ArkUI_PanGesture_GetVelocity(const ArkUI_GestureEvent* event);
 * @return Returns the velocity of the pan gesture along the x-axis, in px/s.
 * @since 12
 */
-float OH_ArkUI_PanGesture_GetVelocityX(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PanGesture_GetVelocityX(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the velocity of a pan gesture along the y-axis.
@@ -445,7 +458,8 @@ float OH_ArkUI_PanGesture_GetVelocityX(const ArkUI_GestureEvent* event);
 * @return Returns the velocity of the pan gesture along the y-axis, in px/s.
 * @since 12
 */
-float OH_ArkUI_PanGesture_GetVelocityY(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PanGesture_GetVelocityY(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the relative offset of a pan gesture along the x-axis.
@@ -454,7 +468,8 @@ float OH_ArkUI_PanGesture_GetVelocityY(const ArkUI_GestureEvent* event);
 * @return Returns the relative offset of the gesture along the x-axis, in px.
 * @since 12
 */
-float OH_ArkUI_PanGesture_GetOffsetX(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PanGesture_GetOffsetX(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the relative offset of a pan gesture along the y-axis.
@@ -463,7 +478,8 @@ float OH_ArkUI_PanGesture_GetOffsetX(const ArkUI_GestureEvent* event);
 * @return Returns the relative offset of the gesture along the y-axis, in px.
 * @since 12
 */
-float OH_ArkUI_PanGesture_GetOffsetY(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PanGesture_GetOffsetY(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the angle information of the swipe gesture.
@@ -480,7 +496,8 @@ float OH_ArkUI_PanGesture_GetOffsetY(const ArkUI_GestureEvent* event);
 * @return Returns the angle of the swipe gesture, which is the result obtained based on the aforementioned formula.
 * @since 12
 */
-float OH_ArkUI_SwipeGesture_GetAngle(const ArkUI_GestureEvent* event);
+float OH_ArkUI_SwipeGesture_GetAngle(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the average velocity of all fingers used in the swipe gesture.
@@ -489,7 +506,8 @@ float OH_ArkUI_SwipeGesture_GetAngle(const ArkUI_GestureEvent* event);
 * @return Returns the average velocity of all fingers used in the swipe gesture, in px/s.
 * @since 12
 */
-float OH_ArkUI_SwipeGesture_GetVelocity(const ArkUI_GestureEvent* event);
+float OH_ArkUI_SwipeGesture_GetVelocity(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the angle information of a rotation gesture.
@@ -498,7 +516,8 @@ float OH_ArkUI_SwipeGesture_GetVelocity(const ArkUI_GestureEvent* event);
 * @return Returns the rotation angle.
 * @since 12
 */
-float OH_ArkUI_RotationGesture_GetAngle(const ArkUI_GestureEvent* event);
+float OH_ArkUI_RotationGesture_GetAngle(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the scale ratio of a pinch gesture.
@@ -507,7 +526,8 @@ float OH_ArkUI_RotationGesture_GetAngle(const ArkUI_GestureEvent* event);
 * @return Returns the scale ratio.
 * @since 12
 */
-float OH_ArkUI_PinchGesture_GetScale(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PinchGesture_GetScale(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the X coordinate of the center of the pinch gesture, in vp,
@@ -518,7 +538,8 @@ float OH_ArkUI_PinchGesture_GetScale(const ArkUI_GestureEvent* event);
 * relative to the upper left corner of the current component.
 * @since 12
 */
-float OH_ArkUI_PinchGesture_GetCenterX(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PinchGesture_GetCenterX(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the Y coordinate of the center of the pinch gesture, in vp,
@@ -529,7 +550,8 @@ float OH_ArkUI_PinchGesture_GetCenterX(const ArkUI_GestureEvent* event);
 * relative to the upper left corner of the current component.
 * @since 12
 */
-float OH_ArkUI_PinchGesture_GetCenterY(const ArkUI_GestureEvent* event);
+float OH_ArkUI_PinchGesture_GetCenterY(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Get the ARKUI component bound to the gesture.
@@ -538,7 +560,8 @@ float OH_ArkUI_PinchGesture_GetCenterY(const ArkUI_GestureEvent* event);
 * @return ARKUI component bound to the gesture.If Null is returned, it means event is an invalid value.
 * @since 12
 */
-ArkUI_NodeHandle OH_ArkUI_GestureEvent_GetNode(const ArkUI_GestureEvent* event);
+ArkUI_NodeHandle OH_ArkUI_GestureEvent_GetNode(const ArkUI_GestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains information about a gesture response chain.
@@ -551,7 +574,8 @@ ArkUI_NodeHandle OH_ArkUI_GestureEvent_GetNode(const ArkUI_GestureEvent* event);
 * @since 12
 */
 int32_t OH_ArkUI_GetResponseRecognizersFromInterruptInfo(const ArkUI_GestureInterruptInfo* event,
-    ArkUI_GestureRecognizerHandleArray* responseChain, int32_t* count);
+    ArkUI_GestureRecognizerHandleArray* responseChain, int32_t* count)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the enabled state of a gesture recognizer.
@@ -562,7 +586,8 @@ int32_t OH_ArkUI_GetResponseRecognizersFromInterruptInfo(const ArkUI_GestureInte
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
 * @since 12
 */
-int32_t OH_ArkUI_SetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer, bool enabled);
+int32_t OH_ArkUI_SetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets whether to enable strict finger count checking. If this feature is enabled and the actual number of touch
@@ -574,7 +599,8 @@ int32_t OH_ArkUI_SetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 15
 */
-int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount(ArkUI_GestureRecognizer* recognizer, bool limitFingerCount);
+int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount(ArkUI_GestureRecognizer* recognizer, bool limitFingerCount)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
 * @brief Obtains the enabled state of a gesture recognizer.
@@ -584,7 +610,8 @@ int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount(ArkUI_GestureRecognizer* r
 *         Returns <b>false</b> if the gesture recognizer is disabled.
 * @since 12
 */
-bool OH_ArkUI_GetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer);
+bool OH_ArkUI_GetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the state of a gesture recognizer.
@@ -595,7 +622,8 @@ bool OH_ArkUI_GetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer);
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
 * @since 12
 */
-int32_t OH_ArkUI_GetGestureRecognizerState(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureRecognizerState* state);
+int32_t OH_ArkUI_GetGestureRecognizerState(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureRecognizerState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the information about a gesture event target.
@@ -606,7 +634,8 @@ int32_t OH_ArkUI_GetGestureRecognizerState(ArkUI_GestureRecognizer* recognizer, 
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
 * @since 12
 */
-int32_t OH_ArkUI_GetGestureEventTargetInfo(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureEventTargetInfo** info);
+int32_t OH_ArkUI_GetGestureEventTargetInfo(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureEventTargetInfo** info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains whether this scroll container is scrolled to the top.
@@ -618,7 +647,8 @@ int32_t OH_ArkUI_GetGestureEventTargetInfo(ArkUI_GestureRecognizer* recognizer, 
 *         Returns {@link ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER} if the component is not a scroll container.
 * @since 12
 */
-int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(ArkUI_GestureEventTargetInfo* info, bool* ret);
+int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(ArkUI_GestureEventTargetInfo* info, bool* ret)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains whether this scroll container is scrolled to the bottom.
@@ -630,7 +660,8 @@ int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(ArkUI_GestureEventTargetIn
 *         Returns {@link ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER} if the component is not a scroll container.
 * @since 12
 */
-int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(ArkUI_GestureEventTargetInfo* info, bool* ret);
+int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(ArkUI_GestureEventTargetInfo* info, bool* ret)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the direction of a pan gesture.
@@ -642,7 +673,8 @@ int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(ArkUI_GestureEventTargetInfo
 * @since 12
 */
 int32_t OH_ArkUI_GetPanGestureDirectionMask(ArkUI_GestureRecognizer* recognizer,
-    ArkUI_GestureDirectionMask* directionMask);
+    ArkUI_GestureDirectionMask* directionMask)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains whether a gesture is a built-in gesture.
@@ -651,7 +683,8 @@ int32_t OH_ArkUI_GetPanGestureDirectionMask(ArkUI_GestureRecognizer* recognizer,
 * @return Returns <b>true</b> if the gesture is a built-in gesture; returns <b>false</b> otherwise.
 * @since 12
 */
-bool OH_ArkUI_IsBuiltInGesture(ArkUI_GestureRecognizer* recognizer);
+bool OH_ArkUI_IsBuiltInGesture(ArkUI_GestureRecognizer* recognizer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the tag of a gesture recognizer.
@@ -665,7 +698,8 @@ bool OH_ArkUI_IsBuiltInGesture(ArkUI_GestureRecognizer* recognizer);
 *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the buffer is not large enough.
 * @since 12
 */
-int32_t OH_ArkUI_GetGestureTag(ArkUI_GestureRecognizer* recognizer, char* buffer, int32_t bufferSize, int32_t* result);
+int32_t OH_ArkUI_GetGestureTag(ArkUI_GestureRecognizer* recognizer, char* buffer, int32_t bufferSize, int32_t* result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the ID of the component linked to a gesture recognizer.
@@ -680,7 +714,8 @@ int32_t OH_ArkUI_GetGestureTag(ArkUI_GestureRecognizer* recognizer, char* buffer
 * @since 12
 */
 int32_t OH_ArkUI_GetGestureBindNodeId(ArkUI_GestureRecognizer* recognizer, char* nodeId, int32_t size,
-    int32_t* result);
+    int32_t* result)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains whether a gesture recognizer is valid.
@@ -690,7 +725,8 @@ int32_t OH_ArkUI_GetGestureBindNodeId(ArkUI_GestureRecognizer* recognizer, char*
 *         Returns <b>false</b> if the gesture recognizer is invalid.
 * @since 12
 */
-bool OH_ArkUI_IsGestureRecognizerValid(ArkUI_GestureRecognizer* recognizer);
+bool OH_ArkUI_IsGestureRecognizerValid(ArkUI_GestureRecognizer* recognizer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains custom data in the parallel internal gesture event.
@@ -699,7 +735,8 @@ bool OH_ArkUI_IsGestureRecognizerValid(ArkUI_GestureRecognizer* recognizer);
 * @return Returns the pointer to custom data.
 * @since 12
 */
-void* OH_ArkUI_ParallelInnerGestureEvent_GetUserData(ArkUI_ParallelInnerGestureEvent* event);
+void* OH_ArkUI_ParallelInnerGestureEvent_GetUserData(ArkUI_ParallelInnerGestureEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the current gesture recognizer in a parallel internal gesture event.
@@ -709,7 +746,8 @@ void* OH_ArkUI_ParallelInnerGestureEvent_GetUserData(ArkUI_ParallelInnerGestureE
 * @since 12
 */
 ArkUI_GestureRecognizer* OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer(
-    ArkUI_ParallelInnerGestureEvent* event);
+    ArkUI_ParallelInnerGestureEvent* event)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the conflicting gesture recognizers in a parallel internal gesture event.
@@ -722,7 +760,8 @@ ArkUI_GestureRecognizer* OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer
 * @since 12
 */
 int32_t OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers(ArkUI_ParallelInnerGestureEvent* event,
-    ArkUI_GestureRecognizerHandleArray* array, int32_t* size);
+    ArkUI_GestureRecognizerHandleArray* array, int32_t* size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets a callback function for notifying gesture recognizer destruction.
@@ -735,7 +774,8 @@ int32_t OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers(ArkUI_Parallel
 * @since 12
 */
 int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer* recognizer,
-    ArkUI_GestureRecognizerDisposeNotifyCallback callback, void* userData);
+    ArkUI_GestureRecognizerDisposeNotifyCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the swipe direction of a gesture recognizer.
@@ -748,7 +788,8 @@ int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer*
 * @since 18
 */
 int32_t OH_ArkUI_GetGestureParam_DirectMask(
-    ArkUI_GestureRecognizer* recognizer, ArkUI_GestureDirectionMask* directMask);
+    ArkUI_GestureRecognizer* recognizer, ArkUI_GestureDirectionMask* directMask)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Obtains the number of fingers used by a gesture recognizer.
@@ -760,7 +801,8 @@ int32_t OH_ArkUI_GetGestureParam_DirectMask(
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer, int* finger);
+int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer, int* finger)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Checks whether a gesture recognizer has a finger count limit.
@@ -772,7 +814,8 @@ int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recognizer, bool* isLimited);
+int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recognizer, bool* isLimited)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Checks whether a gesture recognizer supports repeated event callbacks.
@@ -785,7 +828,8 @@ int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recog
 * supported.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, bool* isRepeat);
+int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, bool* isRepeat)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Obtains the allowed movement distance range for a gesture recognizer.
@@ -798,7 +842,8 @@ int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, boo
 * supported.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, double* distance);
+int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, double* distance)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Obtains the minimum swipe speed recognized by a gesture recognizer.
@@ -811,7 +856,8 @@ int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, d
 * supported.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, double* speed);
+int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, double* speed)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Obtains the minimum duration required to trigger a long press by a gesture recognizer.
@@ -824,7 +870,8 @@ int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, doub
 * supported.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, int* duration);
+int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, int* duration)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Obtains the minimum angle change required for a rotation gesture to be recognized by a gesture recognizer.
@@ -837,7 +884,8 @@ int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, i
 * supported.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, double* angle);
+int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, double* angle)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
 * @brief Obtains the movement threshold for gestures to be recognized by a gesture recognizer.
@@ -850,7 +898,40 @@ int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, doub
 * supported.
 * @since 18
 */
-int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* recognizer, double* distanceThreshold);
+int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* recognizer, double* distanceThreshold)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
+
+/**
+ * @brief Sets the maximum moving distance for gestures to be recognized by a long press gesture recognizer.
+ *
+ * @param recognizer Indicates the pointer to a gesture recognizer.
+ * @param allowableMovement Indicates maximum moving distance.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is
+ *                 not supported.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_LongPressGesture_SetAllowableMovement(
+    ArkUI_GestureRecognizer* recognizer, double allowableMovement)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the maximum moving distance for gestures to be recognized by a long press gesture recognizer.
+ *
+ * @param recognizer Pointer to a gesture recognizer.
+ * @param allowableMovement Indicates maximum moving distance.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ * supported.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_LongPressGesture_GetAllowableMovement(
+    ArkUI_GestureRecognizer* recognizer, double* allowableMovement)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
 * @brief Sets the minimum movement distance thresholds for gestures to be recognized by a gesture recognizer.
@@ -867,7 +948,8 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 * @since 19
 */
 ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(
-    ArkUI_GestureRecognizer* recognizer, int size, int* toolTypeArray, double* distanceArray);
+    ArkUI_GestureRecognizer* recognizer, int size, int* toolTypeArray, double* distanceArray)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
 * @brief Obtains the movement threshold for gestures to be recognized by a gesture recognizer for a specific tool type.
@@ -883,7 +965,8 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(
 * @since 19
 */
 ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(
-    ArkUI_GestureRecognizer* recognizer, int toolType, double* distance);
+    ArkUI_GestureRecognizer* recognizer, int toolType, double* distance)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Registers a callback that is executed after all gesture recognizers are collected.
@@ -911,7 +994,8 @@ ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(
         int32_t count,
         void* userData
     )
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the gesture APIs.
@@ -1205,7 +1289,8 @@ typedef struct {
 * @return Returns the pointer to the custom data.
 * @since 18
 */
-void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event);
+void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Prevents a gesture recognizer from participating in the current gesture recognition before all fingers are
@@ -1219,7 +1304,8 @@ void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event)
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* recognizer);
+ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* recognizer)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

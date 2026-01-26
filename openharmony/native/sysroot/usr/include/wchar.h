@@ -1,6 +1,7 @@
 #ifndef _WCHAR_H
 #define _WCHAR_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -151,7 +152,8 @@ size_t wcsftime_l (wchar_t *__restrict, size_t, const wchar_t *__restrict, const
  * @return double-precision value converted from the input string
  * @since 12
  */
-double wcstod_l (const wchar_t *__restrict, wchar_t **__restrict, locale_t);
+double wcstod_l (const wchar_t *__restrict, wchar_t **__restrict, locale_t)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #endif
 
 #if defined(_POSIX_SOURCE) || defined(_POSIX_C_SOURCE) \

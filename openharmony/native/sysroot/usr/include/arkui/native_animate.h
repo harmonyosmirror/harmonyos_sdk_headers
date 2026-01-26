@@ -36,6 +36,7 @@
 #ifndef ARKUI_NATIVE_ANIMATE_H
 #define ARKUI_NATIVE_ANIMATE_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -198,7 +199,7 @@ typedef struct {
 * @return Returns the pointer to the created animation configuration.
 * @since 12
 */
-ArkUI_AnimateOption* OH_ArkUI_AnimateOption_Create();
+ArkUI_AnimateOption* OH_ArkUI_AnimateOption_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Disposes of an animation configuration.
@@ -206,7 +207,8 @@ ArkUI_AnimateOption* OH_ArkUI_AnimateOption_Create();
 * @param option Indicates the pointer to an animation configuration.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_Dispose(ArkUI_AnimateOption* option);
+void OH_ArkUI_AnimateOption_Dispose(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the animation duration, in milliseconds.
@@ -215,7 +217,8 @@ void OH_ArkUI_AnimateOption_Dispose(ArkUI_AnimateOption* option);
 * @return Returns the duration.
 * @since 12
 */
-uint32_t OH_ArkUI_AnimateOption_GetDuration(ArkUI_AnimateOption* option);
+uint32_t OH_ArkUI_AnimateOption_GetDuration(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the animation playback speed.
@@ -224,7 +227,8 @@ uint32_t OH_ArkUI_AnimateOption_GetDuration(ArkUI_AnimateOption* option);
 * @return Returns the animation playback speed.
 * @since 12
 */
-float OH_ArkUI_AnimateOption_GetTempo(ArkUI_AnimateOption* option);
+float OH_ArkUI_AnimateOption_GetTempo(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the animation curve.
@@ -233,7 +237,8 @@ float OH_ArkUI_AnimateOption_GetTempo(ArkUI_AnimateOption* option);
 * @return Returns the animated curve.If Null is returned, it means option is an invalid value.
 * @since 12
 */
-ArkUI_AnimationCurve OH_ArkUI_AnimateOption_GetCurve(ArkUI_AnimateOption* option);
+ArkUI_AnimationCurve OH_ArkUI_AnimateOption_GetCurve(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the animation delay, in milliseconds.
@@ -242,7 +247,8 @@ ArkUI_AnimationCurve OH_ArkUI_AnimateOption_GetCurve(ArkUI_AnimateOption* option
 * @return Returns the animation delay.
 * @since 12
 */
-int32_t OH_ArkUI_AnimateOption_GetDelay(ArkUI_AnimateOption* option);
+int32_t OH_ArkUI_AnimateOption_GetDelay(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the number of times that an animation is played.
@@ -251,7 +257,8 @@ int32_t OH_ArkUI_AnimateOption_GetDelay(ArkUI_AnimateOption* option);
 * @return Returns the number of times that the animation is played.
 * @since 12
 */
-int32_t OH_ArkUI_AnimateOption_GetIterations(ArkUI_AnimateOption* option);
+int32_t OH_ArkUI_AnimateOption_GetIterations(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the animation playback mode.
@@ -260,7 +267,8 @@ int32_t OH_ArkUI_AnimateOption_GetIterations(ArkUI_AnimateOption* option);
 * @return Returns the animation playback mode.
 * @since 12
 */
-ArkUI_AnimationPlayMode OH_ArkUI_AnimateOption_GetPlayMode(ArkUI_AnimateOption* option);
+ArkUI_AnimationPlayMode OH_ArkUI_AnimateOption_GetPlayMode(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the expected frame rate range of an animation.
@@ -269,7 +277,8 @@ ArkUI_AnimationPlayMode OH_ArkUI_AnimateOption_GetPlayMode(ArkUI_AnimateOption* 
 * @return Returns the expected frame rate range.
 * @since 12
 */
-ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimateOption_GetExpectedFrameRateRange(ArkUI_AnimateOption* option);
+ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimateOption_GetExpectedFrameRateRange(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the animation duration.
@@ -278,7 +287,8 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimateOption_GetExpectedFrameRateRange(A
 * @param value Indicates the duration, in milliseconds.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetDuration(ArkUI_AnimateOption* option, int32_t value);
+void OH_ArkUI_AnimateOption_SetDuration(ArkUI_AnimateOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the animation playback speed.
@@ -287,7 +297,8 @@ void OH_ArkUI_AnimateOption_SetDuration(ArkUI_AnimateOption* option, int32_t val
 * @param value Indicates the animation playback speed.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetTempo(ArkUI_AnimateOption* option, float value);
+void OH_ArkUI_AnimateOption_SetTempo(ArkUI_AnimateOption* option, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the animation curve.
@@ -296,7 +307,8 @@ void OH_ArkUI_AnimateOption_SetTempo(ArkUI_AnimateOption* option, float value);
 * @param value Indicates the animated curve. Default value：ARKUI_CURVE_LINEAR.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetCurve(ArkUI_AnimateOption* option, ArkUI_AnimationCurve value);
+void OH_ArkUI_AnimateOption_SetCurve(ArkUI_AnimateOption* option, ArkUI_AnimationCurve value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the animation delay.
@@ -305,7 +317,8 @@ void OH_ArkUI_AnimateOption_SetCurve(ArkUI_AnimateOption* option, ArkUI_Animatio
 * @param value Indicates the animation delay.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetDelay(ArkUI_AnimateOption* option, int32_t value);
+void OH_ArkUI_AnimateOption_SetDelay(ArkUI_AnimateOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the number of times that an animation is played.
@@ -314,7 +327,8 @@ void OH_ArkUI_AnimateOption_SetDelay(ArkUI_AnimateOption* option, int32_t value)
 * @param value Indicates the number of times that the animation is played.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetIterations(ArkUI_AnimateOption* option, int32_t value);
+void OH_ArkUI_AnimateOption_SetIterations(ArkUI_AnimateOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the animation playback mode.
@@ -323,7 +337,8 @@ void OH_ArkUI_AnimateOption_SetIterations(ArkUI_AnimateOption* option, int32_t v
 * @param value Indicates the animation playback mode.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetPlayMode(ArkUI_AnimateOption* option, ArkUI_AnimationPlayMode value);
+void OH_ArkUI_AnimateOption_SetPlayMode(ArkUI_AnimateOption* option, ArkUI_AnimationPlayMode value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the expected frame rate range of an animation.
@@ -332,7 +347,8 @@ void OH_ArkUI_AnimateOption_SetPlayMode(ArkUI_AnimateOption* option, ArkUI_Anima
 * @param value Indicates the expected frame rate range.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(ArkUI_AnimateOption* option, ArkUI_ExpectedFrameRateRange* value);
+void OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(ArkUI_AnimateOption* option, ArkUI_ExpectedFrameRateRange* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the animation curve for the animation of an animator.
@@ -342,7 +358,8 @@ void OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(ArkUI_AnimateOption* optio
 * @param value Indicates the animation curve settings.
 * @since 12
 */
-void OH_ArkUI_AnimateOption_SetICurve(ArkUI_AnimateOption* option, ArkUI_CurveHandle value);
+void OH_ArkUI_AnimateOption_SetICurve(ArkUI_AnimateOption* option, ArkUI_CurveHandle value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the animation curve of the animation of an animator.
@@ -352,7 +369,8 @@ void OH_ArkUI_AnimateOption_SetICurve(ArkUI_AnimateOption* option, ArkUI_CurveHa
 * If Null is returned, it means option is an invalid value.
 * @since 12
 */
-ArkUI_CurveHandle OH_ArkUI_AnimateOption_GetICurve(ArkUI_AnimateOption* option);
+ArkUI_CurveHandle OH_ArkUI_AnimateOption_GetICurve(ArkUI_AnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the keyframe animation parameters.
@@ -362,7 +380,8 @@ ArkUI_CurveHandle OH_ArkUI_AnimateOption_GetICurve(ArkUI_AnimateOption* option);
  * 0.
  * @since 12
  */
-ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create(int32_t size);
+ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create(int32_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of the keyframe animation parameter object.
@@ -370,7 +389,8 @@ ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create(int32_t size)
  * @param option Indicates the keyframe animation parameter object.
  * @since 12
  */
-void OH_ArkUI_KeyframeAnimateOption_Dispose(ArkUI_KeyframeAnimateOption* option);
+void OH_ArkUI_KeyframeAnimateOption_Dispose(ArkUI_KeyframeAnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the overall delay of a keyframe animation, in milliseconds. By default, the keyframe animation is played
@@ -383,7 +403,8 @@ void OH_ArkUI_KeyframeAnimateOption_Dispose(ArkUI_KeyframeAnimateOption* option)
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* option, int32_t value);
+int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the number of times that the keyframe animation is played. By default, the animation is played once.
@@ -397,7 +418,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* opt
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations(ArkUI_KeyframeAnimateOption* option, int32_t value);
+int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations(ArkUI_KeyframeAnimateOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the callback invoked when the keyframe animation playback is complete. This API is called after the
@@ -412,7 +434,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations(ArkUI_KeyframeAnimateOption
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(
-    ArkUI_KeyframeAnimateOption* option, void* userData, void (*onFinish)(void* userData));
+    ArkUI_KeyframeAnimateOption* option, void* userData, void (*onFinish)(void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the expected frame rate range of a keyframe animation.
@@ -425,7 +448,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(
  * @since 19
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
-    ArkUI_KeyframeAnimateOption* option, ArkUI_ExpectedFrameRateRange* frameRate);
+    ArkUI_KeyframeAnimateOption* option, ArkUI_ExpectedFrameRateRange* frameRate)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the duration of a keyframe animation, in milliseconds.
@@ -438,7 +462,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* option, int32_t value, int32_t index);
+int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* option, int32_t value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the animation curve for a specific keyframe in a keyframe animation.
@@ -454,7 +479,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* 
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(
-    ArkUI_KeyframeAnimateOption* option, ArkUI_CurveHandle value, int32_t index);
+    ArkUI_KeyframeAnimateOption* option, ArkUI_CurveHandle value, int32_t index)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the closure function of the state at the time of the keyframe, that is, the state to be reached at the
@@ -470,7 +496,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(
-    ArkUI_KeyframeAnimateOption* option, void* userData, void (*event)(void* userData), int32_t index);
+    ArkUI_KeyframeAnimateOption* option, void* userData, void (*event)(void* userData), int32_t index)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the overall delay of a keyframe animation
@@ -479,7 +506,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(
  * @return Returns the overall delay.
  * @since 12
  */
-int32_t OH_ArkUI_KeyframeAnimateOption_GetDelay(ArkUI_KeyframeAnimateOption* option);
+int32_t OH_ArkUI_KeyframeAnimateOption_GetDelay(ArkUI_KeyframeAnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of times that a keyframe animation is played.
@@ -488,7 +516,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetDelay(ArkUI_KeyframeAnimateOption* opt
  * @return Returns the number of times that the animation is played.
  * @since 12
  */
-int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations(ArkUI_KeyframeAnimateOption* option);
+int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations(ArkUI_KeyframeAnimateOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the expected frame rate range of a keyframe animation configuration.
@@ -497,7 +526,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations(ArkUI_KeyframeAnimateOption
  * @return Returns the expected frame rate range of the keyframe animation.
  * @since 19
  */
-ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(ArkUI_KeyframeAnimateOption* option);
+ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(ArkUI_KeyframeAnimateOption* option)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Obtains the duration of a specific state in a keyframe animation.
@@ -507,7 +537,8 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRat
  * @return Returns the duration. The unit is millisecond.
  * @since 12
  */
-int32_t OH_ArkUI_KeyframeAnimateOption_GetDuration(ArkUI_KeyframeAnimateOption* option, int32_t index);
+int32_t OH_ArkUI_KeyframeAnimateOption_GetDuration(ArkUI_KeyframeAnimateOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the animation curve of a specific state in a keyframe animation.
@@ -518,7 +549,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetDuration(ArkUI_KeyframeAnimateOption* 
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_KeyframeAnimateOption_GetCurve(ArkUI_KeyframeAnimateOption* option, int32_t index);
+ArkUI_CurveHandle OH_ArkUI_KeyframeAnimateOption_GetCurve(ArkUI_KeyframeAnimateOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an animator parameter object.
@@ -530,7 +562,8 @@ ArkUI_CurveHandle OH_ArkUI_KeyframeAnimateOption_GetCurve(ArkUI_KeyframeAnimateO
  * returns <b>NULL</b> if the value of <b>size</b> is less than 0.
  * @since 12
  */
-ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize);
+ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of an animator parameter object.
@@ -538,7 +571,8 @@ ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize);
  * @param option Indicates the target animator parameter object.
  * @since 12
  */
-void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option);
+void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the duration for thea nimation of an animator, in milliseconds.
@@ -550,7 +584,8 @@ void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_t value);
+int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the delay for playing the animation of an animator, in milliseconds.
@@ -562,7 +597,8 @@ int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t value);
+int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the number of times that the animation of an animator is played. The value <b>0</b> means not to play the
@@ -577,7 +613,8 @@ int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t v
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int32_t value);
+int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether the animation of an animator is restored to the initial state after being executed.
@@ -589,7 +626,8 @@ int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int3
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_AnimationFillMode value);
+int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_AnimationFillMode value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the playback direction for the animation of an animator.
@@ -601,7 +639,8 @@ int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_Anim
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI_AnimationDirection value);
+int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI_AnimationDirection value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the interpolation curve for the animation of an animator.
@@ -616,7 +655,8 @@ int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value);
+int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the interpolation start point for the animation of an animator.
@@ -629,7 +669,8 @@ int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_Cur
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float value);
+int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the interpolation end point for the animation of an animator.
@@ -642,7 +683,8 @@ int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float val
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value);
+int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the expected frame rate range for the animation of an animator.
@@ -655,7 +697,8 @@ int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(
-    ArkUI_AnimatorOption* option, ArkUI_ExpectedFrameRateRange* value);
+    ArkUI_AnimatorOption* option, ArkUI_ExpectedFrameRateRange* value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the keyframe parameters for the animation of an animator.
@@ -670,7 +713,8 @@ int32_t OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetKeyframe(
-    ArkUI_AnimatorOption* option, float time, float value, int32_t index);
+    ArkUI_AnimatorOption* option, float time, float value, int32_t index)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the keyframe curve type for the animation of an animator.
@@ -686,7 +730,8 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframe(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value, int32_t index);
+int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Obtains the duration for playing an animation.
  *
@@ -694,7 +739,8 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, A
  * @return Returns the duration for playing the animation, in milliseconds.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_GetDuration(ArkUI_AnimatorOption* option);
+int32_t OH_ArkUI_AnimatorOption_GetDuration(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the delay for playing the animation of an animator.
@@ -703,7 +749,8 @@ int32_t OH_ArkUI_AnimatorOption_GetDuration(ArkUI_AnimatorOption* option);
  * @return Returns the delay for playing the animation, in milliseconds.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_GetDelay(ArkUI_AnimatorOption* option);
+int32_t OH_ArkUI_AnimatorOption_GetDelay(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of times that an animation is played.
@@ -712,7 +759,8 @@ int32_t OH_ArkUI_AnimatorOption_GetDelay(ArkUI_AnimatorOption* option);
  * @return Returns the number of times that the animation is played.
  * @since 12
  */
-int32_t OH_ArkUI_AnimatorOption_GetIterations(ArkUI_AnimatorOption* option);
+int32_t OH_ArkUI_AnimatorOption_GetIterations(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains whether the animator animation is restored to the initial state after being executed.
@@ -721,7 +769,8 @@ int32_t OH_ArkUI_AnimatorOption_GetIterations(ArkUI_AnimatorOption* option);
  * @return Returns whether the animator animation is restored to the initial state after being executed.
  * @since 12
  */
-ArkUI_AnimationFillMode OH_ArkUI_AnimatorOption_GetFill(ArkUI_AnimatorOption* option);
+ArkUI_AnimationFillMode OH_ArkUI_AnimatorOption_GetFill(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the playback direction of an animation.
@@ -730,7 +779,8 @@ ArkUI_AnimationFillMode OH_ArkUI_AnimatorOption_GetFill(ArkUI_AnimatorOption* op
  * @return Returns the animation playback direction.
  * @since 12
  */
-ArkUI_AnimationDirection OH_ArkUI_AnimatorOption_GetDirection(ArkUI_AnimatorOption* option);
+ArkUI_AnimationDirection OH_ArkUI_AnimatorOption_GetDirection(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interpolation curve of the animation of an animator.
@@ -740,7 +790,8 @@ ArkUI_AnimationDirection OH_ArkUI_AnimatorOption_GetDirection(ArkUI_AnimatorOpti
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetCurve(ArkUI_AnimatorOption* option);
+ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetCurve(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interpolation start point of an animation.
@@ -749,7 +800,8 @@ ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetCurve(ArkUI_AnimatorOption* option)
  * @return Returns the interpolation start point of the animation.
  * @since 12
  */
-float OH_ArkUI_AnimatorOption_GetBegin(ArkUI_AnimatorOption* option);
+float OH_ArkUI_AnimatorOption_GetBegin(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interpolation end point of an animation.
@@ -758,7 +810,8 @@ float OH_ArkUI_AnimatorOption_GetBegin(ArkUI_AnimatorOption* option);
  * @return Returns the interpolation end point of the animation.
  * @since 12
  */
-float OH_ArkUI_AnimatorOption_GetEnd(ArkUI_AnimatorOption* option);
+float OH_ArkUI_AnimatorOption_GetEnd(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the expected frame rate range of an animation.
@@ -768,7 +821,8 @@ float OH_ArkUI_AnimatorOption_GetEnd(ArkUI_AnimatorOption* option);
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange(ArkUI_AnimatorOption* option);
+ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange(ArkUI_AnimatorOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the keyframe time of an animation.
@@ -778,7 +832,8 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange(
  * @return Returns the keyframe time.
  * @since 12
  */
-float OH_ArkUI_AnimatorOption_GetKeyframeTime(ArkUI_AnimatorOption* option, int32_t index);
+float OH_ArkUI_AnimatorOption_GetKeyframeTime(ArkUI_AnimatorOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the keyframe value of an animation.
@@ -788,7 +843,8 @@ float OH_ArkUI_AnimatorOption_GetKeyframeTime(ArkUI_AnimatorOption* option, int3
  * @return Returns the keyframe value.
  * @since 12
  */
-float OH_ArkUI_AnimatorOption_GetKeyframeValue(ArkUI_AnimatorOption* option, int32_t index);
+float OH_ArkUI_AnimatorOption_GetKeyframeValue(ArkUI_AnimatorOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interpolation curve for a keyframe in the animation of an animator.
@@ -799,7 +855,8 @@ float OH_ArkUI_AnimatorOption_GetKeyframeValue(ArkUI_AnimatorOption* option, int
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetKeyframeCurve(ArkUI_AnimatorOption* option, int32_t index);
+ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetKeyframeCurve(ArkUI_AnimatorOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the custom object in an animation event object.
@@ -809,7 +866,8 @@ ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetKeyframeCurve(ArkUI_AnimatorOption*
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-void* OH_ArkUI_AnimatorEvent_GetUserData(ArkUI_AnimatorEvent* event);
+void* OH_ArkUI_AnimatorEvent_GetUserData(ArkUI_AnimatorEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the custom object in an animation event object.
@@ -818,7 +876,8 @@ void* OH_ArkUI_AnimatorEvent_GetUserData(ArkUI_AnimatorEvent* event);
  * @return Returns the custom object.
  * @since 12
  */
-void* OH_ArkUI_AnimatorOnFrameEvent_GetUserData(ArkUI_AnimatorOnFrameEvent* event);
+void* OH_ArkUI_AnimatorOnFrameEvent_GetUserData(ArkUI_AnimatorOnFrameEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current progress in an animation event object.
@@ -827,7 +886,8 @@ void* OH_ArkUI_AnimatorOnFrameEvent_GetUserData(ArkUI_AnimatorOnFrameEvent* even
  * @return Returns the animation progress.
  * @since 12
  */
-float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
+float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the callback invoked when the animator receives a frame.
@@ -841,7 +901,8 @@ float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
-    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorOnFrameEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorOnFrameEvent* event))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the callback invoked when the animation playback is complete.
@@ -855,7 +916,8 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
-    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the callback invoked when the animation playback is canceled.
@@ -869,7 +931,8 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
-    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the callback invoked when the animation playback is repeated.
@@ -883,7 +946,8 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
-    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets the animation of an animator.
@@ -896,7 +960,8 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
  * @since 12
  */
 int32_t OH_ArkUI_Animator_ResetAnimatorOption(
-    ArkUI_AnimatorHandle animatorHandle, ArkUI_AnimatorOption* option);
+    ArkUI_AnimatorHandle animatorHandle, ArkUI_AnimatorOption* option)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Starts the animation of an animator.
@@ -907,7 +972,8 @@ int32_t OH_ArkUI_Animator_ResetAnimatorOption(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
+int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Ends the animation of an animator.
@@ -918,7 +984,8 @@ int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
+int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Pauses the animation of an animator.
@@ -929,7 +996,8 @@ int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
+int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Cancels the animation of an animator.
@@ -940,7 +1008,8 @@ int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
+int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Plays the animation of an animator in reverse order.
@@ -951,7 +1020,8 @@ int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_Animator_Reverse(ArkUI_AnimatorHandle animatorHandle);
+int32_t OH_ArkUI_Animator_Reverse(ArkUI_AnimatorHandle animatorHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Implements initialization for the interpolation curve, which is used to create an interpolation curve based on
@@ -962,7 +1032,8 @@ int32_t OH_ArkUI_Animator_Reverse(ArkUI_AnimatorHandle animatorHandle);
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_Curve_CreateCurveByType(ArkUI_AnimationCurve curve);
+ArkUI_CurveHandle OH_ArkUI_Curve_CreateCurveByType(ArkUI_AnimationCurve curve)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a step curve.
@@ -974,7 +1045,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCurveByType(ArkUI_AnimationCurve curve);
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end);
+ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a cubic Bezier curve.
@@ -990,7 +1062,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end);
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, float x2, float y2);
+ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, float x2, float y2)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a spring curve. The curve shape is subject to the spring parameters, and the animation duration is
@@ -1012,7 +1085,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, floa
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, float stiffness, float damping);
+ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, float stiffness, float damping)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a spring animation curve. If multiple spring animations are applied to the same attribute of an
@@ -1032,7 +1106,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, f
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampingFraction, float overlapDuration);
+ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampingFraction, float overlapDuration)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a responsive spring animation curve. It is a special case of <b>springMotion</b>, with the only
@@ -1053,7 +1128,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampin
  * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
-    float response, float dampingFraction, float overlapDuration);
+    float response, float dampingFraction, float overlapDuration)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an interpolating spring curve animated from 0 to 1. The actual animation value is calculated based on
@@ -1079,7 +1155,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float mass, float stiffness, float damping);
+ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float mass, float stiffness, float damping)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a custom curve.
@@ -1098,7 +1175,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float
  * @since 12
  */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
-    void* userData, float (*interpolate)(float fraction, void* userdata));
+    void* userData, float (*interpolate)(float fraction, void* userdata))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of a custom curve.
@@ -1106,7 +1184,8 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
  * @param curveHandle Indicates the pointer to the interpolation object of the curve.
  * @since 12
  */
-void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle);
+void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an opacity object for component transition.
@@ -1117,7 +1196,8 @@ void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle);
  * @return Returns the created opacity object for component transition.
  * @since 12
  */
-ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity);
+ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a translation object for component transition.
@@ -1127,7 +1207,8 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity);
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_TransitionEffect* OH_ArkUI_CreateTranslationTransitionEffect(ArkUI_TranslationOptions* translate);
+ArkUI_TransitionEffect* OH_ArkUI_CreateTranslationTransitionEffect(ArkUI_TranslationOptions* translate)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a scaling object for component transition.
@@ -1137,7 +1218,8 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateTranslationTransitionEffect(ArkUI_Transla
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_TransitionEffect* OH_ArkUI_CreateScaleTransitionEffect(ArkUI_ScaleOptions* scale);
+ArkUI_TransitionEffect* OH_ArkUI_CreateScaleTransitionEffect(ArkUI_ScaleOptions* scale)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a rotation object for component transition.
@@ -1147,7 +1229,8 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateScaleTransitionEffect(ArkUI_ScaleOptions*
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOptions* rotate);
+ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOptions* rotate)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a movement object for component transition.
@@ -1157,7 +1240,8 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOp
  *         Returns <b>NULL</b> if a parameter error occurs.
  * @since 12
  */
-ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_TransitionEdge edge);
+ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_TransitionEdge edge)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an asymmetric transition effect.
@@ -1171,7 +1255,8 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_Transition
  * @since 12
  */
 ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(
-    ArkUI_TransitionEffect* appear, ArkUI_TransitionEffect* disappear);
+    ArkUI_TransitionEffect* appear, ArkUI_TransitionEffect* disappear)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of a transition effect.
@@ -1179,7 +1264,8 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(
  * @param effect Indicates the transition effect to dispose of.
  * @since 12
  */
-void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
+void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets a combination of transition effects.
@@ -1192,7 +1278,8 @@ void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
  * @since 12
  */
 int32_t OH_ArkUI_TransitionEffect_Combine(
-    ArkUI_TransitionEffect* firstEffect, ArkUI_TransitionEffect* secondEffect);
+    ArkUI_TransitionEffect* firstEffect, ArkUI_TransitionEffect* secondEffect)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets transition effect animation settings.
@@ -1207,7 +1294,8 @@ int32_t OH_ArkUI_TransitionEffect_Combine(
  * @since 12
  */
 int32_t OH_ArkUI_TransitionEffect_SetAnimation(
-    ArkUI_TransitionEffect* effect, ArkUI_AnimateOption* animation);
+    ArkUI_TransitionEffect* effect, ArkUI_AnimateOption* animation)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 };
 #endif

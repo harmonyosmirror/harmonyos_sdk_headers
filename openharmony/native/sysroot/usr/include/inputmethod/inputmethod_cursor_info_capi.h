@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_CURSOR_INFO_CAPI_H
 #define OHOS_INPUTMETHOD_CURSOR_INFO_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C"{
@@ -58,7 +59,8 @@ typedef struct InputMethod_CursorInfo InputMethod_CursorInfo;
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double width, double height);
+InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double width, double height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a {@link InputMethod_CursorInfo} instance.
@@ -66,7 +68,8 @@ InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double wid
  * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance which will be destroyed.
  * @since 12
  */
-void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
+void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set cursor info.
@@ -83,7 +86,8 @@ void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
  * @since 12
  */
 InputMethod_ErrorCode OH_CursorInfo_SetRect(
-    InputMethod_CursorInfo *cursorInfo, double left, double top, double width, double height);
+    InputMethod_CursorInfo *cursorInfo, double left, double top, double width, double height)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get cursor info.
@@ -100,7 +104,8 @@ InputMethod_ErrorCode OH_CursorInfo_SetRect(
  * @since 12
  */
 InputMethod_ErrorCode OH_CursorInfo_GetRect(
-    InputMethod_CursorInfo *cursorInfo, double *left, double *top, double *width, double *height);
+    InputMethod_CursorInfo *cursorInfo, double *left, double *top, double *width, double *height)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

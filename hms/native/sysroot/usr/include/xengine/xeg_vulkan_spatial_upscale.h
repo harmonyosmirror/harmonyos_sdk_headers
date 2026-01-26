@@ -27,6 +27,7 @@
 #ifndef XEG_VULKAN_SPATIAL_UPSCALE_H
 #define XEG_VULKAN_SPATIAL_UPSCALE_H
 
+#include "info/application_target_sdk_version.h"
 #include <vulkan/vulkan.h>
 
 #ifdef __cplusplus
@@ -157,7 +158,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateSpatialUpscale(
     VkDevice                              device,
     const XEG_SpatialUpscaleCreateInfo*   pXegSpatialUpscaleCreateInfo,
     XEG_SpatialUpscale*                   pXegSpatialUpscale
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Executes the GPU spatial upscaling rendering command.
@@ -175,7 +177,8 @@ VKAPI_ATTR void VKAPI_CALL HMS_XEG_CmdRenderSpatialUpscale(
     VkCommandBuffer                 commandBuffer,
     XEG_SpatialUpscale              xegSpatialUpscale,
     XEG_SpatialUpscaleDescription*  pXegSpatialUpscaleDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroys an {@link XEG_SpatialUpscale} object.
@@ -186,7 +189,8 @@ VKAPI_ATTR void VKAPI_CALL HMS_XEG_CmdRenderSpatialUpscale(
 */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroySpatialUpscale(
     XEG_SpatialUpscale    xegSpatialUpscale
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

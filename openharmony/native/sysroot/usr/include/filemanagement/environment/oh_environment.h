@@ -35,6 +35,7 @@
 #ifndef FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 #define FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 
+#include "info/application_target_sdk_version.h"
 #include "error_code.h"
 
 #ifdef __cplusplus
@@ -50,7 +51,8 @@ extern "C" {
  *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
-FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result);
+FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the user Desktop directory.
@@ -62,7 +64,8 @@ FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result);
  *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
-FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result);
+FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the user Document directory.
@@ -74,7 +77,8 @@ FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result);
  *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
-FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result);
+FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 };

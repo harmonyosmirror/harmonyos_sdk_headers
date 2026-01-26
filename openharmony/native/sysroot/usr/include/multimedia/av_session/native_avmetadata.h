@@ -40,6 +40,7 @@
 #ifndef NATIVE_AVMETADATA_H
 #define NATIVE_AVMETADATA_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -133,7 +134,8 @@ typedef struct OH_AVMetadataStruct OH_AVMetadata;
  *         {@link AVMETADATA_ERROR_NO_MEMORY} No memory to allocate a new instance.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder);
+AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy a bulder.
@@ -144,7 +146,8 @@ AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder);
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of builder is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_Destroy(OH_AVMetadataBuilder* builder);
+AVMetadata_Result OH_AVMetadataBuilder_Destroy(OH_AVMetadataBuilder* builder)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set current asset id of the resource
@@ -158,7 +161,8 @@ AVMetadata_Result OH_AVMetadataBuilder_Destroy(OH_AVMetadataBuilder* builder);
  *                                                 2.The param of assetId is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetAssetId(OH_AVMetadataBuilder* builder, const char* assetId);
+AVMetadata_Result OH_AVMetadataBuilder_SetAssetId(OH_AVMetadataBuilder* builder, const char* assetId)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the title of the resource
@@ -172,7 +176,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetAssetId(OH_AVMetadataBuilder* builder,
  *                                                 2.The param of title is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetTitle(OH_AVMetadataBuilder* builder, const char* title);
+AVMetadata_Result OH_AVMetadataBuilder_SetTitle(OH_AVMetadataBuilder* builder, const char* title)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the artist of the resource
@@ -186,7 +191,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetTitle(OH_AVMetadataBuilder* builder, c
  *                                                 2.The param of artist is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetArtist(OH_AVMetadataBuilder* builder, const char* artist);
+AVMetadata_Result OH_AVMetadataBuilder_SetArtist(OH_AVMetadataBuilder* builder, const char* artist)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the author of the resource
@@ -200,7 +206,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetArtist(OH_AVMetadataBuilder* builder, 
  *                                                 2.The param of author is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetAuthor(OH_AVMetadataBuilder* builder, const char* author);
+AVMetadata_Result OH_AVMetadataBuilder_SetAuthor(OH_AVMetadataBuilder* builder, const char* author)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the album information
@@ -214,7 +221,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetAuthor(OH_AVMetadataBuilder* builder, 
  *                                                 2. The param of album is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetAlbum(OH_AVMetadataBuilder* builder, const char* album);
+AVMetadata_Result OH_AVMetadataBuilder_SetAlbum(OH_AVMetadataBuilder* builder, const char* album)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the writer of the resource
@@ -228,7 +236,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetAlbum(OH_AVMetadataBuilder* builder, c
  *                                                 2. The param of writer is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetWriter(OH_AVMetadataBuilder* builder, const char* writer);
+AVMetadata_Result OH_AVMetadataBuilder_SetWriter(OH_AVMetadataBuilder* builder, const char* writer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the composer of the resource
@@ -242,7 +251,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetWriter(OH_AVMetadataBuilder* builder, 
  *                                                 2. The param of composer is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetComposer(OH_AVMetadataBuilder* builder, const char* composer);
+AVMetadata_Result OH_AVMetadataBuilder_SetComposer(OH_AVMetadataBuilder* builder, const char* composer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the duration of the resource
@@ -254,7 +264,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetComposer(OH_AVMetadataBuilder* builder
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of builder is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetDuration(OH_AVMetadataBuilder* builder, int64_t duration);
+AVMetadata_Result OH_AVMetadataBuilder_SetDuration(OH_AVMetadataBuilder* builder, int64_t duration)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the media image uri of the resource
@@ -268,7 +279,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDuration(OH_AVMetadataBuilder* builder
  *                                                 2.The param of mediaImageUri nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetMediaImageUri(OH_AVMetadataBuilder* builder, const char* mediaImageUri);
+AVMetadata_Result OH_AVMetadataBuilder_SetMediaImageUri(OH_AVMetadataBuilder* builder, const char* mediaImageUri)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the subtitle of the resource
@@ -282,7 +294,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetMediaImageUri(OH_AVMetadataBuilder* bu
  *                                                 2.The param of subtitle nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetSubtitle(OH_AVMetadataBuilder* builder, const char* subtitle);
+AVMetadata_Result OH_AVMetadataBuilder_SetSubtitle(OH_AVMetadataBuilder* builder, const char* subtitle)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the media description of the resource
@@ -296,7 +309,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSubtitle(OH_AVMetadataBuilder* builder
  *                                                 2.The param of description nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetDescription(OH_AVMetadataBuilder* builder, const char* description);
+AVMetadata_Result OH_AVMetadataBuilder_SetDescription(OH_AVMetadataBuilder* builder, const char* description)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the media lyric content of the resource
@@ -310,7 +324,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDescription(OH_AVMetadataBuilder* buil
  *                                                 2.The param of lyric nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetLyric(OH_AVMetadataBuilder* builder, const char* lyric);
+AVMetadata_Result OH_AVMetadataBuilder_SetLyric(OH_AVMetadataBuilder* builder, const char* lyric)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the skip intervals of the resource
@@ -325,7 +340,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetLyric(OH_AVMetadataBuilder* builder, c
  * @since 13
  */
 AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* builder,
-    AVMetadata_SkipIntervals intervals);
+    AVMetadata_SkipIntervals intervals)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the display tags of the resource
@@ -337,7 +353,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of builder is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* builder, int32_t tags);
+AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* builder, int32_t tags)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Create the avmetadta.
@@ -353,7 +370,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* buil
  * @since 13
  */
 AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* builder,
-    OH_AVMetadata** avMetadata);
+    OH_AVMetadata** avMetadata)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to release the avmetadta.
@@ -364,7 +382,8 @@ AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* 
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of avMetadata is nullptr.
  * @since 13
  */
-AVMetadata_Result OH_AVMetadata_Destroy(OH_AVMetadata* avMetadata);
+AVMetadata_Result OH_AVMetadata_Destroy(OH_AVMetadata* avMetadata)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

@@ -38,6 +38,7 @@
 #ifndef FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H
 #define FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H
 
+#include "info/application_target_sdk_version.h"
 #ifndef NAPI_VERSION
 #define NAPI_VERSION 8
 #endif // NAPI_VERSION
@@ -124,6 +125,20 @@ typedef struct napi_critical_scope__* napi_critical_scope;
 typedef struct napi_strong_ref__* napi_strong_ref;
 
 /**
+ * @brief Native strong sendable reference of an sendable ArkTS object.
+ *
+ * @since 22
+ */
+typedef struct napi_sendable_ref__* napi_sendable_ref;
+
+/**
+ * @brief Native finalize callback is utilized to recycle native object resource.
+ *
+ * @since 22
+ */
+typedef void (*napi_finalize_callback)(void* finalize_data, void* finalize_hint);
+
+/**
  * @brief Loads an .abc file as a module. This API returns the namespace of the module.
  * @param env Current running virtual machine context.
  * @param path Path of the .abc file or name of the module to load.
@@ -134,7 +149,8 @@ typedef struct napi_strong_ref__* napi_strong_ref;
  */
 NAPI_EXTERN napi_status napi_load_module(napi_env env,
                                          const char* path,
-                                         napi_value* result);
+                                         napi_value* result)
+                                         __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Associates data with the currently running environment.
@@ -151,7 +167,8 @@ NAPI_EXTERN napi_status napi_load_module(napi_env env,
 NAPI_EXTERN napi_status napi_set_instance_data(napi_env env,
                                                void* data,
                                                napi_finalize finalize_cb,
-                                               void* finalize_hint);
+                                               void* finalize_hint)
+                                               __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Retrieves the data that was previously associated with the currently running environment.
@@ -163,7 +180,8 @@ NAPI_EXTERN napi_status napi_set_instance_data(napi_env env,
  * @since 11
  */
 NAPI_EXTERN napi_status napi_get_instance_data(napi_env env,
-                                               void** data);
+                                               void** data)
+                                               __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers a clean-up hook for releasing resources when the environment exits.
@@ -177,7 +195,8 @@ NAPI_EXTERN napi_status napi_get_instance_data(napi_env env,
  */
 NAPI_EXTERN napi_status napi_add_env_cleanup_hook(napi_env env,
                                                   void (*fun)(void* arg),
-                                                  void* arg);
+                                                  void* arg)
+                                                  __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregisters the clean-up hook.
@@ -191,7 +210,8 @@ NAPI_EXTERN napi_status napi_add_env_cleanup_hook(napi_env env,
  */
 NAPI_EXTERN napi_status napi_remove_env_cleanup_hook(napi_env env,
                                                      void (*fun)(void* arg),
-                                                     void* arg);
+                                                     void* arg)
+                                                     __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers an asynchronous clean-up hook for releasing resources when the environment exits.
@@ -207,7 +227,8 @@ NAPI_EXTERN napi_status napi_remove_env_cleanup_hook(napi_env env,
 NAPI_EXTERN napi_status napi_add_async_cleanup_hook(napi_env env,
                                                     napi_async_cleanup_hook hook,
                                                     void* arg,
-                                                    napi_async_cleanup_hook_handle* remove_handle);
+                                                    napi_async_cleanup_hook_handle* remove_handle)
+                                                    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregisters the asynchronous clean-up hook.
@@ -217,7 +238,8 @@ NAPI_EXTERN napi_status napi_add_async_cleanup_hook(napi_env env,
  * @return Returns the function execution status.
  * @since 11
  */
-NAPI_EXTERN napi_status napi_remove_async_cleanup_hook(napi_async_cleanup_hook_handle remove_handle);
+NAPI_EXTERN napi_status napi_remove_async_cleanup_hook(napi_async_cleanup_hook_handle remove_handle)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an asynchronous context. The capabilities related to 'async_hook' are not supported currently.
@@ -234,7 +256,8 @@ NAPI_EXTERN napi_status napi_remove_async_cleanup_hook(napi_async_cleanup_hook_h
 NAPI_EXTERN napi_status napi_async_init(napi_env env,
                                         napi_value async_resource,
                                         napi_value async_resource_name,
-                                        napi_async_context* result);
+                                        napi_async_context* result)
+                                        __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys the previously created asynchronous context. The capabilities related to 'async_hook' are not
@@ -247,7 +270,8 @@ NAPI_EXTERN napi_status napi_async_init(napi_env env,
  * @since 11
  */
 NAPI_EXTERN napi_status napi_async_destroy(napi_env env,
-                                           napi_async_context async_context);
+                                           napi_async_context async_context)
+                                           __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Opens a callback scope. The capabilities related to 'async_hook' are not supported currently.
@@ -262,7 +286,8 @@ NAPI_EXTERN napi_status napi_async_destroy(napi_env env,
 NAPI_EXTERN napi_status napi_open_callback_scope(napi_env env,
                                                  napi_value resource_object,
                                                  napi_async_context context,
-                                                 napi_callback_scope* result);
+                                                 napi_callback_scope* result)
+                                                 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Closes the callback scope. The capabilities related to 'async_hook' are not supported currently.
@@ -274,7 +299,8 @@ NAPI_EXTERN napi_status napi_open_callback_scope(napi_env env,
  * @since 11
  */
 NAPI_EXTERN napi_status napi_close_callback_scope(napi_env env,
-                                                  napi_callback_scope scope);
+                                                  napi_callback_scope scope)
+                                                  __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the absolute path of the location, from which the addon is loaded.
@@ -286,7 +312,8 @@ NAPI_EXTERN napi_status napi_close_callback_scope(napi_env env,
  * @since 11
  */
 NAPI_EXTERN napi_status node_api_get_module_file_name(napi_env env,
-                                                      const char** result);
+                                                      const char** result)
+                                                      __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create ArkTS Object with initial properties given by descriptors, note that property key must be String, and
@@ -303,7 +330,8 @@ NAPI_EXTERN napi_status node_api_get_module_file_name(napi_env env,
 NAPI_EXTERN napi_status napi_create_object_with_properties(napi_env env,
                                                            napi_value* result,
                                                            size_t property_count,
-                                                           const napi_property_descriptor* properties);
+                                                           const napi_property_descriptor* properties)
+                                                           __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create ArkTS Object with initial properties given by keys and values, note that property key must be String,
@@ -322,7 +350,8 @@ NAPI_EXTERN napi_status napi_create_object_with_named_properties(napi_env env,
                                                                  napi_value* result,
                                                                  size_t property_count,
                                                                  const char** keys,
-                                                                 const napi_value* values);
+                                                                 const napi_value* values)
+                                                                 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief This API sets native properties to a object and converts this ArkTS object to native binding object.
@@ -342,7 +371,8 @@ NAPI_EXTERN napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                              napi_native_binding_detach_callback detach_cb,
                                                              napi_native_binding_attach_callback attach_cb,
                                                              void* native_object,
-                                                             void* hint);
+                                                             void* hint)
+                                                             __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Adds a 'napi_finalize' callback, which will be called when the ArkTS object is garbage-collected.
@@ -363,7 +393,8 @@ NAPI_EXTERN napi_status napi_add_finalizer(napi_env env,
                                            void* native_object,
                                            napi_finalize finalize_cb,
                                            void* finalize_hint,
-                                           napi_ref* result);
+                                           napi_ref* result)
+                                           __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief The module is loaded through the NAPI. By default, the default object is exported from the module.
@@ -379,7 +410,8 @@ NAPI_EXTERN napi_status napi_add_finalizer(napi_env env,
 NAPI_EXTERN napi_status napi_load_module_with_info(napi_env env,
                                                    const char* path,
                                                    const char* module_info,
-                                                   napi_value* result);
+                                                   napi_value* result)
+                                                   __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create the ark runtime.
@@ -389,7 +421,8 @@ NAPI_EXTERN napi_status napi_load_module_with_info(napi_env env,
  * @return Return the function execution status.
  * @since 12
  */
-NAPI_EXTERN napi_status napi_create_ark_runtime(napi_env* env);
+NAPI_EXTERN napi_status napi_create_ark_runtime(napi_env* env)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the ark runtime.
@@ -399,7 +432,8 @@ NAPI_EXTERN napi_status napi_create_ark_runtime(napi_env* env);
  * @return Return the function execution status.
  * @since 12
  */
-NAPI_EXTERN napi_status napi_destroy_ark_runtime(napi_env* env);
+NAPI_EXTERN napi_status napi_destroy_ark_runtime(napi_env* env)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines a sendable class.
@@ -426,7 +460,8 @@ NAPI_EXTERN napi_status napi_define_sendable_class(napi_env env,
                                                    size_t property_count,
                                                    const napi_property_descriptor* properties,
                                                    napi_value parent,
-                                                   napi_value* result);
+                                                   napi_value* result)
+                                                   __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries a napi_value to check if it is sendable.
@@ -440,7 +475,8 @@ NAPI_EXTERN napi_status napi_define_sendable_class(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_sendable(napi_env env,
                                          napi_value value,
-                                         bool* result);
+                                         bool* result)
+                                         __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines a sendable object.
@@ -456,7 +492,8 @@ NAPI_EXTERN napi_status napi_is_sendable(napi_env env,
 NAPI_EXTERN napi_status napi_create_sendable_object_with_properties(napi_env env,
                                                                     size_t property_count,
                                                                     const napi_property_descriptor* properties,
-                                                                    napi_value* result);
+                                                                    napi_value* result)
+                                                                    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Wraps a native instance in an ArkTS object.
@@ -475,7 +512,8 @@ NAPI_EXTERN napi_status napi_wrap_sendable(napi_env env,
                                            napi_value js_object,
                                            void* native_object,
                                            napi_finalize finalize_cb,
-                                           void* finalize_hint);
+                                           void* finalize_hint)
+                                           __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Wraps a native instance in an ArkTS object.
@@ -496,7 +534,8 @@ NAPI_EXTERN napi_status napi_wrap_sendable_with_size(napi_env env,
                                                      void* native_object,
                                                      napi_finalize finalize_cb,
                                                      void* finalize_hint,
-                                                     size_t native_binding_size);
+                                                     size_t native_binding_size)
+                                                     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Retrieves a native instance that was previously wrapped in an ArkTS object.
@@ -510,7 +549,8 @@ NAPI_EXTERN napi_status napi_wrap_sendable_with_size(napi_env env,
  */
 NAPI_EXTERN napi_status napi_unwrap_sendable(napi_env env,
                                              napi_value js_object,
-                                             void** result);
+                                             void** result)
+                                             __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Retrieves a native instance that was previously wrapped in an ArkTS object and removes the wrapping.
@@ -524,7 +564,8 @@ NAPI_EXTERN napi_status napi_unwrap_sendable(napi_env env,
  */
 NAPI_EXTERN napi_status napi_remove_wrap_sendable(napi_env env,
                                                   napi_value js_object,
-                                                  void** result);
+                                                  void** result)
+                                                  __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a sendable array.
@@ -536,7 +577,8 @@ NAPI_EXTERN napi_status napi_remove_wrap_sendable(napi_env env,
  * @since 12
  */
 NAPI_EXTERN napi_status napi_create_sendable_array(napi_env env,
-                                                   napi_value* result);
+                                                   napi_value* result)
+                                                   __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a sendable array with length.
@@ -550,7 +592,8 @@ NAPI_EXTERN napi_status napi_create_sendable_array(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_sendable_array_with_length(napi_env env,
                                                                size_t length,
-                                                               napi_value* result);
+                                                               napi_value* result)
+                                                               __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a sendable arraybuffer.
@@ -566,7 +609,8 @@ NAPI_EXTERN napi_status napi_create_sendable_array_with_length(napi_env env,
 NAPI_EXTERN napi_status napi_create_sendable_arraybuffer(napi_env env,
                                                          size_t byte_length,
                                                          void** data,
-                                                         napi_value* result);
+                                                         napi_value* result)
+                                                         __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a sendable typedarray.
@@ -587,7 +631,8 @@ NAPI_EXTERN napi_status napi_create_sendable_typedarray(napi_env env,
                                                         size_t length,
                                                         napi_value arraybuffer,
                                                         size_t byte_offset,
-                                                        napi_value* result);
+                                                        napi_value* result)
+                                                        __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Run the event loop by the given env and running mode in current thread.
@@ -601,7 +646,8 @@ NAPI_EXTERN napi_status napi_create_sendable_typedarray(napi_env env,
  * @since 12
  */
 NAPI_EXTERN napi_status napi_run_event_loop(napi_env env,
-                                            napi_event_mode mode);
+                                            napi_event_mode mode)
+                                            __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stop the event loop in current thread.
@@ -613,7 +659,7 @@ NAPI_EXTERN napi_status napi_run_event_loop(napi_env env,
  * @return Return the function execution status.
  * @since 12
  */
-NAPI_EXTERN napi_status napi_stop_event_loop(napi_env env);
+NAPI_EXTERN napi_status napi_stop_event_loop(napi_env env) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Serialize an ArkTS object.
@@ -631,7 +677,8 @@ NAPI_EXTERN napi_status napi_serialize(napi_env env,
                                        napi_value object,
                                        napi_value transfer_list,
                                        napi_value clone_list,
-                                       void** result);
+                                       void** result)
+                                       __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Restore serialization data to an ArkTS object.
@@ -645,7 +692,8 @@ NAPI_EXTERN napi_status napi_serialize(napi_env env,
  */
 NAPI_EXTERN napi_status napi_deserialize(napi_env env,
                                          void* buffer,
-                                         napi_value* object);
+                                         napi_value* object)
+                                         __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete serialization data.
@@ -657,7 +705,8 @@ NAPI_EXTERN napi_status napi_deserialize(napi_env env,
  * @since 12
  */
 NAPI_EXTERN napi_status napi_delete_serialization_data(napi_env env,
-                                                       void* buffer);
+                                                       void* buffer)
+                                                       __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Dispatch a task with specified priority from a native thread to an ArkTS thread, the task will execute
@@ -676,7 +725,8 @@ NAPI_EXTERN napi_status napi_delete_serialization_data(napi_env env,
 NAPI_EXTERN napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
                                                                     void *data,
                                                                     napi_task_priority priority,
-                                                                    bool isTail);
+                                                                    bool isTail)
+                                                                    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Throws UncaughtException to ArkTS.
@@ -691,7 +741,8 @@ NAPI_EXTERN napi_status napi_call_threadsafe_function_with_priority(napi_threads
  * @since 12
  */
 NAPI_EXTERN napi_status napi_fatal_exception(napi_env env,
-                                             napi_value err);
+                                             napi_value err)
+                                             __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Allows an ArkTS function to be called in the asynchronous context. The capabilities related to 'async_hook'
@@ -719,7 +770,8 @@ NAPI_EXTERN napi_status napi_make_callback(napi_env env,
                                            napi_value func,
                                            size_t argc,
                                            const napi_value* argv,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an ArkTS ArrayBuffer object of the specified size.
@@ -737,7 +789,8 @@ NAPI_EXTERN napi_status napi_make_callback(napi_env env,
 NAPI_EXTERN napi_status napi_create_buffer(napi_env env,
                                            size_t length,
                                            void** data,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates a deferred object and an ArkTS promise.
@@ -754,7 +807,8 @@ NAPI_EXTERN napi_status napi_create_buffer(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_promise(napi_env env,
                                             napi_deferred* deferred,
-                                            napi_value* promise);
+                                            napi_value* promise)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Resolves a promise by way of the deferred object associated.
@@ -769,7 +823,8 @@ NAPI_EXTERN napi_status napi_create_promise(napi_env env,
  */
 NAPI_EXTERN napi_status napi_resolve_deferred(napi_env env,
                                               napi_deferred deferred,
-                                              napi_value resolution);
+                                              napi_value resolution)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Rejects a promise by way of the deferred object associated.
@@ -784,7 +839,8 @@ NAPI_EXTERN napi_status napi_resolve_deferred(napi_env env,
  */
 NAPI_EXTERN napi_status napi_reject_deferred(napi_env env,
                                              napi_deferred deferred,
-                                             napi_value rejection);
+                                             napi_value rejection)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether the given 'napi_value' is a promise object.
@@ -798,7 +854,8 @@ NAPI_EXTERN napi_status napi_reject_deferred(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_promise(napi_env env,
                                         napi_value value,
-                                        bool* is_promise);
+                                        bool* is_promise)
+                                        __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the current libuv loop instance.
@@ -811,7 +868,8 @@ NAPI_EXTERN napi_status napi_is_promise(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_get_uv_event_loop(napi_env env,
-                                               struct uv_loop_s** loop);
+                                               struct uv_loop_s** loop)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates a thread-safe function.
@@ -847,7 +905,8 @@ NAPI_EXTERN napi_status napi_create_threadsafe_function(napi_env env,
                                                         napi_finalize thread_finalize_cb,
                                                         void* context,
                                                         napi_threadsafe_function_call_js call_js_cb,
-                                                        napi_threadsafe_function* result);
+                                                        napi_threadsafe_function* result)
+                                                        __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the context of a thread-safe function.
@@ -859,7 +918,8 @@ NAPI_EXTERN napi_status napi_create_threadsafe_function(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_get_threadsafe_function_context(napi_threadsafe_function func,
-                                                             void** result);
+                                                             void** result)
+                                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Calls a thread-safe function.
@@ -877,7 +937,8 @@ NAPI_EXTERN napi_status napi_get_threadsafe_function_context(napi_threadsafe_fun
  */
 NAPI_EXTERN napi_status napi_call_threadsafe_function(napi_threadsafe_function func,
                                                       void* data,
-                                                      napi_threadsafe_function_call_mode is_blocking);
+                                                      napi_threadsafe_function_call_mode is_blocking)
+                                                      __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Acquires a thread-safe function.
@@ -888,7 +949,8 @@ NAPI_EXTERN napi_status napi_call_threadsafe_function(napi_threadsafe_function f
  *         {@link napi_generic_failure } If acquire thread-safe function failed.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_acquire_threadsafe_function(napi_threadsafe_function func);
+NAPI_EXTERN napi_status napi_acquire_threadsafe_function(napi_threadsafe_function func)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases a thread-safe function.
@@ -904,7 +966,8 @@ NAPI_EXTERN napi_status napi_acquire_threadsafe_function(napi_threadsafe_functio
  * @since 10
  */
 NAPI_EXTERN napi_status napi_release_threadsafe_function(napi_threadsafe_function func,
-                                                         napi_threadsafe_function_release_mode mode);
+                                                         napi_threadsafe_function_release_mode mode)
+                                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Indicates that the event loop running on the main thread may exit before the thread-safe function
@@ -918,7 +981,8 @@ NAPI_EXTERN napi_status napi_release_threadsafe_function(napi_threadsafe_functio
  * @since 10
  */
 NAPI_EXTERN napi_status napi_unref_threadsafe_function(napi_env env,
-                                                       napi_threadsafe_function func);
+                                                       napi_threadsafe_function func)
+                                                       __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Indicates that the event loop running on the main thread should not exit until the thread-safe
@@ -932,7 +996,8 @@ NAPI_EXTERN napi_status napi_unref_threadsafe_function(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_ref_threadsafe_function(napi_env env,
-                                                     napi_threadsafe_function func);
+                                                     napi_threadsafe_function func)
+                                                     __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS 'Date' object from C double data
@@ -947,7 +1012,8 @@ NAPI_EXTERN napi_status napi_ref_threadsafe_function(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_date(napi_env env,
                                          double time,
-                                         napi_value* result);
+                                         napi_value* result)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether the given ArkTS value is a 'Date' object. You can use this API to check the type
@@ -962,7 +1028,8 @@ NAPI_EXTERN napi_status napi_create_date(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_date(napi_env env,
                                      napi_value value,
-                                     bool* is_date);
+                                     bool* is_date)
+                                     __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the C equivalent of the given ArkTS 'Date' object.
@@ -979,7 +1046,8 @@ NAPI_EXTERN napi_status napi_is_date(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_date_value(napi_env env,
                                             napi_value value,
-                                            double* result);
+                                            double* result)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS BigInt from C int64 data.
@@ -994,7 +1062,8 @@ NAPI_EXTERN napi_status napi_get_date_value(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_bigint_int64(napi_env env,
                                                  int64_t value,
-                                                 napi_value* result);
+                                                 napi_value* result)
+                                                 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS BigInt from C int64 data.
@@ -1009,7 +1078,8 @@ NAPI_EXTERN napi_status napi_create_bigint_int64(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_bigint_uint64(napi_env env,
                                                   uint64_t value,
-                                                  napi_value* result);
+                                                  napi_value* result)
+                                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates a single ArkTS BigInt from a C uint64 array.
@@ -1029,7 +1099,8 @@ NAPI_EXTERN napi_status napi_create_bigint_words(napi_env env,
                                                  int sign_bit,
                                                  size_t word_count,
                                                  const uint64_t* words,
-                                                 napi_value* result);
+                                                 napi_value* result)
+                                                 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains a signed 64-bit integer from an ArkTS BigInt object.
@@ -1049,7 +1120,8 @@ NAPI_EXTERN napi_status napi_create_bigint_words(napi_env env,
 NAPI_EXTERN napi_status napi_get_value_bigint_int64(napi_env env,
                                                     napi_value value,
                                                     int64_t* result,
-                                                    bool* lossless);
+                                                    bool* lossless)
+                                                    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains an unsigned 64-bit integer from an ArkTS BigInt object.
@@ -1069,7 +1141,8 @@ NAPI_EXTERN napi_status napi_get_value_bigint_int64(napi_env env,
 NAPI_EXTERN napi_status napi_get_value_bigint_uint64(napi_env env,
                                                      napi_value value,
                                                      uint64_t* result,
-                                                     bool* lossless);
+                                                     bool* lossless)
+                                                     __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the underlying 64-bit unsigned (uint64) byte data from an ArkTS BigInt object.
@@ -1089,7 +1162,8 @@ NAPI_EXTERN napi_status napi_get_value_bigint_words(napi_env env,
                                                     napi_value value,
                                                     int* sign_bit,
                                                     size_t* word_count,
-                                                    uint64_t* words);
+                                                    uint64_t* words)
+                                                    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS ArrayBuffer object of the specified size and initializes it with the given data.
@@ -1113,7 +1187,8 @@ NAPI_EXTERN napi_status napi_create_external_buffer(napi_env env,
                                                     void* data,
                                                     napi_finalize finalize_cb,
                                                     void* finalize_hint,
-                                                    napi_value* result);
+                                                    napi_value* result)
+                                                    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS ArrayBuffer object of the specified size and initializes it with the given data.
@@ -1133,7 +1208,8 @@ NAPI_EXTERN napi_status napi_create_buffer_copy(napi_env env,
                                                 size_t length,
                                                 const void* data,
                                                 void** result_data,
-                                                napi_value* result);
+                                                napi_value* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether the given ArkTS value is a 'ArrayBuffer' object.
@@ -1148,7 +1224,8 @@ NAPI_EXTERN napi_status napi_create_buffer_copy(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_buffer(napi_env env,
                                        napi_value value,
-                                       bool* result);
+                                       bool* result)
+                                       __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the underlying data of 'ArrayBuffer' and its length.
@@ -1166,7 +1243,8 @@ NAPI_EXTERN napi_status napi_is_buffer(napi_env env,
 NAPI_EXTERN napi_status napi_get_buffer_info(napi_env env,
                                              napi_value value,
                                              void** data,
-                                             size_t* length);
+                                             size_t* length)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Freezes an ArkTS object. Once an object is frozen, its properties are immutable.
@@ -1180,7 +1258,8 @@ NAPI_EXTERN napi_status napi_get_buffer_info(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_object_freeze(napi_env env,
-                                           napi_value object);
+                                           napi_value object)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Seals an ArkTS object. Once an object is sealed, its properties cannot be added or deleted, but property
@@ -1195,7 +1274,8 @@ NAPI_EXTERN napi_status napi_object_freeze(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_object_seal(napi_env env,
-                                         napi_value object);
+                                         napi_value object)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Detaches the underlying data from an 'ArrayBuffer' object. After the data is detached, you
@@ -1210,7 +1290,8 @@ NAPI_EXTERN napi_status napi_object_seal(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_detach_arraybuffer(napi_env env,
-                                                napi_value arraybuffer);
+                                                napi_value arraybuffer)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether the given 'ArrayBuffer' has been detached.
@@ -1225,7 +1306,8 @@ NAPI_EXTERN napi_status napi_detach_arraybuffer(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_detached_arraybuffer(napi_env env,
                                                      napi_value value,
-                                                     bool* result);
+                                                     bool* result)
+                                                     __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the names of all properties of an ArkTS object.
@@ -1254,7 +1336,8 @@ NAPI_EXTERN napi_status napi_get_all_property_names(napi_env env,
                                                     napi_key_collection_mode key_mode,
                                                     napi_key_filter key_filter,
                                                     napi_key_conversion key_conversion,
-                                                    napi_value* result);
+                                                    napi_value* result)
+                                                    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Registers a native module.
@@ -1262,7 +1345,7 @@ NAPI_EXTERN napi_status napi_get_all_property_names(napi_env env,
  * @param mod Native module of type 'napi_module' to be registered.
  * @since 10
  */
-NAPI_EXTERN void napi_module_register(napi_module* mod);
+NAPI_EXTERN void napi_module_register(napi_module* mod) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the napi_extended_error_info struct, which contains the latest error information.
@@ -1276,7 +1359,8 @@ NAPI_EXTERN void napi_module_register(napi_module* mod);
  * @since 10
  */
 NAPI_EXTERN napi_status napi_get_last_error_info(napi_env env,
-                                                 const napi_extended_error_info** result);
+                                                 const napi_extended_error_info** result)
+                                                 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Throws an ArkTS error.
@@ -1288,7 +1372,8 @@ NAPI_EXTERN napi_status napi_get_last_error_info(napi_env env,
  *         {@link napi_invalid_arg } If env or error is nullptr, or error is not an error object.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_throw(napi_env env, napi_value error);
+NAPI_EXTERN napi_status napi_throw(napi_env env, napi_value error)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Throws an ArkTS Error with text information.
@@ -1303,7 +1388,8 @@ NAPI_EXTERN napi_status napi_throw(napi_env env, napi_value error);
  */
 NAPI_EXTERN napi_status napi_throw_error(napi_env env,
                                          const char* code,
-                                         const char* msg);
+                                         const char* msg)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Throws an ArkTS TypeError with text information.
@@ -1318,7 +1404,8 @@ NAPI_EXTERN napi_status napi_throw_error(napi_env env,
  */
 NAPI_EXTERN napi_status napi_throw_type_error(napi_env env,
                                               const char* code,
-                                              const char* msg);
+                                              const char* msg)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Throws an ArkTS RangeError with text information.
@@ -1333,7 +1420,8 @@ NAPI_EXTERN napi_status napi_throw_type_error(napi_env env,
  */
 NAPI_EXTERN napi_status napi_throw_range_error(napi_env env,
                                                const char* code,
-                                               const char* msg);
+                                               const char* msg)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether a 'napi_value' is an error object.
@@ -1348,7 +1436,8 @@ NAPI_EXTERN napi_status napi_throw_range_error(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_error(napi_env env,
                                       napi_value value,
-                                      bool* result);
+                                      bool* result)
+                                      __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS Error with text information.
@@ -1366,7 +1455,8 @@ NAPI_EXTERN napi_status napi_is_error(napi_env env,
 NAPI_EXTERN napi_status napi_create_error(napi_env env,
                                           napi_value code,
                                           napi_value msg,
-                                          napi_value* result);
+                                          napi_value* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS TypeError with text information.
@@ -1384,7 +1474,8 @@ NAPI_EXTERN napi_status napi_create_error(napi_env env,
 NAPI_EXTERN napi_status napi_create_type_error(napi_env env,
                                                napi_value code,
                                                napi_value msg,
-                                               napi_value* result);
+                                               napi_value* result)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS RangeError with text information.
@@ -1402,7 +1493,8 @@ NAPI_EXTERN napi_status napi_create_type_error(napi_env env,
 NAPI_EXTERN napi_status napi_create_range_error(napi_env env,
                                                 napi_value code,
                                                 napi_value msg,
-                                                napi_value* result);
+                                                napi_value* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether an exception occurs.
@@ -1414,7 +1506,8 @@ NAPI_EXTERN napi_status napi_create_range_error(napi_env env,
  *         {@link napi_invalid_arg } If env or result is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_is_exception_pending(napi_env env, bool* result);
+NAPI_EXTERN napi_status napi_is_exception_pending(napi_env env, bool* result)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains and clears the latest exception.
@@ -1427,7 +1520,8 @@ NAPI_EXTERN napi_status napi_is_exception_pending(napi_env env, bool* result);
  * @since 10
  */
 NAPI_EXTERN napi_status napi_get_and_clear_last_exception(napi_env env,
-                                                          napi_value* result);
+                                                          napi_value* result)
+                                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Raises a fatal error to terminate the process immediately.
@@ -1441,7 +1535,8 @@ NAPI_EXTERN napi_status napi_get_and_clear_last_exception(napi_env env,
 NAPI_EXTERN NAPI_NO_RETURN void napi_fatal_error(const char* location,
                                                  size_t location_len,
                                                  const char* message,
-                                                 size_t message_len);
+                                                 size_t message_len)
+                                                 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Opens a scope.
@@ -1454,7 +1549,8 @@ NAPI_EXTERN NAPI_NO_RETURN void napi_fatal_error(const char* location,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_open_handle_scope(napi_env env,
-                                               napi_handle_scope* result);
+                                               napi_handle_scope* result)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Closes the scope passed in. After the scope is closed, all references declared in it are closed.
@@ -1468,7 +1564,8 @@ NAPI_EXTERN napi_status napi_open_handle_scope(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_close_handle_scope(napi_env env,
-                                                napi_handle_scope scope);
+                                                napi_handle_scope scope)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Opens an escapable handle scope from which the declared values can be returned to the outer scope.
@@ -1481,7 +1578,8 @@ NAPI_EXTERN napi_status napi_close_handle_scope(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_open_escapable_handle_scope(napi_env env,
-                                                         napi_escapable_handle_scope* result);
+                                                         napi_escapable_handle_scope* result)
+                                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Closes the escapable handle scope passed in.
@@ -1495,7 +1593,8 @@ NAPI_EXTERN napi_status napi_open_escapable_handle_scope(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_close_escapable_handle_scope(napi_env env,
-                                                          napi_escapable_handle_scope scope);
+                                                          napi_escapable_handle_scope scope)
+                                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Promotes the handle to the input ArkTS object so that it is valid for the lifespan of its outer scope.
@@ -1512,7 +1611,8 @@ NAPI_EXTERN napi_status napi_close_escapable_handle_scope(napi_env env,
 NAPI_EXTERN napi_status napi_escape_handle(napi_env env,
                                            napi_escapable_handle_scope scope,
                                            napi_value escapee,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates a reference for an object to extend its lifespan. The caller needs to manage the reference lifespan.
@@ -1529,7 +1629,8 @@ NAPI_EXTERN napi_status napi_escape_handle(napi_env env,
 NAPI_EXTERN napi_status napi_create_reference(napi_env env,
                                               napi_value value,
                                               uint32_t initial_refcount,
-                                              napi_ref* result);
+                                              napi_ref* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Deletes the reference passed in.
@@ -1541,7 +1642,8 @@ NAPI_EXTERN napi_status napi_create_reference(napi_env env,
  *         {@link napi_invalid_arg } If env or ref is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_delete_reference(napi_env env, napi_ref ref);
+NAPI_EXTERN napi_status napi_delete_reference(napi_env env, napi_ref ref)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Increments the reference count for the reference passed in and returns the count.
@@ -1556,7 +1658,8 @@ NAPI_EXTERN napi_status napi_delete_reference(napi_env env, napi_ref ref);
  */
 NAPI_EXTERN napi_status napi_reference_ref(napi_env env,
                                            napi_ref ref,
-                                           uint32_t* result);
+                                           uint32_t* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Decrements the reference count for the reference passed in and returns the count.
@@ -1571,7 +1674,8 @@ NAPI_EXTERN napi_status napi_reference_ref(napi_env env,
  */
 NAPI_EXTERN napi_status napi_reference_unref(napi_env env,
                                              napi_ref ref,
-                                             uint32_t* result);
+                                             uint32_t* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the ArkTS Object associated with the reference.
@@ -1586,7 +1690,8 @@ NAPI_EXTERN napi_status napi_reference_unref(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_reference_value(napi_env env,
                                                  napi_ref ref,
-                                                 napi_value* result);
+                                                 napi_value* result)
+                                                 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the given ArkTS Object has the named own property or not.
@@ -1605,7 +1710,8 @@ NAPI_EXTERN napi_status napi_get_reference_value(napi_env env,
 NAPI_EXTERN napi_status napi_has_own_property(napi_env env,
                                               napi_value object,
                                               napi_value key,
-                                              bool* result);
+                                              bool* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Defines an ArkTS class, including constructor function and properties.
@@ -1633,7 +1739,8 @@ NAPI_EXTERN napi_status napi_define_class(napi_env env,
                                           void* data,
                                           size_t property_count,
                                           const napi_property_descriptor* properties,
-                                          napi_value* result);
+                                          napi_value* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS symbol.
@@ -1649,7 +1756,8 @@ NAPI_EXTERN napi_status napi_define_class(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_symbol(napi_env env,
                                            napi_value description,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Create an ArkTS function. This is the primary mechanism to call back into native code from ArkTS.
@@ -1671,7 +1779,8 @@ NAPI_EXTERN napi_status napi_create_function(napi_env env,
                                              size_t length,
                                              napi_callback cb,
                                              void* data,
-                                             napi_value* result);
+                                             napi_value* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Similar to typeof operation, support external value, detects null as a separate type.
@@ -1686,7 +1795,8 @@ NAPI_EXTERN napi_status napi_create_function(napi_env env,
  */
 NAPI_EXTERN napi_status napi_typeof(napi_env env,
                                     napi_value value,
-                                    napi_valuetype* result);
+                                    napi_valuetype* result)
+                                    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the double value corresponding to the given ArkTS value.
@@ -1702,7 +1812,8 @@ NAPI_EXTERN napi_status napi_typeof(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_value_double(napi_env env,
                                               napi_value value,
-                                              double* result);
+                                              double* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the int32_t value corresponding to the given ArkTS value.
@@ -1718,7 +1829,8 @@ NAPI_EXTERN napi_status napi_get_value_double(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_value_int32(napi_env env,
                                              napi_value value,
-                                             int32_t* result);
+                                             int32_t* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the uint32_t value corresponding to the given ArkTS value.
@@ -1734,7 +1846,8 @@ NAPI_EXTERN napi_status napi_get_value_int32(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_value_uint32(napi_env env,
                                               napi_value value,
-                                              uint32_t* result);
+                                              uint32_t* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the int64_t value corresponding to the given ArkTS value.
@@ -1750,7 +1863,8 @@ NAPI_EXTERN napi_status napi_get_value_uint32(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_value_int64(napi_env env,
                                              napi_value value,
-                                             int64_t* result);
+                                             int64_t* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the C Boolean equivalent of an ArkTS Boolean value.
@@ -1766,7 +1880,8 @@ NAPI_EXTERN napi_status napi_get_value_int64(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_value_bool(napi_env env,
                                             napi_value value,
-                                            bool* result);
+                                            bool* result)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the ISO-8859-1-encoded string corresponding to the given ArkTS value.
@@ -1787,7 +1902,8 @@ NAPI_EXTERN napi_status napi_get_value_string_latin1(napi_env env,
                                                      napi_value value,
                                                      char* buf,
                                                      size_t bufsize,
-                                                     size_t* result);
+                                                     size_t* result)
+                                                     __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the UTF8-encoded string corresponding to the given ArkTS value.
@@ -1808,7 +1924,8 @@ NAPI_EXTERN napi_status napi_get_value_string_utf8(napi_env env,
                                                    napi_value value,
                                                    char* buf,
                                                    size_t bufsize,
-                                                   size_t* result);
+                                                   size_t* result)
+                                                   __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the ArkTS undefined value.
@@ -1820,7 +1937,8 @@ NAPI_EXTERN napi_status napi_get_value_string_utf8(napi_env env,
  *         {@link napi_invalid_arg } If the parameter env and(or) result is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_get_undefined(napi_env env, napi_value* result);
+NAPI_EXTERN napi_status napi_get_undefined(napi_env env, napi_value* result)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the ArkTS null value.
@@ -1832,7 +1950,8 @@ NAPI_EXTERN napi_status napi_get_undefined(napi_env env, napi_value* result);
  *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_get_null(napi_env env, napi_value* result);
+NAPI_EXTERN napi_status napi_get_null(napi_env env, napi_value* result)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the ArkTS global object.
@@ -1844,7 +1963,8 @@ NAPI_EXTERN napi_status napi_get_null(napi_env env, napi_value* result);
  *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_get_global(napi_env env, napi_value* result);
+NAPI_EXTERN napi_status napi_get_global(napi_env env, napi_value* result)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the ArkTS singleton value corresponding to given C primitive boolean value.
@@ -1859,7 +1979,8 @@ NAPI_EXTERN napi_status napi_get_global(napi_env env, napi_value* result);
  */
 NAPI_EXTERN napi_status napi_get_boolean(napi_env env,
                                          bool value,
-                                         napi_value* result);
+                                         napi_value* result)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 // Methods to create Primitive types/Objects
 
@@ -1873,7 +1994,8 @@ NAPI_EXTERN napi_status napi_get_boolean(napi_env env,
  *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_create_object(napi_env env, napi_value* result);
+NAPI_EXTERN napi_status napi_create_object(napi_env env, napi_value* result)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS array.
@@ -1885,7 +2007,8 @@ NAPI_EXTERN napi_status napi_create_object(napi_env env, napi_value* result);
  *         {@link napi_invalid_arg } If the param env and(or) result is nullptr.\n
  * @since 10
  */
-NAPI_EXTERN napi_status napi_create_array(napi_env env, napi_value* result);
+NAPI_EXTERN napi_status napi_create_array(napi_env env, napi_value* result)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS array of the specified length.
@@ -1900,7 +2023,8 @@ NAPI_EXTERN napi_status napi_create_array(napi_env env, napi_value* result);
  */
 NAPI_EXTERN napi_status napi_create_array_with_length(napi_env env,
                                                       size_t length,
-                                                      napi_value* result);
+                                                      napi_value* result)
+                                                      __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS number from C double data.
@@ -1915,7 +2039,8 @@ NAPI_EXTERN napi_status napi_create_array_with_length(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_double(napi_env env,
                                            double value,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS number from C int32_t data.
@@ -1930,7 +2055,8 @@ NAPI_EXTERN napi_status napi_create_double(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_int32(napi_env env,
                                           int32_t value,
-                                          napi_value* result);
+                                          napi_value* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS number from C uint32_t data.
@@ -1945,7 +2071,8 @@ NAPI_EXTERN napi_status napi_create_int32(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_uint32(napi_env env,
                                            uint32_t value,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS number from C int64_t data.
@@ -1960,7 +2087,8 @@ NAPI_EXTERN napi_status napi_create_uint32(napi_env env,
  */
 NAPI_EXTERN napi_status napi_create_int64(napi_env env,
                                           int64_t value,
-                                          napi_value* result);
+                                          napi_value* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS string from an ISO-8859-1-encoded C string.
@@ -1977,7 +2105,8 @@ NAPI_EXTERN napi_status napi_create_int64(napi_env env,
 NAPI_EXTERN napi_status napi_create_string_latin1(napi_env env,
                                                   const char* str,
                                                   size_t length,
-                                                  napi_value* result);
+                                                  napi_value* result)
+                                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS string from a UTF8-encoded C string.
@@ -1994,7 +2123,8 @@ NAPI_EXTERN napi_status napi_create_string_latin1(napi_env env,
 NAPI_EXTERN napi_status napi_create_string_utf8(napi_env env,
                                                 const char* str,
                                                 size_t length,
-                                                napi_value* result);
+                                                napi_value* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks if the ArkTS value is an ArkTS ArrayBuffer.
@@ -2009,7 +2139,8 @@ NAPI_EXTERN napi_status napi_create_string_utf8(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_arraybuffer(napi_env env,
                                             napi_value value,
-                                            bool* result);
+                                            bool* result)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Creates an ArkTS ArrayBuffer of the specified size.
  * @param env Current running virtual machine context.
@@ -2026,7 +2157,8 @@ NAPI_EXTERN napi_status napi_is_arraybuffer(napi_env env,
 NAPI_EXTERN napi_status napi_create_arraybuffer(napi_env env,
                                                 size_t byte_length,
                                                 void** data,
-                                                napi_value* result);
+                                                napi_value* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Allocates a JS value with external data.
@@ -2047,7 +2179,8 @@ NAPI_EXTERN napi_status napi_create_external(napi_env env,
                                              void* data,
                                              napi_finalize finalize_cb,
                                              void* finalize_hint,
-                                             napi_value* result);
+                                             napi_value* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief The underlying data that ArrayBuffer point to.
@@ -2070,7 +2203,8 @@ NAPI_EXTERN napi_status napi_create_external_arraybuffer(napi_env env,
                                                          size_t byte_length,
                                                          napi_finalize finalize_cb,
                                                          void* finalize_hint,
-                                                         napi_value* result);
+                                                         napi_value* result)
+                                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the underlying data buffer of ArrayBuffer and its length.
@@ -2089,7 +2223,8 @@ NAPI_EXTERN napi_status napi_create_external_arraybuffer(napi_env env,
 NAPI_EXTERN napi_status napi_get_arraybuffer_info(napi_env env,
                                                   napi_value arraybuffer,
                                                   void** data,
-                                                  size_t* byte_length);
+                                                  size_t* byte_length)
+                                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks if the ArkTS value is an ArkTS TypedArray.
@@ -2104,7 +2239,8 @@ NAPI_EXTERN napi_status napi_get_arraybuffer_info(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_typedarray(napi_env env,
                                            napi_value value,
-                                           bool* result);
+                                           bool* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Creates an ArkTS TypeArray from an existing ArrayBuffer.
  * @param env Current running virtual machine context.
@@ -2127,7 +2263,8 @@ NAPI_EXTERN napi_status napi_create_typedarray(napi_env env,
                                                size_t length,
                                                napi_value arraybuffer,
                                                size_t byte_offset,
-                                               napi_value* result);
+                                               napi_value* result)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains properties of a TypedArray.
@@ -2151,7 +2288,8 @@ NAPI_EXTERN napi_status napi_get_typedarray_info(napi_env env,
                                                  size_t* length,
                                                  void** data,
                                                  napi_value* arraybuffer,
-                                                 size_t* byte_offset);
+                                                 size_t* byte_offset)
+                                                 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an ArkTS DataView from an existing ArrayBuffer.
@@ -2174,7 +2312,8 @@ NAPI_EXTERN napi_status napi_create_dataview(napi_env env,
                                              size_t length,
                                              napi_value arraybuffer,
                                              size_t byte_offset,
-                                             napi_value* result);
+                                             napi_value* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks if the ArkTS value is an ArkTS DataView.
@@ -2189,7 +2328,8 @@ NAPI_EXTERN napi_status napi_create_dataview(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_dataview(napi_env env,
                                          napi_value value,
-                                         bool* result);
+                                         bool* result)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains properties of a DataView.
@@ -2211,7 +2351,8 @@ NAPI_EXTERN napi_status napi_get_dataview_info(napi_env env,
                                                size_t* bytelength,
                                                void** data,
                                                napi_value* arraybuffer,
-                                               size_t* byte_offset);
+                                               size_t* byte_offset)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the array length.
@@ -2227,7 +2368,8 @@ NAPI_EXTERN napi_status napi_get_dataview_info(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_array_length(napi_env env,
                                               napi_value value,
-                                              uint32_t* result);
+                                              uint32_t* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief  Obtains the prototype of an ArkTS object.
  * @param env Current running virtual machine context.
@@ -2242,7 +2384,8 @@ NAPI_EXTERN napi_status napi_get_array_length(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_prototype(napi_env env,
                                            napi_value object,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the external data pointer previously passed through napi_create_external().
@@ -2258,7 +2401,8 @@ NAPI_EXTERN napi_status napi_get_prototype(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_value_external(napi_env env,
                                                 napi_value value,
-                                                void** result);
+                                                void** result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Coerce the given ArkTS value to an ArkTS boolean value.
@@ -2273,7 +2417,8 @@ NAPI_EXTERN napi_status napi_get_value_external(napi_env env,
  */
 NAPI_EXTERN napi_status napi_coerce_to_bool(napi_env env,
                                             napi_value value,
-                                            napi_value* result);
+                                            napi_value* result)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Coerce the given ArkTS value to an ArkTS number value.
@@ -2288,7 +2433,8 @@ NAPI_EXTERN napi_status napi_coerce_to_bool(napi_env env,
  */
 NAPI_EXTERN napi_status napi_coerce_to_number(napi_env env,
                                               napi_value value,
-                                              napi_value* result);
+                                              napi_value* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Coerce the given ArkTS value to an ArkTS object value.
@@ -2303,7 +2449,8 @@ NAPI_EXTERN napi_status napi_coerce_to_number(napi_env env,
  */
 NAPI_EXTERN napi_status napi_coerce_to_object(napi_env env,
                                               napi_value value,
-                                              napi_value* result);
+                                              napi_value* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Coerce the given ArkTS value to an ArkTS string value.
@@ -2318,7 +2465,8 @@ NAPI_EXTERN napi_status napi_coerce_to_object(napi_env env,
  */
 NAPI_EXTERN napi_status napi_coerce_to_string(napi_env env,
                                               napi_value value,
-                                              napi_value* result);
+                                              napi_value* result)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Invoke instanceof operation on the object.
@@ -2338,7 +2486,8 @@ NAPI_EXTERN napi_status napi_coerce_to_string(napi_env env,
 NAPI_EXTERN napi_status napi_instanceof(napi_env env,
                                         napi_value object,
                                         napi_value constructor,
-                                        bool* result);
+                                        bool* result)
+                                        __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks if the ArkTS value is an ArkTS Array.
@@ -2353,7 +2502,8 @@ NAPI_EXTERN napi_status napi_instanceof(napi_env env,
  */
 NAPI_EXTERN napi_status napi_is_array(napi_env env,
                                       napi_value value,
-                                      bool* result);
+                                      bool* result)
+                                      __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks if the two ArkTS values are equal.
@@ -2370,7 +2520,8 @@ NAPI_EXTERN napi_status napi_is_array(napi_env env,
 NAPI_EXTERN napi_status napi_strict_equals(napi_env env,
                                            napi_value lhs,
                                            napi_value rhs,
-                                           bool* result);
+                                           bool* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the names of the enumerable properties of object as an Array of Strings. The keys that are symbols
@@ -2387,7 +2538,8 @@ NAPI_EXTERN napi_status napi_strict_equals(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_property_names(napi_env env,
                                                 napi_value object,
-                                                napi_value* result);
+                                                napi_value* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set a property on the given ArkTS Object.
@@ -2406,7 +2558,8 @@ NAPI_EXTERN napi_status napi_get_property_names(napi_env env,
 NAPI_EXTERN napi_status napi_set_property(napi_env env,
                                           napi_value object,
                                           napi_value key,
-                                          napi_value value);
+                                          napi_value value)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the requests property of the given ArkTS Object.
@@ -2425,7 +2578,8 @@ NAPI_EXTERN napi_status napi_set_property(napi_env env,
 NAPI_EXTERN napi_status napi_get_property(napi_env env,
                                           napi_value object,
                                           napi_value key,
-                                          napi_value* result);
+                                          napi_value* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the given ArkTS Object has the named property or not.
@@ -2444,7 +2598,8 @@ NAPI_EXTERN napi_status napi_get_property(napi_env env,
 NAPI_EXTERN napi_status napi_has_property(napi_env env,
                                           napi_value object,
                                           napi_value key,
-                                          bool* result);
+                                          bool* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Delete the named property of the given ArkTS Object.
  * @param env Current running virtual machine context.
@@ -2462,7 +2617,8 @@ NAPI_EXTERN napi_status napi_has_property(napi_env env,
 NAPI_EXTERN napi_status napi_delete_property(napi_env env,
                                              napi_value object,
                                              napi_value key,
-                                             bool* result);
+                                             bool* result)
+                                             __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set a property on the given ArkTS Object.
@@ -2481,7 +2637,8 @@ NAPI_EXTERN napi_status napi_delete_property(napi_env env,
 NAPI_EXTERN napi_status napi_set_named_property(napi_env env,
                                                 napi_value object,
                                                 const char* utf8name,
-                                                napi_value value);
+                                                napi_value value)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the requests property of the given ArkTS Object.
@@ -2500,7 +2657,8 @@ NAPI_EXTERN napi_status napi_set_named_property(napi_env env,
 NAPI_EXTERN napi_status napi_get_named_property(napi_env env,
                                                 napi_value object,
                                                 const char* utf8name,
-                                                napi_value* result);
+                                                napi_value* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the given ArkTS Object has the named property or not.
@@ -2519,7 +2677,8 @@ NAPI_EXTERN napi_status napi_get_named_property(napi_env env,
 NAPI_EXTERN napi_status napi_has_named_property(napi_env env,
                                                 napi_value object,
                                                 const char* utf8name,
-                                                bool* result);
+                                                bool* result)
+                                                __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set a element on the given ArkTS Array.
@@ -2538,7 +2697,8 @@ NAPI_EXTERN napi_status napi_has_named_property(napi_env env,
 NAPI_EXTERN napi_status napi_set_element(napi_env env,
                                          napi_value object,
                                          uint32_t index,
-                                         napi_value value);
+                                         napi_value value)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the requests element of the given ArkTS Array.
@@ -2557,7 +2717,8 @@ NAPI_EXTERN napi_status napi_set_element(napi_env env,
 NAPI_EXTERN napi_status napi_get_element(napi_env env,
                                          napi_value object,
                                          uint32_t index,
-                                         napi_value* result);
+                                         napi_value* result)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the given ArkTS Array has an element at the requested index.
@@ -2576,7 +2737,8 @@ NAPI_EXTERN napi_status napi_get_element(napi_env env,
 NAPI_EXTERN napi_status napi_has_element(napi_env env,
                                          napi_value object,
                                          uint32_t index,
-                                         bool* result);
+                                         bool* result)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Delete the special index from the given ArkTS Array.
@@ -2595,7 +2757,8 @@ NAPI_EXTERN napi_status napi_has_element(napi_env env,
 NAPI_EXTERN napi_status napi_delete_element(napi_env env,
                                             napi_value object,
                                             uint32_t index,
-                                            bool* result);
+                                            bool* result)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Efficient define multiple properties on the given ArkTS Object by napi_property_descriptor.
@@ -2614,7 +2777,8 @@ NAPI_EXTERN napi_status napi_delete_element(napi_env env,
 NAPI_EXTERN napi_status napi_define_properties(napi_env env,
                                                napi_value object,
                                                size_t property_count,
-                                               const napi_property_descriptor* properties);
+                                               const napi_property_descriptor* properties)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Invoke an ArkTS function. This is the primary mechanism to call back into JavaScript.
@@ -2638,7 +2802,8 @@ NAPI_EXTERN napi_status napi_call_function(napi_env env,
                                            napi_value func,
                                            size_t argc,
                                            const napi_value* argv,
-                                           napi_value* result);
+                                           napi_value* result)
+                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains callback details about the call like arguments, this from given callback info.
@@ -2661,7 +2826,8 @@ NAPI_EXTERN napi_status napi_get_cb_info(napi_env env,
                                          size_t* argc,
                                          napi_value* argv,
                                          napi_value* this_arg,
-                                         void** data);
+                                         void** data)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains callback details about the call like arguments, this from given callback info.
@@ -2676,7 +2842,8 @@ NAPI_EXTERN napi_status napi_get_cb_info(napi_env env,
  */
 NAPI_EXTERN napi_status napi_get_new_target(napi_env env,
                                             napi_callback_info cbinfo,
-                                            napi_value* result);
+                                            napi_value* result)
+                                            __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Instantiate a new ArkTS value using a given napi_value that represents the constructor for the object.
@@ -2699,7 +2866,8 @@ NAPI_EXTERN napi_status napi_new_instance(napi_env env,
                                           napi_value constructor,
                                           size_t argc,
                                           const napi_value* argv,
-                                          napi_value* result);
+                                          napi_value* result)
+                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Wraps a native instance in a ArkTS object. The native instance can be retrieved later using napi_unwrap.
@@ -2723,7 +2891,8 @@ NAPI_EXTERN napi_status napi_wrap(napi_env env,
                                   void* native_object,
                                   napi_finalize finalize_cb,
                                   void* finalize_hint,
-                                  napi_ref* result);
+                                  napi_ref* result)
+                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Retrieves a native instance that was previously wrapped in an ArkTS object using napi_wrap.
@@ -2740,7 +2909,8 @@ NAPI_EXTERN napi_status napi_wrap(napi_env env,
  */
 NAPI_EXTERN napi_status napi_unwrap(napi_env env,
                                     napi_value js_object,
-                                    void** result);
+                                    void** result)
+                                    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Retrieves a native instance that was previously wrapped in the ArkTS object js_object using napi_wrap
@@ -2758,7 +2928,8 @@ NAPI_EXTERN napi_status napi_unwrap(napi_env env,
 */
 NAPI_EXTERN napi_status napi_remove_wrap(napi_env env,
                                          napi_value js_object,
-                                         void** result);
+                                         void** result)
+                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Allocate a work object that is used to execute logic asynchronously.
@@ -2785,7 +2956,8 @@ NAPI_EXTERN napi_status napi_create_async_work(napi_env env,
                                                napi_async_execute_callback execute,
                                                napi_async_complete_callback complete,
                                                void* data,
-                                               napi_async_work* result);
+                                               napi_async_work* result)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Free a previously allocated work object.
@@ -2798,7 +2970,8 @@ NAPI_EXTERN napi_status napi_create_async_work(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_delete_async_work(napi_env env,
-                                               napi_async_work work);
+                                               napi_async_work work)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Requests that the previously allocated work be scheduled for execution. Once it returns successfully,
@@ -2812,7 +2985,8 @@ NAPI_EXTERN napi_status napi_delete_async_work(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_queue_async_work(napi_env env,
-                                              napi_async_work work);
+                                              napi_async_work work)
+                                              __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Cancels queued work if it has not yet been started. If it has already started executing, it cannot be
@@ -2828,7 +3002,8 @@ NAPI_EXTERN napi_status napi_queue_async_work(napi_env env,
  * @since 10
  */
 NAPI_EXTERN napi_status napi_cancel_async_work(napi_env env,
-                                               napi_async_work work);
+                                               napi_async_work work)
+                                               __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Wraps a native instance in an ArkTS object.
@@ -2856,7 +3031,8 @@ NAPI_EXTERN napi_status napi_wrap_enhance(napi_env env,
                                           bool async_finalizer,
                                           void* finalize_hint,
                                           size_t native_binding_size,
-                                          napi_ref* result);
+                                          napi_ref* result)
+                                          __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief To create a new virtual machine context.
@@ -2869,7 +3045,8 @@ NAPI_EXTERN napi_status napi_wrap_enhance(napi_env env,
  *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
  * @since 20
  */
-NAPI_EXTERN napi_status napi_create_ark_context(napi_env env, napi_env *newEnv);
+NAPI_EXTERN napi_status napi_create_ark_context(napi_env env, napi_env *newEnv)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To switch a virtual machine context which is expected to be used later.
@@ -2881,7 +3058,7 @@ NAPI_EXTERN napi_status napi_create_ark_context(napi_env env, napi_env *newEnv);
  *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
  * @since 20
  */
-NAPI_EXTERN napi_status napi_switch_ark_context(napi_env env);
+NAPI_EXTERN napi_status napi_switch_ark_context(napi_env env) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To destroy a virtual machine context which will not be used again.
@@ -2893,7 +3070,8 @@ NAPI_EXTERN napi_status napi_switch_ark_context(napi_env env);
  *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
  * @since 20
  */
-NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
+NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To open a critical scope.
@@ -2905,7 +3083,8 @@ NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
  *         {@link napi_invalid_arg } If the param scope is nullptr.\n
  * @since 21
  */
-NAPI_EXTERN napi_status napi_open_critical_scope(napi_env env, napi_critical_scope* scope);
+NAPI_EXTERN napi_status napi_open_critical_scope(napi_env env, napi_critical_scope* scope)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief To close a critical scope.
@@ -2917,7 +3096,8 @@ NAPI_EXTERN napi_status napi_open_critical_scope(napi_env env, napi_critical_sco
  *         {@link napi_invalid_arg } If the param scope is nullptr.\n
  * @since 21
  */
-NAPI_EXTERN napi_status napi_close_critical_scope(napi_env env, napi_critical_scope scope);
+NAPI_EXTERN napi_status napi_close_critical_scope(napi_env env, napi_critical_scope scope)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief To obtain a ArkTS string buffer cache within the critical scope.
@@ -2934,7 +3114,8 @@ NAPI_EXTERN napi_status napi_close_critical_scope(napi_env env, napi_critical_sc
 NAPI_EXTERN napi_status napi_get_buffer_string_utf16_in_critical_scope(napi_env env,
                                                                        napi_value value,
                                                                        const char16_t** buffer,
-                                                                       size_t* length);
+                                                                       size_t* length)
+                                                                       __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Creates a strong reference for an ArkTS object to extend its lifespan. The caller needs to manage the
@@ -2948,7 +3129,8 @@ NAPI_EXTERN napi_status napi_get_buffer_string_utf16_in_critical_scope(napi_env 
  *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
  * @since 21
  */
-NAPI_EXTERN napi_status napi_create_strong_reference(napi_env env, napi_value value, napi_strong_ref* result);
+NAPI_EXTERN napi_status napi_create_strong_reference(napi_env env, napi_value value, napi_strong_ref* result)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Deletes the strong reference passed in.
@@ -2960,7 +3142,8 @@ NAPI_EXTERN napi_status napi_create_strong_reference(napi_env env, napi_value va
  *         {@link napi_invalid_arg } If env or ref is nullptr.\n
  * @since 21
  */
-NAPI_EXTERN napi_status napi_delete_strong_reference(napi_env env, napi_strong_ref ref);
+NAPI_EXTERN napi_status napi_delete_strong_reference(napi_env env, napi_strong_ref ref)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the ArkTS Object associated with the strong reference.
@@ -2973,7 +3156,102 @@ NAPI_EXTERN napi_status napi_delete_strong_reference(napi_env env, napi_strong_r
  *         {@link napi_invalid_arg } If env, ref or result is nullptr.\n
  * @since 21
  */
-NAPI_EXTERN napi_status napi_get_strong_reference_value(napi_env env, napi_strong_ref ref, napi_value* result);
+NAPI_EXTERN napi_status napi_get_strong_reference_value(napi_env env, napi_strong_ref ref, napi_value* result)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
+
+/**
+ * @brief Creates an ArkTS string from a UTF16-encoded C string.
+ * @param env Current running virtual machine context.
+ * @param str C string encoded in UTF16 format.
+ * @param length The length of the C string 'str'.
+ * @param finalize_callback Native finalize callback used to recycle native resource.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize_callback.
+ * @param result Result of the ArkTS string from the UTF16-encoded C string.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, str and(or) result is nullptr;\n
+ *                                   If the param length is not equal with NAPI_AUTO_LENGTH and\n
+ *                                   length is larger than INT_MAX;\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_create_external_string_utf16(napi_env env,
+                                                          const char16_t* str,
+                                                          size_t length,
+                                                          napi_finalize_callback finalize_callback,
+                                                          void* finalize_hint,
+                                                          napi_value* result)
+                                                          __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+ /**
+ * @brief Creates an ArkTS string from a ASCII-encoded C string.
+ * @param env Current running virtual machine context.
+ * @param str C string encoded in ASCII format.
+ * @param length The length of the C string 'str'.
+ * @param finalize_callback Native finalize callback used to recycle native resource.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize_callback.
+ * @param result Result of the ArkTS string from the ASCII-encoded C string.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, str and(or) result is nullptr;\n
+ *                                   If the param length is not equal with NAPI_AUTO_LENGTH and\n
+ *                                   length is larger than INT_MAX;\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_create_external_string_ascii(napi_env env,
+                                                          const char* str,
+                                                          size_t length,
+                                                          napi_finalize_callback finalize_callback,
+                                                          void* finalize_hint,
+                                                          napi_value* result)
+                                                          __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a strong sendable reference for an ArkTS object to extend its lifespan. The caller needs to manage
+ *        the sendable reference lifespan.
+ * @param env Current running virtual machine context.
+ * @param value The sendable ArkTS object that is being referenced.
+ * @param result The napi_sendable_ref pointing to the new strong sendable reference.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_create_strong_sendable_reference(napi_env env,
+                                                              napi_value value,
+                                                              napi_sendable_ref* result)
+                                                              __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Deletes the strong sendable reference passed in.
+ * @param env Current running virtual machine context.
+ * @param ref The sendable reference to be deleted.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env or ref is nullptr.\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_delete_strong_sendable_reference(napi_env env, napi_sendable_ref ref)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the ArkTS Object associated with the strong reference.
+ * @param env Current running virtual machine context.
+ * @param ref The sendable reference of the sendable object value being requested.
+ * @param result The sendable ArkTS object referenced by the sendable reference.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, ref or result is nullptr.\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_get_strong_sendable_reference_value(napi_env env,
+                                                                 napi_sendable_ref ref,
+                                                                 napi_value* result)
+                                                                 __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif

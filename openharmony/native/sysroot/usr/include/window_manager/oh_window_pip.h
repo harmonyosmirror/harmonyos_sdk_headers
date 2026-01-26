@@ -30,6 +30,7 @@
 #ifndef OH_WINDOW_PIP_H
 #define OH_WINDOW_PIP_H
 
+#include "info/application_target_sdk_version.h"
 #include "stdint.h"
 
 #ifdef __cplusplus
@@ -193,7 +194,8 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
  */
-int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfig);
+int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfig)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy picture-in-picture config.
@@ -203,7 +205,8 @@ int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfi
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
  */
-int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig);
+int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set picture-in-picture mainWindowId.
@@ -216,7 +219,8 @@ int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConf
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  * @since 20
  */
-int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId);
+int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set picture-in-picture templateType.
@@ -230,7 +234,8 @@ int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipCon
  * @since 20
  */
 int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipConfig,
-    PictureInPicture_PipTemplateType pipTemplateType);
+    PictureInPicture_PipTemplateType pipTemplateType)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set picture-in-picture rect.
@@ -244,7 +249,8 @@ int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipCon
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  * @since 20
  */
-int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uint32_t width, uint32_t height);
+int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uint32_t width, uint32_t height)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set picture-in-picture control group.
@@ -259,7 +265,8 @@ int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uin
  * @since 20
  */
 int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipConfig,
-    PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength);
+    PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set picture-in-picture napi env.
@@ -272,7 +279,8 @@ int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipCon
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  * @since 20
  */
-int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, void* env);
+int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, void* env)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create picture-in-picture controller.
@@ -285,7 +293,8 @@ int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, 
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint32_t* controllerId);
+int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint32_t* controllerId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Delete picture-in-picture controller.
@@ -296,7 +305,7 @@ int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
  */
-int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId);
+int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Start picture-in-picture.
@@ -311,7 +320,7 @@ int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId);
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
  */
-int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
+int32_t OH_PictureInPicture_StartPip(uint32_t controllerId) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Stop picture-in-picture.
@@ -326,7 +335,7 @@ int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
  * @since 20
  */
-int32_t OH_PictureInPicture_StopPip(uint32_t controllerId);
+int32_t OH_PictureInPicture_StopPip(uint32_t controllerId) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Update picture-in-picture content size.
@@ -340,7 +349,8 @@ int32_t OH_PictureInPicture_StopPip(uint32_t controllerId);
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height);
+int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Update picture-in-picture control status.
@@ -355,7 +365,8 @@ int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t
  * @since 20
  */
 int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,
-    PictureInPicture_PipControlStatus status);
+    PictureInPicture_PipControlStatus status)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set picture-in-picture controll enable status.
@@ -370,7 +381,23 @@ int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, Pictur
  * @since 20
  */
 int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,
-    bool enabled);
+    bool enabled)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Set the picture-in-picture parent window ID.
+ *
+ * @param controllerId The picture-in-picture controller ID.
+ * @param windowId The picture-in-picture parent window ID.
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
+ * @since 22
+ */
+int32_t OH_PictureInPicture_SetParentWindowId(uint32_t controllerId, uint32_t windowId)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set picture-in-picture initial surface rect.
@@ -387,7 +414,8 @@ int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureI
  * @since 20
  */
 int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int32_t positionX, int32_t positionY,
-    uint32_t width, uint32_t height);
+    uint32_t width, uint32_t height)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unset picture-in-picture initial surface rect.
@@ -399,7 +427,8 @@ int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int3
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
+int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register picture-in-picture controller start callback.
@@ -413,7 +442,8 @@ int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback);
+int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister picture-in-picture controller start callback.
@@ -427,7 +457,8 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback);
+int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister all picture-in-picture controller start callbacks.
@@ -440,7 +471,8 @@ int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, We
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId);
+int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register picture-in-picture lifecycle listener callback.
@@ -454,7 +486,8 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback);
+int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister picture-in-picture lifecycle listener callback.
@@ -468,7 +501,8 @@ int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, Web
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback);
+int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister all picture-in-picture lifecycle listener callbacks.
@@ -481,7 +515,8 @@ int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, W
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId);
+int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register picture-in-picture control event listener callback.
@@ -495,7 +530,8 @@ int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerI
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback);
+int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister picture-in-picture control event listener callback.
@@ -509,7 +545,8 @@ int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, 
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback);
+int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister all picture-in-picture control event listener callbacks.
@@ -522,7 +559,8 @@ int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId);
+int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register picture-in-picture resize listener callback.
@@ -536,7 +574,8 @@ int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controll
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback);
+int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister picture-in-picture resize listener callback.
@@ -550,7 +589,8 @@ int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPip
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback);
+int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister all picture-in-picture resize listener callbacks.
@@ -563,7 +603,8 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId);
+int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

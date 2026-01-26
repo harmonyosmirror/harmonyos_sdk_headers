@@ -37,10 +37,12 @@
 #ifndef NATIVE_AVCAPABILITY_H
 #define NATIVE_AVCAPABILITY_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_averrors.h"
 #include "native_avformat.h"
 #include "native_avcodec_base.h"
+#include "native_buffer/buffer_common.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -101,7 +103,8 @@ typedef enum OH_AVCapabilityFeature {
  * if the specified mime type doesn't match any existing codec, returns NULL.
  * @since 10
  */
-OH_AVCapability *OH_AVCodec_GetCapability(const char *mime, bool isEncoder);
+OH_AVCapability *OH_AVCodec_GetCapability(const char *mime, bool isEncoder)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get a codec's capability within the specified category. By specifying the category,
@@ -114,7 +117,8 @@ OH_AVCapability *OH_AVCodec_GetCapability(const char *mime, bool isEncoder);
  * if the specified mime type doesn't match any existing codec, returns NULL
  * @since 10
  */
-OH_AVCapability *OH_AVCodec_GetCapabilityByCategory(const char *mime, bool isEncoder, OH_AVCodecCategory category);
+OH_AVCapability *OH_AVCodec_GetCapabilityByCategory(const char *mime, bool isEncoder, OH_AVCodecCategory category)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the capability instance is describing a hardware codec.
@@ -124,7 +128,7 @@ OH_AVCapability *OH_AVCodec_GetCapabilityByCategory(const char *mime, bool isEnc
  * false if the capability instance is describing a software codec
  * @since 10
  */
-bool OH_AVCapability_IsHardware(OH_AVCapability *capability);
+bool OH_AVCapability_IsHardware(OH_AVCapability *capability) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the codec name.
@@ -133,7 +137,8 @@ bool OH_AVCapability_IsHardware(OH_AVCapability *capability);
  * @return Returns codec name string
  * @since 10
  */
-const char *OH_AVCapability_GetName(OH_AVCapability *capability);
+const char *OH_AVCapability_GetName(OH_AVCapability *capability)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the supported max instance number of the codec.
@@ -142,7 +147,8 @@ const char *OH_AVCapability_GetName(OH_AVCapability *capability);
  * @return Returns the max supported codec instance number
  * @since 10
  */
-int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability);
+int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the encoder's supported bitrate range.
@@ -155,7 +161,8 @@ int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability);
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the bitrateRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange(OH_AVCapability *capability, OH_AVRange *bitrateRange);
+OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange(OH_AVCapability *capability, OH_AVRange *bitrateRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the encoder supports the specific bitrate mode.
@@ -166,7 +173,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange(OH_AVCapability *capability,
  * @return Returns true if the bitrate mode is supported, false if the bitrate mode is not supported
  * @since 10
  */
-bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, OH_BitrateMode bitrateMode);
+bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, OH_BitrateMode bitrateMode)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the encoder's supported quality range.
@@ -179,7 +187,8 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, 
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the qualityRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability, OH_AVRange *qualityRange);
+OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability, OH_AVRange *qualityRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the encoder's supported encoder complexity range.
@@ -192,7 +201,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability,
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the complexityRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capability, OH_AVRange *complexityRange);
+OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capability, OH_AVRange *complexityRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the audio codec's supported sample rates.
@@ -209,7 +219,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capabili
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates,
-                                                          uint32_t *sampleRateNum);
+                                                          uint32_t *sampleRateNum)
+                                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the audio codec's supported sample rate ranges.
@@ -225,7 +236,8 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capab
  * @since 20
  */
 OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability,
-                                                               OH_AVRange **sampleRateRanges, uint32_t *rangesNum);
+                                                               OH_AVRange **sampleRateRanges, uint32_t *rangesNum)
+                                                               __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the audio codec's supported audio channel count range.
@@ -238,7 +250,8 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the channelCountRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capability, OH_AVRange *channelCountRange);
+OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capability, OH_AVRange *channelCountRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video width alignment.
@@ -251,7 +264,8 @@ OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capabili
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the widthAlignment is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability, int32_t *widthAlignment);
+OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability, int32_t *widthAlignment)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video height alignment.
@@ -264,7 +278,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability,
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the heightAlignment is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability, int32_t *heightAlignment);
+OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability, int32_t *heightAlignment)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video width range for a specific height.
@@ -280,7 +295,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capability, int32_t height,
-                                                         OH_AVRange *widthRange);
+                                                         OH_AVRange *widthRange)
+                                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video height range for a specific width.
@@ -296,7 +312,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capabi
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capability, int32_t width,
-                                                         OH_AVRange *heightRange);
+                                                         OH_AVRange *heightRange)
+                                                         __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video width range.
@@ -309,7 +326,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capabi
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the widthRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_AVRange *widthRange);
+OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_AVRange *widthRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video height range.
@@ -322,7 +340,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the heightRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetVideoHeightRange(OH_AVCapability *capability, OH_AVRange *heightRange);
+OH_AVErrCode OH_AVCapability_GetVideoHeightRange(OH_AVCapability *capability, OH_AVRange *heightRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the video codec supports the specific video size.
@@ -334,7 +353,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRange(OH_AVCapability *capability, OH
  * @return Returns true if the video size is supported, false if the video size is not supported
  * @since 10
  */
-bool OH_AVCapability_IsVideoSizeSupported(OH_AVCapability *capability, int32_t width, int32_t height);
+bool OH_AVCapability_IsVideoSizeSupported(OH_AVCapability *capability, int32_t width, int32_t height)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video frame rate range.
@@ -347,7 +367,8 @@ bool OH_AVCapability_IsVideoSizeSupported(OH_AVCapability *capability, int32_t w
  * {@link AV_ERR_INVALID_VAL}, the capability is invalid, or the frameRateRange is nullptr.
  * @since 10
  */
-OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange(OH_AVCapability *capability, OH_AVRange *frameRateRange);
+OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange(OH_AVCapability *capability, OH_AVRange *frameRateRange)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the Video codec's supported video frame rate range for a specified video size.
@@ -364,7 +385,8 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange(OH_AVCapability *capability,
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize(OH_AVCapability *capability, int32_t width, int32_t height,
-                                                           OH_AVRange *frameRateRange);
+                                                           OH_AVRange *frameRateRange)
+                                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the video codec supports the specific combination of video size and frame rate.
@@ -379,7 +401,8 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize(OH_AVCapability *capa
  * @since 10
  */
 bool OH_AVCapability_AreVideoSizeAndFrameRateSupported(OH_AVCapability *capability, int32_t width, int32_t height,
-                                                       int32_t frameRate);
+                                                       int32_t frameRate)
+                                                       __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the video codec's supported video pixel format.
@@ -397,7 +420,31 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported(OH_AVCapability *capabili
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capability, const int32_t **pixelFormats,
-                                                           uint32_t *pixelFormatNum);
+                                                           uint32_t *pixelFormatNum)
+                                                           __attribute__((__availability__(ohos, introduced=10.0.0)));
+
+/**
+ * @brief Get the native buffer formats supported by the video codec.
+ *
+ * This function provides information about the native buffer formats that the video codec can handle.
+ *
+ * @param capability A pointer to a valid video codec capability instance.
+ * @param nativeBufferFormats Output parameter. A pointer to the native buffer format array,
+ * refer to {@link OH_NativeBuffer_Format}
+ * @param nativeBufferFormatNum Output parameter. The element number of the native buffer format array
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
+ * {@link AV_ERR_INVALID_VAL}, the capability is invalid, the capability is an audio codec capability pointer,
+ * the nativeBufferFormats is nullptr, or the nativeBufferFormatNum is nullptr.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_NO_MEMORY}, internal use memory malloc failed.
+ *
+ * @since 22
+ */
+OH_AVErrCode OH_AVCapability_GetVideoSupportedNativeBufferFormats(OH_AVCapability *capability,
+                                                                  const OH_NativeBuffer_Format **nativeBufferFormats,
+                                                                  uint32_t *nativeBufferFormatNum)
+                                                                  __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Get the codec's supported profiles.
@@ -413,7 +460,8 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capa
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetSupportedProfiles(OH_AVCapability *capability, const int32_t **profiles,
-                                                  uint32_t *profileNum);
+                                                  uint32_t *profileNum)
+                                                  __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get codec's supported levels for a specific profile.
@@ -431,7 +479,8 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles(OH_AVCapability *capability, c
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile(OH_AVCapability *capability, int32_t profile,
-                                                          const int32_t **levels, uint32_t *levelNum);
+                                                          const int32_t **levels, uint32_t *levelNum)
+                                                          __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the codec supports the specific combination of the profile and level.
@@ -443,7 +492,8 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile(OH_AVCapability *capab
  * false if it is not supported
  * @since 10
  */
-bool OH_AVCapability_AreProfileAndLevelSupported(OH_AVCapability *capability, int32_t profile, int32_t level);
+bool OH_AVCapability_AreProfileAndLevelSupported(OH_AVCapability *capability, int32_t profile, int32_t level)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Check if the codec supports the specified feature.
@@ -454,7 +504,8 @@ bool OH_AVCapability_AreProfileAndLevelSupported(OH_AVCapability *capability, in
  * @return Returns true if the feature is supported, false if it is not supported
  * @since 12
  */
-bool OH_AVCapability_IsFeatureSupported(OH_AVCapability *capability, OH_AVCapabilityFeature feature);
+bool OH_AVCapability_IsFeatureSupported(OH_AVCapability *capability, OH_AVCapabilityFeature feature)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the properties of the specified feature. It should be noted that the life cycle of the OH_AVFormat
@@ -466,7 +517,8 @@ bool OH_AVCapability_IsFeatureSupported(OH_AVCapability *capability, OH_AVCapabi
  * @return Returns a pointer to an OH_AVFormat instance
  * @since 12
  */
-OH_AVFormat *OH_AVCapability_GetFeatureProperties(OH_AVCapability *capability, OH_AVCapabilityFeature feature);
+OH_AVFormat *OH_AVCapability_GetFeatureProperties(OH_AVCapability *capability, OH_AVCapabilityFeature feature)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

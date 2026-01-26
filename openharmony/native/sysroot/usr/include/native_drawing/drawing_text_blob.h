@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_TEXT_BLOB_H
 #define C_INCLUDE_DRAWING_TEXT_BLOB_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -54,7 +55,8 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_TextBlobBuilder* OH_Drawing_TextBlobBuilderCreate(void);
+OH_Drawing_TextBlobBuilder* OH_Drawing_TextBlobBuilderCreate(void)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_TextBlob</b> object from text.
@@ -69,7 +71,8 @@ OH_Drawing_TextBlobBuilder* OH_Drawing_TextBlobBuilderCreate(void);
  * @version 1.0
  */
 OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t byteLength,
-    const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding);
+    const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_TextBlob</b> object from pos text.
@@ -85,7 +88,8 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t 
  * @version 1.0
  */
 OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText(const void* text, size_t byteLength,
-    OH_Drawing_Point2D* point2D, const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding);
+    OH_Drawing_Point2D* point2D, const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_TextBlob</b> object from pos text.
@@ -99,7 +103,8 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText(const void* text, size
  * @version 1.0
  */
 OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString(const char* str,
-    const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding);
+    const OH_Drawing_Font* font, OH_Drawing_TextEncoding textEncoding)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the bounds of textblob, assigned to the pointer to an <b>OH_Drawing_Rect</b> object.
@@ -110,7 +115,8 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString(const char* str,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect* rect);
+void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets a non-zero value unique among all <b>OH_Drawing_TextBlob</b> objects.
@@ -121,7 +127,8 @@ void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect
  * @since 12
  * @version 1.0
  */
-uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob* textBlob);
+uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob* textBlob)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines a run, supplies storage for glyphs and positions.
@@ -153,7 +160,8 @@ typedef struct {
  * @version 1.0
  */
 const OH_Drawing_RunBuffer* OH_Drawing_TextBlobBuilderAllocRunPos(OH_Drawing_TextBlobBuilder* textBlobBuilder,
-    const OH_Drawing_Font* font, int32_t count, const OH_Drawing_Rect* rect);
+    const OH_Drawing_Font* font, int32_t count, const OH_Drawing_Rect* rect)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Make an <b>OH_Drawing_TextBlob</b> from <b>OH_Drawing_TextBlobBuilder</b>.
@@ -164,7 +172,8 @@ const OH_Drawing_RunBuffer* OH_Drawing_TextBlobBuilderAllocRunPos(OH_Drawing_Tex
  * @since 11
  * @version 1.0
  */
-OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* textBlobBuilder);
+OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* textBlobBuilder)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_TextBlob</b> object and reclaims the memory occupied by the object.
@@ -174,7 +183,8 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* 
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TextBlobDestroy(OH_Drawing_TextBlob* textBlob);
+void OH_Drawing_TextBlobDestroy(OH_Drawing_TextBlob* textBlob)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_TextBlobBuilder</b> object and reclaims the memory occupied by the object.
@@ -184,7 +194,8 @@ void OH_Drawing_TextBlobDestroy(OH_Drawing_TextBlob* textBlob);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuilder);
+void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuilder)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

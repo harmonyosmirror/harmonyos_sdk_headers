@@ -36,6 +36,7 @@
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_H
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_H
 
+#include "info/application_target_sdk_version.h"
 #include "image_common.h"
 #include "native_buffer/native_buffer.h"
 
@@ -67,7 +68,8 @@ typedef struct OH_ImageNative OH_ImageNative;
  * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @since 12
  */
-Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *size);
+Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type arry from an {@link OH_ImageNative} object.
@@ -80,7 +82,8 @@ Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *s
  * @since 12
  */
 Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image,
-    uint32_t **types, size_t *typeSize);
+    uint32_t **types, size_t *typeSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get byte buffer from an {@link OH_ImageNative} object by the component type.
@@ -93,7 +96,8 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image,
  * @since 12
  */
 Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image,
-    uint32_t componentType, OH_NativeBuffer **nativeBuffer);
+    uint32_t componentType, OH_NativeBuffer **nativeBuffer)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get size of buffer from an {@link OH_ImageNative} object by the component type.
@@ -106,7 +110,8 @@ Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image,
  * @since 12
  */
 Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image,
-    uint32_t componentType, size_t *size);
+    uint32_t componentType, size_t *size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get row stride from an {@link OH_ImageNative} object by the component type.
@@ -119,7 +124,8 @@ Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image,
  * @since 12
  */
 Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image,
-    uint32_t componentType, int32_t *rowStride);
+    uint32_t componentType, int32_t *rowStride)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get pixel stride from an {@link OH_ImageNative} object by the component type.
@@ -132,7 +138,8 @@ Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image,
  * @since 12
  */
 Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,
-    uint32_t componentType, int32_t *pixelStride);
+    uint32_t componentType, int32_t *pixelStride)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get timestamp from an {@link OH_ImageNative} object.
@@ -144,7 +151,8 @@ Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,
  *         {@link IMAGE_BAD_PARAMETER} if the input parameter is invalid.
  * @since 12
  */
-Image_ErrorCode OH_ImageNative_GetTimestamp(OH_ImageNative *image, int64_t *timestamp);
+Image_ErrorCode OH_ImageNative_GetTimestamp(OH_ImageNative *image, int64_t *timestamp)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases an {@link OH_ImageNative} object.
@@ -155,7 +163,7 @@ Image_ErrorCode OH_ImageNative_GetTimestamp(OH_ImageNative *image, int64_t *time
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
-Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image);
+Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 };

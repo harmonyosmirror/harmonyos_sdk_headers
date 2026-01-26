@@ -39,6 +39,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_MDK_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_MDK_H_
+#include "info/application_target_sdk_version.h"
 #include "napi/native_api.h"
 #include "image_mdk_common.h"
 
@@ -133,7 +134,8 @@ struct OhosImageComponent {
  * @since 10
  * @version 2.0
  */
-ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source);
+ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains {@link OhosImageRect} of an {@link ImageNative} at the native layer.
@@ -149,7 +151,8 @@ ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source);
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect);
+int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains {@link OhosImageSize} of an {@link ImageNative} object at the native layer.
@@ -165,7 +168,8 @@ int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect)
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Size(const ImageNative* native, struct OhosImageSize* size);
+int32_t OH_Image_Size(const ImageNative* native, struct OhosImageSize* size)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the image format of an {@link ImageNative} object at the native layer.
@@ -181,7 +185,8 @@ int32_t OH_Image_Size(const ImageNative* native, struct OhosImageSize* size);
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Format(const ImageNative* native, int32_t* format);
+int32_t OH_Image_Format(const ImageNative* native, int32_t* format)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains {@link OhosImageComponent} of an {@link ImageNative} object at the native layer.
@@ -199,7 +204,8 @@ int32_t OH_Image_Format(const ImageNative* native, int32_t* format);
  * @version 2.0
  */
 int32_t OH_Image_GetComponent(const ImageNative* native,
-    int32_t componentType, struct OhosImageComponent* componentNative);
+    int32_t componentType, struct OhosImageComponent* componentNative)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases an {@link ImageNative} object at the native layer.
@@ -216,7 +222,7 @@ int32_t OH_Image_GetComponent(const ImageNative* native,
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Release(ImageNative* native);
+int32_t OH_Image_Release(ImageNative* native) __attribute__((__availability__(ohos, introduced=10.0.0)));
 #ifdef __cplusplus
 };
 #endif

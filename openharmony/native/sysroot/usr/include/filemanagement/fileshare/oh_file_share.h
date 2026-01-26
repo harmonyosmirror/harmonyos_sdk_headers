@@ -36,6 +36,7 @@
 #ifndef FILE_MANAGEMENT_OH_FILE_SHARE_H
 #define FILE_MANAGEMENT_OH_FILE_SHARE_H
 
+#include "info/application_target_sdk_version.h"
 #include "error_code.h"
 #include <stdbool.h>
 
@@ -157,7 +158,8 @@ typedef struct FileShare_PolicyInfo {
 FileManagement_ErrCode OH_FileShare_PersistPermission(const FileShare_PolicyInfo *policies,
                                                       unsigned int policyNum,
                                                       FileShare_PolicyErrorResult **result,
-                                                      unsigned int *resultNum);
+                                                      unsigned int *resultNum)
+                                                      __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Revoke persistent permissions for the URI.
@@ -180,7 +182,8 @@ FileManagement_ErrCode OH_FileShare_PersistPermission(const FileShare_PolicyInfo
 FileManagement_ErrCode OH_FileShare_RevokePermission(const FileShare_PolicyInfo *policies,
                                                      unsigned int policyNum,
                                                      FileShare_PolicyErrorResult **result,
-                                                     unsigned int *resultNum);
+                                                     unsigned int *resultNum)
+                                                     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enable the URI that have been permanently authorized.
@@ -203,7 +206,8 @@ FileManagement_ErrCode OH_FileShare_RevokePermission(const FileShare_PolicyInfo 
 FileManagement_ErrCode OH_FileShare_ActivatePermission(const FileShare_PolicyInfo *policies,
                                                        unsigned int policyNum,
                                                        FileShare_PolicyErrorResult **result,
-                                                       unsigned int *resultNum);
+                                                       unsigned int *resultNum)
+                                                       __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stop the authorized URI that has been enabled.
@@ -226,7 +230,8 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission(const FileShare_PolicyInf
 FileManagement_ErrCode OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies,
                                                          unsigned int policyNum,
                                                          FileShare_PolicyErrorResult **result,
-                                                         unsigned int *resultNum);
+                                                         unsigned int *resultNum)
+                                                         __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check persistent permissions for the URI.
@@ -248,7 +253,8 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission(const FileShare_PolicyI
 FileManagement_ErrCode OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies,
                                                               unsigned int policyNum,
                                                               bool **result,
-                                                              unsigned int *resultNum);
+                                                              unsigned int *resultNum)
+                                                              __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Free FileShare_PolicyErrorResult pointer points to address memory.
@@ -257,7 +263,8 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission(const FileShare_Po
  * @param resultNum Indicates the size of the errorResult array.
  * @since 12
  */
-void OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorResult, unsigned int resultNum);
+void OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorResult, unsigned int resultNum)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 };
 #endif

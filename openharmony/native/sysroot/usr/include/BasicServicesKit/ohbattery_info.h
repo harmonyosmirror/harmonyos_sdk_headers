@@ -36,6 +36,7 @@
  */
 #ifndef OHBATTERY_INFO_HEADER
 #define OHBATTERY_INFO_HEADER
+#include "info/application_target_sdk_version.h"
 
 #include <stdint.h>
 
@@ -101,7 +102,7 @@ typedef enum {
  * @return Returns number between 0 and 100.
  * @since 13
  */
-int32_t OH_BatteryInfo_GetCapacity();
+int32_t OH_BatteryInfo_GetCapacity() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief This API returns the current plugged type.
@@ -113,7 +114,8 @@ int32_t OH_BatteryInfo_GetCapacity();
  *         {@link PLUGGED_TYPE_BUTT} if the type is unknown.
  * @since 13
  */
-BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();
+BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType()
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

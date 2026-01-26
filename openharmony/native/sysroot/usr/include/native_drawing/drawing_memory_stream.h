@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_MEMORY_STREAM_H
 #define C_INCLUDE_DRAWING_MEMORY_STREAM_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -57,7 +58,8 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate(const void* data, size_t length, bool copyData);
+OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate(const void* data, size_t length, bool copyData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_MemoryStream</b> object and reclaims the memory occupied by the object.
@@ -67,7 +69,8 @@ OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate(const void* data, size_t 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MemoryStreamDestroy(OH_Drawing_MemoryStream* memoryStream);
+void OH_Drawing_MemoryStreamDestroy(OH_Drawing_MemoryStream* memoryStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

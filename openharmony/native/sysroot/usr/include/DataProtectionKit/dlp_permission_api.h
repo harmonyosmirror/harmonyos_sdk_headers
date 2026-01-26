@@ -36,6 +36,7 @@
 #ifndef DLP_PERMISSION_API_H
 #define DLP_PERMISSION_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -107,7 +108,8 @@ typedef enum {
  *         {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.
  * @since 14
  */
-DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t *flags);
+DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t *flags)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the original file name from a DLP file name.
@@ -120,7 +122,8 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
  *         {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.
  * @since 14
  */
-DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFileName);
+DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFileName)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Checks whether current application is in the DLP sandbox.
@@ -133,7 +136,7 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFile
  *         {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.
  * @since 14
  */
-DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
+DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Sets sandbox application configuration.
@@ -148,7 +151,8 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
  *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not authorized.
  * @since 14
  */
-DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
+DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains sandbox application configuration.
@@ -161,7 +165,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not authorized.
  * @since 14
  */
-DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
+DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Cleans sandbox application configuration.
@@ -174,7 +178,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
  *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not authorized.
  * @since 14
  */
-DLP_ErrCode OH_DLP_CleanSandboxAppConfig();
+DLP_ErrCode OH_DLP_CleanSandboxAppConfig() __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 #ifdef __cplusplus
 }

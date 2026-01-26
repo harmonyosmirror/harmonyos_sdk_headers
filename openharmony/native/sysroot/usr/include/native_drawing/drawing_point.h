@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_POINT_H
 #define C_INCLUDE_DRAWING_POINT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -57,7 +58,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Point* OH_Drawing_PointCreate(float x, float y);
+OH_Drawing_Point* OH_Drawing_PointCreate(float x, float y) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the x-axis coordinate of the point.
@@ -71,7 +72,8 @@ OH_Drawing_Point* OH_Drawing_PointCreate(float x, float y);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PointGetX(const OH_Drawing_Point* point, float* x);
+OH_Drawing_ErrorCode OH_Drawing_PointGetX(const OH_Drawing_Point* point, float* x)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the y-axis coordinate of the point.
@@ -85,7 +87,8 @@ OH_Drawing_ErrorCode OH_Drawing_PointGetX(const OH_Drawing_Point* point, float* 
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* y);
+OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the x-axis and y-axis coordinates of the point.
@@ -100,7 +103,8 @@ OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* 
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float y);
+OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Point</b> object and reclaims the memory occupied by the object.
@@ -110,7 +114,7 @@ OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_PointDestroy(OH_Drawing_Point* point);
+void OH_Drawing_PointDestroy(OH_Drawing_Point* point) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

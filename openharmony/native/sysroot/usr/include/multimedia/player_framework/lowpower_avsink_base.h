@@ -38,6 +38,7 @@
 #ifndef NATIVE_LOWPOWER_AVSINK_BASE_H
 #define NATIVE_LOWPOWER_AVSINK_BASE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_averrors.h"
 #include "native_avbuffer.h"
@@ -72,7 +73,8 @@ typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * @since 20
  */
-OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffer, OH_AVBuffer *avBuffer);
+OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffer, OH_AVBuffer *avBuffer)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get remained capacity of OH_AVSamplesBuffer instance.
@@ -82,7 +84,8 @@ OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffe
  * return -1 if samplesBuffer or data poniter is is nullptr or invalid.
  * @since 20
  */
-int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer);
+int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Query the supported capabilities of a lowpower audio/video sink.
@@ -96,7 +99,8 @@ int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer
  *
  * @since 21
  */
-OH_LowPowerAVSink_Capability *OH_LowPowerAVSink_GetCapability();
+OH_LowPowerAVSink_Capability *OH_LowPowerAVSink_GetCapability()
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 #ifdef __cplusplus
 }
 #endif

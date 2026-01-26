@@ -39,6 +39,7 @@
 #ifndef NDK_INCLUDE_NATIVE_VSYNC_H_
 #define NDK_INCLUDE_NATIVE_VSYNC_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -75,7 +76,8 @@ typedef struct {
  * @since 9
  * @version 1.0
  */
-OH_NativeVSync* OH_NativeVSync_Create(const char* name, unsigned int length);
+OH_NativeVSync* OH_NativeVSync_Create(const char* name, unsigned int length)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroys an <b>OH_NativeVSync</b> instance.
@@ -87,7 +89,7 @@ OH_NativeVSync* OH_NativeVSync_Create(const char* name, unsigned int length);
  * @since 9
  * @version 1.0
  */
-void OH_NativeVSync_Destroy(OH_NativeVSync* nativeVsync);
+void OH_NativeVSync_Destroy(OH_NativeVSync* nativeVsync) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Creates a <b>NativeVsync</b> instance.\n
@@ -101,7 +103,8 @@ void OH_NativeVSync_Destroy(OH_NativeVSync* nativeVsync);
  * @since 14
  * @version 1.0
  */
-OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow(uint64_t windowID, const char* name, unsigned int length);
+OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow(uint64_t windowID, const char* name, unsigned int length)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Request next vsync with callback.
  * If you call this interface multiple times in one frame, it will only call the last callback.
@@ -116,7 +119,8 @@ OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow(uint64_t windowID, con
  * @since 9
  * @version 1.0
  */
-int OH_NativeVSync_RequestFrame(OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data);
+int OH_NativeVSync_RequestFrame(OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Request next vsync with callback.
@@ -133,7 +137,8 @@ int OH_NativeVSync_RequestFrame(OH_NativeVSync* nativeVsync, OH_NativeVSync_Fram
  * @version 1.0
  */
 int OH_NativeVSync_RequestFrameWithMultiCallback(
-    OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data);
+    OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the VSync period.
@@ -150,7 +155,8 @@ int OH_NativeVSync_RequestFrameWithMultiCallback(
  * @since 10
  * @version 1.0
  */
-int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period);
+int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Enables DVSync to improve the smoothness of self-drawing animations.
@@ -177,7 +183,8 @@ int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period);
  * @since 14
  * @version 1.0
  */
-int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable);
+int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set vsync expected frame rate range.
@@ -190,7 +197,8 @@ int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable);
  * @since 20
  * @version 1.0
  */
-int OH_NativeVSync_SetExpectedFrameRateRange(OH_NativeVSync* nativeVsync, OH_NativeVSync_ExpectedRateRange* range);
+int OH_NativeVSync_SetExpectedFrameRateRange(OH_NativeVSync* nativeVsync, OH_NativeVSync_ExpectedRateRange* range)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

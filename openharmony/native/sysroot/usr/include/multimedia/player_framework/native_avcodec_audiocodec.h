@@ -37,6 +37,7 @@
 #ifndef NATIVE_AVCODEC_AUDIOCODEC_H
 #define NATIVE_AVCODEC_AUDIOCODEC_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avcodec_base.h"
@@ -59,7 +60,8 @@ typedef struct MediaKeySession MediaKeySession;
  * @return Returns a Pointer to an OH_AVCodec instance
  * @since 11
  */
-OH_AVCodec *OH_AudioCodec_CreateByMime(const char *mime, bool isEncoder);
+OH_AVCodec *OH_AudioCodec_CreateByMime(const char *mime, bool isEncoder)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create an audio codec instance through the audio codec name.
@@ -69,7 +71,7 @@ OH_AVCodec *OH_AudioCodec_CreateByMime(const char *mime, bool isEncoder);
  * @return Returns a Pointer to an OH_AVCodec instance
  * @since 11
  */
-OH_AVCodec *OH_AudioCodec_CreateByName(const char *name);
+OH_AVCodec *OH_AudioCodec_CreateByName(const char *name) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clear the internal resources of the codec and destroy the codec instance
@@ -83,7 +85,7 @@ OH_AVCodec *OH_AudioCodec_CreateByName(const char *name);
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the asynchronous callback function so that your application
@@ -98,7 +100,8 @@ OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec);
  * {@link AV_ERR_INVALID_STATE}, the interface was called in an invalid state.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
+OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief To configure the audio codec, typically, you need to configure the description information of the
@@ -115,7 +118,8 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallbac
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *format);
+OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief To prepare the internal resources of the codec, the Configure interface must be called
@@ -131,7 +135,7 @@ OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *forma
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Start the codec, this interface must be called after the Prepare is successful.
@@ -147,7 +151,7 @@ OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec);
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop the codec. After stopping, you can re-enter the Started state through Start,
@@ -164,7 +168,7 @@ OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec);
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clear the input and output data buffered in the codec. After this interface is called, all the Buffer
@@ -181,7 +185,7 @@ OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec);
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Reset the codec. To continue encoding or decoding, you need to call the Configure interface again to
@@ -195,7 +199,7 @@ OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec);
  * @since 11
  */
 
-OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the description information of the output data of the codec, refer to {@link OH_AVFormat} for details.
@@ -207,7 +211,8 @@ OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec);
  * the next {@link OH_AudioCodec_GetOutputDescription}, or destroyed with OH_AVCodec;
  * @since 11
  */
-OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec);
+OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set dynamic parameters to the codec. Note: This interface can only be called after the codec is started.
@@ -224,7 +229,8 @@ OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec);
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *format);
+OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Submit the input buffer filled with data to the audio codec. The {@link OH_AVCodecOnNeedInputBuffer} callback
@@ -246,7 +252,8 @@ OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *fo
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Return the processed output Buffer to the codec.
@@ -263,7 +270,8 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check whether the current codec instance is valid. It can be used fault recovery or app
@@ -277,7 +285,8 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_INVALID_VAL}, input parameter is empty or invalid.
  * @since 11
  */
-OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
+OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set decryption info.
@@ -294,7 +303,8 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
  * @version 1.0
 */
 OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
-    bool secureAudio);
+    bool secureAudio)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries the index of the next available input buffer.
@@ -315,7 +325,8 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySessio
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
  * @since 20
  */
-OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Acquires the handle of an available input buffer.
@@ -329,7 +340,8 @@ OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *
  * Return nullptr if no buffer available.
  * @since 20
  */
-OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the index of the next available output buffer.
@@ -352,7 +364,8 @@ OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t ind
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
  * @since 20
  */
-OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the available output buffer handle.
@@ -367,7 +380,8 @@ OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t 
  * Return nullptr if no buffer available.
  * @since 20
  */
-OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

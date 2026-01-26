@@ -26,6 +26,7 @@
 #ifndef XEG_VULKAN_RT_REFLECTION_H
 #define XEG_VULKAN_RT_REFLECTION_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <vulkan/vulkan.h>
 #include "xeg_vulkan_common.h"
@@ -178,7 +179,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateRTReflection(
     VkDevice          device,
     const void*       pCreateInfo,
     XEG_RTReflection* pRtReflection
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Records the command for calculating the RT reflection hit information.
@@ -193,7 +195,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdRenderRTReflection(
     VkCommandBuffer  commandBuffer,
     XEG_RTReflection rtReflection,
     const void*      pDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an {@link XEG_RTReflection} object.
@@ -203,7 +206,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdRenderRTReflection(
  */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroyRTReflection(
     XEG_RTReflection rtReflection
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

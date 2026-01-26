@@ -38,6 +38,7 @@
 #ifndef _NATIVE_INTERFACE_XCOMPONENT_H_
 #define _NATIVE_INTERFACE_XCOMPONENT_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 #ifdef __cplusplus
@@ -409,7 +410,8 @@ typedef struct {
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size);
+int32_t OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the size of the surface held by the ArkUI XComponent.
@@ -423,7 +425,8 @@ int32_t OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetXComponentSize(
-    OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height);
+    OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the offset of the surface held by the ArkUI XComponent.
@@ -437,7 +440,8 @@ int32_t OH_NativeXComponent_GetXComponentSize(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetXComponentOffset(
-    OH_NativeXComponent* component, const void* window, double* x, double* y);
+    OH_NativeXComponent* component, const void* window, double* x, double* y)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the touch event dispatched by the ArkUI XComponent.
@@ -450,7 +454,8 @@ int32_t OH_NativeXComponent_GetXComponentOffset(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetTouchEvent(
-    OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent);
+    OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the touch pointer tool type by the ArkUI XComponent.
@@ -463,7 +468,8 @@ int32_t OH_NativeXComponent_GetTouchEvent(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetTouchPointToolType(
-    OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType);
+    OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the touch pointer tiltX by the ArkUI XComponent.
@@ -475,7 +481,8 @@ int32_t OH_NativeXComponent_GetTouchPointToolType(
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX);
+int32_t OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the touch pointer tiltX by the ArkUI XComponent.
@@ -487,7 +494,8 @@ int32_t OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, u
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY);
+int32_t OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the x coordinate of a specific touch point relative to the upper left corner of\n
@@ -504,7 +512,8 @@ int32_t OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, u
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetTouchPointWindowX(OH_NativeXComponent* component, uint32_t pointIndex, float* windowX);
+int32_t OH_NativeXComponent_GetTouchPointWindowX(OH_NativeXComponent* component, uint32_t pointIndex, float* windowX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the y coordinate of a specific touch point relative to the upper left corner of\n
@@ -521,7 +530,8 @@ int32_t OH_NativeXComponent_GetTouchPointWindowX(OH_NativeXComponent* component,
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetTouchPointWindowY(OH_NativeXComponent* component, uint32_t pointIndex, float* windowY);
+int32_t OH_NativeXComponent_GetTouchPointWindowY(OH_NativeXComponent* component, uint32_t pointIndex, float* windowY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the x coordinate of a specific touch point relative to the upper left corner of\n
@@ -538,7 +548,8 @@ int32_t OH_NativeXComponent_GetTouchPointWindowY(OH_NativeXComponent* component,
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetTouchPointDisplayX(OH_NativeXComponent* component, uint32_t pointIndex, float* displayX);
+int32_t OH_NativeXComponent_GetTouchPointDisplayX(OH_NativeXComponent* component, uint32_t pointIndex, float* displayX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the y coordinate of a specific touch point relative to the upper left corner of\n
@@ -555,7 +566,8 @@ int32_t OH_NativeXComponent_GetTouchPointDisplayX(OH_NativeXComponent* component
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent* component, uint32_t pointIndex, float* displayY);
+int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent* component, uint32_t pointIndex, float* displayY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the touch event dispatched by the ArkUI XComponent.
@@ -569,7 +581,8 @@ int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent* component
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetHistoricalPoints(OH_NativeXComponent* component, const void* window,
-    int32_t* size, OH_NativeXComponent_HistoricalPoint** historicalPoints);
+    int32_t* size, OH_NativeXComponent_HistoricalPoint** historicalPoints)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the mouse event dispatched by the ArkUI XComponent.
@@ -582,7 +595,8 @@ int32_t OH_NativeXComponent_GetHistoricalPoints(OH_NativeXComponent* component, 
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetMouseEvent(
-    OH_NativeXComponent* component, const void* window, OH_NativeXComponent_MouseEvent* mouseEvent);
+    OH_NativeXComponent* component, const void* window, OH_NativeXComponent_MouseEvent* mouseEvent)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -593,7 +607,8 @@ int32_t OH_NativeXComponent_GetMouseEvent(
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeXComponent_RegisterCallback(OH_NativeXComponent* component, OH_NativeXComponent_Callback* callback);
+int32_t OH_NativeXComponent_RegisterCallback(OH_NativeXComponent* component, OH_NativeXComponent_Callback* callback)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -605,7 +620,8 @@ int32_t OH_NativeXComponent_RegisterCallback(OH_NativeXComponent* component, OH_
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterMouseEventCallback(
-    OH_NativeXComponent* component, OH_NativeXComponent_MouseEvent_Callback* callback);
+    OH_NativeXComponent* component, OH_NativeXComponent_MouseEvent_Callback* callback)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Provides an encapsulated <b>OH_NativeXComponent_ExtraMouseEventInfo</b>
@@ -627,7 +643,8 @@ typedef struct OH_NativeXComponent_ExtraMouseEventInfo OH_NativeXComponent_Extra
  * @since 20
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* component, OH_NativeXComponent_ExtraMouseEventInfo** extraMouseEventInfo);
+int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* component, OH_NativeXComponent_ExtraMouseEventInfo** extraMouseEventInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the state of the modifier keys of the mouse event.
@@ -643,7 +660,8 @@ int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* componen
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(
-    OH_NativeXComponent_ExtraMouseEventInfo* extraMouseEventInfo, uint64_t* keys);
+    OH_NativeXComponent_ExtraMouseEventInfo* extraMouseEventInfo, uint64_t* keys)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -655,7 +673,8 @@ int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterFocusEventCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window))
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -667,7 +686,8 @@ int32_t OH_NativeXComponent_RegisterFocusEventCallback(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterKeyEventCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window))
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -679,7 +699,8 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallback(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterBlurEventCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window))
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the key event dispatched by the ArkUI XComponent.
@@ -690,7 +711,8 @@ int32_t OH_NativeXComponent_RegisterBlurEventCallback(
  * @since 10
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_NativeXComponent_KeyEvent** keyEvent);
+int32_t OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_NativeXComponent_KeyEvent** keyEvent)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the action of the key event.
@@ -702,7 +724,8 @@ int32_t OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_Nativ
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetKeyEventAction(
-    OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyAction* action);
+    OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyAction* action)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the keyCode of the key event.
@@ -713,7 +736,8 @@ int32_t OH_NativeXComponent_GetKeyEventAction(
  * @since 10
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventCode(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyCode* code);
+int32_t OH_NativeXComponent_GetKeyEventCode(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyCode* code)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the sourceType of the key event.
@@ -725,7 +749,8 @@ int32_t OH_NativeXComponent_GetKeyEventCode(OH_NativeXComponent_KeyEvent* keyEve
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetKeyEventSourceType(
-    OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_EventSourceType* sourceType);
+    OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_EventSourceType* sourceType)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the deviceId of the key event.
@@ -736,7 +761,8 @@ int32_t OH_NativeXComponent_GetKeyEventSourceType(
  * @since 10
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventDeviceId(OH_NativeXComponent_KeyEvent* keyEvent, int64_t* deviceId);
+int32_t OH_NativeXComponent_GetKeyEventDeviceId(OH_NativeXComponent_KeyEvent* keyEvent, int64_t* deviceId)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the timestamp of the key event.
@@ -747,7 +773,8 @@ int32_t OH_NativeXComponent_GetKeyEventDeviceId(OH_NativeXComponent_KeyEvent* ke
  * @since 10
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventTimestamp(OH_NativeXComponent_KeyEvent* keyEvent, int64_t* timestamp);
+int32_t OH_NativeXComponent_GetKeyEventTimestamp(OH_NativeXComponent_KeyEvent* keyEvent, int64_t* timestamp)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the state of the modifier keys of the key event.
@@ -762,7 +789,8 @@ int32_t OH_NativeXComponent_GetKeyEventTimestamp(OH_NativeXComponent_KeyEvent* k
  * @since 20
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventModifierKeyStates(OH_NativeXComponent_KeyEvent* keyEvent, uint64_t* keys);
+int32_t OH_NativeXComponent_GetKeyEventModifierKeyStates(OH_NativeXComponent_KeyEvent* keyEvent, uint64_t* keys)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the Num Lock state of the key event.
@@ -775,7 +803,8 @@ int32_t OH_NativeXComponent_GetKeyEventModifierKeyStates(OH_NativeXComponent_Key
  * @since 20
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventNumLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isNumLockOn);
+int32_t OH_NativeXComponent_GetKeyEventNumLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isNumLockOn)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the Caps Lock state of the key event.
@@ -788,7 +817,8 @@ int32_t OH_NativeXComponent_GetKeyEventNumLockState(OH_NativeXComponent_KeyEvent
  * @since 20
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventCapsLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isCapsLockOn);
+int32_t OH_NativeXComponent_GetKeyEventCapsLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isCapsLockOn)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the Scroll Lock state of the key event.
@@ -801,7 +831,8 @@ int32_t OH_NativeXComponent_GetKeyEventCapsLockState(OH_NativeXComponent_KeyEven
  * @since 20
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetKeyEventScrollLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isScrollLockOn);
+int32_t OH_NativeXComponent_GetKeyEventScrollLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isScrollLockOn)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the Expected FrameRateRange.
@@ -813,7 +844,8 @@ int32_t OH_NativeXComponent_GetKeyEventScrollLockState(OH_NativeXComponent_KeyEv
  * @version 1.0
  */
 int32_t OH_NativeXComponent_SetExpectedFrameRateRange(
-    OH_NativeXComponent* component, OH_NativeXComponent_ExpectedRateRange* range);
+    OH_NativeXComponent* component, OH_NativeXComponent_ExpectedRateRange* range)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -825,7 +857,8 @@ int32_t OH_NativeXComponent_SetExpectedFrameRateRange(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterOnFrameCallback(OH_NativeXComponent* component,
-    void (*callback)(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targetTimestamp));
+    void (*callback)(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targetTimestamp))
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief UnRegister a callback for this <b>OH_NativeXComponent</b> instance.
@@ -835,7 +868,8 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback(OH_NativeXComponent* compone
  * @since 11
  * @version 1.0
  */
-int32_t OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* component);
+int32_t OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* component)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Attaches the UI component created through the native API of ArkUI to this <b>OH_NativeXComponent</b> instance.
@@ -850,7 +884,8 @@ int32_t OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* compo
  * @deprecated since 20
  * @useinstead OH_ArkUI_NodeContent_AddNode
  */
-int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root);
+int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Detaches the native component of ArkUI from this <b>OH_NativeXComponent</b> instance.
@@ -865,7 +900,8 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
  * @deprecated since 20
  * @useinstead OH_ArkUI_NodeContent_RemoveNode
  */
-int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root);
+int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -877,7 +913,8 @@ int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component,
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterSurfaceShowCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -889,7 +926,8 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers a UI input event callback for an <b>OH_NativeXComponent</b> instance and enables the callback to be
@@ -907,7 +945,8 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback(
     OH_NativeXComponent* component,
     void (*callback)(OH_NativeXComponent* component, ArkUI_UIInputEvent* event,
                      ArkUI_UIInputEvent_Type type),
-    ArkUI_UIInputEvent_Type type);
+    ArkUI_UIInputEvent_Type type)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set whether the <b>OH_NativeXComponent</b> instance needs soft keyboard.
@@ -918,7 +957,8 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback(
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool needSoftKeyboard);
+int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool needSoftKeyboard)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers a custom event intercept callback for an <b>OH_NativeXComponent</b> instance.
@@ -934,7 +974,8 @@ int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, 
  * @since 12
  */
 int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(
-    OH_NativeXComponent* component, HitTestMode (*callback)(OH_NativeXComponent* component, ArkUI_UIInputEvent* event));
+    OH_NativeXComponent* component, HitTestMode (*callback)(OH_NativeXComponent* component, ArkUI_UIInputEvent* event))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the touch event's source type dispatched by the ArkUI XComponent.
@@ -949,7 +990,8 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_GetTouchEventSourceType(
-    OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType);
+    OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pointer to an <b>OH_NativeXComponent</b> instance based on the specified component
@@ -960,7 +1002,8 @@ int32_t OH_NativeXComponent_GetTouchEventSourceType(
  * @since 12
  * @version 1.0
  */
-OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node);
+OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
@@ -973,7 +1016,8 @@ OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle no
  * @since 13
  */
 int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
-    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
+    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -987,7 +1031,8 @@ int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(
-    OH_NativeXComponent* component, bool (*callback)(OH_NativeXComponent* component, void* window));
+    OH_NativeXComponent* component, bool (*callback)(OH_NativeXComponent* component, void* window))
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Start image analyzer for the specified XComponent
@@ -1003,7 +1048,8 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(
  * @since 18
  */
 int32_t OH_ArkUI_XComponent_StartImageAnalyzer(ArkUI_NodeHandle node, void* userData,
-    void (*callback)(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData));
+    void (*callback)(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData))
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Stop image analyzer for the specified XComponent
@@ -1015,7 +1061,8 @@ int32_t OH_ArkUI_XComponent_StartImageAnalyzer(ArkUI_NodeHandle node, void* user
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} component is nullptr or the type of node is not XComponent.\n
  * @since 18
  */
-int32_t OH_ArkUI_XComponent_StopImageAnalyzer(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_XComponent_StopImageAnalyzer(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Provides an encapsulated <b>OH_ArkUI_SurfaceHolder</b> instance.
@@ -1031,7 +1078,8 @@ typedef struct OH_ArkUI_SurfaceHolder OH_ArkUI_SurfaceHolder;
  * @return Returns the created <b>OH_ArkUI_SurfaceHolder</b> object's pointer.
  * @since 19
  */
-OH_ArkUI_SurfaceHolder* OH_ArkUI_SurfaceHolder_Create(ArkUI_NodeHandle node);
+OH_ArkUI_SurfaceHolder* OH_ArkUI_SurfaceHolder_Create(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Disposes of a <b>OH_ArkUI_SurfaceHolder</b> object.
@@ -1039,7 +1087,8 @@ OH_ArkUI_SurfaceHolder* OH_ArkUI_SurfaceHolder_Create(ArkUI_NodeHandle node);
  * @param node Indicates the pointer to <b>OH_ArkUI_SurfaceHolder</b> object needed to dispose.
  * @since 19
  */
-void OH_ArkUI_SurfaceHolder_Dispose(OH_ArkUI_SurfaceHolder* surfaceHolder);
+void OH_ArkUI_SurfaceHolder_Dispose(OH_ArkUI_SurfaceHolder* surfaceHolder)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Saves custom data on the <b>OH_ArkUI_SurfaceHolder</b> instance.
@@ -1052,7 +1101,8 @@ void OH_ArkUI_SurfaceHolder_Dispose(OH_ArkUI_SurfaceHolder* surfaceHolder);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_SurfaceHolder_SetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder, void* userData);
+int32_t OH_ArkUI_SurfaceHolder_SetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder, void* userData)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Obtains the custom data saved on the <b>OH_ArkUI_SurfaceHolder</b> instance.
@@ -1061,7 +1111,8 @@ int32_t OH_ArkUI_SurfaceHolder_SetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder
  * @return Returns the custom data.
  * @since 19
  */
-void* OH_ArkUI_SurfaceHolder_GetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder);
+void* OH_ArkUI_SurfaceHolder_GetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Define the surface lifecycle callback.
@@ -1076,7 +1127,7 @@ typedef struct OH_ArkUI_SurfaceCallback OH_ArkUI_SurfaceCallback;
  * @return Returns the created <b>OH_ArkUI_SurfaceCallback</b> object's pointer.
  * @since 19
  */
-OH_ArkUI_SurfaceCallback* OH_ArkUI_SurfaceCallback_Create();
+OH_ArkUI_SurfaceCallback* OH_ArkUI_SurfaceCallback_Create() __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Disposes of a <b>OH_ArkUI_SurfaceCallback</b> object.
@@ -1084,7 +1135,8 @@ OH_ArkUI_SurfaceCallback* OH_ArkUI_SurfaceCallback_Create();
  * @param callback Indicates the pointer to <b>OH_ArkUI_SurfaceCallback</b> object needed to dispose.
  * @since 19
  */
-void OH_ArkUI_SurfaceCallback_Dispose(OH_ArkUI_SurfaceCallback* callback);
+void OH_ArkUI_SurfaceCallback_Dispose(OH_ArkUI_SurfaceCallback* callback)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set the surface created event of the surface callback.
@@ -1096,7 +1148,8 @@ void OH_ArkUI_SurfaceCallback_Dispose(OH_ArkUI_SurfaceCallback* callback);
  */
 void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(
     OH_ArkUI_SurfaceCallback* callback,
-    void (*onSurfaceCreated)(OH_ArkUI_SurfaceHolder* surfaceHolder));
+    void (*onSurfaceCreated)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set the surface changed event of the surface callback.
@@ -1108,7 +1161,8 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(
  */
 void OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent(
     OH_ArkUI_SurfaceCallback* callback,
-    void (*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t height));
+    void (*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t height))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set the surface destroyed event of the surface callback.
@@ -1120,7 +1174,8 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent(
  */
 void OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(
     OH_ArkUI_SurfaceCallback* callback,
-    void (*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder));
+    void (*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Adds a surface lifecycle callback for this <b>OH_ArkUI_SurfaceHolder</b> instance.
@@ -1134,7 +1189,8 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(
  */
 int32_t OH_ArkUI_SurfaceHolder_AddSurfaceCallback(
     OH_ArkUI_SurfaceHolder* surfaceHolder,
-    OH_ArkUI_SurfaceCallback* callback);
+    OH_ArkUI_SurfaceCallback* callback)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Removes a previously added surface lifecycle callback
@@ -1149,7 +1205,8 @@ int32_t OH_ArkUI_SurfaceHolder_AddSurfaceCallback(
  */
 int32_t OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback(
     OH_ArkUI_SurfaceHolder* surfaceHolder,
-    OH_ArkUI_SurfaceCallback* callback);
+    OH_ArkUI_SurfaceCallback* callback)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Forward declaration of OHNativeWindow.
@@ -1165,7 +1222,8 @@ typedef struct NativeWindow OHNativeWindow;
  * @return Returns the nativeWindow associated with this <b>OH_ArkUI_SurfaceHolder</b> instance.
  * @since 19
  */
-OHNativeWindow* OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surfaceHolder);
+OHNativeWindow* OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surfaceHolder)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set whether the XComponent node needs to initialize automatically.
@@ -1180,7 +1238,8 @@ OHNativeWindow* OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surf
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node is invalid.
  * @since 19
  */
-int32_t OH_ArkUI_XComponent_SetAutoInitialize(ArkUI_NodeHandle node, bool autoInitialize);
+int32_t OH_ArkUI_XComponent_SetAutoInitialize(ArkUI_NodeHandle node, bool autoInitialize)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Initialize the XComponent node.
@@ -1192,7 +1251,7 @@ int32_t OH_ArkUI_XComponent_SetAutoInitialize(ArkUI_NodeHandle node, bool autoIn
  *         {@link ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID} if the node has initialized.
  * @since 19
  */
-int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node) __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Finalize the XComponent node.
@@ -1204,7 +1263,7 @@ int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID} if the node has finalized.
  * @since 19
  */
-int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node) __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Obtains whether the XComponent node has initalized or not.
@@ -1216,7 +1275,8 @@ int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node is invalid.
  * @since 19
  */
-int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitialized);
+int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitialized)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set the Expected FrameRateRange for the XComponent node.
@@ -1230,7 +1290,8 @@ int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitial
  * @version 1.0
  */
  int32_t OH_ArkUI_XComponent_SetExpectedFrameRateRange(
-    ArkUI_NodeHandle node, OH_NativeXComponent_ExpectedRateRange range);
+    ArkUI_NodeHandle node, OH_NativeXComponent_ExpectedRateRange range)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Registers an onFrame callback for the XComponent node.
@@ -1244,7 +1305,8 @@ int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitial
  * @version 1.0
  */
 int32_t OH_ArkUI_XComponent_RegisterOnFrameCallback(ArkUI_NodeHandle node,
-    void (*callback)(ArkUI_NodeHandle node, uint64_t timestamp, uint64_t targetTimestamp));
+    void (*callback)(ArkUI_NodeHandle node, uint64_t timestamp, uint64_t targetTimestamp))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief UnRegister the onFrame callback for the XComponent node.
@@ -1256,7 +1318,8 @@ int32_t OH_ArkUI_XComponent_RegisterOnFrameCallback(ArkUI_NodeHandle node,
  * @since 20
  * @version 1.0
  */
-int32_t OH_ArkUI_XComponent_UnregisterOnFrameCallback(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_XComponent_UnregisterOnFrameCallback(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set whether the XComponent node needs soft keyboard when focused.
@@ -1268,7 +1331,8 @@ int32_t OH_ArkUI_XComponent_UnregisterOnFrameCallback(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool needSoftKeyboard);
+int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool needSoftKeyboard)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a <b>ArkUI_AccessibilityProvider</b> object from an XComponent node.
@@ -1277,7 +1341,8 @@ int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool need
  * @return Returns the created <b>ArkUI_AccessibilityProvider</b> object's pointer.
  * @since 20
  */
-ArkUI_AccessibilityProvider* OH_ArkUI_AccessibilityProvider_Create(ArkUI_NodeHandle node);
+ArkUI_AccessibilityProvider* OH_ArkUI_AccessibilityProvider_Create(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Disposes of an <b>ArkUI_AccessibilityProvider</b> object.
@@ -1285,7 +1350,8 @@ ArkUI_AccessibilityProvider* OH_ArkUI_AccessibilityProvider_Create(ArkUI_NodeHan
  * @param provider Indicates the pointer to <b>ArkUI_AccessibilityProvider</b> object needed to dispose.
  * @since 20
  */
-void OH_ArkUI_AccessibilityProvider_Dispose(ArkUI_AccessibilityProvider* provider);
+void OH_ArkUI_AccessibilityProvider_Dispose(ArkUI_AccessibilityProvider* provider)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the surface show event of the surface callback.
@@ -1296,7 +1362,8 @@ void OH_ArkUI_AccessibilityProvider_Dispose(ArkUI_AccessibilityProvider* provide
  */
 void OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent(
     OH_ArkUI_SurfaceCallback* callback,
-    void (*onSurfaceShow)(OH_ArkUI_SurfaceHolder* surfaceHolder));
+    void (*onSurfaceShow)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the surface hide event of the surface callback.
@@ -1307,7 +1374,60 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent(
  */
 void OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent(
     OH_ArkUI_SurfaceCallback* callback,
-    void (*onSurfaceHide)(OH_ArkUI_SurfaceHolder* surfaceHolder));
+    void (*onSurfaceHide)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Declares the config for Surface held by XComponent.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_XComponentSurfaceConfig ArkUI_XComponentSurfaceConfig;
+ 
+/**
+ * @brief Create an <b>ArkUI_XComponentSurfaceConfig</b> object.
+ *
+ * @return A pointer to the object of the XComponent's surface config.
+ * @since 22
+ */
+ArkUI_XComponentSurfaceConfig* OH_ArkUI_XComponentSurfaceConfig_Create()
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Dispose of an <b>ArkUI_XComponentSurfaceConfig</b> object.
+ *
+ * @param config A pointer to the object of the XComponent's surface config to be destroyed.
+ * @since 22
+ */
+void OH_ArkUI_XComponentSurfaceConfig_Dispose(ArkUI_XComponentSurfaceConfig* config)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Set whether the surface held by XComponent needs to be considered opaque,
+ * even if the surface has translucent pixel.
+ *
+ * @param config A pointer to the object of the XComponent's surface config.
+ * @param isOpaque Indicates whether the surface held by XComponent needs to be considered opaque,
+ *     True means needing to be considered opaque, false otherwise.
+ * @since 22
+ */
+void OH_ArkUI_XComponentSurfaceConfig_SetIsOpaque(ArkUI_XComponentSurfaceConfig* config, bool isOpaque)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Set surface config for this <b>OH_ArkUI_SurfaceHolder</b> instance.
+ *
+ * @param surfaceHolder Indicates the pointer to this <b>OH_ArkUI_SurfaceHolder</b> instance.
+ * @param config Indicates the pointer to the XComponent's surface config.
+ * @return Returns the status code of the execution.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} the execution is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 22
+ */
+int32_t OH_ArkUI_SurfaceHolder_SetSurfaceConfig(
+    OH_ArkUI_SurfaceHolder *surfaceHolder,
+    ArkUI_XComponentSurfaceConfig *config)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 };
 #endif

@@ -37,6 +37,7 @@
 #ifndef OHOS_DRM_NATIVE_MEDIA_KEY_SESSION_H
 #define OHOS_DRM_NATIVE_MEDIA_KEY_SESSION_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -142,7 +143,8 @@ typedef struct OH_MediaKeySession_Callback {
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKeySession,
-    DRM_MediaKeyRequestInfo *info, DRM_MediaKeyRequest *mediaKeyRequest);
+    DRM_MediaKeyRequestInfo *info, DRM_MediaKeyRequest *mediaKeyRequest)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Process media key response.
@@ -159,7 +161,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse(MediaKeySession *mediaKeySession,
-    uint8_t *response, int32_t responseLen, uint8_t *offlineMediaKeyId, int32_t *offlineMediaKeyIdLen);
+    uint8_t *response, int32_t responseLen, uint8_t *offlineMediaKeyId, int32_t *offlineMediaKeyIdLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check media key status.
@@ -173,7 +176,8 @@ Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse(MediaKeySession *mediaKey
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySession,
-    DRM_MediaKeyStatus *mediaKeyStatus);
+    DRM_MediaKeyStatus *mediaKeyStatus)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clear media keys of the current session .
@@ -184,7 +188,8 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySess
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession);
+Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Generate offline media key release request.
@@ -202,7 +207,8 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession);
  */
 Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *mediaKeySession,
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest,
-    int32_t *releaseRequestLen);
+    int32_t *releaseRequestLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Process offline media key release response.
@@ -219,7 +225,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
  */
 Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *mediaKeySession,
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse,
-    int32_t releaseReponseLen);
+    int32_t releaseReponseLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Restore offline media keys by ID.
@@ -233,7 +240,8 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *me
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKeySession,
-    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen);
+    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get content protection level of the session.
@@ -246,7 +254,8 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKey
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaKeySession,
-    DRM_ContentProtectionLevel *contentProtectionLevel);
+    DRM_ContentProtectionLevel *contentProtectionLevel)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Whether the encrypted content require a secure decoder or not.
@@ -260,7 +269,8 @@ Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaK
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *mediaKeySession,
-    const char *mimeType, bool *status);
+    const char *mimeType, bool *status)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set media key session event callback.
@@ -272,7 +282,8 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *media
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *mediaKeySession,
-    MediaKeySession_Callback *callback);
+    MediaKeySession_Callback *callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set media key session event callback.
@@ -284,7 +295,8 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *media
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,
-    OH_MediaKeySession_Callback *callback);
+    OH_MediaKeySession_Callback *callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the resource before the session gonna be unused.
@@ -295,7 +307,8 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySession_Destroy(MediaKeySession *mediaKeySession);
+Drm_ErrCode OH_MediaKeySession_Destroy(MediaKeySession *mediaKeySession)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

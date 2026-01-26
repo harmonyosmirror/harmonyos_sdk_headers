@@ -44,6 +44,7 @@
 #ifndef NATIVE_AUDIO_SESSION_MANAGER_H
 #define NATIVE_AUDIO_SESSION_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audio_common.h"
 #include "native_audiostream_base.h"
 #include "native_audio_device_base.h"
@@ -329,7 +330,8 @@ typedef int32_t (*OH_AudioSession_DeactivatedCallback) (
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(
-    OH_AudioSessionManager **audioSessionManager);
+    OH_AudioSessionManager **audioSessionManager)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Activate the audio session for the current pid application.
@@ -345,7 +347,8 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(
-    OH_AudioSessionManager *audioSessionManager, const OH_AudioSession_Strategy *strategy);
+    OH_AudioSessionManager *audioSessionManager, const OH_AudioSession_Strategy *strategy)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deactivate the audio session for the current pid application.
@@ -358,7 +361,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(
-    OH_AudioSessionManager *audioSessionManager);
+    OH_AudioSessionManager *audioSessionManager)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Querying whether the current pid application has an activated audio session.
@@ -370,7 +374,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(
  * @since 12
  */
 bool OH_AudioSessionManager_IsAudioSessionActivated(
-    OH_AudioSessionManager *audioSessionManager);
+    OH_AudioSessionManager *audioSessionManager)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register the audio session deactivated event callback.
@@ -384,7 +389,8 @@ bool OH_AudioSessionManager_IsAudioSessionActivated(
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister the audio session deactivated event callback.
@@ -398,7 +404,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback(
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set scene for audio session.
@@ -413,7 +420,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallbac
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioSessionManager_SetScene(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_Scene scene);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_Scene scene)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register the audio session state change event callback.
@@ -429,7 +437,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_SetScene(
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioSessionManager_RegisterStateChangeCallback(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister the audio session state change event callback.
@@ -444,7 +453,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterStateChangeCallback(
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioSessionManager_UnregisterStateChangeCallback(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the default output device.
@@ -463,7 +473,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterStateChangeCallback(
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioSessionManager_SetDefaultOutputDevice(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type deviceType);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type deviceType)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the default output device.
@@ -480,7 +491,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_SetDefaultOutputDevice(
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioSessionManager_GetDefaultOutputDevice(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type *deviceType);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type *deviceType)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Release the audio device descriptor array object.
@@ -496,7 +508,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_GetDefaultOutputDevice(
  */
 OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevices(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
+    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register the audio session device change event callback.
@@ -513,7 +526,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevices(
  */
 OH_AudioCommon_Result OH_AudioSessionManager_RegisterCurrentOutputDeviceChangeCallback(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_CurrentOutputDeviceChangedCallback callback);
+    OH_AudioSession_CurrentOutputDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister the audio session device change event callback.
@@ -529,7 +543,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterCurrentOutputDeviceChangeCa
  */
 OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentOutputDeviceChangeCallback(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_CurrentOutputDeviceChangedCallback callback);
+    OH_AudioSession_CurrentOutputDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get available devices by device usage.
@@ -550,7 +565,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentOutputDeviceChange
  */
 OH_AudioCommon_Result OH_AudioSessionManager_GetAvailableDevices(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+    OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Register available device change event callback.
@@ -568,7 +584,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_GetAvailableDevices(
  */
 OH_AudioCommon_Result OH_AudioSessionManager_RegisterAvailableDevicesChangeCallback(
     OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Usage deviceUsage,
-    OH_AudioSession_AvailableDeviceChangedCallback callback);
+    OH_AudioSession_AvailableDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregister available device change event callback.
@@ -584,7 +601,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterAvailableDevicesChangeCallb
  */
 OH_AudioCommon_Result OH_AudioSessionManager_UnregisterAvailableDevicesChangeCallback(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_AvailableDeviceChangedCallback callback);
+    OH_AudioSession_AvailableDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the media input device.
@@ -606,7 +624,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterAvailableDevicesChangeCal
  * @since 21
  */
 OH_AudioCommon_Result OH_AudioSessionManager_SelectMediaInputDevice(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioDeviceDescriptor *deviceDescriptor);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDeviceDescriptor *deviceDescriptor)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the selected media input device.
@@ -625,7 +644,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_SelectMediaInputDevice(
  * @since 21
  */
 OH_AudioCommon_Result OH_AudioSessionManager_GetSelectedMediaInputDevice(
-    OH_AudioSessionManager *audioSessionManager, OH_AudioDeviceDescriptor **audioDeviceDescriptor);
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDeviceDescriptor **audioDeviceDescriptor)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the prefered record category with bluetooth and nearlink device.
@@ -646,7 +666,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_GetSelectedMediaInputDevice(
  */
 OH_AudioCommon_Result OH_AudioSessionManager_SetBluetoothAndNearlinkPreferredRecordCategory(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory category);
+    OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory category)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the prefered record category with bluetooth and nearlink device.
@@ -661,7 +682,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_SetBluetoothAndNearlinkPreferredRec
  */
 OH_AudioCommon_Result OH_AudioSessionManager_GetBluetoothAndNearlinkPreferredRecordCategory(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory *category);
+    OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory *category)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Register the audio session input device change event callback.
@@ -678,7 +700,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_GetBluetoothAndNearlinkPreferredRec
  */
 OH_AudioCommon_Result OH_AudioSessionManager_RegisterCurrentInputDeviceChangeCallback(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_CurrentInputDeviceChangedCallback callback);
+    OH_AudioSession_CurrentInputDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregister the audio session input device change event callback.
@@ -694,7 +717,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterCurrentInputDeviceChangeCal
  */
 OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentInputDeviceChangeCallback(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioSession_CurrentInputDeviceChangedCallback callback);
+    OH_AudioSession_CurrentInputDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Release the audio device descriptor object.
@@ -708,7 +732,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentInputDeviceChangeC
  */
 OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevice(
     OH_AudioSessionManager *audioSessionManager,
-    OH_AudioDeviceDescriptor *audioDeviceDescriptor);
+    OH_AudioDeviceDescriptor *audioDeviceDescriptor)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

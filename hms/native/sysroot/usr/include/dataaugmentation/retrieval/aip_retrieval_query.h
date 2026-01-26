@@ -25,6 +25,7 @@
 #ifndef AIP_RETRIEVAL_QUERY_H
 #define AIP_RETRIEVAL_QUERY_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,7 +45,7 @@ typedef struct OH_Retrieval_Query OH_Retrieval_Query;
  * @see OH_Retrieval_Query
  * @since 6.0.0(20)
  */
-OH_Retrieval_Query *OH_Retrieval_CreateQuery();
+OH_Retrieval_Query *OH_Retrieval_CreateQuery() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_Query which is created by OH_Retrieval_CreateQuery.
@@ -56,7 +57,7 @@ OH_Retrieval_Query *OH_Retrieval_CreateQuery();
  * @see OH_Retrieval_Query, OH_Aip_ErrCode, OH_Retrieval_CreateQuery.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyQuery(OH_Retrieval_Query *query);
+int OH_Retrieval_DestroyQuery(OH_Retrieval_Query *query) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the retrieval query in OH_Retrieval_Query.
@@ -70,7 +71,8 @@ int OH_Retrieval_DestroyQuery(OH_Retrieval_Query *query);
  * @see OH_Retrieval_Query, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_SetOriginalQuestion(OH_Retrieval_Query *query, const char *question);
+int OH_Retrieval_SetOriginalQuestion(OH_Retrieval_Query *query, const char *question)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

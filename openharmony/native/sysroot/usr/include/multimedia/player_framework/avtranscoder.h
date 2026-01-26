@@ -40,6 +40,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_AVTRANSCODER_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_AVTRANSCODER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "avtranscoder_base.h"
@@ -55,7 +56,7 @@ extern "C" {
  * @return Returns a pointer to an OH_AVTranscoder_Config instance for success, nullptr for failure
  * @since 20
  */
-OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create();
+OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief release a transcoder config instance.
@@ -65,7 +66,8 @@ OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create();
  *          {@link AV_ERR_INVALID_VAL} if input config is nullptr.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config);
+OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set Source file descriptor for transcoding.
@@ -79,7 +81,8 @@ OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config);
  * @since 20
  */
 OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(
-    OH_AVTranscoder_Config *config, int32_t srcFd, int64_t srcOffset, int64_t length);
+    OH_AVTranscoder_Config *config, int32_t srcFd, int64_t srcOffset, int64_t length)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination file descriptor for transcoding.
@@ -90,7 +93,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or dstFd is invalid.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int32_t dstFd);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int32_t dstFd)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination video mime type.
@@ -101,7 +105,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int3
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or mimeType is unrecognized.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *config, const char *mimeType);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *config, const char *mimeType)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination audio mime type.
@@ -112,7 +117,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *confi
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or mimeType is unrecognized.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *config, const char *mimeType);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *config, const char *mimeType)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination file type.
@@ -123,7 +129,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *confi
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or mimeType is invalid.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config, OH_AVOutputFormat mimeType);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config, OH_AVOutputFormat mimeType)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination audio bitrate.
@@ -134,7 +141,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or bitrate value is invalid.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *config, int32_t bitrate);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *config, int32_t bitrate)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination video bitrate.
@@ -145,7 +153,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or bitrate value is invalid.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *config, int32_t bitrate);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *config, int32_t bitrate)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set destination video resolution.
@@ -157,14 +166,15 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *co
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or width/height value is invalid.
 * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoResolution(OH_AVTranscoder_Config *config, int32_t width, int32_t height);
+OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoResolution(OH_AVTranscoder_Config *config, int32_t width, int32_t height)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a transcoder
  * @return {OH_AVTranscoder*} Returns a pointer to an OH_AVTranscoder instance for success, nullptr for failure
  * @since 20
  */
-OH_AVTranscoder *OH_AVTranscoder_Create(void);
+OH_AVTranscoder *OH_AVTranscoder_Create(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Prepare for transcoding with a config.
@@ -180,7 +190,8 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if unsupported format.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscoder_Config *config);
+OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscoder_Config *config)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Start AVTranscoder.
@@ -193,7 +204,8 @@ OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscode
  *         {@link AV_ERR_SERVICE_DIED} if media service died.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder);
+OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Pause AVTranscoder.
@@ -206,7 +218,8 @@ OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder);
  *         {@link AV_ERR_SERVICE_DIED} if media service died.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder);
+OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Resume AVTranscoder.
@@ -219,7 +232,8 @@ OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder);
  *         {@link AV_ERR_SERVICE_DIED} if media service died.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
+OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Cancel AVTranscoder.
@@ -232,7 +246,8 @@ OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
  *         {@link AV_ERR_SERVICE_DIED} if media service died.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder);
+OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Release AVTranscoder.
@@ -245,7 +260,8 @@ OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder);
  *         {@link AV_ERR_SERVICE_DIED} if media service died.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder);
+OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the state callback function so that your application can respond to the
@@ -259,7 +275,8 @@ OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder);
  * @since 20
  */
 OH_AVErrCode OH_AVTranscoder_SetStateCallback(
-    OH_AVTranscoder *transcoder, OH_AVTranscoder_OnStateChange callback, void *userData);
+    OH_AVTranscoder *transcoder, OH_AVTranscoder_OnStateChange callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the error callback function so that your application can respond to the
@@ -273,7 +290,8 @@ OH_AVErrCode OH_AVTranscoder_SetStateCallback(
  * @since 20
  */
 OH_AVErrCode OH_AVTranscoder_SetErrorCallback(
-    OH_AVTranscoder *transcoder, OH_AVTranscoder_OnError callback, void *userData);
+    OH_AVTranscoder *transcoder, OH_AVTranscoder_OnError callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the progress updating callback function so that your application can respond to the
@@ -288,7 +306,8 @@ OH_AVErrCode OH_AVTranscoder_SetErrorCallback(
  * @since 20
  */
 OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
-    OH_AVTranscoder *transcoder, OH_AVTranscoder_OnProgressUpdate callback, void *userData);
+    OH_AVTranscoder *transcoder, OH_AVTranscoder_OnProgressUpdate callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Enable B frame in destination video.
@@ -299,7 +318,8 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr.
  * @since 20
  */
-OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, bool enabled);
+OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, bool enabled)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

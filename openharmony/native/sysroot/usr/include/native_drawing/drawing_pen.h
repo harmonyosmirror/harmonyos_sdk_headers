@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_PEN_H
 #define C_INCLUDE_DRAWING_PEN_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -61,7 +62,7 @@ typedef struct OH_NativeColorSpaceManager OH_NativeColorSpaceManager;
  * @since 8
  * @version 1.0
  */
-OH_Drawing_Pen* OH_Drawing_PenCreate(void);
+OH_Drawing_Pen* OH_Drawing_PenCreate(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Pen</b> copy object.
@@ -74,7 +75,7 @@ OH_Drawing_Pen* OH_Drawing_PenCreate(void);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Pen* OH_Drawing_PenCopy(OH_Drawing_Pen* pen);
+OH_Drawing_Pen* OH_Drawing_PenCopy(OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Pen</b> object and reclaims the memory occupied by the object.
@@ -84,7 +85,7 @@ OH_Drawing_Pen* OH_Drawing_PenCopy(OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenDestroy(OH_Drawing_Pen* pen);
+void OH_Drawing_PenDestroy(OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Checks whether anti-aliasing is enabled for a pen. If anti-aliasing is enabled,
@@ -96,7 +97,7 @@ void OH_Drawing_PenDestroy(OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-bool OH_Drawing_PenIsAntiAlias(const OH_Drawing_Pen* pen);
+bool OH_Drawing_PenIsAntiAlias(const OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Enables or disables anti-aliasing for a pen. If anti-aliasing is enabled,
@@ -109,7 +110,8 @@ bool OH_Drawing_PenIsAntiAlias(const OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenSetAntiAlias(OH_Drawing_Pen* pen, bool antiAlias);
+void OH_Drawing_PenSetAntiAlias(OH_Drawing_Pen* pen, bool antiAlias)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the color of a pen. The color is used by the pen to outline a shape.
@@ -120,7 +122,7 @@ void OH_Drawing_PenSetAntiAlias(OH_Drawing_Pen* pen, bool antiAlias);
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_PenGetColor(const OH_Drawing_Pen* pen);
+uint32_t OH_Drawing_PenGetColor(const OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the color for a pen. The color is used by the pen to outline a shape.
@@ -131,7 +133,8 @@ uint32_t OH_Drawing_PenGetColor(const OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenSetColor(OH_Drawing_Pen* pen, uint32_t color);
+void OH_Drawing_PenSetColor(OH_Drawing_Pen* pen, uint32_t color)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the alpha of a pen. The alpha is used by the pen to outline a shape.
@@ -142,7 +145,7 @@ void OH_Drawing_PenSetColor(OH_Drawing_Pen* pen, uint32_t color);
  * @since 11
  * @version 1.0
  */
-uint8_t OH_Drawing_PenGetAlpha(const OH_Drawing_Pen* pen);
+uint8_t OH_Drawing_PenGetAlpha(const OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the alpha for a pen. The alpha is used by the pen to outline a shape.
@@ -153,7 +156,8 @@ uint8_t OH_Drawing_PenGetAlpha(const OH_Drawing_Pen* pen);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_PenSetAlpha(OH_Drawing_Pen* pen, uint8_t alpha);
+void OH_Drawing_PenSetAlpha(OH_Drawing_Pen* pen, uint8_t alpha)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the color for a pen. The color will be used by the pen to fill in a shape.
@@ -174,7 +178,8 @@ void OH_Drawing_PenSetAlpha(OH_Drawing_Pen* pen, uint8_t alpha);
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PenSetColor4f(OH_Drawing_Pen* pen, float a, float r, float g, float b,
-    OH_NativeColorSpaceManager* colorSpaceManager);
+    OH_NativeColorSpaceManager* colorSpaceManager)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the alpha component of a pen.
@@ -188,7 +193,8 @@ OH_Drawing_ErrorCode OH_Drawing_PenSetColor4f(OH_Drawing_Pen* pen, float a, floa
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PenGetAlphaFloat(OH_Drawing_Pen* pen, float* a);
+OH_Drawing_ErrorCode OH_Drawing_PenGetAlphaFloat(OH_Drawing_Pen* pen, float* a)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the red component of a pen.
@@ -202,7 +208,8 @@ OH_Drawing_ErrorCode OH_Drawing_PenGetAlphaFloat(OH_Drawing_Pen* pen, float* a);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PenGetRedFloat(OH_Drawing_Pen* pen, float* r);
+OH_Drawing_ErrorCode OH_Drawing_PenGetRedFloat(OH_Drawing_Pen* pen, float* r)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the green component of a pen.
@@ -216,7 +223,8 @@ OH_Drawing_ErrorCode OH_Drawing_PenGetRedFloat(OH_Drawing_Pen* pen, float* r);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PenGetGreenFloat(OH_Drawing_Pen* pen, float* g);
+OH_Drawing_ErrorCode OH_Drawing_PenGetGreenFloat(OH_Drawing_Pen* pen, float* g)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the blue component of a pen.
@@ -230,7 +238,8 @@ OH_Drawing_ErrorCode OH_Drawing_PenGetGreenFloat(OH_Drawing_Pen* pen, float* g);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PenGetBlueFloat(OH_Drawing_Pen* pen, float* b);
+OH_Drawing_ErrorCode OH_Drawing_PenGetBlueFloat(OH_Drawing_Pen* pen, float* b)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the thickness of a pen. This thickness determines the width of the outline of a shape.
@@ -241,7 +250,7 @@ OH_Drawing_ErrorCode OH_Drawing_PenGetBlueFloat(OH_Drawing_Pen* pen, float* b);
  * @since 8
  * @version 1.0
  */
-float OH_Drawing_PenGetWidth(const OH_Drawing_Pen* pen);
+float OH_Drawing_PenGetWidth(const OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the thickness for a pen. This thickness determines the width of the outline of a shape.
@@ -252,7 +261,7 @@ float OH_Drawing_PenGetWidth(const OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenSetWidth(OH_Drawing_Pen* pen, float width);
+void OH_Drawing_PenSetWidth(OH_Drawing_Pen* pen, float width) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the stroke miter limit of a polyline drawn by a pen.
@@ -266,7 +275,7 @@ void OH_Drawing_PenSetWidth(OH_Drawing_Pen* pen, float width);
  * @since 8
  * @version 1.0
  */
-float OH_Drawing_PenGetMiterLimit(const OH_Drawing_Pen* pen);
+float OH_Drawing_PenGetMiterLimit(const OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the stroke miter limit for a polyline drawn by a pen.
@@ -280,7 +289,8 @@ float OH_Drawing_PenGetMiterLimit(const OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenSetMiterLimit(OH_Drawing_Pen* pen, float miter);
+void OH_Drawing_PenSetMiterLimit(OH_Drawing_Pen* pen, float miter)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Enumerates line cap styles of a pen. The line cap style defines
@@ -315,7 +325,8 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap(const OH_Drawing_Pen* pen);
+OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap(const OH_Drawing_Pen* pen)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the line cap style for a pen.
@@ -326,7 +337,8 @@ OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap(const OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenSetCap(OH_Drawing_Pen* pen, OH_Drawing_PenLineCapStyle capStyle);
+void OH_Drawing_PenSetCap(OH_Drawing_Pen* pen, OH_Drawing_PenLineCapStyle capStyle)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Enumerates pen line join styles. The line join style defines
@@ -356,7 +368,8 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin(const OH_Drawing_Pen* pen);
+OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin(const OH_Drawing_Pen* pen)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the line join style for a pen.
@@ -367,7 +380,8 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin(const OH_Drawing_Pen* pen);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PenSetJoin(OH_Drawing_Pen* pen, OH_Drawing_PenLineJoinStyle joinStyle);
+void OH_Drawing_PenSetJoin(OH_Drawing_Pen* pen, OH_Drawing_PenLineJoinStyle joinStyle)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the shaderEffect for a pen.
@@ -378,7 +392,8 @@ void OH_Drawing_PenSetJoin(OH_Drawing_Pen* pen, OH_Drawing_PenLineJoinStyle join
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_PenSetShaderEffect(OH_Drawing_Pen* pen, OH_Drawing_ShaderEffect* shaderEffect);
+void OH_Drawing_PenSetShaderEffect(OH_Drawing_Pen* pen, OH_Drawing_ShaderEffect* shaderEffect)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the shadowLayer for a pen.
@@ -389,7 +404,8 @@ void OH_Drawing_PenSetShaderEffect(OH_Drawing_Pen* pen, OH_Drawing_ShaderEffect*
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PenSetShadowLayer(OH_Drawing_Pen* pen, OH_Drawing_ShadowLayer* shadowLayer);
+void OH_Drawing_PenSetShadowLayer(OH_Drawing_Pen* pen, OH_Drawing_ShadowLayer* shadowLayer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the pathEffect for a pen.
@@ -400,7 +416,8 @@ void OH_Drawing_PenSetShadowLayer(OH_Drawing_Pen* pen, OH_Drawing_ShadowLayer* s
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PenSetPathEffect(OH_Drawing_Pen* pen, OH_Drawing_PathEffect* pathEffect);
+void OH_Drawing_PenSetPathEffect(OH_Drawing_Pen* pen, OH_Drawing_PathEffect* pathEffect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the filter for a pen.
@@ -411,7 +428,8 @@ void OH_Drawing_PenSetPathEffect(OH_Drawing_Pen* pen, OH_Drawing_PathEffect* pat
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_PenSetFilter(OH_Drawing_Pen* pen, OH_Drawing_Filter* filter);
+void OH_Drawing_PenSetFilter(OH_Drawing_Pen* pen, OH_Drawing_Filter* filter)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the filter from a pen.
@@ -422,7 +440,8 @@ void OH_Drawing_PenSetFilter(OH_Drawing_Pen* pen, OH_Drawing_Filter* filter);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PenGetFilter(OH_Drawing_Pen* pen, OH_Drawing_Filter* filter);
+void OH_Drawing_PenGetFilter(OH_Drawing_Pen* pen, OH_Drawing_Filter* filter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets a blender that implements the specified blendmode enum for a pen.
@@ -433,7 +452,8 @@ void OH_Drawing_PenGetFilter(OH_Drawing_Pen* pen, OH_Drawing_Filter* filter);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PenSetBlendMode(OH_Drawing_Pen* pen, OH_Drawing_BlendMode blendMode);
+void OH_Drawing_PenSetBlendMode(OH_Drawing_Pen* pen, OH_Drawing_BlendMode blendMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the filled equivalent of the src path.
@@ -451,7 +471,8 @@ void OH_Drawing_PenSetBlendMode(OH_Drawing_Pen* pen, OH_Drawing_BlendMode blendM
  * @version 1.0
  */
 bool OH_Drawing_PenGetFillPath(OH_Drawing_Pen* pen, const OH_Drawing_Path* src, OH_Drawing_Path* dst,
-    const OH_Drawing_Rect* rect, const OH_Drawing_Matrix* matrix);
+    const OH_Drawing_Rect* rect, const OH_Drawing_Matrix* matrix)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets all pen contents to their initial values.
@@ -461,7 +482,7 @@ bool OH_Drawing_PenGetFillPath(OH_Drawing_Pen* pen, const OH_Drawing_Path* src, 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PenReset(OH_Drawing_Pen* pen);
+void OH_Drawing_PenReset(OH_Drawing_Pen* pen) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

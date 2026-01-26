@@ -36,6 +36,7 @@
 #ifndef CRYPTO_SYM_KEY_H
 #define CRYPTO_SYM_KEY_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 
 #ifdef __cplusplus
@@ -68,7 +69,8 @@ typedef struct OH_CryptoSymKeyGenerator OH_CryptoSymKeyGenerator;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Create(const char *algoName, OH_CryptoSymKeyGenerator **ctx);
+OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Create(const char *algoName, OH_CryptoSymKeyGenerator **ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Generate a symmetric key.
@@ -82,7 +84,8 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Create(const char *algoName, OH_Crypt
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ctx, OH_CryptoSymKey **keyCtx);
+OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ctx, OH_CryptoSymKey **keyCtx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Convert the symmetric key data to a key.
@@ -98,7 +101,8 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ct
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx,
-    const Crypto_DataBlob *keyData, OH_CryptoSymKey **keyCtx);
+    const Crypto_DataBlob *keyData, OH_CryptoSymKey **keyCtx)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the algorithm name of the symmetric key generator.
@@ -107,7 +111,8 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx
  * @return Return symmetric key algorithm name.
  * @since 12
  */
-const char *OH_CryptoSymKeyGenerator_GetAlgoName(OH_CryptoSymKeyGenerator *ctx);
+const char *OH_CryptoSymKeyGenerator_GetAlgoName(OH_CryptoSymKeyGenerator *ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the symmetric key generator.
@@ -115,7 +120,8 @@ const char *OH_CryptoSymKeyGenerator_GetAlgoName(OH_CryptoSymKeyGenerator *ctx);
  * @param ctx Indicates the symmetric key generator context.
  * @since 12
  */
-void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx);
+void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the symmetric key algorithm name from a symmetric key.
@@ -124,7 +130,8 @@ void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx);
  * @return Return algorithm name.
  * @since 12
  */
-const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx);
+const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the symmetric key data from a symmetric key.
@@ -138,7 +145,8 @@ const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the symmetric key.
@@ -146,7 +154,7 @@ OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_Dat
  * @param keyCtx Indicates the symmetric key context.
  * @since 12
  */
-void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx);
+void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

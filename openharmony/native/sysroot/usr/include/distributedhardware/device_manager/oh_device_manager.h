@@ -39,6 +39,7 @@
 #ifndef OH_DEVICE_MANAGER_H
 #define OH_DEVICE_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -63,7 +64,8 @@ extern "C" {
  *      Returns {@link DM_ERR_OBTAIN_BUNDLE_NAME} is returned if the bundle name fails to be obtained.
  * @since 20
  */
-int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int &len);
+int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int &len)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

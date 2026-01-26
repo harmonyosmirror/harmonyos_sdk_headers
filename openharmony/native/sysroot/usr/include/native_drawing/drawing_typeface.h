@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_TYPEFACE_H
 #define C_INCLUDE_DRAWING_TYPEFACE_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -55,7 +56,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Typeface* OH_Drawing_TypefaceCreateDefault(void);
+OH_Drawing_Typeface* OH_Drawing_TypefaceCreateDefault(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Typeface</b> object by file.
@@ -67,7 +68,8 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateDefault(void);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFile(const char* path, int index);
+OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFile(const char* path, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Typeface</b> object with the specified font arguments from a file.
@@ -86,7 +88,8 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFile(const char* path, int ind
  * @version 1.0
  */
 OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFileWithArguments(const char* path,
-    const OH_Drawing_FontArguments* fontArguments);
+    const OH_Drawing_FontArguments* fontArguments)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Typeface</b> object with the specified font arguments from
@@ -104,7 +107,8 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFileWithArguments(const char* 
  * @version 1.0
  */
 OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromCurrent(const OH_Drawing_Typeface* current,
-    const OH_Drawing_FontArguments* fontArguments);
+    const OH_Drawing_FontArguments* fontArguments)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Typeface</b> object by given a stream. If the stream is not a valid
@@ -118,7 +122,8 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromCurrent(const OH_Drawing_Typef
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream(OH_Drawing_MemoryStream* memoryStream, int32_t index);
+OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream(OH_Drawing_MemoryStream* memoryStream, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Typeface</b> object and reclaims the memory occupied by the object.
@@ -128,7 +133,8 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream(OH_Drawing_MemoryStream
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TypefaceDestroy(OH_Drawing_Typeface* typeface);
+void OH_Drawing_TypefaceDestroy(OH_Drawing_Typeface* typeface)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_FontArguments</b> object.
@@ -140,7 +146,8 @@ void OH_Drawing_TypefaceDestroy(OH_Drawing_Typeface* typeface);
  * @since 13
  * @version 1.0
  */
-OH_Drawing_FontArguments* OH_Drawing_FontArgumentsCreate(void);
+OH_Drawing_FontArguments* OH_Drawing_FontArgumentsCreate(void)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Adds a font variation axis for an <b>OH_Drawing_FontArguments</b> object.
@@ -157,7 +164,8 @@ OH_Drawing_FontArguments* OH_Drawing_FontArgumentsCreate(void);
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontArgumentsAddVariation(OH_Drawing_FontArguments* fontArguments,
-    const char* axis, float value);
+    const char* axis, float value)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_FontArguments</b> object and reclaims the memory occupied by the object.
@@ -170,7 +178,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontArgumentsAddVariation(OH_Drawing_FontArgumen
  * @since 13
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_FontArgumentsDestroy(OH_Drawing_FontArguments* fontArguments);
+OH_Drawing_ErrorCode OH_Drawing_FontArgumentsDestroy(OH_Drawing_FontArguments* fontArguments)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

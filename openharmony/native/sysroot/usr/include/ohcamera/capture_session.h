@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_CAMERA_SESSION_H
 #define NATIVE_INCLUDE_CAMERA_CAMERA_SESSION_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -143,7 +144,8 @@ typedef struct CaptureSession_Callbacks {
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_RegisterCallback(Camera_CaptureSession* session,
-    CaptureSession_Callbacks* callback);
+    CaptureSession_Callbacks* callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister capture session event callback.
@@ -155,7 +157,8 @@ Camera_ErrorCode OH_CaptureSession_RegisterCallback(Camera_CaptureSession* sessi
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_UnregisterCallback(Camera_CaptureSession* session,
-    CaptureSession_Callbacks* callback);
+    CaptureSession_Callbacks* callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Register smooth zoom information event callback.
@@ -167,7 +170,8 @@ Camera_ErrorCode OH_CaptureSession_UnregisterCallback(Camera_CaptureSession* ses
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_RegisterSmoothZoomInfoCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback);
+    OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister smooth zoom information event callback.
@@ -179,7 +183,8 @@ Camera_ErrorCode OH_CaptureSession_RegisterSmoothZoomInfoCallback(Camera_Capture
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_UnregisterSmoothZoomInfoCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback);
+    OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Specifies the specific mode.
@@ -195,7 +200,8 @@ Camera_ErrorCode OH_CaptureSession_UnregisterSmoothZoomInfoCallback(Camera_Captu
  *         {@link #CAMERA_SESSION_CONFIG_LOCKED} if session config locked.
  * @since 12
  */
-Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session, Camera_SceneMode sceneMode);
+Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session, Camera_SceneMode sceneMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add Secure output for camera.
@@ -208,7 +214,8 @@ Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session
  *         {@link #CAMERA_SESSION_CONFIG_LOCKED} if session config locked.
  * @since 12
  */
-Camera_ErrorCode OH_CaptureSession_AddSecureOutput(Camera_CaptureSession* session, Camera_PreviewOutput* previewOutput);
+Camera_ErrorCode OH_CaptureSession_AddSecureOutput(Camera_CaptureSession* session, Camera_PreviewOutput* previewOutput)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Begin capture session config.
@@ -219,7 +226,8 @@ Camera_ErrorCode OH_CaptureSession_AddSecureOutput(Camera_CaptureSession* sessio
  *         {@link #CAMERA_SESSION_CONFIG_LOCKED} if session config locked.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_BeginConfig(Camera_CaptureSession* session);
+Camera_ErrorCode OH_CaptureSession_BeginConfig(Camera_CaptureSession* session)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Commit capture session config.
@@ -231,7 +239,8 @@ Camera_ErrorCode OH_CaptureSession_BeginConfig(Camera_CaptureSession* session);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_CommitConfig(Camera_CaptureSession* session);
+Camera_ErrorCode OH_CaptureSession_CommitConfig(Camera_CaptureSession* session)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Add a camera input.
@@ -243,7 +252,8 @@ Camera_ErrorCode OH_CaptureSession_CommitConfig(Camera_CaptureSession* session);
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_AddInput(Camera_CaptureSession* session, Camera_Input* cameraInput);
+Camera_ErrorCode OH_CaptureSession_AddInput(Camera_CaptureSession* session, Camera_Input* cameraInput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Remove a camera input.
@@ -255,7 +265,8 @@ Camera_ErrorCode OH_CaptureSession_AddInput(Camera_CaptureSession* session, Came
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_RemoveInput(Camera_CaptureSession* session, Camera_Input* cameraInput);
+Camera_ErrorCode OH_CaptureSession_RemoveInput(Camera_CaptureSession* session, Camera_Input* cameraInput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Add a preview output.
@@ -268,7 +279,8 @@ Camera_ErrorCode OH_CaptureSession_RemoveInput(Camera_CaptureSession* session, C
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_AddPreviewOutput(Camera_CaptureSession* session,
-    Camera_PreviewOutput* previewOutput);
+    Camera_PreviewOutput* previewOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Remove a preview output.
@@ -281,7 +293,8 @@ Camera_ErrorCode OH_CaptureSession_AddPreviewOutput(Camera_CaptureSession* sessi
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_RemovePreviewOutput(Camera_CaptureSession* session,
-    Camera_PreviewOutput* previewOutput);
+    Camera_PreviewOutput* previewOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Add a photo output.
@@ -293,7 +306,8 @@ Camera_ErrorCode OH_CaptureSession_RemovePreviewOutput(Camera_CaptureSession* se
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_AddPhotoOutput(Camera_CaptureSession* session, Camera_PhotoOutput* photoOutput);
+Camera_ErrorCode OH_CaptureSession_AddPhotoOutput(Camera_CaptureSession* session, Camera_PhotoOutput* photoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Remove a photo output.
@@ -305,7 +319,8 @@ Camera_ErrorCode OH_CaptureSession_AddPhotoOutput(Camera_CaptureSession* session
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_RemovePhotoOutput(Camera_CaptureSession* session, Camera_PhotoOutput* photoOutput);
+Camera_ErrorCode OH_CaptureSession_RemovePhotoOutput(Camera_CaptureSession* session, Camera_PhotoOutput* photoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Add a video output.
@@ -317,7 +332,8 @@ Camera_ErrorCode OH_CaptureSession_RemovePhotoOutput(Camera_CaptureSession* sess
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_AddVideoOutput(Camera_CaptureSession* session, Camera_VideoOutput* videoOutput);
+Camera_ErrorCode OH_CaptureSession_AddVideoOutput(Camera_CaptureSession* session, Camera_VideoOutput* videoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Remove a video output.
@@ -329,7 +345,8 @@ Camera_ErrorCode OH_CaptureSession_AddVideoOutput(Camera_CaptureSession* session
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_RemoveVideoOutput(Camera_CaptureSession* session, Camera_VideoOutput* videoOutput);
+Camera_ErrorCode OH_CaptureSession_RemoveVideoOutput(Camera_CaptureSession* session, Camera_VideoOutput* videoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Add a metadata output.
@@ -342,7 +359,8 @@ Camera_ErrorCode OH_CaptureSession_RemoveVideoOutput(Camera_CaptureSession* sess
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_AddMetadataOutput(Camera_CaptureSession* session,
-    Camera_MetadataOutput* metadataOutput);
+    Camera_MetadataOutput* metadataOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Remove a metadata output.
@@ -355,7 +373,8 @@ Camera_ErrorCode OH_CaptureSession_AddMetadataOutput(Camera_CaptureSession* sess
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_RemoveMetadataOutput(Camera_CaptureSession* session,
-    Camera_MetadataOutput* metadataOutput);
+    Camera_MetadataOutput* metadataOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Start capture session.
@@ -367,7 +386,8 @@ Camera_ErrorCode OH_CaptureSession_RemoveMetadataOutput(Camera_CaptureSession* s
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_Start(Camera_CaptureSession* session);
+Camera_ErrorCode OH_CaptureSession_Start(Camera_CaptureSession* session)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop capture session.
@@ -378,7 +398,8 @@ Camera_ErrorCode OH_CaptureSession_Start(Camera_CaptureSession* session);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_Stop(Camera_CaptureSession* session);
+Camera_ErrorCode OH_CaptureSession_Stop(Camera_CaptureSession* session)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Release capture session.
@@ -389,7 +410,8 @@ Camera_ErrorCode OH_CaptureSession_Stop(Camera_CaptureSession* session);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_Release(Camera_CaptureSession* session);
+Camera_ErrorCode OH_CaptureSession_Release(Camera_CaptureSession* session)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check if device has flash light.
@@ -401,7 +423,8 @@ Camera_ErrorCode OH_CaptureSession_Release(Camera_CaptureSession* session);
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_HasFlash(Camera_CaptureSession* session, bool* hasFlash);
+Camera_ErrorCode OH_CaptureSession_HasFlash(Camera_CaptureSession* session, bool* hasFlash)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check whether a specified flash mode is supported.
@@ -415,7 +438,8 @@ Camera_ErrorCode OH_CaptureSession_HasFlash(Camera_CaptureSession* session, bool
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_IsFlashModeSupported(Camera_CaptureSession* session,
-    Camera_FlashMode flashMode, bool* isSupported);
+    Camera_FlashMode flashMode, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current flash mode.
@@ -427,7 +451,8 @@ Camera_ErrorCode OH_CaptureSession_IsFlashModeSupported(Camera_CaptureSession* s
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetFlashMode(Camera_CaptureSession* session, Camera_FlashMode* flashMode);
+Camera_ErrorCode OH_CaptureSession_GetFlashMode(Camera_CaptureSession* session, Camera_FlashMode* flashMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set flash mode.
@@ -439,7 +464,8 @@ Camera_ErrorCode OH_CaptureSession_GetFlashMode(Camera_CaptureSession* session, 
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, Camera_FlashMode flashMode);
+Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, Camera_FlashMode flashMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check whether a specified exposure mode is supported.
@@ -453,7 +479,8 @@ Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, 
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_IsExposureModeSupported(Camera_CaptureSession* session,
-    Camera_ExposureMode exposureMode, bool* isSupported);
+    Camera_ExposureMode exposureMode, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current exposure mode.
@@ -465,7 +492,8 @@ Camera_ErrorCode OH_CaptureSession_IsExposureModeSupported(Camera_CaptureSession
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetExposureMode(Camera_CaptureSession* session, Camera_ExposureMode* exposureMode);
+Camera_ErrorCode OH_CaptureSession_GetExposureMode(Camera_CaptureSession* session, Camera_ExposureMode* exposureMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set exposure mode.
@@ -477,7 +505,8 @@ Camera_ErrorCode OH_CaptureSession_GetExposureMode(Camera_CaptureSession* sessio
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetExposureMode(Camera_CaptureSession* session, Camera_ExposureMode exposureMode);
+Camera_ErrorCode OH_CaptureSession_SetExposureMode(Camera_CaptureSession* session, Camera_ExposureMode exposureMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current metering point.
@@ -489,7 +518,8 @@ Camera_ErrorCode OH_CaptureSession_SetExposureMode(Camera_CaptureSession* sessio
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetMeteringPoint(Camera_CaptureSession* session, Camera_Point* point);
+Camera_ErrorCode OH_CaptureSession_GetMeteringPoint(Camera_CaptureSession* session, Camera_Point* point)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the center point of the metering area.
@@ -501,7 +531,8 @@ Camera_ErrorCode OH_CaptureSession_GetMeteringPoint(Camera_CaptureSession* sessi
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* session, Camera_Point point);
+Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* session, Camera_Point point)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Query the exposure compensation range.
@@ -516,7 +547,8 @@ Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* sessi
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_GetExposureBiasRange(Camera_CaptureSession* session, float* minExposureBias,
-    float* maxExposureBias, float* step);
+    float* maxExposureBias, float* step)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set exposure compensation.
@@ -528,7 +560,8 @@ Camera_ErrorCode OH_CaptureSession_GetExposureBiasRange(Camera_CaptureSession* s
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetExposureBias(Camera_CaptureSession* session, float exposureBias);
+Camera_ErrorCode OH_CaptureSession_SetExposureBias(Camera_CaptureSession* session, float exposureBias)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current exposure compensation.
@@ -540,7 +573,8 @@ Camera_ErrorCode OH_CaptureSession_SetExposureBias(Camera_CaptureSession* sessio
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* session, float* exposureBias);
+Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* session, float* exposureBias)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check whether a specified focus mode is supported.
@@ -554,7 +588,8 @@ Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* sessio
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_IsFocusModeSupported(Camera_CaptureSession* session,
-    Camera_FocusMode focusMode, bool* isSupported);
+    Camera_FocusMode focusMode, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current focus mode.
@@ -566,7 +601,8 @@ Camera_ErrorCode OH_CaptureSession_IsFocusModeSupported(Camera_CaptureSession* s
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetFocusMode(Camera_CaptureSession* session, Camera_FocusMode* focusMode);
+Camera_ErrorCode OH_CaptureSession_GetFocusMode(Camera_CaptureSession* session, Camera_FocusMode* focusMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set focus mode.
@@ -578,7 +614,8 @@ Camera_ErrorCode OH_CaptureSession_GetFocusMode(Camera_CaptureSession* session, 
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetFocusMode(Camera_CaptureSession* session, Camera_FocusMode focusMode);
+Camera_ErrorCode OH_CaptureSession_SetFocusMode(Camera_CaptureSession* session, Camera_FocusMode focusMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current focus point.
@@ -590,7 +627,8 @@ Camera_ErrorCode OH_CaptureSession_SetFocusMode(Camera_CaptureSession* session, 
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetFocusPoint(Camera_CaptureSession* session, Camera_Point* focusPoint);
+Camera_ErrorCode OH_CaptureSession_GetFocusPoint(Camera_CaptureSession* session, Camera_Point* focusPoint)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set focus point.
@@ -602,7 +640,8 @@ Camera_ErrorCode OH_CaptureSession_GetFocusPoint(Camera_CaptureSession* session,
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetFocusPoint(Camera_CaptureSession* session, Camera_Point focusPoint);
+Camera_ErrorCode OH_CaptureSession_SetFocusPoint(Camera_CaptureSession* session, Camera_Point focusPoint)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get all supported zoom ratio range.
@@ -615,7 +654,8 @@ Camera_ErrorCode OH_CaptureSession_SetFocusPoint(Camera_CaptureSession* session,
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetZoomRatioRange(Camera_CaptureSession* session, float* minZoom, float* maxZoom);
+Camera_ErrorCode OH_CaptureSession_GetZoomRatioRange(Camera_CaptureSession* session, float* minZoom, float* maxZoom)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current zoom ratio.
@@ -627,7 +667,8 @@ Camera_ErrorCode OH_CaptureSession_GetZoomRatioRange(Camera_CaptureSession* sess
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_GetZoomRatio(Camera_CaptureSession* session, float* zoom);
+Camera_ErrorCode OH_CaptureSession_GetZoomRatio(Camera_CaptureSession* session, float* zoom)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set zoom ratio.
@@ -639,7 +680,8 @@ Camera_ErrorCode OH_CaptureSession_GetZoomRatio(Camera_CaptureSession* session, 
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 11
  */
-Camera_ErrorCode OH_CaptureSession_SetZoomRatio(Camera_CaptureSession* session, float zoom);
+Camera_ErrorCode OH_CaptureSession_SetZoomRatio(Camera_CaptureSession* session, float zoom)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check whether a specified video stabilization mode is supported.
@@ -653,7 +695,8 @@ Camera_ErrorCode OH_CaptureSession_SetZoomRatio(Camera_CaptureSession* session, 
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_IsVideoStabilizationModeSupported(Camera_CaptureSession* session,
-    Camera_VideoStabilizationMode mode, bool* isSupported);
+    Camera_VideoStabilizationMode mode, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get current video stabilization mode.
@@ -666,7 +709,8 @@ Camera_ErrorCode OH_CaptureSession_IsVideoStabilizationModeSupported(Camera_Capt
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_GetVideoStabilizationMode(Camera_CaptureSession* session,
-    Camera_VideoStabilizationMode* mode);
+    Camera_VideoStabilizationMode* mode)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set video stabilization mode.
@@ -679,7 +723,8 @@ Camera_ErrorCode OH_CaptureSession_GetVideoStabilizationMode(Camera_CaptureSessi
  * @since 11
  */
 Camera_ErrorCode OH_CaptureSession_SetVideoStabilizationMode(Camera_CaptureSession* session,
-    Camera_VideoStabilizationMode mode);
+    Camera_VideoStabilizationMode mode)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Determines whether the camera input can be added into the session.
@@ -692,7 +737,8 @@ Camera_ErrorCode OH_CaptureSession_SetVideoStabilizationMode(Camera_CaptureSessi
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_CanAddInput(Camera_CaptureSession* session,
-    Camera_Input* cameraInput, bool* isSuccessful);
+    Camera_Input* cameraInput, bool* isSuccessful)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Determines whether the camera preview output can be added into the session.
@@ -705,7 +751,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddInput(Camera_CaptureSession* session,
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_CanAddPreviewOutput(Camera_CaptureSession* session,
-    Camera_PreviewOutput* cameraOutput, bool* isSuccessful);
+    Camera_PreviewOutput* cameraOutput, bool* isSuccessful)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Determines whether the camera photo output can be added into the session.
@@ -718,7 +765,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddPreviewOutput(Camera_CaptureSession* se
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_CanAddPhotoOutput(Camera_CaptureSession* session,
-    Camera_PhotoOutput* cameraOutput, bool* isSuccessful);
+    Camera_PhotoOutput* cameraOutput, bool* isSuccessful)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Determines whether the camera video output can be added into the session.
@@ -731,7 +779,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddPhotoOutput(Camera_CaptureSession* sess
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_CanAddVideoOutput(Camera_CaptureSession* session,
-    Camera_VideoOutput* cameraOutput, bool* isSuccessful);
+    Camera_VideoOutput* cameraOutput, bool* isSuccessful)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check the preconfig type is supported or not.
@@ -744,7 +793,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddVideoOutput(Camera_CaptureSession* sess
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_CanPreconfig(Camera_CaptureSession* session,
-    Camera_PreconfigType preconfigType, bool* canPreconfig);
+    Camera_PreconfigType preconfigType, bool* canPreconfig)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check the preconfig type with ratio is supported or not.
@@ -758,7 +808,8 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfig(Camera_CaptureSession* session,
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* session,
-    Camera_PreconfigType preconfigType, Camera_PreconfigRatio preconfigRatio, bool* canPreconfig);
+    Camera_PreconfigType preconfigType, Camera_PreconfigRatio preconfigRatio, bool* canPreconfig)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the preconfig type.
@@ -771,7 +822,8 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* 
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_Preconfig(Camera_CaptureSession* session,
-    Camera_PreconfigType preconfigType);
+    Camera_PreconfigType preconfigType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the preconfig type with ratio.
@@ -785,7 +837,8 @@ Camera_ErrorCode OH_CaptureSession_Preconfig(Camera_CaptureSession* session,
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_PreconfigWithRatio(Camera_CaptureSession* session,
-    Camera_PreconfigType preconfigType, Camera_PreconfigRatio preconfigRatio);
+    Camera_PreconfigType preconfigType, Camera_PreconfigRatio preconfigRatio)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the exposure value.
@@ -797,7 +850,8 @@ Camera_ErrorCode OH_CaptureSession_PreconfigWithRatio(Camera_CaptureSession* ses
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 12
  */
-Camera_ErrorCode OH_CaptureSession_GetExposureValue(Camera_CaptureSession* session, float* exposureValue);
+Camera_ErrorCode OH_CaptureSession_GetExposureValue(Camera_CaptureSession* session, float* exposureValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get current focal length.
@@ -809,7 +863,8 @@ Camera_ErrorCode OH_CaptureSession_GetExposureValue(Camera_CaptureSession* sessi
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 12
  */
-Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session, float* focalLength);
+Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session, float* focalLength)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set target zoom ratio by smooth method.
@@ -823,7 +878,8 @@ Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_SetSmoothZoom(Camera_CaptureSession* session,
-    float targetZoom, Camera_SmoothZoomMode smoothZoomMode);
+    float targetZoom, Camera_SmoothZoomMode smoothZoomMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the supported color spaces.
@@ -837,7 +893,8 @@ Camera_ErrorCode OH_CaptureSession_SetSmoothZoom(Camera_CaptureSession* session,
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_GetSupportedColorSpaces(Camera_CaptureSession* session,
-    OH_NativeBuffer_ColorSpace** colorSpace, uint32_t* size);
+    OH_NativeBuffer_ColorSpace** colorSpace, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete the color spaces.
@@ -849,7 +906,8 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedColorSpaces(Camera_CaptureSession
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_DeleteColorSpaces(Camera_CaptureSession* session,
-    OH_NativeBuffer_ColorSpace* colorSpace);
+    OH_NativeBuffer_ColorSpace* colorSpace)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get current color space.
@@ -862,7 +920,8 @@ Camera_ErrorCode OH_CaptureSession_DeleteColorSpaces(Camera_CaptureSession* sess
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_GetActiveColorSpace(Camera_CaptureSession* session,
-    OH_NativeBuffer_ColorSpace* colorSpace);
+    OH_NativeBuffer_ColorSpace* colorSpace)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set current color space.
@@ -875,7 +934,8 @@ Camera_ErrorCode OH_CaptureSession_GetActiveColorSpace(Camera_CaptureSession* se
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_SetActiveColorSpace(Camera_CaptureSession* session,
-    OH_NativeBuffer_ColorSpace colorSpace);
+    OH_NativeBuffer_ColorSpace colorSpace)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register device switch event callback.
@@ -887,7 +947,8 @@ Camera_ErrorCode OH_CaptureSession_SetActiveColorSpace(Camera_CaptureSession* se
  * @since 13
  */
 Camera_ErrorCode OH_CaptureSession_RegisterAutoDeviceSwitchStatusCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnAutoDeviceSwitchStatusChange autoDeviceSwitchStatusChange);
+    OH_CaptureSession_OnAutoDeviceSwitchStatusChange autoDeviceSwitchStatusChange)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unregister device switch event callback.
@@ -899,7 +960,8 @@ Camera_ErrorCode OH_CaptureSession_RegisterAutoDeviceSwitchStatusCallback(Camera
  * @since 13
  */
 Camera_ErrorCode OH_CaptureSession_UnregisterAutoDeviceSwitchStatusCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnAutoDeviceSwitchStatusChange autoDeviceSwitchStatusChange);
+    OH_CaptureSession_OnAutoDeviceSwitchStatusChange autoDeviceSwitchStatusChange)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Check whether auto device switch is supported.
@@ -911,7 +973,8 @@ Camera_ErrorCode OH_CaptureSession_UnregisterAutoDeviceSwitchStatusCallback(Came
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 13
  */
-Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSession* session, bool* isSupported);
+Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSession* session, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Enable auto switch or not for the camera device.
@@ -924,7 +987,8 @@ Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSes
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 13
  */
-Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession* session, bool enabled);
+Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession* session, bool enabled)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set quality prioritization.
@@ -937,7 +1001,8 @@ Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession*
  * @since 14
  */
 Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(
-    Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization);
+    Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Checks whether the macro capability is supported.
@@ -950,7 +1015,8 @@ Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(
  *         CAMERA_SESSION_NOT_CONFIG = 7400103: The capture session is not configured.
  * @since 19
  */
-Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported);
+Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Enables or disables the macro capability of the camera device.
@@ -964,7 +1030,8 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
  *         CAMERA_OPERATION_NOT_ALLOWED = 7400102: The operation is not allowed.
  * @since 19
  */
-Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled);
+Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Checks whether the specified white balance mode is supported.
@@ -979,7 +1046,8 @@ Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, b
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_IsWhiteBalanceModeSupported(
-    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode, bool *isSupported);
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode, bool *isSupported)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the white balance mode in use.
@@ -993,7 +1061,8 @@ Camera_ErrorCode OH_CaptureSession_IsWhiteBalanceModeSupported(
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceMode(
-    Camera_CaptureSession *session, Camera_WhiteBalanceMode *whiteBalanceMode);
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode *whiteBalanceMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the supported white balance color temperature range.
@@ -1008,7 +1077,8 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceMode(
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(
-    Camera_CaptureSession *session, int32_t *minColorTemperature, int32_t *maxColorTemperature);
+    Camera_CaptureSession *session, int32_t *minColorTemperature, int32_t *maxColorTemperature)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the white balance color temperature.
@@ -1021,7 +1091,8 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(
  *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 20
  */
-Camera_ErrorCode OH_CaptureSession_GetWhiteBalance(Camera_CaptureSession *session, int32_t *colorTemperature);
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalance(Camera_CaptureSession *session, int32_t *colorTemperature)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the white balance color temperature.
@@ -1034,7 +1105,8 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalance(Camera_CaptureSession *sessio
  *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 20
  */
-Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession *session, int32_t colorTemperature);
+Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession *session, int32_t colorTemperature)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a white balance mode.
@@ -1048,7 +1120,8 @@ Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession *sessio
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(
-    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode);
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register system pressure level changes callback.
@@ -1061,7 +1134,8 @@ Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange);
+    OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister system pressure level changes callback.
@@ -1074,7 +1148,8 @@ Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Cam
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange);
+    OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Checks whether the control center is supported.
@@ -1087,7 +1162,8 @@ Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback(C
  *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
  * @since 20
  */
-Camera_ErrorCode OH_CaptureSession_IsControlCenterSupported(Camera_CaptureSession* session, bool* isSupported);
+Camera_ErrorCode OH_CaptureSession_IsControlCenterSupported(Camera_CaptureSession* session, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the supported effect types .
@@ -1101,7 +1177,8 @@ Camera_ErrorCode OH_CaptureSession_IsControlCenterSupported(Camera_CaptureSessio
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_GetSupportedEffectTypes(
-    Camera_CaptureSession* session, Camera_ControlCenterEffectType** types, uint32_t* size);
+    Camera_CaptureSession* session, Camera_ControlCenterEffectType** types, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Delete the effect types.
@@ -1114,7 +1191,8 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedEffectTypes(
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_DeleteSupportedEffectTypes(Camera_CaptureSession* session,
-    Camera_ControlCenterEffectType* types, uint32_t size);
+    Camera_ControlCenterEffectType* types, uint32_t size)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Enables or disables the control center.
@@ -1127,7 +1205,8 @@ Camera_ErrorCode OH_CaptureSession_DeleteSupportedEffectTypes(Camera_CaptureSess
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 20
  */
-Camera_ErrorCode OH_CaptureSession_EnableControlCenter(Camera_CaptureSession* session, bool enabled);
+Camera_ErrorCode OH_CaptureSession_EnableControlCenter(Camera_CaptureSession* session, bool enabled)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Capture session control center effect status info callback.
@@ -1149,7 +1228,8 @@ typedef void (*OH_CaptureSession_OnControlCenterEffectStatusChange)(Camera_Captu
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange);
+    OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister control center effect status information event callback.
@@ -1161,7 +1241,8 @@ Camera_ErrorCode OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallba
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,
-    OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange);
+    OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Capture session macro status change callback.
@@ -1182,7 +1263,8 @@ typedef void (*OH_CaptureSession_OnMacroStatusChange)(Camera_CaptureSession* ses
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_RegisterMacroStatusChangeCallback(
-    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
+    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister macro status change callback.
@@ -1194,8 +1276,43 @@ Camera_ErrorCode OH_CaptureSession_RegisterMacroStatusChangeCallback(
  * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(
-    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
+    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
+/**
+ * @brief Capture session iso change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
+ * @param isoValue The iso value which delivered by the callback.
+ * @since 22
+ */
+typedef void (*OH_CaptureSession_OnIsoChange)(Camera_CaptureSession* session, int32_t isoValue);
+ 
+/**
+ * @brief Register iso change event callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isoChange The {@link OH_CaptureSession_OnIsoChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 22
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterIsoChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Unregister iso change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isoChange The {@link OH_CaptureSession_OnIsoChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 22
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterIsoChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif

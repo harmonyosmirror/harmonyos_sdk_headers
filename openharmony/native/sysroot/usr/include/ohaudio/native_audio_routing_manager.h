@@ -44,6 +44,7 @@
 #ifndef NATIVE_AUDIO_ROUTING_MANAGER_H
 #define NATIVE_AUDIO_ROUTING_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audio_device_base.h"
 #ifdef __cplusplus
 extern "C" {
@@ -85,7 +86,8 @@ typedef int32_t (*OH_AudioRoutingManager_OnDeviceChangedCallback) (
  *         {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
  * @since 12
  */
-OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager(OH_AudioRoutingManager **audioRoutingManager);
+OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager(OH_AudioRoutingManager **audioRoutingManager)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the available devices according to the input deviceFlag.
@@ -111,7 +113,8 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager(OH_AudioRoutingMana
 OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(
     OH_AudioRoutingManager *audioRoutingManager,
     OH_AudioDevice_Flag deviceFlag,
-    OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+    OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get available devices by device usage.
@@ -135,7 +138,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(
     OH_AudioRoutingManager *audioRoutingManager,
-    OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+    OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get preferred ouput devices by audio usage.
@@ -159,7 +163,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice(
     OH_AudioRoutingManager *audioRoutingManager,
-    OH_AudioStream_Usage streamUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+    OH_AudioStream_Usage streamUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get preferred input devices by audio source type.
@@ -181,7 +186,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice(
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice(OH_AudioRoutingManager *audioRoutingManager,
-    OH_AudioStream_SourceType sourceType, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+    OH_AudioStream_SourceType sourceType, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Register the device change callback of the audio routing manager.
  *
@@ -200,7 +206,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice(OH_AudioRou
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback(
     OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Flag deviceFlag,
-    OH_AudioRoutingManager_OnDeviceChangedCallback callback);
+    OH_AudioRoutingManager_OnDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister the device change callback of the audio routing manager.
@@ -218,7 +225,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback(
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback(
     OH_AudioRoutingManager *audioRoutingManager,
-    OH_AudioRoutingManager_OnDeviceChangedCallback callback);
+    OH_AudioRoutingManager_OnDeviceChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the audio device descriptor array object.
@@ -236,7 +244,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback(
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices(
     OH_AudioRoutingManager *audioRoutingManager,
-    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
+    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This type defines the callback function that is used to receive the audio devices' block status.
@@ -269,7 +278,8 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(
     OH_AudioRoutingManager *audioRoutingManager,
-    bool *supported);
+    bool *supported)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the microphone block status callback. Before using this function, users should query whether block
@@ -291,7 +301,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(
 OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(
     OH_AudioRoutingManager *audioRoutingManager,
     OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback,
-    void *userData);
+    void *userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif

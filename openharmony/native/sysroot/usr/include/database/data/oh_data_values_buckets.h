@@ -40,6 +40,7 @@
 
 #ifndef OH_VALUES_BUCKETS_H
 #define OH_VALUES_BUCKETS_H
+#include "info/application_target_sdk_version.h"
 #include "database/rdb/oh_values_bucket.h"
 #ifdef __cplusplus
 extern "C" {
@@ -61,7 +62,7 @@ typedef struct OH_Data_VBuckets OH_Data_VBuckets;
  * @see OH_VBuckets_Destroy.
  * @since 18
  */
-OH_Data_VBuckets *OH_VBuckets_Create(void);
+OH_Data_VBuckets *OH_VBuckets_Create(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an OH_Data_VBuckets instance object.
@@ -72,7 +73,7 @@ OH_Data_VBuckets *OH_VBuckets_Create(void);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_VBuckets_Destroy(OH_Data_VBuckets *buckets);
+int OH_VBuckets_Destroy(OH_Data_VBuckets *buckets) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Add an OH_VBucket to OH_Data_VBuckets object.
@@ -84,7 +85,8 @@ int OH_VBuckets_Destroy(OH_Data_VBuckets *buckets);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_VBuckets_PutRow(OH_Data_VBuckets *buckets, const OH_VBucket *row);
+int OH_VBuckets_PutRow(OH_Data_VBuckets *buckets, const OH_VBucket *row)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Add an OH_Data_VBuckets to OH_Data_VBuckets object.
@@ -96,7 +98,8 @@ int OH_VBuckets_PutRow(OH_Data_VBuckets *buckets, const OH_VBucket *row);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_VBuckets_PutRows(OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows);
+int OH_VBuckets_PutRows(OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the number of rows in OH_Data_VBuckets object.
@@ -108,7 +111,8 @@ int OH_VBuckets_PutRows(OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows)
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_VBuckets_RowCount(OH_Data_VBuckets *buckets, size_t *count);
+int OH_VBuckets_RowCount(OH_Data_VBuckets *buckets, size_t *count)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

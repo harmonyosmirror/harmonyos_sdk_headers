@@ -39,6 +39,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXEL_MAP_MDK_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXEL_MAP_MDK_H_
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "napi/native_api.h"
 #include "image_mdk_common.h"
@@ -208,7 +209,8 @@ struct OhosPixelMapCreateOps {
  * @version 1.0
  */
 int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info,
-    void* buf, size_t len, napi_value* res);
+    void* buf, size_t len, napi_value* res)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates a <b>PixelMap</b> object with stride, whose memory is default as DMA.
@@ -233,7 +235,8 @@ int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info,
  * @version 1.0
  */
 int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps info,
-    void* buf, size_t len, int32_t rowStride, napi_value* res);
+    void* buf, size_t len, int32_t rowStride, napi_value* res)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a <b>PixelMap</b> object that contains only alpha channel information.
@@ -274,7 +277,8 @@ int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_CreateAlphaPixelMap(napi_env env, napi_value source, napi_value* alpha);
+int32_t OH_PixelMap_CreateAlphaPixelMap(napi_env env, napi_value source, napi_value* alpha)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Initializes a <b>PixelMap</b> object.
@@ -287,7 +291,8 @@ int32_t OH_PixelMap_CreateAlphaPixelMap(napi_env env, napi_value source, napi_va
  * @since 10
  * @version 1.0
  */
-NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source);
+NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the number of bytes per row of a <b>PixelMap</b> object.
@@ -304,7 +309,8 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* num);
+int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* num)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether a <b>PixelMap</b> object is editable.
@@ -321,7 +327,8 @@ int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* 
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_GetIsEditable(const NativePixelMap* native, int32_t* editable);
+int32_t OH_PixelMap_GetIsEditable(const NativePixelMap* native, int32_t* editable)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Checks whether a <b>PixelMap</b> object supports alpha channels.
@@ -338,7 +345,8 @@ int32_t OH_PixelMap_GetIsEditable(const NativePixelMap* native, int32_t* editabl
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_IsSupportAlpha(const NativePixelMap* native, int32_t* alpha);
+int32_t OH_PixelMap_IsSupportAlpha(const NativePixelMap* native, int32_t* alpha)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets an alpha channel for a <b>PixelMap</b> object.
@@ -355,7 +363,8 @@ int32_t OH_PixelMap_IsSupportAlpha(const NativePixelMap* native, int32_t* alpha)
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_SetAlphaAble(const NativePixelMap* native, int32_t alpha);
+int32_t OH_PixelMap_SetAlphaAble(const NativePixelMap* native, int32_t alpha)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the pixel density of a <b>PixelMap</b> object.
@@ -372,7 +381,8 @@ int32_t OH_PixelMap_SetAlphaAble(const NativePixelMap* native, int32_t alpha);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_GetDensity(const NativePixelMap* native, int32_t* density);
+int32_t OH_PixelMap_GetDensity(const NativePixelMap* native, int32_t* density)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the pixel density for a <b>PixelMap</b> object.
@@ -389,7 +399,8 @@ int32_t OH_PixelMap_GetDensity(const NativePixelMap* native, int32_t* density);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density);
+int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the opacity for a <b>PixelMap</b> object.
@@ -406,7 +417,8 @@ int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_SetOpacity(const NativePixelMap* native, float opacity);
+int32_t OH_PixelMap_SetOpacity(const NativePixelMap* native, float opacity)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Scales a <b>PixelMap</b> object.
@@ -438,7 +450,8 @@ int32_t OH_PixelMap_SetOpacity(const NativePixelMap* native, float opacity);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_Scale(const NativePixelMap* native, float x, float y);
+int32_t OH_PixelMap_Scale(const NativePixelMap* native, float x, float y)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 
 /**
@@ -462,7 +475,8 @@ int32_t OH_PixelMap_Scale(const NativePixelMap* native, float x, float y);
  * @version 1.0
  */
 int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x, float y,
-    OH_PixelMap_AntiAliasingLevel level);
+    OH_PixelMap_AntiAliasingLevel level)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Translates a <b>PixelMap</b> object.
@@ -494,7 +508,8 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x,
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y);
+int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Rotates a <b>PixelMap</b> object.
@@ -525,7 +540,8 @@ int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle);
+int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Flips a <b>PixelMap</b> object.
@@ -557,7 +573,8 @@ int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y);
+int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Crops a <b>PixelMap</b> object.
@@ -591,7 +608,8 @@ int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y);
  * @since 10
  * @version 1.0
  */
-int32_t OH_PixelMap_Crop(const NativePixelMap* native, int32_t x, int32_t y, int32_t width, int32_t height);
+int32_t OH_PixelMap_Crop(const NativePixelMap* native, int32_t x, int32_t y, int32_t width, int32_t height)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the image information of a <b>PixelMap</b> object.
@@ -622,7 +640,8 @@ int32_t OH_PixelMap_Crop(const NativePixelMap* native, int32_t x, int32_t y, int
  * @since 10
  * @version 2.0
  */
-int32_t OH_PixelMap_GetImageInfo(const NativePixelMap* native, OhosPixelMapInfos *info);
+int32_t OH_PixelMap_GetImageInfo(const NativePixelMap* native, OhosPixelMapInfos *info)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the memory address of a <b>NativePixelMap</b> object and locks the memory.
@@ -653,7 +672,8 @@ int32_t OH_PixelMap_GetImageInfo(const NativePixelMap* native, OhosPixelMapInfos
  * @since 10
  * @version 2.0
  */
-int32_t OH_PixelMap_AccessPixels(const NativePixelMap* native, void** addr);
+int32_t OH_PixelMap_AccessPixels(const NativePixelMap* native, void** addr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Unlocks the memory of the <b>NativePixelMap</b> object data.
@@ -684,7 +704,8 @@ int32_t OH_PixelMap_AccessPixels(const NativePixelMap* native, void** addr);
  * @since 10
  * @version 2.0
  */
-int32_t OH_PixelMap_UnAccessPixels(const NativePixelMap* native);
+int32_t OH_PixelMap_UnAccessPixels(const NativePixelMap* native)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #ifdef __cplusplus
 };

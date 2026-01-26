@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_VIDEOOUTPUT_H
 #define NATIVE_INCLUDE_CAMERA_VIDEOOUTPUT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -119,7 +120,8 @@ typedef struct VideoOutput_Callbacks {
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_VideoOutput_RegisterCallback(Camera_VideoOutput* videoOutput, VideoOutput_Callbacks* callback);
+Camera_ErrorCode OH_VideoOutput_RegisterCallback(Camera_VideoOutput* videoOutput, VideoOutput_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister video output change event callback.
@@ -130,7 +132,8 @@ Camera_ErrorCode OH_VideoOutput_RegisterCallback(Camera_VideoOutput* videoOutput
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_VideoOutput_UnregisterCallback(Camera_VideoOutput* videoOutput, VideoOutput_Callbacks* callback);
+Camera_ErrorCode OH_VideoOutput_UnregisterCallback(Camera_VideoOutput* videoOutput, VideoOutput_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Start video output.
@@ -142,7 +145,8 @@ Camera_ErrorCode OH_VideoOutput_UnregisterCallback(Camera_VideoOutput* videoOutp
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_VideoOutput_Start(Camera_VideoOutput* videoOutput);
+Camera_ErrorCode OH_VideoOutput_Start(Camera_VideoOutput* videoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop video output.
@@ -153,7 +157,8 @@ Camera_ErrorCode OH_VideoOutput_Start(Camera_VideoOutput* videoOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_VideoOutput_Stop(Camera_VideoOutput* videoOutput);
+Camera_ErrorCode OH_VideoOutput_Stop(Camera_VideoOutput* videoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Release video output.
@@ -164,7 +169,8 @@ Camera_ErrorCode OH_VideoOutput_Stop(Camera_VideoOutput* videoOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_VideoOutput_Release(Camera_VideoOutput* videoOutput);
+Camera_ErrorCode OH_VideoOutput_Release(Camera_VideoOutput* videoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get active video output profile.
@@ -176,7 +182,8 @@ Camera_ErrorCode OH_VideoOutput_Release(Camera_VideoOutput* videoOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput, Camera_VideoProfile** profile);
+Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput, Camera_VideoProfile** profile)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete video profile instance.
@@ -186,7 +193,8 @@ Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
  */
-Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile);
+Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check whether mirror mode is supported for videoOutput
@@ -198,7 +206,8 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 15
  */
-Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutput, bool* isSupported);
+Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutput, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Enable or disable mirror mode for videoOutput
@@ -210,7 +219,8 @@ Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutpu
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 15
  */
-Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bool mirrorMode);
+Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bool mirrorMode)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Gets the video rotation angle.
@@ -224,7 +234,8 @@ Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bo
  * @since 12
  */
 Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree,
-    Camera_ImageRotation* imageRotation);
+    Camera_ImageRotation* imageRotation)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get supported video output frame rate list.
@@ -238,7 +249,8 @@ Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutpu
  * @since 12
  */
 Camera_ErrorCode OH_VideoOutput_GetSupportedFrameRates(Camera_VideoOutput* videoOutput,
-    Camera_FrameRateRange** frameRateRange, uint32_t* size);
+    Camera_FrameRateRange** frameRateRange, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete frame rate list.
@@ -250,7 +262,8 @@ Camera_ErrorCode OH_VideoOutput_GetSupportedFrameRates(Camera_VideoOutput* video
  * @since 12
  */
 Camera_ErrorCode OH_VideoOutput_DeleteFrameRates(Camera_VideoOutput* videoOutput,
-    Camera_FrameRateRange* frameRateRange);
+    Camera_FrameRateRange* frameRateRange)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set video output frame rate.
@@ -263,7 +276,8 @@ Camera_ErrorCode OH_VideoOutput_DeleteFrameRates(Camera_VideoOutput* videoOutput
  * @since 12
  */
 Camera_ErrorCode OH_VideoOutput_SetFrameRate(Camera_VideoOutput* videoOutput,
-    int32_t minFps, int32_t maxFps);
+    int32_t minFps, int32_t maxFps)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get active video output frame rate.
@@ -276,7 +290,8 @@ Camera_ErrorCode OH_VideoOutput_SetFrameRate(Camera_VideoOutput* videoOutput,
  * @since 12
  */
 Camera_ErrorCode OH_VideoOutput_GetActiveFrameRate(Camera_VideoOutput* videoOutput,
-    Camera_FrameRateRange* frameRateRange);
+    Camera_FrameRateRange* frameRateRange)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

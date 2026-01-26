@@ -32,6 +32,7 @@
 #ifndef OH_BLUETOOTH_H
 #define OH_BLUETOOTH_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -87,7 +88,8 @@ typedef enum Bluetooth_ResultCode {
  *     {@link BLUETOOTH_INVALID_PARAM} The input parameter enabled is a null pointer.
  * @since 13
  */
-Bluetooth_ResultCode OH_Bluetooth_GetBluetoothSwitchState(Bluetooth_SwitchState *state);
+Bluetooth_ResultCode OH_Bluetooth_GetBluetoothSwitchState(Bluetooth_SwitchState *state)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif

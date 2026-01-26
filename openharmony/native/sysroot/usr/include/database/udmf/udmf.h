@@ -39,6 +39,7 @@
 #ifndef UDMF_H
 #define UDMF_H
 
+#include "info/application_target_sdk_version.h"
 #include <inttypes.h>
 #include <stdbool.h>
 #include "uds.h"
@@ -252,7 +253,7 @@ typedef OH_UdmfData* (*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableI
  * @see OH_UdmfData.
  * @since 12
  */
-OH_UdmfData* OH_UdmfData_Create();
+OH_UdmfData* OH_UdmfData_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdmfData} instance.
@@ -261,7 +262,7 @@ OH_UdmfData* OH_UdmfData_Create();
  * @see OH_UdmfData.
  * @since 12
  */
-void OH_UdmfData_Destroy(OH_UdmfData* pThis);
+void OH_UdmfData_Destroy(OH_UdmfData* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one {OH_UdmfRecord} record to the {@link OH_UdmfData} data.
@@ -274,7 +275,8 @@ void OH_UdmfData_Destroy(OH_UdmfData* pThis);
  * @see OH_UdmfData Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record);
+int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check whether the type exists in the {@link OH_UdmfData} data.
@@ -287,7 +289,8 @@ int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record);
  * @see OH_UdmfData.
  * @since 12
  */
-bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type);
+bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get all types in the {@link OH_UdmfData} data.
@@ -299,7 +302,8 @@ bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type);
  * @see OH_UdmfData.
  * @since 12
  */
-char** OH_UdmfData_GetTypes(OH_UdmfData* pThis, unsigned int* count);
+char** OH_UdmfData_GetTypes(OH_UdmfData* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get all records in the {@link OH_UdmfData} data.
@@ -310,7 +314,8 @@ char** OH_UdmfData_GetTypes(OH_UdmfData* pThis, unsigned int* count);
  * @see OH_UdmfData OH_UdmfRecord.
  * @since 12
  */
-OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count);
+OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines the callback function used free the context.
@@ -327,7 +332,7 @@ typedef void (*UdmfData_Finalize)(void* context);
  * @see OH_UdmfRecordProvider.
  * @since 13
  */
-OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create();
+OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy an {@link OH_UdmfRecordProvider} instance.
@@ -339,7 +344,8 @@ OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create();
  * @see OH_UdmfRecordProvider Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecordProvider_Destroy(OH_UdmfRecordProvider* provider);
+int OH_UdmfRecordProvider_Destroy(OH_UdmfRecordProvider* provider)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Defines a callback function used to obtain data by type.
@@ -366,7 +372,8 @@ typedef void* (*OH_UdmfRecordProvider_GetData)(void* context, const char* type);
  * @since 13
  */
 int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context,
-    const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize);
+    const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfRecord}, it's relate with UDS data.
@@ -376,7 +383,7 @@ int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context
  * @see OH_UdmfRecord.
  * @since 12
  */
-OH_UdmfRecord* OH_UdmfRecord_Create();
+OH_UdmfRecord* OH_UdmfRecord_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to an instance of {@link OH_UdmfRecord}.
@@ -385,7 +392,7 @@ OH_UdmfRecord* OH_UdmfRecord_Create();
  * @see OH_UdmfRecord.
  * @since 12
  */
-void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis);
+void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one custom data to the {@link OH_UdmfRecord} record.
@@ -400,7 +407,8 @@ void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis);
  * @see OH_UdmfRecord Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char* entry, unsigned int count);
+int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char* entry, unsigned int count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one {OH_UdsPlainText} data to the {@link OH_UdmfRecord} record.
@@ -413,7 +421,8 @@ int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsi
  * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText);
+int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one {OH_UdsHyperlink} data to the {@link OH_UdmfRecord} record.
@@ -426,7 +435,8 @@ int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
  * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink);
+int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one {OH_UdsHtml} data to the {@link OH_UdmfRecord} record.
@@ -439,7 +449,8 @@ int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
  * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
+int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one {OH_UdsAppItem} data to the {@link OH_UdmfRecord} record.
@@ -452,7 +463,8 @@ int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
+int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add one {OH_UdsFileUri} data to the {@link OH_UdmfRecord} record.
@@ -465,7 +477,8 @@ int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
  * @see OH_UdmfRecord OH_UdsFileUri Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
+int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Add one {OH_UdsPixelMap} data to the {@link OH_UdmfRecord} record.
@@ -478,7 +491,8 @@ int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
  * @see OH_UdmfRecord OH_UdsPixelMap Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
+int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Add one {@link OH_UdsArrayBuffer} data to the {@link OH_UdmfRecord} record.
@@ -492,7 +506,8 @@ int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
  * @see OH_UdmfRecord OH_UdsArrayBuffer Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Add one {@link OH_UdsContentForm} data to the {@link OH_UdmfRecord} record.
@@ -505,7 +520,8 @@ int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_Uds
  * @see OH_UdmfRecord OH_UdsContentForm Udmf_ErrCode.
  * @since 14
  */
-int OH_UdmfRecord_AddContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm);
+int OH_UdmfRecord_AddContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get all types in the {@link OH_UdmfRecord} record.
@@ -517,7 +533,8 @@ int OH_UdmfRecord_AddContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* conten
  * @see OH_UdmfRecord.
  * @since 12
  */
-char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count);
+char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get one entry data from the {@link OH_UdmfRecord} record.
@@ -534,7 +551,8 @@ char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count);
  * @since 12
  */
 int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
-    unsigned char** entry, unsigned int* count);
+    unsigned char** entry, unsigned int* count)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get one {OH_UdsPlainText} data from the {@link OH_UdmfRecord} record.
@@ -548,7 +566,8 @@ int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
  * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText);
+int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get one {OH_UdsHyperlink} data from the {@link OH_UdmfRecord} record.
@@ -562,7 +581,8 @@ int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
  * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink);
+int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get one {OH_UdsHtml} data from the {@link OH_UdmfRecord} record.
@@ -576,7 +596,8 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
  * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
+int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get one {OH_UdsAppItem} data from the {@link OH_UdmfRecord} record.
@@ -590,7 +611,8 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
+int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get one {OH_UdsFileUri} data from the {@link OH_UdmfRecord} record.
@@ -603,7 +625,8 @@ int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
  * @see OH_UdmfRecord OH_UdsFileUri Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
+int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get one {OH_UdsPixelMap} data from the {@link OH_UdmfRecord} record.
@@ -616,7 +639,8 @@ int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
  * @see OH_UdmfRecord OH_UdsPixelMap Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
+int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the data provider of the types.
@@ -632,7 +656,8 @@ int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
  * @since 13
  */
 int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count,
-    OH_UdmfRecordProvider* provider);
+    OH_UdmfRecordProvider* provider)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get one {@link OH_UdsArrayBuffer} data from the {@link OH_UdmfRecord} record.
@@ -646,7 +671,8 @@ int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, un
  * @see OH_UdmfRecord OH_UdsArrayBuffer Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get one {@link OH_UdsContentForm} data from the {@link OH_UdmfRecord} record.
@@ -659,7 +685,8 @@ int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_Uds
  * @see OH_UdmfRecord OH_UdsContentForm Udmf_ErrCode.
  * @since 14
  */
-int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm);
+int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get primary {@link OH_UdsPlainText} data from the {@link OH_UdmfData}.
@@ -672,7 +699,8 @@ int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* conten
  * @see OH_UdmfData OH_UdsPlainText Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainText);
+int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainText)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get one {@link OH_UdsHtml} data from the {@link OH_UdmfData}.
@@ -685,7 +713,8 @@ int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainTex
  * @see OH_UdmfData OH_UdsHtml Udmf_ErrCode.
  * @since 13
  */
-int OH_UdmfData_GetPrimaryHtml(OH_UdmfData* data, OH_UdsHtml* html);
+int OH_UdmfData_GetPrimaryHtml(OH_UdmfData* data, OH_UdsHtml* html)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get the count of {@link OH_UdmfRecord} in the {@link OH_UdmfData}.
@@ -695,7 +724,7 @@ int OH_UdmfData_GetPrimaryHtml(OH_UdmfData* data, OH_UdsHtml* html);
  * @see OH_UdmfData.
  * @since 13
  */
-int OH_UdmfData_GetRecordCount(OH_UdmfData* data);
+int OH_UdmfData_GetRecordCount(OH_UdmfData* data) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get the record of the specified index from the {@link OH_UdmfData}.
@@ -706,7 +735,8 @@ int OH_UdmfData_GetRecordCount(OH_UdmfData* data);
  * @see OH_UdmfData.
  * @since 13
  */
-OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index);
+OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Checks whether the UDMF data is from a local device.
@@ -718,7 +748,7 @@ OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index);
  * @see OH_UdmfData.
  * @since 13
  */
-bool OH_UdmfData_IsLocal(OH_UdmfData* data);
+bool OH_UdmfData_IsLocal(OH_UdmfData* data) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfProperty}
@@ -730,7 +760,8 @@ bool OH_UdmfData_IsLocal(OH_UdmfData* data);
  * @see OH_UdmfData OH_UdmfProperty.
  * @since 12
  */
-OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData);
+OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdmfProperty} instance.
@@ -739,7 +770,7 @@ OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData);
  * @see OH_UdmfProperty.
  * @since 12
  */
-void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis);
+void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get tag value from the {@link OH_UdmfProperty}.
@@ -749,7 +780,7 @@ void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis);
  * @see OH_UdmfProperty.
  * @since 12
  */
-const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis);
+const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get timestamp value from the {@link OH_UdmfProperty}.
@@ -759,7 +790,7 @@ const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis);
  * @see OH_UdmfProperty
  * @since 12
  */
-int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis);
+int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get share option value from the {@link OH_UdmfProperty}.
@@ -769,7 +800,8 @@ int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis);
  * @see OH_UdmfProperty Udmf_ShareOption
  * @since 12
  */
-Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis);
+Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get integer value by key from the {@link OH_UdmfProperty}.
@@ -782,7 +814,8 @@ Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis);
  * @since 12
  */
 int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis,
-    const char* key, int defaultValue);
+    const char* key, int defaultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get tag value from the {@link OH_UdmfProperty}.
@@ -793,7 +826,8 @@ int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis,
  * @see OH_UdmfProperty
  * @since 12
  */
-const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key);
+const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set tag value to {@link OH_UdmfProperty} .
@@ -806,7 +840,8 @@ const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const c
  * @see OH_UdmfProperty Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag);
+int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set Udmf_ShareOption value to {@link OH_UdmfProperty}.
@@ -819,7 +854,8 @@ int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag);
  * @see OH_UdmfProperty Udmf_ShareOption Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option);
+int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set extras param to {@link OH_UdmfProperty}.
@@ -833,7 +869,8 @@ int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption opti
  * @see OH_UdmfProperty Udmf_ErrCode.
  * @since 12
  */
-int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param);
+int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set extras param to {@link OH_UdmfProperty}.
@@ -848,7 +885,8 @@ int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, i
  * @since 12
  */
 int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
-    const char* key, const char* param);
+    const char* key, const char* param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfOptions}.
@@ -858,7 +896,7 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
  * @see OH_UdmfOptions.
  * @since 20
  */
-OH_UdmfOptions* OH_UdmfOptions_Create();
+OH_UdmfOptions* OH_UdmfOptions_Create() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfOptions}.
@@ -868,7 +906,7 @@ OH_UdmfOptions* OH_UdmfOptions_Create();
  * @see OH_UdmfOptions.
  * @since 20
  */
-void OH_UdmfOptions_Destroy(OH_UdmfOptions* pThis);
+void OH_UdmfOptions_Destroy(OH_UdmfOptions* pThis) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get key from the {@link OH_UdmfOptions}.
@@ -878,7 +916,7 @@ void OH_UdmfOptions_Destroy(OH_UdmfOptions* pThis);
  * @see OH_UdmfOptions
  * @since 20
  */
-const char* OH_UdmfOptions_GetKey(OH_UdmfOptions* pThis);
+const char* OH_UdmfOptions_GetKey(OH_UdmfOptions* pThis) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the key to the {@link OH_UdmfOptions}.
@@ -891,7 +929,8 @@ const char* OH_UdmfOptions_GetKey(OH_UdmfOptions* pThis);
  * @see OH_UdmfOptions Udmf_ErrCode
  * @since 20
  */
-int OH_UdmfOptions_SetKey(OH_UdmfOptions* pThis, const char* key);
+int OH_UdmfOptions_SetKey(OH_UdmfOptions* pThis, const char* key)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get intention from the {@link OH_UdmfOptions}.
@@ -901,7 +940,8 @@ int OH_UdmfOptions_SetKey(OH_UdmfOptions* pThis, const char* key);
  * @see OH_UdmfOptions Udmf_Intention
  * @since 20
  */
-Udmf_Intention OH_UdmfOptions_GetIntention(OH_UdmfOptions* pThis);
+Udmf_Intention OH_UdmfOptions_GetIntention(OH_UdmfOptions* pThis)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set intention value to {@link OH_UdmfOptions}.
@@ -914,7 +954,8 @@ Udmf_Intention OH_UdmfOptions_GetIntention(OH_UdmfOptions* pThis);
  * @see OH_UdmfOptions Udmf_Intention Udmf_ErrCode.
  * @since 20
  */
-int OH_UdmfOptions_SetIntention(OH_UdmfOptions* pThis, Udmf_Intention intention);
+int OH_UdmfOptions_SetIntention(OH_UdmfOptions* pThis, Udmf_Intention intention)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Reset {@link OH_UdmfOptions} to default.
@@ -926,7 +967,7 @@ int OH_UdmfOptions_SetIntention(OH_UdmfOptions* pThis, Udmf_Intention intention)
  * @see OH_UdmfOptions Udmf_ErrCode.
  * @since 20
  */
-int OH_UdmfOptions_Reset(OH_UdmfOptions* pThis);
+int OH_UdmfOptions_Reset(OH_UdmfOptions* pThis) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get visibility from the {@link OH_UdmfOptions}.
@@ -936,7 +977,8 @@ int OH_UdmfOptions_Reset(OH_UdmfOptions* pThis);
  * @see OH_UdmfOptions Udmf_Visibility
  * @since 20
  */
-Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis);
+Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set visibility value to {@link OH_UdmfOptions}.
@@ -949,7 +991,8 @@ Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis);
  * @see OH_UdmfOptions Udmf_Visibility Udmf_ErrCode.
  * @since 20
  */
-int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility);
+int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get {@link OH_UdmfData} data from udmf database.
@@ -960,27 +1003,30 @@ int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibili
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
+ *         {@link UDMF_ERR} Internal data error. The potential reason is server malfunction or insufficient memory.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
-int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData);
+int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get {@link OH_UdmfData} data array from udmf database by intention.
  *
  * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
  * @param dataArray Represents output params of {@link OH_UdmfData}.
- * This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
+ *     It should be accessed using {@link OH_UDMF_GetDataElementAt} to retrieve elements by index.
+ *     This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
  * @param dataSize Represents the data count of output params.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
+ *         {@link UDMF_ERR} Internal data error. The potential reason is server malfunction or insufficient memory.
  * @see OH_UdmfData Udmf_Intention Udmf_ErrCode.
  * @since 20
  */
-int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
+int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set {@link OH_UdmfData} data to database.
@@ -993,12 +1039,13 @@ int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataA
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
+ *         {@link UDMF_ERR} Internal data error. The potential reason is server malfunction or insufficient memory.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
 int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
-    char* key, unsigned int keyLen);
+    char* key, unsigned int keyLen)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set {@link OH_UdmfData} data to database with options.
@@ -1011,11 +1058,12 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
+ *         {@link UDMF_ERR} Internal data error. The potential reason is server malfunction or insufficient memory.
  * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
  * @since 20
  */
-int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen);
+int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Update {@link OH_UdmfData} data to database with options.
@@ -1025,27 +1073,42 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
+ *         {@link UDMF_ERR} Internal data error. The potential reason is server malfunction or insufficient memory.
  * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
  * @since 20
  */
-int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData);
+int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Delete {@link OH_UdmfData} data of database with options.
  *
  * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
  * @param dataArray Represents output params of {@link OH_UdmfData}.
- * This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
+ *     It should be accessed using {@link OH_UDMF_GetDataElementAt} to retrieve elements by index.
+ *     This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
  * @param dataSize Represents the data count of output params.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
+ *         {@link UDMF_ERR} Internal data error. The potential reason is server malfunction or insufficient memory.
  * @see OH_UdmfData Udmf_Intention Udmf_ErrCode.
  * @since 20
  */
-int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
+int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Gets the pointer to the element at the specified index from the input array.
+ *
+ * @param dataArray A pointer to an array of {@link OH_UdmfData} pointers.
+ * @param index The index of the desired element. Note that the input index should not exceed the array range.
+ * @return A pointer to the {@link OH_UdmfData} element at the specified index; returns NULL if the array is NULL.
+ * @see OH_UdmfData
+ * @since 22
+ */
+OH_UdmfData* OH_UDMF_GetDataElementAt(OH_UdmfData** dataArray, unsigned int index)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Destroy data array memory.
@@ -1055,7 +1118,8 @@ int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, 
  * @see OH_UdmfData
  * @since 20
  */
-void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize);
+void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the progress from the {@OH_Udmf_ProgressInfo}.
@@ -1065,7 +1129,8 @@ void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize);
  * @see OH_Udmf_ProgressInfo
  * @since 15
  */
-int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo);
+int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Gets the status from the {@OH_Udmf_ProgressInfo}.
@@ -1075,7 +1140,8 @@ int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo);
  * @see OH_Udmf_ProgressInfo Udmf_ListenerStatus
  * @since 15
  */
-int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo);
+int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfGetDataParams}.
@@ -1085,7 +1151,7 @@ int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo);
  * @see OH_UdmfGetDataParams
  * @since 15
  */
-OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create();
+OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create() __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy a pointer that points to an instance of {@link OH_UdmfGetDataParams}.
@@ -1094,7 +1160,8 @@ OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create();
  * @see OH_UdmfGetDataParams
  * @since 15
  */
-void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis);
+void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the destination uri to the {@OH_UdmfGetDataParams}.
@@ -1104,7 +1171,8 @@ void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis);
  * @see OH_UdmfGetDataParams
  * @since 15
  */
-void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* destUri);
+void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* destUri)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the file conflict options to the {@OH_UdmfGetDataParams}.
@@ -1114,7 +1182,8 @@ void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* d
  * @see OH_UdmfGetDataParams Udmf_FileConflictOptions
  * @since 15
  */
-void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options);
+void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the progress indicator to the {@OH_UdmfGetDataParams}.
@@ -1125,7 +1194,8 @@ void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, c
  * @since 15
  */
 void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params,
-    const Udmf_ProgressIndicator progressIndicator);
+    const Udmf_ProgressIndicator progressIndicator)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the progress indicator to the {@OH_UdmfGetDataParams}.
@@ -1136,7 +1206,8 @@ void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params,
  * @since 15
  */
 void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params,
-    const OH_Udmf_DataProgressListener dataProgressListener);
+    const OH_Udmf_DataProgressListener dataProgressListener)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the acceptable info to the {@OH_UdmfGetDataParams}.
@@ -1146,7 +1217,8 @@ void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params,
  * @see OH_UdmfGetDataParams OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfGetDataParams_SetAcceptableInfo(OH_UdmfGetDataParams* params, OH_UdmfDataLoadInfo* acceptableInfo);
+void OH_UdmfGetDataParams_SetAcceptableInfo(OH_UdmfGetDataParams* params, OH_UdmfDataLoadInfo* acceptableInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfDataLoadParams}.
@@ -1156,7 +1228,7 @@ void OH_UdmfGetDataParams_SetAcceptableInfo(OH_UdmfGetDataParams* params, OH_Udm
  * @see OH_UdmfDataLoadParams
  * @since 20
  */
-OH_UdmfDataLoadParams* OH_UdmfDataLoadParams_Create();
+OH_UdmfDataLoadParams* OH_UdmfDataLoadParams_Create() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy a pointer that points to an instance of {@link OH_UdmfDataLoadParams}.
@@ -1165,7 +1237,8 @@ OH_UdmfDataLoadParams* OH_UdmfDataLoadParams_Create();
  * @see OH_UdmfDataLoadParams
  * @since 20
  */
-void OH_UdmfDataLoadParams_Destroy(OH_UdmfDataLoadParams* pThis);
+void OH_UdmfDataLoadParams_Destroy(OH_UdmfDataLoadParams* pThis)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the data load handler to the {@OH_UdmfDataLoadParams}.
@@ -1175,7 +1248,8 @@ void OH_UdmfDataLoadParams_Destroy(OH_UdmfDataLoadParams* pThis);
  * @see OH_UdmfDataLoadParams OH_Udmf_DataLoadHandler
  * @since 20
  */
-void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const OH_Udmf_DataLoadHandler dataLoadHandler);
+void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const OH_Udmf_DataLoadHandler dataLoadHandler)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the data load info to the {@OH_UdmfDataLoadParams}.
@@ -1185,7 +1259,8 @@ void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const O
  * @see OH_UdmfDataLoadParams OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_UdmfDataLoadInfo* dataLoadInfo);
+void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_UdmfDataLoadInfo* dataLoadInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfDataLoadInfo}.
@@ -1195,7 +1270,7 @@ void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_Udm
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
+OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfDataLoadInfo}.
@@ -1205,7 +1280,8 @@ OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo);
+void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the types from the {@OH_UdmfDataLoadInfo}.
@@ -1216,7 +1292,8 @@ void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo);
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int* count);
+char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the data load info to the {@OH_UdmfDataLoadInfo}.
@@ -1226,7 +1303,8 @@ char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned 
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfDataLoadInfo_SetType(OH_UdmfDataLoadInfo* dataLoadInfo, const char* type);
+void OH_UdmfDataLoadInfo_SetType(OH_UdmfDataLoadInfo* dataLoadInfo, const char* type)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the record count from the {@OH_UdmfDataLoadInfo}.
@@ -1236,7 +1314,8 @@ void OH_UdmfDataLoadInfo_SetType(OH_UdmfDataLoadInfo* dataLoadInfo, const char* 
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo);
+int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the record count to the {@OH_UdmfDataLoadInfo}.
@@ -1246,7 +1325,8 @@ int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo);
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfDataLoadInfo_SetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int recordCount);
+void OH_UdmfDataLoadInfo_SetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int recordCount)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_IMAGE_FILTER_H
 #define C_INCLUDE_DRAWING_IMAGE_FILTER_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_shader_effect.h"
 
 #ifdef __cplusplus
@@ -61,7 +62,8 @@ extern "C" {
  * @version 1.0
  */
 OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sigmaY, OH_Drawing_TileMode tileMode,
-    OH_Drawing_ImageFilter* imageFilter);
+    OH_Drawing_ImageFilter* imageFilter)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that blurs its input by the separate x and y sigmas.
@@ -79,7 +81,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sig
  * @version 1.0
  */
 OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlurWithCrop(float sigmaX, float sigmaY,
-    OH_Drawing_TileMode tileMode, OH_Drawing_ImageFilter* input, const OH_Drawing_Rect* rect);
+    OH_Drawing_TileMode tileMode, OH_Drawing_ImageFilter* input, const OH_Drawing_Rect* rect)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that applies the color filter to the input.
@@ -95,7 +98,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlurWithCrop(float sigmaX, f
  * @version 1.0
  */
 OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter(OH_Drawing_ColorFilter* colorFilter,
-    OH_Drawing_ImageFilter* imageFilter);
+    OH_Drawing_ImageFilter* imageFilter)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object with the provided x and y offset.
@@ -110,7 +114,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter(OH_Drawing_C
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateOffset(float x, float y, OH_Drawing_ImageFilter* imageFilter);
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateOffset(float x, float y, OH_Drawing_ImageFilter* imageFilter)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that applies the shader to the input.
@@ -124,7 +129,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateOffset(float x, float y, OH_
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromShaderEffect(OH_Drawing_ShaderEffect* shaderEffect);
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromShaderEffect(OH_Drawing_ShaderEffect* shaderEffect)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_ImageFilter</b> object and reclaims the memory occupied by the object.
@@ -134,7 +140,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromShaderEffect(OH_Drawing_
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ImageFilterDestroy(OH_Drawing_ImageFilter* imageFilter);
+void OH_Drawing_ImageFilterDestroy(OH_Drawing_ImageFilter* imageFilter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

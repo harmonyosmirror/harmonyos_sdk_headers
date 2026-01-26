@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -60,14 +61,14 @@ typedef struct InputMethod_TextConfig InputMethod_TextConfig;
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_TextConfig *OH_TextConfig_Create(void);
+InputMethod_TextConfig *OH_TextConfig_Create(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroy a {@link InputMethod_TextConfig} instance.
  *
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be destroyed.
  * @since 12
  */
-void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
+void OH_TextConfig_Destroy(InputMethod_TextConfig *config) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set input type into TextConfig.
@@ -80,7 +81,8 @@ void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType inputType);
+InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType inputType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set enter key type into TextConfig.
  *
@@ -93,7 +95,8 @@ InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config,
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
-    InputMethod_TextConfig *config, InputMethod_EnterKeyType enterKeyType);
+    InputMethod_TextConfig *config, InputMethod_EnterKeyType enterKeyType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set preview text support into TextConfig.
  *
@@ -105,7 +108,8 @@ InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig *config, bool supported);
+InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig *config, bool supported)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set selection into TextConfig.
  *
@@ -118,7 +122,8 @@ InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config, int32_t start, int32_t end);
+InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config, int32_t start, int32_t end)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set window id into TextConfig.
  *
@@ -130,7 +135,8 @@ InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config,
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, int32_t windowId);
+InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, int32_t windowId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the placeholder text of an InputMethod_TextConfig instance.
@@ -150,7 +156,8 @@ InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, 
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *config, const char16_t *placeholder,
-    size_t length);
+    size_t length)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the ability name of an InputMethod_TextConfig instance.
@@ -170,7 +177,8 @@ InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *confi
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *config, const char16_t *abilityName,
-    size_t length);
+    size_t length)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get input type from TextConfig
@@ -184,7 +192,8 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *confi
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType *inputType);
+InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType *inputType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get enter key type from TextConfig
  *
@@ -198,7 +207,8 @@ InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config,
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
-    InputMethod_TextConfig *config, InputMethod_EnterKeyType *enterKeyType);
+    InputMethod_TextConfig *config, InputMethod_EnterKeyType *enterKeyType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get is preview text supported from TextConfig.
  *
@@ -210,7 +220,8 @@ InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfig *config, bool *supported);
+InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfig *config, bool *supported)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get cursor info from TextConfig.
  *
@@ -222,7 +233,8 @@ InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfi
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config, InputMethod_CursorInfo **cursorInfo);
+InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config, InputMethod_CursorInfo **cursorInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get text avoid information from text configuration.
@@ -236,7 +248,8 @@ InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config
  *@since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
-    InputMethod_TextConfig *config, InputMethod_TextAvoidInfo **avoidInfo);
+    InputMethod_TextConfig *config, InputMethod_TextAvoidInfo **avoidInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get selection from TextConfig.
@@ -250,7 +263,8 @@ InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config, int32_t *start, int32_t *end);
+InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config, int32_t *start, int32_t *end)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get window id from TextConfig.
  *
@@ -262,7 +276,8 @@ InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config,
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, int32_t *windowId);
+InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, int32_t *windowId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the placeholder text of an InputMethod_TextConfig instance.
@@ -286,7 +301,8 @@ InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, 
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t *placeholder,
-    size_t *length);
+    size_t *length)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the ability name of an InputMethod_TextConfig instance.
@@ -310,7 +326,8 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *config, char16_t *abilityName,
-    size_t *length);
+    size_t *length)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

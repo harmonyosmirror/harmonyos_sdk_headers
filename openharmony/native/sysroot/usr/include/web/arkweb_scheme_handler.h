@@ -32,6 +32,7 @@
 #ifndef ARKWEB_SCHEME_HANDLER_H
 #define ARKWEB_SCHEME_HANDLER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include "stdint.h"
 
@@ -295,7 +296,8 @@ typedef void (*ArkWeb_HttpBodyStreamInitCallback)(const ArkWeb_HttpBodyStream* h
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebRequestHeaderList_Destroy(ArkWeb_RequestHeaderList* requestHeaderList);
+void OH_ArkWebRequestHeaderList_Destroy(ArkWeb_RequestHeaderList* requestHeaderList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the request headers size.
@@ -305,7 +307,8 @@ void OH_ArkWebRequestHeaderList_Destroy(ArkWeb_RequestHeaderList* requestHeaderL
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebRequestHeaderList_GetSize(const ArkWeb_RequestHeaderList* requestHeaderList);
+int32_t OH_ArkWebRequestHeaderList_GetSize(const ArkWeb_RequestHeaderList* requestHeaderList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the specified request header.
@@ -320,7 +323,8 @@ int32_t OH_ArkWebRequestHeaderList_GetSize(const ArkWeb_RequestHeaderList* reque
 void OH_ArkWebRequestHeaderList_GetHeader(const ArkWeb_RequestHeaderList* requestHeaderList,
                                           int32_t index,
                                           char** key,
-                                          char** value);
+                                          char** value)
+                                          __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a user data to ArkWeb_ResourceRequest.
@@ -332,7 +336,8 @@ void OH_ArkWebRequestHeaderList_GetHeader(const ArkWeb_RequestHeaderList* reques
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResourceRequest_SetUserData(ArkWeb_ResourceRequest* resourceRequest, void* userData);
+int32_t OH_ArkWebResourceRequest_SetUserData(ArkWeb_ResourceRequest* resourceRequest, void* userData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the user data from ArkWeb_ResourceRequest.
@@ -342,7 +347,8 @@ int32_t OH_ArkWebResourceRequest_SetUserData(ArkWeb_ResourceRequest* resourceReq
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void* OH_ArkWebResourceRequest_GetUserData(const ArkWeb_ResourceRequest* resourceRequest);
+void* OH_ArkWebResourceRequest_GetUserData(const ArkWeb_ResourceRequest* resourceRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the method of request.
@@ -353,7 +359,8 @@ void* OH_ArkWebResourceRequest_GetUserData(const ArkWeb_ResourceRequest* resourc
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResourceRequest_GetMethod(const ArkWeb_ResourceRequest* resourceRequest, char** method);
+void OH_ArkWebResourceRequest_GetMethod(const ArkWeb_ResourceRequest* resourceRequest, char** method)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the url of request.
@@ -364,7 +371,8 @@ void OH_ArkWebResourceRequest_GetMethod(const ArkWeb_ResourceRequest* resourceRe
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResourceRequest_GetUrl(const ArkWeb_ResourceRequest* resourceRequest, char** url);
+void OH_ArkWebResourceRequest_GetUrl(const ArkWeb_ResourceRequest* resourceRequest, char** url)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a ArkWeb_HttpBodyStream which used to read the http body.
@@ -376,7 +384,8 @@ void OH_ArkWebResourceRequest_GetUrl(const ArkWeb_ResourceRequest* resourceReque
  * @since 12
  */
 void OH_ArkWebResourceRequest_GetHttpBodyStream(const ArkWeb_ResourceRequest* resourceRequest,
-                                                ArkWeb_HttpBodyStream** httpBodyStream);
+                                                ArkWeb_HttpBodyStream** httpBodyStream)
+                                                __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the http body stream.
@@ -385,7 +394,8 @@ void OH_ArkWebResourceRequest_GetHttpBodyStream(const ArkWeb_ResourceRequest* re
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResourceRequest_DestroyHttpBodyStream(ArkWeb_HttpBodyStream* httpBodyStream);
+void OH_ArkWebResourceRequest_DestroyHttpBodyStream(ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the resource type of request.
@@ -395,7 +405,8 @@ void OH_ArkWebResourceRequest_DestroyHttpBodyStream(ArkWeb_HttpBodyStream* httpB
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResourceRequest_GetResourceType(const ArkWeb_ResourceRequest* resourceRequest);
+int32_t OH_ArkWebResourceRequest_GetResourceType(const ArkWeb_ResourceRequest* resourceRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the url of frame which trigger this request.
@@ -406,7 +417,8 @@ int32_t OH_ArkWebResourceRequest_GetResourceType(const ArkWeb_ResourceRequest* r
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResourceRequest_GetFrameUrl(const ArkWeb_ResourceRequest* resourceRequest, char** frameUrl);
+void OH_ArkWebResourceRequest_GetFrameUrl(const ArkWeb_ResourceRequest* resourceRequest, char** frameUrl)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a user data to ArkWeb_HttpBodyStream.
@@ -418,7 +430,8 @@ void OH_ArkWebResourceRequest_GetFrameUrl(const ArkWeb_ResourceRequest* resource
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebHttpBodyStream_SetUserData(ArkWeb_HttpBodyStream* httpBodyStream, void* userData);
+int32_t OH_ArkWebHttpBodyStream_SetUserData(ArkWeb_HttpBodyStream* httpBodyStream, void* userData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the user data from ArkWeb_HttpBodyStream.
@@ -428,7 +441,8 @@ int32_t OH_ArkWebHttpBodyStream_SetUserData(ArkWeb_HttpBodyStream* httpBodyStrea
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyStream);
+void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the callback for OH_ArkWebHttpBodyStream_Read.
@@ -445,7 +459,8 @@ void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyS
  * @since 12
  */
 int32_t OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyStream,
-                                                ArkWeb_HttpBodyStreamReadCallback readCallback);
+                                                ArkWeb_HttpBodyStreamReadCallback readCallback)
+                                                __attribute__((__availability__(ohos, introduced=12.0.0)));
                                                 
 /**
  * @brief Set the callback for OH_ArkWebHttpBodyStream_AsyncRead.
@@ -461,7 +476,8 @@ int32_t OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyS
  * @since 20
  */
 int32_t OH_ArkWebHttpBodyStream_SetAsyncReadCallback(ArkWeb_HttpBodyStream *httpBodyStream,
-                                                     ArkWeb_HttpBodyStreamAsyncReadCallback readCallback);
+                                                     ArkWeb_HttpBodyStreamAsyncReadCallback readCallback)
+                                                     __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Init the http body stream.
@@ -477,7 +493,8 @@ int32_t OH_ArkWebHttpBodyStream_SetAsyncReadCallback(ArkWeb_HttpBodyStream *http
  * @since 12
  */
 int32_t OH_ArkWebHttpBodyStream_Init(ArkWeb_HttpBodyStream* httpBodyStream,
-                                     ArkWeb_HttpBodyStreamInitCallback initCallback);
+                                     ArkWeb_HttpBodyStreamInitCallback initCallback)
+                                     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Read the http body to the buffer.
@@ -492,7 +509,8 @@ int32_t OH_ArkWebHttpBodyStream_Init(ArkWeb_HttpBodyStream* httpBodyStream,
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, uint8_t* buffer, int bufLen);
+void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, uint8_t* buffer, int bufLen)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Read the http body to the buffer.
@@ -506,7 +524,8 @@ void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, u
  *
  * @since 20
  */
-void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bufLen);
+void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bufLen)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the total size of the data stream.
@@ -519,7 +538,8 @@ void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream *httpBodyStre
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-uint64_t OH_ArkWebHttpBodyStream_GetSize(const ArkWeb_HttpBodyStream* httpBodyStream);
+uint64_t OH_ArkWebHttpBodyStream_GetSize(const ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the current position of the data stream.
@@ -529,7 +549,8 @@ uint64_t OH_ArkWebHttpBodyStream_GetSize(const ArkWeb_HttpBodyStream* httpBodySt
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-uint64_t OH_ArkWebHttpBodyStream_GetPosition(const ArkWeb_HttpBodyStream* httpBodyStream);
+uint64_t OH_ArkWebHttpBodyStream_GetPosition(const ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get if the data stream is chunked.
@@ -539,7 +560,8 @@ uint64_t OH_ArkWebHttpBodyStream_GetPosition(const ArkWeb_HttpBodyStream* httpBo
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebHttpBodyStream_IsChunked(const ArkWeb_HttpBodyStream* httpBodyStream);
+bool OH_ArkWebHttpBodyStream_IsChunked(const ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 /**
@@ -553,7 +575,8 @@ bool OH_ArkWebHttpBodyStream_IsChunked(const ArkWeb_HttpBodyStream* httpBodyStre
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebHttpBodyStream_IsEof(const ArkWeb_HttpBodyStream* httpBodyStream);
+bool OH_ArkWebHttpBodyStream_IsEof(const ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Returns true if the upload data in the stream is entirely in memory,
@@ -567,7 +590,8 @@ bool OH_ArkWebHttpBodyStream_IsEof(const ArkWeb_HttpBodyStream* httpBodyStream);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebHttpBodyStream_IsInMemory(const ArkWeb_HttpBodyStream* httpBodyStream);
+bool OH_ArkWebHttpBodyStream_IsInMemory(const ArkWeb_HttpBodyStream* httpBodyStream)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the ArkWeb_ResourceRequest.
@@ -578,7 +602,8 @@ bool OH_ArkWebHttpBodyStream_IsInMemory(const ArkWeb_HttpBodyStream* httpBodyStr
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResourceRequest_Destroy(const ArkWeb_ResourceRequest* resourceRequest);
+int32_t OH_ArkWebResourceRequest_Destroy(const ArkWeb_ResourceRequest* resourceRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the referrer of request.
@@ -589,7 +614,8 @@ int32_t OH_ArkWebResourceRequest_Destroy(const ArkWeb_ResourceRequest* resourceR
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResourceRequest_GetReferrer(const ArkWeb_ResourceRequest* resourceRequest, char** referrer);
+void OH_ArkWebResourceRequest_GetReferrer(const ArkWeb_ResourceRequest* resourceRequest, char** referrer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the OH_ArkWeb_RequestHeaderList of the request.
@@ -600,7 +626,8 @@ void OH_ArkWebResourceRequest_GetReferrer(const ArkWeb_ResourceRequest* resource
  * @since 12
  */
 void OH_ArkWebResourceRequest_GetRequestHeaders(const ArkWeb_ResourceRequest* resourceRequest,
-                                                ArkWeb_RequestHeaderList** requestHeaderList);
+                                                ArkWeb_RequestHeaderList** requestHeaderList)
+                                                __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get if this is a redirect request.
@@ -610,7 +637,8 @@ void OH_ArkWebResourceRequest_GetRequestHeaders(const ArkWeb_ResourceRequest* re
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebResourceRequest_IsRedirect(const ArkWeb_ResourceRequest* resourceRequest);
+bool OH_ArkWebResourceRequest_IsRedirect(const ArkWeb_ResourceRequest* resourceRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get if this is a request from main frame.
@@ -620,7 +648,8 @@ bool OH_ArkWebResourceRequest_IsRedirect(const ArkWeb_ResourceRequest* resourceR
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebResourceRequest_IsMainFrame(const ArkWeb_ResourceRequest* resourceRequest);
+bool OH_ArkWebResourceRequest_IsMainFrame(const ArkWeb_ResourceRequest* resourceRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get if this is a request is triggered by user gesutre.
@@ -630,7 +659,8 @@ bool OH_ArkWebResourceRequest_IsMainFrame(const ArkWeb_ResourceRequest* resource
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebResourceRequest_HasGesture(const ArkWeb_ResourceRequest* resourceRequest);
+bool OH_ArkWebResourceRequest_HasGesture(const ArkWeb_ResourceRequest* resourceRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register custom scheme to the ArkWeb.
@@ -649,7 +679,8 @@ bool OH_ArkWebResourceRequest_HasGesture(const ArkWeb_ResourceRequest* resourceR
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWeb_RegisterCustomSchemes(const char* scheme, int32_t option);
+int32_t OH_ArkWeb_RegisterCustomSchemes(const char* scheme, int32_t option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a ArkWeb_SchemeHandler for a specific scheme to intercept requests of that scheme type.
@@ -665,7 +696,8 @@ int32_t OH_ArkWeb_RegisterCustomSchemes(const char* scheme, int32_t option);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHandler* schemeHandler);
+bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHandler* schemeHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a ArkWeb_SchemeHandler for a specific scheme to intercept requests of that scheme type.
@@ -682,7 +714,8 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-bool OH_ArkWeb_SetSchemeHandler(const char* scheme, const char* webTag, ArkWeb_SchemeHandler* schemeHandler);
+bool OH_ArkWeb_SetSchemeHandler(const char* scheme, const char* webTag, ArkWeb_SchemeHandler* schemeHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clear the handler registered on the specified web for service worker.
@@ -691,7 +724,7 @@ bool OH_ArkWeb_SetSchemeHandler(const char* scheme, const char* webTag, ArkWeb_S
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebServiceWorker_ClearSchemeHandlers();
+int32_t OH_ArkWebServiceWorker_ClearSchemeHandlers() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clear the handler registered on the specified web.
@@ -702,7 +735,7 @@ int32_t OH_ArkWebServiceWorker_ClearSchemeHandlers();
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWeb_ClearSchemeHandlers(const char* webTag);
+int32_t OH_ArkWeb_ClearSchemeHandlers(const char* webTag) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a SchemeHandler.
@@ -712,7 +745,8 @@ int32_t OH_ArkWeb_ClearSchemeHandlers(const char* webTag);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler);
+void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a SchemeHandler.
@@ -721,7 +755,8 @@ void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWeb_DestroySchemeHandler(ArkWeb_SchemeHandler* schemeHandler);
+void OH_ArkWeb_DestroySchemeHandler(ArkWeb_SchemeHandler* schemeHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a user data to ArkWeb_SchemeHandler.
@@ -733,7 +768,8 @@ void OH_ArkWeb_DestroySchemeHandler(ArkWeb_SchemeHandler* schemeHandler);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebSchemeHandler_SetUserData(ArkWeb_SchemeHandler* schemeHandler, void* userData);
+int32_t OH_ArkWebSchemeHandler_SetUserData(ArkWeb_SchemeHandler* schemeHandler, void* userData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the user data from ArkWeb_SchemeHandler.
@@ -743,7 +779,8 @@ int32_t OH_ArkWebSchemeHandler_SetUserData(ArkWeb_SchemeHandler* schemeHandler, 
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void* OH_ArkWebSchemeHandler_GetUserData(const ArkWeb_SchemeHandler* schemeHandler);
+void* OH_ArkWebSchemeHandler_GetUserData(const ArkWeb_SchemeHandler* schemeHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the OnRequestStart callback for SchemeHandler.
@@ -756,7 +793,8 @@ void* OH_ArkWebSchemeHandler_GetUserData(const ArkWeb_SchemeHandler* schemeHandl
  * @since 12
  */
 int32_t OH_ArkWebSchemeHandler_SetOnRequestStart(ArkWeb_SchemeHandler* schemeHandler,
-                                                 ArkWeb_OnRequestStart onRequestStart);
+                                                 ArkWeb_OnRequestStart onRequestStart)
+                                                 __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the OnRequestStop callback for SchemeHandler.
@@ -769,7 +807,8 @@ int32_t OH_ArkWebSchemeHandler_SetOnRequestStart(ArkWeb_SchemeHandler* schemeHan
  * @since 12
  */
 int32_t OH_ArkWebSchemeHandler_SetOnRequestStop(ArkWeb_SchemeHandler* schemeHandler,
-                                                ArkWeb_OnRequestStop onRequestStop);
+                                                ArkWeb_OnRequestStop onRequestStop)
+                                                __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a Response for a request.
@@ -778,7 +817,7 @@ int32_t OH_ArkWebSchemeHandler_SetOnRequestStop(ArkWeb_SchemeHandler* schemeHand
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWeb_CreateResponse(ArkWeb_Response** response);
+void OH_ArkWeb_CreateResponse(ArkWeb_Response** response) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the Reponse.
@@ -787,7 +826,7 @@ void OH_ArkWeb_CreateResponse(ArkWeb_Response** response);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWeb_DestroyResponse(ArkWeb_Response* response);
+void OH_ArkWeb_DestroyResponse(ArkWeb_Response* response) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the resolved URL after redirects or changed as a result of HSTS.
@@ -799,7 +838,8 @@ void OH_ArkWeb_DestroyResponse(ArkWeb_Response* response);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResponse_SetUrl(ArkWeb_Response* response, const char* url);
+int32_t OH_ArkWebResponse_SetUrl(ArkWeb_Response* response, const char* url)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the resolved URL after redirects or changed as a result of HSTS.
@@ -809,7 +849,8 @@ int32_t OH_ArkWebResponse_SetUrl(ArkWeb_Response* response, const char* url);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResponse_GetUrl(const ArkWeb_Response* response, char** url);
+void OH_ArkWebResponse_GetUrl(const ArkWeb_Response* response, char** url)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a error code to ArkWeb_Response.
@@ -821,7 +862,8 @@ void OH_ArkWebResponse_GetUrl(const ArkWeb_Response* response, char** url);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResponse_SetError(ArkWeb_Response* response, ArkWeb_NetError errorCode);
+int32_t OH_ArkWebResponse_SetError(ArkWeb_Response* response, ArkWeb_NetError errorCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the response's error code.
@@ -831,7 +873,8 @@ int32_t OH_ArkWebResponse_SetError(ArkWeb_Response* response, ArkWeb_NetError er
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-ArkWeb_NetError OH_ArkWebResponse_GetError(const ArkWeb_Response* response);
+ArkWeb_NetError OH_ArkWebResponse_GetError(const ArkWeb_Response* response)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a status code to ArkWebResponse.
@@ -843,7 +886,8 @@ ArkWeb_NetError OH_ArkWebResponse_GetError(const ArkWeb_Response* response);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResponse_SetStatus(ArkWeb_Response* response, int status);
+int32_t OH_ArkWebResponse_SetStatus(ArkWeb_Response* response, int status)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the response's status code.
@@ -853,7 +897,8 @@ int32_t OH_ArkWebResponse_SetStatus(ArkWeb_Response* response, int status);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int OH_ArkWebResponse_GetStatus(const ArkWeb_Response* response);
+int OH_ArkWebResponse_GetStatus(const ArkWeb_Response* response)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a status text to ArkWebResponse.
@@ -865,7 +910,8 @@ int OH_ArkWebResponse_GetStatus(const ArkWeb_Response* response);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResponse_SetStatusText(ArkWeb_Response* response, const char* statusText);
+int32_t OH_ArkWebResponse_SetStatusText(ArkWeb_Response* response, const char* statusText)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the response's status text.
@@ -876,7 +922,8 @@ int32_t OH_ArkWebResponse_SetStatusText(ArkWeb_Response* response, const char* s
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResponse_GetStatusText(const ArkWeb_Response* response, char** statusText);
+void OH_ArkWebResponse_GetStatusText(const ArkWeb_Response* response, char** statusText)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set mime type to ArkWebResponse.
@@ -888,7 +935,8 @@ void OH_ArkWebResponse_GetStatusText(const ArkWeb_Response* response, char** sta
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResponse_SetMimeType(ArkWeb_Response* response, const char* mimeType);
+int32_t OH_ArkWebResponse_SetMimeType(ArkWeb_Response* response, const char* mimeType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the response's mime type.
@@ -899,7 +947,8 @@ int32_t OH_ArkWebResponse_SetMimeType(ArkWeb_Response* response, const char* mim
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResponse_GetMimeType(const ArkWeb_Response* response, char** mimeType);
+void OH_ArkWebResponse_GetMimeType(const ArkWeb_Response* response, char** mimeType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set charset to ArkWeb_Response.
@@ -911,7 +960,8 @@ void OH_ArkWebResponse_GetMimeType(const ArkWeb_Response* response, char** mimeT
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResponse_SetCharset(ArkWeb_Response* response, const char* charset);
+int32_t OH_ArkWebResponse_SetCharset(ArkWeb_Response* response, const char* charset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the response's charset.
@@ -922,7 +972,8 @@ int32_t OH_ArkWebResponse_SetCharset(ArkWeb_Response* response, const char* char
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResponse_GetCharset(const ArkWeb_Response* response, char** charset);
+void OH_ArkWebResponse_GetCharset(const ArkWeb_Response* response, char** charset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a header to ArkWeb_Response.
@@ -939,7 +990,8 @@ void OH_ArkWebResponse_GetCharset(const ArkWeb_Response* response, char** charse
 int32_t OH_ArkWebResponse_SetHeaderByName(ArkWeb_Response* response,
                                           const char* name,
                                           const char* value,
-                                          bool overwrite);
+                                          bool overwrite)
+                                          __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the header from the response.
@@ -951,7 +1003,8 @@ int32_t OH_ArkWebResponse_SetHeaderByName(ArkWeb_Response* response,
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWebResponse_GetHeaderByName(const ArkWeb_Response* response, const char* name, char** value);
+void OH_ArkWebResponse_GetHeaderByName(const ArkWeb_Response* response, const char* name, char** value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the ArkWeb_ResourceHandler.
@@ -962,7 +1015,8 @@ void OH_ArkWebResponse_GetHeaderByName(const ArkWeb_Response* response, const ch
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResourceHandler_Destroy(const ArkWeb_ResourceHandler* resourceHandler);
+int32_t OH_ArkWebResourceHandler_Destroy(const ArkWeb_ResourceHandler* resourceHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Pass response headers to intercepted requests.
@@ -975,7 +1029,8 @@ int32_t OH_ArkWebResourceHandler_Destroy(const ArkWeb_ResourceHandler* resourceH
  * @since 12
  */
 int32_t OH_ArkWebResourceHandler_DidReceiveResponse(const ArkWeb_ResourceHandler* resourceHandler,
-                                                    const ArkWeb_Response* response);
+                                                    const ArkWeb_Response* response)
+                                                    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Pass response body data to intercepted requests.
@@ -990,7 +1045,8 @@ int32_t OH_ArkWebResourceHandler_DidReceiveResponse(const ArkWeb_ResourceHandler
  */
 int32_t OH_ArkWebResourceHandler_DidReceiveData(const ArkWeb_ResourceHandler* resourceHandler,
                                                 const uint8_t* buffer,
-                                                int64_t bufLen);
+                                                int64_t bufLen)
+                                                __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Notify the ArkWeb that this request should be finished and there is no more data available.
@@ -1001,7 +1057,8 @@ int32_t OH_ArkWebResourceHandler_DidReceiveData(const ArkWeb_ResourceHandler* re
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourceHandler);
+int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourceHandler)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Notify the ArkWeb that this request should be failed.
@@ -1014,7 +1071,8 @@ int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourc
  * @since 12
  */
 int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* resourceHandler,
-                                                  ArkWeb_NetError errorCode);
+                                                  ArkWeb_NetError errorCode)
+                                                  __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Notify the ArkWeb that this request should be failed.
@@ -1029,7 +1087,8 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
  */
 int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,
                                                     ArkWeb_NetError errorCode,
-                                                    bool completeIfNoResponse);
+                                                    bool completeIfNoResponse)
+                                                    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Release the string acquired by native function.
@@ -1038,7 +1097,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWeb_ReleaseString(char* string);
+void OH_ArkWeb_ReleaseString(char* string) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the byte array acquired by native function.
@@ -1047,7 +1106,7 @@ void OH_ArkWeb_ReleaseString(char* string);
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-void OH_ArkWeb_ReleaseByteArray(uint8_t* byteArray);
+void OH_ArkWeb_ReleaseByteArray(uint8_t* byteArray) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 #ifdef __cplusplus

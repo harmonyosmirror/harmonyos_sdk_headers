@@ -34,6 +34,7 @@
 #ifndef GAME_DEVICE_EVENT_H
 #define GAME_DEVICE_EVENT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "game_controller_type.h"
 
@@ -104,7 +105,8 @@ typedef void(* GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceE
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
     const struct GameDevice_DeviceEvent* deviceEvent,
-    GameDevice_StatusChangedType* statusChangedType);
+    GameDevice_StatusChangedType* statusChangedType)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains device information from a device event.
@@ -117,7 +119,8 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
     const struct GameDevice_DeviceEvent* deviceEvent,
-    GameDevice_DeviceInfo** deviceInfo);
+    GameDevice_DeviceInfo** deviceInfo)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Destroys a {@link GameDevice_DeviceInfo} instance when it is no longer used.
@@ -127,7 +130,8 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
  * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo is null.
  * @since 21
  */
-GameController_ErrorCode OH_GameDevice_DestroyDeviceInfo(GameDevice_DeviceInfo** deviceInfo);
+GameController_ErrorCode OH_GameDevice_DestroyDeviceInfo(GameDevice_DeviceInfo** deviceInfo)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the device ID from {@link GameDevice_DeviceInfo}.
@@ -140,7 +144,8 @@ GameController_ErrorCode OH_GameDevice_DestroyDeviceInfo(GameDevice_DeviceInfo**
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceId(const struct GameDevice_DeviceInfo* deviceInfo,
-                                                              char** deviceId);
+                                                              char** deviceId)
+                                                              __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains the device name from {@link GameDevice_DeviceInfo}.
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
@@ -152,7 +157,8 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceId(const struct GameD
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevice_DeviceInfo* deviceInfo,
-                                                          char** name);
+                                                          char** name)
+                                                          __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains product information from {@link GameDevice_DeviceInfo}.
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
@@ -163,7 +169,8 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevic
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,
-                                                             int32_t* product);
+                                                             int32_t* product)
+                                                             __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the version information from {@link GameDevice_DeviceInfo}.
@@ -175,7 +182,8 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDe
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVersion(const struct GameDevice_DeviceInfo* deviceInfo,
-                                                             int32_t* version);
+                                                             int32_t* version)
+                                                             __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the physical address from {@link GameDevice_DeviceInfo}.
@@ -188,7 +196,8 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVersion(const struct GameDe
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetPhysicalAddress(const struct GameDevice_DeviceInfo* deviceInfo,
-                                                                     char** physicalAddress);
+                                                                     char** physicalAddress)
+                                                                     __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the device type from {@link GameDevice_DeviceInfo}.
@@ -200,7 +209,8 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetPhysicalAddress(const struc
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceType(const struct GameDevice_DeviceInfo* deviceInfo,
-                                                                GameDevice_DeviceType* deviceType);
+                                                                GameDevice_DeviceType* deviceType)
+                                                                __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

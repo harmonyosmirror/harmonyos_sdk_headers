@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_NODE_H
 #define ARKUI_NATIVE_NODE_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_type.h"
 #include "ui_input_event.h"
 
@@ -543,10 +544,10 @@ typedef enum {
      * This attribute can be set and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute,
-     * which supports five types of shapes:\n
+     * which supports four types of shapes:\n
      * 1. Rectangle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape.\n
+     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape. \n
      * .value[1].f32: width of the rectangle.\n
      * .value[2].f32: height of rectangle.\n
      * .value[3].f32: width of the rounded corner of the rectangle.\n
@@ -555,23 +556,31 @@ typedef enum {
      * .value[6]?.f32: radius of the bottom left corner of the rectangular shape.\n
      * .value[7]?.f32: radius of the top right corner of the rectangular shape.\n
      * .value[8]?.f32: radius of the bottom right corner of the rectangular shape.\n
+     * ?.object: clipOption of the rectangle. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is rectangle, and .size must be equal to 1.
      * 2. Circle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
      * .value[1].f32: width of the circle.\n
      * .value[2].f32: height of the circle.\n
+     * ?.object: clipOption of the circle. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is circle, and .size must be equal to 1.
      * 3.Ellipse:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_ELLIPSE</b> for the ellipse shape.\n
      * .value[1].f32: width of the ellipse.\n
      * .value[2].f32: height of the ellipse.\n
+     * ?.object: clipOption of the ellipse. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is ellipse, and .size must be equal to 1.
      * 4. Path:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_PATH</b> for the path shape.\n
      * .value[1].f32: width of the path.\n
      * .value[2].f32: height of the path.\n
      * .string: command for drawing the path.\n
-     * Format of the return value {@link ArkUI_AttributeItem}, which supports five types of shapes:\n
+     * ?.object: clipOption of the path. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is path, and .size must be equal to 1.\n
+     * Format of the return value {@link ArkUI_AttributeItem}, which supports four types of shapes: \n
      * 1. Rectangle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape.\n
@@ -583,16 +592,22 @@ typedef enum {
      * .value[6].f32: radius of the bottom left corner of the rectangular shape; \n
      * .value[7].f32: radius of the top right corner of the rectangular shape; \n
      * .value[8].f32: radius of the bottom right corner of the rectangular shape; \n
+     * .value[9]?.f32: horizontal coordinate offset of the rectangle. \n
+     * .value[10]?.f32: vertical coordinate offset of the rectangle. \n
      * 2. Circle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
      * .value[1].f32: width of the circle.\n
      * .value[2].f32: height of the circle.\n
+     * .value[3]?.f32: horizontal coordinate offset of the circle.\n
+     * .value[4]?.f32: vertical coordinate offset of the circle.\n
      * 3.Ellipse:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_ELLIPSE</b> for the ellipse shape.\n
      * .value[1].f32: width of the ellipse.\n
      * .value[2].f32: height of the ellipse.\n
+     * .value[3]?.f32: horizontal coordinate offset of the ellipse.\n
+     * .value[4]?.f32: vertical coordinate offset of the ellipse.\n
      * 4. Path:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_PATH</b> for the path shape.\n
@@ -931,27 +946,7 @@ typedef enum {
      * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: mask text.\n
-     * .value[0]?.i32: position of the overlay relative to the component. Optional.
-     * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
-     * .value[1]?.f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. Optional. \n
-     * .value[2]?.f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp. Optional.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: mask text.\n
-     * .value[0].i32: position of the overlay relative to the component.
-     * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
-     * .value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. \n
-     * .value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
-     *
-     * @since 12
-     */
-    /**
-     * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * You can set the overlay content through .string or .object as follow, and .string has higher priority.
      * .string: mask text.\n
      * .value[0]?.i32: position of the overlay relative to the component. Optional.
      * The parameter type is {@link ArkUI_Alignment}.
@@ -960,7 +955,7 @@ typedef enum {
      * .value[2]?.f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp. Optional.
      * \n
      * .value[3]?.i32: the layout direction.
-     * The parameter type is {@link ArkUI_Direction}.
+     * The parameter type is {@link ArkUI_Direction}, supported since API 21.
      * The default value is <b>ARKUI_DIRECTION_LTR.</b> \n
      * In most cases, this parameter should be set to Auto, this allowing the system to handle
      * the layout direction automatically. If you need to keep a specific direction in any situation, set it to
@@ -969,7 +964,7 @@ typedef enum {
      * .object: the node tree used as the overlay.
      * The parameter type is {@link ArkUI_NodeHandle}.
      * The default value is <b>nullptr.</b> \n
-     * this parameter is conflict with .string, and it has lower priority than .string. Optional.
+     * this parameter is conflict with .string, and it has lower priority than .string.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: mask text.\n
@@ -979,11 +974,9 @@ typedef enum {
      * .value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. \n
      * .value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
      * .value[3].i32: the layout direction.
-     * The parameter type is {@link ArkUI_Direction}.
+     * The parameter type is {@link ArkUI_Direction}, supported since API 21.
      * The default value is <b>ARKUI_DIRECTION_LTR.</b> \n
      * .object: the overlay node handle. \n
-     *
-     * @since 21
      */
     NODE_OVERLAY,
     /**
@@ -1854,6 +1847,23 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[...].f32: threshold array. \n
      *
+     * @since 12
+     */
+    /**
+     * @brief Defines the visible area ratio (visible area/total area of the component) threshold for invoking the
+     * visible area change event of the component, this enum extends the configuration capbility.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[...].f32: threshold array. The value range is 0 to 1.
+     * .?object: pass in one {@link ArkUI_VisibleAreaEventOptions} objcet for configging the ratio or other options.
+     * Please note, when use this param, the ratios set through .value[...].f32 will be ignored, and the update
+     * interval from it is always ignored too.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[...].f32: threshold array. \n
+     * .object: the {@link ArkUI_VisibleAreaEventOptions} objcet.
+     *
+     * @since 22
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
     
@@ -2201,6 +2211,25 @@ typedef enum {
      * .value[1].u32: text decoration color, in 0xARGB format. \n
      * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
      *
+     */
+    /**
+     * @brief Defines the text decoration style and color.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
+     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
+     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
+     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * .value[3]?.f32: text decoration thickness scale. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
+     * .value[1].u32: text decoration color, in 0xARGB format. \n
+     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * .value[3].f32: text decoration thickness scale. \n
+     *
+     *  since 22
      */
     NODE_TEXT_DECORATION,
     /**
@@ -2631,6 +2660,107 @@ typedef enum {
     NODE_TEXT_CONTENT_ALIGN = 1036,
 
     /**
+     * @brief Sets the minimum number of lines in the text.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: minimum number of lines in the text.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: minimum number of lines in the text.\n
+     *
+     * @since 22
+     *
+     */
+    NODE_TEXT_MIN_LINES = 1037,
+
+    /**
+     * @brief Enables the selected data detector.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether selected text recognition is enabled.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
+
+    /**
+     * @brief Defines the minimum text line height attribute, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: minimum line height.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: minimum line height.\n
+     *
+     * @since 22
+     *
+     */
+    NODE_TEXT_MIN_LINE_HEIGHT = 1040,
+
+    /**
+     * @brief Defines the maximum text line height attribute, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: maximum line height.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: maximum line height.\n
+     *
+     * @since 22
+     *
+     */
+    NODE_TEXT_MAX_LINE_HEIGHT = 1041,
+
+    /**
+     * @brief Defines line height multiple value of text, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: line height multiple value of text.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: line height multiple value of text.\n
+     *
+     * @since 22
+     *
+     */
+    NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
+
+    /**
+     * @brief Get the text layout manager of the text.
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_LAYOUT_MANAGER = 1043,
+
+    /**
+     * @brief Set the edit menu options of the text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
+
+    /**
+     * @brief Bind the selection menu for text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the custom selection menu of text.
+     *     The parameter type is {@link ArkUI_SelectionMenuOptions}.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_BIND_SELECTION_MENU = 1045,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2732,6 +2862,37 @@ typedef enum {
      * @since 13
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
+
+    /**
+     * @brief Defines the color filter of the image span.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     * 
+     * Format of the {@link ArkUI_AttributeItem } parameter for setting the attribute:\n 
+     * .value [0].f32 to . value [19].f32: filter matrix array. \n 
+     * .size :5 x 4 filter array size. \n 
+     * .object : the pointer to OH_Drawing_ColorFilter. Either . value or . object is set. \n 
+     * \n 
+     * Format of the return value {@ link ArkUI_AttributeItem ):\n 
+     * .value [0].f32 to .value [19].f32: filter matrix array. \n 
+     * .size: 5 x 4 filter array size. \n 
+     * .object: the pointer to OH_Drawing_ColorFilter. \n 
+     * 
+     * @since 22
+     */
+    NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
+    /**
+     * @brief Set the range of SVG parsing capabilities supported through enable switch.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether color fliter support svg. The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: enable switch.\n
+     *
+     * @since 22
+     */
+    NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3034,6 +3195,36 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
+    /**
+     * @brief Defines the placeholder image during loading process.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: placeholder image source. \n
+     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: placeholder image source. \n
+     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     *
+     * @since 22
+     */
+    NODE_IMAGE_ALT_PLACEHOLDER = 4023,
+    /**
+     * @brief Defines the placeholder image when loading fails.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: placeholder image source. \n
+     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: placeholder image source. \n
+     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     *
+     * @since 22
+     */
+    NODE_IMAGE_ALT_ERROR = 4024,
     /**
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3613,6 +3804,43 @@ typedef enum {
     NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
 
     /**
+     * @brief Enables selected data detector.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether selected text recognition is enabled.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
+    
+    /**
+     * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter. \n
+     * .value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed
+     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
+     * by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down. \n
+     * .value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum. \n
+     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to show a character counter. \n
+     * .value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed
+     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
+     * by the threshold percentage value. The value range is 1 to 100. \n
+     * .value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum.
+     * The default value is <b>true</b>. \n
+     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.\n
+     * 
+     * @since 22
+     */
+    NODE_TEXT_INPUT_SHOW_COUNTER = 7040,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3725,6 +3953,7 @@ typedef enum {
      * when the number of characters that have been entered is greater than the maximum number of characters multiplied
      * by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down. \n
      * .value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum. \n
+     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to show a character counter. \n
@@ -3733,6 +3962,7 @@ typedef enum {
      * by the threshold percentage value. The value range is 1 to 100. \n
      * .value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum.
      * The default value is <b>true</b>. \n
+     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}. \n
      *
      */
     NODE_TEXT_AREA_SHOW_COUNTER,
@@ -4027,6 +4257,63 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_AREA_LINE_HEIGHT = 8031,
+
+    /**
+     * @brief Define bar state of the text area.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum.
+     * The default value is <b>ARKUI_BAR_STATE_AUTO</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum. \n
+     *
+     * @since 22
+     */
+     NODE_TEXT_AREA_BAR_STATE = 8032,
+
+    /**
+     * @brief Enables selected data detector.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether selected text recognition is enabled.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
+    
+    /**
+     * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .data[0].u32: color of the scroll bar thumb, in 0xARGB format. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .data[0].u32: color of the scroll bar thumb, in 0xARGB format. \n
+     *
+     * @since 22
+     */
+     NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
+
+     /**
+     * @brief Sets up a custom keyboard.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: custom keyboard,The parameter type is {@Link ArkUI_NodeHandle}.\n
+     * .value[0]?.i32: Sets whether the custom keyboard supports the avoidance feature, default value false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object:custom keyboard,The parameter type is {@Link ArkUI_NodeHandle}.\n
+     * .value[0].i32: Set whether the custom keyboard supports the avoidance function.\n
+     *
+     * @since 22
+     */
+    NODE_TEXT_AREA_CUSTOM_KEYBOARD = 8036,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
@@ -5947,11 +6234,13 @@ typedef enum {
      * .value[0].i32: number of cached items in the list adapter. \n
      * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
      * to show cached items. The default value is <b>0</b>. This parameter is supported since API version 15. \n
+     * .value[2]?.i32: maximum cache count. This parameter is supported since API version 22.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of cached items in the list adapter. \n
      * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
      * to show cached items. This parameter is supported since API version 15. \n
+     * .value[2].i32: maximum cache count. This parameter is supported since API version 22.
      *
      */
     NODE_LIST_CACHED_COUNT,
@@ -6149,6 +6438,41 @@ typedef enum {
      * @since 20
      */
     NODE_LIST_SYNC_LOAD = 1003016,
+
+    /**
+     * @brief Defines the scroll snap animation speed for the <b>List</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     *.value[0].i32: scroll snap animation speed for the <b>List</b> component.
+     * The parameter type is {@link ArkUI_ScrollSnapAnimationSpeed}.
+     * Default value: <b>ARKUI_SCROLL_SNAP_ANIMATION_NORMAL</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     *.value[0].i32: scroll snap animation speed for the <b>List</b> component.
+     * The parameter type is {@link ArkUI_ScrollSnapAnimationSpeed}. \n
+     *
+     * @since 22
+     */
+    NODE_LIST_SCROLL_SNAP_ANIMATION_SPEED = 1003017,
+
+    /**
+     * @brief Specifies the responsive column layout policy for the <b>List</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * .value[1]?.f32: column spacing. unit: vp. Default value: <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * .value[1].f32: column spacing. unit: vp. \n
+     *
+     * @since 22
+     */
+    NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
     /**
      * @brief Defines whether to enable loop playback for the swiper.
@@ -6513,6 +6837,26 @@ typedef enum {
      * @since 20
      */
     NODE_SWIPER_MAINTAIN_VISIBLE_CONTENT_POSITION = 1001023,
+
+    /**
+     * @brief Specifies the responsive column layout policy for the <b>Swiper</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * .value[1]?.i32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
+     * and <b>1</b> means to paginate by groups of child elements displayed within the viewport.
+     * The default value is <b>0</b>.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * .value[1].i32: whether to paginate by group. \n
+     *
+     * @since 22
+     */
+    NODE_SWIPER_ITEMFILLPOLICY = 1001024,
 
     /**
      * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
@@ -6943,6 +7287,22 @@ typedef enum {
     NODE_WATER_FLOW_SYNC_LOAD = 1010012,
 
     /**
+     * @brief Specifies the responsive column layout policy for the <b>WaterFlow</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     *
+     * @since 22
+     */
+    NODE_WATER_FLOW_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1010013,
+
+    /**
      * @brief Set the auxiliary line in the RelativeContaine container, supporting property setting,
      * property reset and property acquisition interfaces.
      *
@@ -7078,6 +7438,68 @@ typedef enum {
      * @since 20
      */
     NODE_GRID_SYNC_LOAD = 1013007,
+
+    /**
+     * @brief Specifies the alignment of <b>GridItem</b> components in the parent <b>Grid</b> container. 
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: alignment of <b>GridItem</b> components in the parent <b>Grid</b> container, \n
+     * specified using the {@link ArkUI_GridItemAlignment} enum. \n
+     * The default value is <b>GRID_ITEM_ALIGNMENT_DEFAULT</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: alignment of <b>GridItem</b> components in the parent <b>Grid</b> container, \n
+     * specified using the {@link ArkUI_GridItemAlignment} enum. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_ALIGN_ITEMS = 1013008,
+
+    /**
+     * @brief Specifies the layout options of the <b>Grid</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .object: layout options, with the parameter format of {@link ArkUI_GridLayoutOptions}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: current {@link ArkUI_GridLayoutOptions} object. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_LAYOUT_OPTIONS = 1013009,
+
+    /**
+     * @brief Specifies the responsive column layout policy for the <b>Grid</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1013010,
+
+    /**
+     * @brief Sets the style of the <b>GridItem</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_SliderStyle}. \n
+     * The default value is <b>GRID_ITEM_STYLE_NONE</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_SliderStyle}. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_ITEM_STYLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
 
     /**
     * @brief Defines the column width of the text picker.
@@ -7563,6 +7985,32 @@ typedef enum {
      * @since 21
      */
     NODE_ON_SIZE_CHANGE = 30,
+
+    /**
+     * @brief Defines the coasting axis event.
+     *
+     * The event is triggered when user swipes with two fingers on the touchpad, the system constructs
+     * sliding events based on the speed at the moment the fingers are lifted, according to a certain
+     * decay curve. You can listen for such events to handle the flick effect immediately after the
+     * regular axis events. \n
+     * When the event callback occurs, the {@link ArkUI_UIInputEvent} object can be obtained from the
+     * {@link ArkUI_NodeEvent} object through {@link OH_ArkUI_NodeEvent_GetInputEvent}.
+     * And the {@link ArkUI_CoastingAxisEvent} object can be obtained from the {@link ArkUI_UIInputEvent}
+     * object through {@link OH_ArkUI_UIInputEvent_GetCoastingAxisEvent}. \n
+     *
+     * @since 22
+     */
+    NODE_ON_COASTING_AXIS_EVENT = 31,
+
+    /**
+     * @brief Defines the pre-touch test of sub component in touch events. Called to specify how to perform the touch test on the children of this component.
+     * 
+     * The event is triggered when the component is touched. \n
+     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
+     * {@link ArkUI_TouchTestInfo} object. \n
+     * @since 22
+    */
+    NODE_ON_CHILD_TOUCH_TEST = 32,
 
     /**
      * @brief Triggers onDetectResultUpdate callback
@@ -8694,6 +9142,83 @@ typedef enum {
      * the end position of the currently displayed waterfall. \n
      */
     NODE_WATER_FLOW_ON_SCROLL_INDEX,
+
+    /**
+     * @brief Defines the event triggered when a child component enters or leaves the grid display area.
+     *
+     * Notes for triggering the event:\n
+     * This event is triggered once when the grid is initialized and when the index of the first or \n
+     * last child component in the grid display area changes. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the grid display area. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index of the last child component in the grid display area. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
+
+    /**
+     * @brief Defines the event triggered when the grid is about to scroll.
+     *
+     * Notes for triggering the event:\n
+     * 1. This event is triggered when scrolling is started by the scrollable component or other input settings,
+     * such as keyboard and mouse operations. \n
+     * 2. Scrolling can be initiated by calling the controller API. \n
+     * 3. The out-of-bounds bounce effect is supported. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>:
+     * Scroll offset of each frame. A positive offset indicates content scrolling upward, \n
+     * and a negative offset indicates content scrolling downward. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}. \n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: scroll source. The parameter type is {@link ArkUI_ScrollSource}. \n
+     * @return Returns one or no number to indicate the actual amount by which the scroll component scrolls.
+     *
+     * @since 22
+     */
+    NODE_GRID_ON_WILL_SCROLL = 1013001,
+
+    /**
+     * @brief Defines the event triggered when the grid scrolls.
+     *
+     * Notes for triggering the event:\n
+     * 1. This event is triggered when scrolling is started by the scrollable component or other input settings,
+     * such as keyboard and mouse operations. \n
+     * 2. Scrolling can be initiated by calling the controller API. \n
+     * 3. The out-of-bounds bounce effect is supported. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>:
+     * Scroll offset of each frame. A positive offset indicates content scrolling upward, \n
+     * and a negative offset indicates content scrolling downward. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_ON_DID_SCROLL = 1013002,
+
+    /**
+     * @brief Defines the event triggered at the end of each frame layout of the <b>ARKUI_NODE_GRID</b> component,
+     * which is used to set the position and length of the scrollbar.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.i32 at index 0:offset of the first visible grid item,
+     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * value.f32 at index 1: offset of the first visible item relative to the grid's display starting position, in vp,
+     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * @return Information about the scrollbar position and length. \n
+     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * value.f32 at index 0: total offset of the grid content relative to the display area, in px. \n
+     * value.f32 at index 1: total length of the grid content, in px. \n
+     *
+     * @since 22
+     */
+    NODE_GRID_ON_SCROLL_BAR_UPDATE = 1013003,
 } ArkUI_NodeEventType;
 
 /**
@@ -8710,7 +9235,8 @@ typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
  * @return Returns the type of the component event.
  * @since 12
  */
-ArkUI_NodeEventType OH_ArkUI_NodeEvent_GetEventType(ArkUI_NodeEvent* event);
+ArkUI_NodeEventType OH_ArkUI_NodeEvent_GetEventType(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the custom ID of a component event.
@@ -8722,7 +9248,8 @@ ArkUI_NodeEventType OH_ArkUI_NodeEvent_GetEventType(ArkUI_NodeEvent* event);
  * @return Returns the custom ID of the component event.
  * @since 12
  */
-int32_t OH_ArkUI_NodeEvent_GetTargetId(ArkUI_NodeEvent* event);
+int32_t OH_ArkUI_NodeEvent_GetTargetId(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the component object that triggers a component event.
@@ -8731,7 +9258,8 @@ int32_t OH_ArkUI_NodeEvent_GetTargetId(ArkUI_NodeEvent* event);
  * @return Returns the component object that triggers the component event.
  * @since 12
  */
-ArkUI_NodeHandle OH_ArkUI_NodeEvent_GetNodeHandle(ArkUI_NodeEvent* event);
+ArkUI_NodeHandle OH_ArkUI_NodeEvent_GetNodeHandle(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains input event (for example, touch event) data for a component event.
@@ -8740,7 +9268,8 @@ ArkUI_NodeHandle OH_ArkUI_NodeEvent_GetNodeHandle(ArkUI_NodeEvent* event);
  * @return Returns the pointer to the input event data.
  * @since 12
  */
-ArkUI_UIInputEvent* OH_ArkUI_NodeEvent_GetInputEvent(ArkUI_NodeEvent* event);
+ArkUI_UIInputEvent* OH_ArkUI_NodeEvent_GetInputEvent(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the numerical data in a component event.
@@ -8749,7 +9278,8 @@ ArkUI_UIInputEvent* OH_ArkUI_NodeEvent_GetInputEvent(ArkUI_NodeEvent* event);
  * @return Returns the pointer to the numerical data.
  * @since 12
  */
-ArkUI_NodeComponentEvent* OH_ArkUI_NodeEvent_GetNodeComponentEvent(ArkUI_NodeEvent* event);
+ArkUI_NodeComponentEvent* OH_ArkUI_NodeEvent_GetNodeComponentEvent(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the string data in a component event.
@@ -8758,7 +9288,8 @@ ArkUI_NodeComponentEvent* OH_ArkUI_NodeEvent_GetNodeComponentEvent(ArkUI_NodeEve
  * @return Returns the pointer to the string data.
  * @since 12
  */
-ArkUI_StringAsyncEvent* OH_ArkUI_NodeEvent_GetStringAsyncEvent(ArkUI_NodeEvent* event);
+ArkUI_StringAsyncEvent* OH_ArkUI_NodeEvent_GetStringAsyncEvent(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the ArkUI_TextChangeEvent data from a component event.
@@ -8767,7 +9298,8 @@ ArkUI_StringAsyncEvent* OH_ArkUI_NodeEvent_GetStringAsyncEvent(ArkUI_NodeEvent* 
  * @return Returns the pointer to the <b>ArkUI_TextChangeEvent</b> object.
  * @since 15
  */
-ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* event);
+ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* event)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the custom data in a component event.
@@ -8779,7 +9311,7 @@ ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* ev
  * @return Returns the pointer to the custom data.
  * @since 12
  */
-void* OH_ArkUI_NodeEvent_GetUserData(ArkUI_NodeEvent* event);
+void* OH_ArkUI_NodeEvent_GetUserData(ArkUI_NodeEvent* event) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the numeric-type parameter of a component event.
@@ -8794,7 +9326,8 @@ void* OH_ArkUI_NodeEvent_GetUserData(ArkUI_NodeEvent* event);
  *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if the data does not exist in the component event.
  * @since 12
  */
-int32_t OH_ArkUI_NodeEvent_GetNumberValue(ArkUI_NodeEvent* event, int32_t index, ArkUI_NumberValue* value);
+int32_t OH_ArkUI_NodeEvent_GetNumberValue(ArkUI_NodeEvent* event, int32_t index, ArkUI_NumberValue* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the string-type parameter of a component event. The string data is valid only during an event
@@ -8811,7 +9344,8 @@ int32_t OH_ArkUI_NodeEvent_GetNumberValue(ArkUI_NodeEvent* event, int32_t index,
  *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if the data does not exist in the component event.
  * @since 12
  */
-int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index, char** string, int32_t* stringSize);
+int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index, char** string, int32_t* stringSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the return value for a component event.
@@ -8825,7 +9359,19 @@ int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index,
  *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if data does not exist in the component event.
  * @since 12
  */
-int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue(ArkUI_NodeEvent* event, ArkUI_NumberValue* value, int32_t size);
+int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue(ArkUI_NodeEvent* event, ArkUI_NumberValue* value, int32_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Obtains a <b>ArkUI_TouchTestInfo</b> object from the specified <b>ArkUI_NodeEvent</b> object.
+ *
+ * @param {pointer} nodeEvent Indicates the pointer to an <b>ArkUI_NodeEvent</b> object.
+ * @return Returns the pointer to an <b>ArkUI_TouchTestInfo</b> object.
+ *         Returns <b>null</b> if the parameter passed in is invalid or is not a touch test info.
+ * @since 22
+ */
+ArkUI_TouchTestInfo* OH_ArkUI_NodeEvent_GetTouchTestInfo(ArkUI_NodeEvent* nodeEvent)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Defines the dirty area flag passed in the <b>::markDirty</b> API.
@@ -8918,7 +9464,7 @@ typedef enum {
 *
 * @since 12
 */
-ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create();
+ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroys a component adapter.
@@ -8926,7 +9472,8 @@ ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create();
 * @param handle Indicates the target component adapter.
 * @since 12
 */
-void OH_ArkUI_NodeAdapter_Dispose(ArkUI_NodeAdapterHandle handle);
+void OH_ArkUI_NodeAdapter_Dispose(ArkUI_NodeAdapterHandle handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the total number of elements in the specified adapter.
@@ -8938,7 +9485,8 @@ void OH_ArkUI_NodeAdapter_Dispose(ArkUI_NodeAdapterHandle handle);
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
-int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount(ArkUI_NodeAdapterHandle handle, uint32_t size);
+int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount(ArkUI_NodeAdapterHandle handle, uint32_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the total number of elements in the specified adapter.
@@ -8947,7 +9495,8 @@ int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount(ArkUI_NodeAdapterHandle handle, u
 * @return Returns the total number of elements in the adapter.
 * @since 12
 */
-uint32_t OH_ArkUI_NodeAdapter_GetTotalNodeCount(ArkUI_NodeAdapterHandle handle);
+uint32_t OH_ArkUI_NodeAdapter_GetTotalNodeCount(ArkUI_NodeAdapterHandle handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Registers an event callback for the adapter.
@@ -8961,7 +9510,8 @@ uint32_t OH_ArkUI_NodeAdapter_GetTotalNodeCount(ArkUI_NodeAdapterHandle handle);
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_RegisterEventReceiver(
-ArkUI_NodeAdapterHandle handle, void* userData, void (*receiver)(ArkUI_NodeAdapterEvent* event));
+ArkUI_NodeAdapterHandle handle, void* userData, void (*receiver)(ArkUI_NodeAdapterEvent* event))
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Deregisters an event callback for the adapter.
@@ -8969,7 +9519,8 @@ ArkUI_NodeAdapterHandle handle, void* userData, void (*receiver)(ArkUI_NodeAdapt
 * @param handle Indicates the target component adapter.
 * @since 12
 */
-void OH_ArkUI_NodeAdapter_UnregisterEventReceiver(ArkUI_NodeAdapterHandle handle);
+void OH_ArkUI_NodeAdapter_UnregisterEventReceiver(ArkUI_NodeAdapterHandle handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Instructs the specified adapter to reload all elements.
@@ -8980,7 +9531,8 @@ void OH_ArkUI_NodeAdapter_UnregisterEventReceiver(ArkUI_NodeAdapterHandle handle
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
-int32_t OH_ArkUI_NodeAdapter_ReloadAllItems(ArkUI_NodeAdapterHandle handle);
+int32_t OH_ArkUI_NodeAdapter_ReloadAllItems(ArkUI_NodeAdapterHandle handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Instructs the specified adapter to reload certain elements.
@@ -8994,7 +9546,8 @@ int32_t OH_ArkUI_NodeAdapter_ReloadAllItems(ArkUI_NodeAdapterHandle handle);
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_ReloadItem(
-ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
+ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Instructs the specified adapter to remove certain elements.
@@ -9008,7 +9561,8 @@ ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_RemoveItem(
-ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
+ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Instructs the specified adapter to insert certain elements.
@@ -9022,7 +9576,8 @@ ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_InsertItem(
-ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
+ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Instructs the specified adapter to move certain elements.
@@ -9035,7 +9590,8 @@ ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
-int32_t OH_ArkUI_NodeAdapter_MoveItem(ArkUI_NodeAdapterHandle handle, uint32_t from, uint32_t to);
+int32_t OH_ArkUI_NodeAdapter_MoveItem(ArkUI_NodeAdapterHandle handle, uint32_t from, uint32_t to)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains all elements stored in the specified adapter.
@@ -9051,7 +9607,8 @@ int32_t OH_ArkUI_NodeAdapter_MoveItem(ArkUI_NodeAdapterHandle handle, uint32_t f
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
-int32_t OH_ArkUI_NodeAdapter_GetAllItems(ArkUI_NodeAdapterHandle handle, ArkUI_NodeHandle** items, uint32_t* size);
+int32_t OH_ArkUI_NodeAdapter_GetAllItems(ArkUI_NodeAdapterHandle handle, ArkUI_NodeHandle** items, uint32_t* size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the custom data passed in during registration of the specified event.
@@ -9059,7 +9616,8 @@ int32_t OH_ArkUI_NodeAdapter_GetAllItems(ArkUI_NodeAdapterHandle handle, ArkUI_N
 * @param event Indicates the target adapter event.
 * @since 12
 */
-void* OH_ArkUI_NodeAdapterEvent_GetUserData(ArkUI_NodeAdapterEvent* event);
+void* OH_ArkUI_NodeAdapterEvent_GetUserData(ArkUI_NodeAdapterEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the event type.
@@ -9068,7 +9626,8 @@ void* OH_ArkUI_NodeAdapterEvent_GetUserData(ArkUI_NodeAdapterEvent* event);
 * @return Returns the event type.
 * @since 12
 */
-ArkUI_NodeAdapterEventType OH_ArkUI_NodeAdapterEvent_GetType(ArkUI_NodeAdapterEvent* event);
+ArkUI_NodeAdapterEventType OH_ArkUI_NodeAdapterEvent_GetType(ArkUI_NodeAdapterEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the element to be removed for the event to be destroyed.
@@ -9077,7 +9636,8 @@ ArkUI_NodeAdapterEventType OH_ArkUI_NodeAdapterEvent_GetType(ArkUI_NodeAdapterEv
 * @return Returns the element to be removed.
 * @since 12
 */
-ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetRemovedNode(ArkUI_NodeAdapterEvent* event);
+ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetRemovedNode(ArkUI_NodeAdapterEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the index of the element to be operated for the specified adapter event.
@@ -9086,7 +9646,8 @@ ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetRemovedNode(ArkUI_NodeAdapterEvent
 * @return Returns the index of the element.
 * @since 12
 */
-uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex(ArkUI_NodeAdapterEvent* event);
+uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex(ArkUI_NodeAdapterEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the scrollable container node that uses the specified adapter.
@@ -9095,7 +9656,8 @@ uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex(ArkUI_NodeAdapterEvent* event);
 * @return Returns the scrollable container node that uses the specified adapter.
 * @since 12
 */
-ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* event);
+ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the component to be added to the specified adapter.
@@ -9107,7 +9669,8 @@ ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* e
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
-int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_NodeHandle node);
+int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the component ID to be generated.
@@ -9119,7 +9682,8 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_N
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
-int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32_t id);
+int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32_t id)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Declares a collection of native node APIs provided by ArkUI.
@@ -9156,9 +9720,9 @@ typedef struct {
      * @return Returns the error code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
-     * on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed on
+     *             BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. add since api 22.
      */
     int32_t (*addChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
 
@@ -9186,9 +9750,9 @@ typedef struct {
      * @return Returns the error code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
-     * on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed on BuilderNode generated
+     *             nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. add since api 22.
      */
     int32_t (*insertChildAfter)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
 
@@ -9202,9 +9766,9 @@ typedef struct {
      * @return Returns the error code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
-     * on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed on BuilderNode generated
+     *             nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. add since api 22.
      */
     int32_t (*insertChildBefore)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
 
@@ -9218,9 +9782,9 @@ typedef struct {
      * @return Returns the error code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
-     * on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed on BuilderNode generated
+     *             nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
+     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. add since api 22.
      */
     int32_t (*insertChildAt)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position);
 
@@ -9611,7 +10175,8 @@ typedef struct {
 * @return Returns the pointer to the size constraint.
 * @since 12
 */
-ArkUI_LayoutConstraint* OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure(ArkUI_NodeCustomEvent* event);
+ArkUI_LayoutConstraint* OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the expected position of a component relative to its parent component in the layout phase through a
@@ -9621,7 +10186,8 @@ ArkUI_LayoutConstraint* OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure(Ar
 * @return Returns the expected position relative to the parent component.
 * @since 12
 */
-ArkUI_IntOffset OH_ArkUI_NodeCustomEvent_GetPositionInLayout(ArkUI_NodeCustomEvent* event);
+ArkUI_IntOffset OH_ArkUI_NodeCustomEvent_GetPositionInLayout(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the drawing context through a custom component event.
@@ -9630,7 +10196,8 @@ ArkUI_IntOffset OH_ArkUI_NodeCustomEvent_GetPositionInLayout(ArkUI_NodeCustomEve
 * @return Returns the drawing context.
 * @since 12
 */
-ArkUI_DrawContext* OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(ArkUI_NodeCustomEvent* event);
+ArkUI_DrawContext* OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the ID of a custom component event.
@@ -9639,7 +10206,8 @@ ArkUI_DrawContext* OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(ArkUI_NodeCusto
 * @return Returns the ID of the custom component event.
 * @since 12
 */
-int32_t OH_ArkUI_NodeCustomEvent_GetEventTargetId(ArkUI_NodeCustomEvent* event);
+int32_t OH_ArkUI_NodeCustomEvent_GetEventTargetId(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains custom event parameters through a custom component event.
@@ -9648,7 +10216,8 @@ int32_t OH_ArkUI_NodeCustomEvent_GetEventTargetId(ArkUI_NodeCustomEvent* event);
 * @return Returns the custom event parameters.
 * @since 12
 */
-void* OH_ArkUI_NodeCustomEvent_GetUserData(ArkUI_NodeCustomEvent* event);
+void* OH_ArkUI_NodeCustomEvent_GetUserData(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains a component object through a custom component event.
@@ -9657,7 +10226,8 @@ void* OH_ArkUI_NodeCustomEvent_GetUserData(ArkUI_NodeCustomEvent* event);
 * @return Returns the component object.
 * @since 12
 */
-ArkUI_NodeHandle OH_ArkUI_NodeCustomEvent_GetNodeHandle(ArkUI_NodeCustomEvent* event);
+ArkUI_NodeHandle OH_ArkUI_NodeCustomEvent_GetNodeHandle(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the event type through a custom component event.
@@ -9666,7 +10236,8 @@ ArkUI_NodeHandle OH_ArkUI_NodeCustomEvent_GetNodeHandle(ArkUI_NodeCustomEvent* e
 * @return Returns the type of the custom component event.
 * @since 12
 */
-ArkUI_NodeCustomEventType OH_ArkUI_NodeCustomEvent_GetEventType(ArkUI_NodeCustomEvent* event);
+ArkUI_NodeCustomEventType OH_ArkUI_NodeCustomEvent_GetEventType(ArkUI_NodeCustomEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the measurement information of a custom span through a custom component event.
@@ -9680,7 +10251,8 @@ ArkUI_NodeCustomEventType OH_ArkUI_NodeCustomEvent_GetEventType(ArkUI_NodeCustom
 * @since 12
 */
 int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(
-    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanMeasureInfo* info);
+    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanMeasureInfo* info)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the measurement metrics of a custom span through a custom component event.
@@ -9694,7 +10266,8 @@ int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(
 * @since 12
 */
 int32_t OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(
-    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanMetrics* metrics);
+    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanMetrics* metrics)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the drawing information of a custom span through a custom component event.
@@ -9708,7 +10281,8 @@ int32_t OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(
 * @since 12
 */
 int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(
-    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanDrawInfo* info);
+    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanDrawInfo* info)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines the node content event type.
@@ -9759,7 +10333,8 @@ typedef void (*ArkUI_NodeContentCallback)(ArkUI_NodeContentEvent* event);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback);
+int32_t OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the type of a node content event.
@@ -9768,7 +10343,8 @@ int32_t OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, A
  * @return Returns the type of the node content event.
  * @since 12
  */
-ArkUI_NodeContentEventType OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeContentEvent* event);
+ArkUI_NodeContentEventType OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeContentEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the node content object that triggers a node content event.
@@ -9777,7 +10353,8 @@ ArkUI_NodeContentEventType OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeCont
  * @return Returns the node content object that triggers the node content event.
  * @since 12
  */
-ArkUI_NodeContentHandle OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event);
+ArkUI_NodeContentHandle OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Saves custom data on the specified node content.
@@ -9789,7 +10366,8 @@ ArkUI_NodeContentHandle OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_Nod
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData);
+int32_t OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the custom data saved on the specified node content.
@@ -9798,7 +10376,8 @@ int32_t OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* 
  * @return Returns the custom data.
  * @since 12
  */
-void* OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content);
+void* OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add a node to a node content.
@@ -9808,9 +10387,11 @@ void* OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content);
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the node has already been adopted. add since api 22.
  * @since 12
  */
-int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node);
+int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief remove a node from a node content.
@@ -9822,7 +10403,8 @@ int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_Node
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node);
+int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief insert a node into a node content at a given position.
@@ -9833,9 +10415,11 @@ int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_N
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the node has already been adopted. add since api 22.
  * @since 12
  */
-int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position);
+int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the size of the component layout area.
@@ -9848,7 +10432,8 @@ int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_N
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* size);
+int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the position of the component layout area relative to the parent component.
@@ -9861,7 +10446,8 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* s
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOffset* localOffset);
+int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOffset* localOffset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the position of the component layout area relative to the window.
@@ -9874,7 +10460,8 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOff
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the position of the component layout area relative to the screen.
@@ -9887,7 +10474,8 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkU
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset);
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the offset of a component relative to the global display.
@@ -9900,7 +10488,8 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkU
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay(ArkUI_NodeHandle node, ArkUI_IntOffset* offset);
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay(ArkUI_NodeHandle node, ArkUI_IntOffset* offset)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtain the position of the component in the window, including the properties of graphic translation changes.
@@ -9913,7 +10502,8 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay(ArkUI_NodeHandle nod
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
+int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the position of the component on the screen, including the attributes of graphic translation changes.
@@ -9926,7 +10516,8 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle nod
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
+int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add the custom property of the component. This interface only works on the main thread.
@@ -9936,7 +10527,8 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle nod
  * @param value The value of the custom property. Passing null pointers is not allowed.
  * @since 13
  */
-void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* name, const char* value);
+void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* name, const char* value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Remove the custom property of the component.
@@ -9945,7 +10537,8 @@ void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* nam
  * @param name The name of the custom property.
  * @since 13
  */
-void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name);
+void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get the value of the custom property of the component.
@@ -9958,7 +10551,8 @@ void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* 
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 14
  */
-int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* name, ArkUI_CustomProperty** handle);
+int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* name, ArkUI_CustomProperty** handle)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get the parent node to obtain the component nodes created by ArkTs.
@@ -9967,7 +10561,8 @@ int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* 
  * @return Return the pointer of the component.
  * @since 14
  */
-ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
+ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Retrieve all active child nodes of a node. Span will not be counted in the children.
@@ -9979,7 +10574,8 @@ ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 14
  */
-int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_ActiveChildrenInfo** handle);
+int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_ActiveChildrenInfo** handle)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Retrieve the root node of the current page.
@@ -9988,7 +10584,8 @@ int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_Ac
  * @return Return the pointer of the component.
  * @since 14
  */
-ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetCurrentPageRootNode(ArkUI_NodeHandle node);
+ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetCurrentPageRootNode(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Retrieve whether the component is labeled by C-API.
@@ -9998,7 +10595,7 @@ ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetCurrentPageRootNode(ArkUI_NodeHandle node
  *         true represents created by C-API, false represents not created by C-API.
  * @since 14
  */
-bool OH_ArkUI_NodeUtils_IsCreatedByNDK(ArkUI_NodeHandle node);
+bool OH_ArkUI_NodeUtils_IsCreatedByNDK(ArkUI_NodeHandle node) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get the type of node.
@@ -10008,7 +10605,7 @@ bool OH_ArkUI_NodeUtils_IsCreatedByNDK(ArkUI_NodeHandle node);
  *         For specific open types, refer to {@link ArkUI_NodeType}. For unopened nodes, return -1.
  * @since 14
  */
-int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get info of the window to which the node belongs.
@@ -10021,7 +10618,8 @@ int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node is not mounted.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
+int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
  
 /**
  * @brief Obtains the index of the current FrameNode's first child node which is on the tree.
@@ -10033,7 +10631,8 @@ int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindow
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
+int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the index of the current FrameNode's last child node which is on the tree.
@@ -10045,7 +10644,8 @@ int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
+int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains a subnode by position with the expand mode.
@@ -10060,7 +10660,8 @@ int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node,
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t position,
-    ArkUI_NodeHandle* subnode, uint32_t expandMode);
+    ArkUI_NodeHandle* subnode, uint32_t expandMode)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Collapse the ListItem in its expanded state.
@@ -10074,7 +10675,8 @@ int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t
  *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
  * @since 12
  */
-int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData, void (*onFinish)(void* userData));
+int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData, void (*onFinish)(void* userData))
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtain the UIContext pointer to the page where the node is located.
@@ -10084,7 +10686,8 @@ int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData
 *         If a null pointer is returned, it may be because the node is empty.
 * @since 12
 */
-ArkUI_ContextHandle OH_ArkUI_GetContextByNode(ArkUI_NodeHandle node);
+ArkUI_ContextHandle OH_ArkUI_GetContextByNode(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief The event called when the system color mode changes.
@@ -10099,7 +10702,8 @@ ArkUI_ContextHandle OH_ArkUI_GetContextByNode(ArkUI_NodeHandle node);
 * @since 12
 */
 int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,
-    void* userData, void (*onColorModeChange)(ArkUI_SystemColorMode colorMode, void* userData));
+    void* userData, void (*onColorModeChange)(ArkUI_SystemColorMode colorMode, void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Unregister the event callback when the system color mode changes.
@@ -10107,7 +10711,8 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,
 * @param node Indicates the target node.
 * @since 12
 */
-void OH_ArkUI_UnregisterSystemColorModeChangeEvent(ArkUI_NodeHandle node);
+void OH_ArkUI_UnregisterSystemColorModeChangeEvent(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief The event called when the system font style changes.
@@ -10122,7 +10727,8 @@ void OH_ArkUI_UnregisterSystemColorModeChangeEvent(ArkUI_NodeHandle node);
 * @since 12
 */
 int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,
-    void* userData, void (*onFontStyleChange)(ArkUI_SystemFontStyleEvent* event, void* userData));
+    void* userData, void (*onFontStyleChange)(ArkUI_SystemFontStyleEvent* event, void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Unregister the event callback when the system font style changes.
@@ -10130,7 +10736,8 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,
 * @param node Indicates the target node.
 * @since 12
 */
-void OH_ArkUI_UnregisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node);
+void OH_ArkUI_UnregisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Retrieve the font size value for system font change events.
@@ -10139,7 +10746,8 @@ void OH_ArkUI_UnregisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node);
  * @return Updated system font size scaling factor. Default value: 1.0.
  * @since 12
  */
-float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyleEvent* event);
+float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyleEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Retrieve the font thickness values for system font change events.
@@ -10148,7 +10756,8 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyle
  * @return The updated system font thickness scaling factor. Default value: 1.0.
  * @since 12
  */
-float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event);
+float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Move the node handle to target parent node as child.
@@ -10161,9 +10770,11 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontSty
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the node has already been adopted. add since api 22.
  * @since 18
  */
-int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target_parent, int32_t index);
+int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target_parent, int32_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Triggers node updates in the current frame.
@@ -10178,7 +10789,8 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 21
  */
-int32_t OH_ArkUI_NativeModule_InvalidateAttributes(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_NativeModule_InvalidateAttributes(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Set the cross-language option of the target node handle.
@@ -10190,7 +10802,8 @@ int32_t OH_ArkUI_NativeModule_InvalidateAttributes(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
+int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the cross-language option of the target node handle.
@@ -10202,7 +10815,8 @@ int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
+int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Registers a callback for node when layout is completed.
@@ -10216,7 +10830,8 @@ int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
  * @since 15
  */
 int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
-    void* userData, void (*onLayoutCompleted)(void* userData));
+    void* userData, void (*onLayoutCompleted)(void* userData))
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Registers a callback for node when draw is completed.
@@ -10230,7 +10845,8 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
  * @since 15
  */
 int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
-    void* userData, void (*onDrawCompleted)(void* userData));
+    void* userData, void (*onDrawCompleted)(void* userData))
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
     
 /**
  * @brief Unregisters the layout completed callback for node.
@@ -10241,7 +10857,8 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is incorrect.
  * @since 15
  */
-int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Unregisters the draw completed callback for node.
@@ -10252,7 +10869,8 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is incorrect.
  * @since 15
  */
-int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the node handle by id.
@@ -10264,7 +10882,8 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
+int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
@@ -10282,7 +10901,8 @@ int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeH
  * @since 15
  */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
-    OH_PixelmapNative** pixelmap);
+    OH_PixelmapNative** pixelmap)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the offset of a specific node relative to its parent node.
@@ -10294,7 +10914,8 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 15
  */
-int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
+int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Adds the UI state style supported by the component. To handle states change efficiently, need to specify the
@@ -10328,7 +10949,8 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntO
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates,
-    void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData);
+    void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Removes registered UI states. When all states registered using <b>OH_ArkUI_AddSupportedUIStates</b>
@@ -10341,7 +10963,8 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
+ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Run a custom function inside the UIContext scope.
@@ -10356,7 +10979,8 @@ ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t 
  *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
  * @since 20
  */
-int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData));
+int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData))
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the node handle by uniqueId.
@@ -10369,7 +10993,8 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkUI_NodeHandle* node);
+int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkUI_NodeHandle* node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the uniqueId of the target node handle.
@@ -10377,12 +11002,45 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
  * @param node The ArkUI-NodeHandle pointer.
  * @param uniqueId The uniqueId of the target node handle, default value is -1.
  * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
+int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief The current node adopts the target child node. The node being adopted must not have an existing parent node.
+ * This operation does not actually append it as a child, but only allows it to receive life-cycle
+ * callbacks as if it were a child.
+ *
+ * @param node ArkUI_NodeHandle pointer, the parent node that will adopt the child node.
+ * @param child ArkUI_NodeHandle pointer, the target node being adopted.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_NODE_HAS_PARENT} The child already has a parent node.
+ *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED} The child can not be adopted.
+ *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO} The node can not adopt children.
+ * @since 22
+ */
+int32_t OH_ArkUI_NativeModule_AdoptChild(ArkUI_NodeHandle node, ArkUI_NodeHandle child)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Remove the target adopted child node.
+ *
+ * @param node ArkUI_NodeHandle pointer, the parent node.
+ * @param child ArkUI_NodeHandle pointer, the node being removed.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN} This child node is not adopted by the parent node.
+ * @since 22
+ */
+int32_t OH_ArkUI_NativeModule_RemoveAdoptedChild(ArkUI_NodeHandle node, ArkUI_NodeHandle child)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Sets the inverse color algorithm for components and instances.
@@ -10400,8 +11058,52 @@ int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqu
  * @since 20
  */
 int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDark, ArkUI_NodeType nodeType,
-    uint32_t (*colorInvertFunc)(uint32_t color));
+    uint32_t (*colorInvertFunc)(uint32_t color))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
+/**
+ * @brief Post UI task to background threads.
+ *
+ * @param context UIContext pointer of the page where the UI task located.
+ * @param asyncUITaskData Parameter of asyncUITask and onFinish.
+ * @param asyncUITask Function executed by a background thread.
+ * @param onFinish Function executed by UI thread after async UI task is executed.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or asyncUITask is nullptr.
+ * @since 22
+ */
+int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
+    void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData))
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Post UI task to UI thread.
+ *
+ * @param context UIContext pointer of the page where the UI task located.
+ * @param taskData Parameter of task.
+ * @param task Function executed by UI thread.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
+ * @since 22
+ */
+int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData))
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Post UI task to UI thread and wait until UI task finished.
+ *
+ * @param context UIContext pointer of the page where the UI task located.
+ * @param taskData Parameter of task.
+ * @param task Function executed by UI thread.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
+ * @since 22
+ */
+int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData))
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 /**
  * @brief Register common event callback of target node.
  *
@@ -10416,7 +11118,8 @@ int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDar
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
-    void* userData, void (*callback)(ArkUI_NodeEvent* event));
+    void* userData, void (*callback)(ArkUI_NodeEvent* event))
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregister common event callback of target node.
@@ -10429,7 +11132,8 @@ int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_N
  *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
  * @since 21
  */
-int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
+int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
  
 /**
  * @brief Register common visible area approximate change event callback of target node.
@@ -10446,7 +11150,8 @@ int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_RegisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node, float* ratios,
-    int32_t size, float expectedUpdateInterval, void* userData, void (*callback)(ArkUI_NodeEvent* event));
+    int32_t size, float expectedUpdateInterval, void* userData, void (*callback)(ArkUI_NodeEvent* event))
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
  
 /**
  * @brief Unregister common visible area approximate change event callback of target node.
@@ -10457,7 +11162,20 @@ int32_t OH_ArkUI_NativeModule_RegisterCommonVisibleAreaApproximateChangeEvent(Ar
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_NativeModule_UnregisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_NativeModule_UnregisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
+
+/** 
+ * @brief Stop the animation being executed by the Swiper node.
+ * 
+ * @param node ArkUI_NodeHandle pointer.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @since 22
+ */
+int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 };

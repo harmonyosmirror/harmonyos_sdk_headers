@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_SLEEP_H
 #define FFRT_API_C_SLEEP_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "type_def.h"
 
@@ -47,14 +48,14 @@
            returns <b>ffrt_error</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_usleep(uint64_t usec);
+FFRT_C_API int ffrt_usleep(uint64_t usec) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Passes control to other tasks so that they can be executed.
  *
  * @since 10
  */
-FFRT_C_API void ffrt_yield(void);
+FFRT_C_API void ffrt_yield(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #endif // FFRT_API_C_SLEEP_H
 /** @} */

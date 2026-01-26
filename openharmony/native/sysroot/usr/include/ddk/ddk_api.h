@@ -37,6 +37,7 @@
 #ifndef DDK_API_H
 #define DDK_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "ddk_types.h"
 
@@ -56,7 +57,8 @@ extern "C" {
  *         {@link DDK_FAILURE} create the shared memory failed or create structure DDK_Ashmem failed.
  * @since 12
  */
-DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem **ashmem);
+DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem **ashmem)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Maps the created shared memory to the user space. Unmap the shared memory that is not required by using\n
@@ -70,7 +72,8 @@ DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem *
  *         {@link DDK_INVALID_OPERATION} use function MapAshmem failed.
  * @since 12
  */
-DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
+DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unmaps shared memory.
@@ -81,7 +84,7 @@ DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
  *         {@link DDK_FAILURE} the fd of ashmem is invalid.
  * @since 12
  */
-DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
+DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys shared memory.
@@ -92,7 +95,7 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
  *         {@link DDK_FAILURE} the fd of ashmem is invalid.
  * @since 12
  */
-DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);
+DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem) __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 /** @} */

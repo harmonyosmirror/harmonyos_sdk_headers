@@ -36,6 +36,7 @@
 #ifndef SCSI_PERIPHERAL_API_H
 #define SCSI_PERIPHERAL_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "scsi_peripheral_types.h"
 
@@ -53,7 +54,7 @@ extern "C" {
  *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
  * @since 18
  */
-int32_t OH_ScsiPeripheral_Init(void);
+int32_t OH_ScsiPeripheral_Init(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the ScsiPeripheral DDK.
@@ -65,7 +66,7 @@ int32_t OH_ScsiPeripheral_Init(void);
  *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
  * @since 18
  */
-int32_t OH_ScsiPeripheral_Release(void);
+int32_t OH_ScsiPeripheral_Release(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Open SCSI device by deviceId.
@@ -86,7 +87,8 @@ int32_t OH_ScsiPeripheral_Release(void);
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  * @since 18
  */
-int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPeripheral_Device **dev);
+int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPeripheral_Device **dev)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Close SCSI device.
@@ -101,7 +103,7 @@ int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPe
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  * @since 18
  */
-int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
+int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Check if the logical unit is ready.
@@ -122,7 +124,8 @@ int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
  * @since 18
  */
 int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripheral_TestUnitReadyRequest *request,
-    ScsiPeripheral_Response *response);
+    ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the information regarding the logical unit and SCSI target device.
@@ -145,7 +148,8 @@ int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripher
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_InquiryRequest *request,
-    ScsiPeripheral_InquiryInfo *inquiryInfo, ScsiPeripheral_Response *response);
+    ScsiPeripheral_InquiryInfo *inquiryInfo, ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the device capacity.
@@ -168,7 +172,8 @@ int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_Inq
  * @since 18
  */
 int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeripheral_ReadCapacityRequest *request,
-    ScsiPeripheral_CapacityInfo *capacityInfo, ScsiPeripheral_Response *response);
+    ScsiPeripheral_CapacityInfo *capacityInfo, ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the sense data.
@@ -189,7 +194,8 @@ int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeriphe
  * @since 18
  */
 int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeripheral_RequestSenseRequest *request,
-    ScsiPeripheral_Response *response);
+    ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Read from the specified logical block(s).
@@ -211,7 +217,8 @@ int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeriphera
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORequest *request,
-    ScsiPeripheral_Response *response);
+    ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Write data to the specified logical block(s).
@@ -233,7 +240,8 @@ int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORe
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORequest *request,
-    ScsiPeripheral_Response *response);
+    ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Verify the specified logical block(s) on the medium.
@@ -254,7 +262,8 @@ int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IOR
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_VerifyRequest *request,
-    ScsiPeripheral_Response *response);
+    ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Send SCSI command that specified by CDB.
@@ -276,7 +285,8 @@ int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_Ve
  * @since 18
  */
 int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPeripheral_Request *request,
-    ScsiPeripheral_Response *response);
+    ScsiPeripheral_Response *response)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates a buffer. To avoid resource leakage, destroy a buffer by calling\n
@@ -291,7 +301,8 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
  * @since 18
  */
 int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t size,
-    ScsiPeripheral_DeviceMemMap **devMmap);
+    ScsiPeripheral_DeviceMemMap **devMmap)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.
@@ -302,7 +313,8 @@ int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t 
  *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
  * @since 18
  */
-int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap);
+int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Parse the basic sense data of Information、Command-specific information、Sense key specific.
@@ -318,7 +330,8 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
  * @since 18
  */
 int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen,
-    ScsiPeripheral_BasicSenseInfo *senseInfo);
+    ScsiPeripheral_BasicSenseInfo *senseInfo)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

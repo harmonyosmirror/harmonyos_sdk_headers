@@ -40,6 +40,7 @@
 #ifndef FILE_MANAGEMENT_OH_FILE_URI_H
 #define FILE_MANAGEMENT_OH_FILE_URI_H
 
+#include "info/application_target_sdk_version.h"
 #include "error_code.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -62,7 +63,8 @@ extern "C" {
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
  */
-FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result);
+FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get path From uri.
@@ -78,7 +80,8 @@ FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int 
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
  */
-FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result);
+FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the uri of the path or directory where the uri is located.
@@ -95,7 +98,8 @@ FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int l
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
  */
-FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned int length, char **result);
+FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned int length, char **result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check that the incoming uri is valid
@@ -106,7 +110,8 @@ FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned 
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
  */
-bool OH_FileUri_IsValidUri(const char *uri, unsigned int length);
+bool OH_FileUri_IsValidUri(const char *uri, unsigned int length)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the fileName From uri.
@@ -122,7 +127,8 @@ bool OH_FileUri_IsValidUri(const char *uri, unsigned int length);
 * @syscap SystemCapability.FileManagement.AppFileService
 * @since 13
  */
-FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int length, char **result);
+FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int length, char **result)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 };
 #endif

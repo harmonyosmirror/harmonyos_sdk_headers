@@ -26,6 +26,7 @@
 #define UCHAR_H
 
 #include "unicode/utypes.h"
+#include "unicode/uversion.h"
 #include "unicode/stringoptions.h"
 
 #if !defined(USET_DEFINED) && !defined(U_IN_DOXYGEN)
@@ -3865,6 +3866,37 @@ u_digit(UChar32 ch, int8_t radix);
  */
 U_CAPI UChar32 U_EXPORT2
 u_forDigit(int32_t digit, int8_t radix);
+
+/**
+ * Get the "age" of the code point.
+ * The "age" is the Unicode version when the code point was first
+ * designated (as a non-character or for Private Use)
+ * or assigned a character.
+ * This can be useful to avoid emitting code points to receiving
+ * processes that do not accept newer characters.
+ * The data is from the UCD file DerivedAge.txt.
+ *
+ * @param c The code point.
+ * @param versionArray The Unicode version number array, to be filled in.
+ *
+ * @stable ICU 2.1
+ */
+U_CAPI void U_EXPORT2
+u_charAge(UChar32 c, UVersionInfo versionArray);
+
+/**
+ * Gets the Unicode version information.
+ * The version array is filled in with the version information
+ * for the Unicode standard that is currently used by ICU.
+ * For example, Unicode version 3.1.1 is represented as an array with
+ * the values { 3, 1, 1, 0 }.
+ *
+ * @param versionArray an output array that will be filled in with
+ *                     the Unicode version number
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2
+u_getUnicodeVersion(UVersionInfo versionArray);
 
 #if !UCONFIG_NO_NORMALIZATION
 /**

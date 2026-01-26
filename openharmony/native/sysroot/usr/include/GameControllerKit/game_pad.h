@@ -34,6 +34,7 @@
 #ifndef GAME_PAD_H
 #define GAME_PAD_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "game_pad_event.h"
 
@@ -50,14 +51,16 @@ extern "C" {
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftShoulder_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the left shoulder.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the right shoulder.
@@ -68,14 +71,16 @@ GameController_ErrorCode OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor(vo
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightShoulder_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the right shoulder.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_RightShoulder_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_RightShoulder_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the left trigger.
@@ -86,14 +91,16 @@ GameController_ErrorCode OH_GamePad_RightShoulder_UnregisterButtonInputMonitor(v
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the left trigger.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the axis events of the left trigger.
@@ -104,14 +111,16 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor(voi
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterAxisInputMonitor(
-    GamePad_AxisInputMonitorCallback inputMonitorCallback);
+    GamePad_AxisInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the axis events of the left trigger.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor(void);
+GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the right trigger.
@@ -122,14 +131,16 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor(void)
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the right trigger.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the axis events of the right trigger.
@@ -140,14 +151,16 @@ GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterButtonInputMonitor(vo
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_RegisterAxisInputMonitor(
-    GamePad_AxisInputMonitorCallback inputMonitorCallback);
+    GamePad_AxisInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the axis events of the right trigger.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterAxisInputMonitor(void);
+GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterAxisInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the menu button.
@@ -158,14 +171,16 @@ GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterAxisInputMonitor(void
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonMenu_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the menu button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the Home button.
@@ -176,14 +191,16 @@ GameController_ErrorCode OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor(void
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonHome_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the Home button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonHome_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonHome_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the A button.
@@ -194,14 +211,16 @@ GameController_ErrorCode OH_GamePad_ButtonHome_UnregisterButtonInputMonitor(void
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonA_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the A button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonA_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonA_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the B button.
@@ -212,14 +231,16 @@ GameController_ErrorCode OH_GamePad_ButtonA_UnregisterButtonInputMonitor(void);
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonB_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the B button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonB_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonB_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the X button.
@@ -230,14 +251,16 @@ GameController_ErrorCode OH_GamePad_ButtonB_UnregisterButtonInputMonitor(void);
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonX_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the X button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonX_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonX_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the Y button.
@@ -248,14 +271,16 @@ GameController_ErrorCode OH_GamePad_ButtonX_UnregisterButtonInputMonitor(void);
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonY_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the Y button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonY_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonY_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the C button.
@@ -266,14 +291,16 @@ GameController_ErrorCode OH_GamePad_ButtonY_UnregisterButtonInputMonitor(void);
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the C button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the left button.
@@ -284,14 +311,16 @@ GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_LeftButton_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the left button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the right button.
@@ -302,14 +331,16 @@ GameController_ErrorCode OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_RightButton_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the right button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the up button.
@@ -320,14 +351,16 @@ GameController_ErrorCode OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonito
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_UpButton_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the up button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the down button.
@@ -338,14 +371,16 @@ GameController_ErrorCode OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor(v
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_DownButton_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the down button.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the axis events of directional buttons.
@@ -356,14 +391,16 @@ GameController_ErrorCode OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_RegisterAxisInputMonitor(
-    GamePad_AxisInputMonitorCallback inputMonitorCallback);
+    GamePad_AxisInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the axis events of directional buttons.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_Dpad_UnregisterAxisInputMonitor(void);
+GameController_ErrorCode OH_GamePad_Dpad_UnregisterAxisInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the button event of the left thumbstick.
@@ -374,14 +411,16 @@ GameController_ErrorCode OH_GamePad_Dpad_UnregisterAxisInputMonitor(void);
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the button event of the left thumbstick.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the axis events of the left thumbstick.
@@ -392,14 +431,16 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor(
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterAxisInputMonitor(
-    GamePad_AxisInputMonitorCallback inputMonitorCallback);
+    GamePad_AxisInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the axis events of the left thumbstick.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor(void);
+GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the button event of the right thumbstick.
@@ -410,14 +451,16 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor(vo
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterButtonInputMonitor(
-    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the button event of the right thumbstick.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor(void);
+GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the axis events of the right thumbstick.
@@ -428,14 +471,16 @@ GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterAxisInputMonitor(
-    GamePad_AxisInputMonitorCallback inputMonitorCallback);
+    GamePad_AxisInputMonitorCallback inputMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the axis events of the right thumbstick.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterAxisInputMonitor(void);
+GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterAxisInputMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

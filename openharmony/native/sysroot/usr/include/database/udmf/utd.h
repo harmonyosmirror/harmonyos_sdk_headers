@@ -39,6 +39,7 @@
 #ifndef UTD_H
 #define UTD_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 
 #ifdef __cplusplus
@@ -62,7 +63,7 @@ typedef struct OH_Utd OH_Utd;
  * @see OH_Utd.
  * @since 12
  */
-OH_Utd* OH_Utd_Create(const char* typeId);
+OH_Utd* OH_Utd_Create(const char* typeId) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_Utd} instance.
@@ -71,7 +72,7 @@ OH_Utd* OH_Utd_Create(const char* typeId);
  * @see OH_Utd.
  * @since 12
  */
-void OH_Utd_Destroy(OH_Utd* pThis);
+void OH_Utd_Destroy(OH_Utd* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type id from the {@link OH_Utd}.
@@ -81,7 +82,7 @@ void OH_Utd_Destroy(OH_Utd* pThis);
  * @see OH_Utd.
  * @since 12
  */
-const char* OH_Utd_GetTypeId(OH_Utd* pThis);
+const char* OH_Utd_GetTypeId(OH_Utd* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get description from the {@link OH_Utd}.
@@ -91,7 +92,7 @@ const char* OH_Utd_GetTypeId(OH_Utd* pThis);
  * @see OH_Utd.
  * @since 12
  */
-const char* OH_Utd_GetDescription(OH_Utd* pThis);
+const char* OH_Utd_GetDescription(OH_Utd* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get url from the {@link OH_Utd}.
@@ -101,7 +102,7 @@ const char* OH_Utd_GetDescription(OH_Utd* pThis);
  * @see OH_Utd.
  * @since 12
  */
-const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis);
+const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get icon file from the {@link OH_Utd}.
@@ -111,7 +112,7 @@ const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis);
  * @see OH_Utd.
  * @since 12
  */
-const char* OH_Utd_GetIconFile(OH_Utd* pThis);
+const char* OH_Utd_GetIconFile(OH_Utd* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get belong to type id of the current {@link OH_Utd}.
@@ -122,7 +123,8 @@ const char* OH_Utd_GetIconFile(OH_Utd* pThis);
  * @see OH_Utd.
  * @since 12
  */
-const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count);
+const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get filename extensions of the current {@link OH_Utd}.
@@ -133,7 +135,8 @@ const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count);
  * @see OH_Utd.
  * @since 12
  */
-const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count);
+const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get mime types of the current {@link OH_Utd}.
@@ -144,7 +147,8 @@ const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count);
  * @see OH_Utd.
  * @since 12
  */
-const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count);
+const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type id by file name extension.
@@ -154,7 +158,8 @@ const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count);
  * @return Returns string list of types. Must be destroyed with {@link OH_Utd_DestroyStringList} when not needed.
  * @since 12
  */
-const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count);
+const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type id by mime type.
@@ -164,7 +169,8 @@ const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned 
  * @return Returns string list of types. Must be destroyed with {@link OH_Utd_DestroyStringList} when not needed.
  * @since 12
  */
-const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count);
+const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Calculate relationships of two types.
@@ -176,7 +182,8 @@ const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count
  *         {@code true} Represents srcTypeId belongs to destTypeId.
  * @since 12
  */
-bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId);
+bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Calculate relationships of two types.
@@ -188,7 +195,8 @@ bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId);
  *         {@code true} Represents srcTypeId lower level to destTypeId.
  * @since 12
  */
-bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId);
+bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Calculate relationships of two types.
@@ -200,7 +208,8 @@ bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId);
  *         {@code true} Represents srcTypeId higher level to destTypeId.
  * @since 12
  */
-bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId);
+bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Calculate two {@link OH_Utd}s are equal.
@@ -212,7 +221,7 @@ bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId);
  *         {@code true} Represents utd1 and utd2 are equal.
  * @since 12
  */
-bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2);
+bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy string list memory.
@@ -221,7 +230,8 @@ bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2);
  * @param count Represents string count in list.
  * @since 12
  */
-void OH_Utd_DestroyStringList(const char** list, unsigned int count);
+void OH_Utd_DestroyStringList(const char** list, unsigned int count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 };

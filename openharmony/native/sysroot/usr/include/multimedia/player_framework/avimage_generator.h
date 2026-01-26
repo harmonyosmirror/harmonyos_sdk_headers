@@ -38,6 +38,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVIMAGE_GENERATOR_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVIMAGE_GENERATOR_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -65,7 +66,7 @@ typedef struct OH_AVImageGenerator OH_AVImageGenerator;
  *         Possible failure causes: HstEngineFactory failed to CreateAVMetadataHelperEngine.
  * @since 18
  */
-OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
+OH_AVImageGenerator* OH_AVImageGenerator_Create(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the media file descriptor source for the image generator.
@@ -83,7 +84,8 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
-    int32_t fd, int64_t offset, int64_t size);
+    int32_t fd, int64_t offset, int64_t size)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Fetch an image at the specific time from a video resource.
@@ -105,7 +107,8 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator,
-    int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap);
+    int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Release the resource used for AVImageGenerator.
@@ -117,7 +120,8 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
  *         {@link AV_ERR_INVALID_VAL} if input generator is nullptr or input param is invalid.
  * @since 18
  */
-OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator);
+OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

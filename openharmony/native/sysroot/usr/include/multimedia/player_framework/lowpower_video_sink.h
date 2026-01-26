@@ -37,6 +37,7 @@
 #ifndef NATIVE_LOWPOWER_VIDEO_SINK_H
 #define NATIVE_LOWPOWER_VIDEO_SINK_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_averrors.h"
 #include "native_avformat.h"
@@ -57,7 +58,8 @@ extern "C" {
  * Return nullptr if memory ran out or the mime type is not supported.
  * @since 20
  */
-OH_LowPowerVideoSink* OH_LowPowerVideoSink_CreateByMime(const char* mime);
+OH_LowPowerVideoSink* OH_LowPowerVideoSink_CreateByMime(const char* mime)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To configure the lowpower video sink, typically, you need to configure the description information of the
@@ -75,7 +77,8 @@ OH_LowPowerVideoSink* OH_LowPowerVideoSink_CreateByMime(const char* mime);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Configure(OH_LowPowerVideoSink* sink, const OH_AVFormat* format);
+OH_AVErrCode OH_LowPowerVideoSink_Configure(OH_LowPowerVideoSink* sink, const OH_AVFormat* format)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set dynamic parameters to the lowpower video sink.
@@ -92,7 +95,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Configure(OH_LowPowerVideoSink* sink, const OH
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_SetParameter(OH_LowPowerVideoSink* sink, const OH_AVFormat* format);
+OH_AVErrCode OH_LowPowerVideoSink_SetParameter(OH_LowPowerVideoSink* sink, const OH_AVFormat* format)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get parameter of current lowpower video sink.
@@ -105,7 +109,8 @@ OH_AVErrCode OH_LowPowerVideoSink_SetParameter(OH_LowPowerVideoSink* sink, const
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_GetParameter(OH_LowPowerVideoSink* sink, OH_AVFormat* format);
+OH_AVErrCode OH_LowPowerVideoSink_GetParameter(OH_LowPowerVideoSink* sink, OH_AVFormat* format)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Specify the output Surface to provide decoded lowpower video sink,
@@ -120,7 +125,8 @@ OH_AVErrCode OH_LowPowerVideoSink_GetParameter(OH_LowPowerVideoSink* sink, OH_AV
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_SetVideoSurface(OH_LowPowerVideoSink* sink, const OHNativeWindow* surface);
+OH_AVErrCode OH_LowPowerVideoSink_SetVideoSurface(OH_LowPowerVideoSink* sink, const OHNativeWindow* surface)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To prepare the internal resources of the lowpower video sink, the Configure interface must be called before
@@ -135,7 +141,8 @@ OH_AVErrCode OH_LowPowerVideoSink_SetVideoSurface(OH_LowPowerVideoSink* sink, co
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Prepare(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Prepare(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Start decoder of the lowpower video sink, this interface must be called after the Prepare is successful.
@@ -150,7 +157,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Prepare(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_StartDecoder(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_StartDecoder(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Render first frame of video sink, this interface must be called after the StartDecode is successful and
@@ -164,7 +172,8 @@ OH_AVErrCode OH_LowPowerVideoSink_StartDecoder(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_RenderFirstFrame(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_RenderFirstFrame(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Start renderer of the lowpower video sink, this interface must be called after the StartDecode is successful.
@@ -178,7 +187,8 @@ OH_AVErrCode OH_LowPowerVideoSink_RenderFirstFrame(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_StartRenderer(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_StartRenderer(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Pause the lowpower video sink, this interface must be called after the StartRender or Resume is successful.
@@ -192,7 +202,8 @@ OH_AVErrCode OH_LowPowerVideoSink_StartRenderer(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Pause(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Pause(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Resume the lowpower video sink, this interface must be called after the Pause is successful.
@@ -206,7 +217,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Pause(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Resume(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Resume(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clear cache data in the lowpower video sink, this interface is suggested to not be called after the Start
@@ -220,7 +232,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Resume(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Flush(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Flush(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Stop the lowpower video sink.
@@ -233,7 +246,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Flush(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Stop(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Stop(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Reset the lowpower video sink. Too reuse this instance, you need to call the Configure.
@@ -246,7 +260,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Stop(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Reset(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Reset(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clear the internal resources of the lowpower video sink and destroy the lowpower video sink instance.
@@ -259,7 +274,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Reset(OH_LowPowerVideoSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_Destroy(OH_LowPowerVideoSink* sink);
+OH_AVErrCode OH_LowPowerVideoSink_Destroy(OH_LowPowerVideoSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the lowpower audio sink instance to the lowpower video sink instance for audio video sync.
@@ -274,7 +290,8 @@ OH_AVErrCode OH_LowPowerVideoSink_Destroy(OH_LowPowerVideoSink* sink);
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSink_SetSyncAudioSink(
-    OH_LowPowerVideoSink* videoSink, OH_LowPowerAudioSink* audioSink);
+    OH_LowPowerVideoSink* videoSink, OH_LowPowerAudioSink* audioSink)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set target start frame pts, and the video frame will be renderred from the target pts.
@@ -297,7 +314,8 @@ OH_AVErrCode OH_LowPowerVideoSink_SetTargetStartFrame(
     const int64_t framePts,
     OH_LowPowerVideoSink_OnTargetArrived onTargetArrived,
     const int64_t timeoutMs,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set playback speed for the lowpower video sink
@@ -311,7 +329,8 @@ OH_AVErrCode OH_LowPowerVideoSink_SetTargetStartFrame(
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_SetPlaybackSpeed(OH_LowPowerVideoSink* sink, const float speed);
+OH_AVErrCode OH_LowPowerVideoSink_SetPlaybackSpeed(OH_LowPowerVideoSink* sink, const float speed)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Return frame packet buffer to lowpower video sink.
@@ -325,7 +344,8 @@ OH_AVErrCode OH_LowPowerVideoSink_SetPlaybackSpeed(OH_LowPowerVideoSink* sink, c
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_ReturnSamples(OH_LowPowerVideoSink* sink, OH_AVSamplesBuffer* samples);
+OH_AVErrCode OH_LowPowerVideoSink_ReturnSamples(OH_LowPowerVideoSink* sink, OH_AVSamplesBuffer* samples)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Regsister callback instance for lowpower video sink.
@@ -339,7 +359,8 @@ OH_AVErrCode OH_LowPowerVideoSink_ReturnSamples(OH_LowPowerVideoSink* sink, OH_A
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSink_RegisterCallback(OH_LowPowerVideoSink* sink, OH_LowPowerVideoSinkCallback* callback);
+OH_AVErrCode OH_LowPowerVideoSink_RegisterCallback(OH_LowPowerVideoSink* sink, OH_LowPowerVideoSinkCallback* callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the latest presentation timestamp (PTS) from lowpower video sink.
@@ -353,7 +374,8 @@ OH_AVErrCode OH_LowPowerVideoSink_RegisterCallback(OH_LowPowerVideoSink* sink, O
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 21
  */
-OH_AVErrCode OH_LowPowerVideoSink_GetLatestPts(OH_LowPowerVideoSink *sink, int64_t *pts);
+OH_AVErrCode OH_LowPowerVideoSink_GetLatestPts(OH_LowPowerVideoSink *sink, int64_t *pts)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Creates a lowpower video sink callback instance.
@@ -362,7 +384,8 @@ OH_AVErrCode OH_LowPowerVideoSink_GetLatestPts(OH_LowPowerVideoSink *sink, int64
  * Return nullptr if memory ran out.
  * @since 20
  */
-OH_LowPowerVideoSinkCallback* OH_LowPowerVideoSinkCallback_Create(void);
+OH_LowPowerVideoSinkCallback* OH_LowPowerVideoSinkCallback_Create(void)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy the lowpower video sink callback instance.
@@ -373,7 +396,8 @@ OH_LowPowerVideoSinkCallback* OH_LowPowerVideoSinkCallback_Create(void);
  * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerVideoSinkCallback_Destroy(OH_LowPowerVideoSinkCallback* callback);
+OH_AVErrCode OH_LowPowerVideoSinkCallback_Destroy(OH_LowPowerVideoSinkCallback* callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onDataNeeded listener to the lowpower video sink callback instance.
@@ -389,7 +413,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_Destroy(OH_LowPowerVideoSinkCallback* 
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetDataNeededListener(
-    OH_LowPowerVideoSinkCallback *callback, OH_LowPowerVideoSink_OnDataNeeded onDataNeeded, void *userData);
+    OH_LowPowerVideoSinkCallback *callback, OH_LowPowerVideoSink_OnDataNeeded onDataNeeded, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onError listener to the lowpower video sink callback instance.
@@ -405,7 +430,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetDataNeededListener(
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetErrorListener(
-    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnError onError, void* userData);
+    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnError onError, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onRenderStarted listener to the lowpower video sink callback instance.
@@ -421,7 +447,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetErrorListener(
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetRenderStartListener(
-    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnRenderStarted onRenderStarted, void* userData);
+    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnRenderStarted onRenderStarted, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onStreamChanged listener to the lowpower video sink callback instance.
@@ -437,7 +464,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetRenderStartListener(
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetStreamChangedListener(
-    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnStreamChanged onStreamChanged, void* userData);
+    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnStreamChanged onStreamChanged, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onRenderStarted listener to the lowpower video sink callback instance.
@@ -456,7 +484,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetStreamChangedListener(
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetFirstFrameDecodedListener(
     OH_LowPowerVideoSinkCallback* callback,
     OH_LowPowerVideoSink_OnFirstFrameDecoded onFirstFrameDecoded,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onEos listener to the lowpower video sink callback instance.
@@ -472,7 +501,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetFirstFrameDecodedListener(
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetEosListener(OH_LowPowerVideoSinkCallback* callback,
-    OH_LowPowerVideoSink_OnEos onEos, void* userData);
+    OH_LowPowerVideoSink_OnEos onEos, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

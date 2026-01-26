@@ -39,6 +39,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXEL_MAP_NAPI_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXEL_MAP_NAPI_H_
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -138,7 +139,8 @@ enum {
  * @since 8
  * @version 1.0
  */
-int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info);
+int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the memory address of a <b>PixelMap</b> object and locks the memory.
@@ -157,7 +159,8 @@ int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info);
  * @since 8
  * @version 1.0
  */
-int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr);
+int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Unlocks the memory of a <b>PixelMap</b> object. This function is used with {@link OH_AccessPixels} in pairs.
@@ -170,7 +173,7 @@ int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr);
  * @since 8
  * @version 1.0
  */
-int32_t OH_UnAccessPixels(napi_env env, napi_value value);
+int32_t OH_UnAccessPixels(napi_env env, napi_value value) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 #ifdef __cplusplus
 };

@@ -38,6 +38,7 @@
 #ifndef MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ACCESS_HELPER_H
 #define MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ACCESS_HELPER_H
 
+#include "info/application_target_sdk_version.h"
 #include "media_asset_base_capi.h"
 
 #ifdef __cplusplus
@@ -58,7 +59,8 @@ extern "C" {
  *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
  * @since 12
 */
-MediaLibrary_ErrorCode OH_MediaAccessHelper_ApplyChanges(OH_MediaAssetChangeRequest* changeRequest);
+MediaLibrary_ErrorCode OH_MediaAccessHelper_ApplyChanges(OH_MediaAssetChangeRequest* changeRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

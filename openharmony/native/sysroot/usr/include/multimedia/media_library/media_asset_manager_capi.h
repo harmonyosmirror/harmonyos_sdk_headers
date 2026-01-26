@@ -39,6 +39,7 @@
 #ifndef MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_MANAGER_H
 #define MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 
 #include "media_asset_base_capi.h"
@@ -53,7 +54,7 @@ extern "C" {
  * @return Returns a pointer to an OH_MediaAssetManager instance.
  * @since 12
 */
-OH_MediaAssetManager* OH_MediaAssetManager_Create(void);
+OH_MediaAssetManager* OH_MediaAssetManager_Create(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Request image source with dest path.
@@ -68,7 +69,8 @@ OH_MediaAssetManager* OH_MediaAssetManager_Create(void);
  * @since 12
 */
 MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetManager* manager, const char* uri,
-    MediaLibrary_RequestOptions requestOptions, const char* destPath, OH_MediaLibrary_OnDataPrepared callback);
+    MediaLibrary_RequestOptions requestOptions, const char* destPath, OH_MediaLibrary_OnDataPrepared callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Request video source with dest path.
@@ -83,7 +85,8 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
  * @since 12
 */
 MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetManager* manager, const char* uri,
-    MediaLibrary_RequestOptions requestOptions, const char* destPath, OH_MediaLibrary_OnDataPrepared callback);
+    MediaLibrary_RequestOptions requestOptions, const char* destPath, OH_MediaLibrary_OnDataPrepared callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Cancel request by request id.
@@ -94,7 +97,8 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
  * @return Returns true if the request is canceled successfully; returns false otherwise.
  * @since 12
 */
-bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const MediaLibrary_RequestId requestId);
+bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const MediaLibrary_RequestId requestId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Request moving photo object.
@@ -118,7 +122,8 @@ bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const Med
 */
 MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetManager* manager,
     OH_MediaAsset* mediaAsset, MediaLibrary_RequestOptions requestOptions, MediaLibrary_RequestId* requestId,
-    OH_MediaLibrary_OnMovingPhotoDataPrepared callback);
+    OH_MediaLibrary_OnMovingPhotoDataPrepared callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request image resources based on different strategy modes.
@@ -142,7 +147,8 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
 */
 MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* manager, OH_MediaAsset* mediaAsset,
     MediaLibrary_RequestOptions requestOptions, MediaLibrary_RequestId* requestId,
-    OH_MediaLibrary_OnImageDataPrepared callback);
+    OH_MediaLibrary_OnImageDataPrepared callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the {@link OH_MediaAssetManager} instance.
@@ -155,7 +161,8 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* m
  *                                                3. Parameter verification failed.
  * @since 13
 */
-MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manager);
+MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manager)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

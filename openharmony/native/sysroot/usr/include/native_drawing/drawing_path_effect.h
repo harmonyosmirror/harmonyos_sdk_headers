@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_PATH_EFFECT_H
 #define C_INCLUDE_DRAWING_PATH_EFFECT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -72,7 +73,8 @@ typedef enum {
  * @since 18
  * @version 1.0
  */
-OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect* outer, OH_Drawing_PathEffect* inner);
+OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect* outer, OH_Drawing_PathEffect* inner)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object
@@ -86,7 +88,8 @@ OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect*
  * @since 18
  * @version 1.0
  */
-OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect(float radius);
+OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect(float radius)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object.
@@ -99,7 +102,8 @@ OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect(float radius);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int count, float phase);
+OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int count, float phase)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object
@@ -112,7 +116,8 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int cou
  * @since 18
  * @version 1.0
  */
-OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, float deviation);
+OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, float deviation)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object and sets the path effect to a dash effect.
@@ -129,7 +134,8 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, floa
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect(const OH_Drawing_Path* path, float advance, float phase,
-    OH_Drawing_PathDashStyle type);
+    OH_Drawing_PathDashStyle type)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object by overlaying two path effects.
@@ -142,7 +148,8 @@ OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect(const OH_Drawing_Path* pa
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect(OH_Drawing_PathEffect* firstPathEffect,
-    OH_Drawing_PathEffect* secondPathEffect);
+    OH_Drawing_PathEffect* secondPathEffect)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_PathEffect</b> object and reclaims the memory occupied by the object.
@@ -152,7 +159,8 @@ OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect(OH_Drawing_PathEffect* fir
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathEffectDestroy(OH_Drawing_PathEffect* pathEffect);
+void OH_Drawing_PathEffectDestroy(OH_Drawing_PathEffect* pathEffect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

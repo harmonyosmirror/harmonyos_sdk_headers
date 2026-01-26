@@ -40,6 +40,8 @@
 #ifndef C_INCLUDE_DRAWING_REGION_H
 #define C_INCLUDE_DRAWING_REGION_H
 
+#include "info/application_target_sdk_version.h"
+#include "drawing_error_code.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -87,7 +89,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Region* OH_Drawing_RegionCreate(void);
+OH_Drawing_Region* OH_Drawing_RegionCreate(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Region</b> copy object.
@@ -98,7 +100,8 @@ OH_Drawing_Region* OH_Drawing_RegionCreate(void);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_Region* OH_Drawing_RegionCopy(const OH_Drawing_Region* region);
+OH_Drawing_Region* OH_Drawing_RegionCopy(const OH_Drawing_Region* region)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Determines whether the region contains the specified coordinates.
@@ -111,7 +114,8 @@ OH_Drawing_Region* OH_Drawing_RegionCopy(const OH_Drawing_Region* region);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_RegionContains(OH_Drawing_Region* region, int32_t x, int32_t y);
+bool OH_Drawing_RegionContains(OH_Drawing_Region* region, int32_t x, int32_t y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Combines two regions.
@@ -124,7 +128,8 @@ bool OH_Drawing_RegionContains(OH_Drawing_Region* region, int32_t x, int32_t y);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_RegionOp(OH_Drawing_Region* region, const OH_Drawing_Region* other, OH_Drawing_RegionOpMode op);
+bool OH_Drawing_RegionOp(OH_Drawing_Region* region, const OH_Drawing_Region* other, OH_Drawing_RegionOpMode op)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the region to the specified rect.
@@ -136,7 +141,8 @@ bool OH_Drawing_RegionOp(OH_Drawing_Region* region, const OH_Drawing_Region* oth
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_RegionSetRect(OH_Drawing_Region* region, const OH_Drawing_Rect* rect);
+bool OH_Drawing_RegionSetRect(OH_Drawing_Region* region, const OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Constructs region that matchs outline of path within clip.
@@ -149,7 +155,8 @@ bool OH_Drawing_RegionSetRect(OH_Drawing_Region* region, const OH_Drawing_Rect* 
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_RegionSetPath(OH_Drawing_Region* region, const OH_Drawing_Path* path, const OH_Drawing_Region* clip);
+bool OH_Drawing_RegionSetPath(OH_Drawing_Region* region, const OH_Drawing_Path* path, const OH_Drawing_Region* clip)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Region</b> object and reclaims the memory occupied by the object.
@@ -159,7 +166,20 @@ bool OH_Drawing_RegionSetPath(OH_Drawing_Region* region, const OH_Drawing_Path* 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RegionDestroy(OH_Drawing_Region* region);
+void OH_Drawing_RegionDestroy(OH_Drawing_Region* region) __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Set an <b>OH_Drawing_Region</b> empty.
+ *
+ * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region is nullptr.
+ * @since 22
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_RegionEmpty(OH_Drawing_Region* region)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 }

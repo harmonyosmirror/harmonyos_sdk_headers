@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_PREVIEWOUTPUT_H
 #define NATIVE_INCLUDE_CAMERA_PREVIEWOUTPUT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -120,7 +121,8 @@ typedef struct PreviewOutput_Callbacks {
  * @since 11
  */
 Camera_ErrorCode OH_PreviewOutput_RegisterCallback(Camera_PreviewOutput* previewOutput,
-    PreviewOutput_Callbacks* callback);
+    PreviewOutput_Callbacks* callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister preview output change event callback.
@@ -132,7 +134,8 @@ Camera_ErrorCode OH_PreviewOutput_RegisterCallback(Camera_PreviewOutput* preview
  * @since 11
  */
 Camera_ErrorCode OH_PreviewOutput_UnregisterCallback(Camera_PreviewOutput* previewOutput,
-    PreviewOutput_Callbacks* callback);
+    PreviewOutput_Callbacks* callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Start preview output.
@@ -144,7 +147,8 @@ Camera_ErrorCode OH_PreviewOutput_UnregisterCallback(Camera_PreviewOutput* previ
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_PreviewOutput_Start(Camera_PreviewOutput* previewOutput);
+Camera_ErrorCode OH_PreviewOutput_Start(Camera_PreviewOutput* previewOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop preview output.
@@ -155,7 +159,8 @@ Camera_ErrorCode OH_PreviewOutput_Start(Camera_PreviewOutput* previewOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput);
+Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Release preview output.
@@ -166,7 +171,8 @@ Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput);
+Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get active preview output profile.
@@ -178,7 +184,8 @@ Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* previewOutput, Camera_Profile** profile);
+Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* previewOutput, Camera_Profile** profile)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete preview profile instance.
@@ -188,7 +195,8 @@ Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* preview
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
  */
-Camera_ErrorCode OH_PreviewOutput_DeleteProfile(Camera_Profile* profile);
+Camera_ErrorCode OH_PreviewOutput_DeleteProfile(Camera_Profile* profile)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the preview rotation angle.
@@ -202,7 +210,8 @@ Camera_ErrorCode OH_PreviewOutput_DeleteProfile(Camera_Profile* profile);
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previewOutput, int displayRotation,
-    Camera_ImageRotation* imageRotation);
+    Camera_ImageRotation* imageRotation)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the preview rotation angle.
@@ -216,7 +225,8 @@ Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previ
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previewOutput,
-    Camera_ImageRotation previewRotation, bool isDisplayLocked);
+    Camera_ImageRotation previewRotation, bool isDisplayLocked)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get supported preview output frame rate list.
@@ -230,7 +240,8 @@ Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previ
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_GetSupportedFrameRates(Camera_PreviewOutput* previewOutput,
-    Camera_FrameRateRange** frameRateRange, uint32_t* size);
+    Camera_FrameRateRange** frameRateRange, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete frame rate list.
@@ -242,7 +253,8 @@ Camera_ErrorCode OH_PreviewOutput_GetSupportedFrameRates(Camera_PreviewOutput* p
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_DeleteFrameRates(Camera_PreviewOutput* previewOutput,
-    Camera_FrameRateRange* frameRateRange);
+    Camera_FrameRateRange* frameRateRange)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set preview output frame rate.
@@ -255,7 +267,8 @@ Camera_ErrorCode OH_PreviewOutput_DeleteFrameRates(Camera_PreviewOutput* preview
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutput,
-    int32_t minFps, int32_t maxFps);
+    int32_t minFps, int32_t maxFps)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get active preview output frame rate.
@@ -268,7 +281,8 @@ Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutp
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_GetActiveFrameRate(Camera_PreviewOutput* previewOutput,
-    Camera_FrameRateRange* frameRateRange);
+    Camera_FrameRateRange* frameRateRange)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

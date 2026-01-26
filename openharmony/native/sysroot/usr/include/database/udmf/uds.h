@@ -40,6 +40,7 @@
 #ifndef UDS_H
 #define UDS_H
 
+#include "info/application_target_sdk_version.h"
 #include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
@@ -104,6 +105,13 @@ typedef struct OH_UdsContentForm OH_UdsContentForm;
 typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer;
 
 /**
+ * @brief Describes the key-value object of UDS data.
+ *
+ * @since 22
+ */
+typedef struct OH_UdsDetails OH_UdsDetails;
+
+/**
  * @brief Creation a pointer to the instance of the {@link OH_UdsPlainText}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPlainText}
@@ -111,7 +119,7 @@ typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer;
  * @see OH_UdsPlainText
  * @since 12
  */
-OH_UdsPlainText* OH_UdsPlainText_Create();
+OH_UdsPlainText* OH_UdsPlainText_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsPlainText} instance.
@@ -120,7 +128,7 @@ OH_UdsPlainText* OH_UdsPlainText_Create();
  * @see OH_UdsPlainText
  * @since 12
  */
-void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis);
+void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type id from the {@link OH_UdsPlainText}.
@@ -130,7 +138,7 @@ void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis);
  * @see OH_UdsPlainText
  * @since 12
  */
-const char* OH_UdsPlainText_GetType(OH_UdsPlainText* pThis);
+const char* OH_UdsPlainText_GetType(OH_UdsPlainText* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get content from the {@link OH_UdsPlainText}.
@@ -140,7 +148,8 @@ const char* OH_UdsPlainText_GetType(OH_UdsPlainText* pThis);
  * @see OH_UdsPlainText
  * @since 12
  */
-const char* OH_UdsPlainText_GetContent(OH_UdsPlainText* pThis);
+const char* OH_UdsPlainText_GetContent(OH_UdsPlainText* pThis)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get abstract from the {@link OH_UdsPlainText}.
@@ -150,7 +159,22 @@ const char* OH_UdsPlainText_GetContent(OH_UdsPlainText* pThis);
  * @see OH_UdsPlainText
  * @since 12
  */
-const char* OH_UdsPlainText_GetAbstract(OH_UdsPlainText* pThis);
+const char* OH_UdsPlainText_GetAbstract(OH_UdsPlainText* pThis)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Get details from the {@link OH_UdsPlainText}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsPlainText}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsPlainText OH_UdsDetails Udmf_ErrCode
+ * @since 22
+ */
+int OH_UdsPlainText_GetDetails(OH_UdsPlainText* pThis, OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set content to the {@link OH_UdsPlainText}.
@@ -163,7 +187,8 @@ const char* OH_UdsPlainText_GetAbstract(OH_UdsPlainText* pThis);
  * @see OH_UdsPlainText Udmf_ErrCode
  * @since 12
  */
-int OH_UdsPlainText_SetContent(OH_UdsPlainText* pThis, const char* content);
+int OH_UdsPlainText_SetContent(OH_UdsPlainText* pThis, const char* content)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set abstract to the {@link OH_UdsPlainText}.
@@ -176,7 +201,22 @@ int OH_UdsPlainText_SetContent(OH_UdsPlainText* pThis, const char* content);
  * @see OH_UdsPlainText Udmf_ErrCode
  * @since 12
  */
-int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract);
+int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Set details to the {@link OH_UdsPlainText}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsPlainText}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsPlainText OH_UdsDetails Udmf_ErrCode
+ * @since 22
+ */
+int OH_UdsPlainText_SetDetails(OH_UdsPlainText* pThis, const OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsHyperlink}.
@@ -186,7 +226,7 @@ int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract);
  * @see OH_UdsHyperlink
  * @since 12
  */
-OH_UdsHyperlink* OH_UdsHyperlink_Create();
+OH_UdsHyperlink* OH_UdsHyperlink_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsHyperlink} instance.
@@ -195,7 +235,7 @@ OH_UdsHyperlink* OH_UdsHyperlink_Create();
  * @see OH_UdsHyperlink
  * @since 12
  */
-void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis);
+void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type from the {@link OH_UdsHyperlink}.
@@ -205,7 +245,7 @@ void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis);
  * @see OH_UdsHyperlink
  * @since 12
  */
-const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis);
+const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get url from the {@link OH_UdsHyperlink}.
@@ -215,7 +255,7 @@ const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis);
  * @see OH_UdsHyperlink
  * @since 12
  */
-const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis);
+const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get description from the {@link OH_UdsHyperlink}.
@@ -225,7 +265,22 @@ const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis);
  * @see OH_UdsHyperlink
  * @since 12
  */
-const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis);
+const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Get details from the {@link OH_UdsHyperlink}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsHyperlink}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsHyperlink OH_UdsDetails Udmf_ErrCode
+ * @since 22
+ */
+int OH_UdsHyperlink_GetDetails(OH_UdsHyperlink* pThis, OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set url to the {@link OH_UdsHyperlink}.
@@ -238,7 +293,8 @@ const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis);
  * @see OH_UdsHyperlink Udmf_ErrCode
  * @since 12
  */
-int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url);
+int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set description to the {@link OH_UdsHyperlink}.
@@ -251,7 +307,22 @@ int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url);
  * @see OH_UdsHyperlink Udmf_ErrCode
  * @since 12
  */
-int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description);
+int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Set details to the {@link OH_UdsHyperlink}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsHyperlink}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsHyperlink OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsHyperlink_SetDetails(OH_UdsHyperlink* pThis, const OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsHtml}.
@@ -261,7 +332,7 @@ int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* descripti
  * @see OH_UdsHtml
  * @since 12
  */
-OH_UdsHtml* OH_UdsHtml_Create();
+OH_UdsHtml* OH_UdsHtml_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsHtml} instance.
@@ -270,7 +341,7 @@ OH_UdsHtml* OH_UdsHtml_Create();
  * @see OH_UdsHtml
  * @since 12
  */
-void OH_UdsHtml_Destroy(OH_UdsHtml* pThis);
+void OH_UdsHtml_Destroy(OH_UdsHtml* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get html from the {@link OH_UdsHtml}.
@@ -280,7 +351,7 @@ void OH_UdsHtml_Destroy(OH_UdsHtml* pThis);
  * @see OH_UdsHtml
  * @since 12
  */
-const char* OH_UdsHtml_GetType(OH_UdsHtml* pThis);
+const char* OH_UdsHtml_GetType(OH_UdsHtml* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get content from the {@link OH_UdsHtml}.
@@ -290,7 +361,7 @@ const char* OH_UdsHtml_GetType(OH_UdsHtml* pThis);
  * @see OH_UdsHtml
  * @since 12
  */
-const char* OH_UdsHtml_GetContent(OH_UdsHtml* pThis);
+const char* OH_UdsHtml_GetContent(OH_UdsHtml* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get plain content from the {@link OH_UdsHtml}.
@@ -300,7 +371,21 @@ const char* OH_UdsHtml_GetContent(OH_UdsHtml* pThis);
  * @see OH_UdsHtml
  * @since 12
  */
-const char* OH_UdsHtml_GetPlainContent(OH_UdsHtml* pThis);
+const char* OH_UdsHtml_GetPlainContent(OH_UdsHtml* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Get details from the {@link OH_UdsHtml}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsHtml}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsHtml OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsHtml_GetDetails(OH_UdsHtml* pThis, OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set content to the {@link OH_UdsHtml}.
@@ -313,7 +398,8 @@ const char* OH_UdsHtml_GetPlainContent(OH_UdsHtml* pThis);
  * @see OH_UdsHtml Udmf_ErrCode
  * @since 12
  */
-int OH_UdsHtml_SetContent(OH_UdsHtml* pThis, const char* content);
+int OH_UdsHtml_SetContent(OH_UdsHtml* pThis, const char* content)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set plain content to the {@link OH_UdsHtml}.
@@ -326,7 +412,22 @@ int OH_UdsHtml_SetContent(OH_UdsHtml* pThis, const char* content);
  * @see OH_UdsHtml Udmf_ErrCode
  * @since 12
  */
-int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent);
+int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Set details to the {@link OH_UdsHtml}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsHtml}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsHtml OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsHtml_SetDetails(OH_UdsHtml* pThis, const OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsAppItem}.
@@ -336,7 +437,7 @@ int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent);
  * @see OH_UdsAppItem
  * @since 12
  */
-OH_UdsAppItem* OH_UdsAppItem_Create();
+OH_UdsAppItem* OH_UdsAppItem_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsAppItem} instance.
@@ -345,7 +446,7 @@ OH_UdsAppItem* OH_UdsAppItem_Create();
  * @see OH_UdsAppItem
  * @since 12
  */
-void OH_UdsAppItem_Destroy(OH_UdsAppItem* pThis);
+void OH_UdsAppItem_Destroy(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get type from the {@link OH_UdsAppItem}.
@@ -355,7 +456,7 @@ void OH_UdsAppItem_Destroy(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetType(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetType(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get app id from the {@link OH_UdsAppItem}.
@@ -365,7 +466,7 @@ const char* OH_UdsAppItem_GetType(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetId(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetId(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get app name from the {@link OH_UdsAppItem}.
@@ -375,7 +476,7 @@ const char* OH_UdsAppItem_GetId(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetName(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetName(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get app icon id from the {@link OH_UdsAppItem}.
@@ -385,7 +486,7 @@ const char* OH_UdsAppItem_GetName(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetIconId(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetIconId(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get app label id from the {@link OH_UdsAppItem}.
@@ -395,7 +496,7 @@ const char* OH_UdsAppItem_GetIconId(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetLabelId(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetLabelId(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get bundle name from the {@link OH_UdsAppItem}.
@@ -405,7 +506,7 @@ const char* OH_UdsAppItem_GetLabelId(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetBundleName(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetBundleName(OH_UdsAppItem* pThis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get ability name from the {@link OH_UdsAppItem}.
@@ -415,7 +516,22 @@ const char* OH_UdsAppItem_GetBundleName(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem
  * @since 12
  */
-const char* OH_UdsAppItem_GetAbilityName(OH_UdsAppItem* pThis);
+const char* OH_UdsAppItem_GetAbilityName(OH_UdsAppItem* pThis)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Get details from the {@link OH_UdsAppItem}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsAppItem}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsAppItem OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsAppItem_GetDetails(OH_UdsAppItem* pThis, OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set application id to the {@link OH_UdsAppItem}.
@@ -428,7 +544,8 @@ const char* OH_UdsAppItem_GetAbilityName(OH_UdsAppItem* pThis);
  * @see OH_UdsAppItem Udmf_ErrCode
  * @since 12
  */
-int OH_UdsAppItem_SetId(OH_UdsAppItem* pThis, const char* appId);
+int OH_UdsAppItem_SetId(OH_UdsAppItem* pThis, const char* appId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set application name to the {@link OH_UdsAppItem}.
@@ -441,7 +558,8 @@ int OH_UdsAppItem_SetId(OH_UdsAppItem* pThis, const char* appId);
  * @see OH_UdsAppItem Udmf_ErrCode
  * @since 12
  */
-int OH_UdsAppItem_SetName(OH_UdsAppItem* pThis, const char* appName);
+int OH_UdsAppItem_SetName(OH_UdsAppItem* pThis, const char* appName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set application icon id to the {@link OH_UdsAppItem}.
@@ -454,7 +572,8 @@ int OH_UdsAppItem_SetName(OH_UdsAppItem* pThis, const char* appName);
  * @see OH_UdsAppItem Udmf_ErrCode
  * @since 12
  */
-int OH_UdsAppItem_SetIconId(OH_UdsAppItem* pThis, const char* appIconId);
+int OH_UdsAppItem_SetIconId(OH_UdsAppItem* pThis, const char* appIconId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set application label id to the {@link OH_UdsAppItem}.
@@ -467,7 +586,8 @@ int OH_UdsAppItem_SetIconId(OH_UdsAppItem* pThis, const char* appIconId);
  * @see OH_UdsAppItem Udmf_ErrCode
  * @since 12
  */
-int OH_UdsAppItem_SetLabelId(OH_UdsAppItem* pThis, const char* appLabelId);
+int OH_UdsAppItem_SetLabelId(OH_UdsAppItem* pThis, const char* appLabelId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set bundle name to the {@link OH_UdsAppItem}.
@@ -480,7 +600,8 @@ int OH_UdsAppItem_SetLabelId(OH_UdsAppItem* pThis, const char* appLabelId);
  * @see OH_UdsAppItem Udmf_ErrCode
  * @since 12
  */
-int OH_UdsAppItem_SetBundleName(OH_UdsAppItem* pThis, const char* bundleName);
+int OH_UdsAppItem_SetBundleName(OH_UdsAppItem* pThis, const char* bundleName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set ability name to the {@link OH_UdsAppItem}.
@@ -493,7 +614,22 @@ int OH_UdsAppItem_SetBundleName(OH_UdsAppItem* pThis, const char* bundleName);
  * @see OH_UdsAppItem Udmf_ErrCode
  * @since 12
  */
-int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName);
+int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Set details to the {@link OH_UdsAppItem}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsAppItem}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsAppItem OH_UdsDetails Udmf_ErrCode
+ * @since 22
+ */
+int OH_UdsAppItem_SetDetails(OH_UdsAppItem* pThis, const OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsFileUri}.
@@ -503,7 +639,7 @@ int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName);
  * @see OH_UdsFileUri
  * @since 13
  */
-OH_UdsFileUri* OH_UdsFileUri_Create();
+OH_UdsFileUri* OH_UdsFileUri_Create() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsFileUri} instance.
@@ -512,7 +648,7 @@ OH_UdsFileUri* OH_UdsFileUri_Create();
  * @see OH_UdsFileUri
  * @since 13
  */
-void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis);
+void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get type id from the {@link OH_UdsFileUri}.
@@ -522,7 +658,7 @@ void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis);
  * @see OH_UdsFileUri
  * @since 13
  */
-const char* OH_UdsFileUri_GetType(OH_UdsFileUri* pThis);
+const char* OH_UdsFileUri_GetType(OH_UdsFileUri* pThis) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get file uri from the {@link OH_UdsFileUri}.
@@ -532,7 +668,7 @@ const char* OH_UdsFileUri_GetType(OH_UdsFileUri* pThis);
  * @see OH_UdsFileUri
  * @since 13
  */
-const char* OH_UdsFileUri_GetFileUri(OH_UdsFileUri* pThis);
+const char* OH_UdsFileUri_GetFileUri(OH_UdsFileUri* pThis) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get file type from the {@link OH_UdsFileUri}.
@@ -542,7 +678,21 @@ const char* OH_UdsFileUri_GetFileUri(OH_UdsFileUri* pThis);
  * @see OH_UdsFileUri
  * @since 13
  */
-const char* OH_UdsFileUri_GetFileType(OH_UdsFileUri* pThis);
+const char* OH_UdsFileUri_GetFileType(OH_UdsFileUri* pThis) __attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Get details from the {@link OH_UdsFileUri}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsFileUri OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsFileUri_GetDetails(OH_UdsFileUri* pThis, OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set file uri to the {@link OH_UdsFileUri}.
@@ -555,7 +705,8 @@ const char* OH_UdsFileUri_GetFileType(OH_UdsFileUri* pThis);
  * @see OH_UdsFileUri Udmf_ErrCode
  * @since 13
  */
-int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri);
+int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set file type to the {@link OH_UdsFileUri}.
@@ -568,7 +719,22 @@ int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri);
  * @see OH_UdsFileUri Udmf_ErrCode
  * @since 13
  */
-int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType);
+int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Set details to the {@link OH_UdsFileUri}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsFileUri OH_UdsDetails Udmf_ErrCode
+ * @since 22
+ */
+int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsPixelMap}.
@@ -578,7 +744,7 @@ int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType);
  * @see OH_UdsPixelMap
  * @since 13
  */
-OH_UdsPixelMap* OH_UdsPixelMap_Create();
+OH_UdsPixelMap* OH_UdsPixelMap_Create() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsPixelMap} instance.
@@ -587,7 +753,7 @@ OH_UdsPixelMap* OH_UdsPixelMap_Create();
  * @see OH_UdsPixelMap
  * @since 13
  */
-void OH_UdsPixelMap_Destroy(OH_UdsPixelMap* pThis);
+void OH_UdsPixelMap_Destroy(OH_UdsPixelMap* pThis) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get type id from the {@link OH_UdsPixelMap}.
@@ -597,7 +763,7 @@ void OH_UdsPixelMap_Destroy(OH_UdsPixelMap* pThis);
  * @see OH_UdsPixelMap
  * @since 13
  */
-const char* OH_UdsPixelMap_GetType(OH_UdsPixelMap* pThis);
+const char* OH_UdsPixelMap_GetType(OH_UdsPixelMap* pThis) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get pixel map from the {@link OH_UdsPixelMap}.
@@ -607,7 +773,22 @@ const char* OH_UdsPixelMap_GetType(OH_UdsPixelMap* pThis);
  * @see OH_UdsPixelMap
  * @since 13
  */
-void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative);
+void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Get details from the {@link OH_UdsPixelMap}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsPixelMap}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsPixelMap OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsPixelMap_GetDetails(OH_UdsPixelMap* pThis, OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Set pixel map to the {@link OH_UdsPixelMap}.
@@ -620,7 +801,22 @@ void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelm
  * @see OH_UdsPixelMap Udmf_ErrCode
  * @since 13
  */
-int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative);
+int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Set details to the {@link OH_UdsPixelMap}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsPixelMap}.
+ * @param details Represents a pointer to an instance of {@link OH_UdsDetails}. The pointer cannot be null.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsPixelMap OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsPixelMap_SetDetails(OH_UdsPixelMap* pThis, const OH_UdsDetails* details)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsArrayBuffer}.
@@ -630,7 +826,7 @@ int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelma
  * @see OH_UdsArrayBuffer
  * @since 13
  */
-OH_UdsArrayBuffer* OH_UdsArrayBuffer_Create();
+OH_UdsArrayBuffer* OH_UdsArrayBuffer_Create() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsArrayBuffer} instance.
@@ -642,7 +838,7 @@ OH_UdsArrayBuffer* OH_UdsArrayBuffer_Create();
  * @see OH_UdsArrayBuffer Udmf_ErrCode
  * @since 13
  */
-int OH_UdsArrayBuffer_Destroy(OH_UdsArrayBuffer* buffer);
+int OH_UdsArrayBuffer_Destroy(OH_UdsArrayBuffer* buffer) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set array buffer data to the {@link OH_UdsArrayBuffer}.
@@ -656,7 +852,8 @@ int OH_UdsArrayBuffer_Destroy(OH_UdsArrayBuffer* buffer);
  * @see OH_UdsArrayBuffer Udmf_ErrCode
  * @since 13
  */
-int OH_UdsArrayBuffer_SetData(OH_UdsArrayBuffer* buffer, unsigned char* data, unsigned int len);
+int OH_UdsArrayBuffer_SetData(OH_UdsArrayBuffer* buffer, unsigned char* data, unsigned int len)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get array buffer data from the {@link OH_UdsArrayBuffer}.
@@ -670,7 +867,8 @@ int OH_UdsArrayBuffer_SetData(OH_UdsArrayBuffer* buffer, unsigned char* data, un
  * @see OH_UdsArrayBuffer Udmf_ErrCode
  * @since 13
  */
-int OH_UdsArrayBuffer_GetData(OH_UdsArrayBuffer* buffer, unsigned char** data, unsigned int* len);
+int OH_UdsArrayBuffer_GetData(OH_UdsArrayBuffer* buffer, unsigned char** data, unsigned int* len)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsContentForm}.
@@ -680,7 +878,7 @@ int OH_UdsArrayBuffer_GetData(OH_UdsArrayBuffer* buffer, unsigned char** data, u
  * @see OH_UdsContentForm
  * @since 14
  */
-OH_UdsContentForm* OH_UdsContentForm_Create();
+OH_UdsContentForm* OH_UdsContentForm_Create() __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy a pointer that points to the {@link OH_UdsContentForm} instance.
@@ -689,7 +887,7 @@ OH_UdsContentForm* OH_UdsContentForm_Create();
  * @see OH_UdsContentForm
  * @since 14
  */
-void OH_UdsContentForm_Destroy(OH_UdsContentForm* pThis);
+void OH_UdsContentForm_Destroy(OH_UdsContentForm* pThis) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get type id from the {@link OH_UdsContentForm}.
@@ -699,7 +897,8 @@ void OH_UdsContentForm_Destroy(OH_UdsContentForm* pThis);
  * @see OH_UdsContentForm
  * @since 14
  */
-const char* OH_UdsContentForm_GetType(OH_UdsContentForm* pThis);
+const char* OH_UdsContentForm_GetType(OH_UdsContentForm* pThis)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get thumb data from the {@link OH_UdsContentForm}.
@@ -714,7 +913,8 @@ const char* OH_UdsContentForm_GetType(OH_UdsContentForm* pThis);
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_GetThumbData(OH_UdsContentForm* pThis, unsigned char** thumbData, unsigned int* len);
+int OH_UdsContentForm_GetThumbData(OH_UdsContentForm* pThis, unsigned char** thumbData, unsigned int* len)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get description from the {@link OH_UdsContentForm}.
@@ -724,7 +924,8 @@ int OH_UdsContentForm_GetThumbData(OH_UdsContentForm* pThis, unsigned char** thu
  * @see OH_UdsContentForm
  * @since 14
  */
-const char* OH_UdsContentForm_GetDescription(OH_UdsContentForm* pThis);
+const char* OH_UdsContentForm_GetDescription(OH_UdsContentForm* pThis)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get title from the {@link OH_UdsContentForm}.
@@ -734,7 +935,8 @@ const char* OH_UdsContentForm_GetDescription(OH_UdsContentForm* pThis);
  * @see OH_UdsContentForm
  * @since 14
  */
-const char* OH_UdsContentForm_GetTitle(OH_UdsContentForm* pThis);
+const char* OH_UdsContentForm_GetTitle(OH_UdsContentForm* pThis)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get thumb data from the {@link OH_UdsContentForm}.
@@ -749,7 +951,8 @@ const char* OH_UdsContentForm_GetTitle(OH_UdsContentForm* pThis);
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_GetAppIcon(OH_UdsContentForm* pThis, unsigned char** appIcon, unsigned int* len);
+int OH_UdsContentForm_GetAppIcon(OH_UdsContentForm* pThis, unsigned char** appIcon, unsigned int* len)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get app name from the {@link OH_UdsContentForm}.
@@ -759,7 +962,8 @@ int OH_UdsContentForm_GetAppIcon(OH_UdsContentForm* pThis, unsigned char** appIc
  * @see OH_UdsContentForm
  * @since 14
  */
-const char* OH_UdsContentForm_GetAppName(OH_UdsContentForm* pThis);
+const char* OH_UdsContentForm_GetAppName(OH_UdsContentForm* pThis)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get link url from the {@link OH_UdsContentForm}.
@@ -769,7 +973,8 @@ const char* OH_UdsContentForm_GetAppName(OH_UdsContentForm* pThis);
  * @see OH_UdsContentForm
  * @since 14
  */
-const char* OH_UdsContentForm_GetLinkUri(OH_UdsContentForm* pThis);
+const char* OH_UdsContentForm_GetLinkUri(OH_UdsContentForm* pThis)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set thumb data to the {@link OH_UdsContentForm}.
@@ -783,7 +988,8 @@ const char* OH_UdsContentForm_GetLinkUri(OH_UdsContentForm* pThis);
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_SetThumbData(OH_UdsContentForm* pThis, const unsigned char* thumbData, unsigned int len);
+int OH_UdsContentForm_SetThumbData(OH_UdsContentForm* pThis, const unsigned char* thumbData, unsigned int len)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set description to the {@link OH_UdsContentForm}.
@@ -796,7 +1002,8 @@ int OH_UdsContentForm_SetThumbData(OH_UdsContentForm* pThis, const unsigned char
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_SetDescription(OH_UdsContentForm* pThis, const char* description);
+int OH_UdsContentForm_SetDescription(OH_UdsContentForm* pThis, const char* description)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set title to the {@link OH_UdsContentForm}.
@@ -809,7 +1016,8 @@ int OH_UdsContentForm_SetDescription(OH_UdsContentForm* pThis, const char* descr
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_SetTitle(OH_UdsContentForm* pThis, const char* title);
+int OH_UdsContentForm_SetTitle(OH_UdsContentForm* pThis, const char* title)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set thumb data to the {@link OH_UdsContentForm}.
@@ -823,7 +1031,8 @@ int OH_UdsContentForm_SetTitle(OH_UdsContentForm* pThis, const char* title);
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_SetAppIcon(OH_UdsContentForm* pThis, const unsigned char* appIcon, unsigned int len);
+int OH_UdsContentForm_SetAppIcon(OH_UdsContentForm* pThis, const unsigned char* appIcon, unsigned int len)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set app name to the {@link OH_UdsContentForm}.
@@ -836,7 +1045,8 @@ int OH_UdsContentForm_SetAppIcon(OH_UdsContentForm* pThis, const unsigned char* 
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_SetAppName(OH_UdsContentForm* pThis, const char* appName);
+int OH_UdsContentForm_SetAppName(OH_UdsContentForm* pThis, const char* appName)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set link uri to the {@link OH_UdsContentForm}.
@@ -849,7 +1059,106 @@ int OH_UdsContentForm_SetAppName(OH_UdsContentForm* pThis, const char* appName);
  * @see OH_UdsContentForm Udmf_ErrCode
  * @since 14
  */
-int OH_UdsContentForm_SetLinkUri(OH_UdsContentForm* pThis, const char* linkUri);
+int OH_UdsContentForm_SetLinkUri(OH_UdsContentForm* pThis, const char* linkUri)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
+
+/**
+ * @brief Creation a pointer to the instance of the {@link OH_UdsDetails}.
+ *
+ * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsDetails}
+ * structure is returned. If the operation is failed, nullptr is returned.
+ * @since 22
+ * @see OH_UdsDetails
+ */
+OH_UdsDetails* OH_UdsDetails_Create() __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Destroy a pointer that points to the {@link OH_UdsDetails} instance.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
+ * @since 22
+ * @see OH_UdsDetails
+ */
+void OH_UdsDetails_Destroy(OH_UdsDetails* pThis) __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Determine whether the {@link OH_UdsDetails} contain the specified key.
+ *
+ * @param pThis Represents a pointer to an instance of the {@link OH_UdsDetails}.
+ * @param key Represents key in the details.
+ * @return Returns the status code of the execution.
+ *         {@code false} Represents The details do not contain the key.
+ *         {@code true} Represents The details contain the key.
+ * @see OH_UdsDetails
+ * @since 22
+ */
+bool OH_UdsDetails_HasKey(const OH_UdsDetails* pThis, const char* key)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Remove the value corresponding to this key from the {@link OH_UdsDetails}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
+ * @param key Represents key in the details.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsDetails_Remove(OH_UdsDetails* pThis, const char* key)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Clear all data in the {@link OH_UdsDetails}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsDetails_Clear(OH_UdsDetails* pThis) __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set key-value data to the {@link OH_UdsDetails}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
+ * @param key Represents the key data to be written.
+ * @param value Represents the value data to be written.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 22
+ * @see OH_UdsDetails Udmf_ErrCode
+ */
+int OH_UdsDetails_SetValue(OH_UdsDetails* pThis, const char* key, const char* value)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get the value from the {@link OH_UdsDetails} using the key.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
+ * @param key Represents key in the details.
+ * @return Returns a string pointer when input args normally, otherwise return nullptr.
+ * @since 22
+ * @see OH_UdsDetails
+ */
+const char* OH_UdsDetails_GetValue(const OH_UdsDetails* pThis, const char* key)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get the all keys from the {@link OH_UdsDetails}.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
+ * @param count Represents the keys count.
+ * @return Returns string list of keys. Memory will be released after calling the OH_UdsDetails_Destroy function.
+ * @since 22
+ * @see OH_UdsDetails
+ */
+char** OH_UdsDetails_GetAllKeys(OH_UdsDetails* pThis, unsigned int* count)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 };

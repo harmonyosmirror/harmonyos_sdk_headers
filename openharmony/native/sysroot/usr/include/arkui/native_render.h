@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_RENDER_H
 #define ARKUI_NATIVE_RENDER_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -190,9 +191,12 @@ typedef struct ArkUI_RenderNodeClipOption ArkUI_RenderNodeClipOption;
  *         {@link ARKUI_ERROR_CODE_NOT_CUSTOM_NODE} The node is not a customNode.
  *         {@link ARKUI_ERROR_CODE_CHILD_EXISTED} The node already has a child.
  *         {@link ARKUI_ERROR_CODE_RENDER_PARENT_EXISTED} The child already has a parent node.
+ *         {@link ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE} if the child is obtained from a FrameNode, and its
+ *         corresponding FrameNode is no longer in the adopted state. Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_AddRenderNode(ArkUI_NodeHandle node, ArkUI_RenderNodeHandle child);
+int32_t OH_ArkUI_RenderNodeUtils_AddRenderNode(ArkUI_NodeHandle node, ArkUI_RenderNodeHandle child)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Remove the specified child node from its parent node.
@@ -206,7 +210,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AddRenderNode(ArkUI_NodeHandle node, ArkUI_Rend
  *         {@link ARKUI_ERROR_CODE_NOT_CUSTOM_NODE} The node is not a customNode.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_RemoveRenderNode(ArkUI_NodeHandle node, ArkUI_RenderNodeHandle child);
+int32_t OH_ArkUI_RenderNodeUtils_RemoveRenderNode(ArkUI_NodeHandle node, ArkUI_RenderNodeHandle child)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clear all child render nodes from the specified parent node.
@@ -219,7 +224,8 @@ int32_t OH_ArkUI_RenderNodeUtils_RemoveRenderNode(ArkUI_NodeHandle node, ArkUI_R
  *         {@link ARKUI_ERROR_CODE_NOT_CUSTOM_NODE} The node is not a customNode.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_ClearRenderNodeChildren(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_RenderNodeUtils_ClearRenderNodeChildren(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Mark dirty the node handle. Invalidate the specified node, causing its lifecycle and triggering a
@@ -232,7 +238,8 @@ int32_t OH_ArkUI_RenderNodeUtils_ClearRenderNodeChildren(ArkUI_NodeHandle node);
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_Invalidate(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_RenderNodeUtils_Invalidate(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a new RenderNode handle.
@@ -240,7 +247,7 @@ int32_t OH_ArkUI_RenderNodeUtils_Invalidate(ArkUI_NodeHandle node);
  * @return ArkUI_RenderNodeHandle pointer to receive the new node handle.
  * @since 20
  */
-ArkUI_RenderNodeHandle OH_ArkUI_RenderNodeUtils_CreateNode();
+ArkUI_RenderNodeHandle OH_ArkUI_RenderNodeUtils_CreateNode() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose a RenderNode handle.
@@ -252,7 +259,8 @@ ArkUI_RenderNodeHandle OH_ArkUI_RenderNodeUtils_CreateNode();
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_DisposeNode(ArkUI_RenderNodeHandle node);
+int32_t OH_ArkUI_RenderNodeUtils_DisposeNode(ArkUI_RenderNodeHandle node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add a child node to the specified RenderNode.
@@ -263,9 +271,14 @@ int32_t OH_ArkUI_RenderNodeUtils_DisposeNode(ArkUI_RenderNodeHandle node);
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
+ *         {@link ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE} if the child is obtained from a FrameNode, and its
+ *         corresponding FrameNode is no longer in the adopted state. Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_AddChild(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle child);
+int32_t OH_ArkUI_RenderNodeUtils_AddChild(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle child)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Insert a child node after the specified sibling node in RenderNode.
@@ -278,10 +291,15 @@ int32_t OH_ArkUI_RenderNodeUtils_AddChild(ArkUI_RenderNodeHandle node, ArkUI_Ren
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
+ *         {@link ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE} if the child is obtained from a FrameNode, and its
+ *         corresponding FrameNode is no longer in the adopted state. Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_InsertChildAfter(
-    ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle child, ArkUI_RenderNodeHandle sibling);
+    ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle child, ArkUI_RenderNodeHandle sibling)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Remove a child node from the specified RenderNode.
@@ -292,9 +310,12 @@ int32_t OH_ArkUI_RenderNodeUtils_InsertChildAfter(
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_RemoveChild(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle child);
+int32_t OH_ArkUI_RenderNodeUtils_RemoveChild(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle child)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clear all children from the specified RenderNode.
@@ -304,9 +325,11 @@ int32_t OH_ArkUI_RenderNodeUtils_RemoveChild(ArkUI_RenderNodeHandle node, ArkUI_
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the RenderNode is obtained from a FrameNode. Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_ClearChildren(ArkUI_RenderNodeHandle node);
+int32_t OH_ArkUI_RenderNodeUtils_ClearChildren(ArkUI_RenderNodeHandle node)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get a child node at the specified index position.
@@ -318,10 +341,12 @@ int32_t OH_ArkUI_RenderNodeUtils_ClearChildren(ArkUI_RenderNodeHandle node);
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the RenderNode is obtained from a FrameNode. Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetChild(ArkUI_RenderNodeHandle node, int32_t index, ArkUI_RenderNodeHandle* child);
+int32_t OH_ArkUI_RenderNodeUtils_GetChild(ArkUI_RenderNodeHandle node, int32_t index, ArkUI_RenderNodeHandle* child)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the first child node of the specified RenderNode.
@@ -332,10 +357,13 @@ int32_t OH_ArkUI_RenderNodeUtils_GetChild(ArkUI_RenderNodeHandle node, int32_t i
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetFirstChild(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* child);
+int32_t OH_ArkUI_RenderNodeUtils_GetFirstChild(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* child)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the next sibling node of the specified node.
@@ -346,10 +374,11 @@ int32_t OH_ArkUI_RenderNodeUtils_GetFirstChild(ArkUI_RenderNodeHandle node, ArkU
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetNextSibling(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* sibling);
+int32_t OH_ArkUI_RenderNodeUtils_GetNextSibling(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* sibling)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the previous sibling node of the specified node.
@@ -360,10 +389,11 @@ int32_t OH_ArkUI_RenderNodeUtils_GetNextSibling(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetPreviousSibling(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* sibling);
+int32_t OH_ArkUI_RenderNodeUtils_GetPreviousSibling(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* sibling)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Retrieve all child render nodes of a parent render node.
@@ -377,10 +407,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetPreviousSibling(ArkUI_RenderNodeHandle node,
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode. Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetChildren(
-    ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle** children, int32_t* count);
+    ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle** children, int32_t* count)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Retrieve render child nodes count of a render node.
@@ -391,9 +423,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetChildren(
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetChildrenCount(ArkUI_RenderNodeHandle node, int32_t* count);
+int32_t OH_ArkUI_RenderNodeUtils_GetChildrenCount(ArkUI_RenderNodeHandle node, int32_t* count)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the background color for a RenderNode.
@@ -409,9 +444,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetChildrenCount(ArkUI_RenderNodeHandle node, i
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBackgroundColor(ArkUI_RenderNodeHandle node, uint32_t color);
+int32_t OH_ArkUI_RenderNodeUtils_SetBackgroundColor(ArkUI_RenderNodeHandle node, uint32_t color)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the background color of a RenderNode.
@@ -427,9 +465,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBackgroundColor(ArkUI_RenderNodeHandle node,
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetBackgroundColor(ArkUI_RenderNodeHandle node, uint32_t* color);
+int32_t OH_ArkUI_RenderNodeUtils_GetBackgroundColor(ArkUI_RenderNodeHandle node, uint32_t* color)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set whether to clip content to the node's frame.
@@ -441,9 +482,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBackgroundColor(ArkUI_RenderNodeHandle node,
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetClipToFrame(ArkUI_RenderNodeHandle node, int32_t clipToFrame);
+int32_t OH_ArkUI_RenderNodeUtils_SetClipToFrame(ArkUI_RenderNodeHandle node, int32_t clipToFrame)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the clip-to-frame status of a RenderNode.
@@ -454,9 +498,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetClipToFrame(ArkUI_RenderNodeHandle node, int
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetClipToFrame(ArkUI_RenderNodeHandle node, int32_t* clipToFrame);
+int32_t OH_ArkUI_RenderNodeUtils_GetClipToFrame(ArkUI_RenderNodeHandle node, int32_t* clipToFrame)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set whether to clip content to the node's Bounds.
@@ -468,9 +515,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetClipToFrame(ArkUI_RenderNodeHandle node, int
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetClipToBounds(ArkUI_RenderNodeHandle node, int32_t clipToBounds);
+int32_t OH_ArkUI_RenderNodeUtils_SetClipToBounds(ArkUI_RenderNodeHandle node, int32_t clipToBounds)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get whether to clip content to the node's Bounds.
@@ -481,9 +531,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetClipToBounds(ArkUI_RenderNodeHandle node, in
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetClipToBounds(ArkUI_RenderNodeHandle node, int32_t* clipToBounds);
+int32_t OH_ArkUI_RenderNodeUtils_GetClipToBounds(ArkUI_RenderNodeHandle node, int32_t* clipToBounds)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the opacity value for a RenderNode.
@@ -495,9 +548,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetClipToBounds(ArkUI_RenderNodeHandle node, in
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetOpacity(ArkUI_RenderNodeHandle node, float opacity);
+int32_t OH_ArkUI_RenderNodeUtils_SetOpacity(ArkUI_RenderNodeHandle node, float opacity)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the opacity value of a RenderNode.
@@ -508,9 +564,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetOpacity(ArkUI_RenderNodeHandle node, float o
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetOpacity(ArkUI_RenderNodeHandle node, float* opacity);
+int32_t OH_ArkUI_RenderNodeUtils_GetOpacity(ArkUI_RenderNodeHandle node, float* opacity)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the dimensions for a RenderNode.
@@ -523,9 +582,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetOpacity(ArkUI_RenderNodeHandle node, float* 
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetSize(ArkUI_RenderNodeHandle node, int32_t width, int32_t height);
+int32_t OH_ArkUI_RenderNodeUtils_SetSize(ArkUI_RenderNodeHandle node, int32_t width, int32_t height)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the dimensions of a RenderNode.
@@ -537,9 +599,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetSize(ArkUI_RenderNodeHandle node, int32_t wi
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetSize(ArkUI_RenderNodeHandle node, int32_t* width, int32_t* height);
+int32_t OH_ArkUI_RenderNodeUtils_GetSize(ArkUI_RenderNodeHandle node, int32_t* width, int32_t* height)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the position coordinates for a RenderNode.
@@ -551,9 +616,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetSize(ArkUI_RenderNodeHandle node, int32_t* w
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetPosition(ArkUI_RenderNodeHandle node, int32_t x, int32_t y);
+int32_t OH_ArkUI_RenderNodeUtils_SetPosition(ArkUI_RenderNodeHandle node, int32_t x, int32_t y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the position coordinates of a RenderNode.
@@ -565,9 +633,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetPosition(ArkUI_RenderNodeHandle node, int32_
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetPosition(ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetPosition(ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the pivot point for transformations of a RenderNode.
@@ -579,9 +650,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetPosition(ArkUI_RenderNodeHandle node, int32_
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetPivot(ArkUI_RenderNodeHandle node, float x, float y);
+int32_t OH_ArkUI_RenderNodeUtils_SetPivot(ArkUI_RenderNodeHandle node, float x, float y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the pivot point coordinates of a RenderNode.
@@ -593,9 +667,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetPivot(ArkUI_RenderNodeHandle node, float x, 
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetPivot(ArkUI_RenderNodeHandle node, float* x, float* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetPivot(ArkUI_RenderNodeHandle node, float* x, float* y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the scaling factors for a RenderNode.
@@ -607,9 +684,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetPivot(ArkUI_RenderNodeHandle node, float* x,
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetScale(ArkUI_RenderNodeHandle node, float x, float y);
+int32_t OH_ArkUI_RenderNodeUtils_SetScale(ArkUI_RenderNodeHandle node, float x, float y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the scaling factors of a RenderNode.
@@ -621,9 +701,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetScale(ArkUI_RenderNodeHandle node, float x, 
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetScale(ArkUI_RenderNodeHandle node, float* x, float* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetScale(ArkUI_RenderNodeHandle node, float* x, float* y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the translation offset for a RenderNode.
@@ -635,9 +718,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetScale(ArkUI_RenderNodeHandle node, float* x,
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetTranslation(ArkUI_RenderNodeHandle node, float x, float y);
+int32_t OH_ArkUI_RenderNodeUtils_SetTranslation(ArkUI_RenderNodeHandle node, float x, float y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the translation offset of a RenderNode.
@@ -649,9 +735,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetTranslation(ArkUI_RenderNodeHandle node, flo
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetTranslation(ArkUI_RenderNodeHandle node, float* x, float* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetTranslation(ArkUI_RenderNodeHandle node, float* x, float* y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the rotation angles for a RenderNode.
@@ -664,9 +753,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetTranslation(ArkUI_RenderNodeHandle node, flo
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetRotation(ArkUI_RenderNodeHandle node, float x, float y, float z);
+int32_t OH_ArkUI_RenderNodeUtils_SetRotation(ArkUI_RenderNodeHandle node, float x, float y, float z)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the rotation angles of a RenderNode.
@@ -679,9 +771,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetRotation(ArkUI_RenderNodeHandle node, float 
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetRotation(ArkUI_RenderNodeHandle node, float* x, float* y, float* z);
+int32_t OH_ArkUI_RenderNodeUtils_GetRotation(ArkUI_RenderNodeHandle node, float* x, float* y, float* z)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the transformation matrix for a RenderNode.
@@ -719,10 +814,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetRotation(ArkUI_RenderNodeHandle node, float*
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetTransform(ArkUI_RenderNodeHandle node, float* matrix);
+int32_t OH_ArkUI_RenderNodeUtils_SetTransform(ArkUI_RenderNodeHandle node, float* matrix)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the shadow color for a RenderNode.
@@ -738,9 +835,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetTransform(ArkUI_RenderNodeHandle node, float
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetShadowColor(ArkUI_RenderNodeHandle node, uint32_t color);
+int32_t OH_ArkUI_RenderNodeUtils_SetShadowColor(ArkUI_RenderNodeHandle node, uint32_t color)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the shadow color of a RenderNode.
@@ -756,9 +856,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetShadowColor(ArkUI_RenderNodeHandle node, uin
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetShadowColor(ArkUI_RenderNodeHandle node, uint32_t* color);
+int32_t OH_ArkUI_RenderNodeUtils_GetShadowColor(ArkUI_RenderNodeHandle node, uint32_t* color)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the shadow offset for a RenderNode.
@@ -770,9 +873,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetShadowColor(ArkUI_RenderNodeHandle node, uin
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetShadowOffset(ArkUI_RenderNodeHandle node, int32_t x, int32_t y);
+int32_t OH_ArkUI_RenderNodeUtils_SetShadowOffset(ArkUI_RenderNodeHandle node, int32_t x, int32_t y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the shadow offset of a RenderNode.
@@ -784,9 +890,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetShadowOffset(ArkUI_RenderNodeHandle node, in
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetShadowOffset(ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetShadowOffset(ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the shadow transparency for a RenderNode.
@@ -798,9 +907,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetShadowOffset(ArkUI_RenderNodeHandle node, in
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetShadowAlpha(ArkUI_RenderNodeHandle node, float alpha);
+int32_t OH_ArkUI_RenderNodeUtils_SetShadowAlpha(ArkUI_RenderNodeHandle node, float alpha)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the shadow transparency of a RenderNode.
@@ -811,9 +923,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetShadowAlpha(ArkUI_RenderNodeHandle node, flo
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetShadowAlpha(ArkUI_RenderNodeHandle node, float* alpha);
+int32_t OH_ArkUI_RenderNodeUtils_GetShadowAlpha(ArkUI_RenderNodeHandle node, float* alpha)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the shadow elevation for a RenderNode.
@@ -825,9 +940,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetShadowAlpha(ArkUI_RenderNodeHandle node, flo
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetShadowElevation(ArkUI_RenderNodeHandle node, float elevation);
+int32_t OH_ArkUI_RenderNodeUtils_SetShadowElevation(ArkUI_RenderNodeHandle node, float elevation)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the shadow elevation of a RenderNode.
@@ -838,9 +956,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetShadowElevation(ArkUI_RenderNodeHandle node,
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetShadowElevation(ArkUI_RenderNodeHandle node, float* elevation);
+int32_t OH_ArkUI_RenderNodeUtils_GetShadowElevation(ArkUI_RenderNodeHandle node, float* elevation)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the shadow radius of a RenderNode.
@@ -852,9 +973,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetShadowElevation(ArkUI_RenderNodeHandle node,
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetShadowRadius(ArkUI_RenderNodeHandle node, float radius);
+int32_t OH_ArkUI_RenderNodeUtils_SetShadowRadius(ArkUI_RenderNodeHandle node, float radius)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the shadow radius of a RenderNode.
@@ -865,9 +989,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetShadowRadius(ArkUI_RenderNodeHandle node, fl
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetShadowRadius(ArkUI_RenderNodeHandle node, float* radius);
+int32_t OH_ArkUI_RenderNodeUtils_GetShadowRadius(ArkUI_RenderNodeHandle node, float* radius)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the border style for a RenderNode.
@@ -878,9 +1005,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetShadowRadius(ArkUI_RenderNodeHandle node, fl
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBorderStyle(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderStyleOption* borderStyle);
+int32_t OH_ArkUI_RenderNodeUtils_SetBorderStyle(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderStyleOption* borderStyle)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the border style of a RenderNode.
@@ -891,9 +1021,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBorderStyle(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetBorderStyle(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderStyleOption** borderStyle);
+int32_t OH_ArkUI_RenderNodeUtils_GetBorderStyle(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderStyleOption** borderStyle)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the border widths for a RenderNode.
@@ -904,9 +1037,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBorderStyle(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBorderWidth(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderWidthOption* borderWidth);
+int32_t OH_ArkUI_RenderNodeUtils_SetBorderWidth(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderWidthOption* borderWidth)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the border widths of a RenderNode.
@@ -917,9 +1053,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBorderWidth(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetBorderWidth(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderWidthOption** borderWidth);
+int32_t OH_ArkUI_RenderNodeUtils_GetBorderWidth(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderWidthOption** borderWidth)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the border colors for a RenderNode.
@@ -930,9 +1069,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBorderWidth(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBorderColor(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderColorOption* borderColor);
+int32_t OH_ArkUI_RenderNodeUtils_SetBorderColor(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderColorOption* borderColor)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the border colors of a RenderNode.
@@ -943,9 +1085,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBorderColor(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetBorderColor(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderColorOption** borderColor);
+int32_t OH_ArkUI_RenderNodeUtils_GetBorderColor(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderColorOption** borderColor)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the border corner radius for a RenderNode.
@@ -956,10 +1101,13 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBorderColor(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_SetBorderRadius(
-    ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption* borderRadius);
+    ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption* borderRadius)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the border corner radius of a RenderNode.
@@ -970,10 +1118,13 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBorderRadius(
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetBorderRadius(
-    ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption** borderRadius);
+    ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption** borderRadius)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Apply a mask to a render node using the mask option.
@@ -984,9 +1135,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBorderRadius(
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetMask(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeMaskOption* mask);
+int32_t OH_ArkUI_RenderNodeUtils_SetMask(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeMaskOption* mask)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Apply a clip to a render node using the clip option.
@@ -997,9 +1151,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetMask(ArkUI_RenderNodeHandle node, ArkUI_Rend
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetClip(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeClipOption* clip);
+int32_t OH_ArkUI_RenderNodeUtils_SetClip(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeClipOption* clip)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Mark whether to preferentially draw the node and its children.
@@ -1010,9 +1167,12 @@ int32_t OH_ArkUI_RenderNodeUtils_SetClip(ArkUI_RenderNodeHandle node, ArkUI_Rend
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetMarkNodeGroup(ArkUI_RenderNodeHandle node, bool markNodeGroup);
+int32_t OH_ArkUI_RenderNodeUtils_SetMarkNodeGroup(ArkUI_RenderNodeHandle node, bool markNodeGroup)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the bounds for a RenderNode.
@@ -1027,10 +1187,13 @@ int32_t OH_ArkUI_RenderNodeUtils_SetMarkNodeGroup(ArkUI_RenderNodeHandle node, b
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_SetBounds(
-    ArkUI_RenderNodeHandle node, int32_t x, int32_t y, int32_t width, int32_t height);
+    ArkUI_RenderNodeHandle node, int32_t x, int32_t y, int32_t width, int32_t height)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the bounds for a RenderNode.
@@ -1044,10 +1207,13 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBounds(
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetBounds(
-    ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y, int32_t* width, int32_t* height);
+    ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y, int32_t* width, int32_t* height)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the draw region for a RenderNode.
@@ -1061,9 +1227,12 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBounds(
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetDrawRegion(ArkUI_RenderNodeHandle node, float x, float y, float w, float h);
+int32_t OH_ArkUI_RenderNodeUtils_SetDrawRegion(ArkUI_RenderNodeHandle node, float x, float y, float w, float h)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a content modifier for the render node.
@@ -1074,10 +1243,13 @@ int32_t OH_ArkUI_RenderNodeUtils_SetDrawRegion(ArkUI_RenderNodeHandle node, floa
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         Add since api 22.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(
-    ArkUI_RenderNodeHandle node, ArkUI_RenderContentModifierHandle modifier);
+    ArkUI_RenderNodeHandle node, ArkUI_RenderContentModifierHandle modifier)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a content modifier handle.
@@ -1088,7 +1260,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-ArkUI_RenderContentModifierHandle OH_ArkUI_RenderNodeUtils_CreateContentModifier();
+ArkUI_RenderContentModifierHandle OH_ArkUI_RenderNodeUtils_CreateContentModifier()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the content modifier handle.
@@ -1096,7 +1269,8 @@ ArkUI_RenderContentModifierHandle OH_ArkUI_RenderNodeUtils_CreateContentModifier
  * @param modifier {@link ArkUI_RenderContentModifierHandle} Handle to the content modifier.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeContentModifier(ArkUI_RenderContentModifierHandle modifier);
+void OH_ArkUI_RenderNodeUtils_DisposeContentModifier(ArkUI_RenderContentModifierHandle modifier)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a float property to the target content modifier.
@@ -1110,7 +1284,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeContentModifier(ArkUI_RenderContentModifier
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(
-    ArkUI_RenderContentModifierHandle modifier, ArkUI_FloatPropertyHandle property);
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_FloatPropertyHandle property)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a vector2 property to the target content modifier.
@@ -1124,7 +1299,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachVector2Property(
-    ArkUI_RenderContentModifierHandle modifier, ArkUI_Vector2PropertyHandle property);
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_Vector2PropertyHandle property)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a color property to the target content modifier.
@@ -1138,7 +1314,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachVector2Property(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachColorProperty(
-    ArkUI_RenderContentModifierHandle modifier, ArkUI_ColorPropertyHandle property);
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_ColorPropertyHandle property)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a float animatable property to the target content modifier.
@@ -1153,7 +1330,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachColorProperty(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachFloatAnimatableProperty(
-    ArkUI_RenderContentModifierHandle modifier, ArkUI_FloatAnimatablePropertyHandle property);
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_FloatAnimatablePropertyHandle property)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a vector2 animatable property to the target content modifier.
@@ -1168,7 +1346,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachFloatAnimatableProperty(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachVector2AnimatableProperty(
-    ArkUI_RenderContentModifierHandle modifier, ArkUI_Vector2AnimatablePropertyHandle property);
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_Vector2AnimatablePropertyHandle property)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Attach a color property to the target content modifier.
@@ -1183,7 +1362,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachVector2AnimatableProperty(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_AttachColorAnimatableProperty(
-    ArkUI_RenderContentModifierHandle modifier, ArkUI_ColorAnimatablePropertyHandle property);
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_ColorAnimatablePropertyHandle property)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a float property handle.
@@ -1192,7 +1372,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachColorAnimatableProperty(
  * @return Handle to the float property.
  * @since 20
  */
-ArkUI_FloatPropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatProperty(float value);
+ArkUI_FloatPropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatProperty(float value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set value of the float property.
@@ -1205,7 +1386,8 @@ ArkUI_FloatPropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatProperty(float val
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetFloatPropertyValue(ArkUI_FloatPropertyHandle property, float value);
+int32_t OH_ArkUI_RenderNodeUtils_SetFloatPropertyValue(ArkUI_FloatPropertyHandle property, float value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get value of the float property.
@@ -1218,7 +1400,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetFloatPropertyValue(ArkUI_FloatPropertyHandle
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetFloatPropertyValue(ArkUI_FloatPropertyHandle property, float* value);
+int32_t OH_ArkUI_RenderNodeUtils_GetFloatPropertyValue(ArkUI_FloatPropertyHandle property, float* value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the float property handle.
@@ -1226,7 +1409,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetFloatPropertyValue(ArkUI_FloatPropertyHandle
  * @param property {@link ArkUI_FloatPropertyHandle} Handle to the float property.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(ArkUI_FloatPropertyHandle property);
+void OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(ArkUI_FloatPropertyHandle property)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a vector2 property handle.
@@ -1236,7 +1420,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(ArkUI_FloatPropertyHandle pro
  * @return Handle to the vector2 property.
  * @since 20
  */
-ArkUI_Vector2PropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Property(float x, float y);
+ArkUI_Vector2PropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Property(float x, float y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set value of the vector2 property.
@@ -1250,7 +1435,8 @@ ArkUI_Vector2PropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Property(float
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetVector2PropertyValue(ArkUI_Vector2PropertyHandle property, float x, float y);
+int32_t OH_ArkUI_RenderNodeUtils_SetVector2PropertyValue(ArkUI_Vector2PropertyHandle property, float x, float y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get value of the vector2 property.
@@ -1264,7 +1450,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetVector2PropertyValue(ArkUI_Vector2PropertyHa
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetVector2PropertyValue(ArkUI_Vector2PropertyHandle property, float* x, float* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetVector2PropertyValue(ArkUI_Vector2PropertyHandle property, float* x, float* y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the vector2 property handle.
@@ -1272,7 +1459,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetVector2PropertyValue(ArkUI_Vector2PropertyHa
  * @param property {@link ArkUI_Vector2PropertyHandle} Handle to the vector2 property.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeVector2Property(ArkUI_Vector2PropertyHandle property);
+void OH_ArkUI_RenderNodeUtils_DisposeVector2Property(ArkUI_Vector2PropertyHandle property)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a color property handle.
@@ -1281,7 +1469,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeVector2Property(ArkUI_Vector2PropertyHandle
  * @return Handle to the color property.
  * @since 20
  */
-ArkUI_ColorPropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorProperty(uint32_t value);
+ArkUI_ColorPropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorProperty(uint32_t value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set value of the color property.
@@ -1294,7 +1483,8 @@ ArkUI_ColorPropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorProperty(uint32_t 
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetColorPropertyValue(ArkUI_ColorPropertyHandle property, uint32_t value);
+int32_t OH_ArkUI_RenderNodeUtils_SetColorPropertyValue(ArkUI_ColorPropertyHandle property, uint32_t value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get value of the color property.
@@ -1307,7 +1497,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetColorPropertyValue(ArkUI_ColorPropertyHandle
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetColorPropertyValue(ArkUI_ColorPropertyHandle property, uint32_t* value);
+int32_t OH_ArkUI_RenderNodeUtils_GetColorPropertyValue(ArkUI_ColorPropertyHandle property, uint32_t* value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the color property handle.
@@ -1315,7 +1506,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetColorPropertyValue(ArkUI_ColorPropertyHandle
  * @param property {@link ArkUI_ColorPropertyHandle} Handle to the color property.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeColorProperty(ArkUI_ColorPropertyHandle property);
+void OH_ArkUI_RenderNodeUtils_DisposeColorProperty(ArkUI_ColorPropertyHandle property)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a float animatable property handle.
@@ -1324,7 +1516,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeColorProperty(ArkUI_ColorPropertyHandle pro
  * @return Handle to the float animatable property.
  * @since 20
  */
-ArkUI_FloatAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatAnimatableProperty(float value);
+ArkUI_FloatAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatAnimatableProperty(float value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set value of the float animatable property.
@@ -1338,7 +1531,8 @@ ArkUI_FloatAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatAnimatab
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_SetFloatAnimatablePropertyValue(
-    ArkUI_FloatAnimatablePropertyHandle property, float value);
+    ArkUI_FloatAnimatablePropertyHandle property, float value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get value of the float animatable property.
@@ -1352,7 +1546,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetFloatAnimatablePropertyValue(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetFloatAnimatablePropertyValue(
-    ArkUI_FloatAnimatablePropertyHandle property, float* value);
+    ArkUI_FloatAnimatablePropertyHandle property, float* value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the float animatable property handle.
@@ -1360,7 +1555,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetFloatAnimatablePropertyValue(
  * @param property {@link ArkUI_FloatAnimatablePropertyHandle} Handle to the float animatable property.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeFloatAnimatableProperty(ArkUI_FloatAnimatablePropertyHandle property);
+void OH_ArkUI_RenderNodeUtils_DisposeFloatAnimatableProperty(ArkUI_FloatAnimatablePropertyHandle property)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a vector2 animatable property handle.
@@ -1370,7 +1566,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeFloatAnimatableProperty(ArkUI_FloatAnimatab
  * @return Handle to the vector2 animatable property.
  * @since 20
  */
-ArkUI_Vector2AnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2AnimatableProperty(float x, float y);
+ArkUI_Vector2AnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2AnimatableProperty(float x, float y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set value of the vector2 animatable property.
@@ -1385,7 +1582,8 @@ ArkUI_Vector2AnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Anim
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_SetVector2AnimatablePropertyValue(
-    ArkUI_Vector2AnimatablePropertyHandle property, float x, float y);
+    ArkUI_Vector2AnimatablePropertyHandle property, float x, float y)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get value of the vector2 animatable property.
@@ -1400,7 +1598,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetVector2AnimatablePropertyValue(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetVector2AnimatablePropertyValue(
-    ArkUI_Vector2AnimatablePropertyHandle property, float* x, float* y);
+    ArkUI_Vector2AnimatablePropertyHandle property, float* x, float* y)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the vector2 animatable property handle.
@@ -1408,7 +1607,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetVector2AnimatablePropertyValue(
  * @param property {@link ArkUI_Vector2AnimatablePropertyHandle} Handle to the vector2 animatable property.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeVector2AnimatableProperty(ArkUI_Vector2AnimatablePropertyHandle property);
+void OH_ArkUI_RenderNodeUtils_DisposeVector2AnimatableProperty(ArkUI_Vector2AnimatablePropertyHandle property)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a color animatable property handle.
@@ -1417,7 +1617,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeVector2AnimatableProperty(ArkUI_Vector2Anim
  * @return Handle to the color animatable property.
  * @since 20
  */
-ArkUI_ColorAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorAnimatableProperty(uint32_t value);
+ArkUI_ColorAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorAnimatableProperty(uint32_t value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set value of the color animatable property.
@@ -1431,7 +1632,8 @@ ArkUI_ColorAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorAnimatab
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_SetColorAnimatablePropertyValue(
-    ArkUI_ColorAnimatablePropertyHandle property, uint32_t value);
+    ArkUI_ColorAnimatablePropertyHandle property, uint32_t value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get value of the color animatable property.
@@ -1445,7 +1647,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetColorAnimatablePropertyValue(
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetColorAnimatablePropertyValue(
-    ArkUI_ColorAnimatablePropertyHandle property, uint32_t* value);
+    ArkUI_ColorAnimatablePropertyHandle property, uint32_t* value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the color animatable property handle.
@@ -1453,7 +1656,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetColorAnimatablePropertyValue(
  * @param property {@link ArkUI_ColorAnimatablePropertyHandle} Handle to the color animatable property.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(ArkUI_ColorAnimatablePropertyHandle property);
+void OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(ArkUI_ColorAnimatablePropertyHandle property)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the onDraw function of the content modifier.
@@ -1468,7 +1672,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(ArkUI_ColorAnimatab
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_SetContentModifierOnDraw(ArkUI_RenderContentModifierHandle modifier, void* userData,
-    void (*callback)(ArkUI_DrawContext* context, void* userData));
+    void (*callback)(ArkUI_DrawContext* context, void* userData))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a RectShape option.
@@ -1476,7 +1681,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetContentModifierOnDraw(ArkUI_RenderContentMod
  * @return A pointer to the RectShape option.
  * @since 20
  */
-ArkUI_RectShapeOption* OH_ArkUI_RenderNodeUtils_CreateRectShapeOption();
+ArkUI_RectShapeOption* OH_ArkUI_RenderNodeUtils_CreateRectShapeOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the RectShape option.
@@ -1484,7 +1690,8 @@ ArkUI_RectShapeOption* OH_ArkUI_RenderNodeUtils_CreateRectShapeOption();
  * @param option Pointer to the RectShape option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeRectShapeOption(ArkUI_RectShapeOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeRectShapeOption(ArkUI_RectShapeOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the edge value of RectShape option.
@@ -1495,7 +1702,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeRectShapeOption(ArkUI_RectShapeOption* opti
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(
-    ArkUI_RectShapeOption* option, float edgeValue, ArkUI_EdgeDirection direction);
+    ArkUI_RectShapeOption* option, float edgeValue, ArkUI_EdgeDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a NodeBorderStyle option.
@@ -1503,7 +1711,8 @@ void OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(
  * @return A pointer to the NodeBorderStyle option.
  * @since 20
  */
-ArkUI_NodeBorderStyleOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderStyleOption();
+ArkUI_NodeBorderStyleOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderStyleOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the NodeBorderStyle option.
@@ -1511,7 +1720,8 @@ ArkUI_NodeBorderStyleOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderStyleOptio
  * @param option Pointer to the NodeBorderStyle option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderStyleOption(ArkUI_NodeBorderStyleOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderStyleOption(ArkUI_NodeBorderStyleOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the edge value of NodeBorderStyle option.
@@ -1522,7 +1732,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderStyleOption(ArkUI_NodeBorderStyle
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetNodeBorderStyleOptionEdgeStyle(
-    ArkUI_NodeBorderStyleOption* option, ArkUI_BorderStyle edgeStyle, ArkUI_EdgeDirection direction);
+    ArkUI_NodeBorderStyleOption* option, ArkUI_BorderStyle edgeStyle, ArkUI_EdgeDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a NodeBorderWidth option.
@@ -1530,7 +1741,8 @@ void OH_ArkUI_RenderNodeUtils_SetNodeBorderStyleOptionEdgeStyle(
  * @return A pointer to the NodeBorderWidth option.
  * @since 20
  */
-ArkUI_NodeBorderWidthOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderWidthOption();
+ArkUI_NodeBorderWidthOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderWidthOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the NodeBorderWidth option.
@@ -1538,7 +1750,8 @@ ArkUI_NodeBorderWidthOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderWidthOptio
  * @param option Pointer to the NodeBorderWidth option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderWidthOption(ArkUI_NodeBorderWidthOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderWidthOption(ArkUI_NodeBorderWidthOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the edge value of NodeBorderWidth option.
@@ -1549,7 +1762,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderWidthOption(ArkUI_NodeBorderWidth
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetNodeBorderWidthOptionEdgeWidth(
-    ArkUI_NodeBorderWidthOption* option, float edgeWidth, ArkUI_EdgeDirection direction);
+    ArkUI_NodeBorderWidthOption* option, float edgeWidth, ArkUI_EdgeDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a NodeBorderColor option.
@@ -1557,7 +1771,8 @@ void OH_ArkUI_RenderNodeUtils_SetNodeBorderWidthOptionEdgeWidth(
  * @return A pointer to the NodeBorderColor option.
  * @since 20
  */
-ArkUI_NodeBorderColorOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderColorOption();
+ArkUI_NodeBorderColorOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderColorOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the NodeBorderColor option.
@@ -1565,7 +1780,8 @@ ArkUI_NodeBorderColorOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderColorOptio
  * @param option Pointer to the NodeBorderColor option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderColorOption(ArkUI_NodeBorderColorOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderColorOption(ArkUI_NodeBorderColorOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the edge value of NodeBorderColor option.
@@ -1576,7 +1792,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderColorOption(ArkUI_NodeBorderColor
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetNodeBorderColorOptionEdgeColor(
-    ArkUI_NodeBorderColorOption* option, uint32_t edgeColor, ArkUI_EdgeDirection direction);
+    ArkUI_NodeBorderColorOption* option, uint32_t edgeColor, ArkUI_EdgeDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a NodeBorderRadius option.
@@ -1584,7 +1801,8 @@ void OH_ArkUI_RenderNodeUtils_SetNodeBorderColorOptionEdgeColor(
  * @return A pointer to the NodeBorderRadius option.
  * @since 20
  */
-ArkUI_NodeBorderRadiusOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderRadiusOption();
+ArkUI_NodeBorderRadiusOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderRadiusOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the NodeBorderRadius option.
@@ -1592,7 +1810,8 @@ ArkUI_NodeBorderRadiusOption* OH_ArkUI_RenderNodeUtils_CreateNodeBorderRadiusOpt
  * @param option Pointer to the NodeBorderRadius option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderRadiusOption(ArkUI_NodeBorderRadiusOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderRadiusOption(ArkUI_NodeBorderRadiusOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the corner value of NodeBorderRadius option.
@@ -1603,7 +1822,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderRadiusOption(ArkUI_NodeBorderRadi
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetNodeBorderRadiusOptionCornerRadius(
-    ArkUI_NodeBorderRadiusOption* option, uint32_t cornerRadius, ArkUI_CornerDirection direction);
+    ArkUI_NodeBorderRadiusOption* option, uint32_t cornerRadius, ArkUI_CornerDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a CircleShape option.
@@ -1611,7 +1831,8 @@ void OH_ArkUI_RenderNodeUtils_SetNodeBorderRadiusOptionCornerRadius(
  * @return A pointer to the CircleShape option.
  * @since 20
  */
-ArkUI_CircleShapeOption* OH_ArkUI_RenderNodeUtils_CreateCircleShapeOption();
+ArkUI_CircleShapeOption* OH_ArkUI_RenderNodeUtils_CreateCircleShapeOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the CircleShape option.
@@ -1619,7 +1840,8 @@ ArkUI_CircleShapeOption* OH_ArkUI_RenderNodeUtils_CreateCircleShapeOption();
  * @param option Pointer to the CircleShape option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeCircleShapeOption(ArkUI_CircleShapeOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeCircleShapeOption(ArkUI_CircleShapeOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the centerX value of CircleShape option.
@@ -1628,7 +1850,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeCircleShapeOption(ArkUI_CircleShapeOption* 
  * @param centerX The centerX value.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionCenterX(ArkUI_CircleShapeOption* option, float centerX);
+void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionCenterX(ArkUI_CircleShapeOption* option, float centerX)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the centerY value of CircleShape option.
@@ -1637,7 +1860,8 @@ void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionCenterX(ArkUI_CircleShapeOptio
  * @param centerY The centerY value.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionCenterY(ArkUI_CircleShapeOption* option, float centerY);
+void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionCenterY(ArkUI_CircleShapeOption* option, float centerY)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the radius value of CircleShape option.
@@ -1646,7 +1870,8 @@ void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionCenterY(ArkUI_CircleShapeOptio
  * @param radius The radius value.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionRadius(ArkUI_CircleShapeOption* option, float radius);
+void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionRadius(ArkUI_CircleShapeOption* option, float radius)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a RoundRectShape option.
@@ -1654,7 +1879,8 @@ void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionRadius(ArkUI_CircleShapeOption
  * @return A pointer to the RoundRectShape option.
  * @since 20
  */
-ArkUI_RoundRectShapeOption* OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption();
+ArkUI_RoundRectShapeOption* OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the RoundRectShape option.
@@ -1662,7 +1888,8 @@ ArkUI_RoundRectShapeOption* OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption(
  * @param option Pointer to the RoundRectShape option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeRoundRectShapeOption(ArkUI_RoundRectShapeOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeRoundRectShapeOption(ArkUI_RoundRectShapeOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the edge value of RoundRectShape option.
@@ -1673,7 +1900,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeRoundRectShapeOption(ArkUI_RoundRectShapeOp
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(
-    ArkUI_RoundRectShapeOption* option, float edgeValue, ArkUI_EdgeDirection direction);
+    ArkUI_RoundRectShapeOption* option, float edgeValue, ArkUI_EdgeDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the coordinate value of the target corner.
@@ -1685,7 +1913,8 @@ void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionCornerXY(
-    ArkUI_RoundRectShapeOption* option, float x, float y, ArkUI_CornerDirection direction);
+    ArkUI_RoundRectShapeOption* option, float x, float y, ArkUI_CornerDirection direction)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a CommandPath option.
@@ -1693,7 +1922,8 @@ void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionCornerXY(
  * @return A pointer to the CommandPath option.
  * @since 20
  */
-ArkUI_CommandPathOption* OH_ArkUI_RenderNodeUtils_CreateCommandPathOption();
+ArkUI_CommandPathOption* OH_ArkUI_RenderNodeUtils_CreateCommandPathOption()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the CommandPath option.
@@ -1701,7 +1931,8 @@ ArkUI_CommandPathOption* OH_ArkUI_RenderNodeUtils_CreateCommandPathOption();
  * @param option Pointer to the CommandPath option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeCommandPathOption(ArkUI_CommandPathOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeCommandPathOption(ArkUI_CommandPathOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the commands value of CommandPath option.
@@ -1710,7 +1941,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeCommandPathOption(ArkUI_CommandPathOption* 
  * @param commands The commands value.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetCommandPathOptionCommands(ArkUI_CommandPathOption* option, char* commands);
+void OH_ArkUI_RenderNodeUtils_SetCommandPathOptionCommands(ArkUI_CommandPathOption* option, char* commands)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a mask option from a RectShape option.
@@ -1720,7 +1952,8 @@ void OH_ArkUI_RenderNodeUtils_SetCommandPathOptionCommands(ArkUI_CommandPathOpti
  * @since 20
  */
 ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRectShape(
-    ArkUI_RectShapeOption* shape);
+    ArkUI_RectShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a mask option from a RoundRectShape option.
@@ -1730,7 +1963,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @since 20
  */
 ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRoundRectShape(
-    ArkUI_RoundRectShapeOption* shape);
+    ArkUI_RoundRectShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a mask option from a CircleShape option.
@@ -1740,7 +1974,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @since 20
  */
 ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromCircleShape(
-    ArkUI_CircleShapeOption* shape);
+    ArkUI_CircleShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a mask option from a OvalShape option.
@@ -1750,7 +1985,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @since 20
  */
 ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromOvalShape(
-    ArkUI_RectShapeOption* shape);
+    ArkUI_RectShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a mask option from a CommandPath option.
@@ -1760,7 +1996,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @since 20
  */
 ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromCommandPath(
-    ArkUI_CommandPathOption* path);
+    ArkUI_CommandPathOption* path)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the RenderNodeMask option.
@@ -1768,7 +2005,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @param option Pointer to the RenderNodeMask option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeMaskOption(ArkUI_RenderNodeMaskOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeMaskOption(ArkUI_RenderNodeMaskOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the fill color of RenderNodeMask option.
@@ -1781,7 +2019,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeMaskOption(ArkUI_RenderNodeMaskOp
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeMaskOption* mask, uint32_t fillColor);
+void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeMaskOption* mask, uint32_t fillColor)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the stroke color of RenderNodeMask option.
@@ -1795,7 +2034,8 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeM
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
-    ArkUI_RenderNodeMaskOption* mask, uint32_t strokeColor);
+    ArkUI_RenderNodeMaskOption* mask, uint32_t strokeColor)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the stroke width of RenderNodeMask option.
@@ -1808,7 +2048,8 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNodeMaskOption* mask, float strokeWidth);
+void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNodeMaskOption* mask, float strokeWidth)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a clip option from a RectShape option.
@@ -1818,7 +2059,8 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNod
  * @since 20
  */
 ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRectShape(
-    ArkUI_RectShapeOption* shape);
+    ArkUI_RectShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a clip option from a RoundRectShape option.
@@ -1828,7 +2070,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @since 20
  */
 ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRoundRectShape(
-    ArkUI_RoundRectShapeOption* shape);
+    ArkUI_RoundRectShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a clip option from a CircleShape option.
@@ -1838,7 +2081,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @since 20
  */
 ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromCircleShape(
-    ArkUI_CircleShapeOption* shape);
+    ArkUI_CircleShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a clip option from a OvalShape option.
@@ -1848,7 +2092,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @since 20
  */
 ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromOvalShape(
-    ArkUI_RectShapeOption* shape);
+    ArkUI_RectShapeOption* shape)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a clip option from a CommandPath option.
@@ -1858,7 +2103,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @since 20
  */
 ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromCommandPath(
-    ArkUI_CommandPathOption* path);
+    ArkUI_CommandPathOption* path)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Dispose the RenderNodeClip option.
@@ -1866,7 +2112,23 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @param option Pointer to the RenderNodeClip option.
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeClipOption(ArkUI_RenderNodeClipOption* option);
+void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeClipOption(ArkUI_RenderNodeClipOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Get the RenderNode of the target node. The target node should be adopted.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param renderNode ArkUI_RenderNodeHandle* pointer, the RenderNode of the target node.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE} The node is not adopted.
+ * @since 22
+ */
+int32_t OH_ArkUI_RenderNodeUtils_GetRenderNode(ArkUI_NodeHandle node, ArkUI_RenderNodeHandle* renderNode)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 };

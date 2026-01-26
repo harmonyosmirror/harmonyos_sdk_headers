@@ -28,6 +28,7 @@
 #ifndef DEVICE_SECURITY_MODE_H
 #define DEVICE_SECURITY_MODE_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -51,7 +52,7 @@ typedef enum DSM_DeviceSecurityMode {
  * @return Current device security mode, see {@link DSM_DeviceSecurityMode}.
  * @since 5.0.1(13)
  */
-DSM_DeviceSecurityMode HMS_DSM_GetDeviceSecurityMode(void);
+DSM_DeviceSecurityMode HMS_DSM_GetDeviceSecurityMode(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

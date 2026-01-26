@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_TEXT_LINE_H
 #define C_INCLUDE_DRAWING_TEXT_LINE_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_text_declaration.h"
 #include "drawing_types.h"
 
@@ -55,7 +56,8 @@ extern "C" {
  * @return Indicates the pointer to a text line array object <b>OH_Drawing_Array</b>.
  * @since 18
  */
-OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typography);
+OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory occupied by the text line array object <b>OH_Drawing_Array</b>.
@@ -65,7 +67,7 @@ OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typog
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_DestroyTextLines(OH_Drawing_Array* lines);
+void OH_Drawing_DestroyTextLines(OH_Drawing_Array* lines) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory occupied by the text line object <b>OH_Drawing_TextLine</b>.
@@ -75,7 +77,7 @@ void OH_Drawing_DestroyTextLines(OH_Drawing_Array* lines);
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line);
+void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the text line object by index.
@@ -86,7 +88,8 @@ void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line);
  * @return Indicates the pointer to a text line object <b>OH_Drawing_TextLine</b>.
  * @since 18
  */
-OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size_t index);
+OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the count of glyphs.
@@ -97,7 +100,8 @@ OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size
  * @since 18
  * @version 1.0
  */
-double OH_Drawing_TextLineGetGlyphCount(OH_Drawing_TextLine* line);
+double OH_Drawing_TextLineGetGlyphCount(OH_Drawing_TextLine* line)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the range of text line.
@@ -109,7 +113,8 @@ double OH_Drawing_TextLineGetGlyphCount(OH_Drawing_TextLine* line);
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_TextLineGetTextRange(OH_Drawing_TextLine* line, size_t* start, size_t* end);
+void OH_Drawing_TextLineGetTextRange(OH_Drawing_TextLine* line, size_t* start, size_t* end)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the glyph runs array of text line.
@@ -120,7 +125,8 @@ void OH_Drawing_TextLineGetTextRange(OH_Drawing_TextLine* line, size_t* start, s
  * @since 18
  * @version 1.0
  */
-OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns(OH_Drawing_TextLine* line);
+OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns(OH_Drawing_TextLine* line)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory occupied by the run array object <b>OH_Drawing_Array</b>.
@@ -130,7 +136,7 @@ OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns(OH_Drawing_TextLine* line);
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_DestroyRuns(OH_Drawing_Array* runs);
+void OH_Drawing_DestroyRuns(OH_Drawing_Array* runs) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the run object by index.
@@ -141,7 +147,8 @@ void OH_Drawing_DestroyRuns(OH_Drawing_Array* runs);
  * @return Indicates the pointer to a run object <b>OH_Drawing_Run</b>.
  * @since 18
  */
-OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index);
+OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Paint the range of text line.
@@ -154,7 +161,8 @@ OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index);
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_TextLinePaint(OH_Drawing_TextLine* line, OH_Drawing_Canvas* canvas, double x, double y);
+void OH_Drawing_TextLinePaint(OH_Drawing_TextLine* line, OH_Drawing_Canvas* canvas, double x, double y)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates a truncated text line object.
@@ -170,7 +178,8 @@ void OH_Drawing_TextLinePaint(OH_Drawing_TextLine* line, OH_Drawing_Canvas* canv
  * @version 1.0
  */
 OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine(OH_Drawing_TextLine* line, double width, int mode,
-    const char* ellipsis);
+    const char* ellipsis)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the text line typographic bounds.
@@ -185,7 +194,8 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine(OH_Drawing_TextLine*
  * @version 1.0
  */
 double OH_Drawing_TextLineGetTypographicBounds(OH_Drawing_TextLine* line, double* ascent, double* descent,
-    double* leading);
+    double* leading)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the text line image bounds.
@@ -196,7 +206,8 @@ double OH_Drawing_TextLineGetTypographicBounds(OH_Drawing_TextLine* line, double
  * @since 18
  * @version 1.0
  */
-OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line);
+OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the tail space width.
@@ -207,7 +218,8 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line);
  * @since 18
  * @version 1.0
  */
-double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line);
+double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the string index of the given position.
@@ -218,7 +230,8 @@ double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line);
  * @return Returns the string index for a given position.
  * @since 18
  */
-int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, OH_Drawing_Point* point);
+int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, OH_Drawing_Point* point)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the offset of the given string index.
@@ -229,7 +242,8 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, 
  * @return Returns the offset for a given string index.
  * @since 18
  */
-double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index);
+double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief User-defined callback functions for using offsets and indexes.
@@ -254,7 +268,8 @@ typedef bool (*Drawing_CaretOffsetsCallback)(double offset, int32_t index, bool 
  * @param callback User-defined callback functions, see <b>Drawing_CaretOffsetsCallback</b>.
  * @since 18
  */
-void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing_CaretOffsetsCallback callback);
+void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing_CaretOffsetsCallback callback)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the text offset based on the given alignment factor and alignment width.
@@ -270,7 +285,8 @@ void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing
  * @since 18
  * @version 1.0
  */
-double OH_Drawing_TextLineGetAlignmentOffset(OH_Drawing_TextLine* line, double alignmentFactor, double alignmentWidth);
+double OH_Drawing_TextLineGetAlignmentOffset(OH_Drawing_TextLine* line, double alignmentFactor, double alignmentWidth)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

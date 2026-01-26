@@ -25,6 +25,7 @@
 #ifndef AIP_RETRIEVAL_CONDITION_VECTOR_H
 #define AIP_RETRIEVAL_CONDITION_VECTOR_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "dataaugmentation/retrieval/aip_retrieval_condition.h"
@@ -48,7 +49,8 @@ typedef struct OH_Retrieval_SubCondition OH_Retrieval_VectorCondition;
  * @see OH_Retrieval_VectorCondition
  * @since 6.0.0(20)
  */
-OH_Retrieval_VectorCondition *OH_Retrieval_CreateVectorCondition();
+OH_Retrieval_VectorCondition *OH_Retrieval_CreateVectorCondition()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_VectorCondition which is created by OH_Retrieval_CreateVectorCondition.
@@ -60,7 +62,8 @@ OH_Retrieval_VectorCondition *OH_Retrieval_CreateVectorCondition();
  * @see OH_Retrieval_VectorCondition, OH_Aip_ErrCode, OH_Retrieval_CreateVectorCondition.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyVectorCondition(OH_Retrieval_VectorCondition *condition);
+int OH_Retrieval_DestroyVectorCondition(OH_Retrieval_VectorCondition *condition)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the maximum number of retrieved results in the vector retrieval condition.
@@ -73,7 +76,8 @@ int OH_Retrieval_DestroyVectorCondition(OH_Retrieval_VectorCondition *condition)
  * @see OH_Retrieval_VectorCondition, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_SetVectorRecallLimit(OH_Retrieval_VectorCondition *condition, uint32_t limit);
+int OH_Retrieval_SetVectorRecallLimit(OH_Retrieval_VectorCondition *condition, uint32_t limit)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the similarity threshold for vector retrieval in the retrieval condition.
@@ -87,7 +91,8 @@ int OH_Retrieval_SetVectorRecallLimit(OH_Retrieval_VectorCondition *condition, u
  * @see OH_Retrieval_VectorCondition, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_SetSimilarityThreshold(OH_Retrieval_VectorCondition *condition, double threshold);
+int OH_Retrieval_SetSimilarityThreshold(OH_Retrieval_VectorCondition *condition, double threshold)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

@@ -30,6 +30,7 @@
 #ifndef OPENGTX_BASE_H
 #define OPENGTX_BASE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -314,7 +315,8 @@ typedef void (*OpenGTX_DeviceInfoCallback)(OpenGTX_TempLevel);
  * @return Returns the pointer to a {@link OpenGTX_Context} context instance.
  * @since 5.0.0(12)
  */
-OpenGTX_Context* HMS_OpenGTX_CreateContext(OpenGTX_DeviceInfoCallback deviceInfoCallback);
+OpenGTX_Context* HMS_OpenGTX_CreateContext(OpenGTX_DeviceInfoCallback deviceInfoCallback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Configure OpenGTX context instance for initialing. For instance, sets the LTPO's mode to control
@@ -328,7 +330,8 @@ OpenGTX_Context* HMS_OpenGTX_CreateContext(OpenGTX_DeviceInfoCallback deviceInfo
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
  * @since 5.0.0(12)
  */
-OpenGTX_ErrorCode HMS_OpenGTX_SetConfiguration(OpenGTX_Context* context, const OpenGTX_ConfigDescription* config);
+OpenGTX_ErrorCode HMS_OpenGTX_SetConfiguration(OpenGTX_Context* context, const OpenGTX_ConfigDescription* config)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy OpenGTX instance and memory resource reclamation.
@@ -338,7 +341,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_SetConfiguration(OpenGTX_Context* context, const O
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
  * @since 5.0.0(12)
  */
-OpenGTX_ErrorCode HMS_OpenGTX_DestroyContext(OpenGTX_Context** context);
+OpenGTX_ErrorCode HMS_OpenGTX_DestroyContext(OpenGTX_Context** context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Activate OpenGTX algorithm. An "activated" instance is ready to draw frames.
@@ -351,7 +355,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_DestroyContext(OpenGTX_Context** context);
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
  * @since 5.0.0(12)
  */
-OpenGTX_ErrorCode HMS_OpenGTX_Activate(OpenGTX_Context* context);
+OpenGTX_ErrorCode HMS_OpenGTX_Activate(OpenGTX_Context* context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deactivate OpenGTX algorithm.
@@ -362,7 +367,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_Activate(OpenGTX_Context* context);
  * If the operation fails, an error code is returned. For details, see {@link OpenGTX_ErrorCode}.
  * @since 5.0.0(12)
  */
-OpenGTX_ErrorCode HMS_OpenGTX_Deactivate(OpenGTX_Context* context);
+OpenGTX_ErrorCode HMS_OpenGTX_Deactivate(OpenGTX_Context* context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set all required data of frame rendering for OpenGTX algorithm to reduce device load, such as LTPO.
@@ -375,7 +381,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_Deactivate(OpenGTX_Context* context);
  * @since 5.0.0(12)
  */
 OpenGTX_ErrorCode HMS_OpenGTX_DispatchFrameRenderInfo(OpenGTX_Context* context,
-    const OpenGTX_FrameRenderInfo* frameRenderInfo);
+    const OpenGTX_FrameRenderInfo* frameRenderInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set all required data of game scene for OpenGTX algorithm to reduce device load.
@@ -388,7 +395,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_DispatchFrameRenderInfo(OpenGTX_Context* context,
  * @since 5.0.0(12)
  */
 OpenGTX_ErrorCode HMS_OpenGTX_DispatchGameSceneInfo(OpenGTX_Context* context,
-    const OpenGTX_GameSceneInfo* gameSceneInfo);
+    const OpenGTX_GameSceneInfo* gameSceneInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set all required data of network for OpenGTX algorithm to reduce device load.
@@ -400,7 +408,8 @@ OpenGTX_ErrorCode HMS_OpenGTX_DispatchGameSceneInfo(OpenGTX_Context* context,
  * If the operation fails, an error code is returned. For details about the error codes, see {@link OpenGTX_ErrorCode}.
  * @since 5.0.0(12)
  */
-OpenGTX_ErrorCode HMS_OpenGTX_DispatchNetworkInfo(OpenGTX_Context* context, const OpenGTX_NetworkInfo* networkInfo);
+OpenGTX_ErrorCode HMS_OpenGTX_DispatchNetworkInfo(OpenGTX_Context* context, const OpenGTX_NetworkInfo* networkInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif // __cplusplus

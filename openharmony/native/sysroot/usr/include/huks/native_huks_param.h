@@ -44,6 +44,7 @@
 #ifndef NATIVE_HUKS_PARAM_H
 #define NATIVE_HUKS_PARAM_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_huks_type.h"
 
 #ifdef __cplusplus
@@ -60,7 +61,8 @@ extern "C" {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet);
+struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Adds parameters to a parameter set.
@@ -74,7 +76,8 @@ struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet);
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
-    const struct OH_Huks_Param *params, uint32_t paramCnt);
+    const struct OH_Huks_Param *params, uint32_t paramCnt)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Constructs a parameter set.
@@ -86,7 +89,8 @@ struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet);
+struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroys a parameter set.
@@ -95,7 +99,7 @@ struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet);
  * @since 9
  * @version 1.0
  */
-void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet);
+void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Copies a parameter set (deep copy).
@@ -111,7 +115,8 @@ void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet);
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromParamSet,
-    uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet);
+    uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains parameters from a parameter set.
@@ -126,7 +131,8 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, uint32_t tag,
-    struct OH_Huks_Param **param);
+    struct OH_Huks_Param **param)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Refreshes data of the <b>Blob</b> type in a parameter set.
@@ -141,7 +147,8 @@ struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, 
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, bool isCopy);
+struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, bool isCopy)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Checks whether the parameters in a parameter set are valid.
@@ -153,7 +160,8 @@ struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, b
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *paramSet);
+struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *paramSet)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Checks whether a parameter set is of the valid size.
@@ -165,7 +173,8 @@ struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *paramSet, uint32_t size);
+struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *paramSet, uint32_t size)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Checks whether two parameters are the same.
@@ -178,7 +187,8 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *par
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param);
+struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroys a parameter set.
@@ -187,7 +197,8 @@ struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *basePa
  * @since 20
  * @version 1.0
  */
-void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet);
+void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

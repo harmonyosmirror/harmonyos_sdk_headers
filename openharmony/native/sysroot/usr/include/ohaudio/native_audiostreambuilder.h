@@ -40,6 +40,7 @@
 #ifndef NATIVE_AUDIOSTREAM_BUILDER_H
 #define NATIVE_AUDIOSTREAM_BUILDER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audiostream_base.h"
 #include "native_audiorenderer.h"
 #include "native_audiocapturer.h"
@@ -59,7 +60,8 @@ extern "C" {
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  */
-OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** builder, OH_AudioStream_Type type);
+OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** builder, OH_AudioStream_Type type)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Destroy a streamBulder.
@@ -74,7 +76,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** build
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* builder);
+OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* builder)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the channel count of the capturer client
@@ -89,7 +92,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* build
  *                                                 1.The param of builder is nullptr;
  *                                                 2.The param of rate invalid.
  */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilder* builder, int32_t rate);
+OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilder* builder, int32_t rate)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the channel count of the stream client
@@ -104,7 +108,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilde
  *                                                 1.The param of builder is nullptr;
  *                                                 2.The param of channelCount invalid.
  */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilder* builder, int32_t channelCount);
+OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilder* builder, int32_t channelCount)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the sample format of the stream client
@@ -118,7 +123,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilde
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_SampleFormat format);
+    OH_AudioStream_SampleFormat format)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the encoding type of the stream client
@@ -132,7 +138,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilde
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_EncodingType encodingType);
+    OH_AudioStream_EncodingType encodingType)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the latency mode of the stream client
@@ -146,7 +153,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilde
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_LatencyMode latencyMode);
+    OH_AudioStream_LatencyMode latencyMode)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set the channel layout to the stream client
@@ -160,7 +168,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode(OH_AudioStreamBuilder
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout(OH_AudioStreamBuilder* builder,
-    OH_AudioChannelLayout channelLayout);
+    OH_AudioChannelLayout channelLayout)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * Set the renderer information of the stream client
@@ -176,7 +185,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout(OH_AudioStreamBuild
  *                                                 2.The param of usage invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_Usage usage);
+    OH_AudioStream_Usage usage)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the capturer information of the stream client
@@ -192,7 +202,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilde
  *                                                 2.The param of sourceType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_SourceType sourceType);
+    OH_AudioStream_SourceType sourceType)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the callbacks for the renderer client
@@ -213,7 +224,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilde
  *                                                 2.StreamType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_Callbacks callbacks, void* userData);
+    OH_AudioRenderer_Callbacks callbacks, void* userData)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set the callback when the output device of an audio renderer changed.
@@ -230,7 +242,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback(OH_AudioStreamBu
  *                                                 2.StreamType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OutputDeviceChangeCallback callback, void* userData);
+    OH_AudioRenderer_OutputDeviceChangeCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the privacy of audio render.
@@ -246,7 +259,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallbac
  *                                                 2.StreamType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_PrivacyType privacy);
+    OH_AudioStream_PrivacyType privacy)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * Set the callbacks for the capturer client
@@ -267,7 +281,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBui
  *                                                 2.StreamType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_Callbacks callbacks, void* userData);
+    OH_AudioCapturer_Callbacks callbacks, void* userData)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Create the audio renderer client.
@@ -299,7 +314,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  *                                                 3.Create OHAudioRenderer failed.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer** audioRenderer);
+    OH_AudioRenderer** audioRenderer)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Create the audio capturer client.
@@ -316,7 +332,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
  *                                                 3.Create OHAudioCapturer failed.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer** audioCapturer);
+    OH_AudioCapturer** audioCapturer)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Set the data frame size for each callback, use this function if the application requires a specific number
@@ -333,7 +350,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetFrameSizeInCallback(OH_AudioStreamBuilder* builder,
-    int32_t frameSize);
+    int32_t frameSize)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the callback of writing metadata to the renderer client
@@ -350,7 +368,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetFrameSizeInCallback(OH_AudioStrea
  *                                                 2.StreamType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_WriteDataWithMetadataCallback callback, void* userData);
+    OH_AudioRenderer_WriteDataWithMetadataCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the interrupt mode of the stream client
@@ -367,7 +386,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(OH_
  *                                                 3.StreamType invalid.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode(OH_AudioStreamBuilder* builder,
-    OH_AudioInterrupt_Mode mode);
+    OH_AudioInterrupt_Mode mode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the callback of writing data to renderer client.
@@ -384,7 +404,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode(OH_AudioStr
  * @since 12
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OnWriteDataCallback callback, void* userData);
+    OH_AudioRenderer_OnWriteDataCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the callback of writing data to renderer client.
@@ -403,7 +424,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_Audi
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallbackAdvanced(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OnWriteDataCallbackAdvanced callback, void* userData);
+    OH_AudioRenderer_OnWriteDataCallbackAdvanced callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * Set the renderer volume mode of the stream client
@@ -418,7 +440,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallbackAdvanced
  * @since 19
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_VolumeMode volumeMode);
+    OH_AudioStream_VolumeMode volumeMode)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets a callback to handle interrupt events for an AudioRenderer instance. This function is similar to
@@ -435,7 +458,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder*
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OnInterruptCallback callback, void* userData);
+    OH_AudioRenderer_OnInterruptCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a callback to handle error events for an AudioRenderer instance.
@@ -453,7 +477,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_Audi
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OnErrorCallback callback, void* userData);
+    OH_AudioRenderer_OnErrorCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a callback to handle audio data read events for an AudioCapturer instance. This function is
@@ -471,7 +496,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStr
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnReadDataCallback callback, void* userData);
+    OH_AudioCapturer_OnReadDataCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a callback to handle device change events for an AudioCapturer instance. This function is
@@ -488,7 +514,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_Audio
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData);
+    OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a callback to handle interrupt events for an AudioCapturer instance.
@@ -506,7 +533,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_A
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnInterruptCallback callback, void* userData);
+    OH_AudioCapturer_OnInterruptCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a callback to handle error events for an AudioCapturer instance. This function is similar to
@@ -523,7 +551,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_Audi
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnErrorCallback callback, void* userData);
+    OH_AudioCapturer_OnErrorCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set audio capturer configuration, if app want its recorder only to be muted instead of interrupted.
@@ -536,7 +565,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStr
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted(OH_AudioStreamBuilder* builder,
-    bool muteWhenInterrupted);
+    bool muteWhenInterrupted)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the callback of fast status change event for audio renderer.
@@ -550,7 +580,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted(O
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OnFastStatusChange callback, void* userData);
+    OH_AudioRenderer_OnFastStatusChange callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the callback of fast status change event for audio capturer.
@@ -564,7 +595,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback(
  * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnFastStatusChange callback, void* userData);
+    OH_AudioCapturer_OnFastStatusChange callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 
 #ifdef __cplusplus

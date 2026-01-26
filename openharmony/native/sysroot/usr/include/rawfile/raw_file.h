@@ -41,6 +41,7 @@
 #ifndef GLOBAL_RAW_FILE_H
 #define GLOBAL_RAW_FILE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -130,7 +131,8 @@ typedef struct {
  * @since 8
  * @version 1.0
  */
-int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length);
+int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Uses the 32-bit data type to seek a data read position based on the specified offset within a raw file.
@@ -146,7 +148,8 @@ int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t len
  * @since 8
  * @version 1.0
  */
-int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence);
+int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the raw file length represented by an long.
@@ -156,7 +159,7 @@ int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int when
  * @since 8
  * @version 1.0
  */
-long OH_ResourceManager_GetRawFileSize(RawFile *rawFile);
+long OH_ResourceManager_GetRawFileSize(RawFile *rawFile) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the remaining raw file length represented by an long.
@@ -166,7 +169,8 @@ long OH_ResourceManager_GetRawFileSize(RawFile *rawFile);
  * @since 11
  * @version 1.0
  */
-long OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile);
+long OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Closes an opened {@link RawFile} and releases all associated resources.
@@ -178,7 +182,7 @@ long OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile);
  * @since 8
  * @version 1.0
  */
-void OH_ResourceManager_CloseRawFile(RawFile *rawFile);
+void OH_ResourceManager_CloseRawFile(RawFile *rawFile) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the current offset of a raw file, represented by an long.
@@ -190,7 +194,8 @@ void OH_ResourceManager_CloseRawFile(RawFile *rawFile);
  * @since 8
  * @version 1.0
  */
-long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile);
+long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Opens the file descriptor of a raw file based on the long offset and file length.
@@ -205,7 +210,8 @@ long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile);
  * @deprecated since 12
  * @useinstead OH_ResourceManager_GetRawFileDescriptorData
  */
-bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor);
+bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the file descriptor of a raw file based on the long offset and file length.
@@ -218,7 +224,8 @@ bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDesc
  * @since 12
  * @version 1.0
  */
-bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFileDescriptor *descriptor);
+bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFileDescriptor *descriptor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Closes the file descriptor of a raw file.
@@ -232,7 +239,8 @@ bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFile
  * @deprecated since 12
  * @useinstead OH_ResourceManager_ReleaseRawFileDescriptorData
  */
-bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor);
+bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Release the file descriptor of a raw file.
@@ -244,7 +252,8 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descri
  * @since 12
  * @version 1.0
  */
-bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *descriptor);
+bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *descriptor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads a raw file.
@@ -259,7 +268,8 @@ bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *de
  * @since 11
  * @version 1.0
  */
-int64_t OH_ResourceManager_ReadRawFile64(const RawFile64 *rawFile, void *buf, int64_t length);
+int64_t OH_ResourceManager_ReadRawFile64(const RawFile64 *rawFile, void *buf, int64_t length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Uses the 64-bit data type to seek a data read position based on the specified offset within a raw file.
@@ -275,7 +285,8 @@ int64_t OH_ResourceManager_ReadRawFile64(const RawFile64 *rawFile, void *buf, in
  * @since 11
  * @version 1.0
  */
-int OH_ResourceManager_SeekRawFile64(const RawFile64 *rawFile, int64_t offset, int whence);
+int OH_ResourceManager_SeekRawFile64(const RawFile64 *rawFile, int64_t offset, int whence)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the raw file length represented by an int64_t.
@@ -285,7 +296,8 @@ int OH_ResourceManager_SeekRawFile64(const RawFile64 *rawFile, int64_t offset, i
  * @since 11
  * @version 1.0
  */
-int64_t OH_ResourceManager_GetRawFileSize64(RawFile64 *rawFile);
+int64_t OH_ResourceManager_GetRawFileSize64(RawFile64 *rawFile)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the remaining raw file length represented by an int64_t.
@@ -295,7 +307,8 @@ int64_t OH_ResourceManager_GetRawFileSize64(RawFile64 *rawFile);
  * @since 11
  * @version 1.0
  */
-int64_t OH_ResourceManager_GetRawFileRemainingLength64(const RawFile64 *rawFile);
+int64_t OH_ResourceManager_GetRawFileRemainingLength64(const RawFile64 *rawFile)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Closes an opened {@link RawFile64} and releases all associated resources.
@@ -307,7 +320,7 @@ int64_t OH_ResourceManager_GetRawFileRemainingLength64(const RawFile64 *rawFile)
  * @since 11
  * @version 1.0
  */
-void OH_ResourceManager_CloseRawFile64(RawFile64 *rawFile);
+void OH_ResourceManager_CloseRawFile64(RawFile64 *rawFile) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the current offset of a raw file, represented by an int64_t.
@@ -319,7 +332,8 @@ void OH_ResourceManager_CloseRawFile64(RawFile64 *rawFile);
  * @since 11
  * @version 1.0
  */
-int64_t OH_ResourceManager_GetRawFileOffset64(const RawFile64 *rawFile);
+int64_t OH_ResourceManager_GetRawFileOffset64(const RawFile64 *rawFile)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Opens the file descriptor of a raw file based on the int64_t offset and file length.
@@ -332,7 +346,8 @@ int64_t OH_ResourceManager_GetRawFileOffset64(const RawFile64 *rawFile);
  * @since 11
  * @version 1.0
  */
-bool OH_ResourceManager_GetRawFileDescriptor64(const RawFile64 *rawFile, RawFileDescriptor64 *descriptor);
+bool OH_ResourceManager_GetRawFileDescriptor64(const RawFile64 *rawFile, RawFileDescriptor64 *descriptor)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Closes the file descriptor of a raw file.
@@ -344,7 +359,8 @@ bool OH_ResourceManager_GetRawFileDescriptor64(const RawFile64 *rawFile, RawFile
  * @since 11
  * @version 1.0
  */
-bool OH_ResourceManager_ReleaseRawFileDescriptor64(const RawFileDescriptor64 *descriptor);
+bool OH_ResourceManager_ReleaseRawFileDescriptor64(const RawFileDescriptor64 *descriptor)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 };

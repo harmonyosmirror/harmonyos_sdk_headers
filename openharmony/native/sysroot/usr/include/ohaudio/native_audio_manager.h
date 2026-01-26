@@ -39,6 +39,7 @@
 #ifndef NATIVE_AUDIO_MANAGER_H
 #define NATIVE_AUDIO_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audio_common.h"
 #ifdef __cplusplus
 extern "C" {
@@ -75,7 +76,8 @@ typedef void (*OH_AudioManager_OnAudioSceneChangeCallback) (
  *                                                        1.The param of audioManager is nullptr;
  * @since 12
  */
-OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
+OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get audio scene.
@@ -89,7 +91,8 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
  *                                                        2.The param of scene is nullptr.
  * @since 12
  */
-OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *scene);
+OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *scene)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register callback to receive audio scene changed events.
@@ -106,7 +109,8 @@ OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioManager_RegisterAudioSceneChangeCallback(OH_AudioManager *manager,
-    OH_AudioManager_OnAudioSceneChangeCallback callback, void *userData);
+    OH_AudioManager_OnAudioSceneChangeCallback callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister audio scene change callback.
@@ -122,7 +126,8 @@ OH_AudioCommon_Result OH_AudioManager_RegisterAudioSceneChangeCallback(OH_AudioM
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioManager_UnregisterAudioSceneChangeCallback(OH_AudioManager *manager,
-    OH_AudioManager_OnAudioSceneChangeCallback callback);
+    OH_AudioManager_OnAudioSceneChangeCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

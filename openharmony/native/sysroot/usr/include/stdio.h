@@ -1,6 +1,7 @@
 #ifndef _STDIO_H
 #define _STDIO_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -245,7 +246,8 @@ enum fdsan_owner_type {
  * @return Return the created tag, which can be used to exchange.
  * @since 12
  */
-uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
+uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Exchange owner tag for specified fd.
@@ -257,7 +259,8 @@ uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
  * @param new_tag: Used to exchange the specified fd owner tag.
  * @since 12
  */
-void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
+void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check fd owner tag and close fd.
@@ -270,7 +273,7 @@ void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
  * @return Return close result, 0 success and -1 if fail.
  * @since 12
  */
-int fdsan_close_with_tag(int fd, uint64_t tag);
+int fdsan_close_with_tag(int fd, uint64_t tag) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get specified fd's owner tag.
@@ -279,7 +282,7 @@ int fdsan_close_with_tag(int fd, uint64_t tag);
  * @return Return tag value of specified fd, return 0 if fd is not in fd table.
  * @since 12
  */
-uint64_t fdsan_get_owner_tag(int fd);
+uint64_t fdsan_get_owner_tag(int fd) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get owner fd type
@@ -288,7 +291,7 @@ uint64_t fdsan_get_owner_tag(int fd);
  * @return Return type value of tag, possible value: FILE*, DIR*, unique_fd, ZipArchive, unknown type and so on.
  * @since 12
  */
-const char* fdsan_get_tag_type(uint64_t tag);
+const char* fdsan_get_tag_type(uint64_t tag) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get owner fd tag value.
@@ -297,7 +300,7 @@ const char* fdsan_get_tag_type(uint64_t tag);
  * @return Return value of tag, last 56 bits are valid.
  * @since 12
  */
-uint64_t fdsan_get_tag_value(uint64_t tag);
+uint64_t fdsan_get_tag_value(uint64_t tag) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates fdsan error level.
@@ -321,7 +324,7 @@ enum fdsan_error_level {
  * @return Return fdsan error level enumerate value.
  * @since 12
  */
-enum fdsan_error_level fdsan_get_error_level();
+enum fdsan_error_level fdsan_get_error_level() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set fdsan error level.
@@ -330,7 +333,8 @@ enum fdsan_error_level fdsan_get_error_level();
  * @return Return old fdsan error level enumerate value.
  * @since 12
  */
-enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
+enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #include <fortify/stdio.h>
 

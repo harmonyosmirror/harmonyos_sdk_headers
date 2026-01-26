@@ -33,6 +33,7 @@
 #ifndef ARKWEB_INTERFACE_H
 #define ARKWEB_INTERFACE_H
 
+#include "info/application_target_sdk_version.h"
 #include "arkweb_type.h"
 
 #ifdef __cplusplus
@@ -82,7 +83,8 @@ typedef enum {
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
-ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
+ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 /**
@@ -96,7 +98,8 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
  * @since 18
  */
 bool OH_ArkWeb_RegisterScrollCallback(
-    const char* webTag, ArkWeb_OnScrollCallback callback, void* userData);
+    const char* webTag, ArkWeb_OnScrollCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

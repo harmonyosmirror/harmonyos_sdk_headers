@@ -27,6 +27,7 @@
 #ifndef SERVICE_COLLABORATION_API_H
 #define SERVICE_COLLABORATION_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -200,7 +201,8 @@ typedef struct ServiceCollaborationCallback {
  * @since 5.0.0(12)
  */
 ServiceCollaboration_CollaborationDeviceInfoSets* HMS_ServiceCollaboration_GetCollaborationDeviceInfos(
-    uint32_t fileterNum, ServiceCollaborationFilterType serviceFileterTypes[]);
+    uint32_t fileterNum, ServiceCollaborationFilterType serviceFileterTypes[])
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief start collaboration to selected device.
@@ -212,7 +214,8 @@ ServiceCollaboration_CollaborationDeviceInfoSets* HMS_ServiceCollaboration_GetCo
  * @since 5.0.0(12)
  */
 uint32_t HMS_ServiceCollaboration_StartCollaboration(
-    const ServiceCollaboration_SelectInfo* selectService, ServiceCollaborationCallback* callback);
+    const ServiceCollaboration_SelectInfo* selectService, ServiceCollaborationCallback* callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief stop collaboration to selected device.
@@ -222,7 +225,8 @@ uint32_t HMS_ServiceCollaboration_StartCollaboration(
  *
  * @since 5.0.0(12)
  */
-int32_t HMS_ServiceCollaboration_StopCollaboration(uint32_t collaborationId);
+int32_t HMS_ServiceCollaboration_StopCollaboration(uint32_t collaborationId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

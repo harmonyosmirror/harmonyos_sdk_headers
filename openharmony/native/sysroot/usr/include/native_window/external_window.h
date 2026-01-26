@@ -39,6 +39,7 @@
 #ifndef NDK_INCLUDE_EXTERNAL_NATIVE_WINDOW_H_
 #define NDK_INCLUDE_EXTERNAL_NATIVE_WINDOW_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "buffer_handle.h"
 #include "../native_buffer/buffer_common.h"
@@ -417,7 +418,8 @@ typedef enum {
  * @version 1.0
  * @deprecated since 12
  */
-OHNativeWindow* OH_NativeWindow_CreateNativeWindow(void* pSurface);
+OHNativeWindow* OH_NativeWindow_CreateNativeWindow(void* pSurface)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Decreases the reference count of a <b>OHNativeWindow</b> instance by 1,
@@ -429,7 +431,8 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow(void* pSurface);
  * @since 8
  * @version 1.0
  */
-void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* window);
+void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* window)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates a <b>OHNativeWindowBuffer</b> instance. A new <b>OHNativeWindowBuffer</b> instance is created each time this function is called.
@@ -442,7 +445,8 @@ void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* window);
  * @deprecated since 12
  * @useinstead OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer
  */
-OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(void* pSurfaceBuffer);
+OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(void* pSurfaceBuffer)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates a <b>OHNativeWindowBuffer</b> instance.\n
@@ -457,7 +461,8 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(
  * @since 11
  * @version 1.0
  */
-OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer(OH_NativeBuffer* nativeBuffer);
+OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer(OH_NativeBuffer* nativeBuffer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Decreases the reference count of a <b>OHNativeWindowBuffer</b> instance by 1 and,
@@ -469,7 +474,8 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer(O
  * @since 8
  * @version 1.0
  */
-void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer);
+void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Requests a <b>OHNativeWindowBuffer</b> through a <b>OHNativeWindow</b> instance for content production.\n
@@ -489,7 +495,8 @@ void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer);
  * @version 1.0
  */
 int32_t OH_NativeWindow_NativeWindowRequestBuffer(OHNativeWindow *window,
-    OHNativeWindowBuffer **buffer, int *fenceFd);
+    OHNativeWindowBuffer **buffer, int *fenceFd)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Flushes the <b>OHNativeWindowBuffer</b> filled with the content to the buffer queue
@@ -507,7 +514,8 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer(OHNativeWindow *window,
  * @version 1.0
  */
 int32_t OH_NativeWindow_NativeWindowFlushBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer,
-    int fenceFd, Region region);
+    int fenceFd, Region region)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from a <b>OHNativeWindow</b> instance.
@@ -524,7 +532,8 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer(OHNativeWindow *window, OHNative
  * @useinstead OH_NativeWindow_GetLastFlushedBufferV2
  */
 int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWindowBuffer **buffer,
-    int *fenceFd, float matrix[16]);
+    int *fenceFd, float matrix[16])
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
  /**
  * @brief Returns the <b>OHNativeWindowBuffer</b> to the buffer queue through a <b>OHNativeWindow</b> instance,
@@ -538,7 +547,8 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWin
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer);
+int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets or obtains the attributes of a native window, including the width, height, and content format.\n
@@ -563,7 +573,8 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNative
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, ...);
+int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, ...)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the pointer to a <b>BufferHandle</b> of a <b>OHNativeWindowBuffer</b> instance.\n
@@ -575,7 +586,8 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, 
  * @since 8
  * @version 1.0
  */
-BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *buffer);
+BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *buffer)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Adds the reference count of a native object.\n
@@ -589,7 +601,7 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeObjectReference(void *obj);
+int32_t OH_NativeWindow_NativeObjectReference(void *obj) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Decreases the reference count of a native object and,
@@ -602,7 +614,7 @@ int32_t OH_NativeWindow_NativeObjectReference(void *obj);
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeObjectUnreference(void *obj);
+int32_t OH_NativeWindow_NativeObjectUnreference(void *obj) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the magic ID of a native object.\n
@@ -614,7 +626,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference(void *obj);
  * @since 8
  * @version 1.0
  */
-int32_t OH_NativeWindow_GetNativeObjectMagic(void *obj);
+int32_t OH_NativeWindow_GetNativeObjectMagic(void *obj) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets scalingMode of a native window.
@@ -630,7 +642,8 @@ int32_t OH_NativeWindow_GetNativeObjectMagic(void *obj);
  * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  */
 int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint32_t sequence,
-                                                   OHScalingMode scalingMode);
+                                                   OHScalingMode scalingMode)
+                                                   __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets metaData of a native window.
@@ -646,7 +659,8 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint3
  * @deprecated(since = "10")
  */
 int32_t OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow *window, uint32_t sequence, int32_t size,
-                                                const OHHDRMetaData *metaData);
+                                                const OHHDRMetaData *metaData)
+                                                __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets metaDataSet of a native window.
@@ -663,7 +677,8 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow *window, uint32_t
  * @deprecated(since = "10")
  */
 int32_t OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow *window, uint32_t sequence, OHHDRMetadataKey key,
-                                                   int32_t size, const uint8_t *metaData);
+                                                   int32_t size, const uint8_t *metaData)
+                                                   __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets tunnel handle of a native window.
@@ -676,7 +691,8 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow *window, uint3
  * @version 1.0
  * @deprecated(since = "10")
  */
-int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, const OHExtDataHandle *handle);
+int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, const OHExtDataHandle *handle)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Attach a buffer to an <b>OHNativeWindow</b> instance.\n
@@ -691,7 +707,8 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, cons
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer);
+int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Detach a buffer from an <b>OHNativeWindow</b> instance.\n
@@ -704,7 +721,8 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativ
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer);
+int32_t OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get surfaceId from native window.\n
@@ -717,7 +735,8 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativ
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId);
+int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OHNativeWindow</b> instance.\n
@@ -737,7 +756,8 @@ int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window);
+int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets scalingMode of a native window.\n
@@ -750,7 +770,8 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNa
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode);
+int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set native window buffer hold.\n
@@ -761,7 +782,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHS
  * @since 12
  * @version 1.0
  */
-void OH_NativeWindow_SetBufferHold(OHNativeWindow *window);
+void OH_NativeWindow_SetBufferHold(OHNativeWindow *window) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Write an OHNativeWindow to an OHIPCParcel.\n
@@ -775,7 +796,8 @@ void OH_NativeWindow_SetBufferHold(OHNativeWindow *window);
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parcel);
+int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parcel)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Read an OHNativeWindow from an OHIPCParcel.\n
@@ -789,7 +811,8 @@ int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parce
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window);
+int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from an <b>OHNativeWindow</b> instance.\n
@@ -811,7 +834,8 @@ int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **win
  */
 
 int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeWindowBuffer **buffer,
-    int *fenceFd, float matrix[16]);
+    int *fenceFd, float matrix[16])
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set the color space of the native window.\n
  * This interface is a non-thread-safe type interface.\n
@@ -825,7 +849,8 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeW
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_ColorSpace colorSpace);
+int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_ColorSpace colorSpace)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the color space of the native window.\n
@@ -840,7 +865,8 @@ int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeWindow_GetColorSpace(OHNativeWindow *window, OH_NativeBuffer_ColorSpace *colorSpace);
+int32_t OH_NativeWindow_GetColorSpace(OHNativeWindow *window, OH_NativeBuffer_ColorSpace *colorSpace)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the metadata type of the native window.\n
@@ -859,7 +885,8 @@ int32_t OH_NativeWindow_GetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
  * @version 1.0
  */
 int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey,
-    int32_t size, uint8_t *metadata);
+    int32_t size, uint8_t *metadata)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the metadata type of the native window.\n
@@ -878,7 +905,8 @@ int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
  * @version 1.0
  */
 int32_t OH_NativeWindow_GetMetadataValue(OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey,
-    int32_t *size, uint8_t **metadata);
+    int32_t *size, uint8_t **metadata)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clean all <b>OHNativeWindowBuffer</b> caches of this <b>OHNativeWindow</b>
@@ -893,7 +921,21 @@ int32_t OH_NativeWindow_GetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
  * @since 19
  * @version 1.0
  */
-int32_t OH_NativeWindow_CleanCache(OHNativeWindow *window);
+int32_t OH_NativeWindow_CleanCache(OHNativeWindow *window) __attribute__((__availability__(ohos, introduced=19.0.0)));
+ 
+/**
+ * @brief PreAlloc <b>OHNativeWindowBuffer</b> of this <b>OHNativeWindow</b>
+ * This interface is a non-thread-safe type interface.\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
+ * @param allocBufferCnt Indicates the count of <b>OHNativeWindowBuffers</b>.
+ * @return Returns an error code, 0 is success, otherwise, failed.
+ * @since 22
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_PreAllocBuffers(OHNativeWindow *window, uint32_t allocBufferCnt)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif

@@ -40,6 +40,7 @@
 #ifndef OH_PRINT_H
 #define OH_PRINT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -564,7 +565,7 @@ typedef void (*Print_PrinterChangeCallback)(Print_PrinterEvent event, const Prin
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_Init();
+Print_ErrorCode OH_Print_Init() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API closes the connection from the print service, dissolves the previous callback,
@@ -575,7 +576,7 @@ Print_ErrorCode OH_Print_Init();
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_Release();
+Print_ErrorCode OH_Print_Release() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API starts discovering printers.
@@ -590,7 +591,8 @@ Print_ErrorCode OH_Print_Release();
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_StartPrinterDiscovery(Print_PrinterDiscoveryCallback callback);
+Print_ErrorCode OH_Print_StartPrinterDiscovery(Print_PrinterDiscoveryCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API stops discovering printers.
@@ -602,7 +604,7 @@ Print_ErrorCode OH_Print_StartPrinterDiscovery(Print_PrinterDiscoveryCallback ca
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_StopPrinterDiscovery();
+Print_ErrorCode OH_Print_StopPrinterDiscovery() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API connects to the printer using the printer id.
@@ -617,7 +619,8 @@ Print_ErrorCode OH_Print_StopPrinterDiscovery();
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_ConnectPrinter(const char *printerId);
+Print_ErrorCode OH_Print_ConnectPrinter(const char *printerId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API starts initiating a print job.
@@ -633,7 +636,8 @@ Print_ErrorCode OH_Print_ConnectPrinter(const char *printerId);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_StartPrintJob(const Print_PrintJob *printJob);
+Print_ErrorCode OH_Print_StartPrintJob(const Print_PrintJob *printJob)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API registers the callback for printer changes.
@@ -646,7 +650,8 @@ Print_ErrorCode OH_Print_StartPrintJob(const Print_PrintJob *printJob);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_RegisterPrinterChangeListener(Print_PrinterChangeCallback callback);
+Print_ErrorCode OH_Print_RegisterPrinterChangeListener(Print_PrinterChangeCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API unregisters the callback for printer changes.
@@ -655,7 +660,7 @@ Print_ErrorCode OH_Print_RegisterPrinterChangeListener(Print_PrinterChangeCallba
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-void OH_Print_UnregisterPrinterChangeListener();
+void OH_Print_UnregisterPrinterChangeListener() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API queries for a list of added printers.
@@ -670,7 +675,8 @@ void OH_Print_UnregisterPrinterChangeListener();
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_QueryPrinterList(Print_StringList *printerIdList);
+Print_ErrorCode OH_Print_QueryPrinterList(Print_StringList *printerIdList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API frees up the printer list memory for the query.
@@ -679,7 +685,8 @@ Print_ErrorCode OH_Print_QueryPrinterList(Print_StringList *printerIdList);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-void OH_Print_ReleasePrinterList(Print_StringList *printerIdList);
+void OH_Print_ReleasePrinterList(Print_StringList *printerIdList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API queries printer information based on the printer id.
@@ -695,7 +702,8 @@ void OH_Print_ReleasePrinterList(Print_StringList *printerIdList);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_QueryPrinterInfo(const char *printerId, Print_PrinterInfo **printerInfo);
+Print_ErrorCode OH_Print_QueryPrinterInfo(const char *printerId, Print_PrinterInfo **printerInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API frees up the printer infomation memory for the query.
@@ -704,7 +712,8 @@ Print_ErrorCode OH_Print_QueryPrinterInfo(const char *printerId, Print_PrinterIn
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-void OH_Print_ReleasePrinterInfo(Print_PrinterInfo *printerInfo);
+void OH_Print_ReleasePrinterInfo(Print_PrinterInfo *printerInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API launches the system's printer management window.
@@ -714,7 +723,7 @@ void OH_Print_ReleasePrinterInfo(Print_PrinterInfo *printerInfo);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_LaunchPrinterManager();
+Print_ErrorCode OH_Print_LaunchPrinterManager() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API queries the corresponding printer property values based on the list of property keywords.
@@ -732,7 +741,8 @@ Print_ErrorCode OH_Print_LaunchPrinterManager();
  * @since 12
  */
 Print_ErrorCode OH_Print_QueryPrinterProperties(const char *printerId, const Print_StringList *propertyKeyList,
-    Print_PropertyList *propertyList);
+    Print_PropertyList *propertyList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API frees up the property list memory for the query.
@@ -741,7 +751,8 @@ Print_ErrorCode OH_Print_QueryPrinterProperties(const char *printerId, const Pri
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-void OH_Print_ReleasePrinterProperties(Print_PropertyList *propertyList);
+void OH_Print_ReleasePrinterProperties(Print_PropertyList *propertyList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API sets printer properties based on a list of property key-value pairs.
@@ -755,7 +766,8 @@ void OH_Print_ReleasePrinterProperties(Print_PropertyList *propertyList);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId, const Print_PropertyList *propertyList);
+Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId, const Print_PropertyList *propertyList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API restores printer properties to default settings based on the list of property keywords.
@@ -769,7 +781,8 @@ Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId, const Pr
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId, const Print_StringList *propertyKeyList);
+Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId, const Print_StringList *propertyKeyList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API provide capacity to start print dialog.
@@ -786,7 +799,8 @@ Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId, const P
  */
 Print_ErrorCode OH_Print_StartPrintByNative(const char *printJobName,
                                             Print_PrintDocCallback printDocCallback,
-                                            void *context);
+                                            void *context)
+                                            __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

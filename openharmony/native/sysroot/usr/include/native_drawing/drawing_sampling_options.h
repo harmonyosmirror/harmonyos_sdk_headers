@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_SAMPLING_OPTIONS_H
 #define C_INCLUDE_DRAWING_SAMPLING_OPTIONS_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -85,7 +86,8 @@ typedef enum {
  * @version 1.0
  */
 OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMode filterMode,
-    OH_Drawing_MipmapMode mipmapMode);
+    OH_Drawing_MipmapMode mipmapMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_SamplingOptions</b> copy object.
@@ -96,7 +98,8 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMo
  * @since 20
  * @version 1.0
  */
-OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOptions* samplingOptions);
+OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOptions* samplingOptions)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_SamplingOptions</b> object and reclaims the memory occupied by the object.
@@ -106,7 +109,8 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOp
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SamplingOptionsDestroy(OH_Drawing_SamplingOptions* samplingOptions);
+void OH_Drawing_SamplingOptionsDestroy(OH_Drawing_SamplingOptions* samplingOptions)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

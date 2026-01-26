@@ -35,6 +35,7 @@
 #ifndef OH_NOTIFICATION_H
 #define OH_NOTIFICATION_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -49,7 +50,7 @@ extern "C" {
  *         false - This application is not allowed to publish notifications.
  * @since 13
  */
-bool OH_Notification_IsNotificationEnabled(void);
+bool OH_Notification_IsNotificationEnabled(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

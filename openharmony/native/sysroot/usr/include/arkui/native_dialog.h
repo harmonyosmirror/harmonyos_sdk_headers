@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_DIALOG_H
 #define ARKUI_NATIVE_DIALOG_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include "native_type.h"
 #include "native_node.h"
@@ -747,7 +748,8 @@ typedef struct {
  *                           <b>true</b> means to block the system behavior, and <b>false</b> means the opposite.
  * @since 12
  */
-void OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent* event, bool shouldBlockDismiss);
+void OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent* event, bool shouldBlockDismiss)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pointer to user data in a dialog box dismiss event object.
@@ -757,7 +759,8 @@ void OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent*
  * @return Returns the pointer to user data.
  * @since 12
  */
-void* OH_ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event);
+void* OH_ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the c from a dialog box dismiss event object.
@@ -772,7 +775,8 @@ void* OH_ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event);
  *         {@link DIALOG_DISMISS_SLIDE_DOWN}: sliding down.
  * @since 12
  */
-int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* event);
+int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Displays a custom dialog box.
@@ -784,7 +788,8 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* e
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId));
+int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId))
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Updates a custom dialog box.
@@ -796,7 +801,8 @@ int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, voi
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_UpdateDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId));
+int32_t OH_ArkUI_CustomDialog_UpdateDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId))
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Closes a custom dialog box.
@@ -807,7 +813,7 @@ int32_t OH_ArkUI_CustomDialog_UpdateDialog(ArkUI_CustomDialogOptions* options, v
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_CloseDialog(int32_t dialogId);
+int32_t OH_ArkUI_CustomDialog_CloseDialog(int32_t dialogId) __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Creates custom dialog box options.
@@ -816,7 +822,8 @@ int32_t OH_ArkUI_CustomDialog_CloseDialog(int32_t dialogId);
  * @return Returns the pointer to the custom dialog box options.
  * @since 19
  */
-ArkUI_CustomDialogOptions* OH_ArkUI_CustomDialog_CreateOptions(ArkUI_NodeHandle content);
+ArkUI_CustomDialogOptions* OH_ArkUI_CustomDialog_CreateOptions(ArkUI_NodeHandle content)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Destroys the custom dialog box options.
@@ -824,7 +831,8 @@ ArkUI_CustomDialogOptions* OH_ArkUI_CustomDialog_CreateOptions(ArkUI_NodeHandle 
  * @param options The pointer to the custom dialog box options.
  * @since 19
  */
-void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options);
+void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the level mode for a custom dialog box.
@@ -837,7 +845,8 @@ void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, ArkUI_LevelMode levelMode);
+int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, ArkUI_LevelMode levelMode)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the level uniqueId for a custom dialog box.
@@ -849,7 +858,8 @@ int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, A
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* options, int32_t uniqueId);
+int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* options, int32_t uniqueId)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the immersive mode for a custom dialog box.
@@ -862,7 +872,8 @@ int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* option
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* options, ArkUI_ImmersiveMode immersiveMode);
+int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* options, ArkUI_ImmersiveMode immersiveMode)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the background color of the dialog box.
@@ -874,7 +885,8 @@ int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* option
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetBackgroundColor(ArkUI_CustomDialogOptions* options, uint32_t backgroundColor);
+int32_t OH_ArkUI_CustomDialog_SetBackgroundColor(ArkUI_CustomDialogOptions* options, uint32_t backgroundColor)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the corner radius for a custom dialog box.
@@ -890,7 +902,8 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundColor(ArkUI_CustomDialogOptions* opti
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetCornerRadius(
-    ArkUI_CustomDialogOptions* options, float topLeft, float topRight, float bottomLeft, float bottomRight);
+    ArkUI_CustomDialogOptions* options, float topLeft, float topRight, float bottomLeft, float bottomRight)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the border width of the dialog box.
@@ -907,7 +920,8 @@ int32_t OH_ArkUI_CustomDialog_SetCornerRadius(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBorderWidth(
-    ArkUI_CustomDialogOptions* options, float top, float right, float bottom, float left, ArkUI_LengthMetricUnit unit);
+    ArkUI_CustomDialogOptions* options, float top, float right, float bottom, float left, ArkUI_LengthMetricUnit unit)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the border color of the dialog box.
@@ -923,7 +937,8 @@ int32_t OH_ArkUI_CustomDialog_SetBorderWidth(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBorderColor(
-    ArkUI_CustomDialogOptions* options, uint32_t top, uint32_t right, uint32_t bottom, uint32_t left);
+    ArkUI_CustomDialogOptions* options, uint32_t top, uint32_t right, uint32_t bottom, uint32_t left)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the border style of the dialog box.
@@ -939,7 +954,8 @@ int32_t OH_ArkUI_CustomDialog_SetBorderColor(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBorderStyle(
-    ArkUI_CustomDialogOptions* options, int32_t top, int32_t right, int32_t bottom, int32_t left);
+    ArkUI_CustomDialogOptions* options, int32_t top, int32_t right, int32_t bottom, int32_t left)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the width of the dialog box background.
@@ -952,7 +968,8 @@ int32_t OH_ArkUI_CustomDialog_SetBorderStyle(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetWidth(ArkUI_CustomDialogOptions* options, float width, ArkUI_LengthMetricUnit unit);
+int32_t OH_ArkUI_CustomDialog_SetWidth(ArkUI_CustomDialogOptions* options, float width, ArkUI_LengthMetricUnit unit)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the height of the dialog box background.
@@ -965,7 +982,8 @@ int32_t OH_ArkUI_CustomDialog_SetWidth(ArkUI_CustomDialogOptions* options, float
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetHeight(ArkUI_CustomDialogOptions* options, float height, ArkUI_LengthMetricUnit unit);
+int32_t OH_ArkUI_CustomDialog_SetHeight(ArkUI_CustomDialogOptions* options, float height, ArkUI_LengthMetricUnit unit)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the shadow of the dialog box background.
@@ -977,7 +995,8 @@ int32_t OH_ArkUI_CustomDialog_SetHeight(ArkUI_CustomDialogOptions* options, floa
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetShadow(ArkUI_CustomDialogOptions* options, ArkUI_ShadowStyle shadow);
+int32_t OH_ArkUI_CustomDialog_SetShadow(ArkUI_CustomDialogOptions* options, ArkUI_ShadowStyle shadow)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the custom shadow of the dialog box background.
@@ -991,7 +1010,8 @@ int32_t OH_ArkUI_CustomDialog_SetShadow(ArkUI_CustomDialogOptions* options, ArkU
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetCustomShadow(
-    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* customShadow);
+    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* customShadow)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the background blur style of the dialog box.
@@ -1003,7 +1023,8 @@ int32_t OH_ArkUI_CustomDialog_SetCustomShadow(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyle(ArkUI_CustomDialogOptions* options, ArkUI_BlurStyle blurStyle);
+int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyle(ArkUI_CustomDialogOptions* options, ArkUI_BlurStyle blurStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the alignment mode of the dialog box.
@@ -1018,7 +1039,8 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyle(ArkUI_CustomDialogOptions* 
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetAlignment(
-    ArkUI_CustomDialogOptions* options, int32_t alignment, float offsetX, float offsetY);
+    ArkUI_CustomDialogOptions* options, int32_t alignment, float offsetX, float offsetY)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the modal mode for a custom dialog box.
@@ -1031,7 +1053,8 @@ int32_t OH_ArkUI_CustomDialog_SetAlignment(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetModalMode(ArkUI_CustomDialogOptions* options, bool isModal);
+int32_t OH_ArkUI_CustomDialog_SetModalMode(ArkUI_CustomDialogOptions* options, bool isModal)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Specifies whether to allow users to touch the mask to dismiss the custom dialog box.
@@ -1044,7 +1067,8 @@ int32_t OH_ArkUI_CustomDialog_SetModalMode(ArkUI_CustomDialogOptions* options, b
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetAutoCancel(ArkUI_CustomDialogOptions* options, bool autoCancel);
+int32_t OH_ArkUI_CustomDialog_SetAutoCancel(ArkUI_CustomDialogOptions* options, bool autoCancel)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets whether to display the dialog box in a subwindow.
@@ -1058,7 +1082,8 @@ int32_t OH_ArkUI_CustomDialog_SetAutoCancel(ArkUI_CustomDialogOptions* options, 
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* options, bool showInSubwindow);
+int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* options, bool showInSubwindow)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the mask for a custom dialog box.
@@ -1073,7 +1098,8 @@ int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* option
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetMask(
-    ArkUI_CustomDialogOptions* options, uint32_t maskColor, const ArkUI_Rect* maskRect);
+    ArkUI_CustomDialogOptions* options, uint32_t maskColor, const ArkUI_Rect* maskRect)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the keyboard avoidance mode of the dialog box.
@@ -1086,7 +1112,8 @@ int32_t OH_ArkUI_CustomDialog_SetMask(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetKeyboardAvoidMode(
-    ArkUI_CustomDialogOptions* options, ArkUI_KeyboardAvoidMode keyboardAvoidMode);
+    ArkUI_CustomDialogOptions* options, ArkUI_KeyboardAvoidMode keyboardAvoidMode)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets whether to enable the hover mode for the dialog box.
@@ -1098,7 +1125,8 @@ int32_t OH_ArkUI_CustomDialog_SetKeyboardAvoidMode(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-int32_t OH_ArkUI_CustomDialog_SetHoverModeEnabled(ArkUI_CustomDialogOptions* options, bool enabled);
+int32_t OH_ArkUI_CustomDialog_SetHoverModeEnabled(ArkUI_CustomDialogOptions* options, bool enabled)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set the default display area of the dialog box in hover mode.
@@ -1111,7 +1139,8 @@ int32_t OH_ArkUI_CustomDialog_SetHoverModeEnabled(ArkUI_CustomDialogOptions* opt
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetHoverModeArea(
-    ArkUI_CustomDialogOptions* options, ArkUI_HoverModeAreaType hoverModeAreaType);
+    ArkUI_CustomDialogOptions* options, ArkUI_HoverModeAreaType hoverModeAreaType)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Registers a callback for the dismissal event of the custom dialog box.
@@ -1125,7 +1154,8 @@ int32_t OH_ArkUI_CustomDialog_SetHoverModeArea(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback(
-    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(ArkUI_DialogDismissEvent* event));
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(ArkUI_DialogDismissEvent* event))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Registers a callback to be invoked when the custom dialog box is about to appear.
@@ -1139,7 +1169,8 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback(
-    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData));
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Registers a callback to be invoked when the custom dialog box appears.
@@ -1153,7 +1184,8 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback(
-    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData));
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Registers a callback to be invoked when the custom dialog box is about to disappear.
@@ -1167,7 +1199,8 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback(
-    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData));
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Registers a callback to be invoked when the custom dialog box disappears.
@@ -1181,7 +1214,8 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
-    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData));
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Get state of dialog.
@@ -1193,7 +1227,8 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-int32_t OH_ArkUI_CustomDialog_GetState(ArkUI_NativeDialogHandle handle, ArkUI_DialogState* state);
+int32_t OH_ArkUI_CustomDialog_GetState(ArkUI_NativeDialogHandle handle, ArkUI_DialogState* state)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the background blur effect for a dialog box.
@@ -1215,7 +1250,8 @@ int32_t OH_ArkUI_CustomDialog_GetState(ArkUI_NativeDialogHandle handle, ArkUI_Di
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(
-    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundBlurStyleOptions);
+    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundBlurStyleOptions)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the background effect parameters for a dialog box.
@@ -1239,7 +1275,8 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(
  * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(
-    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect);
+    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 #ifdef __cplusplus
 };

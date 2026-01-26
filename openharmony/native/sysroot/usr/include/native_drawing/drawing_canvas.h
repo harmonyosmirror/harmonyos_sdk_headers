@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_H
 #define C_INCLUDE_DRAWING_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 #include "drawing_sampling_options.h"
@@ -73,7 +74,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void);
+OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Canvas</b> object from <b>OH_Drawing_PixelMap</b>.
@@ -87,7 +88,8 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixelMap);
+OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixelMap)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Canvas</b> object and reclaims the memory occupied by the object.
@@ -97,7 +99,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixe
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasDestroy(OH_Drawing_Canvas* canvas);
+void OH_Drawing_CanvasDestroy(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Binds a bitmap to a canvas so that the content drawn on the canvas
@@ -109,7 +111,8 @@ void OH_Drawing_CanvasDestroy(OH_Drawing_Canvas* canvas);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasBind(OH_Drawing_Canvas* canvas, OH_Drawing_Bitmap* bitmap);
+void OH_Drawing_CanvasBind(OH_Drawing_Canvas* canvas, OH_Drawing_Bitmap* bitmap)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Attaches a pen to a canvas so that the canvas will use the style and color of the pen to outline a shape.
@@ -120,7 +123,8 @@ void OH_Drawing_CanvasBind(OH_Drawing_Canvas* canvas, OH_Drawing_Bitmap* bitmap)
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasAttachPen(OH_Drawing_Canvas* canvas, const OH_Drawing_Pen* pen);
+void OH_Drawing_CanvasAttachPen(OH_Drawing_Canvas* canvas, const OH_Drawing_Pen* pen)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Detaches the pen from a canvas so that the canvas will not use the style
@@ -131,7 +135,7 @@ void OH_Drawing_CanvasAttachPen(OH_Drawing_Canvas* canvas, const OH_Drawing_Pen*
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasDetachPen(OH_Drawing_Canvas* canvas);
+void OH_Drawing_CanvasDetachPen(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Attaches a brush to a canvas so that the canvas will use the style and color of the brush to fill in a shape.
@@ -142,7 +146,8 @@ void OH_Drawing_CanvasDetachPen(OH_Drawing_Canvas* canvas);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasAttachBrush(OH_Drawing_Canvas* canvas, const OH_Drawing_Brush* brush);
+void OH_Drawing_CanvasAttachBrush(OH_Drawing_Canvas* canvas, const OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Detaches the brush from a canvas so that the canvas will not use the style
@@ -153,7 +158,7 @@ void OH_Drawing_CanvasAttachBrush(OH_Drawing_Canvas* canvas, const OH_Drawing_Br
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasDetachBrush(OH_Drawing_Canvas* canvas);
+void OH_Drawing_CanvasDetachBrush(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Saves the current canvas status (canvas matrix) to the top of the stack.
@@ -163,7 +168,7 @@ void OH_Drawing_CanvasDetachBrush(OH_Drawing_Canvas* canvas);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasSave(OH_Drawing_Canvas* canvas);
+void OH_Drawing_CanvasSave(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Saves matrix and clip, and allocates a bitmap for subsequent drawing.
@@ -176,7 +181,8 @@ void OH_Drawing_CanvasSave(OH_Drawing_Canvas* canvas);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect, const OH_Drawing_Brush* brush);
+void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect, const OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Restores the canvas status (canvas matrix) saved on the top of the stack.
@@ -186,7 +192,7 @@ void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasRestore(OH_Drawing_Canvas* canvas);
+void OH_Drawing_CanvasRestore(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Gets the number of the canvas status (canvas matrix) saved in the stack.
@@ -197,7 +203,8 @@ void OH_Drawing_CanvasRestore(OH_Drawing_Canvas* canvas);
  * @since 11
  * @version 1.0
  */
-uint32_t OH_Drawing_CanvasGetSaveCount(OH_Drawing_Canvas* canvas);
+uint32_t OH_Drawing_CanvasGetSaveCount(OH_Drawing_Canvas* canvas)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Restores the specific number of the canvas status (canvas matrix) saved in the stack.
@@ -208,7 +215,8 @@ uint32_t OH_Drawing_CanvasGetSaveCount(OH_Drawing_Canvas* canvas);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasRestoreToCount(OH_Drawing_Canvas* canvas, uint32_t saveCount);
+void OH_Drawing_CanvasRestoreToCount(OH_Drawing_Canvas* canvas, uint32_t saveCount)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Draws a line segment.
@@ -222,7 +230,8 @@ void OH_Drawing_CanvasRestoreToCount(OH_Drawing_Canvas* canvas, uint32_t saveCou
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawLine(OH_Drawing_Canvas* canvas, float x1, float y1, float x2, float y2);
+void OH_Drawing_CanvasDrawLine(OH_Drawing_Canvas* canvas, float x1, float y1, float x2, float y2)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Draws a path.
@@ -233,7 +242,8 @@ void OH_Drawing_CanvasDrawLine(OH_Drawing_Canvas* canvas, float x1, float y1, fl
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path* path);
+void OH_Drawing_CanvasDrawPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path* path)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Divides the pixelmap into a grid with nine sections: four sides, four corners, and the center.
@@ -254,7 +264,8 @@ void OH_Drawing_CanvasDrawPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapNine(OH_Drawing_Canvas* canvas, OH_Drawing_PixelMap* pixelMap,
-    const OH_Drawing_Rect* center, const OH_Drawing_Rect* dst, OH_Drawing_FilterMode mode);
+    const OH_Drawing_Rect* center, const OH_Drawing_Rect* dst, OH_Drawing_FilterMode mode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Draw the specified area of the Media::PixelMap to the specified area of the canvas.
@@ -269,7 +280,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapNine(OH_Drawing_Canvas* canvas
  * @version 1.0
  */
 void OH_Drawing_CanvasDrawPixelMapRect(OH_Drawing_Canvas* canvas, OH_Drawing_PixelMap* pixelMap,
-    const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst, const OH_Drawing_SamplingOptions* samplingOptions);
+    const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst, const OH_Drawing_SamplingOptions* samplingOptions)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draw the specified area of the Media::PixelMap to the specified area of the canvas.
@@ -290,7 +302,8 @@ void OH_Drawing_CanvasDrawPixelMapRect(OH_Drawing_Canvas* canvas, OH_Drawing_Pix
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapRectConstraint(OH_Drawing_Canvas* canvas,
     OH_Drawing_PixelMap* pixelMap, const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst,
-    const OH_Drawing_SamplingOptions* samplingOptions, OH_Drawing_SrcRectConstraint constraint);
+    const OH_Drawing_SamplingOptions* samplingOptions, OH_Drawing_SrcRectConstraint constraint)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Fills clipped canvas area with brush.
@@ -301,7 +314,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapRectConstraint(OH_Drawing_Canv
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawBackground(OH_Drawing_Canvas* canvas, const OH_Drawing_Brush* brush);
+void OH_Drawing_CanvasDrawBackground(OH_Drawing_Canvas* canvas, const OH_Drawing_Brush* brush)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws region using clip, matrix and paint.
@@ -312,7 +326,8 @@ void OH_Drawing_CanvasDrawBackground(OH_Drawing_Canvas* canvas, const OH_Drawing
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawRegion(OH_Drawing_Canvas* canvas, const OH_Drawing_Region* region);
+void OH_Drawing_CanvasDrawRegion(OH_Drawing_Canvas* canvas, const OH_Drawing_Region* region)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates of scale to fit flags, selects if an array of points are drawn as discrete points, as lines,
@@ -348,7 +363,8 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint(OH_Drawing_Canvas* canvas, const OH_Drawing_Point2D* point);
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint(OH_Drawing_Canvas* canvas, const OH_Drawing_Point2D* point)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws point array as separate point, line segment or open polygon according to given point mode.
@@ -362,7 +378,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint(OH_Drawing_Canvas* canvas, const
  * @version 1.0
  */
 void OH_Drawing_CanvasDrawPoints(OH_Drawing_Canvas* canvas, OH_Drawing_PointMode mode,
-    uint32_t count, const OH_Drawing_Point2D* point2D);
+    uint32_t count, const OH_Drawing_Point2D* point2D)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a bitmap.
@@ -375,7 +392,8 @@ void OH_Drawing_CanvasDrawPoints(OH_Drawing_Canvas* canvas, OH_Drawing_PointMode
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawBitmap(OH_Drawing_Canvas* canvas, const OH_Drawing_Bitmap* bitmap, float left, float top);
+void OH_Drawing_CanvasDrawBitmap(OH_Drawing_Canvas* canvas, const OH_Drawing_Bitmap* bitmap, float left, float top)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Draw the specified area of the bitmap to the specified area of the canvas.
@@ -390,7 +408,8 @@ void OH_Drawing_CanvasDrawBitmap(OH_Drawing_Canvas* canvas, const OH_Drawing_Bit
  * @version 1.0
  */
 void OH_Drawing_CanvasDrawBitmapRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Bitmap* bitmap,
-    const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst, const OH_Drawing_SamplingOptions* samplingOptions);
+    const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst, const OH_Drawing_SamplingOptions* samplingOptions)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a rect.
@@ -401,7 +420,8 @@ void OH_Drawing_CanvasDrawBitmapRect(OH_Drawing_Canvas* canvas, const OH_Drawing
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect);
+void OH_Drawing_CanvasDrawRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Draws a circle.
@@ -413,7 +433,8 @@ void OH_Drawing_CanvasDrawRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect*
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas* canvas, const OH_Drawing_Point* point, float radius);
+void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas* canvas, const OH_Drawing_Point* point, float radius)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Fills the entire canvas with the specified color and blend mode.
@@ -429,7 +450,8 @@ void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas* canvas, const OH_Drawing_Poi
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawColor(OH_Drawing_Canvas* canvas, uint32_t color,
-    OH_Drawing_BlendMode blendMode);
+    OH_Drawing_BlendMode blendMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws an oval.
@@ -440,7 +462,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawColor(OH_Drawing_Canvas* canvas, uint3
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawOval(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect);
+void OH_Drawing_CanvasDrawOval(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Draws an arc.
@@ -454,7 +477,8 @@ void OH_Drawing_CanvasDrawOval(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect*
  * @version 1.0
  */
 void OH_Drawing_CanvasDrawArc(OH_Drawing_Canvas* canvas,
-    const OH_Drawing_Rect* rect, float startAngle, float sweepAngle);
+    const OH_Drawing_Rect* rect, float startAngle, float sweepAngle)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
  
 /**
  * @brief Draws an arc with use center.
@@ -472,7 +496,8 @@ void OH_Drawing_CanvasDrawArc(OH_Drawing_Canvas* canvas,
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawArcWithCenter(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect,
-    float startAngle, float sweepAngle, bool useCenter);
+    float startAngle, float sweepAngle, bool useCenter)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 
 /**
@@ -484,7 +509,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawArcWithCenter(OH_Drawing_Canvas* canva
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_RoundRect* roundRect);
+void OH_Drawing_CanvasDrawRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_RoundRect* roundRect)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Draw two nested rounded rectangles.
@@ -501,7 +527,8 @@ void OH_Drawing_CanvasDrawRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawNestedRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_RoundRect* outer,
-    const OH_Drawing_RoundRect* inner);
+    const OH_Drawing_RoundRect* inner)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Draws a single character.
@@ -520,7 +547,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawNestedRoundRect(OH_Drawing_Canvas* can
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacter(OH_Drawing_Canvas* canvas, const char* str,
-    const OH_Drawing_Font* font, float x, float y);
+    const OH_Drawing_Font* font, float x, float y)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a single character with font features.
@@ -540,7 +568,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacter(OH_Drawing_Canvas* can
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacterWithFeatures(OH_Drawing_Canvas* canvas, const char* str,
-    const OH_Drawing_Font* font, float x, float y, OH_Drawing_FontFeatures* fontFeatures);
+    const OH_Drawing_Font* font, float x, float y, OH_Drawing_FontFeatures* fontFeatures)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Draws a textblob.
@@ -553,7 +582,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacterWithFeatures(OH_Drawing
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_TextBlob* textBlob, float x, float y);
+void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_TextBlob* textBlob, float x, float y)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enumerates clip op.
@@ -584,7 +614,8 @@ typedef enum {
  * @version 1.0
  */
 void OH_Drawing_CanvasClipRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect,
-    OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias);
+    OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clip a round rect.
@@ -598,7 +629,8 @@ void OH_Drawing_CanvasClipRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect*
  * @version 1.0
  */
 void OH_Drawing_CanvasClipRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_RoundRect* roundRect,
-    OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias);
+    OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clip a path.
@@ -612,7 +644,8 @@ void OH_Drawing_CanvasClipRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_
  * @version 1.0
  */
 void OH_Drawing_CanvasClipPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path* path,
-    OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias);
+    OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clips a region.
@@ -628,7 +661,8 @@ void OH_Drawing_CanvasClipPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion(OH_Drawing_Canvas* canvas, const OH_Drawing_Region* region,
-    OH_Drawing_CanvasClipOp clipOp);
+    OH_Drawing_CanvasClipOp clipOp)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Rotates by degrees. Positive degrees rotates clockwise.
@@ -641,7 +675,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion(OH_Drawing_Canvas* canvas, cons
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasRotate(OH_Drawing_Canvas* canvas, float degrees, float px, float py);
+void OH_Drawing_CanvasRotate(OH_Drawing_Canvas* canvas, float degrees, float px, float py)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Translates by dx along the x-axis and dy along the y-axis.
@@ -653,7 +688,8 @@ void OH_Drawing_CanvasRotate(OH_Drawing_Canvas* canvas, float degrees, float px,
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasTranslate(OH_Drawing_Canvas* canvas, float dx, float dy);
+void OH_Drawing_CanvasTranslate(OH_Drawing_Canvas* canvas, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Scales by sx on the x-axis and sy on the y-axis.
@@ -665,7 +701,8 @@ void OH_Drawing_CanvasTranslate(OH_Drawing_Canvas* canvas, float dx, float dy);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_CanvasScale(OH_Drawing_Canvas* canvas, float sx, float sy);
+void OH_Drawing_CanvasScale(OH_Drawing_Canvas* canvas, float sx, float sy)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Skew by sx on the x-axis and sy on the y-axis.
@@ -677,7 +714,8 @@ void OH_Drawing_CanvasScale(OH_Drawing_Canvas* canvas, float sx, float sy);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasSkew(OH_Drawing_Canvas* canvas, float sx, float sy);
+void OH_Drawing_CanvasSkew(OH_Drawing_Canvas* canvas, float sx, float sy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the width of a canvas.
@@ -687,7 +725,7 @@ void OH_Drawing_CanvasSkew(OH_Drawing_Canvas* canvas, float sx, float sy);
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_CanvasGetWidth(OH_Drawing_Canvas* canvas);
+int32_t OH_Drawing_CanvasGetWidth(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the height of a canvas.
@@ -697,7 +735,7 @@ int32_t OH_Drawing_CanvasGetWidth(OH_Drawing_Canvas* canvas);
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_CanvasGetHeight(OH_Drawing_Canvas* canvas);
+int32_t OH_Drawing_CanvasGetHeight(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the bounds of clip of a canvas.
@@ -708,7 +746,8 @@ int32_t OH_Drawing_CanvasGetHeight(OH_Drawing_Canvas* canvas);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_Rect* rect);
+void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get a 3x3 matrix of the transform from local coordinates to 'device'.
@@ -719,7 +758,8 @@ void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_R
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasGetTotalMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix);
+void OH_Drawing_CanvasGetTotalMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Use the passed matrix to transforming the geometry, then use existing matrix.
@@ -731,7 +771,8 @@ void OH_Drawing_CanvasGetTotalMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matri
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasConcatMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix);
+void OH_Drawing_CanvasConcatMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates of shadow flags.
@@ -776,7 +817,8 @@ typedef enum {
  */
 void OH_Drawing_CanvasDrawShadow(OH_Drawing_Canvas* canvas, OH_Drawing_Path* path, OH_Drawing_Point3D planeParams,
     OH_Drawing_Point3D devLightPos, float lightRadius, uint32_t ambientColor, uint32_t spotColor,
-    OH_Drawing_CanvasShadowFlags flag);
+    OH_Drawing_CanvasShadowFlags flag)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clears a canvas by using a specified color.
@@ -787,7 +829,8 @@ void OH_Drawing_CanvasDrawShadow(OH_Drawing_Canvas* canvas, OH_Drawing_Path* pat
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color);
+void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets matrix of canvas.
@@ -798,7 +841,8 @@ void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix);
+void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reset matrix to the idenmtity matrix, any prior matrix state is overwritten.
@@ -808,7 +852,7 @@ void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* ma
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasResetMatrix(OH_Drawing_Canvas* canvas);
+void OH_Drawing_CanvasResetMatrix(OH_Drawing_Canvas* canvas) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws the specified source rectangle of the image onto the canvas,
@@ -826,7 +870,8 @@ void OH_Drawing_CanvasResetMatrix(OH_Drawing_Canvas* canvas);
  */
 void OH_Drawing_CanvasDrawImageRectWithSrc(OH_Drawing_Canvas* canvas, const OH_Drawing_Image* image,
     const OH_Drawing_Rect* src, const OH_Drawing_Rect* dst, const OH_Drawing_SamplingOptions* samplingOptions,
-    OH_Drawing_SrcRectConstraint srcRectConstraint);
+    OH_Drawing_SrcRectConstraint srcRectConstraint)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws the specified source rectangle of the image onto the canvas,
@@ -841,7 +886,8 @@ void OH_Drawing_CanvasDrawImageRectWithSrc(OH_Drawing_Canvas* canvas, const OH_D
  * @version 1.0
  */
 void OH_Drawing_CanvasDrawImageRect(OH_Drawing_Canvas* canvas, OH_Drawing_Image* image,
-    OH_Drawing_Rect* rect, OH_Drawing_SamplingOptions* samplingOptions);
+    OH_Drawing_Rect* rect, OH_Drawing_SamplingOptions* samplingOptions)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates of vertices flags.
@@ -882,7 +928,8 @@ typedef enum {
  */
 void OH_Drawing_CanvasDrawVertices(OH_Drawing_Canvas* canvas, OH_Drawing_VertexMode vertexMmode,
     int32_t vertexCount, const OH_Drawing_Point2D* positions, const OH_Drawing_Point2D* texs,
-    const uint32_t* colors, int32_t indexCount, const uint16_t* indices, OH_Drawing_BlendMode mode);
+    const uint32_t* colors, int32_t indexCount, const uint16_t* indices, OH_Drawing_BlendMode mode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Read pixels data from canvas.
@@ -899,7 +946,8 @@ void OH_Drawing_CanvasDrawVertices(OH_Drawing_Canvas* canvas, OH_Drawing_VertexM
  * @version 1.0
  */
 bool OH_Drawing_CanvasReadPixels(OH_Drawing_Canvas* canvas, OH_Drawing_Image_Info* imageInfo,
-    void* dstPixels, uint32_t dstRowBytes, int32_t srcX, int32_t srcY);
+    void* dstPixels, uint32_t dstRowBytes, int32_t srcX, int32_t srcY)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Read pixels data to a bitmap from canvas.
@@ -914,7 +962,8 @@ bool OH_Drawing_CanvasReadPixels(OH_Drawing_Canvas* canvas, OH_Drawing_Image_Inf
  * @version 1.0
  */
 bool OH_Drawing_CanvasReadPixelsToBitmap(OH_Drawing_Canvas* canvas,
-    OH_Drawing_Bitmap* bitmap, int32_t srcX, int32_t srcY);
+    OH_Drawing_Bitmap* bitmap, int32_t srcX, int32_t srcY)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether the drawable area is empty.
@@ -928,7 +977,8 @@ bool OH_Drawing_CanvasReadPixelsToBitmap(OH_Drawing_Canvas* canvas,
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_CanvasIsClipEmpty(OH_Drawing_Canvas* canvas, bool* isClipEmpty);
+OH_Drawing_ErrorCode OH_Drawing_CanvasIsClipEmpty(OH_Drawing_Canvas* canvas, bool* isClipEmpty)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets image info of canvas.
@@ -942,7 +992,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasIsClipEmpty(OH_Drawing_Canvas* canvas, boo
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_CanvasGetImageInfo(OH_Drawing_Canvas* canvas, OH_Drawing_Image_Info* imageInfo);
+OH_Drawing_ErrorCode OH_Drawing_CanvasGetImageInfo(OH_Drawing_Canvas* canvas, OH_Drawing_Image_Info* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Replay drawing command.
@@ -956,7 +1007,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasGetImageInfo(OH_Drawing_Canvas* canvas, OH
  * @since 13
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd);
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Replay drawing command.
@@ -970,7 +1022,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, O
  * @since 19
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd);
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Checks if the path has been cut off.
@@ -987,7 +1040,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* ca
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path* path,
-    bool* quickReject);
+    bool* quickReject)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Checks if the rect has been cut off.
@@ -1004,7 +1058,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectPath(OH_Drawing_Canvas* canvas,
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect,
-    bool* quickReject);
+    bool* quickReject)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 #ifdef __cplusplus
 }
 #endif

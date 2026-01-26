@@ -34,6 +34,7 @@
 #ifndef DEVICEINFO_CSDK_H
 #define DEVICEINFO_CSDK_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -47,91 +48,91 @@ extern "C" {
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetDeviceType(void);
+const char *OH_GetDeviceType(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the device manufacturer represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetManufacture(void);
+const char *OH_GetManufacture(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the device brand represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBrand(void);
+const char *OH_GetBrand(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the product name speaded in the market
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetMarketName(void);
+const char *OH_GetMarketName(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the product series represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetProductSeries(void);
+const char *OH_GetProductSeries(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the product model represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetProductModel(void);
+const char *OH_GetProductModel(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the software model represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetSoftwareModel(void);
+const char *OH_GetSoftwareModel(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the hardware model represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetHardwareModel(void);
+const char *OH_GetHardwareModel(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the bootloader version number represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBootloaderVersion(void);
+const char *OH_GetBootloaderVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the application binary interface (Abi) list represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetAbiList(void);
+const char *OH_GetAbiList(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the security patch tag represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetSecurityPatchTag(void);
+const char *OH_GetSecurityPatchTag(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the product version displayed for customer represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetDisplayVersion(void);
+const char *OH_GetDisplayVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the incremental version represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetIncrementalVersion(void);
+const char *OH_GetIncrementalVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the OS release type represented by a string.
@@ -141,70 +142,70 @@ const char *OH_GetIncrementalVersion(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetOsReleaseType(void);
+const char *OH_GetOsReleaseType(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the OS full version name represented by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetOSFullName(void);
+const char *OH_GetOSFullName(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the SDK API version number.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-int OH_GetSdkApiVersion(void);
+int OH_GetSdkApiVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the first API version number.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-int OH_GetFirstApiVersion(void);
+int OH_GetFirstApiVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the version ID by a string.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetVersionId(void);
+const char *OH_GetVersionId(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the build type of the current running OS.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBuildType(void);
+const char *OH_GetBuildType(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the build user of the current running OS.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBuildUser(void);
+const char *OH_GetBuildUser(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the build host of the current running OS.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBuildHost(void);
+const char *OH_GetBuildHost(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the build time of the current running OS.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBuildTime(void);
+const char *OH_GetBuildTime(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the version hash of the current running OS.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetBuildRootHash(void);
+const char *OH_GetBuildRootHash(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the Distribution OS name represented by a string.
@@ -214,7 +215,7 @@ const char *OH_GetBuildRootHash(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetDistributionOSName(void);
+const char *OH_GetDistributionOSName(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the ISV distribution OS version represented by a string.
@@ -222,7 +223,7 @@ const char *OH_GetDistributionOSName(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetDistributionOSVersion(void);
+const char *OH_GetDistributionOSVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the ISV distribution OS api version represented by a integer.
@@ -230,7 +231,7 @@ const char *OH_GetDistributionOSVersion(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-int OH_GetDistributionOSApiVersion(void);
+int OH_GetDistributionOSApiVersion(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Obtains the ISV distribution OS release type represented by a string.
@@ -238,7 +239,7 @@ int OH_GetDistributionOSApiVersion(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
-const char *OH_GetDistributionOSReleaseType(void);
+const char *OH_GetDistributionOSReleaseType(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #ifdef __cplusplus
 #if __cplusplus

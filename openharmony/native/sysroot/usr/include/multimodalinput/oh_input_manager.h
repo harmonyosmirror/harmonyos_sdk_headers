@@ -35,14 +35,24 @@
 #ifndef OH_INPUT_MANAGER_H
 #define OH_INPUT_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "oh_axis_type.h"
 #include "oh_key_code.h"
+#include "oh_pointer_style.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+struct OH_PixelmapNative;
+/**
+ * @brief Pixelmap struct
+ *
+ * @since 22
+ */
+typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
  * @brief Enumerated values of key event action.
@@ -250,6 +260,13 @@ typedef struct Input_AxisEvent Input_AxisEvent;
 typedef struct Input_Hotkey Input_Hotkey;
 
 /**
+ * @brief Defines the cursor information.
+ *
+ * @since 22
+ */
+typedef struct Input_CursorInfo Input_CursorInfo;
+
+/**
  * @brief Enumerates error codes.
  *
  * @since 12
@@ -314,6 +331,11 @@ typedef enum Input_Result {
      * @since 20
      */
     INPUT_DEVICE_NO_POINTER = 3900010,
+    /**
+     * @error Invalid windowID
+     * @since 22
+     */
+    INPUT_INVALID_WINDOWID = 26500001,
 } Input_Result;
 
 /**
@@ -328,6 +350,20 @@ typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
  * @since 13
  */
 typedef struct Input_DeviceInfo Input_DeviceInfo;
+
+/**
+ * @brief Pixel map resource.
+ *
+ * @since 22
+ */
+typedef struct Input_CustomCursor Input_CustomCursor;
+ 
+/**
+ * @brief Defines the custom cursor configuration.
+ *
+ * @since 22
+ */
+typedef struct Input_CursorConfig Input_CursorConfig;
 
 /**
  * @brief Defines a lifecycle callback for keyEvent. If the callback is triggered, keyEvent will be destroyed.
@@ -423,7 +459,8 @@ typedef struct Input_InterceptorOptions Input_InterceptorOptions;
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
+Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a key status enumeration object.
@@ -433,7 +470,7 @@ Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-struct Input_KeyState* OH_Input_CreateKeyState();
+struct Input_KeyState* OH_Input_CreateKeyState() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a key status enumeration object.
@@ -442,7 +479,8 @@ struct Input_KeyState* OH_Input_CreateKeyState();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
+void OH_Input_DestroyKeyState(struct Input_KeyState** keyState)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the key value of a key status enumeration object.
@@ -452,7 +490,8 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
+void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the key value of a key status enumeration object.
@@ -462,7 +501,8 @@ void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
+int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether the key specific to a key status enumeration object is pressed.
@@ -472,7 +512,8 @@ int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
+void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether the key specific to a key status enumeration object is pressed.
@@ -482,7 +523,8 @@ void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
+int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the key switch of the key status enumeration object.
@@ -492,7 +534,8 @@ int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
+void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the key switch of the key status enumeration object.
@@ -502,7 +545,8 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
+int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Inject system keys.
@@ -519,7 +563,8 @@ int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
+int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a key event object.
@@ -529,7 +574,7 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-struct Input_KeyEvent* OH_Input_CreateKeyEvent();
+struct Input_KeyEvent* OH_Input_CreateKeyEvent() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a key event object.
@@ -538,7 +583,8 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
+void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the key event type.
@@ -548,7 +594,8 @@ void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action);
+void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the key event type.
@@ -558,7 +605,8 @@ void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
+int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the key value for a key event.
@@ -568,7 +616,8 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode);
+void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the key value of a key event.
@@ -578,7 +627,8 @@ void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCod
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
+int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the time when a key event occurs.
@@ -588,7 +638,8 @@ int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime);
+void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the time when a key event occurs.
@@ -598,7 +649,8 @@ void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t act
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
+int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the windowId for a key event.
@@ -608,7 +660,8 @@ int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId);
+void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the windowId of a key event.
@@ -618,7 +671,8 @@ void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windo
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
+int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the displayId for a key event.
@@ -628,7 +682,8 @@ int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId);
+void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the displayId of a key event.
@@ -638,7 +693,8 @@ void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t disp
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
+int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the eventId of the keyEvent.
@@ -651,7 +707,8 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
  * @since 21
  */
 
-Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32_t* eventId);
+Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32_t* eventId)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Add a keyEvent interception hook function. Before using this interface,
@@ -670,7 +727,8 @@ Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32
  *                 Reason: Input service exception, please try again.\n
  * @since 21
  */
-Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback);
+Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Remove keyEvent interception hook function.
@@ -684,7 +742,8 @@ Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback);
  *                 Reason: Input service exception, please try again.\n
  * @since 21
  */
-Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
+Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Redispatches keyEvent.
@@ -707,7 +766,7 @@ Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
  *                 Reason: Input service exception, it's recommended to reset the pending distribution status.\n
  * @since 21
  */
-Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
+Input_Result OH_Input_DispatchToNextHandler(int32_t eventId) __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Inject mouse event.
@@ -724,7 +783,8 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Inject mouse event using global coordinate.
@@ -740,7 +800,8 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
  *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
  * @since 20
  */
-int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates a mouse event object.
@@ -750,7 +811,7 @@ int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEven
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-struct Input_MouseEvent* OH_Input_CreateMouseEvent();
+struct Input_MouseEvent* OH_Input_CreateMouseEvent() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a mouse event object.
@@ -759,7 +820,8 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
+void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the action for a mouse event.
@@ -769,7 +831,8 @@ void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action);
+void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the action of a mouse event.
@@ -779,7 +842,8 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the X coordinate for a mouse event.
@@ -789,7 +853,8 @@ int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX);
+void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the X coordinate of a mouse event.
@@ -799,7 +864,8 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the Y coordinate for a mouse event.
@@ -809,7 +875,8 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY);
+void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Y coordinate of a mouse event.
@@ -819,7 +886,8 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the button for a mouse event.
@@ -829,7 +897,8 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button);
+void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the button of a mouse event.
@@ -839,7 +908,8 @@ void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t b
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the axis type for mouse event.
@@ -849,7 +919,8 @@ int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType);
+void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the axis type of a mouse event.
@@ -859,7 +930,8 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the axis value for a mouse axis event.
@@ -870,7 +942,8 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue);
+void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the axis value of a mouse event.
@@ -880,7 +953,8 @@ void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float 
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent);
+float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the time when a mouse event occurs.
@@ -890,7 +964,8 @@ float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime);
+void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the time when a mouse event occurs.
@@ -900,7 +975,8 @@ void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent);
+int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the windowId for a mouse event.
@@ -910,7 +986,8 @@ int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEve
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId);
+void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the windowId of a mouse event.
@@ -920,7 +997,8 @@ void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the displayId for a mouse event.
@@ -930,7 +1008,8 @@ int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId);
+void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the displayId of a mouse event.
@@ -940,7 +1019,8 @@ void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the global X coordinate of the mouse event.
@@ -949,7 +1029,8 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
  * @param globalX Global X coordinate.
  * @since 20
  */
-void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX);
+void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the global X coordinate of the mouse event.
@@ -958,7 +1039,8 @@ void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t 
  * @return Global X coordinate.
  * @since 20
  */
-int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the global Y coordinate of the mouse event.
@@ -967,7 +1049,8 @@ int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)
  * @param globalY Global Y coordinate.
  * @since 20
  */
-void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY);
+void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the global Y coordinate of the mouse event.
@@ -976,7 +1059,8 @@ void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t 
  * @return Global Y coordinate.
  * @since 20
  */
-int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent);
+int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Inject touch event.
@@ -992,7 +1076,8 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Inject touch event using global coordinate.
@@ -1008,7 +1093,8 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
  *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
  * @since 20
  */
-int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates a touch event object.
@@ -1018,7 +1104,7 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-struct Input_TouchEvent* OH_Input_CreateTouchEvent();
+struct Input_TouchEvent* OH_Input_CreateTouchEvent() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a touch event object.
@@ -1027,7 +1113,8 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
+void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the action for a touch event.
@@ -1037,7 +1124,8 @@ void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action);
+void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the action of a touch event.
@@ -1047,7 +1135,8 @@ void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t a
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the finger ID for the touch event.
@@ -1057,7 +1146,8 @@ int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id);
+void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the finger ID of a touch event.
@@ -1067,7 +1157,8 @@ void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the X coordinate for a touch event.
@@ -1077,7 +1168,8 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX);
+void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the X coordinate of a touch event.
@@ -1087,7 +1179,8 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the Y coordinate for a touch event.
@@ -1097,7 +1190,8 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY);
+void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Y coordinate of a touch event.
@@ -1107,7 +1201,8 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the time when a touch event occurs.
@@ -1117,7 +1212,8 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime);
+void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the time when a touch event occurs.
@@ -1127,7 +1223,8 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent);
+int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the windowId for a touch event.
@@ -1137,7 +1234,8 @@ int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEve
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId);
+void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the windowId of a touch event.
@@ -1147,7 +1245,8 @@ void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
 */
-int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the displayId for a touch event.
@@ -1157,7 +1256,8 @@ int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId);
+void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the displayId of a touch event.
@@ -1167,7 +1267,8 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
 */
-int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the global X coordinate of the touch event.
@@ -1176,7 +1277,8 @@ int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEven
  * @param globalX Global X coordinate.
  * @since 20
  */
-void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX);
+void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the global X coordinate of the touch event.
@@ -1185,7 +1287,8 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
  * @return Global X coordinate.
  * @since 20
  */
-int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the global Y coordinate of the touch event.
@@ -1194,7 +1297,8 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
  * @param globalY Global Y coordinate.
  * @since 20
  */
-void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY);
+void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the global Y coordinate of the touch event.
@@ -1203,7 +1307,8 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
  * @return Global Y coordinate.
  * @since 20
  */
-int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent);
+int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Cancels event injection and revokes authorization.
@@ -1211,7 +1316,7 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-void OH_Input_CancelInjection();
+void OH_Input_CancelInjection() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Requests for injection authorization.
@@ -1229,7 +1334,8 @@ void OH_Input_CancelInjection();
  * @since 20
  */
 
-Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
+Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the injection authorization status.
@@ -1242,7 +1348,8 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
  * @since 20
  */
 
-Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
+Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates an axis event object.
@@ -1252,7 +1359,7 @@ Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_AxisEvent* OH_Input_CreateAxisEvent(void);
+Input_AxisEvent* OH_Input_CreateAxisEvent(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an axis event object.
@@ -1264,7 +1371,8 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
+Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the axis event action.
@@ -1277,7 +1385,8 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action);
+Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the axis event action.
@@ -1290,7 +1399,8 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action);
+Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the X coordinate of an axis event.
@@ -1303,7 +1413,8 @@ Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, Input
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX);
+Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the X coordinate of an axis event.
@@ -1316,7 +1427,8 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX);
+Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the Y coordinate of an axis event.
@@ -1329,7 +1441,8 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY);
+Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Y coordinate of an axis event.
@@ -1342,7 +1455,8 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY);
+Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the axis value of the axis type specified by the axis event.
@@ -1357,7 +1471,8 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
-                                            InputEvent_AxisType axisType, double axisValue);
+                                            InputEvent_AxisType axisType, double axisValue)
+                                            __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the axis value for the specified axis type of the axis event.
@@ -1373,7 +1488,8 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
-                                            InputEvent_AxisType axisType, double* axisValue);
+                                            InputEvent_AxisType axisType, double* axisValue)
+                                            __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the time when an axis event occurs.
@@ -1386,7 +1502,8 @@ Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime);
+Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the time when an axis event occurs.
@@ -1399,7 +1516,8 @@ Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, int64_t* actionTime);
+Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, int64_t* actionTime)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the axis event type.
@@ -1412,7 +1530,8 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_AxisEventType axisEventType);
+Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_AxisEventType axisEventType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the axis event type.
@@ -1425,7 +1544,8 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEvent_AxisEventType* axisEventType);
+Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEvent_AxisEventType* axisEventType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the axis event source type.
@@ -1438,7 +1558,8 @@ Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEv
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEvent_SourceType sourceType);
+Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEvent_SourceType sourceType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the axis event source type.
@@ -1451,7 +1572,8 @@ Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEv
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, InputEvent_SourceType* sourceType);
+Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, InputEvent_SourceType* sourceType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the windowId of an axis event.
@@ -1464,7 +1586,8 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t windowId);
+Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the windowId of an axis event.
@@ -1477,7 +1600,8 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int32_t* windowId);
+Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int32_t* windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the displayId of an axis event.
@@ -1490,7 +1614,8 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t displayId);
+Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t displayId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the displayId of an axis event.
@@ -1503,7 +1628,8 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId);
+Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the global X coordinate of the axis event.
@@ -1515,7 +1641,8 @@ Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, in
  *        {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
  * @since 20
  */
-Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX);
+Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the global X coordinate of the axis event.
@@ -1527,7 +1654,8 @@ Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the globalX is NULL.\n
  * @since 20
  */
-Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX);
+Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the global Y coordinate of the axis event.
@@ -1539,7 +1667,8 @@ Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int3
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
  * @since 20
  */
-Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY);
+Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the global Y coordinate of the axis event.
@@ -1551,7 +1680,8 @@ Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the globalY is NULL.\n
  * @since 20
  */
-Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY);
+Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Adds a listener of key events.
@@ -1566,7 +1696,8 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
+Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a listener for mouse events, including mouse click and movement events,
@@ -1582,7 +1713,8 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
+Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add a listener for touch events.
@@ -1597,7 +1729,8 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
+Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a listener for all types of axis events.
@@ -1613,7 +1746,8 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
+Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a listener for the specified type of axis events.
@@ -1629,7 +1763,8 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
+Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes a key event listener.
@@ -1644,7 +1779,8 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
+Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes a mouse event listener.
@@ -1659,7 +1795,8 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback);
+Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes a touch event listener.
@@ -1674,7 +1811,8 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback);
+Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes the listener for all types of axis events.
@@ -1689,7 +1827,8 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback);
+Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes the listener for the specified type of axis events.
@@ -1705,7 +1844,8 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
+Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a key event interceptor. If multiple interceptors are added, only the first one takes effect.
@@ -1722,7 +1862,8 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option);
+Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds an interceptor for input events, including mouse, touch, and axis events.
@@ -1742,7 +1883,8 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  * @since 12
  */
 Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback,
-                                               Input_InterceptorOptions *option);
+                                               Input_InterceptorOptions *option)
+                                               __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes a key event interceptor.
@@ -1755,7 +1897,7 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveKeyEventInterceptor(void);
+Input_Result OH_Input_RemoveKeyEventInterceptor(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Removes an interceptor for input events, including mouse, touch, and axis events.
@@ -1768,7 +1910,7 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveInputEventInterceptor(void);
+Input_Result OH_Input_RemoveInputEventInterceptor(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interval since the last system input event.
@@ -1781,7 +1923,8 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
+Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Creates a hot key object.
@@ -1791,7 +1934,7 @@ Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Hotkey *OH_Input_CreateHotkey(void);
+Input_Hotkey *OH_Input_CreateHotkey(void) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroys a hot key object.
@@ -1800,7 +1943,7 @@ Input_Hotkey *OH_Input_CreateHotkey(void);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
+void OH_Input_DestroyHotkey(Input_Hotkey **hotkey) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Sets a modifier key.
@@ -1811,7 +1954,8 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
+void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains a modifier key.
@@ -1827,7 +1971,8 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount);
+Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Sets a modified key.
@@ -1837,7 +1982,8 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
+void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains a modified key.
@@ -1851,7 +1997,8 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode);
+Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Creates an array of {@Link Input_Hotkey} instances.
@@ -1864,7 +2011,7 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
+Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroys an array of {@link Input_Hotkey} instances and reclaims memory.
@@ -1875,7 +2022,8 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
+void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains all hot keys supported by the system.
@@ -1891,7 +2039,8 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count);
+Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Specifies whether to report repeated key events.
@@ -1902,7 +2051,7 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
+void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Checks whether to report repeated key events.
@@ -1916,7 +2065,8 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
+Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Subscribes to shortcut key events.
@@ -1933,7 +2083,8 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
+Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Unsubscribes from shortcut key events.
@@ -1947,7 +2098,8 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
-Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
+Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the IDs of all input devices.
@@ -1961,7 +2113,8 @@ Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_Hotk
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *outSize);
+Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *outSize)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the information about an input device.
@@ -1975,7 +2128,8 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo);
+Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creates a deviceInfo object.
@@ -1985,7 +2139,7 @@ Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
+Input_DeviceInfo* OH_Input_CreateDeviceInfo(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroys a deviceInfo object.
@@ -1994,7 +2148,8 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
+void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the keyboard type of an input device.
@@ -2007,7 +2162,8 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
+Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the ID of an input device.
@@ -2020,7 +2176,8 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
+Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the name of an input device.
@@ -2033,7 +2190,8 @@ Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
+Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the capabilities of an input device, for example, a touchscreen, touchpad, or keyboard.
@@ -2046,7 +2204,8 @@ Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *capabilities);
+Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *capabilities)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the version information of an input device.
@@ -2059,7 +2218,8 @@ Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *cap
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *version);
+Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *version)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the product information of an input device.
@@ -2072,7 +2232,8 @@ Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *ve
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *product);
+Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *product)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the vendor information of an input device.
@@ -2085,7 +2246,8 @@ Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *pr
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor);
+Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the physical address of an input device.
@@ -2098,7 +2260,8 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
+Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Registers a listener for device hot swap events.
@@ -2111,7 +2274,8 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
+Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unregisters the listener for device hot swap events.
@@ -2125,7 +2289,8 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
+Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unregisters the listener for all device hot swap events.
@@ -2136,7 +2301,7 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_UnregisterDeviceListeners();
+Input_Result OH_Input_UnregisterDeviceListeners() __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the function key status.
@@ -2151,7 +2316,8 @@ Input_Result OH_Input_UnregisterDeviceListeners();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
-Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
+Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Queries the maximum number of touch points supported by the current device.
@@ -2163,7 +2329,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
  *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
  * @since 20
  */
-Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
+Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get pointer location.
@@ -2179,7 +2345,246 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
  * @since 20
  */
-Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
+Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Sets the visible status of the mouse pointer.
+ *
+ * @param visible Whether the mouse pointer is visible. The value true indicates that the pointer
+ * @return OH_Input_SetPointerVisible function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported.
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_SetPointerVisible(bool visible) __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the mouse pointer style.
+ *
+ * @param windowId Window ID. The value is an integer greater than or equal to -1.
+ * @param pointerStyle Pointer to the pointerStyle.
+ * @return OH_Input_GetPointerStyle function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null pointer or window ID is invalid;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the mouse pointer style.
+ *
+ * @param windowId Window ID. The value is an integer greater than or equal to 0.
+ * @param pointerStyle Pointer style.The value should be a member of the {@link Input_PointerStyle} enumeration.
+ * @return OH_Input_SetPointerStyle function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if window ID is invalid or pointerStyle is invalid;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a CustomCursor object.
+ *
+ * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
+ * @param anchorX Horizontal coordinate of the cursor focus.
+ * @param anchorY Vertical coordinate of the cursor focus.
+ * @return Returns an {@link Input_CustomCursor} pointer object if the operation is successful.
+ * returns a null pointer otherwise.
+ * @since 22
+ */
+Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Destroys a CustomCursor object.
+ *
+ * @param customCursor Pointer to a pointer to an {@link Input_CustomCursor} object.
+ * @since 22
+ */
+void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the pixelMap of the CustomCursor.
+ *
+ * @param customCursor Pointer to an {@link Input_CustomCursor} object.
+ * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
+ * @return OH_Input_CustomCursor_GetPixelMap function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
+ * @since 22
+ */
+Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor, OH_PixelmapNative** pixelMap)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the anchor of the CustomCursor.
+ *
+ * @param customCursor Pointer to an {@link Input_CustomCursor} object.
+ * @param anchorX Pointer to horizontal coordinate of the cursor focus.
+ * @param anchorY Pointer to vertical coordinate of the cursor focus.
+ * @return OH_Input_CustomCursor_GetAnchor function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
+ * @since 22
+ */
+Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, int32_t* anchorX, int32_t* anchorY)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a CursorConfig object.
+ *
+ * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
+ * @return Returns an {@link Input_CursorConfig} pointer object if the operation is successful.
+ * returns a null pointer otherwise.
+ * @since 22
+ */
+Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Destroys a CursorConfig object.
+ *
+ * @param cursorConfig Pointer to a pointer to an {@link cursorConfig} object.
+ * @since 22
+ */
+void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the followSystem of the cursorConfig.
+ *
+ * @param cursorConfig Pointer to an {@link Input_CursorConfig} object.
+ * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
+ * @return OH_Input_CursorConfig_IsFollowSystem function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} The cursorOptions or followSystem the is NULL.
+ * @since 22
+ */
+Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConfig, bool *followSystem)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the custom cursor style.
+ *
+ * @param windowId Window ID. The value is an integer greater than or equal to 0.
+ * @param customCursor Pointer to an {@link Input_CustomCursor} object.
+ * @param cursorConfig Pointer to an {@link cursorConfig} object.
+ * @return OH_Input_SetCustomCursor function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if window ID is abnormal or customCursor is invalid;
+ *         {@link INPUT_INVALID_WINDOWID} if window ID is invaild.
+ *         {@link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* customCursor,
+                                      Input_CursorConfig* cursorConfig)
+                                      __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a cursor info object.
+ *
+ * @return Returns an {@link Input_CursorInfo} cursor object if the operation is successful.
+ *         Otherwise, a null cursor is returned. The possible cause is memory allocation failure.
+ * @since 22
+ */
+struct Input_CursorInfo* OH_Input_CursorInfo_Create() __attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Destroys a cursor info object.
+ *
+ * @param cursorInfo Cursor info object.
+ * @since 22
+ */
+void OH_Input_CursorInfo_Destroy(Input_CursorInfo** cursorInfo)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Obtains the cursor visibility of the cursorInfo.
+ *
+ * @param cursorInfo Cursor info object.
+ * @param visible Visibility of the cursorInfo.
+ * @return OH_Input_CursorInfo_IsVisible function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null cursor;
+ * @since 22
+ */
+Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* visible)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Obtains the cursor style of the cursorInfo.
+ *
+ * @param cursorInfo Cursor info object.
+ * @param style Cursor style of the cursorInfo.
+ * @return OH_Input_CursorInfo_GetStyle function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null cursor or the cursor is invisible;
+ * @since 22
+ */
+Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_PointerStyle* style)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Obtains the cursor sizeLevel of the cursorInfo.
+ *
+ * @param cursorInfo Cursor info object.
+ * @param sizeLevel Cursor size level of the cursorInfo.
+ * @return OH_Input_CursorInfo_GetSizeLevel function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null cursor or the cursor is invisible;
+ * @since 22
+ */
+Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int32_t* sizeLevel)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Obtains the cursor color of the cursorInfo represented as a 32-bit ARGB integer.
+ *
+ * @param cursorInfo Cursor info object.
+ * @param color Cursor color of the cursorInfo represented as a 32-bit ARGB integer.
+ * @return OH_Input_CursorInfo_GetColor function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null cursor or the cursor is invisible;
+ * @since 22
+ */
+Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t* color)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Get cursor info of the mouseEvent.
+ *
+ * @param mouseEvent The received mouseEvent.
+ * @param cursorInfo The object to receive the cursor info.
+ * @return OH_Input_GetMouseEventCursorInfo function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null cursor;
+ * @since 22
+ */
+Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mouseEvent, Input_CursorInfo* cursorInfo)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Retrieves cursor information. If the pixelmap parameter is specified, and the cursor is user-defined type
+ * currently, the cursor's pixelmap will be returned along with it.
+ *
+ * @param cursorInfo The object to receive the cursor info.
+ * @param pixelmap The object to receive the cursor pixelmap, null value will be ignored.
+ * @return OH_Input_GetCursorInfo function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null cursor;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_GetCursorInfo(Input_CursorInfo* cursorInfo, OH_PixelmapNative** pixelmap)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif

@@ -34,6 +34,7 @@
 #ifndef OS_ACCOUNT_H
 #define OS_ACCOUNT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include "os_account_common.h"
 
@@ -53,7 +54,8 @@ extern "C" {
  * @syscap SystemCapability.Account.OsAccount
  * @since 12
  */
-OsAccount_ErrCode OH_OsAccount_GetName(char *buffer, size_t buffer_size);
+OsAccount_ErrCode OH_OsAccount_GetName(char *buffer, size_t buffer_size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

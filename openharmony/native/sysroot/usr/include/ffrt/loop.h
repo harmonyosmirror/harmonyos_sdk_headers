@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_LOOP_H
 #define FFRT_API_C_LOOP_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include "type_def.h"
 #include "queue.h"
@@ -55,7 +56,7 @@ typedef void* ffrt_loop_t;
            returns a null pointer otherwise.
  * @since 12
  */
-FFRT_C_API ffrt_loop_t ffrt_loop_create(ffrt_queue_t queue);
+FFRT_C_API ffrt_loop_t ffrt_loop_create(ffrt_queue_t queue) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a loop, the user needs to invoke this interface.
@@ -65,7 +66,7 @@ FFRT_C_API ffrt_loop_t ffrt_loop_create(ffrt_queue_t queue);
            returns -1 otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_loop_destroy(ffrt_loop_t loop);
+FFRT_C_API int ffrt_loop_destroy(ffrt_loop_t loop) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Starts a loop run.
@@ -75,7 +76,7 @@ FFRT_C_API int ffrt_loop_destroy(ffrt_loop_t loop);
            returns 0 otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_loop_run(ffrt_loop_t loop);
+FFRT_C_API int ffrt_loop_run(ffrt_loop_t loop) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stops a loop run.
@@ -83,7 +84,7 @@ FFRT_C_API int ffrt_loop_run(ffrt_loop_t loop);
  * @param loop Indicates a loop handle.
  * @since 12
  */
-FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop);
+FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Controls an epoll file descriptor on ffrt loop.
@@ -100,7 +101,8 @@ FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop);
            returns -1 otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void *data, ffrt_poller_cb cb);
+FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void *data, ffrt_poller_cb cb)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Starts a timer on ffrt loop.
@@ -115,7 +117,8 @@ FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t ev
  * @since 12
  */
 FFRT_C_API ffrt_timer_t ffrt_loop_timer_start(
-    ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
+    ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stops a timer on ffrt loop.
@@ -126,7 +129,8 @@ FFRT_C_API ffrt_timer_t ffrt_loop_timer_start(
            returns -1 otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
+FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif // FFRT_API_C_LOOP_H
 /** @} */

@@ -39,7 +39,9 @@
 #ifndef NDK_INCLUDE_NATIVE_IMAGE_H_
 #define NDK_INCLUDE_NATIVE_IMAGE_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
+#include "native_buffer/buffer_common.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -91,7 +93,8 @@ typedef struct OH_OnFrameAvailableListener {
  * @since 9
  * @version 1.0
  */
-OH_NativeImage* OH_NativeImage_Create(uint32_t textureId, uint32_t textureTarget);
+OH_NativeImage* OH_NativeImage_Create(uint32_t textureId, uint32_t textureTarget)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Acquire the OHNativeWindow for the OH_NativeImage.\n
@@ -103,7 +106,8 @@ OH_NativeImage* OH_NativeImage_Create(uint32_t textureId, uint32_t textureTarget
  * @since 9
  * @version 1.0
  */
-OHNativeWindow* OH_NativeImage_AcquireNativeWindow(OH_NativeImage* image);
+OHNativeWindow* OH_NativeImage_AcquireNativeWindow(OH_NativeImage* image)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Attach the OH_NativeImage to Opengl ES context, and the Opengl ES texture is bound to the \n
@@ -117,7 +121,8 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow(OH_NativeImage* image);
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeImage_AttachContext(OH_NativeImage* image, uint32_t textureId);
+int32_t OH_NativeImage_AttachContext(OH_NativeImage* image, uint32_t textureId)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Detach the OH_NativeImage from the Opengl ES context.\n
@@ -130,7 +135,7 @@ int32_t OH_NativeImage_AttachContext(OH_NativeImage* image, uint32_t textureId);
  * @version 1.0
  */
 
-int32_t OH_NativeImage_DetachContext(OH_NativeImage* image);
+int32_t OH_NativeImage_DetachContext(OH_NativeImage* image) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Update the related Opengl ES texture with the OH_NativeImage acquired buffer.\n
@@ -144,7 +149,8 @@ int32_t OH_NativeImage_DetachContext(OH_NativeImage* image);
  * @since 9
  * @version 1.0
  */
-int32_t OH_NativeImage_UpdateSurfaceImage(OH_NativeImage* image);
+int32_t OH_NativeImage_UpdateSurfaceImage(OH_NativeImage* image)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Get the timestamp of the texture image set by the most recent call to OH_NativeImage_UpdateSurfaceImage.\n
@@ -156,7 +162,7 @@ int32_t OH_NativeImage_UpdateSurfaceImage(OH_NativeImage* image);
  * @since 9
  * @version 1.0
  */
-int64_t OH_NativeImage_GetTimestamp(OH_NativeImage* image);
+int64_t OH_NativeImage_GetTimestamp(OH_NativeImage* image) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Return the transform matrix of the texture image set by the most recent call to \n
@@ -171,7 +177,8 @@ int64_t OH_NativeImage_GetTimestamp(OH_NativeImage* image);
  * @deprecated since 12
  * @useinstead OH_NativeImage_GetTransformMatrixV2
  */
-int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16]);
+int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16])
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Return the native image's surface id.\n
@@ -184,7 +191,8 @@ int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16
  * @since 11
  * @version 1.0
  */
-int32_t OH_NativeImage_GetSurfaceId(OH_NativeImage* image, uint64_t* surfaceId);
+int32_t OH_NativeImage_GetSurfaceId(OH_NativeImage* image, uint64_t* surfaceId)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the frame available callback.\n
@@ -198,7 +206,8 @@ int32_t OH_NativeImage_GetSurfaceId(OH_NativeImage* image, uint64_t* surfaceId);
  * @since 11
  * @version 1.0
  */
-int32_t OH_NativeImage_SetOnFrameAvailableListener(OH_NativeImage* image, OH_OnFrameAvailableListener listener);
+int32_t OH_NativeImage_SetOnFrameAvailableListener(OH_NativeImage* image, OH_OnFrameAvailableListener listener)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unset the frame available callback.\n
@@ -210,7 +219,8 @@ int32_t OH_NativeImage_SetOnFrameAvailableListener(OH_NativeImage* image, OH_OnF
  * @since 11
  * @version 1.0
  */
-int32_t OH_NativeImage_UnsetOnFrameAvailableListener(OH_NativeImage* image);
+int32_t OH_NativeImage_UnsetOnFrameAvailableListener(OH_NativeImage* image)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroy the <b>OH_NativeImage</b> created by OH_NativeImage_Create, and the pointer to
@@ -222,7 +232,7 @@ int32_t OH_NativeImage_UnsetOnFrameAvailableListener(OH_NativeImage* image);
  * @since 9
  * @version 1.0
  */
-void OH_NativeImage_Destroy(OH_NativeImage** image);
+void OH_NativeImage_Destroy(OH_NativeImage** image) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the transform matrix of the texture image by producer transform type.\n
@@ -237,7 +247,8 @@ void OH_NativeImage_Destroy(OH_NativeImage** image);
  * @since 12
  * @version 1.0
  */
-int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[16]);
+int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[16])
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the transform matrix that combines with crop rect.
@@ -255,7 +266,8 @@ int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[
  * @since 15
  * @version 1.0
  */
-int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
+int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16])
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Acquire an <b>OHNativeWindowBuffer</b> through an <b>OH_NativeImage</b> instance for content consumer.\n
@@ -281,7 +293,8 @@ int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
  * @version 1.0
  */
 int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,
-    OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd);
+    OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the <b>OHNativeWindowBuffer</b> to the buffer queue through an
@@ -301,7 +314,8 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,
  * @version 1.0
  */
 int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
-    OHNativeWindowBuffer* nativeWindowBuffer, int fenceFd);
+    OHNativeWindowBuffer* nativeWindowBuffer, int fenceFd)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a <b>OH_NativeImage</b> as a consumerSurface. \n
@@ -320,7 +334,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
  * @since 12
  * @version 1.0
  */
-OH_NativeImage* OH_ConsumerSurface_Create(void);
+OH_NativeImage* OH_ConsumerSurface_Create(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the default usage of the <b>OH_NativeImage</b>.\n
@@ -334,7 +348,8 @@ OH_NativeImage* OH_ConsumerSurface_Create(void);
  * @since 13
  * @version 1.0
  */
-int32_t OH_ConsumerSurface_SetDefaultUsage(OH_NativeImage* image, uint64_t usage);
+int32_t OH_ConsumerSurface_SetDefaultUsage(OH_NativeImage* image, uint64_t usage)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the default size of the <b>OH_NativeImage</b>.\n
@@ -349,7 +364,8 @@ int32_t OH_ConsumerSurface_SetDefaultUsage(OH_NativeImage* image, uint64_t usage
  * @since 13
  * @version 1.0
  */
-int32_t OH_ConsumerSurface_SetDefaultSize(OH_NativeImage* image, int32_t width, int32_t height);
+int32_t OH_ConsumerSurface_SetDefaultSize(OH_NativeImage* image, int32_t width, int32_t height)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the rendering in drop buffer mode of the <b>OH_NativeImage</b>.\n
@@ -370,7 +386,100 @@ int32_t OH_ConsumerSurface_SetDefaultSize(OH_NativeImage* image, int32_t width, 
  * @since 17
  * @version 1.0
  */
-int32_t OH_NativeImage_SetDropBufferMode(OH_NativeImage* image, bool isOpen);
+int32_t OH_NativeImage_SetDropBufferMode(OH_NativeImage* image, bool isOpen)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
+
+/**
+ * @brief Create a <b>OH_NativeImage</b> related to an Opengl ES texture and target with textureId, \n
+ * and choose whether to set single buffer mode.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
+ * @param textureId Indicates the id of the Opengl ES texture which the native image attached to.
+ * @param textureTarget Indicates the Opengl ES target.
+ * @param singleBufferMode Whether to set single buffer mode.
+ * @return Returns the pointer to the <b>OH_NativeImage</b> instance created if the operation is successful, \n
+ * returns <b>NULL</b> otherwise.
+ * @since 22
+ * @version 1.0
+ */
+OH_NativeImage* OH_NativeImage_CreateWithSingleBufferMode(
+    uint32_t textureId, uint32_t textureTarget, bool singleBufferMode)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Create a <b>OH_NativeImage</b> as consumerSurface, and choose whether to set single buffer mode. \n
+ * This method can not be used at the same time with <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy</b>,
+ * otherwise memory leaks will occur.\n
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
+ * @param singleBufferMode Whether to set single buffer mode.
+ * @return Returns the pointer to the <b>OH_NativeImage</b> instance created if the operation is successful, \n
+ * returns <b>NULL</b> otherwise.
+ * @since 22
+ * @version 1.0
+ */
+OH_NativeImage* OH_ConsumerSurface_CreateWithSingleBufferMode(bool singleBufferMode)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Release the <b>OH_NativeImage</b> in single buffer mode.\n
+ * This interface suggest be called after the producer flushes the buffer to let the buffer queue rotate, \n
+ * in the single buffer mode.
+ * This interface is a non-thread-safe type interface.\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
+ * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - image is NULL.
+ * @since 22
+ * @version 1.0
+ */
+int32_t OH_NativeImage_ReleaseTextImage(OH_NativeImage* image)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Get the colorSpace of <b>OH_NativeImage</b>.\n
+ * This interface is a non-thread-safe type interface.\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
+ * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
+ * @param colorSpace Indicates the colorSpace of <b>OH_NativeImage</b>.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ * @since 22
+ * @version 1.0
+ */
+int32_t OH_NativeImage_GetColorSpace(OH_NativeImage* image, OH_NativeBuffer_ColorSpace* colorSpace)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+ 
+/**
+ * @brief Acquire a latest <b>OHNativeWindowBuffer</b> through an <b>OH_NativeImage</b> instance for content consumer.\n
+ * This method can get the latest <b>OHNativeWindowBuffer</b> and drop other <b>OHNativeWindowBuffers</b>, but consumer
+ * can receive the callbacks of all available buffers.\n
+ * This method can not be used at the same time with <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
+ * This method will create an <b>OHNativeWindowBuffer</b>.\n
+ * If there is a situation when <b>OHNativeWindowBuffer</b> is still used after calling
+ * <b>OH_NativeImage_ReleaseNativeWindowBuffer</b>, you must pay attention to the following two points.\n
+ * 1) When using <b>OHNativeWindowBuffer</b>, need to increase its reference count
+ * by <b>OH_NativeWindow_NativeObjectReference</b>.\n
+ * 2) When the <b>OHNativeWindowBuffer</b> is used up, its reference count needs to be decremented
+ * by <b>OH_NativeWindow_NativeObjectUnreference</b>.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeImage_ReleaseNativeWindowBuffer</b>,
+ * otherwise memory leaks will occur.\n
+ * When the fenceFd is used up, you need to close it.\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
+ * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
+ * @param nativeWindowBuffer Indicates the pointer to an <b>OHNativeWindowBuffer</b> point.
+ * @param fenceFd Indicates the pointer to a file descriptor handle.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - image, nativeWindowBuffer, fenceFd is NULL.
+ *     {@link NATIVE_ERROR_NO_BUFFER} 40601000 - No buffer for consume.
+ * @since 22
+ * @version 1.0
+ */
+int32_t OH_NativeImage_AcquireLatestNativeWindowBuffer(OH_NativeImage* image,
+    OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif

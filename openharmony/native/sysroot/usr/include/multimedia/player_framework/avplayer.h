@@ -40,6 +40,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -84,7 +85,7 @@ typedef void (*Player_MediaKeySystemInfoCallback)(OH_AVPlayer *player, DRM_Media
  * @since 11
  * @version 1.0
 */
-OH_AVPlayer *OH_AVPlayer_Create(void);
+OH_AVPlayer *OH_AVPlayer_Create(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the playback source for the player. The corresponding source can be http url
@@ -97,7 +98,8 @@ OH_AVPlayer *OH_AVPlayer_Create(void);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url);
+OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the playback media file descriptor source for the player.
@@ -112,7 +114,8 @@ OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size);
+OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Prepares the playback environment and buffers media data asynchronous.
@@ -127,7 +130,7 @@ OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t of
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Start playback.
@@ -143,7 +146,7 @@ OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_Play(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_Play(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Pauses playback.
@@ -155,7 +158,7 @@ OH_AVErrCode OH_AVPlayer_Play(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_Pause(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_Pause(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop playback.
@@ -167,7 +170,7 @@ OH_AVErrCode OH_AVPlayer_Pause(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_Stop(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_Stop(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Restores the player to the initial state.
@@ -183,7 +186,7 @@ OH_AVErrCode OH_AVPlayer_Stop(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_Reset(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_Reset(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases player resources async
@@ -200,7 +203,7 @@ OH_AVErrCode OH_AVPlayer_Reset(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_Release(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_Release(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases player resources sync
@@ -217,7 +220,7 @@ OH_AVErrCode OH_AVPlayer_Release(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_ReleaseSync(OH_AVPlayer *player);
+OH_AVErrCode OH_AVPlayer_ReleaseSync(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the volume of the player.
@@ -238,7 +241,8 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float rightVolume);
+OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float rightVolume)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Changes the playback position.
@@ -255,7 +259,8 @@ OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float 
  * @since 11
  * @version 1.0
 */
-OH_AVErrCode OH_AVPlayer_Seek(OH_AVPlayer *player, int32_t mSeconds, AVPlayerSeekMode mode);
+OH_AVErrCode OH_AVPlayer_Seek(OH_AVPlayer *player, int32_t mSeconds, AVPlayerSeekMode mode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the playback position, accurate to millisecond.
@@ -268,7 +273,8 @@ OH_AVErrCode OH_AVPlayer_Seek(OH_AVPlayer *player, int32_t mSeconds, AVPlayerSee
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetCurrentTime(OH_AVPlayer *player, int32_t *currentTime);
+OH_AVErrCode OH_AVPlayer_GetCurrentTime(OH_AVPlayer *player, int32_t *currentTime)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief get the video width.
@@ -281,7 +287,8 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTime(OH_AVPlayer *player, int32_t *currentTim
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth);
+OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief get the video height.
@@ -294,7 +301,8 @@ OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth)
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetVideoHeight(OH_AVPlayer *player, int32_t *videoHeight);
+OH_AVErrCode OH_AVPlayer_GetVideoHeight(OH_AVPlayer *player, int32_t *videoHeight)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief set the player playback rate
@@ -307,7 +315,8 @@ OH_AVErrCode OH_AVPlayer_GetVideoHeight(OH_AVPlayer *player, int32_t *videoHeigh
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed speed);
+OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed speed)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets playback rate.
@@ -321,7 +330,8 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed s
  *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, or rate is out of range.
  * @since 20
  */
-OH_AVErrCode OH_AVPlayer_SetPlaybackRate(OH_AVPlayer *player, float rate);
+OH_AVErrCode OH_AVPlayer_SetPlaybackRate(OH_AVPlayer *player, float rate)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief get the current player playback rate
@@ -334,7 +344,8 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackRate(OH_AVPlayer *player, float rate);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *speed);
+OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *speed)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the renderer information of the player's audio renderer
@@ -346,7 +357,8 @@ OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo(OH_AVPlayer *player, OH_AudioStream_Usage streamUsage);
+OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo(OH_AVPlayer *player, OH_AudioStream_Usage streamUsage)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the interruption mode of the player's audio stream
@@ -359,7 +371,8 @@ OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo(OH_AVPlayer *player, OH_AudioStrea
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode(OH_AVPlayer *player, OH_AudioInterrupt_Mode interruptMode);
+OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode(OH_AVPlayer *player, OH_AudioInterrupt_Mode interruptMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the effect mode of the player's audio stream
@@ -372,7 +385,8 @@ OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode(OH_AVPlayer *player, OH_AudioInte
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetAudioEffectMode(OH_AVPlayer *player, OH_AudioStream_AudioEffectMode effectMode);
+OH_AVErrCode OH_AVPlayer_SetAudioEffectMode(OH_AVPlayer *player, OH_AudioStream_AudioEffectMode effectMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief set the bit rate use for hls player
@@ -393,7 +407,8 @@ OH_AVErrCode OH_AVPlayer_SetAudioEffectMode(OH_AVPlayer *player, OH_AudioStream_
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SelectBitRate(OH_AVPlayer *player, uint32_t bitRate);
+OH_AVErrCode OH_AVPlayer_SelectBitRate(OH_AVPlayer *player, uint32_t bitRate)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Method to set the surface.
@@ -407,7 +422,8 @@ OH_AVErrCode OH_AVPlayer_SelectBitRate(OH_AVPlayer *player, uint32_t bitRate);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode  OH_AVPlayer_SetVideoSurface(OH_AVPlayer *player, OHNativeWindow *window);
+OH_AVErrCode  OH_AVPlayer_SetVideoSurface(OH_AVPlayer *player, OHNativeWindow *window)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the total duration of media files, accurate to milliseconds.
@@ -420,7 +436,8 @@ OH_AVErrCode  OH_AVPlayer_SetVideoSurface(OH_AVPlayer *player, OHNativeWindow *w
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetDuration(OH_AVPlayer *player, int32_t *duration);
+OH_AVErrCode OH_AVPlayer_GetDuration(OH_AVPlayer *player, int32_t *duration)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief get current playback state.
@@ -433,7 +450,8 @@ OH_AVErrCode OH_AVPlayer_GetDuration(OH_AVPlayer *player, int32_t *duration);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetState(OH_AVPlayer *player, AVPlayerState *state);
+OH_AVErrCode OH_AVPlayer_GetState(OH_AVPlayer *player, AVPlayerState *state)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Checks whether the player is playing.
@@ -443,7 +461,7 @@ OH_AVErrCode OH_AVPlayer_GetState(OH_AVPlayer *player, AVPlayerState *state);
  * @since 11
  * @version 1.0
  */
-bool OH_AVPlayer_IsPlaying(OH_AVPlayer *player);
+bool OH_AVPlayer_IsPlaying(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Returns the value whether single looping is enabled or not .
@@ -453,7 +471,7 @@ bool OH_AVPlayer_IsPlaying(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-bool OH_AVPlayer_IsLooping(OH_AVPlayer *player);
+bool OH_AVPlayer_IsLooping(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enables single looping of the media playback.
@@ -466,7 +484,8 @@ bool OH_AVPlayer_IsLooping(OH_AVPlayer *player);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop);
+OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Method to set player callback.
@@ -482,7 +501,8 @@ OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop);
  * @useinstead {@link OH_AVPlayer_SetPlayerOnInfoCallback} {@link OH_AVPlayer_SetPlayerOnErrorCallback}
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback callback);
+OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Select audio or subtitle track.
@@ -500,7 +520,8 @@ OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback
  * @since 11
  * @version 1.0
 */
-OH_AVErrCode OH_AVPlayer_SelectTrack(OH_AVPlayer *player, int32_t index);
+OH_AVErrCode OH_AVPlayer_SelectTrack(OH_AVPlayer *player, int32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Deselect the current audio or subtitle track.
@@ -518,7 +539,8 @@ OH_AVErrCode OH_AVPlayer_SelectTrack(OH_AVPlayer *player, int32_t index);
  * @since 11
  * @version 1.0
 */
-OH_AVErrCode OH_AVPlayer_DeselectTrack(OH_AVPlayer *player, int32_t index);
+OH_AVErrCode OH_AVPlayer_DeselectTrack(OH_AVPlayer *player, int32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtain the currently effective track index.
@@ -535,7 +557,8 @@ OH_AVErrCode OH_AVPlayer_DeselectTrack(OH_AVPlayer *player, int32_t index);
  * @since 11
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetCurrentTrack(OH_AVPlayer *player, int32_t trackType, int32_t *index);
+OH_AVErrCode OH_AVPlayer_GetCurrentTrack(OH_AVPlayer *player, int32_t trackType, int32_t *index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Method to set player media key system info callback.
@@ -550,7 +573,8 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack(OH_AVPlayer *player, int32_t trackType,
  * @version 1.0
  */
 OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback(OH_AVPlayer *player,
-    Player_MediaKeySystemInfoCallback callback);
+    Player_MediaKeySystemInfoCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains media key system info to create media key session.
@@ -563,7 +587,8 @@ OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback(OH_AVPlayer *player,
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo(OH_AVPlayer *player, DRM_MediaKeySystemInfo *mediaKeySystemInfo);
+OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo(OH_AVPlayer *player, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set decryption info.
@@ -579,7 +604,8 @@ OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo(OH_AVPlayer *player, DRM_MediaKey
  * @version 1.0
 */
 OH_AVErrCode OH_AVPlayer_SetDecryptionConfig(OH_AVPlayer *player, MediaKeySession *mediaKeySession,
-    bool secureVideoPath);
+    bool secureVideoPath)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to set player information notify callback.
@@ -592,7 +618,8 @@ OH_AVErrCode OH_AVPlayer_SetDecryptionConfig(OH_AVPlayer *player, MediaKeySessio
  *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetOnInfoCallback failed.
  * @since 12
  */
-OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInfoCallback callback, void *userData);
+OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInfoCallback callback, void *userData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to set player error callback.
@@ -605,7 +632,8 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
  *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetOnErrorCallback failed.
  * @since 12
  */
-OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnErrorCallback callback, void *userData);
+OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnErrorCallback callback, void *userData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the volume mode of the AVPlayer.
@@ -620,7 +648,8 @@ OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnEr
  *     {@link AV_ERR_SERVICE_DIED}: System errors such as media service breakdown.
  * @since 19
  */
-OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_VolumeMode volumeMode);
+OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_VolumeMode volumeMode)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the loudness gain of current media. The default gain is 0.0 dB.
@@ -643,7 +672,8 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  *         {@link AV_ERR_SERVICE_DIED}:  System errors such as media service breakdown.
  * @since 21
  */
-OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain);
+OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Set the media source of the player. The data of this media source is provided by the application.
@@ -655,7 +685,47 @@ OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain
  *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or datasrc is nullptr.
  * @since 21
  */
-OH_AVErrCode OH_AVPlayer_SetDataSource(OH_AVPlayer *player, OH_AVDataSourceExt* datasrc, void* userData);
+OH_AVErrCode OH_AVPlayer_SetDataSource(OH_AVPlayer *player, OH_AVDataSourceExt* datasrc, void* userData)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
+
+/**
+ * @brief Get the player media source info.
+ *
+ * This function can be used after media source is set and player is in
+ * initialized/prepared/playing/paused/completed/stopped state.
+ * It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
+ * to be manually released by the caller.
+ *
+ * @param player Pointer to an OH_AVPlayer instance
+ * @return Returns the player's source media info if the execution is successful, otherwise returns nullptr.
+ * Possible failure causes:
+ *   1. player is invalid.
+ *   2. player's media source is invalid.
+ * @since 22
+ */
+OH_AVFormat *OH_AVPlayer_GetMediaDescription(OH_AVPlayer *player)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get the track info of player media source by the index.
+ *
+ * This function can be used after media source is set and player is in
+ * initialized/prepared/playing/paused/completed/stopped state.
+ * It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
+ * to be manually released by the caller.
+ *
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param index Indicates tracks array index.
+ * @return Returns one track info of player media source by the index if the execution is successful,
+ * otherwise returns nullptr.
+ * Possible failure causes:
+ *   1. player is invalid.
+ *   2. player's media source is invalid.
+ *   3. index is out of tracks array's bounds.
+ * @since 22
+ */
+OH_AVFormat *OH_AVPlayer_GetTrackDescription(OH_AVPlayer *player, uint32_t index)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 }

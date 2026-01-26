@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_SHARED_MUTEX_H
 #define FFRT_API_C_SHARED_MUTEX_H
 
+#include "info/application_target_sdk_version.h"
 #include "type_def.h"
 
 /**
@@ -47,7 +48,8 @@
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* attr);
+FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* attr)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Locks a write lock.
@@ -57,7 +59,7 @@ FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* 
            returns <b>ffrt_error_inval</b> or blocks the calling thread otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
+FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Attempts to lock a write lock.
@@ -67,7 +69,7 @@ FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
            returns <b>ffrt_error_inval</b> or <b>ffrt_error_busy</b> otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
+FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Locks a read lock.
@@ -77,7 +79,7 @@ FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
            returns <b>ffrt_error_inval</b> or blocks the calling thread otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
+FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Attempts to lock a read lock.
@@ -87,7 +89,7 @@ FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
            returns <b>ffrt_error_inval</b> or <b>ffrt_error_busy</b> otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
+FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Unlocks a rwlock.
@@ -97,7 +99,7 @@ FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
+FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys a rwlock.
@@ -107,7 +109,7 @@ FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 18
  */
-FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
+FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #endif // FFRT_API_C_SHARED_MUTEX_H
 /** @} */

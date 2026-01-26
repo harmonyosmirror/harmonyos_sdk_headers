@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_CAMERA_H
 #define NATIVE_INCLUDE_CAMERA_CAMERA_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -1070,7 +1071,8 @@ typedef struct Camera_AutoDeviceSwitchStatusInfo {
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_Camera_GetCameraManager(Camera_Manager** cameraManager);
+Camera_ErrorCode OH_Camera_GetCameraManager(Camera_Manager** cameraManager)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Delete the CameraManager instance.
@@ -1081,7 +1083,8 @@ Camera_ErrorCode OH_Camera_GetCameraManager(Camera_Manager** cameraManager);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_Camera_DeleteCameraManager(Camera_Manager* cameraManager);
+Camera_ErrorCode OH_Camera_DeleteCameraManager(Camera_Manager* cameraManager)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enum for quality prioritization.

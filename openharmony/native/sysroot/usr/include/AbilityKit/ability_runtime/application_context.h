@@ -37,6 +37,7 @@
 #ifndef ABILITY_RUNTIME_APPLICATION_CONTEXT_H
 #define ABILITY_RUNTIME_APPLICATION_CONTEXT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 #include <AbilityKit/ability_base/want.h>
@@ -63,7 +64,8 @@ extern "C" {
  * @since 13
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCacheDir(
-    char* buffer, int32_t bufferSize, int32_t* writeLength);
+    char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtain the area mode of the application.
@@ -75,7 +77,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCacheDir(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
  * @since 13
  */
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetAreaMode(AbilityRuntime_AreaMode* areaMode);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetAreaMode(AbilityRuntime_AreaMode* areaMode)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtain the bundle name.
@@ -92,7 +95,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetAreaMode(Ability
  * @since 13
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(
-    char* buffer, int32_t bufferSize, int32_t* writeLength);
+    char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtain the temp directory of the application.
@@ -109,7 +113,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the files directory of the application.
@@ -126,7 +131,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the database directory of the application.
@@ -143,7 +149,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the preferences directory of the application.
@@ -160,7 +167,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the bundle code directory of the application.
@@ -177,7 +185,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the distributed files directory of the application.
@@ -194,7 +203,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the cloud file directory of the application.
@@ -211,7 +221,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFiles
  * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=16.0.0)));
 
 /**
  * @brief Obtain the resource directory of the target module.
@@ -229,7 +240,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(
  * @since 20
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(const char* moduleName,
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Starts self UIAbility.
@@ -257,7 +269,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
  * For details, see {@link AbilityRuntime_ErrorCode}.
  * @since 15
  */
-AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtain the launch parameter of starting UIAbility.
@@ -274,7 +287,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *
  * @since 21
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtain the latest parameter of starting UIAbility.
@@ -291,7 +305,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
  * @since 21
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
-    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Starts self UIAbility with start options.
@@ -326,7 +341,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
  * @since 17
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,
-    AbilityRuntime_StartOptions *options);
+    AbilityRuntime_StartOptions *options)
+    __attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Starts self UIAbility with start options and receives the process ID.
@@ -365,7 +381,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
  * @since 21
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want,
-    AbilityRuntime_StartOptions *options, int32_t *targetPid);
+    AbilityRuntime_StartOptions *options, int32_t *targetPid)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtain the version code of the application.
@@ -378,7 +395,26 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(Abili
  *         {@link ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED} if the application info does not exist.
  * @since 21
  */
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
+
+/**
+ * @brief Obtain the log file directory of the application.
+ *
+ * @param buffer A pointer to a buffer that receives the log file directory of the application.
+ * @param bufferSize The length of the buffer.
+ * @param writeLength The string length actually written to the buffer,
+ *                    when returning {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR}.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
+ *         or the buffer size is less than the minimum buffer size.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ * @since 22
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLogFileDir(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 } // extern "C"

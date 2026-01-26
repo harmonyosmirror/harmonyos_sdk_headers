@@ -38,6 +38,7 @@
 #ifndef RESOURCESCHEDULE_BACKGROUND_PROCESS_MANAGER_H
 #define RESOURCESCHEDULE_BACKGROUND_PROCESS_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -93,7 +94,8 @@ typedef enum BackgroundProcessManager_ErrorCode {
  *         {@link ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM} 401 - Parameter error.
  * @since 17
  */
-int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessManager_ProcessPriority priority);
+int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessManager_ProcessPriority priority)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Reset the priority of process.
@@ -102,7 +104,7 @@ int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessMan
  * @return {@link ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS} 0 - Success.
  * @since 17
  */
-int OH_BackgroundProcessManager_ResetProcessPriority(int pid);
+int OH_BackgroundProcessManager_ResetProcessPriority(int pid) __attribute__((__availability__(ohos, introduced=17.0.0)));
 #ifdef __cplusplus
 };
 #endif

@@ -38,6 +38,7 @@
 #ifndef NDK_INCLUDE_NATIVE_FENCE_H_
 #define NDK_INCLUDE_NATIVE_FENCE_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -53,7 +54,7 @@ extern "C" {
  * @since 20
  * @version 1.0
  */
-bool OH_NativeFence_IsValid(int fenceFd);
+bool OH_NativeFence_IsValid(int fenceFd) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Waits for a fence signal. The maximum waiting time is determined by the timeout parameter.
@@ -72,7 +73,7 @@ bool OH_NativeFence_IsValid(int fenceFd);
  * @since 20
  * @version 1.0
  */
-bool OH_NativeFence_Wait(int fenceFd, uint32_t timeout);
+bool OH_NativeFence_Wait(int fenceFd, uint32_t timeout) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Waits forever for a fence signal.
@@ -87,7 +88,7 @@ bool OH_NativeFence_Wait(int fenceFd, uint32_t timeout);
  * @since 20
  * @version 1.0
  */
-bool OH_NativeFence_WaitForever(int fenceFd);
+bool OH_NativeFence_WaitForever(int fenceFd) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Close the fenceFd.
@@ -97,7 +98,7 @@ bool OH_NativeFence_WaitForever(int fenceFd);
  * @since 20
  * @version 1.0
  */
-void OH_NativeFence_Close(int fenceFd);
+void OH_NativeFence_Close(int fenceFd) __attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

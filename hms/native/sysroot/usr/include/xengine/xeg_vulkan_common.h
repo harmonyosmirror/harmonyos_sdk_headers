@@ -25,6 +25,7 @@
 #ifndef XEG_VULKAN_COMMON_H
 #define XEG_VULKAN_COMMON_H
 
+#include "info/application_target_sdk_version.h"
 #include <vulkan/vulkan.h>
 
 #ifdef __cplusplus
@@ -102,7 +103,8 @@ typedef VkResult (VKAPI_PTR *PFN_HMS_XEG_CmdSetSynchronization)(VkCommandBuffer 
 VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdSetSynchronization(
     VkCommandBuffer   commandBuffer,
     const void*       xegHandle
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

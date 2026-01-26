@@ -462,7 +462,56 @@ enum  OH_Huks_ErrCode {
      *
      * @since 20
      */
-    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018
+    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018,
+
+    /**
+     * The item already exists.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_ITEM_EXISTS = 12000019,
+
+    /**
+     * An error occurred in the external module.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_EXTERNAL_MODULE = 12000020,
+
+    /**
+     * The Ukey PIN is locked.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_PIN_LOCKED = 12000021,
+
+    /**
+     * The Ukey PIN is incorrect.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_PIN_INCORRECT = 12000022,
+
+    /**
+     * The Ukey PIN is not authenticated.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_PIN_NO_AUTH = 12000023,
+
+    /**
+     * The device or resource is busy.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_BUSY = 12000024,
+
+    /**
+     * The resource exceeds  the limit.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_EXCEED_LIMIT = 12000025,
 };
 
 /**
@@ -624,6 +673,25 @@ enum OH_Huks_SecureSignType {
 };
 
 /**
+ * @brief Enumerates the types of keys.
+ *
+ * @since 22
+ */
+typedef enum OH_Huks_KeyClassType {
+    /**
+     * @brief The default type specifics the key is stored in huks.
+     *
+     * @since 22
+     */
+    OH_HUKS_KEY_CLASS_DEFAULT = 0,
+    /**
+     * @brief The key is stored in external crypto provider.
+     *
+     * @since 22
+     */
+    OH_HUKS_KEY_CLASS_EXTENSION = 1,
+} OH_Huks_KeyClassType;
+/**
  * Enum for key wrap type.
  *
  * @since 20
@@ -758,6 +826,18 @@ enum OH_Huks_Tag {
      * @since 20
      */
     OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL | 520,
+    /**
+     * @brief The tag indicates the length of AEAD for CCM mode.
+     *
+     * @since 22
+     */
+    OH_HUKS_TAG_AE_TAG_LEN = OH_HUKS_TAG_TYPE_UINT | 521,
+    /**
+     * @brief The tag indicates the key class type.
+     *
+     * @since 22
+     */
+    OH_HUKS_TAG_KEY_CLASS = OH_HUKS_TAG_TYPE_UINT | 522,
     /**
      * 601 to 1000 are reserved for other tags.
      *

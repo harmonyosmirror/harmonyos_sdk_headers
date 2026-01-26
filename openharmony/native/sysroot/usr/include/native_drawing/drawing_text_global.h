@@ -40,6 +40,7 @@
 #ifndef DRAWING_TEXT_GLOBAL_H
 #define DRAWING_TEXT_GLOBAL_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -78,7 +79,8 @@ typedef enum {
  * @param action <b>OH_Drawing_TextHighContrast</b> object.
  * @since 20
  */
-void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action);
+void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Controls how undefined glyphs are visually presented, affects all text rendered after this call.
@@ -87,7 +89,8 @@ void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action);
  * @param undefinedGlyphDisplay Indicates a <b>OH_Drawing_TextUndefinedGlyphDisplay</b> to be set.
  * @since 20
  */
-void OH_Drawing_SetTextUndefinedGlyphDisplay(OH_Drawing_TextUndefinedGlyphDisplay undefinedGlyphDisplay);
+void OH_Drawing_SetTextUndefinedGlyphDisplay(OH_Drawing_TextUndefinedGlyphDisplay undefinedGlyphDisplay)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

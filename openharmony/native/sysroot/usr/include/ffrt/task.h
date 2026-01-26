@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_TASK_H
 #define FFRT_API_C_TASK_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "type_def.h"
 
@@ -47,7 +48,7 @@
            returns <b>-1</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_task_attr_init(ffrt_task_attr_t* attr);
+FFRT_C_API int ffrt_task_attr_init(ffrt_task_attr_t* attr) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the name of a task attribute.
@@ -56,7 +57,8 @@ FFRT_C_API int ffrt_task_attr_init(ffrt_task_attr_t* attr);
  * @param name Indicates a pointer to the task name.
  * @since 10
  */
-FFRT_C_API void ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name);
+FFRT_C_API void ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the name of a task attribute.
@@ -66,7 +68,8 @@ FFRT_C_API void ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name
            returns a null pointer otherwise.
  * @since 10
  */
-FFRT_C_API const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
+FFRT_C_API const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroys a task attribute, the user needs to invoke this interface.
@@ -74,7 +77,8 @@ FFRT_C_API const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
  * @param attr Indicates a pointer to the task attribute.
  * @since 10
  */
-FFRT_C_API void ffrt_task_attr_destroy(ffrt_task_attr_t* attr);
+FFRT_C_API void ffrt_task_attr_destroy(ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the QoS of a task attribute.
@@ -83,7 +87,8 @@ FFRT_C_API void ffrt_task_attr_destroy(ffrt_task_attr_t* attr);
  * @param qos Indicates the QoS.
  * @since 10
  */
-FFRT_C_API void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos);
+FFRT_C_API void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the QoS of a task attribute.
@@ -92,7 +97,8 @@ FFRT_C_API void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos);
  * @return Returns the QoS, which is <b>ffrt_qos_default</b> by default.
  * @since 10
  */
-FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr);
+FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the delay time of a task attribute.
@@ -101,7 +107,8 @@ FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr);
  * @param delay_us Indicates the delay time, in microseconds.
  * @since 10
  */
-FFRT_C_API void ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us);
+FFRT_C_API void ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the delay time of a task attribute.
@@ -110,7 +117,8 @@ FFRT_C_API void ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_
  * @return Returns the delay time.
  * @since 10
  */
-FFRT_C_API uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
+FFRT_C_API uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the priority of a task attribute.
@@ -119,7 +127,8 @@ FFRT_C_API uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
  * @param priority Indicates the execute priority of concurrent queue task.
  * @since 12
  */
-FFRT_C_API void ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_queue_priority_t priority);
+FFRT_C_API void ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_queue_priority_t priority)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the priority of a task attribute.
@@ -128,7 +137,8 @@ FFRT_C_API void ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_q
  * @return Returns the priority of concurrent queue task.
  * @since 12
  */
-FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr);
+FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the stack size of a task attribute.
@@ -137,7 +147,8 @@ FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_ta
  * @param size Indicates the task stack size, unit is byte.
  * @since 12
  */
-FFRT_C_API void ffrt_task_attr_set_stack_size(ffrt_task_attr_t* attr, uint64_t size);
+FFRT_C_API void ffrt_task_attr_set_stack_size(ffrt_task_attr_t* attr, uint64_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the stack size of a task attribute.
@@ -146,7 +157,8 @@ FFRT_C_API void ffrt_task_attr_set_stack_size(ffrt_task_attr_t* attr, uint64_t s
  * @return Returns the task stack size, unit is byte.
  * @since 12
  */
-FFRT_C_API uint64_t ffrt_task_attr_get_stack_size(const ffrt_task_attr_t* attr);
+FFRT_C_API uint64_t ffrt_task_attr_get_stack_size(const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Updates the QoS of this task.
@@ -156,7 +168,7 @@ FFRT_C_API uint64_t ffrt_task_attr_get_stack_size(const ffrt_task_attr_t* attr);
            returns <b>-1</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_this_task_update_qos(ffrt_qos_t qos);
+FFRT_C_API int ffrt_this_task_update_qos(ffrt_qos_t qos) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the QoS of this task.
@@ -164,7 +176,7 @@ FFRT_C_API int ffrt_this_task_update_qos(ffrt_qos_t qos);
  * @return Returns the task qos.
  * @since 12
  */
-FFRT_C_API ffrt_qos_t ffrt_this_task_get_qos(void);
+FFRT_C_API ffrt_qos_t ffrt_this_task_get_qos(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the ID of this task.
@@ -172,7 +184,7 @@ FFRT_C_API ffrt_qos_t ffrt_this_task_get_qos(void);
  * @return Returns the task ID.
  * @since 10
  */
-FFRT_C_API uint64_t ffrt_this_task_get_id(void);
+FFRT_C_API uint64_t ffrt_this_task_get_id(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Applies memory for the function execution structure.
@@ -182,7 +194,8 @@ FFRT_C_API uint64_t ffrt_this_task_get_id(void);
            returns a null pointer otherwise.
  * @since 10
  */
-FFRT_C_API void *ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind);
+FFRT_C_API void *ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Submits a task.
@@ -194,7 +207,8 @@ FFRT_C_API void *ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kin
  * @since 10
  */
 FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps,
-    const ffrt_task_attr_t* attr);
+    const ffrt_task_attr_t* attr)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Submits a task, and obtains a task handle.
@@ -208,7 +222,8 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
  * @since 10
  */
 FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps,
-    const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+    const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Submits a task, simplified from the ffrt_submit_base interface.
@@ -228,7 +243,8 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_header_t* f, cons
  * @since 20
  */
 FFRT_C_API void ffrt_submit_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps,
-    const ffrt_task_attr_t* attr);
+    const ffrt_task_attr_t* attr)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Submits a task, and obtains a task handle, simplified from the ffrt_submit_h_base interface.
@@ -250,7 +266,8 @@ FFRT_C_API void ffrt_submit_f(ffrt_function_t func, void* arg, const ffrt_deps_t
  * @since 20
  */
 FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps,
-    const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+    const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Increases reference count of a task.
@@ -259,7 +276,8 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f(ffrt_function_t func, void* arg, c
  * @return Returns the task handle original reference count.
  * @since 12
  */
-FFRT_C_API uint32_t ffrt_task_handle_inc_ref(ffrt_task_handle_t handle);
+FFRT_C_API uint32_t ffrt_task_handle_inc_ref(ffrt_task_handle_t handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Decreases reference count of a task.
@@ -268,7 +286,8 @@ FFRT_C_API uint32_t ffrt_task_handle_inc_ref(ffrt_task_handle_t handle);
  * @return Returns the task handle original reference count.
  * @since 12
  */
-FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle);
+FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a task handle, the user needs to invoke this interface.
@@ -276,7 +295,8 @@ FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle);
  * @param handle Indicates a task handle.
  * @since 10
  */
-FFRT_C_API void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
+FFRT_C_API void ffrt_task_handle_destroy(ffrt_task_handle_t handle)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Waits until the dependent tasks are complete.
@@ -284,14 +304,14 @@ FFRT_C_API void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
  * @param deps Indicates a pointer to the dependent tasks.
  * @since 10
  */
-FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps);
+FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Waits until all submitted tasks are complete.
  *
  * @since 10
  */
-FFRT_C_API void ffrt_wait(void);
+FFRT_C_API void ffrt_wait(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #endif // FFRT_API_C_TASK_H
 /** @} */

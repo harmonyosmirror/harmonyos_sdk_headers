@@ -38,6 +38,7 @@
 #ifndef ARKUI_NATIVE_NODE_NAPI_H
 #define ARKUI_NATIVE_NODE_NAPI_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawable_descriptor.h"
 #include "napi/native_api.h"
 #include "native_type.h"
@@ -57,7 +58,8 @@ extern "C" {
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, ArkUI_NodeHandle* handle);
+int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, ArkUI_NodeHandle* handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains a <b>UIContext</b> object on the ArkTS side and maps it to an <b>ArkUI_ContextHandle</b> object on the
@@ -71,7 +73,8 @@ int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, 
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_ContextHandle* context);
+int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_ContextHandle* context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 /**
@@ -86,7 +89,8 @@ int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_C
   *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
   * @since 12
   */
-int32_t OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content);
+int32_t OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains a <b>DrawableDescriptor</b> object on the ArkTS side and maps it to an
@@ -101,7 +105,8 @@ int32_t OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, Ark
  * @since 12
 */
 int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue(
-    napi_env env, napi_value value, ArkUI_DrawableDescriptor** drawableDescriptor);
+    napi_env env, napi_value value, ArkUI_DrawableDescriptor** drawableDescriptor)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains a <b>Resource</b> object on the ArkTS side and maps it to an
@@ -116,7 +121,8 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue(
  * @since 12
 */
 int32_t OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue(
-    napi_env env, napi_value value, ArkUI_DrawableDescriptor** drawableDescriptor);
+    napi_env env, napi_value value, ArkUI_DrawableDescriptor** drawableDescriptor)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the ID of the Navigation component where the node is located.
@@ -138,7 +144,8 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue(
  * @since 12
  */
 ArkUI_ErrorCode  OH_ArkUI_GetNavigationId(
-    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the name of the NavDestination component where the node is located.
@@ -160,7 +167,8 @@ ArkUI_ErrorCode  OH_ArkUI_GetNavigationId(
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetNavDestinationName(
-    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Based on the given index value, obtain the length of the Navigation stack where the node is located.
@@ -174,7 +182,8 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationName(
  *         this may be because the node is not in Navigation.
  * @since 12
  */
-ArkUI_ErrorCode OH_ArkUI_GetNavStackLength(ArkUI_NodeHandle node, int32_t* length);
+ArkUI_ErrorCode OH_ArkUI_GetNavStackLength(ArkUI_NodeHandle node, int32_t* length)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Based on the given index value, obtain the page name of the corresponding position
@@ -200,7 +209,8 @@ ArkUI_ErrorCode OH_ArkUI_GetNavStackLength(ArkUI_NodeHandle node, int32_t* lengt
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetNavDestinationNameByIndex(
-    ArkUI_NodeHandle node, int32_t index, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, int32_t index, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the ID of the NavDestination component where the node is located.
@@ -222,7 +232,8 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationNameByIndex(
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetNavDestinationId(
-    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the state of the NavDestination component where the node is located.
@@ -236,7 +247,8 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationId(
  *         this may be because the node is not in Navigation.
  * @since 12
  */
-ArkUI_ErrorCode OH_ArkUI_GetNavDestinationState(ArkUI_NodeHandle node, ArkUI_NavDestinationState* state);
+ArkUI_ErrorCode OH_ArkUI_GetNavDestinationState(ArkUI_NodeHandle node, ArkUI_NavDestinationState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the index of the NavDestination component on the Navigation stack where the node is located.
@@ -250,7 +262,8 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationState(ArkUI_NodeHandle node, ArkUI_Nav
  *         this may be because the node is not in Navigation.
  * @since 12
  */
-ArkUI_ErrorCode OH_ArkUI_GetNavDestinationIndex(ArkUI_NodeHandle node, int32_t* index);
+ArkUI_ErrorCode OH_ArkUI_GetNavDestinationIndex(ArkUI_NodeHandle node, int32_t* index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the parameters of the NavDestination component where the node is located.
@@ -260,7 +273,8 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationIndex(ArkUI_NodeHandle node, int32_t* 
  *         If a null pointer is returned, it may be because the node is empty or the parameters does not exist.
  * @since 12
  */
-napi_value OH_ArkUI_GetNavDestinationParam(ArkUI_NodeHandle node);
+napi_value OH_ArkUI_GetNavDestinationParam(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the index of the page where the node resides in the Router page stack.
@@ -274,7 +288,8 @@ napi_value OH_ArkUI_GetNavDestinationParam(ArkUI_NodeHandle node);
  *         this may be because the node is not in RouterPage.
  * @since 12
  */
-ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex(ArkUI_NodeHandle node, int32_t* index);
+ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex(ArkUI_NodeHandle node, int32_t* index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the name of the page where the node is located.
@@ -296,7 +311,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex(ArkUI_NodeHandle node, int32_t* inde
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageName(
-    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the path of the page where the node is located.
@@ -318,7 +334,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageName(
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPagePath(
-    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Obtain the state of the page where the node is located.
  *
@@ -331,7 +348,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPagePath(
  *         this may be because the node is not in RouterPage.
  * @since 12
  */
-ArkUI_ErrorCode OH_ArkUI_GetRouterPageState(ArkUI_NodeHandle node, ArkUI_RouterPageState* state);
+ArkUI_ErrorCode OH_ArkUI_GetRouterPageState(ArkUI_NodeHandle node, ArkUI_RouterPageState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the ID of the page where the node is located.
@@ -353,7 +371,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageState(ArkUI_NodeHandle node, ArkUI_RouterP
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageId(
-    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register a callback to be executed when rendering in the next frame. Cannot be called on
@@ -372,7 +391,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageId(
  * @since 18
  */
 int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData,
-    void (*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void* userData));
+    void (*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void* userData))
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Initialize the ArkTS method for the specified env environment. Cannot be called on
@@ -385,7 +405,7 @@ int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env);
+ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Notify the specified env environment is invalid. Cannot be called on
@@ -394,7 +414,7 @@ ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env);
  * @param env napi environment pointer.
  * @since 20
  */
-void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
+void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register a callback to be executed at the end of the next idle frame.
@@ -413,7 +433,8 @@ void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
  * @since 20
  */
  int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
-     void (*callback)(uint64_t nanoTimeLeft, uint32_t frameCount, void* userData));
+     void (*callback)(uint64_t nanoTimeLeft, uint32_t frameCount, void* userData))
+     __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_PHOTOOUTPUT_H
 #define NATIVE_INCLUDE_CAMERA_PHOTOOUTPUT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -197,7 +198,8 @@ typedef struct PhotoOutput_Callbacks {
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_PhotoOutput_RegisterCallback(Camera_PhotoOutput* photoOutput, PhotoOutput_Callbacks* callback);
+Camera_ErrorCode OH_PhotoOutput_RegisterCallback(Camera_PhotoOutput* photoOutput, PhotoOutput_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister photo output change event callback.
@@ -208,7 +210,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCallback(Camera_PhotoOutput* photoOutput
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_PhotoOutput_UnregisterCallback(Camera_PhotoOutput* photoOutput, PhotoOutput_Callbacks* callback);
+Camera_ErrorCode OH_PhotoOutput_UnregisterCallback(Camera_PhotoOutput* photoOutput, PhotoOutput_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Register capture start event callback.
@@ -220,7 +223,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCallback(Camera_PhotoOutput* photoOutp
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_CaptureStartWithInfo callback);
+    OH_PhotoOutput_CaptureStartWithInfo callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the photo rotation angle.
@@ -234,7 +238,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_Phot
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int deviceDegree,
-    Camera_ImageRotation* imageRotation);
+    Camera_ImageRotation* imageRotation)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister capture start event callback.
@@ -246,7 +251,8 @@ Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_CaptureStartWithInfo callback);
+    OH_PhotoOutput_CaptureStartWithInfo callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register capture end event callback.
@@ -258,7 +264,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(Camera_Ph
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterCaptureEndCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_CaptureEnd callback);
+    OH_PhotoOutput_CaptureEnd callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister capture end event callback.
@@ -270,7 +277,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureEndCallback(Camera_PhotoOutput* p
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureEndCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_CaptureEnd callback);
+    OH_PhotoOutput_CaptureEnd callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register frame shutter end event callback.
@@ -282,7 +290,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureEndCallback(Camera_PhotoOutput*
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterFrameShutterEndCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_OnFrameShutterEnd callback);
+    OH_PhotoOutput_OnFrameShutterEnd callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister frame shutter end event callback.
@@ -294,7 +303,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterFrameShutterEndCallback(Camera_PhotoOutp
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterFrameShutterEndCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_OnFrameShutterEnd callback);
+    OH_PhotoOutput_OnFrameShutterEnd callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register capture ready event callback. After receiving the callback, can proceed to the next capture.
@@ -306,7 +316,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterFrameShutterEndCallback(Camera_PhotoOu
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterCaptureReadyCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_CaptureReady callback);
+    OH_PhotoOutput_CaptureReady callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister capture ready event callback.
@@ -318,7 +329,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureReadyCallback(Camera_PhotoOutput*
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureReadyCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_CaptureReady callback);
+    OH_PhotoOutput_CaptureReady callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register estimated capture duration event callback.
@@ -330,7 +342,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureReadyCallback(Camera_PhotoOutpu
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_EstimatedCaptureDuration callback);
+    OH_PhotoOutput_EstimatedCaptureDuration callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister estimated capture duration event callback.
@@ -342,7 +355,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(Camera_
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_EstimatedCaptureDuration callback);
+    OH_PhotoOutput_EstimatedCaptureDuration callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register photo output photo available callback.
@@ -354,7 +368,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camer
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_PhotoAvailable callback);
+    OH_PhotoOutput_PhotoAvailable callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister photo output photo available callback.
@@ -366,7 +381,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutpu
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_PhotoAvailable callback);
+    OH_PhotoOutput_PhotoAvailable callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register photo output photo asset available callback.
@@ -378,7 +394,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOut
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_PhotoAssetAvailable callback);
+    OH_PhotoOutput_PhotoAssetAvailable callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister photo output photo asset available callback.
@@ -390,7 +407,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_Photo
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,
-    OH_PhotoOutput_PhotoAssetAvailable callback);
+    OH_PhotoOutput_PhotoAssetAvailable callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Capture photo.
@@ -402,7 +420,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_Pho
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput);
+Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Capture photo with capture setting.
@@ -416,7 +435,8 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput);
  * @since 11
  */
 Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* photoOutput,
-    Camera_PhotoCaptureSetting setting);
+    Camera_PhotoCaptureSetting setting)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Release photo output.
@@ -427,7 +447,8 @@ Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* p
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_PhotoOutput_Release(Camera_PhotoOutput* photoOutput);
+Camera_ErrorCode OH_PhotoOutput_Release(Camera_PhotoOutput* photoOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Check whether to support mirror photo.
@@ -439,7 +460,8 @@ Camera_ErrorCode OH_PhotoOutput_Release(Camera_PhotoOutput* photoOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutput, bool* isSupported);
+Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutput, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enable mirror for photo capture.
@@ -451,7 +473,8 @@ Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutpu
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 13
  */
-Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bool enabled);
+Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bool enabled)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get active photo output profile.
@@ -463,7 +486,8 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput, Camera_Profile** profile);
+Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput, Camera_Profile** profile)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete photo profile instance.
@@ -473,7 +497,8 @@ Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
  */
-Camera_ErrorCode OH_PhotoOutput_DeleteProfile(Camera_Profile* profile);
+Camera_ErrorCode OH_PhotoOutput_DeleteProfile(Camera_Profile* profile)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check whether to support moving photo.
@@ -485,7 +510,8 @@ Camera_ErrorCode OH_PhotoOutput_DeleteProfile(Camera_Profile* profile);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photoOutput, bool* isSupported);
+Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photoOutput, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enable moving photo or not.
@@ -497,7 +523,8 @@ Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photo
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutput, bool enabled);
+Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutput, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check whether to support photo quality prioritization.
@@ -512,7 +539,8 @@ Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutpu
  */
 
 Camera_ErrorCode OH_PhotoOutput_IsPhotoQualityPrioritizationSupported(Camera_PhotoOutput* photoOutput,
-    Camera_PhotoQualityPrioritization qualityPrioritization, bool* isSupported);
+    Camera_PhotoQualityPrioritization qualityPrioritization, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Set photo quality prioritization.
@@ -526,7 +554,8 @@ Camera_ErrorCode OH_PhotoOutput_IsPhotoQualityPrioritizationSupported(Camera_Pho
  * @since 21
  */
 Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput* photoOutput,
-    Camera_PhotoQualityPrioritization qualityPrioritization);
+    Camera_PhotoQualityPrioritization qualityPrioritization)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

@@ -26,6 +26,7 @@
 #ifndef XEG_VULKAN_HPS_H
 #define XEG_VULKAN_HPS_H
 
+#include "info/application_target_sdk_version.h"
 #include <vulkan/vulkan.h>
 #include "xeg_vulkan_common.h"
 
@@ -146,7 +147,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateHPS(
     VkDevice device,
     const XEG_HPSCreateInfo *pCreateInfo,
     XEG_HPS *pHps
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an {@link XEG_HPS} object.
@@ -156,7 +158,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateHPS(
  */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroyHPS(
     XEG_HPS hps
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Records an HPS radix sort command. Before using this API, you need to call {@link
@@ -174,7 +177,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdRadixSortHPS(
     VkCommandBuffer commandBuffer,
     XEG_HPS hps,
     const XEG_HPSRadixSortDescription *pDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

@@ -34,6 +34,7 @@
 #ifndef GLOBAL_OH_RESMGR_H
 #define GLOBAL_OH_RESMGR_H
 
+#include "info/application_target_sdk_version.h"
 #include "resmgr_common.h"
 #include "../rawfile/raw_file_manager.h"
 #include "../arkui/drawable_descriptor.h"
@@ -63,7 +64,8 @@ extern "C" {
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResourceManager *mgr, uint32_t resId,
-    char **resultValue, uint64_t *resultLen, uint32_t density = 0);
+    char **resultValue, uint64_t *resultLen, uint32_t density = 0)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Base64 code of the image resource.
@@ -86,7 +88,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResource
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeResourceManager *mgr, uint32_t resId,
-    char **resultValue, uint64_t *resultLen, uint32_t density);
+    char **resultValue, uint64_t *resultLen, uint32_t density)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Base64 code of the image resource.
@@ -109,7 +112,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeReso
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeResourceManager *mgr,
-    const char *resName, char **resultValue, uint64_t *resultLen, uint32_t density = 0);
+    const char *resName, char **resultValue, uint64_t *resultLen, uint32_t density = 0)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Base64 code of the image resource.
@@ -132,7 +136,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeRe
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const NativeResourceManager *mgr,
-    const char *resName, char **resultValue, uint64_t *resultLen, uint32_t density);
+    const char *resName, char **resultValue, uint64_t *resultLen, uint32_t density)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the content of the image resource.
@@ -155,7 +160,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const Nati
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManager *mgr, uint32_t resId,
-    uint8_t **resultValue, uint64_t *resultLen, uint32_t density = 0);
+    uint8_t **resultValue, uint64_t *resultLen, uint32_t density = 0)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the content of the image resource.
@@ -178,7 +184,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManage
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceManager *mgr, uint32_t resId,
-    uint8_t **resultValue, uint64_t *resultLen, uint32_t density);
+    uint8_t **resultValue, uint64_t *resultLen, uint32_t density)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the content of the image resource.
@@ -201,7 +208,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceMa
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResourceManager *mgr, const char *resName,
-    uint8_t **resultValue, uint64_t *resultLen, uint32_t density = 0);
+    uint8_t **resultValue, uint64_t *resultLen, uint32_t density = 0)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the content of the image resource.
@@ -224,7 +232,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResource
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeResourceManager *mgr, const char *resName,
-    uint8_t **resultValue, uint64_t *resultLen, uint32_t density);
+    uint8_t **resultValue, uint64_t *resultLen, uint32_t density)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the DrawableDescriptor of the media file.
@@ -246,7 +255,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeReso
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeResourceManager *mgr,
-    uint32_t resId, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density = 0, uint32_t type = 0);
+    uint32_t resId, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density = 0, uint32_t type = 0)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the DrawableDescriptor of the media file.
@@ -269,7 +279,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeR
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const NativeResourceManager *mgr,
-    uint32_t resId, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type);
+    uint32_t resId, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the DrawableDescriptor of the media file.
@@ -291,7 +302,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const Nat
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorByName(const NativeResourceManager *mgr,
-    const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density = 0, uint32_t type = 0);
+    const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density = 0, uint32_t type = 0)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the DrawableDescriptor of the media file.
@@ -313,7 +325,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorByName(const N
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorDataByName(const NativeResourceManager *mgr,
-    const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type);
+    const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the symbol resource.
@@ -333,7 +346,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorDataByName(con
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbol(const NativeResourceManager *mgr, uint32_t resId,
-    uint32_t *resultValue);
+    uint32_t *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the symbol resource.
@@ -353,7 +367,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbol(const NativeResourceManag
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourceManager *mgr, const char *resName,
-    uint32_t *resultValue);
+    uint32_t *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains locales list.
@@ -373,7 +388,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourc
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceManager *mgr, char ***resultValue,
-    uint32_t *resultLen, bool includeSystem = false);
+    uint32_t *resultLen, bool includeSystem = false)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains locales list.
@@ -393,7 +409,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceMana
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocalesData(const NativeResourceManager *mgr, char ***resultValue,
-    uint32_t *resultLen, bool includeSystem);
+    uint32_t *resultLen, bool includeSystem)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the device configuration.
@@ -414,7 +431,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetLocalesData(const NativeResource
  * @useinstead OH_ResourceManager_GetResourceConfiguration
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResourceManager *mgr,
-    ResourceManager_Configuration *configuration);
+    ResourceManager_Configuration *configuration)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the device configuration.
@@ -431,7 +449,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResour
  * @since 20
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,
-    ResourceManager_Configuration *configuration);
+    ResourceManager_Configuration *configuration)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Release the device configuration.
@@ -441,7 +460,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const Nati
            Possible causes: Incorrect parameter types.
  * @since 12
  */
-ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManager_Configuration *configuration);
+ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManager_Configuration *configuration)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the character string.
@@ -467,7 +487,8 @@ ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManage
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetString(const NativeResourceManager *mgr, uint32_t resId,
-    char **resultValue, ...);
+    char **resultValue, ...)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the character string.
@@ -493,7 +514,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetString(const NativeResourceManag
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringByName(const NativeResourceManager *mgr, const char *resName,
-    char **resultValue, ...);
+    char **resultValue, ...)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the array of character strings.
@@ -516,7 +538,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringByName(const NativeResourc
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringArray(const NativeResourceManager *mgr, uint32_t resId,
-    char ***resultValue, uint32_t *resultLen);
+    char ***resultValue, uint32_t *resultLen)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the array of character strings.
@@ -539,7 +562,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringArray(const NativeResource
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName(const NativeResourceManager *mgr,
-    const char *resName, char ***resultValue, uint32_t *resultLen);
+    const char *resName, char ***resultValue, uint32_t *resultLen)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the array of character strings.
@@ -550,7 +574,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName(const NativeRe
            Possible causes: Incorrect parameter types.
  * @since 12
  */
-ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue, uint32_t len);
+ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue, uint32_t len)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the singular-plural character string represented.
@@ -575,7 +600,8 @@ ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue
  * @useinstead OH_ResourceManager_GetIntPluralString
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourceManager *mgr, uint32_t resId,
-    uint32_t num, char **resultValue);
+    uint32_t num, char **resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the singular-plural character string represented.
@@ -600,7 +626,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourc
  * @useinstead OH_ResourceManager_GetIntPluralStringByName
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeResourceManager *mgr,
-    const char *resName, uint32_t num, char **resultValue);
+    const char *resName, uint32_t num, char **resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the singular-plural character string represented.
@@ -624,7 +651,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeR
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeResourceManager *mgr, uint32_t resId,
-    uint32_t num, char **resultValue, ...);
+    uint32_t num, char **resultValue, ...)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the singular-plural character string represented.
@@ -648,7 +676,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeReso
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeResourceManager *mgr, uint32_t resId,
-    double num, char **resultValue, ...);
+    double num, char **resultValue, ...)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the singular-plural character string represented.
@@ -672,7 +701,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeR
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const NativeResourceManager *mgr,
-    const char *resName, uint32_t num, char **resultValue, ...);
+    const char *resName, uint32_t num, char **resultValue, ...)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the singular-plural character string represented.
@@ -696,7 +726,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const Nati
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const NativeResourceManager *mgr,
-    const char *resName, double num, char **resultValue, ...);
+    const char *resName, double num, char **resultValue, ...)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the color resource.
@@ -716,7 +747,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const N
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetColor(const NativeResourceManager *mgr, uint32_t resId,
-    uint32_t *resultValue);
+    uint32_t *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the color resource.
@@ -736,7 +768,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetColor(const NativeResourceManage
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetColorByName(const NativeResourceManager *mgr, const char *resName,
-    uint32_t *resultValue);
+    uint32_t *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Int resource.
@@ -756,7 +789,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetColorByName(const NativeResource
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetInt(const NativeResourceManager *mgr, uint32_t resId,
-    int *resultValue);
+    int *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Int resource.
@@ -776,7 +810,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetInt(const NativeResourceManager 
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntByName(const NativeResourceManager *mgr, const char *resName,
-    int *resultValue);
+    int *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Float resource.
@@ -796,7 +831,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntByName(const NativeResourceMa
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetFloat(const NativeResourceManager *mgr, uint32_t resId,
-    float *resultValue);
+    float *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Float resource.
@@ -816,7 +852,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetFloat(const NativeResourceManage
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetFloatByName(const NativeResourceManager *mgr, const char *resName,
-    float *resultValue);
+    float *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the boolean result.
@@ -836,7 +873,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetFloatByName(const NativeResource
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetBool(const NativeResourceManager *mgr, uint32_t resId,
-    bool *resultValue);
+    bool *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the boolean result.
@@ -856,7 +894,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetBool(const NativeResourceManager
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetBoolByName(const NativeResourceManager *mgr, const char *resName,
-    bool *resultValue);
+    bool *resultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add overlay resources during application runtime.
@@ -869,7 +908,8 @@ ResourceManager_ErrorCode OH_ResourceManager_GetBoolByName(const NativeResourceM
            {@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - Invalid overlay path.
  * @since 12
  */
-ResourceManager_ErrorCode OH_ResourceManager_AddResource(const NativeResourceManager *mgr, const char *path);
+ResourceManager_ErrorCode OH_ResourceManager_AddResource(const NativeResourceManager *mgr, const char *path)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Remove overlay resources during application runtime.
@@ -882,7 +922,8 @@ ResourceManager_ErrorCode OH_ResourceManager_AddResource(const NativeResourceMan
            {@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - Invalid overlay path.
  * @since 12
  */
-ResourceManager_ErrorCode OH_ResourceManager_RemoveResource(const NativeResourceManager *mgr, const char *path);
+ResourceManager_ErrorCode OH_ResourceManager_RemoveResource(const NativeResourceManager *mgr, const char *path)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 };
 #endif

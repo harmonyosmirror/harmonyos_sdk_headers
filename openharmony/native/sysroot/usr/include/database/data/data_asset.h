@@ -38,6 +38,7 @@
 #ifndef DATA_ASSET_H
 #define DATA_ASSET_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstddef>
 #else
@@ -111,7 +112,8 @@ typedef struct Data_Asset Data_Asset;
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_SetName(Data_Asset *asset, const char *name);
+int OH_Data_Asset_SetName(Data_Asset *asset, const char *name)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the uri of the Data_Asset.
@@ -125,7 +127,7 @@ int OH_Data_Asset_SetName(Data_Asset *asset, const char *name);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri);
+int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the path of the Data_Asset.
@@ -139,7 +141,8 @@ int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_SetPath(Data_Asset *asset, const char *path);
+int OH_Data_Asset_SetPath(Data_Asset *asset, const char *path)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the create time of the Data_Asset.
@@ -153,7 +156,8 @@ int OH_Data_Asset_SetPath(Data_Asset *asset, const char *path);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_SetCreateTime(Data_Asset *asset, int64_t createTime);
+int OH_Data_Asset_SetCreateTime(Data_Asset *asset, int64_t createTime)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the modify time of the Data_Asset.
@@ -167,7 +171,8 @@ int OH_Data_Asset_SetCreateTime(Data_Asset *asset, int64_t createTime);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_SetModifyTime(Data_Asset *asset, int64_t modifyTime);
+int OH_Data_Asset_SetModifyTime(Data_Asset *asset, int64_t modifyTime)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the size of the Data_Asset.
@@ -181,7 +186,7 @@ int OH_Data_Asset_SetModifyTime(Data_Asset *asset, int64_t modifyTime);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_SetSize(Data_Asset *asset, size_t size);
+int OH_Data_Asset_SetSize(Data_Asset *asset, size_t size) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the status of the Data_Asset.
@@ -195,7 +200,8 @@ int OH_Data_Asset_SetSize(Data_Asset *asset, size_t size);
  * @see Data_Asset, Data_AssetStatus
  * @since 11
  */
-int OH_Data_Asset_SetStatus(Data_Asset *asset, Data_AssetStatus status);
+int OH_Data_Asset_SetStatus(Data_Asset *asset, Data_AssetStatus status)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the name of the asset.
@@ -212,7 +218,8 @@ int OH_Data_Asset_SetStatus(Data_Asset *asset, Data_AssetStatus status);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_GetName(Data_Asset *asset, char *name, size_t *length);
+int OH_Data_Asset_GetName(Data_Asset *asset, char *name, size_t *length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the uri of the asset.
@@ -229,7 +236,8 @@ int OH_Data_Asset_GetName(Data_Asset *asset, char *name, size_t *length);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_GetUri(Data_Asset *asset, char *uri, size_t *length);
+int OH_Data_Asset_GetUri(Data_Asset *asset, char *uri, size_t *length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the path of the asset.
@@ -246,7 +254,8 @@ int OH_Data_Asset_GetUri(Data_Asset *asset, char *uri, size_t *length);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_GetPath(Data_Asset *asset, char *path, size_t *length);
+int OH_Data_Asset_GetPath(Data_Asset *asset, char *path, size_t *length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the create time of the asset.
@@ -262,7 +271,8 @@ int OH_Data_Asset_GetPath(Data_Asset *asset, char *path, size_t *length);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_GetCreateTime(Data_Asset *asset, int64_t *createTime);
+int OH_Data_Asset_GetCreateTime(Data_Asset *asset, int64_t *createTime)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the modify time of the asset.
@@ -278,7 +288,8 @@ int OH_Data_Asset_GetCreateTime(Data_Asset *asset, int64_t *createTime);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime);
+int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the size of the asset.
@@ -294,7 +305,7 @@ int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime);
  * @see Data_Asset
  * @since 11
  */
-int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size);
+int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the status of the asset.
@@ -309,7 +320,8 @@ int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size);
  * @see Data_Asset Data_AssetStatus.
  * @since 11
  */
-int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status);
+int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an {@link Data_Asset} instance.
@@ -319,7 +331,7 @@ int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status);
  * @see Data_Asset.
  * @since 11
  */
-Data_Asset *OH_Data_Asset_CreateOne(void);
+Data_Asset *OH_Data_Asset_CreateOne(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroy the {@link Data_Asset} object and reclaim the memory occupied by the object.
@@ -332,7 +344,7 @@ Data_Asset *OH_Data_Asset_CreateOne(void);
  * @see Data_Asset, OH_Rdb_ErrCode.
  * @since 11
  */
-int OH_Data_Asset_DestroyOne(Data_Asset *asset);
+int OH_Data_Asset_DestroyOne(Data_Asset *asset) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates {@link Data_Asset} instances of given number.
@@ -343,7 +355,7 @@ int OH_Data_Asset_DestroyOne(Data_Asset *asset);
  * @see Data_Asset.
  * @since 11
  */
-Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count);
+Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroy the {@link Data_Asset} objects and reclaim the memory occupied by the objects.
@@ -357,7 +369,8 @@ Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count);
  * @see Data_Asset, OH_Rdb_ErrCode.
  * @since 11
  */
-int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count);
+int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 #ifdef __cplusplus
 };
 #endif

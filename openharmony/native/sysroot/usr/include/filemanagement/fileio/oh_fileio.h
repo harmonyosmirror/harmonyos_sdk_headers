@@ -34,6 +34,7 @@
 #ifndef FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
 #define FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
 
+#include "info/application_target_sdk_version.h"
 #include "error_code.h"
 
 #ifdef __cplusplus
@@ -72,7 +73,8 @@ typedef enum FileIO_FileLocation {
  * @since 12
  */
 FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength,
-    FileIO_FileLocation *location);
+    FileIO_FileLocation *location)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 };

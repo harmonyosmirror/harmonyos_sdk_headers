@@ -38,6 +38,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_SOURCE_MDK_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_SOURCE_MDK_H_
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -446,7 +447,8 @@ struct OhosImageSourceUpdateData {
  * @useinstead image#OH_ImageSource_CreateFromData
  */
 int32_t OH_ImageSource_Create(napi_env env, struct OhosImageSource* src,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an <b>ImageSource</b> object at the JavaScript native layer based on the specified
@@ -469,7 +471,8 @@ int32_t OH_ImageSource_Create(napi_env env, struct OhosImageSource* src,
  * @version 4.1
  */
 int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>ImageSource</b> object at the JavaScript native layer based on the specified
@@ -491,7 +494,8 @@ int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,
  * @version 4.1
  */
 int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>ImageSource</b> object at the JavaScript native layer based on the specified
@@ -514,7 +518,8 @@ int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,
  * @version 4.1
  */
 int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSize,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>ImageSource</b> object at the JavaScript native layer based on the specified
@@ -536,7 +541,8 @@ int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSi
  * @version 4.1
  */
 int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an incremental <b>ImageSource</b> object at the JavaScript native layer based on the specified
@@ -576,7 +582,8 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
  * @useinstead image#OH_ImageSource_CreateIncrementalFromData
  */
 int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* source,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an incremental <b>ImageSource</b> object at the JavaScript native layer based on the specified
@@ -600,7 +607,8 @@ int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* s
  * @version 4.1
  */
 int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, size_t dataSize,
-    struct OhosImageSourceOps* ops, napi_value *res);
+    struct OhosImageSourceOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains all supported decoding formats.
@@ -622,7 +630,8 @@ int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, si
  * @since 10
  * @version 4.0
  */
-int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormatList* res);
+int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormatList* res)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Converts an {@link ImageSource} object at the JavaScript native layer to an <b>ImageSourceNative</b> object
@@ -638,7 +647,8 @@ int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormat
  * @since 10
  * @version 4.0
  */
-ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
+ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Decodes an <b>ImageSource</b> object to obtain a <b>PixelMap</b> object at the JavaScript native layer
@@ -684,7 +694,8 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  * @version 4.0
  */
 int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
-    struct OhosImageDecodingOps* ops, napi_value *res);
+    struct OhosImageDecodingOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Decodes an <b>ImageSource</b> to obtain all the <b>PixelMap</b> objects at the JavaScript native layer
@@ -732,7 +743,8 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  * @version 4.0
  */
 int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,
-    struct OhosImageDecodingOps* ops, napi_value *res);
+    struct OhosImageDecodingOps* ops, napi_value *res)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the delay time list from some <b>ImageSource</b> objects (such as GIF image sources).
@@ -767,7 +779,8 @@ int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,
  * @version 4.0
  */
 int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,
-    struct OhosImageSourceDelayTimeList* res);
+    struct OhosImageSourceDelayTimeList* res)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the number of frames from an <b>ImageSource</b> object.
@@ -798,7 +811,8 @@ int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,
  * @since 10
  * @version 4.0
  */
-int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *res);
+int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *res)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains image source information from an <b>ImageSource</b> object by index.
@@ -832,7 +846,8 @@ int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *
  * @version 4.0
  */
 int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t index,
-    struct OhosImageSourceInfo* info);
+    struct OhosImageSourceInfo* info)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the value of an image property from an <b>ImageSource</b> object.
@@ -868,7 +883,8 @@ int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t ind
  * @version 4.0
  */
 int32_t OH_ImageSource_GetImageProperty(const ImageSourceNative* native,
-    struct OhosImageSourceProperty* key, struct OhosImageSourceProperty* value);
+    struct OhosImageSourceProperty* key, struct OhosImageSourceProperty* value)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Modifies the value of an image property of an <b>ImageSource</b> object.
@@ -901,7 +917,8 @@ int32_t OH_ImageSource_GetImageProperty(const ImageSourceNative* native,
  * @version 4.0
  */
 int32_t OH_ImageSource_ModifyImageProperty(const ImageSourceNative* native,
-    struct OhosImageSourceProperty* key, struct OhosImageSourceProperty* value);
+    struct OhosImageSourceProperty* key, struct OhosImageSourceProperty* value)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Updates the data of an <b>ImageSource</b> object.
@@ -943,7 +960,8 @@ int32_t OH_ImageSource_ModifyImageProperty(const ImageSourceNative* native,
  * @since 10
  * @version 4.0
  */
-int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosImageSourceUpdateData* data);
+int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosImageSourceUpdateData* data)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 
 /**
@@ -962,7 +980,7 @@ int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosIm
  * @since 10
  * @version 4.0
  */
-int32_t OH_ImageSource_Release(ImageSourceNative* native);
+int32_t OH_ImageSource_Release(ImageSourceNative* native) __attribute__((__availability__(ohos, introduced=10.0.0)));
 #ifdef __cplusplus
 };
 #endif

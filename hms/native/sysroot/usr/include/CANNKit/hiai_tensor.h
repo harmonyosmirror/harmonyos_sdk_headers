@@ -27,6 +27,7 @@
 
 #ifndef CANN_TENSOR_H
 #define CANN_TENSOR_H
+#include "info/application_target_sdk_version.h"
 #include "hiai_aipp_param.h"
 #include "neural_network_runtime/neural_network_runtime_type.h"
 
@@ -42,7 +43,8 @@ extern "C" {
  * @return Returns the size of the tensor to be applied for if the operation is successful; returns 0 otherwise.
  * @since 4.1.0(11)
  */
-size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageFormat format);
+size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageFormat format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets aippParams for NN_Tensor.
@@ -60,7 +62,8 @@ size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageForm
  * @since 4.1.0(11)
  */
 OH_NN_ReturnCode HMS_HiAITensor_SetAippParams(
-    NN_Tensor* tensor, HiAI_AippParam* aippParams[], size_t aippNum);
+    NN_Tensor* tensor, HiAI_AippParam* aippParams[], size_t aippNum)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

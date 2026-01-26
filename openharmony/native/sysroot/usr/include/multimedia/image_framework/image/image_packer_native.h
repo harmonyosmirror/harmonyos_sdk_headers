@@ -35,6 +35,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_PACKER_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_PACKER_NATIVE_H_
+#include "info/application_target_sdk_version.h"
 #include "image_common.h"
 #include "image_source_native.h"
 #include "pixelmap_native.h"
@@ -96,7 +97,8 @@ typedef enum {
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
+Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get mime type for OH_PackingOptions struct.
@@ -104,11 +106,16 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
  * @param options The OH_PackingOptions pointer will be operated.
  * @param format the number of image format.The user can pass in a null pointer and zero size, we will allocate memory,
  * but user must free memory after use.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
+ *         {@link IMAGE_ALLOC_FAILED} allocate memory failed.
+ *         {@link IMAGE_COPY_FAILED} copy memory failed
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
-    Image_MimeType *format);
+    Image_MimeType *format)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets MIME type from OH_PackingOptions. The output format.data is null-terminated.
@@ -121,93 +128,118 @@ Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
  * @since 19
  */
 Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options,
-    Image_MimeType *format);
+    Image_MimeType *format)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Set format number for OH_PackingOptions struct.
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param format the number of image format.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
+ *         {@link IMAGE_ALLOC_FAILED} allocate memory failed.
+ *         {@link IMAGE_COPY_FAILED} copy memory failed.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,
-    Image_MimeType *format);
+    Image_MimeType *format)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get quality for OH_PackingOptions struct.
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param quality The number of image quality.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or quality is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,
-    uint32_t *quality);
+    uint32_t *quality)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set quality number for OH_PackingOptions struct.
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param quality The number of image quality.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
-    uint32_t quality);
+    uint32_t quality)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get needsPackProperties for OH_PackingOptions struct.
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param needsPackProperties Whether the image properties can be saved, like Exif.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or needsPackProperties is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *options,
-    bool *needsPackProperties);
+    bool *needsPackProperties)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set needsPackProperties for OH_PackingOptions struct.
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param needsPackProperties Whether the image properties can be saved, like Exif.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *options,
-    bool needsPackProperties);
+    bool needsPackProperties)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get desiredDynamicRange for PackingOptions struct.
  *
  * @param options The PackingOptions pointer will be operated. Pointer connot be null.
  * @param desiredDynamicRange The number of dynamic range {@link IMAGE_PACKER_DYNAMIC_RANGE}. Pointer connot be null.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - The operation is successful.
- * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - Parameter error.Possible causes:Parameter verification failed.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredDynamicRange is nullptr.
  * @since 12
  */
-Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *options, int32_t* desiredDynamicRange);
+Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *options, int32_t* desiredDynamicRange)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set desiredDynamicRange number for PackingOptions struct.
  *
  * @param options The PackingOptions pointer will be operated. Pointer connot be null.
  * @param desiredDynamicRange The number of dynamic range {@link IMAGE_PACKER_DYNAMIC_RANGE}.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - The operation is successful.
- * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - Parameter error.Possible causes:Parameter verification failed.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
-Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *options, int32_t desiredDynamicRange);
+Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *options, int32_t desiredDynamicRange)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief delete OH_PackingOptions pointer.
  *
  * @param options The OH_PackingOptions pointer will be operated.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
-Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
+Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a pointer for OH_PackingOptionsForSequence struct.
@@ -218,7 +250,8 @@ Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
-Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options);
+Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set FrameCount number for OH_PackingOptionsForSequence struct.
@@ -231,7 +264,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options,
-    uint32_t frameCount);
+    uint32_t frameCount)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get FrameCount number for OH_PackingOptionsForSequence struct.
@@ -244,7 +278,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForS
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options,
-    uint32_t *frameCount);
+    uint32_t *frameCount)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set DelayTimeList number for OH_PackingOptionsForSequence struct.
@@ -258,7 +293,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options,
-    int32_t *delayTimeList, size_t delayTimeListLength);
+    int32_t *delayTimeList, size_t delayTimeListLength)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get DelayTimeList number for OH_PackingOptionsForSequence struct.
@@ -272,7 +308,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options,
-    int32_t *delayTimeList, size_t delayTimeListLength);
+    int32_t *delayTimeList, size_t delayTimeListLength)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set DisposalTypes number for OH_PackingOptionsForSequence struct.
@@ -286,7 +323,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options,
-    uint32_t *disposalTypes, size_t disposalTypesLength);
+    uint32_t *disposalTypes, size_t disposalTypesLength)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get DisposalTypes number for OH_PackingOptionsForSequence struct.
@@ -300,7 +338,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options,
-    uint32_t *disposalTypes, size_t disposalTypesLength);
+    uint32_t *disposalTypes, size_t disposalTypesLength)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set LoopCount number for OH_PackingOptionsForSequence struct.
@@ -312,7 +351,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
-Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount);
+Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get LoopCount number for OH_PackingOptionsForSequence struct.
@@ -324,7 +364,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSe
  *         {@link IMAGE_BAD_PARAMETER} options or loopCount is nullptr.
  * @since 18
  */
-Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount);
+Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief delete OH_PackingOptionsForSequence pointer.
@@ -335,7 +376,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
-Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options);
+Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Create a pointer for OH_ImagePackerNative struct.
@@ -344,7 +386,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker);
+Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Encoding an <b>ImageSource</b> into the data with required format.
@@ -354,11 +397,16 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker);
  * @param imageSource The imageSource to be packed.
  * @param outData The output data buffer to store the packed image.
  * @param size A pointer to the size of the output data buffer.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or imageSource is nullptr, or outData is nullptr.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptions *options, OH_ImageSourceNative *imageSource, uint8_t *outData, size_t *size);
+    OH_PackingOptions *options, OH_ImageSourceNative *imageSource, uint8_t *outData, size_t *size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Encoding a <b>Pixelmap</b> into the data with required format.
@@ -368,11 +416,16 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
  * @param pixelmap The pixelmap to be packed.
  * @param outData The output data buffer to store the packed image.
  * @param size A pointer to the size of the output data buffer.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or pixelmap is nullptr, or outData is nullptr.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptions *options, OH_PixelmapNative *pixelmap, uint8_t *outData, size_t *size);
+    OH_PackingOptions *options, OH_PixelmapNative *pixelmap, uint8_t *outData, size_t *size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Encoding a <b>Picture</b> into the data with required format.
@@ -390,7 +443,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptions *options, OH_PictureNative *picture, uint8_t *outData, size_t *size);
+    OH_PackingOptions *options, OH_PictureNative *picture, uint8_t *outData, size_t *size)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Encoding a <b>PixelMap</b> sequence into the data
@@ -409,7 +463,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
     OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence,
-    size_t sequenceLength, uint8_t *outData, size_t *outDataSize);
+    size_t sequenceLength, uint8_t *outData, size_t *outDataSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Encoding an <b>ImageSource</b> into the a file with fd with required format.
@@ -418,11 +473,16 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
  * @param options Indicates the encoding {@link OH_PackingOptions}.
  * @param imageSource The imageSource to be packed.
  * @param fd Indicates a writable file descriptor.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or imageSource is nullptr, or fd is invalid.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptions *options, OH_ImageSourceNative *imageSource, int32_t fd);
+    OH_PackingOptions *options, OH_ImageSourceNative *imageSource, int32_t fd)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
   * @brief Encoding a <b>Pixelmap</b> into the a file with fd with required format
@@ -431,11 +491,16 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
   * @param options Indicates the encoding {@link OH_PackingOptions}.
   * @param pixelmap The pixelmap to be packed.
   * @param fd Indicates a writable file descriptor.
-  * @return Returns {@link Image_ErrorCode}
+  * @return @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or pixelmap is nullptr, or fd is invalid.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
   * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptions *options, OH_PixelmapNative *pixelmap, int32_t fd);
+    OH_PackingOptions *options, OH_PixelmapNative *pixelmap, int32_t fd)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Encoding a <b>Picture</b> into the a file with fd with required format.
@@ -451,7 +516,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptions *options, OH_PictureNative *picture, int32_t fd);
+    OH_PackingOptions *options, OH_PictureNative *picture, int32_t fd)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
   * @brief Encoding a <b>PixelMap</b> sequence into the a file with fd
@@ -468,16 +534,20 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
   * @since 18
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
-    OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd);
+    OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
   * @brief Releases an imagePacker object.
   *
   * @param imagePacker A pointer to the image packer object to be released.
-  * @return Returns {@link Image_ErrorCode}
+  * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr.
   * @since 12
  */
-Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
+Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
   * @brief Obtains the supported image formats that can be encoded.
@@ -489,7 +559,8 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
   *         {@link IMAGE_PACKER_INVALID_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
   * @since 20
  */
-Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length);
+Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

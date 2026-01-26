@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_ROUND_RECT_H
 #define C_INCLUDE_DRAWING_ROUND_RECT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -83,7 +84,8 @@ typedef enum {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, float xRad, float yRad);
+OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, float xRad, float yRad)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_RoundRect</b> copy object.
@@ -94,7 +96,8 @@ OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, fl
  * @since 20
  * @version 1.0
  */
-OH_Drawing_RoundRect* OH_Drawing_RoundRectCopy(const OH_Drawing_RoundRect* roundRect);
+OH_Drawing_RoundRect* OH_Drawing_RoundRectCopy(const OH_Drawing_RoundRect* roundRect)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the radiusX and radiusY for a specific corner position.
@@ -107,7 +110,8 @@ OH_Drawing_RoundRect* OH_Drawing_RoundRectCopy(const OH_Drawing_RoundRect* round
  * @version 1.0
  */
 void OH_Drawing_RoundRectSetCorner(OH_Drawing_RoundRect* roundRect,
-    OH_Drawing_CornerPos pos, OH_Drawing_Corner_Radii radii);
+    OH_Drawing_CornerPos pos, OH_Drawing_Corner_Radii radii)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets an <b>OH_Drawing_Corner_Radii</b> struct, the point is round corner radiusX and radiusY.
@@ -119,7 +123,8 @@ void OH_Drawing_RoundRectSetCorner(OH_Drawing_RoundRect* roundRect,
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roundRect, OH_Drawing_CornerPos pos);
+OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roundRect, OH_Drawing_CornerPos pos)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_RoundRect</b> object and reclaims the memory occupied by the object.
@@ -129,7 +134,8 @@ OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roun
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect* roundRect);
+void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect* roundRect)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Translates round rect by (dx, dy).
@@ -144,7 +150,8 @@ void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect* roundRect);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_RoundRectOffset(OH_Drawing_RoundRect* roundRect, float dx, float dy);
+OH_Drawing_ErrorCode OH_Drawing_RoundRectOffset(OH_Drawing_RoundRect* roundRect, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif

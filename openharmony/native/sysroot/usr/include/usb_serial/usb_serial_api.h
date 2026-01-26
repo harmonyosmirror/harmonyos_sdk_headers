@@ -37,6 +37,7 @@
 #ifndef DDK_USB_SERIAL_API_H
 #define DDK_USB_SERIAL_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "usb_serial_types.h"
 
@@ -53,7 +54,7 @@ extern "C" {
  *         {@link USB_SERIAL_DDK_INIT_ERROR} the ddk init error.
  * @since 18
  */
-int32_t OH_UsbSerial_Init(void);
+int32_t OH_UsbSerial_Init(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the USB serial DDK.
@@ -65,7 +66,7 @@ int32_t OH_UsbSerial_Init(void);
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  * @since 18
  */
-int32_t OH_UsbSerial_Release(void);
+int32_t OH_UsbSerial_Release(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Open USB serial device by deviceId.
@@ -84,7 +85,8 @@ int32_t OH_UsbSerial_Release(void);
  *         {@link USB_SERIAL_DDK_DEVICE_NOT_FOUND} device or interface not found.
  * @since 18
  */
-int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_Device **dev);
+int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_Device **dev)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Close USB serial device.
@@ -101,7 +103,7 @@ int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_D
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
+int32_t OH_UsbSerial_Close(UsbSerial_Device **dev) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Read bytesRead into buff from UsbSerial device.
@@ -122,7 +124,8 @@ int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesRead);
+int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesRead)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Write bytesWritten from buff to UsbSerial device.
@@ -142,7 +145,8 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesWritten);
+int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesWritten)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the serial port baud rate.
@@ -159,7 +163,8 @@ int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t buffer
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
+int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the serial port parameters.
@@ -177,7 +182,8 @@ int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
+int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the timeout in milliseconds.
@@ -198,7 +204,8 @@ int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
+int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the flow control.
@@ -216,7 +223,8 @@ int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl flowControl);
+int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl flowControl)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Flush the input and output buffers after finish writting.
@@ -232,7 +240,7 @@ int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
+int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Flush the input buffer, and the data in the buffer will be cleared directly.
@@ -248,7 +256,7 @@ int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
+int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Flush the output buffer, and the data in the buffer will be cleared directly.
@@ -264,7 +272,7 @@ int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
  * @since 18
  */
-int32_t OH_UsbSerial_FlushOutput(UsbSerial_Device *dev);
+int32_t OH_UsbSerial_FlushOutput(UsbSerial_Device *dev) __attribute__((__availability__(ohos, introduced=18.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

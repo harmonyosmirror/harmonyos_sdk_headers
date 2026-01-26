@@ -28,6 +28,7 @@
 #ifndef APPGALLERY_KIT_MODULE_INSTALL_H
 #define APPGALLERY_KIT_MODULE_INSTALL_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdlib.h>
 #ifdef __cplusplus
 extern "C" {
@@ -174,7 +175,8 @@ typedef void (*ModuleInstall_OnStatusCallback)(char *bundleName, char *eventInfo
  * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_GetInstalledModule(const char *moduleName, unsigned int length,
-    ModuleInstall_InstalledModule **installedModule);
+    ModuleInstall_InstalledModule **installedModule)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get module name from installedModule.
@@ -183,7 +185,8 @@ ModuleInstall_ErrCode HMS_ModuleInstall_GetInstalledModule(const char *moduleNam
  * @return Returns the module name of module.
  * @since 5.0.3(15)
  */
-char *HMS_ModuleInstall_GetInstalledModuleName(const ModuleInstall_InstalledModule *installedModule);
+char *HMS_ModuleInstall_GetInstalledModuleName(const ModuleInstall_InstalledModule *installedModule)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get module type from installedModule.
@@ -192,7 +195,8 @@ char *HMS_ModuleInstall_GetInstalledModuleName(const ModuleInstall_InstalledModu
  * @return Returns the module type of module.
  * @since 5.0.3(15)
  */
-int HMS_ModuleInstall_GetInstalledModuleType(const ModuleInstall_InstalledModule *installedModule);
+int HMS_ModuleInstall_GetInstalledModuleType(const ModuleInstall_InstalledModule *installedModule)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get module install status from installedModule.
@@ -202,7 +206,8 @@ int HMS_ModuleInstall_GetInstalledModuleType(const ModuleInstall_InstalledModule
  * @since 5.0.3(15)
  */
 ModuleInstall_InstallStatus HMS_ModuleInstall_GetModuleInstallStatus(
-    const ModuleInstall_InstalledModule *installedModule);
+    const ModuleInstall_InstalledModule *installedModule)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief HMS_ModuleInstall_FetchModules.
@@ -224,7 +229,8 @@ ModuleInstall_InstallStatus HMS_ModuleInstall_GetModuleInstallStatus(
  * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_FetchModules(const char *bundleName, unsigned int length, char **moduleNames,
-    unsigned int moduleNamesLength, ModuleInstall_FetchModulesResult **fetchModulesResult);
+    unsigned int moduleNamesLength, ModuleInstall_FetchModulesResult **fetchModulesResult)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get request code from fetchModulesResult.
@@ -234,7 +240,8 @@ ModuleInstall_ErrCode HMS_ModuleInstall_FetchModules(const char *bundleName, uns
  * @since 5.0.3(15)
  */
 ModuleInstall_RequestCode HMS_ModuleInstall_GetFetchModulesRequestCode(
-    const ModuleInstall_FetchModulesResult *fetchModulesResult);
+    const ModuleInstall_FetchModulesResult *fetchModulesResult)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get task status from fetchModulesResult.
@@ -244,7 +251,8 @@ ModuleInstall_RequestCode HMS_ModuleInstall_GetFetchModulesRequestCode(
  * @since 5.0.3(15)
  */
 ModuleInstall_TaskStatus HMS_ModuleInstall_GetFetchModulesTaskStatus(
-    const ModuleInstall_FetchModulesResult *fetchModulesResult);
+    const ModuleInstall_FetchModulesResult *fetchModulesResult)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get task id from fetchModulesResult.
@@ -253,7 +261,8 @@ ModuleInstall_TaskStatus HMS_ModuleInstall_GetFetchModulesTaskStatus(
  * @return Returns task id of fetch modules.
  * @since 5.0.3(15)
  */
-char *HMS_ModuleInstall_GetFetchModulesTaskId(const ModuleInstall_FetchModulesResult *fetchModulesResult);
+char *HMS_ModuleInstall_GetFetchModulesTaskId(const ModuleInstall_FetchModulesResult *fetchModulesResult)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get desc from fetchModulesResult.
@@ -262,7 +271,8 @@ char *HMS_ModuleInstall_GetFetchModulesTaskId(const ModuleInstall_FetchModulesRe
  * @return Returns desc of fetch modules.
  * @since 5.0.3(15)
  */
-char *HMS_ModuleInstall_GetFetchModulesDesc(const ModuleInstall_FetchModulesResult *fetchModulesResult);
+char *HMS_ModuleInstall_GetFetchModulesDesc(const ModuleInstall_FetchModulesResult *fetchModulesResult)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get modules from fetchModulesResult.
@@ -271,7 +281,8 @@ char *HMS_ModuleInstall_GetFetchModulesDesc(const ModuleInstall_FetchModulesResu
  * @return Returns modules of fetch modules.
  * @since 5.0.3(15)
  */
-char *HMS_ModuleInstall_GetFetchModules(const ModuleInstall_FetchModulesResult *fetchModulesResult);
+char *HMS_ModuleInstall_GetFetchModules(const ModuleInstall_FetchModulesResult *fetchModulesResult)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get total size from fetchModulesResult.
@@ -280,7 +291,8 @@ char *HMS_ModuleInstall_GetFetchModules(const ModuleInstall_FetchModulesResult *
  * @return Returns total size of fetch modules.
  * @since 5.0.3(15)
  */
-int HMS_ModuleInstall_GetFetchModulesTotalSize(const ModuleInstall_FetchModulesResult *fetchModulesResult);
+int HMS_ModuleInstall_GetFetchModulesTotalSize(const ModuleInstall_FetchModulesResult *fetchModulesResult)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get downloaded size from fetchModulesResult.
@@ -289,7 +301,8 @@ int HMS_ModuleInstall_GetFetchModulesTotalSize(const ModuleInstall_FetchModulesR
  * @return Returns downloaded size of fetch modules.
  * @since 5.0.3(15)
  */
-int HMS_ModuleInstall_GetFetchModulesDownloadedSize(const ModuleInstall_FetchModulesResult *fetchModulesResult);
+int HMS_ModuleInstall_GetFetchModulesDownloadedSize(const ModuleInstall_FetchModulesResult *fetchModulesResult)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief HMS_ModuleInstall_CancelTask.
@@ -306,7 +319,8 @@ int HMS_ModuleInstall_GetFetchModulesDownloadedSize(const ModuleInstall_FetchMod
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
  * @since 5.0.3(15)
  */
-ModuleInstall_ErrCode HMS_ModuleInstall_CancelTask(const char *taskId, unsigned int length, unsigned int cancelResult);
+ModuleInstall_ErrCode HMS_ModuleInstall_CancelTask(const char *taskId, unsigned int length, unsigned int cancelResult)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief HMS_ModuleInstall_ShowCellularDataConfirmation.
@@ -324,7 +338,8 @@ ModuleInstall_ErrCode HMS_ModuleInstall_CancelTask(const char *taskId, unsigned 
  * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_ShowCellularDataConfirmation(const char *taskId, unsigned int length,
-    unsigned int showResult);
+    unsigned int showResult)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Create StatusCallback
@@ -333,7 +348,8 @@ ModuleInstall_ErrCode HMS_ModuleInstall_ShowCellularDataConfirmation(const char 
  * @return Returns StatusCallback.
  * @since 5.0.3(15)
  */
-ModuleInstall_StatusCallback *HMS_ModuleInstall_CreateStatusCallback(ModuleInstall_OnStatusCallback *onStatusCallback);
+ModuleInstall_StatusCallback *HMS_ModuleInstall_CreateStatusCallback(ModuleInstall_OnStatusCallback *onStatusCallback)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief HMS_ModuleInstall_On.
@@ -351,7 +367,8 @@ ModuleInstall_StatusCallback *HMS_ModuleInstall_CreateStatusCallback(ModuleInsta
  * @since 5.0.3(15)
  */
 ModuleInstall_ErrCode HMS_ModuleInstall_On(const char *bundleName, unsigned int length, unsigned int appIndex,
-    unsigned int period, ModuleInstall_StatusCallback **callback);
+    unsigned int period, ModuleInstall_StatusCallback **callback)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Release statusCallback.
@@ -359,7 +376,8 @@ ModuleInstall_ErrCode HMS_ModuleInstall_On(const char *bundleName, unsigned int 
  * @param statusCallback statusCallback.
  * @since 5.0.3(15)
  */
-void HMS_ModuleInstall_ReleaseStatusCallback(ModuleInstall_StatusCallback *statusCallback);
+void HMS_ModuleInstall_ReleaseStatusCallback(ModuleInstall_StatusCallback *statusCallback)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief HMS_ModuleInstall_Off.
@@ -374,7 +392,8 @@ void HMS_ModuleInstall_ReleaseStatusCallback(ModuleInstall_StatusCallback *statu
  * @syscap SystemCapability.AppGalleryService.Distribution.OnDemandInstall
  * @since 5.0.3(15)
  */
-ModuleInstall_ErrCode HMS_ModuleInstall_Off(const char *bundleName, unsigned int length, unsigned int appIndex);
+ModuleInstall_ErrCode HMS_ModuleInstall_Off(const char *bundleName, unsigned int length, unsigned int appIndex)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 #ifdef __cplusplus
 };

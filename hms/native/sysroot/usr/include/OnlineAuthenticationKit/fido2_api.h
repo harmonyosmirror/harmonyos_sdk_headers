@@ -24,6 +24,7 @@
 #ifndef FIDO2_H
 #define FIDO2_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -681,21 +682,24 @@ typedef struct FIDO2_TokenBinding {
  * @param options Indicates the pointer to the FIDO2_CredentialCreationOptions struct to be initialized.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_initCreationOptions(FIDO2_CredentialCreationOptions *options);
+void HMS_FIDO2_initCreationOptions(FIDO2_CredentialCreationOptions *options)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Initialize the FIDO2_TokenBinding structure.
  * @param tokenBinding Pointer to the FIDO2_TokenBinding structure to be initialized.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_initTokenBinding(FIDO2_TokenBinding *tokenBinding);
+void HMS_FIDO2_initTokenBinding(FIDO2_TokenBinding *tokenBinding)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Initialize the FIDO2_CredentialRequestOptions structure.
  * @param options Indicates the pointer to the FIDO2_CredentialRequestOptions struct to be initialized.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_initRequestOptions(FIDO2_CredentialRequestOptions *options);
+void HMS_FIDO2_initRequestOptions(FIDO2_CredentialRequestOptions *options)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief When the value for a given capability is true, the feature is known to be currently supported by the client.
@@ -704,7 +708,8 @@ void HMS_FIDO2_initRequestOptions(FIDO2_CredentialRequestOptions *options);
  * code if the function fails to be executed. For details, see {@link FIDO2_ErrorCode}.
  * @since 6.0.0(20)
  */
-FIDO2_ErrorCode HMS_FIDO2_getClientCapability(FIDO2_CapabilityArray **capability);
+FIDO2_ErrorCode HMS_FIDO2_getClientCapability(FIDO2_CapabilityArray **capability)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the list of supported platform authenticators.
@@ -718,7 +723,8 @@ FIDO2_ErrorCode HMS_FIDO2_getClientCapability(FIDO2_CapabilityArray **capability
  * {@link FIDO2_CONNECT_SERVICE_FAILED} 1021300011 - Failed to connect to the service.
  * @since 6.0.0(20)
  */
-FIDO2_ErrorCode HMS_FIDO2_getPlatformAuthenticator(FIDO2_AuthenticatorMetadataArray **authenticators);
+FIDO2_ErrorCode HMS_FIDO2_getPlatformAuthenticator(FIDO2_AuthenticatorMetadataArray **authenticators)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Registration based on fido2, this interface can only be called from non-UI threads.
@@ -738,7 +744,8 @@ FIDO2_ErrorCode HMS_FIDO2_getPlatformAuthenticator(FIDO2_AuthenticatorMetadataAr
  * @since 6.0.0(20)
  */
 FIDO2_ErrorCode HMS_FIDO2_register(const FIDO2_CredentialCreationOptions options, const FIDO2_TokenBinding tokenBinding,
-    const char *origin, FIDO2_PublicKeyAttestationCredential **publicKeyAttestationCredential);
+    const char *origin, FIDO2_PublicKeyAttestationCredential **publicKeyAttestationCredential)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Authentication based on fido2, this interface can only be called from non-UI threads.
@@ -758,35 +765,40 @@ FIDO2_ErrorCode HMS_FIDO2_register(const FIDO2_CredentialCreationOptions options
  * @since 6.0.0(20)
  */
 FIDO2_ErrorCode HMS_FIDO2_authenticate(const FIDO2_CredentialRequestOptions options, const FIDO2_TokenBinding tokenBinding,
-    const char *origin, FIDO2_PublicKeyAssertionCredential **publicKeyAssertionCredential);
+    const char *origin, FIDO2_PublicKeyAssertionCredential **publicKeyAssertionCredential)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the capability array.
  * @param capability Indicates the capability array to be released.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_CapabilityArray_Destroy(FIDO2_CapabilityArray *capability);
+void HMS_FIDO2_CapabilityArray_Destroy(FIDO2_CapabilityArray *capability)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the array of authenticator metadata.
  * @param authenticators Indicates the array of authenticator metadata to be released.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_AuthenticatorMetadataArray_Destroy(FIDO2_AuthenticatorMetadataArray *authenticators);
+void HMS_FIDO2_AuthenticatorMetadataArray_Destroy(FIDO2_AuthenticatorMetadataArray *authenticators)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the struct of PublicKeyAttestationCredential.
  * @param publicKeyAttestationCredential Indicates the struct of PublicKeyAttestationCredential to be released.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_PublicKeyAttestationCredential_Destroy(FIDO2_PublicKeyAttestationCredential *publicKeyAttestationCredential);
+void HMS_FIDO2_PublicKeyAttestationCredential_Destroy(FIDO2_PublicKeyAttestationCredential *publicKeyAttestationCredential)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the array of PublicKeyAssertionCredential.
  * @param publicKeyAssertionCredential Indicates the struct of PublicKeyAssertionCredential to be released.
  * @since 6.0.0(20)
  */
-void HMS_FIDO2_PublicKeyAssertionCredential_Destroy(FIDO2_PublicKeyAssertionCredential *publicKeyAssertionCredential);
+void HMS_FIDO2_PublicKeyAssertionCredential_Destroy(FIDO2_PublicKeyAssertionCredential *publicKeyAssertionCredential)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

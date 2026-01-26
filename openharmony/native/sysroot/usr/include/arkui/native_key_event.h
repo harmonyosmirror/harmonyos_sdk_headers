@@ -36,6 +36,7 @@
 #ifndef ARKUI_NATIVE_KEY_EVENT_H
 #define ARKUI_NATIVE_KEY_EVENT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "native_type.h"
@@ -489,7 +490,8 @@ typedef enum {
  * @return Returns the key event type.
  * @since 14
  */
-ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
+ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the key code from a key event.
@@ -498,7 +500,8 @@ ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
  * @return Returns the key code.
  * @since 14
  */
-int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
+int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the key value from a key event.
@@ -507,7 +510,8 @@ int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
  * @return Returns the key value.
  * @since 14
  */
-const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
+const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the type of device that triggers a key event.
@@ -516,7 +520,8 @@ const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
  * @return Returns the device type.
  * @since 14
  */
-ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* event);
+ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Prevents a key event from bubbling up.
@@ -525,7 +530,8 @@ ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* eve
  * @param stopPropagation Whether to stop event propagation.
  * @since 14
  */
-void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
+void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the intention code associated with a key event.
@@ -534,7 +540,8 @@ void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool sto
  * @return Returns the intention code associated with the key event.
  * @since 14
  */
-ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEvent* event);
+ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the Unicode value associated with a key event.
@@ -546,7 +553,8 @@ ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEven
  * @return Returns the Unicode value.
  * @since 14
  */
-uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event);
+uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Sets whether a key event is consumed in the key event callback.
@@ -555,7 +563,8 @@ uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event);
  * @param isConsumed Whether the event is consumed.
  * @since 14
  */
-void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsumed);
+void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsumed)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Dispatch key event to a specific component node.
@@ -564,7 +573,8 @@ void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsu
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @since 15
  */
-void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
+void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the Num Lock state of the key event.
@@ -576,7 +586,8 @@ void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent*
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, bool* state);
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, bool* state)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Get the Caps Lock state of the key event.
@@ -588,7 +599,8 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, b
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, bool* state);
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, bool* state)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Get the Scroll Lock state of the key event.
@@ -600,7 +612,8 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, 
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
-ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event, bool* state);
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event, bool* state)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 #ifdef __cplusplus
 };
 #endif

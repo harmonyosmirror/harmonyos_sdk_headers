@@ -34,13 +34,11 @@
  * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
  * @since 12
  */
-
 #ifndef HIVIEWDFX_HIDEBUG_H
 #define HIVIEWDFX_HIDEBUG_H
-
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "hidebug_type.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
@@ -52,7 +50,7 @@ extern "C" {
  *         If the result is zero,The possible reason is that get failed.
  * @since 12
  */
-double OH_HiDebug_GetSystemCpuUsage();
+double OH_HiDebug_GetSystemCpuUsage() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the cpu usage percent of a process.
@@ -62,7 +60,7 @@ double OH_HiDebug_GetSystemCpuUsage();
  *         or acquisition has failed
  * @since 12
  */
-double OH_HiDebug_GetAppCpuUsage();
+double OH_HiDebug_GetAppCpuUsage() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains cpu usage of application's all thread.
@@ -72,7 +70,7 @@ double OH_HiDebug_GetAppCpuUsage();
  *         The possible reason is that no thread related data was obtained
  * @since 12
  */
-HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage();
+HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Free cpu usage buffer of application's all thread.
@@ -81,7 +79,8 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage();
  *        Use the pointer generated through the OH_HiDebug_GetAppThreadCpuUsage().
  * @since 12
  */
-void OH_HiDebug_FreeThreadCpuUsage(HiDebug_ThreadCpuUsagePtr *threadCpuUsage);
+void OH_HiDebug_FreeThreadCpuUsage(HiDebug_ThreadCpuUsagePtr *threadCpuUsage)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the system memory size.
@@ -90,7 +89,8 @@ void OH_HiDebug_FreeThreadCpuUsage(HiDebug_ThreadCpuUsagePtr *threadCpuUsage);
  *        If there is no data in structure after the function.The Possible reason is system error.
  * @since 12
  */
-void OH_HiDebug_GetSystemMemInfo(HiDebug_SystemMemInfo *systemMemInfo);
+void OH_HiDebug_GetSystemMemInfo(HiDebug_SystemMemInfo *systemMemInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the memory info of application process.
@@ -99,7 +99,8 @@ void OH_HiDebug_GetSystemMemInfo(HiDebug_SystemMemInfo *systemMemInfo);
  *        If there is no data in structure after the function.The Possible reason is system error.
  * @since 12
  */
-void OH_HiDebug_GetAppNativeMemInfo(HiDebug_NativeMemInfo *nativeMemInfo);
+void OH_HiDebug_GetAppNativeMemInfo(HiDebug_NativeMemInfo *nativeMemInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the memory info of application process, with optional caching to improve performance. The cached value
@@ -113,7 +114,8 @@ void OH_HiDebug_GetAppNativeMemInfo(HiDebug_NativeMemInfo *nativeMemInfo);
  *                     fresh data and refresh the cache.
  * @since 20
  */
-void OH_HiDebug_GetAppNativeMemInfoWithCache(HiDebug_NativeMemInfo *nativeMemInfo, bool forceRefresh);
+void OH_HiDebug_GetAppNativeMemInfoWithCache(HiDebug_NativeMemInfo *nativeMemInfo, bool forceRefresh)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the memory limit of application process.
@@ -122,7 +124,8 @@ void OH_HiDebug_GetAppNativeMemInfoWithCache(HiDebug_NativeMemInfo *nativeMemInf
  *        If there is no data in structure after the function.The Possible reason is system error.
  * @since 12
  */
-void OH_HiDebug_GetAppMemoryLimit(HiDebug_MemoryLimit *memoryLimit);
+void OH_HiDebug_GetAppMemoryLimit(HiDebug_MemoryLimit *memoryLimit)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Start capture application trace.
@@ -141,7 +144,8 @@ void OH_HiDebug_GetAppMemoryLimit(HiDebug_MemoryLimit *memoryLimit);
  * @since 12
  */
 HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag flag,
-    uint64_t tags, uint32_t limitSize, char* fileName, uint32_t length);
+    uint64_t tags, uint32_t limitSize, char* fileName, uint32_t length)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stop capture application trace.
@@ -151,7 +155,7 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag flag,
  *         11400105 - Have no trace running.
  * @since 12
  */
-HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture();
+HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the graphics memory of application.
@@ -163,7 +167,8 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture();
  *         {@link HIDEBUG_TRACE_ABNORMAL} Failed to get the application memory due to a remote exception.
  * @since 14
  */
-HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Replace MallocDispatch table with developer-defined memory allocation functions.
@@ -174,7 +179,8 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
  *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument, dispatchTable is a null pointer.
  * @since 20
  */
-HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable);
+HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtain current MallocDispatch table.
@@ -183,14 +189,15 @@ HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatc
  *
  * @since 20
  */
-HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void);
+HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Restore original MallocDispatch table.
  *
  * @since 20
  */
-void OH_HiDebug_RestoreMallocDispatchTable(void);
+void OH_HiDebug_RestoreMallocDispatchTable(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get backtrace frames start from the given frame pointer and the function is signal-safe.
@@ -202,7 +209,8 @@ void OH_HiDebug_RestoreMallocDispatchTable(void);
  * @return The number of stack frames written to array.
  * @since 20
  */
-int OH_HiDebug_BacktraceFromFp(HiDebug_Backtrace_Object object, void* startFp, void** pcArray, int size);
+int OH_HiDebug_BacktraceFromFp(HiDebug_Backtrace_Object object, void* startFp, void** pcArray, int size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the callback of the {@link OH_HiDebug_SymbolicAddress} function.
@@ -228,7 +236,8 @@ typedef void (*OH_HiDebug_SymbolicAddressCallback)(void* pc, void* arg, const Hi
  * @since 20
  */
 HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, void* pc, void* arg,
-    OH_HiDebug_SymbolicAddressCallback callback);
+    OH_HiDebug_SymbolicAddressCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a backtrace object for further using and the function is not signal-safe.
@@ -236,7 +245,8 @@ HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, vo
  * @return BacktraceObject if Success or NULL if is not supported on current arch
  * @since 20
  */
-HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void);
+HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy a backtrace object and the function is not signal-safe.
@@ -244,7 +254,8 @@ HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void);
  * @param object The object to be destroyed.
  * @since 20
  */
-void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object);
+void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtain the graphics memory summary of application.
@@ -259,11 +270,38 @@ void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object);
  *         {@link HIDEBUG_TRACE_ABNORMAL} Failed to get the application memory due to a remote exception.
  * @since 21
  */
-HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary);
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
+/**
+ * @brief Defines the callback of the lightweight performance stack.
+ *
+ * @param stacks Stacks.
+ * @since 22
+ */
+typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
+
+/**
+ * Requests stack sampling for the current process.
+ * The calling thread is blocked until the sampling is complete.
+ *
+ * @param config Sampling configuration parameters.
+ * @param stacksCallback Callback of the sampling stack. This function is called after the sampling to pass
+ * the sampling stack information.
+ * @return Result code.
+ *         {@link HIDEBUG_SUCCESS } The operation is successful.
+ *         {@link HIDEBUG_INVALID_ARGUMENT } Invalid argument.
+ *         {@link HIDEBUG_NOT_SUPPORTED } The device does not support sampling.
+ *         {@link HIDEBUG_UNDER_SAMPLING } The sampling is in progress.
+ *         {@link HIDEBUG_RESOURCE_UNAVAILABLE } Resource unavailable.
+ * @since 22
+ */
+HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
+    HiDebug_ProcessSamplerConfig* config, OH_HiDebug_ThreadLiteSamplingCallback stacksCallback)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-/** @} */
 
+/** @} */
 #endif // HIVIEWDFX_HIDEBUG_H

@@ -40,6 +40,7 @@
 #ifndef NATIVE_AVSESSION_H
 #define NATIVE_AVSESSION_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_avsession_errors.h"
 #include "native_avmetadata.h"
@@ -337,7 +338,8 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* sessionTag,
-    const char* bundleName, const char* abilityName, OH_AVSession** avsession);
+    const char* bundleName, const char* abilityName, OH_AVSession** avsession)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to destory the avsession.
@@ -348,7 +350,8 @@ AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* se
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession);
+AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Activate the avsession.
@@ -360,7 +363,8 @@ AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession);
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_Activate(OH_AVSession* avsession);
+AVSession_ErrCode OH_AVSession_Activate(OH_AVSession* avsession)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Deactivate the avsession.
@@ -372,7 +376,8 @@ AVSession_ErrCode OH_AVSession_Activate(OH_AVSession* avsession);
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_Deactivate(OH_AVSession* avsession);
+AVSession_ErrCode OH_AVSession_Deactivate(OH_AVSession* avsession)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get session type.
@@ -387,7 +392,8 @@ AVSession_ErrCode OH_AVSession_Deactivate(OH_AVSession* avsession);
  *                                                 2. The param of sessionType is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession_Type* sessionType);
+AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession_Type* sessionType)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get session id.
@@ -401,7 +407,8 @@ AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession
  *                                                 2. The param of sessionId is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char** sessionId);
+AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char** sessionId)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to set av metadata.
@@ -416,7 +423,8 @@ AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char*
  *                                                 2. The param of avmetadata is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetadata* avmetadata);
+AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetadata* avmetadata)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to set av playbackstate.
@@ -432,7 +440,8 @@ AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetad
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetPlaybackState(OH_AVSession* avsession,
-    AVSession_PlaybackState playbackState);
+    AVSession_PlaybackState playbackState)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to set playback position.
@@ -448,7 +457,8 @@ AVSession_ErrCode OH_AVSession_SetPlaybackState(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetPlaybackPosition(OH_AVSession* avsession,
-    AVSession_PlaybackPosition* playbackPosition);
+    AVSession_PlaybackPosition* playbackPosition)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to set favorite state.
@@ -461,7 +471,8 @@ AVSession_ErrCode OH_AVSession_SetPlaybackPosition(OH_AVSession* avsession,
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorite);
+AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorite)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to set loop mode.
@@ -476,7 +487,8 @@ AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorit
  *                                                 2. The param of loopMode is invalid.
  * @since 13
  */
-AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_LoopMode loopMode);
+AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_LoopMode loopMode)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to register command callback.
@@ -495,7 +507,8 @@ AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_Lo
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession,
-    AVSession_ControlCommand command, OH_AVSessionCallback_OnCommand callback, void* userData);
+    AVSession_ControlCommand command, OH_AVSessionCallback_OnCommand callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to unregister command callback.
@@ -513,7 +526,8 @@ AVSession_ErrCode OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterCommandCallback(OH_AVSession* avsession,
-    AVSession_ControlCommand command, OH_AVSessionCallback_OnCommand callback);
+    AVSession_ControlCommand command, OH_AVSessionCallback_OnCommand callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to register fastforward callback.
@@ -530,7 +544,8 @@ AVSession_ErrCode OH_AVSession_UnregisterCommandCallback(OH_AVSession* avsession
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnFastForward callback, void* userData);
+    OH_AVSessionCallback_OnFastForward callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to unregister fastforward callback.
@@ -546,7 +561,8 @@ AVSession_ErrCode OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterForwardCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnFastForward callback);
+    OH_AVSessionCallback_OnFastForward callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to register rewind callback.
@@ -563,7 +579,8 @@ AVSession_ErrCode OH_AVSession_UnregisterForwardCallback(OH_AVSession* avsession
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnRewind callback, void* userData);
+    OH_AVSessionCallback_OnRewind callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to unregister rewind callback.
@@ -579,7 +596,8 @@ AVSession_ErrCode OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterRewindCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnRewind callback);
+    OH_AVSessionCallback_OnRewind callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to register seek callback.
@@ -596,7 +614,8 @@ AVSession_ErrCode OH_AVSession_UnregisterRewindCallback(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnSeek callback, void* userData);
+    OH_AVSessionCallback_OnSeek callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to unregister seek callback.
@@ -612,7 +631,8 @@ AVSession_ErrCode OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterSeekCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnSeek callback);
+    OH_AVSessionCallback_OnSeek callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to register set loopmode callback.
@@ -629,7 +649,8 @@ AVSession_ErrCode OH_AVSession_UnregisterSeekCallback(OH_AVSession* avsession,
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterSetLoopModeCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnSetLoopMode callback, void* userData);
+    OH_AVSessionCallback_OnSetLoopMode callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to unregister set loopmode callback.
@@ -645,7 +666,8 @@ AVSession_ErrCode OH_AVSession_RegisterSetLoopModeCallback(OH_AVSession* avsessi
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterSetLoopModeCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnSetLoopMode callback);
+    OH_AVSessionCallback_OnSetLoopMode callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to register toggle favorite callback.
@@ -662,7 +684,8 @@ AVSession_ErrCode OH_AVSession_UnregisterSetLoopModeCallback(OH_AVSession* avses
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnToggleFavorite callback, void* userData);
+    OH_AVSessionCallback_OnToggleFavorite callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request to unregister toggle favorite callback.
@@ -678,7 +701,8 @@ AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avse
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterToggleFavoriteCallback(OH_AVSession* avsession,
-    OH_AVSessionCallback_OnToggleFavorite callback);
+    OH_AVSessionCallback_OnToggleFavorite callback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

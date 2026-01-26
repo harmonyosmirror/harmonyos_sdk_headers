@@ -36,6 +36,7 @@
 #ifndef CRYPTO_DIGEST_H
 #define CRYPTO_DIGEST_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 
 #ifdef __cplusplus
@@ -61,7 +62,8 @@ typedef struct OH_CryptoDigest OH_CryptoDigest;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoDigest_Create(const char *algoName, OH_CryptoDigest **ctx);
+OH_Crypto_ErrCode OH_CryptoDigest_Create(const char *algoName, OH_CryptoDigest **ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Update digest with dataBlob.
@@ -76,7 +78,8 @@ OH_Crypto_ErrCode OH_CryptoDigest_Create(const char *algoName, OH_CryptoDigest *
  * @see OH_CryptoDigest_Final
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoDigest_Update(OH_CryptoDigest *ctx, Crypto_DataBlob *in);
+OH_Crypto_ErrCode OH_CryptoDigest_Update(OH_CryptoDigest *ctx, Crypto_DataBlob *in)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Final digest with dataBlob.
@@ -91,7 +94,8 @@ OH_Crypto_ErrCode OH_CryptoDigest_Update(OH_CryptoDigest *ctx, Crypto_DataBlob *
  * @see OH_CryptoDigest_Update
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoDigest_Final(OH_CryptoDigest *ctx, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoDigest_Final(OH_CryptoDigest *ctx, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the digest length of the digest context.
@@ -101,7 +105,7 @@ OH_Crypto_ErrCode OH_CryptoDigest_Final(OH_CryptoDigest *ctx, Crypto_DataBlob *o
  *         If the input parameter ctx is NULL, 401 is returned, in other failure scenarios, 0 is returned.
  * @since 12
  */
-uint32_t OH_CryptoDigest_GetLength(OH_CryptoDigest *ctx);
+uint32_t OH_CryptoDigest_GetLength(OH_CryptoDigest *ctx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the algorithm name of the digest context.
@@ -110,7 +114,7 @@ uint32_t OH_CryptoDigest_GetLength(OH_CryptoDigest *ctx);
  * @return Return md algorithm name.
  * @since 12
  */
-const char *OH_CryptoDigest_GetAlgoName(OH_CryptoDigest *ctx);
+const char *OH_CryptoDigest_GetAlgoName(OH_CryptoDigest *ctx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the digest context.
@@ -118,7 +122,7 @@ const char *OH_CryptoDigest_GetAlgoName(OH_CryptoDigest *ctx);
  * @param ctx Indicates the digest context.
  * @since 12
  */
-void OH_DigestCrypto_Destroy(OH_CryptoDigest *ctx);
+void OH_DigestCrypto_Destroy(OH_CryptoDigest *ctx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

@@ -39,6 +39,7 @@
 #ifndef OH_PREDICATES_H
 #define OH_PREDICATES_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -423,7 +424,8 @@ struct OH_Predicates {
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
 */
-int OH_Predicates_NotLike(OH_Predicates *predicates, const char *field, const char *pattern);
+int OH_Predicates_NotLike(OH_Predicates *predicates, const char *field, const char *pattern)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the OH_Predicates to match the specified field whose data type is string and the value contains
@@ -437,7 +439,8 @@ int OH_Predicates_NotLike(OH_Predicates *predicates, const char *field, const ch
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
 */
-int OH_Predicates_Glob(OH_Predicates *predicates, const char *field, const char *pattern);
+int OH_Predicates_Glob(OH_Predicates *predicates, const char *field, const char *pattern)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the OH_Predicates to not match the specified field whose data type is string and the value contains
@@ -451,7 +454,8 @@ int OH_Predicates_Glob(OH_Predicates *predicates, const char *field, const char 
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
 */
-int OH_Predicates_NotGlob(OH_Predicates *predicates, const char *field, const char *pattern);
+int OH_Predicates_NotGlob(OH_Predicates *predicates, const char *field, const char *pattern)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the OH_Predicates to specify conditions to filter grouped results that will appear in the final result.
@@ -464,7 +468,8 @@ int OH_Predicates_NotGlob(OH_Predicates *predicates, const char *field, const ch
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
 */
-int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, const OH_Data_Values *values);
+int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, const OH_Data_Values *values)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 };
 #endif

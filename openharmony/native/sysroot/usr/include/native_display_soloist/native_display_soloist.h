@@ -38,6 +38,7 @@
 #ifndef C_INCLUDE_NATIVE_DISPLAY_SOLOIST_H_
 #define C_INCLUDE_NATIVE_DISPLAY_SOLOIST_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #ifdef __cplusplus
@@ -88,7 +89,8 @@ typedef struct {
  * @since 12
  * @version 1.0
  */
-OH_DisplaySoloist* OH_DisplaySoloist_Create(bool useExclusiveThread);
+OH_DisplaySoloist* OH_DisplaySoloist_Create(bool useExclusiveThread)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys a <b>OH_DisplaySoloist</b> instance and reclaims the memory occupied by the object.
@@ -98,7 +100,8 @@ OH_DisplaySoloist* OH_DisplaySoloist_Create(bool useExclusiveThread);
  * @since 12
  * @version 1.0
  */
-int32_t OH_DisplaySoloist_Destroy(OH_DisplaySoloist* displaySoloist);
+int32_t OH_DisplaySoloist_Destroy(OH_DisplaySoloist* displaySoloist)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Start to request next vsync with callback.
@@ -112,7 +115,8 @@ int32_t OH_DisplaySoloist_Destroy(OH_DisplaySoloist* displaySoloist);
  * @version 1.0
  */
 int32_t OH_DisplaySoloist_Start(
-    OH_DisplaySoloist* displaySoloist, OH_DisplaySoloist_FrameCallback callback, void* data);
+    OH_DisplaySoloist* displaySoloist, OH_DisplaySoloist_FrameCallback callback, void* data)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stop to request next vsync with callback.
@@ -122,7 +126,8 @@ int32_t OH_DisplaySoloist_Start(
  * @since 12
  * @version 1.0
  */
-int32_t OH_DisplaySoloist_Stop(OH_DisplaySoloist* displaySoloist);
+int32_t OH_DisplaySoloist_Stop(OH_DisplaySoloist* displaySoloist)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set vsync expected frame rate range.
@@ -135,7 +140,8 @@ int32_t OH_DisplaySoloist_Stop(OH_DisplaySoloist* displaySoloist);
  * @version 1.0
  */
 int32_t OH_DisplaySoloist_SetExpectedFrameRateRange(
-    OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range);
+    OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

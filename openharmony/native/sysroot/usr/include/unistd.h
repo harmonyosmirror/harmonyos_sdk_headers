@@ -1,6 +1,7 @@
 #ifndef	_UNISTD_H
 #define	_UNISTD_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -151,7 +152,7 @@ pid_t setpgrp(void);
  * @return Return the encrypted string or NULL in case of an error.
  * @since 12
 */
-char *crypt(const char *, const char *);
+char *crypt(const char *, const char *) __attribute__((__availability__(ohos, introduced=12.0.0)));
 void swab(const void *__restrict, void *__restrict, ssize_t);
 #endif
 
@@ -201,7 +202,7 @@ int syncfs(int);
  * 
  * @since 12
 */
-int eaccess(const char *, int);
+int eaccess(const char *, int) __attribute__((__availability__(ohos, introduced=12.0.0)));
 ssize_t copy_file_range(int, off_t *, int, off_t *, size_t, unsigned);
 pid_t gettid(void);
 #endif

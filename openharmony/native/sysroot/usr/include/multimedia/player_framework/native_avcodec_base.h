@@ -38,6 +38,7 @@
 #ifndef NATIVE_AVCODEC_BASE_H
 #define NATIVE_AVCODEC_BASE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avbuffer.h"
@@ -246,14 +247,14 @@ typedef struct OH_AVDataSourceExt {
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_AVC __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Enumerates the mime types of audio aac codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AAC;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AAC __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Enumerates the mime types of audio flac codec.
@@ -261,28 +262,28 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AAC;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_FLAC;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_FLAC __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Enumerates the mime types of audio vorbis codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VORBIS;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VORBIS __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Enumerates the mime types of audio mp3 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_MPEG;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_MPEG __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Enumerates the mime types of video hevc codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Enumerates the mime types of video mpeg4 muxer.
@@ -291,7 +292,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
  * @deprecated since 11
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Enumerates the mime types of cover jpg muxer.
@@ -299,21 +300,21 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_IMAGE_JPG;
+extern const char *OH_AVCODEC_MIMETYPE_IMAGE_JPG __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Enumerates the mime types of cover png muxer.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_IMAGE_PNG;
+extern const char *OH_AVCODEC_MIMETYPE_IMAGE_PNG __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Enumerates the mime types of cover bmp muxer.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_AVCODEC_MIMETYPE_IMAGE_BMP;
+extern const char *OH_AVCODEC_MIMETYPE_IMAGE_BMP __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Enumerates the mime types of audio vivid codec.
@@ -321,35 +322,35 @@ extern const char *OH_AVCODEC_MIMETYPE_IMAGE_BMP;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VIVID;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VIVID __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Enumerates the mime types of audio amrnb codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Enumerates the mime types of audio amrwb codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Enumerates the mime types of audio opus codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Enumerates the mime types of audio g711mu codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enumerates the mime type of audio ape codec.
@@ -357,7 +358,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates the MIME type of versatile video coding.
@@ -365,7 +366,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates the mime type of subtitle srt.
@@ -373,7 +374,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
+extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates the mime type of subtitle webvtt.
@@ -381,7 +382,7 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
+extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enumerates the mime type of audio raw stream.
@@ -389,7 +390,7 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 18
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Enumerates the mime types of audio G711 A-law codec.
@@ -397,7 +398,75 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Enumerates the mime types of ALAC (Apple Lossless Audio Codec).
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ALAC __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the mime types of audio AC-3 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AC3 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the mime types of audio Enhanced AC-3 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_EAC3 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+
+/**
+ * @brief Enumerates the mime types of windows media audio 1 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV1 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the mime types of windows media audio 2 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV2 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the mime types of windows media audio 9 professional codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Key for specifying the number of bytes per audio packet. The value type is int32_t.
+ *
+ * This key is required only for Windows Media audio decoders. The supported decoder MIME types
+ * include {@link OH_AVCODEC_MIMETYPE_AUDIO_WMAV1}, {@link OH_AVCODEC_MIMETYPE_AUDIO_WMAV2},
+ * and {@link OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO}.
+ *
+ * @since 22
+ */
+extern const char *OH_MD_KEY_BLOCK_ALIGN __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the mime types of audio GSM codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the mime types of audio GSM Microsoft varient codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Enumerates the MIME type of video mpeg2 codec.
@@ -405,14 +474,14 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2 __attribute__((__availability__(ohos, introduced=17.0.0)));
 /**
  * @brief Enumerates the MIME type of video mpeg4 part2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2 __attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Enumerates the MIME type of video h263 codec.
@@ -420,7 +489,35 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263 __attribute__((__availability__(ohos, introduced=17.0.0)));
+
+/**
+ * @brief Enumerates the MIME type of video VC-1 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VC1 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the MIME type of video MSVIDEO1 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the MIME type of video WMV3 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WMV3 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the MIME type of video MJPEG codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MJPEG __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
@@ -429,7 +526,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
  * @deprecated since 14
  * @since 9
  */
-extern const char *OH_ED_KEY_TIME_STAMP;
+extern const char *OH_ED_KEY_TIME_STAMP __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for endOfStream in surface's extraData, value type is bool.
  *
@@ -437,7 +534,7 @@ extern const char *OH_ED_KEY_TIME_STAMP;
  * @deprecated since 14
  * @since 9
  */
-extern const char *OH_ED_KEY_EOS;
+extern const char *OH_ED_KEY_EOS __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Key for track type, value type is int32_t, see {@link OH_MediaType}.
@@ -445,77 +542,77 @@ extern const char *OH_ED_KEY_EOS;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_TRACK_TYPE;
+extern const char *OH_MD_KEY_TRACK_TYPE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for codec mime type, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_CODEC_MIME;
+extern const char *OH_MD_KEY_CODEC_MIME __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for file duration in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_DURATION;
+extern const char *OH_MD_KEY_DURATION __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for bitrate, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_BITRATE;
+extern const char *OH_MD_KEY_BITRATE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for max input size, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
+extern const char *OH_MD_KEY_MAX_INPUT_SIZE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for video width, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_WIDTH;
+extern const char *OH_MD_KEY_WIDTH __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for video height, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_HEIGHT;
+extern const char *OH_MD_KEY_HEIGHT __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for video pixel format, value type is int32_t, see {@link OH_AVPixelFormat}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_PIXEL_FORMAT;
+extern const char *OH_MD_KEY_PIXEL_FORMAT __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief key for audio raw format, value type is int32_t , see {@link OH_BitsPerSample}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_AUDIO_SAMPLE_FORMAT;
+extern const char *OH_MD_KEY_AUDIO_SAMPLE_FORMAT __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for video frame rate, value type is double.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_FRAME_RATE;
+extern const char *OH_MD_KEY_FRAME_RATE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief video encode bitrate mode, the value type is int32_t, see {@link OH_VideoEncodeBitrateMode}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE;
+extern const char *OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief encode profile, the value type is int32_t. see {@link OH_AVCProfile}, {@link OH_HEVCProfile},
  * {@link OH_AACProfile}.
@@ -523,21 +620,21 @@ extern const char *OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_PROFILE;
+extern const char *OH_MD_KEY_PROFILE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for audio channel count, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_AUD_CHANNEL_COUNT;
+extern const char *OH_MD_KEY_AUD_CHANNEL_COUNT __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for audio sample rate, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
+extern const char *OH_MD_KEY_AUD_SAMPLE_RATE __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key for the interval of key frame. value type is int32_t, the unit is milliseconds. A negative value means no
  * key frames are requested after the first frame. A zero value means a stream containing all key frames is requested.
@@ -545,14 +642,33 @@ extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
+extern const char *OH_MD_KEY_I_FRAME_INTERVAL __attribute__((__availability__(ohos, introduced=9.0.0)));
 /**
  * @brief Key of the surface rotation angle. value type is int32_t: should be {0, 90, 180, 270}, default is 0.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-extern const char *OH_MD_KEY_ROTATION;
+extern const char *OH_MD_KEY_ROTATION __attribute__((__availability__(ohos, introduced=9.0.0)));
+
+/**
+ * @brief Key for video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
+ *
+ * This key is used to set the surface transform for video decoders (surface mode).
+ * If not specified, the default value is 0 ({@link NATIVEBUFFER_ROTATE_NONE}).
+ * This key and {@link OH_MD_KEY_ROTATION} are mutually exclusive. If both are provided,
+ * OH_MD_KEY_VIDEO_TRANSFORM_TYPE takes precedence.
+ * Note that the degrees specified in {@link OH_NativeBuffer_TransformType} represent counter-clockwise rotation,
+ * which are opposite to the direction of rotation defined by {@link OH_MD_KEY_ROTATION}.
+ * The correspondence is:
+ * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
+ * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
+ * - {@link NATIVEBUFFER_ROTATE_180}   => same as OH_MD_KEY_ROTATION = 180
+ * - {@link NATIVEBUFFER_ROTATE_270}   => same as OH_MD_KEY_ROTATION = 90
+ *
+ * @since 22
+ */
+extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Key for video YUV value range flag, value type is bool, true for full range, false for limited range.
@@ -560,35 +676,35 @@ extern const char *OH_MD_KEY_ROTATION;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_RANGE_FLAG;
+extern const char *OH_MD_KEY_RANGE_FLAG __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for video color primaries, value type is int32_t, see {@link OH_ColorPrimary}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_COLOR_PRIMARIES;
+extern const char *OH_MD_KEY_COLOR_PRIMARIES __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for video transfer characteristics, value type is int32_t, see {@link OH_TransferCharacteristic}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_TRANSFER_CHARACTERISTICS;
+extern const char *OH_MD_KEY_TRANSFER_CHARACTERISTICS __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for video matrix coefficients, value type is int32_t, see {@link OH_MatrixCoefficient}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_MATRIX_COEFFICIENTS;
+extern const char *OH_MD_KEY_MATRIX_COEFFICIENTS __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for the request an I-Frame immediately, value type is bool.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_REQUEST_I_FRAME;
+extern const char *OH_MD_KEY_REQUEST_I_FRAME __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for the desired encoding quality, value type is int32_t, this key is only.
  * supported for encoders that are configured in constant quality mode.
@@ -596,105 +712,105 @@ extern const char *OH_MD_KEY_REQUEST_I_FRAME;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_QUALITY;
+extern const char *OH_MD_KEY_QUALITY __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key of the codec specific data. value type is a uint8_t pointer.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_CODEC_CONFIG;
+extern const char *OH_MD_KEY_CODEC_CONFIG __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for title, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_TITLE;
+extern const char *OH_MD_KEY_TITLE __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for artist, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_ARTIST;
+extern const char *OH_MD_KEY_ARTIST __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for album, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_ALBUM;
+extern const char *OH_MD_KEY_ALBUM __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for album artist, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_ALBUM_ARTIST;
+extern const char *OH_MD_KEY_ALBUM_ARTIST __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for date, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_DATE;
+extern const char *OH_MD_KEY_DATE __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for comment, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_COMMENT;
+extern const char *OH_MD_KEY_COMMENT __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for genre, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_GENRE;
+extern const char *OH_MD_KEY_GENRE __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for copyright, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_COPYRIGHT;
+extern const char *OH_MD_KEY_COPYRIGHT __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for language, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_LANGUAGE;
+extern const char *OH_MD_KEY_LANGUAGE __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for description, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_DESCRIPTION;
+extern const char *OH_MD_KEY_DESCRIPTION __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for lyrics, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_LYRICS;
+extern const char *OH_MD_KEY_LYRICS __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief source format Key for track count, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_TRACK_COUNT;
+extern const char *OH_MD_KEY_TRACK_COUNT __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for the desired encoding channel layout, value type is int64_t, this key is only supported for encoders.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
+extern const char *OH_MD_KEY_CHANNEL_LAYOUT __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for bits per coded sample, value type is int32_t, supported for flac encoder,
  * see {@link OH_BitsPerSample}.
@@ -702,42 +818,42 @@ extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_BITS_PER_CODED_SAMPLE;
+extern const char *OH_MD_KEY_BITS_PER_CODED_SAMPLE __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for the aac format, value type is int32_t, supported for aac decoder.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_AAC_IS_ADTS;
+extern const char *OH_MD_KEY_AAC_IS_ADTS __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for aac sbr mode, value type is int32_t, supported for aac encoder.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_SBR;
+extern const char *OH_MD_KEY_SBR __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for flac compliance level, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_COMPLIANCE_LEVEL;
+extern const char *OH_MD_KEY_COMPLIANCE_LEVEL __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for vorbis identification header, value type is a uint8_t pointer, supported only for vorbis decoder.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_IDENTIFICATION_HEADER;
+extern const char *OH_MD_KEY_IDENTIFICATION_HEADER __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for vorbis setup header, value type is a uint8_t pointer, supported only for vorbis decoder.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_KEY_SETUP_HEADER;
+extern const char *OH_MD_KEY_SETUP_HEADER __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for video scale type, value type is int32_t, see {@link OH_ScalingMode}.
  *
@@ -746,21 +862,21 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
  * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  * @since 10
  */
-extern const char *OH_MD_KEY_SCALING_MODE;
+extern const char *OH_MD_KEY_SCALING_MODE __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for max input buffer count, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_MAX_INPUT_BUFFER_COUNT;
+extern const char *OH_MD_MAX_INPUT_BUFFER_COUNT __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Key for max output buffer count, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-extern const char *OH_MD_MAX_OUTPUT_BUFFER_COUNT;
+extern const char *OH_MD_MAX_OUTPUT_BUFFER_COUNT __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Key for audio codec compression level, value type is int32_t.
@@ -768,28 +884,28 @@ extern const char *OH_MD_MAX_OUTPUT_BUFFER_COUNT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_MD_KEY_AUDIO_COMPRESSION_LEVEL;
+extern const char *OH_MD_KEY_AUDIO_COMPRESSION_LEVEL __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Key of the video is hdr vivid. value type is bool.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_MD_KEY_VIDEO_IS_HDR_VIVID;
+extern const char *OH_MD_KEY_VIDEO_IS_HDR_VIVID __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Key for number of audio objects. value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER;
+extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Key for meta data of audio vivid. value type is a uint8_t pointer.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA;
+extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Key for querying the maximum long-term reference count of video encoder, value type is int32_t.
@@ -799,7 +915,8 @@ extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT;
+extern const char *OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for enable the temporal scalability mode, value type is int32_t (0 or 1): 1 is enabled, 0 otherwise.
  * The default value is 0. To query supported, you should use the interface {@link OH_AVCapability_IsFeatureSupported}
@@ -809,7 +926,8 @@ extern const char *OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the temporal group of picture size, value type is int32_t. It takes effect only when
  * temporal level scale is enable. This is an optional key that applies only to video encoder. It is used in configure.
@@ -817,7 +935,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the reference mode in temporal group of picture, value type is int32_t, see enum
  * {@link OH_TemporalGopReferenceMode}. It takes effect only when temporal level sacle is enabled.
@@ -826,7 +944,8 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the count of used long-term reference frames, value type is int32_t, must be within the
  * supported range. To get supported range, you should query wthether the capability is supported through the interface
@@ -836,7 +955,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing mark this frame as a long term reference frame, value type is int32_t (0 or 1): 1 is mark,
  * 0 otherwise. It takes effect only when the number of used long term reference frames is configured. This is an
@@ -845,7 +964,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the long term reference frame poc referenced by this frame, value type is int32_t. This is
  * an optional key that applies only to video encoder input loop. It takes effect immediately.
@@ -853,7 +972,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for indicating this frame is a long-term reference frame, value type is int32_t (0 or 1): 1 is LTR,
  * 0 otherwise. This is an optional key that applies only to video encoder output loop.
@@ -862,7 +981,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR;
+extern const char *OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the frame poc, value type is int32_t. This is an optional key that applies only to video
  * encoder output loop. It indicates the attribute of the frame.
@@ -870,7 +989,7 @@ extern const char *OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_PER_FRAME_POC;
+extern const char *OH_MD_KEY_VIDEO_PER_FRAME_POC __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the top-coordinate (y) of the crop rectangle, value type is int32_t. This is the top-most
  * row included in the crop frame, where row indices start at 0.
@@ -878,7 +997,7 @@ extern const char *OH_MD_KEY_VIDEO_PER_FRAME_POC;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_CROP_TOP;
+extern const char *OH_MD_KEY_VIDEO_CROP_TOP __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the bottom-coordinate (y) of the crop rectangle, value type is int32_t. This is the
  * bottom-most row included in the crop frame, where row indices start at 0.
@@ -886,7 +1005,7 @@ extern const char *OH_MD_KEY_VIDEO_CROP_TOP;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_CROP_BOTTOM;
+extern const char *OH_MD_KEY_VIDEO_CROP_BOTTOM __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the left-coordinate (x) of the crop rectangle, value type is int32_t.
  * This is the left-most column included in the crop frame, where column indices start at 0.
@@ -894,7 +1013,7 @@ extern const char *OH_MD_KEY_VIDEO_CROP_BOTTOM;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_CROP_LEFT;
+extern const char *OH_MD_KEY_VIDEO_CROP_LEFT __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the right-coordinate (x) of the crop rectangle, value type is int32_t. This is the
  * right-most column included in the crop frame, where column indices start at 0.
@@ -902,7 +1021,7 @@ extern const char *OH_MD_KEY_VIDEO_CROP_LEFT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
+extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the stride of the video buffer layout, value type is int32_t. Stride (or row increment) is
  * the difference between the index of a pixel and that of the pixel directly underneath. For YUV 420 formats, the
@@ -912,7 +1031,7 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_STRIDE;
+extern const char *OH_MD_KEY_VIDEO_STRIDE __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the plane height of a multi-planar (YUV) video buffer layout, value type is int32_t.
  * Slice height (or plane height/vertical stride) is the number of rows that must be skipped to get from
@@ -923,7 +1042,7 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
+extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the valid picture width of the video, value type is int32_t.
  * Get the value from an OH_AVFormat instance, which obtained by calling {@link OH_VideoDecoder_GetOutputDescription}
@@ -932,7 +1051,7 @@ extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
+extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the valid picture height of the video, value type is int32_t.
  * Get the value from an OH_AVFormat instance, which obtained by calling {@link OH_VideoDecoder_GetOutputDescription}
@@ -941,7 +1060,7 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT;
+extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key to enable the low latency mode, value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
  * If enabled, the video decoder doesn't hold input and output data more than required by
@@ -951,7 +1070,7 @@ extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY;
+extern const char *OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the maximum quantization parameter allowed for video encoder, value type is int32_t.
  * It is used in configure/setparameter or takes effect immediately with the frame.
@@ -959,7 +1078,7 @@ extern const char *OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the minimum quantization parameter allowed for video encoder, value type is int32_t.
  * It is used in configure/setparameter or takes effect immediately with the frame.
@@ -967,7 +1086,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MIN;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MIN __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing the video frame averge quantization parameter, value type is int32_t.
  * This is a part of a video encoder statistics export feature. This value is emitted from video encoder for a video
@@ -976,7 +1095,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MIN;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing video frame mean squared error, value type is double.
  * This is a part of a video encoder statistics export feature. This value is emitted from video encoder for a video
@@ -985,42 +1104,42 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_MSE;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_MSE __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for decoding timestamp of the buffer in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_DECODING_TIMESTAMP;
+extern const char *OH_MD_KEY_DECODING_TIMESTAMP __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for duration of the buffer in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_BUFFER_DURATION;
+extern const char *OH_MD_KEY_BUFFER_DURATION __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for sample aspect ratio, value type is double.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_SAR;
+extern const char *OH_MD_KEY_VIDEO_SAR __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for start time of the first frame in the media file in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_START_TIME;
+extern const char *OH_MD_KEY_START_TIME __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for start time of track in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_TRACK_START_TIME;
+extern const char *OH_MD_KEY_TRACK_START_TIME __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for setting the output color space of video decoder. The value type is int32_t.
  * The supported value is {@link OH_COLORSPACE_BT709_LIMIT}, see {@link OH_NativeBuffer_ColorSpace}. It is used in
@@ -1034,7 +1153,7 @@ extern const char *OH_MD_KEY_TRACK_START_TIME;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
-extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
+extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Key for describing if enable VRR or not, value type is int32_t (0 or 1): 1 is enabled, 0 otherwise.
  * This is an optional key that applies only to video decoder. It is used in configure.
@@ -1042,14 +1161,14 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 15
  */
-extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
+extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR __attribute__((__availability__(ohos, introduced=15.0.0)));
 /**
  * @brief Key for creation timestamp of a media file, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 14
  */
-extern const char *OH_MD_KEY_CREATION_TIME;
+extern const char *OH_MD_KEY_CREATION_TIME __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Key applies only when configuring a video encoder in surface mode, value type is int32_t.
  * If no new frame became available since the last frame submitted to the encoder,
@@ -1058,7 +1177,8 @@ extern const char *OH_MD_KEY_CREATION_TIME;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 18
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 /**
  * @brief Key for describing the maximum count that the frame previously submitted to the encoder will be
  * repeated, in case no new frame has been available since, value type is int32_t. This key takes effect only when
@@ -1067,7 +1187,8 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 18
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 /**
  * @brief Key to enable B-frame encoding, value type is int32_t (0 or 1): 1 is enabled, 0 otherwise.
  *
@@ -1081,7 +1202,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME __attribute__((__availability__(ohos, introduced=20.0.0)));
  
 /**
  * @brief Key for describing the maximum B-frame count of video encoder, value type is int32_t.
@@ -1097,7 +1218,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Key to set the region of interest(ROI) as QpOffset-Rects, value type is string in the format
  * "Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;". Each "Top,Left-Bottom,Right=Offset"
@@ -1113,7 +1234,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  *
  * @brief Key for front moov of the mp4 and m4a media file, value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
@@ -1121,7 +1242,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
-extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
+extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Key for the desired encoding quality, value type is int32_t, this key is only
  * supported for encoders that are configured in Stable Quality RateControl, the higher
@@ -1130,35 +1251,35 @@ extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
-extern const char *OH_MD_KEY_SQR_FACTOR;
+extern const char *OH_MD_KEY_SQR_FACTOR __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Key for maximum bitrate, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
-extern const char *OH_MD_KEY_MAX_BITRATE;
+extern const char *OH_MD_KEY_MAX_BITRATE __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Key for describing the reference relationship between tracks, value type is int32_t*.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
-extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS;
+extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Key for describing the track reference type, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
-extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
+extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Key for describing the track description, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
-extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
+extern const char *OH_MD_KEY_TRACK_DESCRIPTION __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Key to enable Bitrate Control Based on Presentation Time Stamp(PTS),
@@ -1170,7 +1291,8 @@ extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Key to enable synchronous mode, value type is (0 or 1): 1 is enabled, 0 otherwise.
@@ -1184,7 +1306,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
-extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
+extern const char *OH_MD_KEY_ENABLE_SYNC_MODE __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Key for specifying whether to output a blank frame during video decoder shutdown,
@@ -1198,7 +1320,21 @@ extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
  *
  * @since 20
  */
-extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
+extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Key for querying native buffer pixel formats for video codec operations, value type is int32_t.
+ * The value represents pixel formats defined in {@link OH_NativeBuffer_Format}.
+ *
+ * This key serves two primary purposes:
+ * 1. Runtime decoder output: Get current output format via {@link OH_VideoDecoder_GetOutputDescription}
+ * or {@link OH_AVCodecOnStreamChanged} events.
+ * 2. Runtime encoder input: Get current input format via {@link OH_VideoEncoder_GetInputDescription}.
+ *
+ * @since 22
+ */
+extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Media type.
@@ -1388,6 +1524,32 @@ typedef enum OH_H263Profile {
     /** Version 1 backward compatibility profile */
     H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2,
 } OH_H263Profile;
+
+/**
+ * @brief VC-1 Profile
+ *
+ * @since 22
+ */
+typedef enum OH_VC1Profile {
+    /** Simple profile */
+    VC1_PROFILE_SIMPLE = 0,
+    /** Main profile */
+    VC1_PROFILE_MAIN = 1,
+    /** Advanced profile */
+    VC1_PROFILE_ADVANCED = 2,
+} OH_VC1Profile;
+
+/**
+ * @brief WMV3 Profile
+ *
+ * @since 22
+ */
+typedef enum OH_WMV3Profile {
+    /** Simple profile */
+    WMV3_PROFILE_SIMPLE = 0,
+    /** Main profile */
+    WMV3_PROFILE_MAIN = 1,
+} OH_WMV3Profile;
 
 /**
  * @brief Enumerates the muxer output file format
@@ -1712,6 +1874,44 @@ typedef enum OH_H263Level {
     /** 70 level */
     H263_LEVEL_70 = 7,
 } OH_H263Level;
+
+/**
+ * @brief VC-1 Level.
+ *
+ * @since 22
+ */
+typedef enum OH_VC1Level {
+    /** L0 level */
+    VC1_LEVEL_L0 = 0,
+    /** L1 level */
+    VC1_LEVEL_L1 = 1,
+    /** L2 level */
+    VC1_LEVEL_L2 = 2,
+    /** L3 level */
+    VC1_LEVEL_L3 = 3,
+    /** L4 level */
+    VC1_LEVEL_L4 = 4,
+    /** LOW level */
+    VC1_LEVEL_LOW = 5,
+    /** MEDIUM level */
+    VC1_LEVEL_MEDIUM = 6,
+    /** HIGH level */
+    VC1_LEVEL_HIGH = 7,
+} OH_VC1Level;
+
+/**
+ * @brief WMV3 Level.
+ *
+ * @since 22
+ */
+typedef enum OH_WMV3Level {
+    /** LOW level */
+    WMV3_LEVEL_LOW = 0,
+    /** MEDIUM level */
+    WMV3_LEVEL_MEDIUM = 1,
+    /** HIGH level */
+    WMV3_LEVEL_HIGH = 2,
+} OH_WMV3Level;
 
 /**
  * @brief The reference mode in temporal group of picture.

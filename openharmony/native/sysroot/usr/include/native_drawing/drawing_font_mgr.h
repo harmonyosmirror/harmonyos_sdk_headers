@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_FONT_MGR_H
 #define C_INCLUDE_DRAWING_FONT_MGR_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 #include "drawing_text_typography.h"
 #include <stdint.h>
@@ -56,7 +57,7 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontMgr* OH_Drawing_FontMgrCreate(void);
+OH_Drawing_FontMgr* OH_Drawing_FontMgrCreate(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_FontMgr</b> object.
@@ -66,7 +67,8 @@ OH_Drawing_FontMgr* OH_Drawing_FontMgrCreate(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr);
+void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the count of font families.
@@ -77,7 +79,8 @@ void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr);
  * @since 12
  * @version 1.0
  */
-int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr);
+int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the font family name by the index.
@@ -89,7 +92,8 @@ int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr);
  * @since 12
  * @version 1.0
  */
-char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int index);
+char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by font family name.
@@ -99,7 +103,7 @@ char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int in
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontMgrDestroyFamilyName(char* familyName);
+void OH_Drawing_FontMgrDestroyFamilyName(char* familyName) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_FontStyleSet</b> object by <b>OH_Drawing_FontMgr</b> object.
@@ -111,7 +115,8 @@ void OH_Drawing_FontMgrDestroyFamilyName(char* familyName);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr* drawingFontMgr, int index);
+OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr* drawingFontMgr, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_FontStyleSet</b> object.
@@ -121,7 +126,8 @@ OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontStyleSet);
+void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontStyleSet)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the pointer to an <b>OH_Drawing_FontStyleSet</b> object for the given font style set family name.
@@ -133,7 +139,8 @@ void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontS
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName);
+OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the pointer to an <b>OH_Drawing_Typeface</b> object based on the given font style and family name.
@@ -147,7 +154,8 @@ OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawi
  * @version 1.0
  */
 OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* drawingFontMgr,
-    const char* familyName, OH_Drawing_FontStyleStruct fontStyle);
+    const char* familyName, OH_Drawing_FontStyleStruct fontStyle)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the pointer to an <b>OH_Drawing_Typeface</b> object for the given character.
@@ -165,7 +173,8 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* draw
  */
 OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_FontMgr* drawingFontMgr,
     const char* familyName, OH_Drawing_FontStyleStruct fontStyle,
-    const char* bcp47[], int bcp47Count, int32_t character);
+    const char* bcp47[], int bcp47Count, int32_t character)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a typeface for the given index.
@@ -177,7 +186,8 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_Font
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleSet* fontStyleSet, int index);
+OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleSet* fontStyleSet, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
  /**
  * @brief Get font style for the specified typeface.
@@ -191,7 +201,8 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleS
  * @version 1.0
  */
 OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleSet* fontStyleSet, int32_t index,
-    char** styleName);
+    char** styleName)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
  /**
  * @brief Releases the memory  styleName string.
@@ -201,7 +212,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleS
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontStyleSetFreeStyleName(char** styleName);
+void OH_Drawing_FontStyleSetFreeStyleName(char** styleName) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the closest matching typeface.
@@ -214,7 +225,8 @@ void OH_Drawing_FontStyleSetFreeStyleName(char** styleName);
  * @version 1.0
  */
 OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* fontStyleSet,
-    OH_Drawing_FontStyleStruct fontStyleStruct);
+    OH_Drawing_FontStyleStruct fontStyleStruct)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the count of typeface.
@@ -225,7 +237,8 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* 
  * @since 12
  * @version 1.0
  */
-int OH_Drawing_FontStyleSetCount(OH_Drawing_FontStyleSet* fontStyleSet);
+int OH_Drawing_FontStyleSetCount(OH_Drawing_FontStyleSet* fontStyleSet)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

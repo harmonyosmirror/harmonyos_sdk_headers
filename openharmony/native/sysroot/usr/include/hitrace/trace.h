@@ -46,6 +46,7 @@
 #ifndef HIVIEWDFX_HITRACE_H
 #define HIVIEWDFX_HITRACE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -277,15 +278,11 @@ typedef enum HiTrace_Communication_Mode {
  * @brief Enumerates the HiTrace output levels. The output level threshold system parameter determines
  * the minimum output trace.
  *
- * @atomicservice
- *
  * @since 19
  */
 typedef enum HiTrace_Output_Level {
     /**
      * @brief Output level only for debug usage.
-     *
-     * @atomicservice
      *
      * @since 19
      */
@@ -293,15 +290,11 @@ typedef enum HiTrace_Output_Level {
     /**
      * @brief Output level for log version usage.
      *
-     * @atomicservice
-     *
      * @since 19
      */
     HITRACE_LEVEL_INFO = 1,
     /**
      * @brief Output level for log version usage, with higher priority than HITRACE_LEVEL_INFO.
-     *
-     * @atomicservice
      *
      * @since 19
      */
@@ -309,15 +302,11 @@ typedef enum HiTrace_Output_Level {
     /**
      * @brief Output level for nolog version usage.
      *
-     * @atomicservice
-     *
      * @since 19
      */
     HITRACE_LEVEL_COMMERCIAL = 3,
     /**
      * @brief Output level for range limit.
-     *
-     * @atomicservice
      *
      * @since 19
      */
@@ -366,6 +355,15 @@ typedef struct HiTraceId {
 } HiTraceId;
 
 /**
+ * @brief Defines the callback type used in trace status switch event.
+ *     The value of traceStatus indicates the current trace status.
+ *
+ * @param traceStatus The current trace status, true for open, false for close.
+ * @since 22
+ */
+typedef void (*OH_HiTrace_TraceEventListener)(bool traceStatus);
+
+/**
  * @brief Starts tracing of a process.
  *
  * This API starts tracing, creates a <b>HiTraceId</b> instance, and sets it to the TLS of the calling thread.
@@ -379,7 +377,7 @@ typedef struct HiTraceId {
  *
  * @since 12
  */
-HiTraceId OH_HiTrace_BeginChain(const char *name, int flags);
+HiTraceId OH_HiTrace_BeginChain(const char *name, int flags) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Ends tracing and clears the <b>HiTraceId</b> instance of the calling thread from the TLS.
@@ -389,7 +387,7 @@ HiTraceId OH_HiTrace_BeginChain(const char *name, int flags);
  *
  * @since 12
  */
-void OH_HiTrace_EndChain();
+void OH_HiTrace_EndChain() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the trace ID of the calling thread from the TLS.
@@ -402,7 +400,7 @@ void OH_HiTrace_EndChain();
  *
  * @since 12
  */
-HiTraceId OH_HiTrace_GetId();
+HiTraceId OH_HiTrace_GetId() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the trace ID of the calling thread. If the ID is invalid, no operation is performed.
@@ -415,7 +413,7 @@ HiTraceId OH_HiTrace_GetId();
  *
  * @since 12
  */
-void OH_HiTrace_SetId(const HiTraceId *id);
+void OH_HiTrace_SetId(const HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clears the trace ID of the calling thread and invalidates it.
@@ -426,7 +424,7 @@ void OH_HiTrace_SetId(const HiTraceId *id);
  *
  * @since 12
  */
-void OH_HiTrace_ClearId(void);
+void OH_HiTrace_ClearId(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a span ID based on the trace ID of the calling thread.
@@ -440,7 +438,7 @@ void OH_HiTrace_ClearId(void);
  *
  * @since 12
  */
-HiTraceId OH_HiTrace_CreateSpan(void);
+HiTraceId OH_HiTrace_CreateSpan(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Prints HiTrace information, including the trace ID.
@@ -457,7 +455,8 @@ HiTraceId OH_HiTrace_CreateSpan(void);
  * @since 12
  */
 void OH_HiTrace_Tracepoint(
-    HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId *id, const char *fmt, ...);
+    HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId *id, const char *fmt, ...)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Initializes a <b>HiTraceId</b> structure.
@@ -468,7 +467,7 @@ void OH_HiTrace_Tracepoint(
  *
  * @since 12
  */
-void OH_HiTrace_InitId(HiTraceId *id);
+void OH_HiTrace_InitId(HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a <b>HiTraceId</b> structure based on a byte array.
@@ -481,7 +480,8 @@ void OH_HiTrace_InitId(HiTraceId *id);
  *
  * @since 12
  */
-void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len);
+void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether a <b>HiTraceId</b> instance is valid.
@@ -494,7 +494,7 @@ void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len);
  *
  * @since 12
  */
-bool OH_HiTrace_IsIdValid(const HiTraceId *id);
+bool OH_HiTrace_IsIdValid(const HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether the specified trace flag in a <b>HiTraceId</b> instance is enabled.
@@ -508,7 +508,8 @@ bool OH_HiTrace_IsIdValid(const HiTraceId *id);
  *
  * @since 12
  */
-bool OH_HiTrace_IsFlagEnabled(const HiTraceId *id, HiTrace_Flag flag);
+bool OH_HiTrace_IsFlagEnabled(const HiTraceId *id, HiTrace_Flag flag)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enables the specified trace flag in a <b>HiTraceId</b> instance.
@@ -521,7 +522,8 @@ bool OH_HiTrace_IsFlagEnabled(const HiTraceId *id, HiTrace_Flag flag);
  *
  * @since 12
  */
-void OH_HiTrace_EnableFlag(const HiTraceId *id, HiTrace_Flag flag);
+void OH_HiTrace_EnableFlag(const HiTraceId *id, HiTrace_Flag flag)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the trace flag set in a <b>HiTraceId</b> instance.
@@ -534,7 +536,7 @@ void OH_HiTrace_EnableFlag(const HiTraceId *id, HiTrace_Flag flag);
  *
  * @since 12
  */
-int OH_HiTrace_GetFlags(const HiTraceId *id);
+int OH_HiTrace_GetFlags(const HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the trace flag for a <b>HiTraceId</b> instance.
@@ -546,7 +548,7 @@ int OH_HiTrace_GetFlags(const HiTraceId *id);
  *
  * @since 12
  */
-void OH_HiTrace_SetFlags(HiTraceId *id, int flags);
+void OH_HiTrace_SetFlags(HiTraceId *id, int flags) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the trace chain ID.
@@ -559,7 +561,7 @@ void OH_HiTrace_SetFlags(HiTraceId *id, int flags);
  *
  * @since 12
  */
-uint64_t OH_HiTrace_GetChainId(const HiTraceId *id);
+uint64_t OH_HiTrace_GetChainId(const HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the trace chain ID to a <b>HiTraceId</b> instance
@@ -571,7 +573,7 @@ uint64_t OH_HiTrace_GetChainId(const HiTraceId *id);
  *
  * @since 12
  */
-void OH_HiTrace_SetChainId(HiTraceId *id, uint64_t chainId);
+void OH_HiTrace_SetChainId(HiTraceId *id, uint64_t chainId) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the span ID in a <b>HiTraceId</b> instance.
@@ -584,7 +586,7 @@ void OH_HiTrace_SetChainId(HiTraceId *id, uint64_t chainId);
  *
  * @since 12
  */
-uint64_t OH_HiTrace_GetSpanId(const HiTraceId *id);
+uint64_t OH_HiTrace_GetSpanId(const HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the span ID in a <b>HiTraceId</b> instance.
@@ -596,7 +598,7 @@ uint64_t OH_HiTrace_GetSpanId(const HiTraceId *id);
  *
  * @since 12
  */
-void OH_HiTrace_SetSpanId(HiTraceId *id, uint64_t spanId);
+void OH_HiTrace_SetSpanId(HiTraceId *id, uint64_t spanId) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the parent span ID in a <b>HiTraceId</b> instance.
@@ -609,7 +611,7 @@ void OH_HiTrace_SetSpanId(HiTraceId *id, uint64_t spanId);
  *
  * @since 12
  */
-uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId *id);
+uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId *id) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the parent span ID in a <b>HiTraceId</b> instance.
@@ -621,7 +623,8 @@ uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId *id);
  *
  * @since 12
  */
-void OH_HiTrace_SetParentSpanId(HiTraceId *id, uint64_t parentSpanId);
+void OH_HiTrace_SetParentSpanId(HiTraceId *id, uint64_t parentSpanId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Converts a <b>HiTraceId</b> instance into a byte array for caching or communication.
@@ -636,7 +639,8 @@ void OH_HiTrace_SetParentSpanId(HiTraceId *id, uint64_t parentSpanId);
  *
  * @since 12
  */
-int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len);
+int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Marks the start of a synchronous trace task.
@@ -649,7 +653,7 @@ int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len);
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
-void OH_HiTrace_StartTrace(const char *name);
+void OH_HiTrace_StartTrace(const char *name) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Marks the end of a synchronous trace task.
@@ -660,7 +664,7 @@ void OH_HiTrace_StartTrace(const char *name);
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
-void OH_HiTrace_FinishTrace(void);
+void OH_HiTrace_FinishTrace(void) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Marks the start of an asynchronous trace task.
@@ -682,7 +686,8 @@ void OH_HiTrace_FinishTrace(void);
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
-void OH_HiTrace_StartAsyncTrace(const char *name, int32_t taskId);
+void OH_HiTrace_StartAsyncTrace(const char *name, int32_t taskId)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Marks the end of an asynchronous trace task.
@@ -699,7 +704,8 @@ void OH_HiTrace_StartAsyncTrace(const char *name, int32_t taskId);
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
-void OH_HiTrace_FinishAsyncTrace(const char *name, int32_t taskId);
+void OH_HiTrace_FinishAsyncTrace(const char *name, int32_t taskId)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Traces the value change of an integer variable based on its name.
@@ -713,7 +719,7 @@ void OH_HiTrace_FinishAsyncTrace(const char *name, int32_t taskId);
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
-void OH_HiTrace_CountTrace(const char *name, int64_t count);
+void OH_HiTrace_CountTrace(const char *name, int64_t count) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Marks the start of a synchronous trace task with output level control.
@@ -724,10 +730,10 @@ void OH_HiTrace_CountTrace(const char *name, int64_t count);
  * @param level Trace output priority level.
  * @param name Name of the synchronous trace task.
  * @param customArgs key=value pair, multiple pairs use comma as separator.
- * @atomicservice
  * @since 19
  */
-void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs);
+void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Marks the end of a synchronous trace task with output level control.
@@ -738,10 +744,9 @@ void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const
  * invocation in the service process.
  *
  * @param level Trace output priority level.
- * @atomicservice
  * @since 19
  */
-void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
+void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level) __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Marks the start of an asynchronous trace task with output level control.
@@ -763,11 +768,11 @@ void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
  * @param taskId ID of the asynchronous trace task.
  * @param customCategory Label used to aggregate the asynchronous trace.
  * @param customArgs key=value pair, multiple pairs use comma as separator.
- * @atomicservice
  * @since 19
  */
 void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId,
-    const char* customCategory, const char* customArgs);
+    const char* customCategory, const char* customArgs)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Marks the end of an asynchronous trace task with output level control.
@@ -779,10 +784,10 @@ void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, 
  * @param level Trace output priority level.
  * @param name Name of the asynchronous trace task.
  * @param taskId ID of the asynchronous trace task.
- * @atomicservice
  * @since 19
  */
-void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId);
+void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Traces the value change of an integer variable based on its name with output level control.
@@ -793,19 +798,50 @@ void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name,
  * @param level Trace output priority level.
  * @param name Name of the integer variable. It does not need to be the same as the real variable name.
  * @param count Integer value. Generally, an integer variable can be passed.
- * @atomicservice
  * @since 19
  */
-void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count);
+void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Get the trace output status of the calling process.
  *
  * @return Returns whether the calling process is allowed to output trace.
- * @atomicservice
  * @since 19
  */
-bool OH_HiTrace_IsTraceEnabled(void);
+bool OH_HiTrace_IsTraceEnabled(void) __attribute__((__availability__(ohos, introduced=19.0.0)));
+
+/**
+ * @brief Register trace switch notification callback.
+ *
+ * Register a callback function to execute specific trace-related behavior when trace
+ * status is changed. The current status will be passed as 0 for off or 1 for on as callback function
+ * paramter representing current trace status. The maximum number of registered callback functions is 10.
+ *
+ * @param callback The callback function to be invoked when trace status is changed.
+ * @return The callback registeration status.
+ *     >= 0: Successfully registered and callback index used for unregister.
+ *    -1: Reaches max number of callback functions.
+ *    -2: Invalid parameter.
+ * @since 22
+ */
+int32_t OH_HiTrace_RegisterTraceListener(OH_HiTrace_TraceEventListener callback)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Unregister trace switch notification callback.
+ *
+ * Unregister the callback function registeration for trace switch
+ * notification with provided registered callback function index.
+ *
+ * @param index The callback function index to be unregistered.
+ * @return The callback unregisteration status.
+ *     0: Success.
+ *    -1: Callback function with target index has not been registered.
+ *    -2: Invalid index range.
+ * @since 22
+ */
+int32_t OH_HiTrace_UnregisterTraceListener(int32_t index) __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 }

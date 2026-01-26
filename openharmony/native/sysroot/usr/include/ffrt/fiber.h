@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_FIBER_H
 #define FFRT_API_C_FIBER_H
 
+#include "info/application_target_sdk_version.h"
 #include "type_def.h"
 
 /**
@@ -52,7 +53,8 @@
            returns <b>ffrt_error</b> otherwise.
  * @since 20
  */
-FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* arg, void* stack, size_t stack_size);
+FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* arg, void* stack, size_t stack_size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 
 /**
@@ -65,7 +67,8 @@ FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* ar
  * @param to Indicates the pointer to the fiber from which the context will be restored.
  * @since 20
  */
-FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to);
+FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #endif // FFRT_API_C_FIBER_H
 /** @} */

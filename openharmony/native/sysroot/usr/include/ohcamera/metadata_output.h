@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_METADATAOUTPUT_H
 #define NATIVE_INCLUDE_CAMERA_METADATAOUTPUT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -109,7 +110,8 @@ typedef struct MetadataOutput_Callbacks {
  * @since 11
  */
 Camera_ErrorCode OH_MetadataOutput_RegisterCallback(Camera_MetadataOutput* metadataOutput,
-    MetadataOutput_Callbacks* callback);
+    MetadataOutput_Callbacks* callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister metadata output change event callback.
@@ -121,7 +123,8 @@ Camera_ErrorCode OH_MetadataOutput_RegisterCallback(Camera_MetadataOutput* metad
  * @since 11
  */
 Camera_ErrorCode OH_MetadataOutput_UnregisterCallback(Camera_MetadataOutput* metadataOutput,
-    MetadataOutput_Callbacks* callback);
+    MetadataOutput_Callbacks* callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Start metadata output.
@@ -133,7 +136,8 @@ Camera_ErrorCode OH_MetadataOutput_UnregisterCallback(Camera_MetadataOutput* met
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_MetadataOutput_Start(Camera_MetadataOutput* metadataOutput);
+Camera_ErrorCode OH_MetadataOutput_Start(Camera_MetadataOutput* metadataOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop metadata output.
@@ -144,7 +148,8 @@ Camera_ErrorCode OH_MetadataOutput_Start(Camera_MetadataOutput* metadataOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_MetadataOutput_Stop(Camera_MetadataOutput* metadataOutput);
+Camera_ErrorCode OH_MetadataOutput_Stop(Camera_MetadataOutput* metadataOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Release metadata output.
@@ -155,7 +160,8 @@ Camera_ErrorCode OH_MetadataOutput_Stop(Camera_MetadataOutput* metadataOutput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_MetadataOutput_Release(Camera_MetadataOutput* metadataOutput);
+Camera_ErrorCode OH_MetadataOutput_Release(Camera_MetadataOutput* metadataOutput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

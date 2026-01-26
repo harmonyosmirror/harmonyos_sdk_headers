@@ -29,6 +29,7 @@
 
 #ifndef HIAI_FOUNDATION_AIPP_PARAM_H
 #define HIAI_FOUNDATION_AIPP_PARAM_H
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
@@ -62,7 +63,7 @@ typedef struct HiAI_AippParam HiAI_AippParam;
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_Create}
  */
-HiAI_AippParam* HMS_HiAIAippParam_Create(uint32_t batchNum);
+HiAI_AippParam* HMS_HiAIAippParam_Create(uint32_t batchNum) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the memory address requested for AippParam.
@@ -78,7 +79,7 @@ HiAI_AippParam* HMS_HiAIAippParam_Create(uint32_t batchNum);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetData}
  */
-void* HMS_HiAIAippParam_GetData(HiAI_AippParam* aippParam);
+void* HMS_HiAIAippParam_GetData(HiAI_AippParam* aippParam) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the memory size requested for AippParam.
@@ -93,7 +94,8 @@ void* HMS_HiAIAippParam_GetData(HiAI_AippParam* aippParam);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDataSize}
  */
-uint32_t HMS_HiAIAippParam_GetDataSize(HiAI_AippParam* aippParam);
+uint32_t HMS_HiAIAippParam_GetDataSize(HiAI_AippParam* aippParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the input index of the AippParam object.
@@ -107,7 +109,8 @@ uint32_t HMS_HiAIAippParam_GetDataSize(HiAI_AippParam* aippParam);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputIndex}
  */
-int HMS_HiAIAippParam_GetInputIndex(HiAI_AippParam* aippParam);
+int HMS_HiAIAippParam_GetInputIndex(HiAI_AippParam* aippParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the input index of the AippParam object.
@@ -122,7 +125,8 @@ int HMS_HiAIAippParam_GetInputIndex(HiAI_AippParam* aippParam);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputIndex}
  */
-OH_NN_ReturnCode HMS_HiAIAippParam_SetInputIndex(HiAI_AippParam* aippParam, uint32_t inputIndex);
+OH_NN_ReturnCode HMS_HiAIAippParam_SetInputIndex(HiAI_AippParam* aippParam, uint32_t inputIndex)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the index of an output, in the scenario where the input linked with AippParam has more than one
@@ -138,7 +142,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputIndex(HiAI_AippParam* aippParam, uint
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputAippIndex}
  */
-int HMS_HiAIAippParam_GetInputAippIndex(HiAI_AippParam* aippParam);
+int HMS_HiAIAippParam_GetInputAippIndex(HiAI_AippParam* aippParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the index of an output, in the scenario where the input linked with AippParam has more than one output.
@@ -155,7 +160,8 @@ int HMS_HiAIAippParam_GetInputAippIndex(HiAI_AippParam* aippParam);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputAippIndex}
  */
-OH_NN_ReturnCode HMS_HiAIAippParam_SetInputAippIndex(HiAI_AippParam* aippParam, uint32_t inputAippIndex);
+OH_NN_ReturnCode HMS_HiAIAippParam_SetInputAippIndex(HiAI_AippParam* aippParam, uint32_t inputAippIndex)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases the AippParam object.
@@ -167,7 +173,7 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputAippIndex(HiAI_AippParam* aippParam, 
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_Destroy}
  */
-void HMS_HiAIAippParam_Destroy(HiAI_AippParam** aippParam);
+void HMS_HiAIAippParam_Destroy(HiAI_AippParam** aippParam) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Image format enums of input and output tensors supported by HiAI Foundation inference.
@@ -221,7 +227,8 @@ typedef enum {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputFormat}
  */
-OH_NN_ReturnCode HMS_HiAIAippParam_SetInputFormat(HiAI_AippParam* aippParam, HiAI_ImageFormat inputFormat);
+OH_NN_ReturnCode HMS_HiAIAippParam_SetInputFormat(HiAI_AippParam* aippParam, HiAI_ImageFormat inputFormat)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the input image format.
@@ -237,7 +244,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputFormat(HiAI_AippParam* aippParam, HiA
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputFormat}
  */
-HiAI_ImageFormat HMS_HiAIAippParam_GetInputFormat(HiAI_AippParam* aippParam);
+HiAI_ImageFormat HMS_HiAIAippParam_GetInputFormat(HiAI_AippParam* aippParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the width and height of the input image.
@@ -256,7 +264,8 @@ HiAI_ImageFormat HMS_HiAIAippParam_GetInputFormat(HiAI_AippParam* aippParam);
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetInputShape}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetInputShape(
-    HiAI_AippParam* aippParam, uint32_t srcImageW, uint32_t srcImageH);
+    HiAI_AippParam* aippParam, uint32_t srcImageW, uint32_t srcImageH)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the width and height of the input image.
@@ -275,7 +284,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetInputShape(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetInputShape}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetInputShape(
-    HiAI_AippParam* aippParam, uint32_t* srcImageW, uint32_t* srcImageH);
+    HiAI_AippParam* aippParam, uint32_t* srcImageW, uint32_t* srcImageH)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the number of images set by AippParam.
@@ -290,7 +300,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetInputShape(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetBatchCount}
  */
-uint32_t HMS_HiAIAippParam_GetBatchCount(HiAI_AippParam* aippParam);
+uint32_t HMS_HiAIAippParam_GetBatchCount(HiAI_AippParam* aippParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Image's color space type.
@@ -335,7 +346,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetCscConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetCscConfig(
-    HiAI_AippParam* aippParam, HiAI_ImageFormat inputFormat, HiAI_ImageFormat outputFormat, HiAI_ImageColorSpace space);
+    HiAI_AippParam* aippParam, HiAI_ImageFormat inputFormat, HiAI_ImageFormat outputFormat, HiAI_ImageColorSpace space)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the CSC parameters of AIPP.
@@ -355,7 +367,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetCscConfig(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetCscConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetCscConfig(HiAI_AippParam* aippParam, HiAI_ImageFormat* inputFormat,
-    HiAI_ImageFormat* outputFormat, HiAI_ImageColorSpace* space);
+    HiAI_ImageFormat* outputFormat, HiAI_ImageColorSpace* space)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets AIPP channel swapping parameters.
@@ -391,7 +404,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetCscConfig(HiAI_AippParam* aippParam, HiAI_
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetChannelSwapConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelSwapConfig(
-    HiAI_AippParam* aippParam, bool rbuvSwapSwitch, bool axSwapSwitch);
+    HiAI_AippParam* aippParam, bool rbuvSwapSwitch, bool axSwapSwitch)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries AIPP channel swapping parameters.
@@ -410,7 +424,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelSwapConfig(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetChannelSwapConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelSwapConfig(
-    HiAI_AippParam* aippParam, bool* rbuvSwapSwitch, bool* axSwapSwitch);
+    HiAI_AippParam* aippParam, bool* rbuvSwapSwitch, bool* axSwapSwitch)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the SingleBatchMultiCrop flag of AIPP.
@@ -431,7 +446,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelSwapConfig(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetSingleBatchMultiCrop}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetSingleBatchMultiCrop(
-    HiAI_AippParam* aippParam, bool singleBatchMultiCrop);
+    HiAI_AippParam* aippParam, bool singleBatchMultiCrop)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the SingleBatchMultiCrop flag of AIPP.
@@ -445,7 +461,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetSingleBatchMultiCrop(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetSingleBatchMultiCrop}
  */
-bool HMS_HiAIAippParam_GetSingleBatchMultiCrop(HiAI_AippParam* aippParam);
+bool HMS_HiAIAippParam_GetSingleBatchMultiCrop(HiAI_AippParam* aippParam)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets AIPP cropping parameters.
@@ -474,7 +491,8 @@ bool HMS_HiAIAippParam_GetSingleBatchMultiCrop(HiAI_AippParam* aippParam);
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetCropConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetCropConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
-    uint32_t startPosW, uint32_t startPosH, uint32_t croppedW, uint32_t croppedH);
+    uint32_t startPosW, uint32_t startPosH, uint32_t croppedW, uint32_t croppedH)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries AIPP cropping parameters.
@@ -497,7 +515,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetCropConfig(HiAI_AippParam* aippParam, uint
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetCropConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetCropConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
-    uint32_t* startPosW, uint32_t* startPosH, uint32_t* croppedW, uint32_t* croppedH);
+    uint32_t* startPosW, uint32_t* startPosH, uint32_t* croppedW, uint32_t* croppedH)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets AIPP image resizing parameters.
@@ -520,7 +539,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetCropConfig(HiAI_AippParam* aippParam, uint
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetResizeConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetResizeConfig(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t resizedW, uint32_t resizedH);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t resizedW, uint32_t resizedH)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries AIPP image resizing parameters.
@@ -541,7 +561,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetResizeConfig(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetResizeConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetResizeConfig(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t* resizedW, uint32_t* resizedH);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t* resizedW, uint32_t* resizedH)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the number of pixels padded to the input image by AIPP.
@@ -569,7 +590,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetResizeConfig(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetPadConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetPadConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
-    uint32_t leftPadSize, uint32_t rightPadSize, uint32_t topPadSize, uint32_t bottomPadSize);
+    uint32_t leftPadSize, uint32_t rightPadSize, uint32_t topPadSize, uint32_t bottomPadSize)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the number of pixels padded to the input image by AIPP.
@@ -593,7 +615,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetPadConfig(HiAI_AippParam* aippParam, uint3
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetPadConfig}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetPadConfig(HiAI_AippParam* aippParam, uint32_t batchIndex,
-    uint32_t* leftPadSize, uint32_t* rightPadSize, uint32_t* topPadSize, uint32_t* bottomPadSize);
+    uint32_t* leftPadSize, uint32_t* rightPadSize, uint32_t* topPadSize, uint32_t* bottomPadSize)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the padding value for a channel during AIPP.
@@ -616,7 +639,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetPadConfig(HiAI_AippParam* aippParam, uint3
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetChannelPadding}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelPadding(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t paddingValues[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t paddingValues[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the padding value for a channel during AIPP.
@@ -639,7 +663,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetChannelPadding(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetChannelPadding}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelPadding(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t paddingValues[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t paddingValues[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the rotation angle in AIPP.
@@ -659,7 +684,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetChannelPadding(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetRotationAngle}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetRotationAngle(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, float rotationAngle);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, float rotationAngle)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the image rotation angle in AIPP.
@@ -678,7 +704,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetRotationAngle(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetRotationAngle}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetRotationAngle(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, float* rotationAngle);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, float* rotationAngle)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the average pixel value of DTC.
@@ -715,7 +742,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetRotationAngle(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetDtcMeanPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMeanPixel(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t meanPixel[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t meanPixel[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the average pixel value of DTC.
@@ -740,7 +768,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMeanPixel(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDtcMeanPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMeanPixel(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t meanPixel[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, uint32_t meanPixel[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the minimum pixel value of DTC.
@@ -765,7 +794,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMeanPixel(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetDtcMinPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMinPixel(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, float minPixel[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, float minPixel[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the minimum pixel value of DTC.
@@ -789,7 +819,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcMinPixel(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDtcMinPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMinPixel(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, float minPixel[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, float minPixel[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the pixel variance of DTC.
@@ -814,7 +845,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcMinPixel(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_SetDtcVarReciPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcVarReciPixel(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, float varReciPixel[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, float varReciPixel[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the pixel variance of DTC.
@@ -838,7 +870,8 @@ OH_NN_ReturnCode HMS_HiAIAippParam_SetDtcVarReciPixel(
  * @useinstead {@link CANNKit/HMS_HiAIAippParam_GetDtcVarReciPixel}
  */
 OH_NN_ReturnCode HMS_HiAIAippParam_GetDtcVarReciPixel(
-    HiAI_AippParam* aippParam, uint32_t batchIndex, float varReciPixel[], uint32_t channelCount);
+    HiAI_AippParam* aippParam, uint32_t batchIndex, float varReciPixel[], uint32_t channelCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

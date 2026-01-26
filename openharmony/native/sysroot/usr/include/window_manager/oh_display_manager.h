@@ -40,6 +40,7 @@
 #define OH_NATIVE_DISPLAY_MANAGER_H
 
 
+#include "info/application_target_sdk_version.h"
 #include "oh_display_info.h"
 
 #ifdef __cplusplus
@@ -55,7 +56,8 @@ extern "C" {
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint64_t *displayId);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint64_t *displayId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display width.
@@ -66,7 +68,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint6
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(int32_t *displayWidth);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(int32_t *displayWidth)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display height.
@@ -77,7 +80,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(in
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(int32_t *displayHeight);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(int32_t *displayHeight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display rotation.
@@ -89,7 +93,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(i
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation(
-    NativeDisplayManager_Rotation *displayRotation);
+    NativeDisplayManager_Rotation *displayRotation)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display orientation.
@@ -101,7 +106,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientation(
-    NativeDisplayManager_Orientation *displayOrientation);
+    NativeDisplayManager_Orientation *displayOrientation)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display virtualPixels.
@@ -112,7 +118,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientat
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualPixelRatio(float *virtualPixels);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualPixelRatio(float *virtualPixels)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display refreshRate.
@@ -123,7 +130,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualP
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshRate(uint32_t *refreshRate);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshRate(uint32_t *refreshRate)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display densityDpi.
@@ -134,7 +142,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityDpi(int32_t *densityDpi);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityDpi(int32_t *densityDpi)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display densityPixels.
@@ -145,7 +154,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityPixels(float *densityPixels);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityPixels(float *densityPixels)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display scaledDensity.
@@ -156,7 +166,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityP
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDensity(float *scaledDensity);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDensity(float *scaledDensity)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display xDpi.
@@ -167,7 +178,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityXdpi(float *xDpi);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityXdpi(float *xDpi)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain the default display yDpi.
@@ -178,7 +190,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityYdpi(float *yDpi);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityYdpi(float *yDpi)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create the cutout info of the device.
@@ -190,7 +203,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo(
-    NativeDisplayManager_CutoutInfo **cutoutInfo);
+    NativeDisplayManager_CutoutInfo **cutoutInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy an <b>NativeDisplayManager_CutoutInfo</b> object and reclaims the memory occupied by the object.
@@ -201,7 +215,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo(
-    NativeDisplayManager_CutoutInfo *cutoutInfo);
+    NativeDisplayManager_CutoutInfo *cutoutInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check whether the device is foldable.
@@ -209,7 +224,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCuto
  * @return { bool } true means the device is foldable.
  * @since 12
  */
-bool OH_NativeDisplayManager_IsFoldable();
+bool OH_NativeDisplayManager_IsFoldable() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the display mode of the foldable device.
@@ -221,7 +236,8 @@ bool OH_NativeDisplayManager_IsFoldable();
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(
-    NativeDisplayManager_FoldDisplayMode *displayMode);
+    NativeDisplayManager_FoldDisplayMode *displayMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief the callback function type when display change.
@@ -242,7 +258,8 @@ typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeListener(
-    OH_NativeDisplayManager_DisplayChangeCallback displayChangeCallback, uint32_t *listenerIndex);
+    OH_NativeDisplayManager_DisplayChangeCallback displayChangeCallback, uint32_t *listenerIndex)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister the callback for display changes listener.
@@ -253,7 +270,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeListener(uint32_t listenerIndex);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeListener(uint32_t listenerIndex)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief the callback function type when display fold change.
@@ -276,7 +294,8 @@ typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener(
-    OH_NativeDisplayManager_FoldDisplayModeChangeCallback displayModeChangeCallback, uint32_t *listenerIndex);
+    OH_NativeDisplayManager_FoldDisplayModeChangeCallback displayModeChangeCallback, uint32_t *listenerIndex)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister the callback for display mode change listener.
@@ -288,7 +307,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 12
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(uint32_t listenerIndex);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(uint32_t listenerIndex)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create all displays.
@@ -300,7 +320,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayMode
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
-    NativeDisplayManager_DisplaysInfo **allDisplays);
+    NativeDisplayManager_DisplaysInfo **allDisplays)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy all displays.
@@ -308,7 +329,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
  * @param allDisplays all displays to be free.
  * @since 14
  */
-void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInfo *allDisplays);
+void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInfo *allDisplays)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create display information by display id.
@@ -321,7 +343,8 @@ void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInf
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId,
-    NativeDisplayManager_DisplayInfo **displayInfo);
+    NativeDisplayManager_DisplayInfo **displayInfo)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy the display information.
@@ -329,7 +352,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_
  * @param displayInfo the target display to be free.
  * @since 14
  */
-void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *displayInfo);
+void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *displayInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create a primary display.
@@ -341,7 +365,8 @@ void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *di
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(
-    NativeDisplayManager_DisplayInfo **displayInfo);
+    NativeDisplayManager_DisplayInfo **displayInfo)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief the callback function type when available area change.
@@ -362,7 +387,8 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChangeListener(
-    OH_NativeDisplayManager_AvailableAreaChangeCallback availableAreaChangeCallback, uint32_t *listenerIndex);
+    OH_NativeDisplayManager_AvailableAreaChangeCallback availableAreaChangeCallback, uint32_t *listenerIndex)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister the callback for available area changes listener.
@@ -373,7 +399,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChan
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 20
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener(uint32_t listenerIndex);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener(uint32_t listenerIndex)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create the available area.
@@ -386,7 +413,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaCh
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(
-    uint64_t displayId, NativeDisplayManager_Rect **availableArea);
+    uint64_t displayId, NativeDisplayManager_Rect **availableArea)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy an <b>NativeDisplayManager_Rect</b> object and reclaims the memory occupied by the object.
@@ -396,7 +424,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(
  *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  * @since 20
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(NativeDisplayManager_Rect *availableArea);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(NativeDisplayManager_Rect *availableArea)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief the callback function type when display connect.
@@ -417,7 +446,8 @@ typedef void (*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId);
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListener(
-    OH_NativeDisplayManager_DisplayAddCallback displayAddCallback, uint32_t *listenerIndex);
+    OH_NativeDisplayManager_DisplayAddCallback displayAddCallback, uint32_t *listenerIndex)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister the callback for display connect listener.
@@ -428,7 +458,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListene
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 20
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListener(uint32_t listenerIndex);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListener(uint32_t listenerIndex)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief the callback function type when display disconnect.
@@ -449,7 +480,8 @@ typedef void (*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveListener(
-    OH_NativeDisplayManager_DisplayRemoveCallback displayRemoveCallback, uint32_t *listenerIndex);
+    OH_NativeDisplayManager_DisplayRemoveCallback displayRemoveCallback, uint32_t *listenerIndex)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister the callback for display disconnect listener.
@@ -460,7 +492,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveList
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 20
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the source mode of the device.
@@ -472,7 +505,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveLi
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint64_t displayId,
-    NativeDisplayManager_SourceMode *sourceMode);
+    NativeDisplayManager_SourceMode *sourceMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the position of the device.
@@ -484,7 +518,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 20
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplayPosition(uint64_t displayId, int32_t *x, int32_t *y);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplayPosition(uint64_t displayId, int32_t *x, int32_t *y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

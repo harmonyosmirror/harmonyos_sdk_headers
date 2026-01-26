@@ -37,6 +37,7 @@
 #ifndef NATIVE_AVMUXER_H
 #define NATIVE_AVMUXER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avcodec_base.h"
@@ -60,7 +61,8 @@ typedef struct OH_AVMuxer OH_AVMuxer;
  * @return Returns a pointer to an OH_AVMuxer instance, needs to be freed by OH_AVMuxer_Destroy.
  * @since 10
  */
-OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
+OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set the rotation for output video playback.
@@ -74,7 +76,8 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
  * @since 10
  */
-OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
+OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set format to the muxer.
@@ -87,7 +90,8 @@ OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
  *         {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state
  * @since 14
  */
-OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
+OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Add track format to the muxer.
@@ -107,7 +111,8 @@ OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * @since 10
  */
-OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFormat *trackFormat);
+OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFormat *trackFormat)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Start the muxer.
@@ -121,7 +126,7 @@ OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFo
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * @since 10
  */
-OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
+OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Write an encoded sample to the muxer.
@@ -144,7 +149,8 @@ OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex,
-    OH_AVMemory *sample, OH_AVCodecBufferAttr info);
+    OH_AVMemory *sample, OH_AVCodecBufferAttr info)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Write an encoded sample to the muxer.
@@ -164,7 +170,8 @@ OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex,
  * @since 11
  */
 OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex,
-    const OH_AVBuffer *sample);
+    const OH_AVBuffer *sample)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop the muxer.
@@ -177,7 +184,7 @@ OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
  * @since 10
  */
-OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
+OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Clear the internal resources of the muxer and destroy the muxer instance
@@ -188,7 +195,7 @@ OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
  * {@link AV_ERR_INVALID_VAL}, the muxer invalid.
  * @since 10
  */
-OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer);
+OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #ifdef __cplusplus
 }

@@ -34,6 +34,7 @@
 #ifndef GAME_DEVICE_H
 #define GAME_DEVICE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "game_device_event.h"
 
@@ -55,7 +56,8 @@ typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
  * Returns {@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR} if the multimodal input is abnormal.
  * @since 21
  */
-GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
+GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a monitor for the game device.
@@ -66,14 +68,16 @@ GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInf
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
-    GameDevice_DeviceMonitorCallback deviceMonitorCallback);
+    GameDevice_DeviceMonitorCallback deviceMonitorCallback)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters the monitor for the game device.
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
  * @since 21
  */
-GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
+GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Destroys an {@link GameDevice_AllDeviceInfos} instance when it is no longer used.
@@ -83,7 +87,8 @@ GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
  * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of allDeviceInfos is null.
  * @since 21
  */
-GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
+GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the number of devices.
@@ -96,7 +101,8 @@ GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDevic
  */
 GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
     const struct GameDevice_AllDeviceInfos* allDeviceInfos,
-    int32_t* count);
+    int32_t* count)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains information about a device with a specified index.
@@ -112,7 +118,8 @@ GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
 GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetDeviceInfo(
     const struct GameDevice_AllDeviceInfos* allDeviceInfos,
     const int32_t index,
-    GameDevice_DeviceInfo** deviceInfo);
+    GameDevice_DeviceInfo** deviceInfo)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

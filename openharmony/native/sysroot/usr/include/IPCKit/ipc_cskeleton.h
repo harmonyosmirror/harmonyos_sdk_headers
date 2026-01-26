@@ -39,6 +39,7 @@
 #ifndef CAPI_INCLUDE_IPC_CSKELETON_H
 #define CAPI_INCLUDE_IPC_CSKELETON_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "ipc_cparcel.h"
@@ -53,7 +54,7 @@ extern "C" {
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
-void OH_IPCSkeleton_JoinWorkThread(void);
+void OH_IPCSkeleton_JoinWorkThread(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stops this thread.
@@ -61,7 +62,7 @@ void OH_IPCSkeleton_JoinWorkThread(void);
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
-void OH_IPCSkeleton_StopWorkThread(void);
+void OH_IPCSkeleton_StopWorkThread(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the token ID of the caller. This function must be called in the IPC context.
@@ -71,7 +72,7 @@ void OH_IPCSkeleton_StopWorkThread(void);
  * @return Returns the token ID of the caller.
  * @since 12
  */
-uint64_t OH_IPCSkeleton_GetCallingTokenId(void);
+uint64_t OH_IPCSkeleton_GetCallingTokenId(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the token ID of the first caller.
@@ -80,7 +81,7 @@ uint64_t OH_IPCSkeleton_GetCallingTokenId(void);
  * @return Returns the token ID obtained.
  * @since 12
  */
-uint64_t OH_IPCSkeleton_GetFirstTokenId(void);
+uint64_t OH_IPCSkeleton_GetFirstTokenId(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the local token ID.
@@ -89,7 +90,7 @@ uint64_t OH_IPCSkeleton_GetFirstTokenId(void);
  * @return Returns the token ID obtained.
  * @since 12
  */
-uint64_t OH_IPCSkeleton_GetSelfTokenId(void);
+uint64_t OH_IPCSkeleton_GetSelfTokenId(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the process ID of the caller. This function must be called in the IPC context.
@@ -99,7 +100,7 @@ uint64_t OH_IPCSkeleton_GetSelfTokenId(void);
  * @return Returns the process ID of the caller.
  * @since 12
  */
-uint64_t OH_IPCSkeleton_GetCallingPid(void);
+uint64_t OH_IPCSkeleton_GetCallingPid(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the UID of the caller. This function must be called in the IPC context.
@@ -109,7 +110,7 @@ uint64_t OH_IPCSkeleton_GetCallingPid(void);
  * @return Returns the UID of the caller.
  * @since 12
  */
-uint64_t OH_IPCSkeleton_GetCallingUid(void);
+uint64_t OH_IPCSkeleton_GetCallingUid(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether a local calling is being made.
@@ -118,7 +119,7 @@ uint64_t OH_IPCSkeleton_GetCallingUid(void);
  * @return Returns <b>1</b> if a local calling is in progress; returns <b>0</b> otherwise.
  * @since 12
  */
-int OH_IPCSkeleton_IsLocalCalling(void);
+int OH_IPCSkeleton_IsLocalCalling(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the maximum number of worker threads.
@@ -131,7 +132,8 @@ int OH_IPCSkeleton_IsLocalCalling(void);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
  * @since 12
  */
-int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum);
+int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets the caller identity credential (including the token ID, UID, and PID) to that of this process and
@@ -149,7 +151,8 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
  * @since 12
  */
-int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_MemAllocator allocator);
+int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_MemAllocator allocator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the caller credential information to the IPC context.
@@ -162,7 +165,7 @@ int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_Me
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
  * @since 12
  */
-int OH_IPCSkeleton_SetCallingIdentity(const char *identity);
+int OH_IPCSkeleton_SetCallingIdentity(const char *identity) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether an IPC request is being handled.
@@ -171,7 +174,7 @@ int OH_IPCSkeleton_SetCallingIdentity(const char *identity);
  * @return Returns <b>1</b> if an IPC request is being handled; returns <b>0</b> otherwise.
  * @since 12
  */
-int OH_IPCSkeleton_IsHandlingTransaction(void);
+int OH_IPCSkeleton_IsHandlingTransaction(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

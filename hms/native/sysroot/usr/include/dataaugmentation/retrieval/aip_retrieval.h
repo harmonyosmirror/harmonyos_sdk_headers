@@ -25,6 +25,7 @@
 #ifndef AIP_RETRIEVAL_H
 #define AIP_RETRIEVAL_H
 
+#include "info/application_target_sdk_version.h"
 #include "dataaugmentation/retrieval/aip_retrieval_condition.h"
 #include "dataaugmentation/retrieval/aip_retrieval_query.h"
 #include "dataaugmentation/retrieval/aip_retrieval_record.h"
@@ -61,7 +62,8 @@ typedef struct OH_Retrieval_Config OH_Retrieval_Config;
  * @see OH_Retrieval_Retriever, OH_Retrieval_Config, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_CreateRetriever(const OH_Retrieval_Config *config, OH_Retrieval_Retriever **retriever);
+int OH_Retrieval_CreateRetriever(const OH_Retrieval_Config *config, OH_Retrieval_Retriever **retriever)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_Retriever which is created by OH_Retrieval_CreateRetriever.
@@ -73,7 +75,8 @@ int OH_Retrieval_CreateRetriever(const OH_Retrieval_Config *config, OH_Retrieval
  * @see OH_Retrieval_Retriever, OH_Aip_ErrCode, OH_Retrieval_CreateRetriever.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyRetriever(OH_Retrieval_Retriever *retriever);
+int OH_Retrieval_DestroyRetriever(OH_Retrieval_Retriever *retriever)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a configuration item to initialize the retriever.
@@ -83,7 +86,7 @@ int OH_Retrieval_DestroyRetriever(OH_Retrieval_Retriever *retriever);
  * @see OH_Retrieval_Config, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-OH_Retrieval_Config *OH_Retrieval_CreateConfig();
+OH_Retrieval_Config *OH_Retrieval_CreateConfig() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_Config which is created by OH_Retrieval_CreateConfig.
@@ -95,7 +98,7 @@ OH_Retrieval_Config *OH_Retrieval_CreateConfig();
  * @see OH_Retrieval_Config, OH_Aip_ErrCode, OH_Retrieval_CreateConfig.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyConfig(OH_Retrieval_Config *config);
+int OH_Retrieval_DestroyConfig(OH_Retrieval_Config *config) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Define a database configuration which is used to open a database store.
@@ -112,7 +115,7 @@ typedef struct OH_Retrieval_DbConfig OH_Retrieval_DbConfig;
  * @see OH_Retrieval_DbConfig, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-OH_Retrieval_DbConfig *OH_Retrieval_CreateDbConfig();
+OH_Retrieval_DbConfig *OH_Retrieval_CreateDbConfig() __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy OH_Retrieval_DbConfig which is created by OH_Retrieval_CreateDbConfig.
@@ -124,7 +127,8 @@ OH_Retrieval_DbConfig *OH_Retrieval_CreateDbConfig();
  * @see OH_Retrieval_DbConfig, OH_Aip_ErrCode, OH_Retrieval_CreateDbConfig.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyDbConfig(OH_Retrieval_DbConfig *dbConfig);
+int OH_Retrieval_DestroyDbConfig(OH_Retrieval_DbConfig *dbConfig)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the database configuration in OH_Retrieval_DbConfig.
@@ -138,7 +142,8 @@ int OH_Retrieval_DestroyDbConfig(OH_Retrieval_DbConfig *dbConfig);
  * @see OH_Retrieval_DbConfig, OH_Rdb_ConfigV2, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_SetDbConfig(OH_Retrieval_DbConfig *dbConfig, OH_Rdb_ConfigV2 *rdbConfig);
+int OH_Retrieval_SetDbConfig(OH_Retrieval_DbConfig *dbConfig, OH_Rdb_ConfigV2 *rdbConfig)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Define the data index type, which currently only includes vector index data.
@@ -163,7 +168,8 @@ typedef enum Retrieval_Channel_Type {
  * @since 6.0.0(20)
  */
 int OH_Retrieval_AddConfig(OH_Retrieval_Config *config, Retrieval_Channel_Type channelType,
-    OH_Retrieval_DbConfig *dbConfig);
+    OH_Retrieval_DbConfig *dbConfig)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief The callback function of retrieval result record.
@@ -192,7 +198,8 @@ typedef void (*OH_Retrieval_Callback)(void *context, OH_Retrieval_Record *record
  * @since 6.0.0(20)
  */
 int OH_Retrieval_Retrieve(const OH_Retrieval_Retriever *retriever, const OH_Retrieval_Query *query,
-    const OH_Retrieval_Condition *condition, void *context, const OH_Retrieval_Callback *callback);
+    const OH_Retrieval_Condition *condition, void *context, const OH_Retrieval_Callback *callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

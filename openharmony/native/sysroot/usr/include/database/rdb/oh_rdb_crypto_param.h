@@ -40,6 +40,7 @@
 #ifndef OH_RDB_CRYPTO_PARAM_H
 #define OH_RDB_CRYPTO_PARAM_H
 
+#include "info/application_target_sdk_version.h"
 #include <inttypes.h>
 
 #ifdef __cplusplus
@@ -60,6 +61,11 @@ typedef enum Rdb_EncryptionAlgo {
      * @brief Indicates the database is encrypted using RDB_AES_256_CBC.
      */
     RDB_AES_256_CBC,
+    /**
+     * @brief Indicates the database is not encrypted.
+     * @since 22
+     */
+    RDB_PLAIN_TEXT,
 } Rdb_EncryptionAlgo;
 
 /**
@@ -118,7 +124,7 @@ typedef struct OH_Rdb_CryptoParam OH_Rdb_CryptoParam;
  * @see OH_Rdb_DestroyCryptoParam.
  * @since 20
  */
-OH_Rdb_CryptoParam *OH_Rdb_CreateCryptoParam(void);
+OH_Rdb_CryptoParam *OH_Rdb_CreateCryptoParam(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an OH_Rdb_CryptoParam instance object.
@@ -129,7 +135,7 @@ OH_Rdb_CryptoParam *OH_Rdb_CreateCryptoParam(void);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Rdb_DestroyCryptoParam(OH_Rdb_CryptoParam *param);
+int OH_Rdb_DestroyCryptoParam(OH_Rdb_CryptoParam *param) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets key data to the OH_Rdb_CryptoParam object.
@@ -142,7 +148,8 @@ int OH_Rdb_DestroyCryptoParam(OH_Rdb_CryptoParam *param);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Crypto_SetEncryptionKey(OH_Rdb_CryptoParam *param, const uint8_t *key, int32_t length);
+int OH_Crypto_SetEncryptionKey(OH_Rdb_CryptoParam *param, const uint8_t *key, int32_t length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the number of KDF iterations used when opening an encrypted database.
@@ -154,7 +161,8 @@ int OH_Crypto_SetEncryptionKey(OH_Rdb_CryptoParam *param, const uint8_t *key, in
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Crypto_SetIteration(OH_Rdb_CryptoParam *param, int64_t iteration);
+int OH_Crypto_SetIteration(OH_Rdb_CryptoParam *param, int64_t iteration)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the encryption algorithm when opening an encrypted database.
@@ -166,7 +174,8 @@ int OH_Crypto_SetIteration(OH_Rdb_CryptoParam *param, int64_t iteration);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Crypto_SetEncryptionAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
+int OH_Crypto_SetEncryptionAlgo(OH_Rdb_CryptoParam *param, int32_t algo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the HMAC algorithm when opening an encrypted database.
@@ -178,7 +187,8 @@ int OH_Crypto_SetEncryptionAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Crypto_SetHmacAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
+int OH_Crypto_SetHmacAlgo(OH_Rdb_CryptoParam *param, int32_t algo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the KDF algorithm when opening an encrypted database.
@@ -190,7 +200,8 @@ int OH_Crypto_SetHmacAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Crypto_SetKdfAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
+int OH_Crypto_SetKdfAlgo(OH_Rdb_CryptoParam *param, int32_t algo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the page size used when opening an encrypted database.
@@ -202,7 +213,8 @@ int OH_Crypto_SetKdfAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Crypto_SetCryptoPageSize(OH_Rdb_CryptoParam *param, int64_t size);
+int OH_Crypto_SetCryptoPageSize(OH_Rdb_CryptoParam *param, int64_t size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

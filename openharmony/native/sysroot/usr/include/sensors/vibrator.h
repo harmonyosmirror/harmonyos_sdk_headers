@@ -33,6 +33,7 @@
 #ifndef VIBRATOR_H
 #define VIBRATOR_H
 
+#include "info/application_target_sdk_version.h"
 #include "vibrator_type.h"
 
 #ifdef __cplusplus
@@ -55,7 +56,8 @@ extern "C" {
  *
  * @since 11
  */
-int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute);
+int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Controls the vibrator to vibrate with the custom sequence.
@@ -75,7 +77,8 @@ int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute
  * @since 11
  */
 int32_t OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription,
-    Vibrator_Attribute vibrateAttribute);
+    Vibrator_Attribute vibrateAttribute)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Stop the motor vibration according to the input mode.
@@ -90,7 +93,7 @@ int32_t OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription
  *
  * @since 11
  */
-int32_t OH_Vibrator_Cancel();
+int32_t OH_Vibrator_Cancel() __attribute__((__availability__(ohos, introduced=11.0.0)));
 #ifdef __cplusplus
 }
 #endif

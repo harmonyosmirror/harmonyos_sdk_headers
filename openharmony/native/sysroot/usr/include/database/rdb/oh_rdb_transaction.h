@@ -40,6 +40,7 @@
 #ifndef OH_RDB_TRANSACTION_H
 #define OH_RDB_TRANSACTION_H
 
+#include "info/application_target_sdk_version.h"
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
 #include "database/rdb/oh_values_bucket.h"
@@ -100,7 +101,7 @@ typedef struct OH_Rdb_Transaction OH_Rdb_Transaction;
  * @see OH_RdbTrans_DestroyOptions.
  * @since 18
  */
-OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void);
+OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an OH_RDB_TransOptions instance object.
@@ -111,7 +112,7 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options);
+int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets integer data to the options object.
@@ -123,7 +124,8 @@ int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type);
+int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Commits a transaction of a relational database.
@@ -143,7 +145,7 @@ int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType typ
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  * @since 18
  */
-int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans);
+int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Roll back a transaction of a relational database.
@@ -163,7 +165,7 @@ int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans);
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  * @since 18
  */
-int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans);
+int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Inserts a row of data into the target table.
@@ -191,7 +193,8 @@ int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans);
 
  * @since 18
  */
-int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId);
+int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Inserts a row of data into the target table and support conflict resolution.
@@ -221,7 +224,8 @@ int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VB
  * @since 20
  */
 int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row,
-    Rdb_ConflictResolution resolution, int64_t *rowId);
+    Rdb_ConflictResolution resolution, int64_t *rowId)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Inserts a batch of data into the target table.
@@ -251,7 +255,8 @@ int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const ch
  * @since 18
  */
 int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,
-    Rdb_ConflictResolution resolution, int64_t *changes);
+    Rdb_ConflictResolution resolution, int64_t *changes)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Updates data in the database based on specified conditions.
@@ -279,7 +284,8 @@ int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const 
  * @since 18
  */
 int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates,
-    int64_t *changes);
+    int64_t *changes)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Updates data in the database based on specified conditions and support conflict resolution.
@@ -309,7 +315,8 @@ int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const O
  * @since 20
  */
 int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH_VBucket *row,
-    const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes);
+    const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes data from the database based on specified conditions
@@ -335,7 +342,8 @@ int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  * @since 18
  */
-int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes);
+int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Queries data in the database based on specified conditions.
@@ -349,7 +357,8 @@ int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicate
  * @since 18
  */
 OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[],
-    int len);
+    int len)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Queries data in the database based on SQL statement.
@@ -361,7 +370,8 @@ OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *pre
  * If database has closed or the database does not respond, nullptr is returned.
  * @since 18
  */
-OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args);
+OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Executes an SQL statement that contains specified parameters.
@@ -390,7 +400,8 @@ OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, cons
  * @see OH_Value_Destroy.
  * @since 18
  */
-int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args, OH_Data_Value **result);
+int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args, OH_Data_Value **result)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an OH_Rdb_Transaction instance object.
@@ -401,7 +412,7 @@ int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Dat
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans);
+int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

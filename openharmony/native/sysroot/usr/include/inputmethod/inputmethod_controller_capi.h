@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_CONTROLLER_CAPI_H
 #define OHOS_INPUTMETHOD_CONTROLLER_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -63,7 +64,8 @@ extern "C" {
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProxy *textEditorProxy,
-    InputMethod_AttachOptions *options, InputMethod_InputMethodProxy **inputMethodProxy);
+    InputMethod_AttachOptions *options, InputMethod_InputMethodProxy **inputMethodProxy)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Detach application from the input method service.
@@ -78,7 +80,8 @@ InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProx
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodProxy *inputMethodProxy);
+InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodProxy *inputMethodProxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

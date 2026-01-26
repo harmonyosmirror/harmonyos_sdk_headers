@@ -38,6 +38,7 @@
 #ifndef NATIVE_AUDIO_RESOURCE_MANAGER_H
 #define NATIVE_AUDIO_RESOURCE_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audio_common.h"
 
 #ifdef __cplusplus
@@ -62,7 +63,8 @@ typedef struct OH_AudioResourceManager OH_AudioResourceManager;
  *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if input param is nullptr
  * @since 20
  */
-OH_AudioCommon_Result OH_AudioManager_GetAudioResourceManager(OH_AudioResourceManager **resourceManager);
+OH_AudioCommon_Result OH_AudioManager_GetAudioResourceManager(OH_AudioResourceManager **resourceManager)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Declare the audio workgroup.
@@ -93,7 +95,8 @@ typedef struct OH_AudioWorkgroup OH_AudioWorkgroup;
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioResourceManager_CreateWorkgroup(OH_AudioResourceManager *resourceManager,
-    const char *name, OH_AudioWorkgroup **group);
+    const char *name, OH_AudioWorkgroup **group)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Release the workgroup created before.
@@ -108,7 +111,8 @@ OH_AudioCommon_Result OH_AudioResourceManager_CreateWorkgroup(OH_AudioResourceMa
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioResourceManager_ReleaseWorkgroup(OH_AudioResourceManager *resourceManager,
-    OH_AudioWorkgroup *group);
+    OH_AudioWorkgroup *group)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add current thread into a specified audio workgroup as audio data processing thread.
@@ -122,7 +126,8 @@ OH_AudioCommon_Result OH_AudioResourceManager_ReleaseWorkgroup(OH_AudioResourceM
  *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
  * @since 20
  */
-OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *group, int32_t *tokenId);
+OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *group, int32_t *tokenId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Remove the thread from a specified audio workgroup.
@@ -135,7 +140,8 @@ OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *grou
  *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
  * @since 20
  */
-OH_AudioCommon_Result OH_AudioWorkgroup_RemoveThread(OH_AudioWorkgroup *group, int32_t tokenId);
+OH_AudioCommon_Result OH_AudioWorkgroup_RemoveThread(OH_AudioWorkgroup *group, int32_t tokenId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Notify system the audio workgroup start working. Call this function before processing the audio frame.
@@ -150,7 +156,8 @@ OH_AudioCommon_Result OH_AudioWorkgroup_RemoveThread(OH_AudioWorkgroup *group, i
  *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
  * @since 20
  */
-OH_AudioCommon_Result OH_AudioWorkgroup_Start(OH_AudioWorkgroup *group, uint64_t startTime, uint64_t deadlineTime);
+OH_AudioCommon_Result OH_AudioWorkgroup_Start(OH_AudioWorkgroup *group, uint64_t startTime, uint64_t deadlineTime)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Notify system the audio workgroup stop working. Call this function after the audio frame processing
@@ -163,7 +170,8 @@ OH_AudioCommon_Result OH_AudioWorkgroup_Start(OH_AudioWorkgroup *group, uint64_t
  *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
  * @since 20
  */
-OH_AudioCommon_Result OH_AudioWorkgroup_Stop(OH_AudioWorkgroup *group);
+OH_AudioCommon_Result OH_AudioWorkgroup_Stop(OH_AudioWorkgroup *group)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

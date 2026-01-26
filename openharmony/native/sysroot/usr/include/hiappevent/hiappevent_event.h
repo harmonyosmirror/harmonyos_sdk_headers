@@ -153,6 +153,13 @@ extern "C" {
 #define EVENT_MAIN_THREAD_JANK "MAIN_THREAD_JANK"
 
 /**
+ * @brief app main thread jank event with extended params.
+ *
+ * @since 22
+ */
+#define EVENT_MAIN_THREAD_JANK_V2 "MAIN_THREAD_JANK_V2"
+
+/**
  * @brief app hicollie event.
  *
  * @since 18

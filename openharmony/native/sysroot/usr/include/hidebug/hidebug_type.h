@@ -68,6 +68,21 @@ typedef enum HiDebug_ErrorCode {
      * @since 20
      */
     HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200,
+    /**
+     * Current device is not supported.
+     * @since 22
+     */
+    HIDEBUG_NOT_SUPPORTED = 11400300,
+    /**
+     * Sampling is in progress.
+     * @since 22
+     */
+    HIDEBUG_UNDER_SAMPLING = 11400301,
+    /**
+     * Resource unavailable
+     * @since 22
+     */
+    HIDEBUG_RESOURCE_UNAVAILABLE = 11400302,
 } HiDebug_ErrorCode;
 
 /**
@@ -329,6 +344,38 @@ typedef struct HiDebug_GraphicsMemorySummary {
      */
     uint32_t graph;
 } HiDebug_GraphicsMemorySummary;
+
+/**
+ * @brief Defines a struct for the process sampler configuration.
+ *
+ * @since 22
+ */
+typedef struct HiDebug_ProcessSamplerConfig {
+    /**
+     * The threads id
+     */
+    uint32_t* tids;
+
+    /**
+     * The threads num
+     */
+    uint32_t size;
+
+    /**
+     * The frequency of the sampling
+     */
+    uint32_t frequency;
+
+    /**
+     * The duration of the sampling
+     */
+    uint32_t duration;
+
+    /**
+     * The reserved of the sampling
+     */
+    uint32_t reserved;
+} HiDebug_ProcessSamplerConfig;
 
 #ifdef __cplusplus
 }

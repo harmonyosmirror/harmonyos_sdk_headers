@@ -41,6 +41,7 @@
 #ifndef NATIVE_AUDIO_STREAM_MANAGER_H
 #define NATIVE_AUDIO_STREAM_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audio_common.h"
 #include "native_audiostream_base.h"
 #ifdef __cplusplus
@@ -65,7 +66,8 @@ typedef struct OH_AudioStreamManager OH_AudioStreamManager;
  *         {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} if system state error
  * @since 19
  */
-OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManager **streamManager);
+OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManager **streamManager)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the mode of direct playback available for a given audio format with current active device.
@@ -87,7 +89,8 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManage
  */
 OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(
     OH_AudioStreamManager *audioStreamManager, OH_AudioStreamInfo *streamInfo,
-    OH_AudioStream_Usage usage, OH_AudioStream_DirectPlaybackMode *directPlaybackMode);
+    OH_AudioStream_Usage usage, OH_AudioStream_DirectPlaybackMode *directPlaybackMode)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Query whether acoustic echo canceler is supported by input source.
@@ -107,7 +110,8 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(
 OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(
     OH_AudioStreamManager *streamManager,
     OH_AudioStream_SourceType sourceType,
-    bool *supported);
+    bool *supported)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Return if fast playback is supported for the specific audio stream info and usage type
@@ -121,7 +125,8 @@ OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(
  * @since 20
  */
 bool OH_AudioStreamManager_IsFastPlaybackSupported(
-    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Return if fast recording is supported for the specific audio stream info and source type
@@ -135,7 +140,8 @@ bool OH_AudioStreamManager_IsFastPlaybackSupported(
  * @since 20
  */
 bool OH_AudioStreamManager_IsFastRecordingSupported(
-    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source);
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 
 /**
@@ -148,7 +154,8 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(
  * @since 21
  */
 bool OH_AudioStreamManager_IsIntelligentNoiseReductionEnabledForCurrentDevice(
-    OH_AudioStreamManager *streamManager, OH_AudioStream_SourceType source);
+    OH_AudioStreamManager *streamManager, OH_AudioStream_SourceType source)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

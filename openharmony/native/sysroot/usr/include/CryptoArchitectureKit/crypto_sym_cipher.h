@@ -37,6 +37,7 @@
 #ifndef CRYPTO_SYM_CIPHER_H
 #define CRYPTO_SYM_CIPHER_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 #include "crypto_sym_key.h"
 
@@ -83,7 +84,8 @@ typedef struct OH_CryptoSymCipherParams OH_CryptoSymCipherParams;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymCipherParams_Create(OH_CryptoSymCipherParams **params);
+OH_Crypto_ErrCode OH_CryptoSymCipherParams_Create(OH_CryptoSymCipherParams **params)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set a parameter to the cipher params context.
@@ -99,7 +101,8 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_Create(OH_CryptoSymCipherParams **par
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoSymCipherParams_SetParam(OH_CryptoSymCipherParams *params,
-    CryptoSymCipher_ParamsType paramsType, Crypto_DataBlob *value);
+    CryptoSymCipher_ParamsType paramsType, Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the cipher params context.
@@ -107,7 +110,8 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_SetParam(OH_CryptoSymCipherParams *pa
  * @param params Indicates the parameters context.
  * @since 12
  */
-void OH_CryptoSymCipherParams_Destroy(OH_CryptoSymCipherParams *params);
+void OH_CryptoSymCipherParams_Destroy(OH_CryptoSymCipherParams *params)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a symmetric key cipher context according to the given algorithm name.
@@ -119,10 +123,12 @@ void OH_CryptoSymCipherParams_Destroy(OH_CryptoSymCipherParams *params);
  *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
  *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
  *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_PARAMETER_CHECK_FAILED} 17620003 - If parameter check failed.
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymCipher_Create(const char *algoName, OH_CryptoSymCipher **ctx);
+OH_Crypto_ErrCode OH_CryptoSymCipher_Create(const char *algoName, OH_CryptoSymCipher **ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Init the crypto operation with the given crypto mode, key and parameters.
@@ -135,13 +141,15 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Create(const char *algoName, OH_CryptoSymCi
  *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
  *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
  *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_PARAMETER_CHECK_FAILED} 17620003 - If parameter check failed.
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @see OH_CryptoSymCipher_Update
  * @see OH_CryptoSymCipher_Final
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoSymCipher_Init(OH_CryptoSymCipher *ctx, Crypto_CipherMode mod,
-    OH_CryptoSymKey *key, OH_CryptoSymCipherParams *params);
+    OH_CryptoSymKey *key, OH_CryptoSymCipherParams *params)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Update the crypto operation with the input data, and feed back the encrypted or decrypted data.
@@ -153,12 +161,14 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Init(OH_CryptoSymCipher *ctx, Crypto_Cipher
  *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
  *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
  *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_PARAMETER_CHECK_FAILED} 17620003 - If parameter check failed.
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @see OH_CryptoSymCipher_Init
  * @see OH_CryptoSymCipher_Final
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_DataBlob *in, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_DataBlob *in, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Finish the crypto operation, encrypt or decrypt the input data, and then feed back the output data.
@@ -170,12 +180,14 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_Data
  *         {@link OH_Crypto_ErrCode#CRYPTO_INVALID_PARAMS} 401 - If parameter is invalid.
  *         {@link OH_Crypto_ErrCode#CRYPTO_NOT_SUPPORTED} 801 - If the operation is not supported.
  *         {@link OH_Crypto_ErrCode#CRYPTO_MEMORY_ERROR} 17620001 - If memory operation failed.
+ *         {@link OH_Crypto_ErrCode#CRYPTO_PARAMETER_CHECK_FAILED} 17620003 - If parameter check failed.
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @see OH_CryptoSymCipher_Init
  * @see OH_CryptoSymCipher_Update
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataBlob *in, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataBlob *in, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the algorithm name of the symmetric key cipher context.
@@ -184,7 +196,8 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataB
  * @return Return symmetric key cipher algorithm name.
  * @since 12
  */
-const char *OH_CryptoSymCipher_GetAlgoName(OH_CryptoSymCipher *ctx);
+const char *OH_CryptoSymCipher_GetAlgoName(OH_CryptoSymCipher *ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the symmetric key cipher context.
@@ -192,7 +205,7 @@ const char *OH_CryptoSymCipher_GetAlgoName(OH_CryptoSymCipher *ctx);
  * @param ctx Indicates the symmetric key context.
  * @since 12
  */
-void OH_CryptoSymCipher_Destroy(OH_CryptoSymCipher *ctx);
+void OH_CryptoSymCipher_Destroy(OH_CryptoSymCipher *ctx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 #ifdef __cplusplus

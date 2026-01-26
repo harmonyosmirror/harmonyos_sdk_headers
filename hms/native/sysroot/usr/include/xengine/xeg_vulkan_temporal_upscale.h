@@ -26,6 +26,7 @@
 #ifndef XEG_VULKAN_TEMPORAL_UPSCALE_H
 #define XEG_VULKAN_TEMPORAL_UPSCALE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <vulkan/vulkan.h>
 
@@ -145,7 +146,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateTemporalUpscale(
     VkDevice                        device,
     XEG_TemporalUpscaleCreateInfo*  pTemporalUpscaleInfo,
     XEG_TemporalUpscale*            pTemporalUpscale
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Records the AI temporal upscaling rendering command.
@@ -160,7 +162,8 @@ VKAPI_ATTR void VKAPI_CALL HMS_XEG_CmdRenderTemporalUpscale(
     VkCommandBuffer                  commandBuffer,
     XEG_TemporalUpscale              temporalUpscale,
     XEG_TemporalUpscaleDescription*  pDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an {@link XEG_TemporalUpscale} object.
@@ -170,7 +173,8 @@ VKAPI_ATTR void VKAPI_CALL HMS_XEG_CmdRenderTemporalUpscale(
  */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroyTemporalUpscale(
     XEG_TemporalUpscale temporalUpscale
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

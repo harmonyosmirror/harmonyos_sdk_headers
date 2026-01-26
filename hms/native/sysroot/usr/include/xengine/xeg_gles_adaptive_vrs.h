@@ -28,6 +28,7 @@
 #ifndef XEG_GLES_ADAPTIVE_VRS_H
 #define XEG_GLES_ADAPTIVE_VRS_H
 
+#include "info/application_target_sdk_version.h"
 #include <GLES3/gl3.h>
 
 #ifdef __cplusplus
@@ -164,7 +165,8 @@ typedef void (GL_APIENTRYP PFN_HMS_XEG_APPLYADAPTIVEVRS)(
  *
  * @since 5.0.0(12)
  */
-GL_APICALL void GL_APIENTRY HMS_XEG_AdaptiveVRSParameter(GLenum pname, GLvoid *param);
+GL_APICALL void GL_APIENTRY HMS_XEG_AdaptiveVRSParameter(GLenum pname, GLvoid *param)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Computes the shading rate image.
@@ -184,7 +186,8 @@ GL_APICALL void GL_APIENTRY HMS_XEG_AdaptiveVRSParameter(GLenum pname, GLvoid *p
  * @since 5.0.0(12)
  */
 GL_APICALL void GL_APIENTRY HMS_XEG_DispatchAdaptiveVRS(GLfloat *reprojectionMatrix, GLuint inputColorImage,
-    GLuint inputDepthImage, GLuint shadingRateImage);
+    GLuint inputDepthImage, GLuint shadingRateImage)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Applies the shading rate image to the render target.
@@ -193,7 +196,8 @@ GL_APICALL void GL_APIENTRY HMS_XEG_DispatchAdaptiveVRS(GLfloat *reprojectionMat
  *
  * @since 5.0.0(12)
  */
-GL_APICALL void GL_APIENTRY HMS_XEG_ApplyAdaptiveVRS(GLuint shadingRateImage);
+GL_APICALL void GL_APIENTRY HMS_XEG_ApplyAdaptiveVRS(GLuint shadingRateImage)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

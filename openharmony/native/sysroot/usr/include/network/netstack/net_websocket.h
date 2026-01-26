@@ -38,6 +38,7 @@
 #ifndef NET_WEBSOCKET_H
 #define NET_WEBSOCKET_H
 
+#include "info/application_target_sdk_version.h"
 #include <signal.h>
 #include <stdint.h>
 #include <string.h>
@@ -62,7 +63,8 @@ extern "C" {
  * @version 1.0
  */
 struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage,
-                                                 WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose);
+                                                 WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose)
+                                                 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Adds the header information to the client request.
@@ -74,7 +76,8 @@ struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen
  * @since 11
  * @version 1.0
  */
-int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Header header);
+int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Header header)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Connects the client to the server.
@@ -88,7 +91,8 @@ int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Head
  * @since 11
  * @version 1.0
  */
-int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct WebSocket_RequestOptions options);
+int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct WebSocket_RequestOptions options)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sends data from the client to the server.
@@ -102,7 +106,8 @@ int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct
  * @since 11
  * @version 1.0
  */
-int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length);
+int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Closes a webSocket connection.
@@ -115,7 +120,8 @@ int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length)
  * @since 11
  * @version 1.0
  */
-int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOption options);
+int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOption options)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases the context and resources of the websocket connection.
@@ -127,7 +133,7 @@ int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOpt
  * @since 11
  * @version 1.0
  */
-int OH_WebSocketClient_Destroy(struct WebSocket *client);
+int OH_WebSocketClient_Destroy(struct WebSocket *client) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

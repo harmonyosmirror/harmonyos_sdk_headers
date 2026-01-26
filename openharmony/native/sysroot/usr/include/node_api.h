@@ -1,6 +1,7 @@
 #ifndef SRC_NODE_API_H_
 #define SRC_NODE_API_H_
 
+#include "info/application_target_sdk_version.h"
 #ifdef BUILDING_NODE_EXTENSION
   #ifdef _WIN32
     // Building native module against node
@@ -194,7 +195,8 @@ napi_status napi_get_node_version(napi_env env,
  * @since 8
  */
 NAPI_EXTERN napi_status napi_get_uv_event_loop(napi_env env,
-                                               struct uv_loop_s** loop);
+                                               struct uv_loop_s** loop)
+                                               __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 #endif  // NAPI_VERSION >= 2
 

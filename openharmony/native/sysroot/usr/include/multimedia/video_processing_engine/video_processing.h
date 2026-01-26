@@ -39,6 +39,7 @@
 #ifndef VIDEO_PROCESSING_ENGINE_C_API_VIDEO_PROCESSING_H
 #define VIDEO_PROCESSING_ENGINE_C_API_VIDEO_PROCESSING_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "video_processing_types.h"
@@ -60,7 +61,8 @@ extern "C" {
  * You can check if the device GPU is working properly.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_InitializeEnvironment(void);
+VideoProcessing_ErrorCode OH_VideoProcessing_InitializeEnvironment(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deinitialize global environment for video processing.
@@ -76,7 +78,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_InitializeEnvironment(void);
  * {@link OH_VideoProcessing_InitializeEnvironment} is not called. \n
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_DeinitializeEnvironment(void);
+VideoProcessing_ErrorCode OH_VideoProcessing_DeinitializeEnvironment(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query if the video color space conversion is supported.
@@ -89,7 +92,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_DeinitializeEnvironment(void);
  */
 bool OH_VideoProcessing_IsColorSpaceConversionSupported(
     const VideoProcessing_ColorSpaceInfo* sourceVideoInfo,
-    const VideoProcessing_ColorSpaceInfo* destinationVideoInfo);
+    const VideoProcessing_ColorSpaceInfo* destinationVideoInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query if the video metadata generation is supported.
@@ -100,7 +104,8 @@ bool OH_VideoProcessing_IsColorSpaceConversionSupported(
  * @since 12
  */
 bool OH_VideoProcessing_IsMetadataGenerationSupported(
-    const VideoProcessing_ColorSpaceInfo* sourceVideoInfo);
+    const VideoProcessing_ColorSpaceInfo* sourceVideoInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a video processing instance.
@@ -117,7 +122,8 @@ bool OH_VideoProcessing_IsMetadataGenerationSupported(
  * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if type is invalid.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_Create(OH_VideoProcessing** videoProcessor, int type);
+VideoProcessing_ErrorCode OH_VideoProcessing_Create(OH_VideoProcessing** videoProcessor, int type)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the video processing instance.
@@ -131,7 +137,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Create(OH_VideoProcessing** videoPr
  * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if the instance is still running.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_Destroy(OH_VideoProcessing* videoProcessor);
+VideoProcessing_ErrorCode OH_VideoProcessing_Destroy(OH_VideoProcessing* videoProcessor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register callback object.
@@ -148,7 +155,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Destroy(OH_VideoProcessing* videoPr
  * @since 12
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_RegisterCallback(OH_VideoProcessing* videoProcessor,
-    const VideoProcessing_Callback* callback, void* userData);
+    const VideoProcessing_Callback* callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the output surface for video processing.
@@ -163,7 +171,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_RegisterCallback(OH_VideoProcessing
  * @since 12
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_SetSurface(OH_VideoProcessing* videoProcessor,
-    const OHNativeWindow* window);
+    const OHNativeWindow* window)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create an input surface.
@@ -180,7 +189,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetSurface(OH_VideoProcessing* vide
  * or video processing instance is running.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* videoProcessor, OHNativeWindow** window);
+VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* videoProcessor, OHNativeWindow** window)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set parameter for video processing.
@@ -198,7 +208,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* vide
  * @since 12
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* videoProcessor,
-    const OH_AVFormat* parameter);
+    const OH_AVFormat* parameter)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get parameter of video processing.
@@ -212,7 +223,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* vi
  * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if the parameter is null. \n
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_GetParameter(OH_VideoProcessing* videoProcessor, OH_AVFormat* parameter);
+VideoProcessing_ErrorCode OH_VideoProcessing_GetParameter(OH_VideoProcessing* videoProcessor, OH_AVFormat* parameter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Start video processing instance.
@@ -227,7 +239,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetParameter(OH_VideoProcessing* vi
  * instance is already running.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_Start(OH_VideoProcessing* videoProcessor);
+VideoProcessing_ErrorCode OH_VideoProcessing_Start(OH_VideoProcessing* videoProcessor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief To stop video processing instance.
@@ -241,7 +254,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Start(OH_VideoProcessing* videoProc
  * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if instance is already stopped.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_Stop(OH_VideoProcessing* videoProcessor);
+VideoProcessing_ErrorCode OH_VideoProcessing_Stop(OH_VideoProcessing* videoProcessor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Send the output buffer out.
@@ -258,7 +272,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Stop(OH_VideoProcessing* videoProce
  * not set or instance is stopped.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_RenderOutputBuffer(OH_VideoProcessing* videoProcessor, uint32_t index);
+VideoProcessing_ErrorCode OH_VideoProcessing_RenderOutputBuffer(OH_VideoProcessing* videoProcessor, uint32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a video processing callback object.
@@ -270,7 +285,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_RenderOutputBuffer(OH_VideoProcessi
  * {@link VIDEO_PROCESSING_ERROR_NO_MEMORY} if out of memory.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessingCallback_Create(VideoProcessing_Callback** callback);
+VideoProcessing_ErrorCode OH_VideoProcessingCallback_Create(VideoProcessing_Callback** callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the callback object.
@@ -283,7 +299,8 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_Create(VideoProcessing_Call
  * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if callback is null.
  * @since 12
  */
-VideoProcessing_ErrorCode OH_VideoProcessingCallback_Destroy(VideoProcessing_Callback* callback);
+VideoProcessing_ErrorCode OH_VideoProcessingCallback_Destroy(VideoProcessing_Callback* callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Bind the {@link OH_VideoProcessingCallback_OnError} callback function to callback object.
@@ -295,7 +312,8 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_Destroy(VideoProcessing_Cal
  * @since 12
  */
 VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnError(VideoProcessing_Callback* callback,
-    OH_VideoProcessingCallback_OnError onError);
+    OH_VideoProcessingCallback_OnError onError)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Bind the {@link OH_VideoProcessingCallback_OnState} callback function to callback object.
@@ -307,7 +325,8 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnError(VideoProcessing
  * @since 12
  */
 VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnState(VideoProcessing_Callback* callback,
-    OH_VideoProcessingCallback_OnState onState);
+    OH_VideoProcessingCallback_OnState onState)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Bind the {@link OH_VideoProcessingCallback_OnNewOutputBuffer} callback function to callback object.
@@ -319,7 +338,8 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnState(VideoProcessing
  * @since 12
  */
 VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnNewOutputBuffer(VideoProcessing_Callback* callback,
-    OH_VideoProcessingCallback_OnNewOutputBuffer onNewOutputBuffer);
+    OH_VideoProcessingCallback_OnNewOutputBuffer onNewOutputBuffer)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

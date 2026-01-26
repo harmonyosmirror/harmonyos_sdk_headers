@@ -37,6 +37,7 @@
 #ifndef NATIVE_AVCODEC_AUDIOENCODER_H
 #define NATIVE_AVCODEC_AUDIOENCODER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avcodec_base.h"
@@ -55,7 +56,7 @@ extern "C" {
  * @since 9
  * @version 1.0
  */
-OH_AVCodec *OH_AudioEncoder_CreateByMime(const char *mime);
+OH_AVCodec *OH_AudioEncoder_CreateByMime(const char *mime) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Create an audio encoder instance through the audio encoder name.
@@ -68,7 +69,7 @@ OH_AVCodec *OH_AudioEncoder_CreateByMime(const char *mime);
  * @since 9
  * @version 1.0
  */
-OH_AVCodec *OH_AudioEncoder_CreateByName(const char *name);
+OH_AVCodec *OH_AudioEncoder_CreateByName(const char *name) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Clear the internal resources of the encoder and destroy the encoder instance
@@ -81,7 +82,7 @@ OH_AVCodec *OH_AudioEncoder_CreateByName(const char *name);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Destroy(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioEncoder_Destroy(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the asynchronous callback function so that your application can respond to
@@ -97,7 +98,8 @@ OH_AVErrCode OH_AudioEncoder_Destroy(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
+OH_AVErrCode OH_AudioEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief To configure the audio encoder, typically, you need to configure the description information of
@@ -112,7 +114,8 @@ OH_AVErrCode OH_AudioEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
+OH_AVErrCode OH_AudioEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief To prepare the internal resources of the encoder,
@@ -126,7 +129,7 @@ OH_AVErrCode OH_AudioEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Prepare(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioEncoder_Prepare(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Start the encoder, this interface must be called after the Prepare is successful.
@@ -140,7 +143,7 @@ OH_AVErrCode OH_AudioEncoder_Prepare(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Start(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioEncoder_Start(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Stop the encoder. After stopping, you can re-enter the Started state through Start.
@@ -153,7 +156,7 @@ OH_AVErrCode OH_AudioEncoder_Start(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Stop(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioEncoder_Stop(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Clear the input and output data buffered in the encoder. After this interface is called,
@@ -168,7 +171,7 @@ OH_AVErrCode OH_AudioEncoder_Stop(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Flush(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioEncoder_Flush(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Reset the encoder. To continue coding, you need to call the Configure interface
@@ -182,7 +185,7 @@ OH_AVErrCode OH_AudioEncoder_Flush(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_Reset(OH_AVCodec *codec);
+OH_AVErrCode OH_AudioEncoder_Reset(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Get the description information of the output data of the encoder, refer to {@link OH_AVFormat} for details.
@@ -197,7 +200,8 @@ OH_AVErrCode OH_AudioEncoder_Reset(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVFormat *OH_AudioEncoder_GetOutputDescription(OH_AVCodec *codec);
+OH_AVFormat *OH_AudioEncoder_GetOutputDescription(OH_AVCodec *codec)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set dynamic parameters to the encoder. Note: This interface can only be called after the encoder is started.
@@ -212,7 +216,8 @@ OH_AVFormat *OH_AudioEncoder_GetOutputDescription(OH_AVCodec *codec);
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
+OH_AVErrCode OH_AudioEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Submit the input buffer filled with data to the audio encoder. The {@link OH_AVCodecOnNeedInputData}
@@ -230,7 +235,8 @@ OH_AVErrCode OH_AudioEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
+OH_AVErrCode OH_AudioEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Return the processed output Buffer to the encoder.
@@ -244,7 +250,8 @@ OH_AVErrCode OH_AudioEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @since 9
  * @version 1.0
  */
-OH_AVErrCode OH_AudioEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_AudioEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Check whether the current codec instance is valid. It can be used fault recovery or app
@@ -259,7 +266,8 @@ OH_AVErrCode OH_AudioEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * @useinstead OH_AudioCodec_IsValid
  * @since 10
  */
-OH_AVErrCode OH_AudioEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
+OH_AVErrCode OH_AudioEncoder_IsValid(OH_AVCodec *codec, bool *isValid)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #ifdef __cplusplus
 }

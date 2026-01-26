@@ -25,6 +25,7 @@
 #ifndef NETWORK_BOOST_QUALITY_API_H
 #define NETWORK_BOOST_QUALITY_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -143,7 +144,47 @@ typedef enum NetworkBoost_ServiceType {
     /** upload service type */
     NB_SERVICE_UPLOAD = 12,
     /** browser service type */
-    NB_SERVICE_BROWSER = 13
+    NB_SERVICE_BROWSER = 13,
+    /** Transaction service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_TRANSACTION = 14,
+    /** detection service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_DETECTION = 15,
+    /** cloudService service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_CLOUDSERVICE = 16,
+    /** voiceConference service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_VOICE_CONFERENCE = 17,
+    /** videoConference service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_VIDEO_CONFERENCE = 18,
+    /** navigation service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_NAVIGATION = 19,
+    /** seckillService service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_SECKILL_SERVICE = 20,
+    /** login service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_LOGIN = 21,
+    /** audio service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_AUDIO = 22,
+    /** shopping service type
+     * @since 6.0.2(22)
+     */
+    NB_SERVICE_SHOPPING = 23
 } NetworkBoost_ServiceType;
 
 /**
@@ -265,7 +306,8 @@ typedef void (*HMS_NetworkBoost_NetSceneChange)(NetworkBoost_NetworkScene* netwo
  * @since 5.1.0(18)
  */
 int32_t HMS_NetworkBoost_RegisterNetQosCallback(
-    HMS_NetworkBoost_NetQosChange callback, uint32_t* callbackId);
+    HMS_NetworkBoost_NetQosChange callback, uint32_t* callbackId)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Unsubscribe to the net Qos state change event.
@@ -282,7 +324,8 @@ int32_t HMS_NetworkBoost_RegisterNetQosCallback(
  * @permission ohos.permission.GET_NETWORK_INFO
  * @since 5.1.0(18)
  */
-int32_t HMS_NetworkBoost_UnregisterNetQosCallback(uint32_t callbackId);
+int32_t HMS_NetworkBoost_UnregisterNetQosCallback(uint32_t callbackId)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Subscribe to the net scene change event.
@@ -302,7 +345,8 @@ int32_t HMS_NetworkBoost_UnregisterNetQosCallback(uint32_t callbackId);
  * @since 5.1.0(18)
  */
 int32_t HMS_NetworkBoost_RegisterNetSceneCallback(
-    HMS_NetworkBoost_NetSceneChange callback, uint32_t* callbackId);
+    HMS_NetworkBoost_NetSceneChange callback, uint32_t* callbackId)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Unsubscribe to the net scene change event.
@@ -319,7 +363,8 @@ int32_t HMS_NetworkBoost_RegisterNetSceneCallback(
  * @permission ohos.permission.GET_NETWORK_INFO
  * @since 5.1.0(18)
  */
-int32_t HMS_NetworkBoost_UnregisterNetSceneCallback(uint32_t callbackId);
+int32_t HMS_NetworkBoost_UnregisterNetSceneCallback(uint32_t callbackId)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief App report qoe info.
@@ -337,7 +382,8 @@ int32_t HMS_NetworkBoost_UnregisterNetSceneCallback(uint32_t callbackId);
  * @permission ohos.permission.GET_NETWORK_INFO
  * @since 5.1.0(18)
  */
-int32_t HMS_NetworkBoost_ReportQoe(NetworkBoost_ServiceType serviceType, NetworkBoost_QoeType qoeType);
+int32_t HMS_NetworkBoost_ReportQoe(NetworkBoost_ServiceType serviceType, NetworkBoost_QoeType qoeType)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

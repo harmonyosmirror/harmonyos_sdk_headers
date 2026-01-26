@@ -37,6 +37,7 @@
 #ifndef NATIVE_AVDEMUXER_H
 #define NATIVE_AVDEMUXER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_avcodec_base.h"
 #include "native_avsource.h"
@@ -85,7 +86,8 @@ typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_Me
  *  1. source is invalid.
  * @since 10
 */
-OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
+OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroy the OH_AVDemuxer instance and free the internal resources.
@@ -99,7 +101,7 @@ OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
  *          {@link AV_ERR_INVALID_VAL} demuxer is invalid.
  * @since 10
 */
-OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);
+OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief The specified track is selected and the demuxer will read samples from
@@ -116,7 +118,8 @@ OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);
  *                                     trackIndex is out of range, track is not supported to be read.
  * @since 10
 */
-OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);
+OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief The specified selected track is unselected. The unselected track's sample
@@ -132,7 +135,8 @@ OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackI
  *          {@link AV_ERR_INVALID_VAL} demuxer is invalid, demuxer is not properly initialized.
  * @since 10
 */
-OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);
+OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the current encoded sample and sample-related information from the specified
@@ -155,7 +159,8 @@ OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trac
  * @since 10
 */
 OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
-    OH_AVMemory *sample, OH_AVCodecBufferAttr *info);
+    OH_AVMemory *sample, OH_AVCodecBufferAttr *info)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the current encoded sample and sample-related information from the specified
@@ -175,7 +180,8 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
  * @since 11
 */
 OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t trackIndex,
-    OH_AVBuffer *sample);
+    OH_AVBuffer *sample)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief All selected tracks seek near to the requested time according to the seek mode.
@@ -192,7 +198,8 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
  *          {@link AV_ERR_UNKNOWN} failed to seek.
  * @since 10
 */
-OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond, OH_AVSeekMode mode);
+OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond, OH_AVSeekMode mode)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Method to set player media key system info callback.
@@ -207,7 +214,8 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
  * @since 11
  */
 OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
-    DRM_MediaKeySystemInfoCallback callback);
+    DRM_MediaKeySystemInfoCallback callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Method to set player media key system info callback.
@@ -220,7 +228,8 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
  * @since 12
  */
 OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
-    Demuxer_MediaKeySystemInfoCallback callback);
+    Demuxer_MediaKeySystemInfoCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains media key system info to create media key session.
@@ -234,7 +243,8 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
  *          or the mediaKeySystemInfo is nullptr.
  * @since 11
  */
-OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo);
+OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

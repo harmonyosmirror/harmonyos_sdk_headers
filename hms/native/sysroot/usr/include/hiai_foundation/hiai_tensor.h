@@ -31,6 +31,7 @@
 
 #ifndef HIAI_FOUNDATION_TENSOR_H
 #define HIAI_FOUNDATION_TENSOR_H
+#include "info/application_target_sdk_version.h"
 #include "hiai_aipp_param.h"
 #include "neural_network_runtime/neural_network_runtime_type.h"
 
@@ -48,7 +49,8 @@ extern "C" {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAITensor_GetSizeWithImageFormat}
  */
-size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageFormat format);
+size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageFormat format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets aippParams for NN_Tensor.
@@ -68,7 +70,8 @@ size_t HMS_HiAITensor_GetSizeWithImageFormat(NN_TensorDesc* desc, HiAI_ImageForm
  * @useinstead {@link CANNKit/HMS_HiAITensor_SetAippParams}
  */
 OH_NN_ReturnCode HMS_HiAITensor_SetAippParams(
-    NN_Tensor* tensor, HiAI_AippParam* aippParams[], size_t aippNum);
+    NN_Tensor* tensor, HiAI_AippParam* aippParams[], size_t aippNum)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

@@ -29,6 +29,7 @@
 #ifndef FRAME_GENERATION_GLES_H
 #define FRAME_GENERATION_GLES_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include "frame_generation_base.h"
 
@@ -88,7 +89,7 @@ typedef enum FG_ImageFormat_GLES {
  * @return Returns the pointer to a {@link FG_Context_GLES} context instance.
  * @since 5.0.0(12)
  */
-FG_Context_GLES* HMS_FG_CreateContext_GLES(void);
+FG_Context_GLES* HMS_FG_CreateContext_GLES(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the selection of the prediction mode and motion vector estimation mode of Frame Generation.
@@ -101,7 +102,8 @@ FG_Context_GLES* HMS_FG_CreateContext_GLES(void);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetAlgorithmMode_GLES(FG_Context_GLES* context, const FG_AlgorithmModeInfo* predictionModeInfo);
+FG_ErrorCode HMS_FG_SetAlgorithmMode_GLES(FG_Context_GLES* context, const FG_AlgorithmModeInfo* predictionModeInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the resolution in pixels of frame generation input and output images.
@@ -114,7 +116,8 @@ FG_ErrorCode HMS_FG_SetAlgorithmMode_GLES(FG_Context_GLES* context, const FG_Alg
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetResolution_GLES(FG_Context_GLES* context, const FG_ResolutionInfo* resolutionInfo);
+FG_ErrorCode HMS_FG_SetResolution_GLES(FG_Context_GLES* context, const FG_ResolutionInfo* resolutionInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the Z range semantic of projection matrix used by application.
@@ -126,7 +129,8 @@ FG_ErrorCode HMS_FG_SetResolution_GLES(FG_Context_GLES* context, const FG_Resolu
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetCvvZSemantic_GLES(FG_Context_GLES* context, FG_CvvZSemantic semantic);
+FG_ErrorCode HMS_FG_SetCvvZSemantic_GLES(FG_Context_GLES* context, FG_CvvZSemantic semantic)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide frame generation input scene color format.
@@ -138,7 +142,8 @@ FG_ErrorCode HMS_FG_SetCvvZSemantic_GLES(FG_Context_GLES* context, FG_CvvZSemant
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetImageFormat_GLES(FG_Context_GLES* context, FG_ImageFormat_GLES format);
+FG_ErrorCode HMS_FG_SetImageFormat_GLES(FG_Context_GLES* context, FG_ImageFormat_GLES format)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This should be called when color buffer is Y axis inverted relative to Depth/Stencil buffer.
@@ -150,7 +155,8 @@ FG_ErrorCode HMS_FG_SetImageFormat_GLES(FG_Context_GLES* context, FG_ImageFormat
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_GLES(FG_Context_GLES* context, bool inverted);
+FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_GLES(FG_Context_GLES* context, bool inverted)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Activate Frame Generation instance on OpenGL ES platform. An "activated" instance is ready to draw frames.
@@ -163,7 +169,7 @@ FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_GLES(FG_Context_GLES* cont
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_Activate_GLES(FG_Context_GLES* context);
+FG_ErrorCode HMS_FG_Activate_GLES(FG_Context_GLES* context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deactivate Frame Generation instance on OpenGL ES platform.
@@ -174,7 +180,7 @@ FG_ErrorCode HMS_FG_Activate_GLES(FG_Context_GLES* context);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_Deactivate_GLES(FG_Context_GLES* context);
+FG_ErrorCode HMS_FG_Deactivate_GLES(FG_Context_GLES* context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query if the frame generation instance is currently activated.
@@ -187,7 +193,8 @@ FG_ErrorCode HMS_FG_Deactivate_GLES(FG_Context_GLES* context);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_IsActive_GLES(FG_Context_GLES* context, bool* isActive);
+FG_ErrorCode HMS_FG_IsActive_GLES(FG_Context_GLES* context, bool* isActive)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the extended camera information in cases where the translation component of view-projection
@@ -199,7 +206,8 @@ FG_ErrorCode HMS_FG_IsActive_GLES(FG_Context_GLES* context, bool* isActive);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetExtendedCameraInfo_GLES(FG_Context_GLES* context, const FG_PerFrameExtendedCameraInfo* info);
+FG_ErrorCode HMS_FG_SetExtendedCameraInfo_GLES(FG_Context_GLES* context, const FG_PerFrameExtendedCameraInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets all required data for prediction of a frame to draw predicted frames on OpenGL ES platform.
@@ -211,7 +219,8 @@ FG_ErrorCode HMS_FG_SetExtendedCameraInfo_GLES(FG_Context_GLES* context, const F
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_Dispatch_GLES(FG_Context_GLES* context, const FG_DispatchDescription_GLES* desc);
+FG_ErrorCode HMS_FG_Dispatch_GLES(FG_Context_GLES* context, const FG_DispatchDescription_GLES* desc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy Frame Generation instance and memory resource reclamation on OpenGL ES platform.
@@ -221,7 +230,8 @@ FG_ErrorCode HMS_FG_Dispatch_GLES(FG_Context_GLES* context, const FG_DispatchDes
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_DestroyContext_GLES(FG_Context_GLES** context);
+FG_ErrorCode HMS_FG_DestroyContext_GLES(FG_Context_GLES** context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the frame prediction integration information on the OpenGL ES platform.
@@ -233,7 +243,8 @@ FG_ErrorCode HMS_FG_DestroyContext_GLES(FG_Context_GLES** context);
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.1.0(18)
  */
-FG_ErrorCode HMS_FG_SetIntegrationMode_GLES(FG_Context_GLES* context, const FG_IntegrationInfo* integrationInfo);
+FG_ErrorCode HMS_FG_SetIntegrationMode_GLES(FG_Context_GLES* context, const FG_IntegrationInfo* integrationInfo)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Select whether to enable the UI prediction feature on the OpenGL ES platform.
@@ -245,7 +256,8 @@ FG_ErrorCode HMS_FG_SetIntegrationMode_GLES(FG_Context_GLES* context, const FG_I
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.1.0(18)
  */
-FG_ErrorCode HMS_FG_SetUiPredictionEnabled_GLES(FG_Context_GLES* context, bool isEnabled);
+FG_ErrorCode HMS_FG_SetUiPredictionEnabled_GLES(FG_Context_GLES* context, bool isEnabled)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the target frame rate after enabling frame prediction on the OpenGL ES platform.
@@ -258,7 +270,8 @@ FG_ErrorCode HMS_FG_SetUiPredictionEnabled_GLES(FG_Context_GLES* context, bool i
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.1.0(18)
  */
-FG_ErrorCode HMS_FG_SetTargetFps_GLES(FG_Context_GLES* context, int targetFps);
+FG_ErrorCode HMS_FG_SetTargetFps_GLES(FG_Context_GLES* context, int targetFps)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

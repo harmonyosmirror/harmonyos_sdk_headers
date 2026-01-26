@@ -39,6 +39,7 @@
 #ifndef OH_PREFERENCES_VALUE_H
 #define OH_PREFERENCES_VALUE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -98,7 +99,8 @@ typedef struct OH_PreferencesValue OH_PreferencesValue;
  * @see OH_PreferencesPair.
  * @since 13
  */
-const char *OH_PreferencesPair_GetKey(const OH_PreferencesPair *pairs, uint32_t index);
+const char *OH_PreferencesPair_GetKey(const OH_PreferencesPair *pairs, uint32_t index)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains a value from an {@Link OH_PreferencesPair} instance.
@@ -110,7 +112,8 @@ const char *OH_PreferencesPair_GetKey(const OH_PreferencesPair *pairs, uint32_t 
  * @see OH_PreferencesValue.
  * @since 13
  */
-const OH_PreferencesValue *OH_PreferencesPair_GetPreferencesValue(const OH_PreferencesPair *pairs, uint32_t index);
+const OH_PreferencesValue *OH_PreferencesPair_GetPreferencesValue(const OH_PreferencesPair *pairs, uint32_t index)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the type of a preferences value.
@@ -121,7 +124,8 @@ const OH_PreferencesValue *OH_PreferencesPair_GetPreferencesValue(const OH_Prefe
  * @see OH_PreferencesValue.
  * @since 13
  */
-Preference_ValueType OH_PreferencesValue_GetValueType(const OH_PreferencesValue *object);
+Preference_ValueType OH_PreferencesValue_GetValueType(const OH_PreferencesValue *object)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the int value of an {@Link OH_PreferencesValue} instance.
@@ -136,7 +140,8 @@ Preference_ValueType OH_PreferencesValue_GetValueType(const OH_PreferencesValue 
  * @see OH_PreferencesValue.
  * @since 13
  */
-int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value);
+int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the Boolean value of an {@Link OH_PreferencesValue} instance.
@@ -151,7 +156,8 @@ int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value);
  * @see OH_PreferencesValue.
  * @since 13
  */
-int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value);
+int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the string value of an {@Link OH_PreferencesValue} instance.
@@ -168,7 +174,8 @@ int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value);
  * @see OH_PreferencesValue.
  * @since 13
  */
-int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **value, uint32_t *valueLen);
+int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **value, uint32_t *valueLen)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 };
 #endif

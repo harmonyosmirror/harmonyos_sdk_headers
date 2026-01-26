@@ -36,6 +36,7 @@
 #ifndef VIDEO_PROCESSING_ENGINE_C_API_IMAGE_PROCESSING_TYPES_H
 #define VIDEO_PROCESSING_ENGINE_C_API_IMAGE_PROCESSING_TYPES_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -78,7 +79,8 @@ typedef struct OH_AVFormat OH_AVFormat;
  * @see OH_ImageProcessing_Create
  * @since 13
  */
-extern const int32_t IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION;
+extern const int32_t IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Used to create an image processing instance for HDR image composition.
@@ -90,7 +92,7 @@ extern const int32_t IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION;
  * @see OH_ImageProcessing_Create
  * @since 13
  */
-extern const int32_t IMAGE_PROCESSING_TYPE_COMPOSITION;
+extern const int32_t IMAGE_PROCESSING_TYPE_COMPOSITION __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Used to create an image processing instance for HDR image decomposition.
@@ -102,7 +104,7 @@ extern const int32_t IMAGE_PROCESSING_TYPE_COMPOSITION;
  * @see OH_ImageProcessing_Create
  * @since 13
  */
-extern const int32_t IMAGE_PROCESSING_TYPE_DECOMPOSITION;
+extern const int32_t IMAGE_PROCESSING_TYPE_DECOMPOSITION __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Used to create an image processing instance for metadata generation.
@@ -113,7 +115,8 @@ extern const int32_t IMAGE_PROCESSING_TYPE_DECOMPOSITION;
  * @see OH_ImageProcessing_Create
  * @since 13
  */
-extern const int32_t IMAGE_PROCESSING_TYPE_METADATA_GENERATION;
+extern const int32_t IMAGE_PROCESSING_TYPE_METADATA_GENERATION
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Used to create an image processing instance for detail enhancement.
@@ -124,7 +127,7 @@ extern const int32_t IMAGE_PROCESSING_TYPE_METADATA_GENERATION;
  * @see OH_ImageProcessing_Create
  * @since 13
  */
-extern const int32_t IMAGE_PROCESSING_TYPE_DETAIL_ENHANCER;
+extern const int32_t IMAGE_PROCESSING_TYPE_DETAIL_ENHANCER __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief The key is used to specify the quality level for image detail enhancement.
@@ -137,7 +140,8 @@ extern const int32_t IMAGE_PROCESSING_TYPE_DETAIL_ENHANCER;
  * @see OH_VideoProcessing_GetParameter
  * @since 13
  */
-extern const char* IMAGE_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL;
+extern const char* IMAGE_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief The color space information is used for color space conversion capability query.

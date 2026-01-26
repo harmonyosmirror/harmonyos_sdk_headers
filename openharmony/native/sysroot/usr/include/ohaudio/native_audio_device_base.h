@@ -42,6 +42,7 @@
 #ifndef NATIVE_AUDIO_DEVICE_BASE_H
 #define NATIVE_AUDIO_DEVICE_BASE_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audiostream_base.h"
 #include "native_audio_common.h"
 #ifdef __cplusplus
@@ -319,7 +320,8 @@ typedef enum {
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    OH_AudioDevice_Role *deviceRole);
+    OH_AudioDevice_Role *deviceRole)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the device type of the target audio device descriptor.
@@ -332,7 +334,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescr
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    OH_AudioDevice_Type *deviceType);
+    OH_AudioDevice_Type *deviceType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the device id of the target audio device descriptor.
@@ -340,11 +343,12 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescr
  * @param audioDeviceDescriptor reference returned by {@link OH_AudioRoutingManager_GetDevices} or
  * {@link OH_AudioRouterManager_OnDeviceChangedCallback}.
  * @param id pointer variable that will be set the device id value.
- * @return {@link #AUDIODEVICE_SUCCESS} or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}.
+ * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}.
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    uint32_t *id);
+    uint32_t *id)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the device name of the target audio device descriptor.
@@ -359,7 +363,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescrip
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    char **name);
+    char **name)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the device address of the target audio device descriptor.
@@ -374,7 +379,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescr
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    char **address);
+    char **address)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the sample rate array of the target audio device descriptor.
@@ -390,7 +396,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDe
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    uint32_t **sampleRates, uint32_t *size);
+    uint32_t **sampleRates, uint32_t *size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the device channel count array of the target audio device descriptor.
@@ -406,7 +413,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDevi
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    uint32_t **channelCounts, uint32_t *size);
+    uint32_t **channelCounts, uint32_t *size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the display name of the target audio device descriptor.
@@ -421,7 +429,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDe
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    char **displayName);
+    char **displayName)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the encoding type array of the target audio device descriptor.
@@ -437,7 +446,8 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDevi
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
-    OH_AudioStream_EncodingType **encodingTypes, uint32_t *size);
+    OH_AudioStream_EncodingType **encodingTypes, uint32_t *size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif

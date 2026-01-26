@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_SHADOW_LAYER_H
 #define C_INCLUDE_DRAWING_SHADOW_LAYER_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -58,7 +59,8 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ShadowLayer* OH_Drawing_ShadowLayerCreate(float blurRadius, float x, float y, uint32_t color);
+OH_Drawing_ShadowLayer* OH_Drawing_ShadowLayerCreate(float blurRadius, float x, float y, uint32_t color)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_ShadowLayer</b> object and reclaims the memory occupied by the object.
@@ -68,7 +70,8 @@ OH_Drawing_ShadowLayer* OH_Drawing_ShadowLayerCreate(float blurRadius, float x, 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ShadowLayerDestroy(OH_Drawing_ShadowLayer* shadowLayer);
+void OH_Drawing_ShadowLayerDestroy(OH_Drawing_ShadowLayer* shadowLayer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

@@ -37,6 +37,7 @@
 #ifndef NATIVE_AVSOURCE_H
 #define NATIVE_AVSOURCE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_avcodec_base.h"
 #include "native_averrors.h"
@@ -66,7 +67,8 @@ typedef struct OH_AVSource OH_AVSource;
  *  5. demuxer engine is nullptr.
  * @since 12
 */
-OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
+OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an OH_AVSource instance with dataSource and userData.
@@ -82,7 +84,8 @@ OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
  *  5. demuxer engine is nullptr.
  * @since 20
  */
-OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData);
+OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates an OH_AVSource instance that models the media at the URI.
@@ -95,7 +98,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource,
  *  3. file format is not supported.
  * @since 10
 */
-OH_AVSource *OH_AVSource_CreateWithURI(char *uri);
+OH_AVSource *OH_AVSource_CreateWithURI(char *uri) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an OH_AVSource instance that models the media at the FileDescriptor.
@@ -112,7 +115,8 @@ OH_AVSource *OH_AVSource_CreateWithURI(char *uri);
  *  5. file format is not supported.
  * @since 10
 */
-OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size);
+OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroy the OH_AVSource instance and free the internal resources.
@@ -123,7 +127,7 @@ OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size);
  *          {@link AV_ERR_INVALID_VAL} source is invalid.
  * @since 10
 */
-OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
+OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the format info of source.
@@ -136,7 +140,7 @@ OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
  *  1. source is invalid.
  * @since 10
 */
-OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
+OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the format info of track.
@@ -151,7 +155,8 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
  *  2. trackIndex is out of range.
  * @since 10
 */
-OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex);
+OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the format info of custom metadata.
@@ -166,7 +171,8 @@ OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex
  * 1. source is invalid.
  * @since 18
  */
-OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source);
+OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

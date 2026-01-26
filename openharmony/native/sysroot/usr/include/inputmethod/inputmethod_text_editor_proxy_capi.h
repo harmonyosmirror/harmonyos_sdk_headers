@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 
 #include "inputmethod_private_command_capi.h"
@@ -60,7 +61,9 @@ typedef struct InputMethod_TextEditorProxy InputMethod_TextEditorProxy;
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance.
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance.
+ * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance. You can only access the memory when
+ * this callback is called. After this callback returns, the memory will be released and you should not access this
+ * memory again.
  * @since 12
  */
 typedef void (*OH_TextEditorProxy_GetTextConfigFunc)(
@@ -74,7 +77,8 @@ typedef void (*OH_TextEditorProxy_GetTextConfigFunc)(
  *
  * @param textEditorProxy Represents a pointer to the {@link InputMethod_TextEditorProxy} instance which will be set
  * in.
- * @param text Represents a pointer to the text to be inserted.
+ * @param text Represents a pointer to the text to be inserted. You can only access the memory when this callback
+ * is called. After this callback returns, the memory will be released and you should not access this memory again.
  * @param length Represents the length of the text to be inserted.
  * @since 12
  */
@@ -181,7 +185,9 @@ typedef void (*OH_TextEditorProxy_HandleExtendActionFunc)(
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
  * @param number Represents the number of characters to be get.
- * @param text Represents the left text of cursor, you need to assing this parameter.
+ * @param text Represents the left text of cursor, you need to assing this parameter. You can only access the memory
+ * when this callback is called. After this callback returns, the memory will be released and you should not access this
+ * memory again.
  * @param length Represents the length of the left text of cursor, you need to assing this parameter.
  * @since 12
  */
@@ -196,7 +202,9 @@ typedef void (*OH_TextEditorProxy_GetLeftTextOfCursorFunc)(
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
  * @param number Represents the number of characters to be get.
- * @param text Represents the right text of cursor, you need to assing this parameter.
+ * @param text Represents the right text of cursor, you need to assing this parameter. You can only access the memory
+ * when this callback is called. After this callback returns, the memory will be released and you should not access this
+ * memory again.
  * @param length Represents the length of the right text of cursor.
  * @since 12
  */
@@ -222,7 +230,8 @@ typedef int32_t (*OH_TextEditorProxy_GetTextIndexAtCursorFunc)(InputMethod_TextE
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
- * @param privateCommand Private command from input method.
+ * @param privateCommand Private command from input method. You can only access the memory when this callback is called.
+ * After this callback returns, the memory will be released and you should not access this memory again.
  * @param size Size of private command.
  * @return Returns the result of handling private command.
  * @since 12
@@ -237,7 +246,8 @@ typedef int32_t (*OH_TextEditorProxy_ReceivePrivateCommandFunc)(
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
- * @param text Represents text to be previewd.
+ * @param text Represents text to be previewd. You can only access the memory when this callback is called.
+ * After this callback returns, the memory will be released and you should not access this memory again.
  * @param length Length of preview text.
  * @param start Start position of preview text.
  * @param end End position of preview text.
@@ -265,14 +275,15 @@ typedef void (*OH_TextEditorProxy_FinishTextPreviewFunc)(InputMethod_TextEditorP
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_TextEditorProxy *OH_TextEditorProxy_Create(void);
+InputMethod_TextEditorProxy *OH_TextEditorProxy_Create(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroy a {@link InputMethod_TextEditorProxy} instance.
  *
  * @param proxy The {@link InputMethod_TextEditorProxy} instance to be destroyed.
  * @since 12
  */
-void OH_TextEditorProxy_Destroy(InputMethod_TextEditorProxy *proxy);
+void OH_TextEditorProxy_Destroy(InputMethod_TextEditorProxy *proxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_GetTextConfigFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -285,7 +296,8 @@ void OH_TextEditorProxy_Destroy(InputMethod_TextEditorProxy *proxy);
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextConfigFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextConfigFunc getTextConfigFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextConfigFunc getTextConfigFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_InsertTextFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -298,7 +310,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextConfigFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetInsertTextFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_InsertTextFunc insertTextFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_InsertTextFunc insertTextFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_SetDeleteForwardFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -311,7 +324,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetInsertTextFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteForwardFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteForwardFunc deleteForwardFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteForwardFunc deleteForwardFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_DeleteBackwardFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -324,7 +338,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteForwardFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteBackwardFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteBackwardFunc deleteBackwardFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteBackwardFunc deleteBackwardFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_SendKeyboardStatusFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -338,7 +353,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteBackwardFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetSendKeyboardStatusFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendKeyboardStatusFunc sendKeyboardStatusFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendKeyboardStatusFunc sendKeyboardStatusFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_SendEnterKeyFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -351,7 +367,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSendKeyboardStatusFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetSendEnterKeyFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendEnterKeyFunc sendEnterKeyFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendEnterKeyFunc sendEnterKeyFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_MoveCursorFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -364,7 +381,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSendEnterKeyFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetMoveCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_MoveCursorFunc moveCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_MoveCursorFunc moveCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_HandleSetSelectionFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -378,7 +396,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetMoveCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetHandleSetSelectionFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleSetSelectionFunc handleSetSelectionFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleSetSelectionFunc handleSetSelectionFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_HandleExtendActionFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -392,7 +411,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetHandleSetSelectionFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetHandleExtendActionFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleExtendActionFunc handleExtendActionFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleExtendActionFunc handleExtendActionFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_GetLeftTextOfCursorFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -406,7 +426,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetHandleExtendActionFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetLeftTextOfCursorFunc getLeftTextOfCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetLeftTextOfCursorFunc getLeftTextOfCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_GetRightTextOfCursorFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -420,7 +441,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetRightTextOfCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetRightTextOfCursorFunc getRightTextOfCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetRightTextOfCursorFunc getRightTextOfCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_GetTextIndexAtCursorFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -434,7 +456,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetRightTextOfCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextIndexAtCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextIndexAtCursorFunc getTextIndexAtCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextIndexAtCursorFunc getTextIndexAtCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_ReceivePrivateCommandFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -448,7 +471,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextIndexAtCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_ReceivePrivateCommandFunc receivePrivateCommandFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_ReceivePrivateCommandFunc receivePrivateCommandFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_SetPreviewTextFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -461,7 +485,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc setPreviewTextFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc setPreviewTextFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set function {@link OH_TextEditorProxy_FinishTextPreviewFunc} into {@link InputMethod_TextEditorProxy}.
  *
@@ -475,7 +500,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetFinishTextPreviewFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_FinishTextPreviewFunc finishTextPreviewFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_FinishTextPreviewFunc finishTextPreviewFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get function {@link OH_TextEditorProxy_GetTextConfigFunc} from {@link InputMethod_TextEditorProxy}.
@@ -490,7 +516,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetFinishTextPreviewFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextConfigFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextConfigFunc *getTextConfigFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextConfigFunc *getTextConfigFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_InsertTextFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -504,7 +531,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextConfigFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetInsertTextFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_InsertTextFunc *insertTextFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_InsertTextFunc *insertTextFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_DeleteForwardFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -518,7 +546,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetInsertTextFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteForwardFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteForwardFunc *deleteForwardFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteForwardFunc *deleteForwardFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_DeleteBackwardFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -532,7 +561,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteForwardFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteBackwardFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteBackwardFunc *deleteBackwardFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_DeleteBackwardFunc *deleteBackwardFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_SendKeyboardStatusFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -547,7 +577,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteBackwardFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSendKeyboardStatusFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendKeyboardStatusFunc *sendKeyboardStatusFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendKeyboardStatusFunc *sendKeyboardStatusFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_SendEnterKeyFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -561,7 +592,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSendKeyboardStatusFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSendEnterKeyFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendEnterKeyFunc *sendEnterKeyFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SendEnterKeyFunc *sendEnterKeyFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_MoveCursorFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -575,7 +607,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSendEnterKeyFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetMoveCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_MoveCursorFunc *moveCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_MoveCursorFunc *moveCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_HandleSetSelectionFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -590,7 +623,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetMoveCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetHandleSetSelectionFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleSetSelectionFunc *handleSetSelectionFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleSetSelectionFunc *handleSetSelectionFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_HandleExtendActionFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -605,7 +639,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetHandleSetSelectionFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetHandleExtendActionFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleExtendActionFunc *handleExtendActionFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_HandleExtendActionFunc *handleExtendActionFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_GetLeftTextOfCursorFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -620,7 +655,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetHandleExtendActionFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetLeftTextOfCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetLeftTextOfCursorFunc *getLeftTextOfCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetLeftTextOfCursorFunc *getLeftTextOfCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_GetRightTextOfCursorFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -635,7 +671,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetLeftTextOfCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetRightTextOfCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetRightTextOfCursorFunc *getRightTextOfCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetRightTextOfCursorFunc *getRightTextOfCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_GetTextIndexAtCursorFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -650,7 +687,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetRightTextOfCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextIndexAtCursorFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextIndexAtCursorFunc *getTextIndexAtCursorFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_GetTextIndexAtCursorFunc *getTextIndexAtCursorFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_ReceivePrivateCommandFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -665,7 +703,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextIndexAtCursorFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_ReceivePrivateCommandFunc *receivePrivateCommandFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_ReceivePrivateCommandFunc *receivePrivateCommandFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_SetPreviewTextFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -679,7 +718,8 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc *setPreviewTextFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc *setPreviewTextFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get function {@link OH_TextEditorProxy_FinishTextPreviewFunc} from {@link InputMethod_TextEditorProxy}.
  *
@@ -694,7 +734,31 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc(
-    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_FinishTextPreviewFunc *finishTextPreviewFunc);
+    InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_FinishTextPreviewFunc *finishTextPreviewFunc)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Configure the execution thread (main thread/IPC thread) for the callback functions of
+ * {@link InputMethod_TextEditorProxy}.
+ * This interface only controls all callbacks in {@link InputMethod_TextEditorProxy} except
+ * {@link OH_TextEditorProxy_GetTextConfigFunc}.
+ * The execution thread of {@link OH_TextEditorProxy_GetTextConfigFunc} is determined by the thread that calls
+ * {@link OH_InputMethodController_Attach} and is not affected by this interface.
+ *
+ * @param proxy Pointer to the target {@link InputMethod_TextEditorProxy} instance.
+ * @param isCallbackInMainThread Thread execution strategy
+ *                              - true: The callback function is switched to the main thread for execution (to avoid
+ * multi-thread concurrency)
+ *                              - false: The callback function is executed in the IPC thread (there may be multi-thread
+ * concurrency)
+ * @return Execution result.
+ *     {@link IME_ERR_OK} - Configuration succeeded.
+ *     {@link IME_ERR_NULL_POINTER} - Returned when proxy is NULL.
+ * @since 22
+ */
+InputMethod_ErrorCode OH_TextEditorProxy_SetCallbackInMainThread(
+    InputMethod_TextEditorProxy *proxy, bool isCallbackInMainThread)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

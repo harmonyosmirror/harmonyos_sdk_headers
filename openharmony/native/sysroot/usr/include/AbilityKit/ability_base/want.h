@@ -37,6 +37,7 @@
 #ifndef ABILITY_BASE_WANT_H
 #define ABILITY_BASE_WANT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include <stdint.h>
 #include "ability_base_common.h"
@@ -70,7 +71,8 @@ typedef struct AbilityBase_Want AbilityBase_Want;
  *
  * @since 15
  */
-AbilityBase_Want* OH_AbilityBase_CreateWant(AbilityBase_Element element);
+AbilityBase_Want* OH_AbilityBase_CreateWant(AbilityBase_Element element)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy input want.
@@ -81,7 +83,8 @@ AbilityBase_Want* OH_AbilityBase_CreateWant(AbilityBase_Element element);
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the want is invalid.
  * @since 15
  */
-AbilityBase_ErrorCode OH_AbilityBase_DestroyWant(AbilityBase_Want* want);
+AbilityBase_ErrorCode OH_AbilityBase_DestroyWant(AbilityBase_Want* want)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set want element.
@@ -93,7 +96,8 @@ AbilityBase_ErrorCode OH_AbilityBase_DestroyWant(AbilityBase_Want* want);
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the want is invalid.
  * @since 15
  */
-AbilityBase_ErrorCode OH_AbilityBase_SetWantElement(AbilityBase_Want* want, AbilityBase_Element element);
+AbilityBase_ErrorCode OH_AbilityBase_SetWantElement(AbilityBase_Want* want, AbilityBase_Element element)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get want element.
@@ -105,7 +109,8 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantElement(AbilityBase_Want* want, Abil
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the want or element is invalid.
  * @since 15
  */
-AbilityBase_ErrorCode OH_AbilityBase_GetWantElement(AbilityBase_Want* want, AbilityBase_Element* element);
+AbilityBase_ErrorCode OH_AbilityBase_GetWantElement(AbilityBase_Want* want, AbilityBase_Element* element)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set want char param.
@@ -118,7 +123,8 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantElement(AbilityBase_Want* want, Abil
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 15
  */
-AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, const char* key, const char* value);
+AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, const char* key, const char* value)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get want char param.
@@ -133,7 +139,8 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, co
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, const char* key,
-    char* value, size_t valueSize);
+    char* value, size_t valueSize)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Add fd to want.
@@ -146,7 +153,8 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, co
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 15
  */
-AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const char* key, int32_t fd);
+AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const char* key, int32_t fd)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get fd from want.
@@ -159,7 +167,8 @@ AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const cha
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 15
  */
-AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const char* key, int32_t* fd);
+AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const char* key, int32_t* fd)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set uri to want.
@@ -171,7 +180,8 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const cha
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const char* uri);
+AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const char* uri)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Get uri from want.
@@ -184,7 +194,8 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const ch
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* uri, size_t uriSize);
+AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* uri, size_t uriSize)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Set int32_t to want.
@@ -197,7 +208,8 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* ur
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t value);
+AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t value)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Get int32_t from want.
@@ -210,7 +222,8 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, c
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t* value);
+AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t* value)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Set bool to want.
@@ -223,7 +236,8 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, c
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, const char* key, bool value);
+AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, const char* key, bool value)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Get bool from want.
@@ -236,7 +250,8 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, co
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, const char* key, bool* value);
+AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, const char* key, bool* value)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Set double to want.
@@ -249,7 +264,8 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, co
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, const char* key, double value);
+AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, const char* key, double value)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Get double from want.
@@ -262,7 +278,8 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, 
  *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
  * @since 17
  */
-AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, const char* key, double* value);
+AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, const char* key, double* value)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 #ifdef __cplusplus
 } // extern "C"

@@ -25,6 +25,7 @@
 #ifndef XEG_GLES_EXTENSION_H
 #define XEG_GLES_EXTENSION_H
 
+#include "info/application_target_sdk_version.h"
 #include <GLES3/gl3.h>
 #include "xeg_extension_defs.h"
 
@@ -64,7 +65,7 @@ typedef const GLubyte* (GL_APIENTRYP PFN_HMS_XEG_GETSTRING)(GLenum name);
 *
 * @since 5.0.0(12)
 */
-const GLubyte* HMS_XEG_GetString(GLenum name);
+const GLubyte* HMS_XEG_GetString(GLenum name) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

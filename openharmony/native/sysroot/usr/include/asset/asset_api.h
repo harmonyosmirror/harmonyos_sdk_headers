@@ -39,6 +39,7 @@
 #ifndef ASSET_API_H
 #define ASSET_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -74,7 +75,8 @@ extern "C" {
  *     {@link ASSET_GET_SYSTEM_TIME_ERROR} 24000015 - Getting the system time failed.
  * @since 11
  */
-int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
+int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Removes one or more assets.
@@ -97,7 +99,8 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
  *     {@link ASSET_GET_SYSTEM_TIME_ERROR} 24000015 - Getting the system time failed.
  * @since 11
  */
-int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt);
+int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Updates an asset.
@@ -126,7 +129,8 @@ int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt);
  * @since 11
  */
 int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
-    const Asset_Attr *attributesToUpdate, uint32_t updateCnt);
+    const Asset_Attr *attributesToUpdate, uint32_t updateCnt)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Preprocesses data before querying the asset that can be accessed only after a successful user authentication.
@@ -153,7 +157,8 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
  *     {@link ASSET_UNSUPPORTED} 24000017 - The capability is not supported.
  * @since 11
  */
-int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob *challenge);
+int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob *challenge)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries assets.
@@ -180,7 +185,8 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
  *     {@link ASSET_UNSUPPORTED} 24000017 - The capability is not supported.
  * @since 11
  */
-int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultSet *resultSet);
+int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultSet *resultSet)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Processes data after the query of the asset that requires user authentication.
@@ -201,7 +207,8 @@ int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultS
  *     {@link ASSET_ACCESS_TOKEN_ERROR} 24000013 - Calling the Access Token service failed.
  * @since 11
  */
-int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt);
+int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Query the result of synchronization.
@@ -220,7 +227,8 @@ int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt);
  *     {@link ASSET_PARAM_VERIFICATION_FAILED} 24000018 - Parameter verification failed.
  * @since 20
  */
-int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, Asset_SyncResult *syncResult);
+int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, Asset_SyncResult *syncResult)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Parses the query result to obtain the specified attribute value.
@@ -231,7 +239,8 @@ int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, Ass
  *     The attribute does not need to be released by the service.
  * @since 11
  */
-Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag);
+Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases the memory occupied by the challenge value.
@@ -239,7 +248,7 @@ Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag);
  * @param blob Pointer to the challenge value (obtained by <b>OH_Asset_PreQuery</b>) to release.
  * @since 11
  */
-void OH_Asset_FreeBlob(Asset_Blob *blob);
+void OH_Asset_FreeBlob(Asset_Blob *blob) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Releases the memory occupied by the query result.
@@ -247,7 +256,7 @@ void OH_Asset_FreeBlob(Asset_Blob *blob);
  * @param resultSet Pointer to the query result (obtained by <b>OH_Asset_Query</b>) to release.
  * @since 11
  */
-void OH_Asset_FreeResultSet(Asset_ResultSet *resultSet);
+void OH_Asset_FreeResultSet(Asset_ResultSet *resultSet) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

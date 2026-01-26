@@ -37,6 +37,7 @@
 #ifndef C_INCLUDE_EFFECT_FILTER_H
 #define C_INCLUDE_EFFECT_FILTER_H
 
+#include "info/application_target_sdk_version.h"
 #include "effect_types.h"
 #ifdef __cplusplus
 extern "C" {
@@ -52,7 +53,8 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** filter);
+EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** filter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release an <b>OH_Filter</b> object.
@@ -63,7 +65,7 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_Release(OH_Filter* filter);
+EffectErrorCode OH_Filter_Release(OH_Filter* filter) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a blur effect and then add to the filter.
@@ -75,7 +77,8 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
+EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a blur effect and then add to the filter.
@@ -89,7 +92,8 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
  *        {@link EFFECT_BAD_PARAMETER} if parameter is invalid.
  * @since 14
  */
-EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode);
+EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Creates a brighten effect and then add to the filter.
@@ -101,7 +105,8 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
+EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a gray scale effect and then add to the filter.
@@ -112,7 +117,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
+EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a invert effect and then add to the filter.
@@ -123,7 +128,7 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
+EffectErrorCode OH_Filter_Invert(OH_Filter* filter) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a effect with a matrix and then add to the filter.
@@ -135,7 +140,8 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatrix* matrix);
+EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatrix* matrix)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get a pixelmap with the filter effect.
@@ -147,7 +153,8 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
  * @since 12
  * @version 1.0
  */
-EffectErrorCode OH_Filter_GetEffectPixelMap(OH_Filter* filter, OH_PixelmapNative** pixelmap);
+EffectErrorCode OH_Filter_GetEffectPixelMap(OH_Filter* filter, OH_PixelmapNative** pixelmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

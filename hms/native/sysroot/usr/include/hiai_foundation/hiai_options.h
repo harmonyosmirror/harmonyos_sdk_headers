@@ -31,6 +31,7 @@
 #ifndef HIAI_FOUNDATION_OPTIONS_H
 #define HIAI_FOUNDATION_OPTIONS_H
 
+#include "info/application_target_sdk_version.h"
 #include "neural_network_runtime/neural_network_runtime_type.h"
 
 #ifdef __cplusplus
@@ -55,7 +56,8 @@ extern "C" {
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetInputTensorShapes}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetInputTensorShapes(
-    OH_NNCompilation* compilation, NN_TensorDesc* inputTensorDescs[], size_t shapeCount);
+    OH_NNCompilation* compilation, NN_TensorDesc* inputTensorDescs[], size_t shapeCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the number of shape descriptions among the build options.
@@ -67,7 +69,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetInputTensorShapes(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetInputTensorShapeSize}
  */
-size_t HMS_HiAIOptions_GetInputTensorShapeSize(const OH_NNCompilation* compilation);
+size_t HMS_HiAIOptions_GetInputTensorShapeSize(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the shape description of a specific index among the build options.
@@ -81,7 +84,8 @@ size_t HMS_HiAIOptions_GetInputTensorShapeSize(const OH_NNCompilation* compilati
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetInputTensorShape}
  */
-NN_TensorDesc* HMS_HiAIOptions_GetInputTensorShape(const OH_NNCompilation* compilation, size_t index);
+NN_TensorDesc* HMS_HiAIOptions_GetInputTensorShape(const OH_NNCompilation* compilation, size_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Data layout formats during model building.
@@ -110,7 +114,8 @@ typedef enum {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetFormatMode}
  */
-OH_NN_ReturnCode HMS_HiAIOptions_SetFormatMode(OH_NNCompilation* compilation, HiAI_FormatMode formatMode);
+OH_NN_ReturnCode HMS_HiAIOptions_SetFormatMode(OH_NNCompilation* compilation, HiAI_FormatMode formatMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the data layout format among build options.
@@ -122,7 +127,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetFormatMode(OH_NNCompilation* compilation, Hi
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetFormatMode}
  */
-HiAI_FormatMode HMS_HiAIOptions_GetFormatMode(const OH_NNCompilation* compilation);
+HiAI_FormatMode HMS_HiAIOptions_GetFormatMode(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Indicates whether to enable variable shapes before model building.
@@ -168,7 +174,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDynamicShapeStatus}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeStatus(
-    OH_NNCompilation* compilation, HiAI_DynamicShapeStatus status);
+    OH_NNCompilation* compilation, HiAI_DynamicShapeStatus status)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the maximum number of cached models in the variable shape configuration before model building.
@@ -187,7 +194,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeStatus(
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDynamicShapeMaxCache}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeMaxCache(
-    OH_NNCompilation* compilation, size_t maxCacheCount);
+    OH_NNCompilation* compilation, size_t maxCacheCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the cache mode in the variable shape configuration before model building.
@@ -206,7 +214,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeMaxCache(
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDynamicShapeCacheMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeCacheMode(
-    OH_NNCompilation* compilation, HiAI_DynamicShapeCacheMode mode);
+    OH_NNCompilation* compilation, HiAI_DynamicShapeCacheMode mode)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the dynamic shape status parameter in the variable shape configuration before model building.
@@ -218,7 +227,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDynamicShapeCacheMode(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDynamicShapeStatus}
  */
-HiAI_DynamicShapeStatus HMS_HiAIOptions_GetDynamicShapeStatus(const OH_NNCompilation* compilation);
+HiAI_DynamicShapeStatus HMS_HiAIOptions_GetDynamicShapeStatus(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the maximum number of caches in the variable shape configuration before model building.
@@ -229,7 +239,8 @@ HiAI_DynamicShapeStatus HMS_HiAIOptions_GetDynamicShapeStatus(const OH_NNCompila
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDynamicShapeMaxCache}
  */
-size_t HMS_HiAIOptions_GetDynamicShapeMaxCache(const OH_NNCompilation* compilation);
+size_t HMS_HiAIOptions_GetDynamicShapeMaxCache(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the cacheMode parameter in the variable shape configuration before model building.
@@ -242,7 +253,8 @@ size_t HMS_HiAIOptions_GetDynamicShapeMaxCache(const OH_NNCompilation* compilati
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDynamicShapeCacheMode}
  */
-HiAI_DynamicShapeCacheMode HMS_HiAIOptions_GetDynamicShapeCacheMode(const OH_NNCompilation* compilation);
+HiAI_DynamicShapeCacheMode HMS_HiAIOptions_GetDynamicShapeCacheMode(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Device types supported for model running.
@@ -281,7 +293,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetOperatorDeviceOrder}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetOperatorDeviceOrder(
-    OH_NNCompilation* compilation, const char* operatorName, HiAI_ExecuteDevice* executeDevices, size_t deviceCount);
+    OH_NNCompilation* compilation, const char* operatorName, HiAI_ExecuteDevice* executeDevices, size_t deviceCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the number of devices to execute a specific operator in the model from the operator-level tuning
@@ -294,7 +307,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetOperatorDeviceOrder(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetOperatorDeviceCount}
  */
-size_t HMS_HiAIOptions_GetOperatorDeviceCount(const OH_NNCompilation* compilation, const char* operatorName);
+size_t HMS_HiAIOptions_GetOperatorDeviceCount(const OH_NNCompilation* compilation, const char* operatorName)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the list of devices to execute a specific operator in the model from the operator-level tuning
@@ -310,7 +324,8 @@ size_t HMS_HiAIOptions_GetOperatorDeviceCount(const OH_NNCompilation* compilatio
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetOperatorDeviceOrder}
  */
 HiAI_ExecuteDevice* HMS_HiAIOptions_GetOperatorDeviceOrder(
-    const OH_NNCompilation* compilation, const char* operatorName);
+    const OH_NNCompilation* compilation, const char* operatorName)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the list of devices to execute the model in the model-level tuning configuration.
@@ -331,7 +346,8 @@ HiAI_ExecuteDevice* HMS_HiAIOptions_GetOperatorDeviceOrder(
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetModelDeviceOrder}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetModelDeviceOrder(
-    OH_NNCompilation* compilation, HiAI_ExecuteDevice* executeDevices, size_t deviceCount);
+    OH_NNCompilation* compilation, HiAI_ExecuteDevice* executeDevices, size_t deviceCount)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the number of devices to execute the model in the model-level tuning configuration.
@@ -342,7 +358,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetModelDeviceOrder(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetModelDeviceCount}
  */
-size_t HMS_HiAIOptions_GetModelDeviceCount(const OH_NNCompilation* compilation);
+size_t HMS_HiAIOptions_GetModelDeviceCount(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the list of devices to execute the model in the model-level tuning configuration.
@@ -355,7 +372,8 @@ size_t HMS_HiAIOptions_GetModelDeviceCount(const OH_NNCompilation* compilation);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetModelDeviceOrder}
  */
-HiAI_ExecuteDevice* HMS_HiAIOptions_GetModelDeviceOrder(const OH_NNCompilation* compilation);
+HiAI_ExecuteDevice* HMS_HiAIOptions_GetModelDeviceOrder(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Indicates whether to allow HiAI Foundation to select other devices, such as the CPU, when the specified device
@@ -387,7 +405,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetFallbackMode}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetFallbackMode(
-    OH_NNCompilation* compilation, HiAI_FallbackMode fallbackMode);
+    OH_NNCompilation* compilation, HiAI_FallbackMode fallbackMode)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the fallback mode in the tuning configuration.
@@ -399,7 +418,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetFallbackMode(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetFallbackMode}
  */
-HiAI_FallbackMode HMS_HiAIOptions_GetFallbackMode(const OH_NNCompilation* compilation);
+HiAI_FallbackMode HMS_HiAIOptions_GetFallbackMode(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Device memory overcommitment option.
@@ -434,7 +454,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetDeviceMemoryReusePlan}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetDeviceMemoryReusePlan(
-    OH_NNCompilation* compilation, HiAI_DeviceMemoryReusePlan deviceMemoryReusePlan);
+    OH_NNCompilation* compilation, HiAI_DeviceMemoryReusePlan deviceMemoryReusePlan)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the device memory overcommitment parameters in the tuning configuration.
@@ -447,7 +468,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetDeviceMemoryReusePlan(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetDeviceMemoryReusePlan}
  */
-HiAI_DeviceMemoryReusePlan HMS_HiAIOptions_GetDeviceMemoryReusePlan(const OH_NNCompilation* compilation);
+HiAI_DeviceMemoryReusePlan HMS_HiAIOptions_GetDeviceMemoryReusePlan(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Configuration options of the model tuning strategy.
@@ -481,7 +503,8 @@ typedef enum {
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetTuningStrategy}
  */
 OH_NN_ReturnCode HMS_HiAIOptions_SetTuningStrategy(
-    OH_NNCompilation* compilation, HiAI_TuningStrategy tuningStrategy);
+    OH_NNCompilation* compilation, HiAI_TuningStrategy tuningStrategy)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the model tuning strategy.
@@ -493,7 +516,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningStrategy(
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetTuningStrategy}
  */
-HiAI_TuningStrategy HMS_HiAIOptions_GetTuningStrategy(const OH_NNCompilation* compilation);
+HiAI_TuningStrategy HMS_HiAIOptions_GetTuningStrategy(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the quantization configuration during model building.
@@ -512,7 +536,8 @@ HiAI_TuningStrategy HMS_HiAIOptions_GetTuningStrategy(const OH_NNCompilation* co
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetQuantConfig}
  */
-OH_NN_ReturnCode HMS_HiAIOptions_SetQuantConfig(OH_NNCompilation* compilation, void* data, size_t size);
+OH_NN_ReturnCode HMS_HiAIOptions_SetQuantConfig(OH_NNCompilation* compilation, void* data, size_t size)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the data address of the quantization configuration.
@@ -525,7 +550,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetQuantConfig(OH_NNCompilation* compilation, v
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetQuantConfigData}
  */
-void* HMS_HiAIOptions_GetQuantConfigData(const OH_NNCompilation* compilation);
+void* HMS_HiAIOptions_GetQuantConfigData(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the data size of the quantization configuration.
@@ -536,7 +562,8 @@ void* HMS_HiAIOptions_GetQuantConfigData(const OH_NNCompilation* compilation);
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetQuantConfigSize}
  */
-size_t HMS_HiAIOptions_GetQuantConfigSize(const OH_NNCompilation* compilation);
+size_t HMS_HiAIOptions_GetQuantConfigSize(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Assisted tuning mode.
@@ -568,7 +595,8 @@ typedef enum {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetTuningMode}
  */
-OH_NN_ReturnCode HMS_HiAIOptions_SetTuningMode(OH_NNCompilation* compilation, HiAI_TuningMode tuningMode);
+OH_NN_ReturnCode HMS_HiAIOptions_SetTuningMode(OH_NNCompilation* compilation, HiAI_TuningMode tuningMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the cache directory for assisted tuning.
@@ -585,7 +613,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningMode(OH_NNCompilation* compilation, Hi
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetTuningCacheDir}
  */
-OH_NN_ReturnCode HMS_HiAIOptions_SetTuningCacheDir(OH_NNCompilation* compilation, const char* cacheDir);
+OH_NN_ReturnCode HMS_HiAIOptions_SetTuningCacheDir(OH_NNCompilation* compilation, const char* cacheDir)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the assisted tuning mode.
@@ -598,7 +627,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetTuningCacheDir(OH_NNCompilation* compilation
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetTuningMode}
  */
-HiAI_TuningMode HMS_HiAIOptions_GetTuningMode(const OH_NNCompilation* compilation);
+HiAI_TuningMode HMS_HiAIOptions_GetTuningMode(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the cache directory for assisted tuning.
@@ -610,7 +640,8 @@ HiAI_TuningMode HMS_HiAIOptions_GetTuningMode(const OH_NNCompilation* compilatio
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetTuningCacheDir}
  */
-const char* HMS_HiAIOptions_GetTuningCacheDir(const OH_NNCompilation* compilation);
+const char* HMS_HiAIOptions_GetTuningCacheDir(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines the inter-device bandwidth mode.
@@ -643,7 +674,8 @@ typedef enum {
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_SetBandMode}
  */
-OH_NN_ReturnCode HMS_HiAIOptions_SetBandMode(OH_NNCompilation* compilation, HiAI_BandMode bandMode);
+OH_NN_ReturnCode HMS_HiAIOptions_SetBandMode(OH_NNCompilation* compilation, HiAI_BandMode bandMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the bandwidth mode.
@@ -656,7 +688,8 @@ OH_NN_ReturnCode HMS_HiAIOptions_SetBandMode(OH_NNCompilation* compilation, HiAI
  * @deprecated since 18
  * @useinstead {@link CANNKit/HMS_HiAIOptions_GetBandMode}
  */
-HiAI_BandMode HMS_HiAIOptions_GetBandMode(const OH_NNCompilation* compilation);
+HiAI_BandMode HMS_HiAIOptions_GetBandMode(const OH_NNCompilation* compilation)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

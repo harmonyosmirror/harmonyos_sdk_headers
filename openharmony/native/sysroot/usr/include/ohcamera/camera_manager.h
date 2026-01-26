@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_CAMERA_MANAGER_H
 #define NATIVE_INCLUDE_CAMERA_CAMERA_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -105,7 +106,8 @@ typedef struct CameraManager_Callbacks {
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_CameraManager_RegisterCallback(Camera_Manager* cameraManager, CameraManager_Callbacks* callback);
+Camera_ErrorCode OH_CameraManager_RegisterCallback(Camera_Manager* cameraManager, CameraManager_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister camera status change event callback.
@@ -116,7 +118,8 @@ Camera_ErrorCode OH_CameraManager_RegisterCallback(Camera_Manager* cameraManager
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_CameraManager_UnregisterCallback(Camera_Manager* cameraManager, CameraManager_Callbacks* callback);
+Camera_ErrorCode OH_CameraManager_UnregisterCallback(Camera_Manager* cameraManager, CameraManager_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Register torch status change event callback.
@@ -128,7 +131,8 @@ Camera_ErrorCode OH_CameraManager_UnregisterCallback(Camera_Manager* cameraManag
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_RegisterTorchStatusCallback(Camera_Manager* cameraManager,
-    OH_CameraManager_TorchStatusCallback torchStatusCallback);
+    OH_CameraManager_TorchStatusCallback torchStatusCallback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregister torch status change event callback.
@@ -140,7 +144,8 @@ Camera_ErrorCode OH_CameraManager_RegisterTorchStatusCallback(Camera_Manager* ca
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_UnregisterTorchStatusCallback(Camera_Manager* cameraManager,
-    OH_CameraManager_TorchStatusCallback torchStatusCallback);
+    OH_CameraManager_TorchStatusCallback torchStatusCallback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Register fold status info change event callback.
@@ -152,7 +157,8 @@ Camera_ErrorCode OH_CameraManager_UnregisterTorchStatusCallback(Camera_Manager* 
  * @since 13
  */
 Camera_ErrorCode OH_CameraManager_RegisterFoldStatusInfoCallback(Camera_Manager* cameraManager,
-    OH_CameraManager_OnFoldStatusInfoChange foldStatusInfoCallback);
+    OH_CameraManager_OnFoldStatusInfoChange foldStatusInfoCallback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unregister fold status info change event callback.
@@ -164,7 +170,8 @@ Camera_ErrorCode OH_CameraManager_RegisterFoldStatusInfoCallback(Camera_Manager*
  * @since 13
  */
 Camera_ErrorCode OH_CameraManager_UnregisterFoldStatusInfoCallback(Camera_Manager* cameraManager,
-    OH_CameraManager_OnFoldStatusInfoChange foldStatusInfoCallback);
+    OH_CameraManager_OnFoldStatusInfoChange foldStatusInfoCallback)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Gets supported camera descriptions.
@@ -179,7 +186,8 @@ Camera_ErrorCode OH_CameraManager_UnregisterFoldStatusInfoCallback(Camera_Manage
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraManager,
-    Camera_Device** cameras, uint32_t* size);
+    Camera_Device** cameras, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Delete supported camera.
@@ -191,7 +199,8 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraManager,
-    Camera_Device* cameras, uint32_t size);
+    Camera_Device* cameras, uint32_t size)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the supported output capability for the specific camera and specific mode.
@@ -205,7 +214,8 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraM
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Manager* cameraManager,
-    const Camera_Device* camera, Camera_OutputCapability** cameraOutputCapability);
+    const Camera_Device* camera, Camera_OutputCapability** cameraOutputCapability)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets supported output capability for specific camera and specific sceneMode.
@@ -221,7 +231,8 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Mana
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(Camera_Manager* cameraManager,
-    const Camera_Device* camera, Camera_SceneMode sceneMode, Camera_OutputCapability** cameraOutputCapability);
+    const Camera_Device* camera, Camera_SceneMode sceneMode, Camera_OutputCapability** cameraOutputCapability)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete the supported output capability.
@@ -233,7 +244,8 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMod
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_DeleteSupportedCameraOutputCapability(Camera_Manager* cameraManager,
-    Camera_OutputCapability* cameraOutputCapability);
+    Camera_OutputCapability* cameraOutputCapability)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Determine whether camera is muted.
@@ -244,7 +256,8 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameraOutputCapability(Camera_M
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_CameraManager_IsCameraMuted(Camera_Manager* cameraManager, bool* isCameraMuted);
+Camera_ErrorCode OH_CameraManager_IsCameraMuted(Camera_Manager* cameraManager, bool* isCameraMuted)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a capture session instance.The default session mode is photo session.
@@ -258,7 +271,8 @@ Camera_ErrorCode OH_CameraManager_IsCameraMuted(Camera_Manager* cameraManager, b
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreateCaptureSession(Camera_Manager* cameraManager,
-    Camera_CaptureSession** captureSession);
+    Camera_CaptureSession** captureSession)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a camera input instance.
@@ -273,7 +287,8 @@ Camera_ErrorCode OH_CameraManager_CreateCaptureSession(Camera_Manager* cameraMan
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreateCameraInput(Camera_Manager* cameraManager,
-    const Camera_Device* camera, Camera_Input** cameraInput);
+    const Camera_Device* camera, Camera_Input** cameraInput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a camera input instance.
@@ -289,7 +304,8 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput(Camera_Manager* cameraManage
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_Manager* cameraManager,
-    Camera_Position position, Camera_Type type, Camera_Input** cameraInput);
+    Camera_Position position, Camera_Type type, Camera_Input** cameraInput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a preview output instance.
@@ -304,7 +320,8 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_M
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraManager, const Camera_Profile* profile,
-    const char* surfaceId, Camera_PreviewOutput** previewOutput);
+    const char* surfaceId, Camera_PreviewOutput** previewOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a preview output instance used in preconfig.
@@ -318,7 +335,8 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraMana
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Manager* cameraManager,
-    const char* surfaceId, Camera_PreviewOutput** previewOutput);
+    const char* surfaceId, Camera_PreviewOutput** previewOutput)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a photo output instance.
@@ -333,7 +351,8 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Mana
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManager, const Camera_Profile* profile,
-    const char* surfaceId, Camera_PhotoOutput** photoOutput);
+    const char* surfaceId, Camera_PhotoOutput** photoOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a photo output instance used in preconfig.
@@ -347,7 +366,8 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManage
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_CreatePhotoOutputUsedInPreconfig(Camera_Manager* cameraManager,
-    const char* surfaceId, Camera_PhotoOutput** photoOutput);
+    const char* surfaceId, Camera_PhotoOutput** photoOutput)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a photo output instance without surfaceId.
@@ -361,7 +381,8 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputUsedInPreconfig(Camera_Manage
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager *cameraManager,
-    const Camera_Profile *profile, Camera_PhotoOutput **photoOutput);
+    const Camera_Profile *profile, Camera_PhotoOutput **photoOutput)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a video output instance.
@@ -376,7 +397,8 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManager, const Camera_VideoProfile* profile,
-    const char* surfaceId, Camera_VideoOutput** videoOutput);
+    const char* surfaceId, Camera_VideoOutput** videoOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a video output instance used in preconfig.
@@ -390,7 +412,8 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManage
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_CreateVideoOutputUsedInPreconfig(Camera_Manager* cameraManager,
-    const char* surfaceId, Camera_VideoOutput** videoOutput);
+    const char* surfaceId, Camera_VideoOutput** videoOutput)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a metadata output instance.
@@ -404,7 +427,8 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutputUsedInPreconfig(Camera_Manage
  * @since 11
  */
 Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraManager,
-    const Camera_MetadataObjectType* profile, Camera_MetadataOutput** metadataOutput);
+    const Camera_MetadataObjectType* profile, Camera_MetadataOutput** metadataOutput)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets supported scene mode for specific camera.
@@ -418,7 +442,8 @@ Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraMan
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_GetSupportedSceneModes(Camera_Device* camera,
-    Camera_SceneMode** sceneModes, uint32_t* size);
+    Camera_SceneMode** sceneModes, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete the scene mode.
@@ -429,7 +454,8 @@ Camera_ErrorCode OH_CameraManager_GetSupportedSceneModes(Camera_Device* camera,
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
  */
-Camera_ErrorCode OH_CameraManager_DeleteSceneModes(Camera_Manager* cameraManager, Camera_SceneMode* sceneModes);
+Camera_ErrorCode OH_CameraManager_DeleteSceneModes(Camera_Manager* cameraManager, Camera_SceneMode* sceneModes)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check if the device supports torch.
@@ -441,7 +467,8 @@ Camera_ErrorCode OH_CameraManager_DeleteSceneModes(Camera_Manager* cameraManager
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_IsTorchSupported(Camera_Manager* cameraManager,
-    bool* isTorchSupported);
+    bool* isTorchSupported)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Check whether the device supports the torch with the specified torch mode.
@@ -455,7 +482,8 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupported(Camera_Manager* cameraManager
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* cameraManager,
-    Camera_TorchMode torchMode, bool* isTorchSupported);
+    Camera_TorchMode torchMode, bool* isTorchSupported)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set camera torch mode.
@@ -468,7 +496,8 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* ca
  * @since 12
  */
 Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,
-    Camera_TorchMode torchMode);
+    Camera_TorchMode torchMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries a specified device based on position and type.
@@ -483,7 +512,8 @@ Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,
  * @since 18
  */
 Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager, Camera_Position position,
-    Camera_Type type, Camera_Device* camera);
+    Camera_Type type, Camera_Device* camera)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the concurrent information of specified cameras, the empty return means concurrency is not supported.
@@ -501,7 +531,8 @@ Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager,
 Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera,
     uint32_t deviceSize,
     Camera_ConcurrentInfo** cameraConcurrentInfo,
-    uint32_t* infoSize);
+    uint32_t* infoSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

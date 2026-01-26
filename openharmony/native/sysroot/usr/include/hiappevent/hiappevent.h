@@ -76,6 +76,7 @@
 #ifndef HIVIEWDFX_HIAPPEVENT_H
 #define HIVIEWDFX_HIAPPEVENT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -256,7 +257,7 @@ typedef void (*OH_HiAppEvent_OnTake)(const char* const *events, uint32_t eventLe
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_CreateParamList(void);
+ParamList OH_HiAppEvent_CreateParamList(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Destroy a pointer to the ParamList.
@@ -265,7 +266,7 @@ ParamList OH_HiAppEvent_CreateParamList(void);
  * @since 8
  * @version 1.0
  */
-void OH_HiAppEvent_DestroyParamList(ParamList list);
+void OH_HiAppEvent_DestroyParamList(ParamList list) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add bool param to the ParamList.
@@ -277,7 +278,8 @@ void OH_HiAppEvent_DestroyParamList(ParamList list);
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddBoolParam(ParamList list, const char* name, bool boolean);
+ParamList OH_HiAppEvent_AddBoolParam(ParamList list, const char* name, bool boolean)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add bool array param to the ParamList.
@@ -290,7 +292,8 @@ ParamList OH_HiAppEvent_AddBoolParam(ParamList list, const char* name, bool bool
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddBoolArrayParam(ParamList list, const char* name, const bool* booleans, int arrSize);
+ParamList OH_HiAppEvent_AddBoolArrayParam(ParamList list, const char* name, const bool* booleans, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int8_t param to the ParamList.
@@ -302,7 +305,8 @@ ParamList OH_HiAppEvent_AddBoolArrayParam(ParamList list, const char* name, cons
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt8Param(ParamList list, const char* name, int8_t num);
+ParamList OH_HiAppEvent_AddInt8Param(ParamList list, const char* name, int8_t num)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int8_t array param to the ParamList.
@@ -315,7 +319,8 @@ ParamList OH_HiAppEvent_AddInt8Param(ParamList list, const char* name, int8_t nu
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt8ArrayParam(ParamList list, const char* name, const int8_t* nums, int arrSize);
+ParamList OH_HiAppEvent_AddInt8ArrayParam(ParamList list, const char* name, const int8_t* nums, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int16_t param to the ParamList.
@@ -327,7 +332,8 @@ ParamList OH_HiAppEvent_AddInt8ArrayParam(ParamList list, const char* name, cons
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt16Param(ParamList list, const char* name, int16_t num);
+ParamList OH_HiAppEvent_AddInt16Param(ParamList list, const char* name, int16_t num)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int16_t array param to the ParamList.
@@ -340,7 +346,8 @@ ParamList OH_HiAppEvent_AddInt16Param(ParamList list, const char* name, int16_t 
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt16ArrayParam(ParamList list, const char* name, const int16_t* nums, int arrSize);
+ParamList OH_HiAppEvent_AddInt16ArrayParam(ParamList list, const char* name, const int16_t* nums, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int32_t param to the ParamList.
@@ -352,7 +359,8 @@ ParamList OH_HiAppEvent_AddInt16ArrayParam(ParamList list, const char* name, con
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt32Param(ParamList list, const char* name, int32_t num);
+ParamList OH_HiAppEvent_AddInt32Param(ParamList list, const char* name, int32_t num)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int32_t array param to the ParamList.
@@ -365,7 +373,8 @@ ParamList OH_HiAppEvent_AddInt32Param(ParamList list, const char* name, int32_t 
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt32ArrayParam(ParamList list, const char* name, const int32_t* nums, int arrSize);
+ParamList OH_HiAppEvent_AddInt32ArrayParam(ParamList list, const char* name, const int32_t* nums, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int64_t param to the ParamList.
@@ -377,7 +386,8 @@ ParamList OH_HiAppEvent_AddInt32ArrayParam(ParamList list, const char* name, con
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt64Param(ParamList list, const char* name, int64_t num);
+ParamList OH_HiAppEvent_AddInt64Param(ParamList list, const char* name, int64_t num)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add int64_t array param to the ParamList.
@@ -390,7 +400,8 @@ ParamList OH_HiAppEvent_AddInt64Param(ParamList list, const char* name, int64_t 
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddInt64ArrayParam(ParamList list, const char* name, const int64_t* nums, int arrSize);
+ParamList OH_HiAppEvent_AddInt64ArrayParam(ParamList list, const char* name, const int64_t* nums, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add float param to the ParamList.
@@ -402,7 +413,8 @@ ParamList OH_HiAppEvent_AddInt64ArrayParam(ParamList list, const char* name, con
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddFloatParam(ParamList list, const char* name, float num);
+ParamList OH_HiAppEvent_AddFloatParam(ParamList list, const char* name, float num)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add float array param to the ParamList.
@@ -415,7 +427,8 @@ ParamList OH_HiAppEvent_AddFloatParam(ParamList list, const char* name, float nu
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddFloatArrayParam(ParamList list, const char* name, const float* nums, int arrSize);
+ParamList OH_HiAppEvent_AddFloatArrayParam(ParamList list, const char* name, const float* nums, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add double param to the ParamList.
@@ -427,7 +440,8 @@ ParamList OH_HiAppEvent_AddFloatArrayParam(ParamList list, const char* name, con
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddDoubleParam(ParamList list, const char* name, double num);
+ParamList OH_HiAppEvent_AddDoubleParam(ParamList list, const char* name, double num)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add double array param to the ParamList.
@@ -440,7 +454,8 @@ ParamList OH_HiAppEvent_AddDoubleParam(ParamList list, const char* name, double 
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddDoubleArrayParam(ParamList list, const char* name, const double* nums, int arrSize);
+ParamList OH_HiAppEvent_AddDoubleArrayParam(ParamList list, const char* name, const double* nums, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add string param to the ParamList.
@@ -452,7 +467,8 @@ ParamList OH_HiAppEvent_AddDoubleArrayParam(ParamList list, const char* name, co
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddStringParam(ParamList list, const char* name, const char* str);
+ParamList OH_HiAppEvent_AddStringParam(ParamList list, const char* name, const char* str)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add string array param to the ParamList.
@@ -465,7 +481,8 @@ ParamList OH_HiAppEvent_AddStringParam(ParamList list, const char* name, const c
  * @since 8
  * @version 1.0
  */
-ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, const char * const *strs, int arrSize);
+ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, const char * const *strs, int arrSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Implements logging of application events whose parameters are of the list type.
@@ -494,7 +511,8 @@ ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, co
  * @since 8
  * @version 1.0
  */
-int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType type, const ParamList list);
+int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType type, const ParamList list)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Implements the configuration function of application events logging.
@@ -508,7 +526,8 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
  * @since 8
  * @version 1.0
  */
-bool OH_HiAppEvent_Configure(const char* name, const char* value);
+bool OH_HiAppEvent_Configure(const char* name, const char* value)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Create a HiAppEvent_Watcher handler pointer to set the property.
@@ -518,7 +537,8 @@ bool OH_HiAppEvent_Configure(const char* name, const char* value);
  * @since 12
  * @version 1.0
  */
-HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
+HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the specified HiAppEvent_Watcher handle resource.
@@ -527,7 +547,8 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
  * @since 12
  * @version 1.0
  */
-void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
+void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to set trigger conditions for the watcher. Three trigger conditions can be set through this
@@ -545,7 +566,8 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  * @since 12
  * @version 1.0
  */
-int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int size, int timeOut);
+int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int size, int timeOut)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to set the AppEventFilter which defines the kind of app events will be received by  the watcher.
@@ -566,7 +588,8 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
  * @version 1.0
  */
 int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* domain, uint8_t eventTypes,
-    const char* const *names, int namesLen);
+    const char* const *names, int namesLen)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to set onTrigger callback for watcher. If the OnReceive callback is not be set or has been set
@@ -582,7 +605,8 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * @since 12
  * @version 1.0
  */
-int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent_OnTrigger onTrigger);
+int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent_OnTrigger onTrigger)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to set onReceive callback for watcher. When the watcher received an app event, the onReceive
@@ -597,7 +621,8 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @since 12
  * @version 1.0
  */
-int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent_OnReceive onReceive);
+int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent_OnReceive onReceive)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to take saved events data for the watcher.
@@ -613,7 +638,8 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @since 12
  * @version 1.0
  */
-int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum, OH_HiAppEvent_OnTake onTake);
+int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum, OH_HiAppEvent_OnTake onTake)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to add the watcher. The watcher will start receiving app events after it is added.
@@ -626,7 +652,7 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
  * @since 12
  * @version 1.0
  */
-int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
+int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The interface to remove the watcher. The watcher will stop receiving app events after it is removed.
@@ -640,7 +666,7 @@ int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
  * @since 12
  * @version 1.0
  */
-int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
+int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clear all local saved event data of the application.
@@ -648,7 +674,7 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
  * @since 12
  * @version 1.0
  */
-void OH_HiAppEvent_ClearData();
+void OH_HiAppEvent_ClearData() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a HiAppEvent_Processor handler pointer to set the property.
@@ -657,7 +683,8 @@ void OH_HiAppEvent_ClearData();
  * @return Returns a pointer to the HiAppEvent_Processor instance.
  * @since 18
  */
-HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
+HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set route for processor.
@@ -673,7 +700,8 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
  * @since 18
  */
-int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* appId, const char* routeInfo);
+int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* appId, const char* routeInfo)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set policy for processor.
@@ -691,7 +719,8 @@ int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* ap
  * @since 18
  */
 int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodReport, int batchReport,
-    bool onStartReport, bool onBackgroundReport);
+    bool onStartReport, bool onBackgroundReport)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set report event for processor.
@@ -708,7 +737,8 @@ int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodRep
  * @since 18
  */
 int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* domain, const char* name,
-    bool isRealTime);
+    bool isRealTime)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set config for processor.
@@ -724,7 +754,8 @@ int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* do
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
  * @since 18
  */
-int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* key, const char* value);
+int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* key, const char* value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set configId for processor.
@@ -738,7 +769,8 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  * @since 18
  */
-int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
+int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set config Name for processor.
@@ -753,7 +785,8 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
  * @since 20
  */
-int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* configName);
+int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* configName)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief The interface to set user info for processor.
@@ -769,7 +802,8 @@ int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* con
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
  * @since 18
  */
-int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* const * userIdNames, int size);
+int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* const * userIdNames, int size)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to set user property for processor.
@@ -786,7 +820,8 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
  * @since 18
  */
 int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const char* const * userPropertyNames,
-    int size);
+    int size)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to add processor.
@@ -799,7 +834,8 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  * @since 18
  */
-int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
+int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to destroy processor.
@@ -807,7 +843,8 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
  * @param processor The pointer to the HiAppEvent_Processor instance.
  * @since 18
  */
-void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
+void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The interface to remove processor.
@@ -820,7 +857,7 @@ void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  * @since 18
  */
-int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
+int OH_HiAppEvent_RemoveProcessor(int64_t processorId) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Create a HiAppEvent_Config handler pointer to set the config.
@@ -828,7 +865,7 @@ int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
  * @return Returns a pointer to the HiAppEvent_Config instance.
  * @since 15
  */
-HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
+HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy the specified HiAppEvent_Config handle resource.
@@ -836,7 +873,7 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
  * @param config The pointer to the HiAppEvent_Config instance.
  * @since 15
  */
-void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
+void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief The interface to set item to the config.
@@ -850,7 +887,8 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The item is invalid.
  * @since 15
  */
-int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName, const char* itemValue);
+int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName, const char* itemValue)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief The interface to set the config.
@@ -862,7 +900,8 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The config is invalid.
  * @since 15
  */
-int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
+int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 #ifdef __cplusplus
 }
 #endif

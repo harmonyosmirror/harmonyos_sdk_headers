@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_CAMERA_INPUT_H
 #define NATIVE_INCLUDE_CAMERA_CAMERA_INPUT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -95,7 +96,8 @@ typedef struct CameraInput_Callbacks {
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_CameraInput_RegisterCallback(Camera_Input* cameraInput, CameraInput_Callbacks* callback);
+Camera_ErrorCode OH_CameraInput_RegisterCallback(Camera_Input* cameraInput, CameraInput_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister camera input change event callback.
@@ -106,7 +108,8 @@ Camera_ErrorCode OH_CameraInput_RegisterCallback(Camera_Input* cameraInput, Came
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 11
  */
-Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, CameraInput_Callbacks* callback);
+Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, CameraInput_Callbacks* callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Open camera.
@@ -119,7 +122,8 @@ Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, Ca
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
+Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Open camera.
@@ -133,7 +137,8 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint64_t* secureSeqId);
+Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint64_t* secureSeqId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Open camera with specified concurrent type.
@@ -147,7 +152,8 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 18
  */
-Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type);
+Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Close camera.
@@ -158,7 +164,8 @@ Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput,
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CameraInput_Close(Camera_Input* cameraInput);
+Camera_ErrorCode OH_CameraInput_Close(Camera_Input* cameraInput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Release camera input instance.
@@ -169,7 +176,46 @@ Camera_ErrorCode OH_CameraInput_Close(Camera_Input* cameraInput);
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 11
  */
-Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput);
+Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
+
+/**
+ * @brief Query whether physical camera orientation is variable under different fold status.
+ *
+ * @param {CameraInput} cameraInput the {@link Camera_Input} instance.
+ * @param {bool} isVariable the result of whether physical camera orientation is variable.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 22
+ */
+Camera_ErrorCode OH_CameraInput_IsPhysicalCameraOrientationVariable(Camera_Input* cameraInput, bool* isVariable)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get physical camera orientation under current fold status.
+ *
+ * @param cameraInput the {@link Camera_Input} instance.
+ * @param orientation the physical camera orientation of current fold status.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 22
+ */
+Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* cameraInput, uint32_t* orientation)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Choose whether to use the physical camera orientation.
+ *
+ * @param cameraInput the {@link Camera_Input} instance.
+ * @param isUsed the flag of whether to use physical camera orientation.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 22
+ */
+Camera_ErrorCode OH_CameraInput_UsePhysicalCameraOrientation(Camera_Input* cameraInput, bool isUsed)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 }

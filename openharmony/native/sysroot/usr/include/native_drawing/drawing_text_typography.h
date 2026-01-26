@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_TEXT_TYPOGRAPHY_H
 #define C_INCLUDE_DRAWING_TEXT_TYPOGRAPHY_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #include <cstddef>
@@ -644,7 +645,8 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
-    OH_Drawing_TextStyleAttributeId id, double value);
+    OH_Drawing_TextStyleAttributeId id, double value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the double type property's value from the text style.
@@ -659,7 +661,8 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
-    OH_Drawing_TextStyleAttributeId id, double* value);
+    OH_Drawing_TextStyleAttributeId id, double* value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets int value to the text style attribute.
@@ -676,7 +679,8 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
-    OH_Drawing_TextStyleAttributeId id, int value);
+    OH_Drawing_TextStyleAttributeId id, int value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the int type property's value from the text style.
@@ -691,7 +695,8 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* s
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
-    OH_Drawing_TextStyleAttributeId id, int* value);
+    OH_Drawing_TextStyleAttributeId id, int* value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets double value to the typography style attribute.
@@ -708,7 +713,8 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* s
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_TypographyStyleAttributeId id, double value);
+    OH_Drawing_TypographyStyleAttributeId id, double value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the double type property's value from the typography style.
@@ -723,7 +729,8 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_Typ
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_TypographyStyleAttributeId id, double* value);
+    OH_Drawing_TypographyStyleAttributeId id, double* value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets int value to the typography style attribute.
@@ -740,7 +747,8 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_Typ
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_TypographyStyleAttributeId id, int value);
+    OH_Drawing_TypographyStyleAttributeId id, int value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the int type property's value from the typography style.
@@ -755,7 +763,8 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_Typogr
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_TypographyStyleAttributeId id, int* value);
+    OH_Drawing_TypographyStyleAttributeId id, int* value)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Type of badge.
@@ -854,7 +863,8 @@ typedef struct {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_TypographyStyle* OH_Drawing_CreateTypographyStyle(void);
+OH_Drawing_TypographyStyle* OH_Drawing_CreateTypographyStyle(void)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_TypographyStyle</b> object.
@@ -864,7 +874,8 @@ OH_Drawing_TypographyStyle* OH_Drawing_CreateTypographyStyle(void);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_DestroyTypographyStyle(OH_Drawing_TypographyStyle* style);
+void OH_Drawing_DestroyTypographyStyle(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text direction.
@@ -875,7 +886,8 @@ void OH_Drawing_DestroyTypographyStyle(OH_Drawing_TypographyStyle* style);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextDirection(OH_Drawing_TypographyStyle* style, int direction);
+void OH_Drawing_SetTypographyTextDirection(OH_Drawing_TypographyStyle* style, int direction)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text alignment mode.
@@ -886,7 +898,8 @@ void OH_Drawing_SetTypographyTextDirection(OH_Drawing_TypographyStyle* style, in
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextAlign(OH_Drawing_TypographyStyle* style, int align);
+void OH_Drawing_SetTypographyTextAlign(OH_Drawing_TypographyStyle* style, int align)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the maximum number of lines in a text file.
@@ -897,7 +910,8 @@ void OH_Drawing_SetTypographyTextAlign(OH_Drawing_TypographyStyle* style, int al
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextMaxLines(OH_Drawing_TypographyStyle* style, int lineNumber);
+void OH_Drawing_SetTypographyTextMaxLines(OH_Drawing_TypographyStyle* style, int lineNumber)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_TextStyle</b> object.
@@ -907,7 +921,7 @@ void OH_Drawing_SetTypographyTextMaxLines(OH_Drawing_TypographyStyle* style, int
  * @since 8
  * @version 1.0
  */
-OH_Drawing_TextStyle* OH_Drawing_CreateTextStyle(void);
+OH_Drawing_TextStyle* OH_Drawing_CreateTextStyle(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_TextStyle</b> object.
@@ -917,7 +931,7 @@ OH_Drawing_TextStyle* OH_Drawing_CreateTextStyle(void);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_DestroyTextStyle(OH_Drawing_TextStyle* style);
+void OH_Drawing_DestroyTextStyle(OH_Drawing_TextStyle* style) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text color.
@@ -928,7 +942,8 @@ void OH_Drawing_DestroyTextStyle(OH_Drawing_TextStyle* style);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleColor(OH_Drawing_TextStyle* style, uint32_t color);
+void OH_Drawing_SetTextStyleColor(OH_Drawing_TextStyle* style, uint32_t color)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the font size.
@@ -939,7 +954,8 @@ void OH_Drawing_SetTextStyleColor(OH_Drawing_TextStyle* style, uint32_t color);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSize);
+void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSize)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the font weight.
@@ -950,7 +966,8 @@ void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSiz
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleFontWeight(OH_Drawing_TextStyle* style, int fontWeight);
+void OH_Drawing_SetTextStyleFontWeight(OH_Drawing_TextStyle* style, int fontWeight)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text baseline.
@@ -961,7 +978,8 @@ void OH_Drawing_SetTextStyleFontWeight(OH_Drawing_TextStyle* style, int fontWeig
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle* style, int baseline);
+void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle* style, int baseline)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text decoration.
@@ -972,7 +990,8 @@ void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle* style, int baseline);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
+void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Add the text decoration.
@@ -983,7 +1002,8 @@ void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
+void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Remove the text decoration.
@@ -995,7 +1015,8 @@ void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
+void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the color for the text decoration.
@@ -1006,7 +1027,8 @@ void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decor
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_t color);
+void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_t color)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the font height.
@@ -1017,7 +1039,8 @@ void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle* style, double fontHeight);
+void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle* style, double fontHeight)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the font families.
@@ -1030,7 +1053,8 @@ void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle* style, double fontH
  * @version 1.0
  */
 void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle* style,
-    int fontFamiliesNumber, const char* fontFamilies[]);
+    int fontFamiliesNumber, const char* fontFamilies[])
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the font style.
@@ -1041,7 +1065,8 @@ void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle* style,
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle);
+void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the locale.
@@ -1052,7 +1077,8 @@ void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleLocale(OH_Drawing_TextStyle* style, const char* locale);
+void OH_Drawing_SetTextStyleLocale(OH_Drawing_TextStyle* style, const char* locale)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the foreground brush style.
@@ -1063,7 +1089,8 @@ void OH_Drawing_SetTextStyleLocale(OH_Drawing_TextStyle* style, const char* loca
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleForegroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundBrush);
+void OH_Drawing_SetTextStyleForegroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundBrush)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the foreground brush style.
@@ -1074,7 +1101,8 @@ void OH_Drawing_SetTextStyleForegroundBrush(OH_Drawing_TextStyle* style, OH_Draw
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleGetForegroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundBrush);
+void OH_Drawing_TextStyleGetForegroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundBrush)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the foreground pen style.
@@ -1085,7 +1113,8 @@ void OH_Drawing_TextStyleGetForegroundBrush(OH_Drawing_TextStyle* style, OH_Draw
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleForegroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* foregroundPen);
+void OH_Drawing_SetTextStyleForegroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* foregroundPen)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the foreground pen style.
@@ -1096,7 +1125,8 @@ void OH_Drawing_SetTextStyleForegroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* foregroundPen);
+void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* foregroundPen)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the background brush style.
@@ -1107,7 +1137,8 @@ void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundPen);
+void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundPen)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the background brush style.
@@ -1118,7 +1149,8 @@ void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Draw
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleGetBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* backgroundBrush);
+void OH_Drawing_TextStyleGetBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* backgroundBrush)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the background pen style.
@@ -1129,7 +1161,8 @@ void OH_Drawing_TextStyleGetBackgroundBrush(OH_Drawing_TextStyle* style, OH_Draw
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleBackgroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* backgroundPen);
+void OH_Drawing_SetTextStyleBackgroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* backgroundPen)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the background pen style.
@@ -1140,7 +1173,8 @@ void OH_Drawing_SetTextStyleBackgroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleGetBackgroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* backgroundPen);
+void OH_Drawing_TextStyleGetBackgroundPen(OH_Drawing_TextStyle* style, OH_Drawing_Pen* backgroundPen)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a pointer to an <b>OH_Drawing_TypographyCreate</b> object.
@@ -1153,7 +1187,8 @@ void OH_Drawing_TextStyleGetBackgroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  * @version 1.0
  */
 OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_FontCollection* fontCollection);
+    OH_Drawing_FontCollection* fontCollection)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_TypographyCreate</b> object.
@@ -1163,7 +1198,8 @@ OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler(OH_Drawing_Typog
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_DestroyTypographyHandler(OH_Drawing_TypographyCreate* handler);
+void OH_Drawing_DestroyTypographyHandler(OH_Drawing_TypographyCreate* handler)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text style.
@@ -1174,7 +1210,8 @@ void OH_Drawing_DestroyTypographyHandler(OH_Drawing_TypographyCreate* handler);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_TypographyHandlerPushTextStyle(OH_Drawing_TypographyCreate* handler, OH_Drawing_TextStyle* style);
+void OH_Drawing_TypographyHandlerPushTextStyle(OH_Drawing_TypographyCreate* handler, OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the text content.
@@ -1185,7 +1222,8 @@ void OH_Drawing_TypographyHandlerPushTextStyle(OH_Drawing_TypographyCreate* hand
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_TypographyHandlerAddText(OH_Drawing_TypographyCreate* handler, const char* text);
+void OH_Drawing_TypographyHandlerAddText(OH_Drawing_TypographyCreate* handler, const char* text)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Removes the topmost style in the stack, leaving the remaining styles in effect.
@@ -1195,7 +1233,8 @@ void OH_Drawing_TypographyHandlerAddText(OH_Drawing_TypographyCreate* handler, c
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_TypographyHandlerPopTextStyle(OH_Drawing_TypographyCreate* handler);
+void OH_Drawing_TypographyHandlerPopTextStyle(OH_Drawing_TypographyCreate* handler)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Typography</b> object.
@@ -1206,7 +1245,8 @@ void OH_Drawing_TypographyHandlerPopTextStyle(OH_Drawing_TypographyCreate* handl
  * @since 8
  * @version 1.0
  */
-OH_Drawing_Typography* OH_Drawing_CreateTypography(OH_Drawing_TypographyCreate* handler);
+OH_Drawing_Typography* OH_Drawing_CreateTypography(OH_Drawing_TypographyCreate* handler)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_Typography</b> object.
@@ -1216,7 +1256,8 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography(OH_Drawing_TypographyCreate* 
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_DestroyTypography(OH_Drawing_Typography* typography);
+void OH_Drawing_DestroyTypography(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Lays out the typography.
@@ -1227,7 +1268,8 @@ void OH_Drawing_DestroyTypography(OH_Drawing_Typography* typography);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWidth);
+void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWidth)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Paints text on the canvas.
@@ -1241,7 +1283,8 @@ void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWi
  * @version 1.0
  */
 void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
-    double potisionX, double potisionY);
+    double potisionX, double potisionY)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Paints path text on the canvas.
@@ -1256,7 +1299,8 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
  * @version 1.0
  */
 void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
-    OH_Drawing_Path* path, double hOffset, double vOffset);
+    OH_Drawing_Path* path, double hOffset, double vOffset)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the max width.
@@ -1267,7 +1311,8 @@ void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Draw
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetMaxWidth(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetMaxWidth(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Gets the height.
@@ -1278,7 +1323,8 @@ double OH_Drawing_TypographyGetMaxWidth(OH_Drawing_Typography* typography);
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the width of the longest line. You are advised to round up the return value in actual use.
@@ -1292,7 +1338,8 @@ double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography* typography);
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the width of the longest line with indent. You are advised to
@@ -1306,7 +1353,8 @@ double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography* typography);
  * @since 13
  * @version 1.1
  */
-double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Gets the min intrinsic width.
@@ -1317,7 +1365,8 @@ double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography* typo
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetMinIntrinsicWidth(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetMinIntrinsicWidth(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Gets the max intrinsic width.
@@ -1328,7 +1377,8 @@ double OH_Drawing_TypographyGetMinIntrinsicWidth(OH_Drawing_Typography* typograp
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetMaxIntrinsicWidth(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetMaxIntrinsicWidth(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Gets the alphabetic baseline.
@@ -1339,7 +1389,8 @@ double OH_Drawing_TypographyGetMaxIntrinsicWidth(OH_Drawing_Typography* typograp
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Gets the ideographic baseline.
@@ -1350,7 +1401,8 @@ double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typogra
  * @since 9
  * @version 1.1
  */
-double OH_Drawing_TypographyGetIdeographicBaseline(OH_Drawing_Typography* typography);
+double OH_Drawing_TypographyGetIdeographicBaseline(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Sets the placeholder.
@@ -1361,7 +1413,8 @@ double OH_Drawing_TypographyGetIdeographicBaseline(OH_Drawing_Typography* typogr
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_TypographyHandlerAddPlaceholder(OH_Drawing_TypographyCreate* handler, OH_Drawing_PlaceholderSpan* span);
+void OH_Drawing_TypographyHandlerAddPlaceholder(OH_Drawing_TypographyCreate* handler, OH_Drawing_PlaceholderSpan* span)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the exceed maxLines.
@@ -1372,7 +1425,8 @@ void OH_Drawing_TypographyHandlerAddPlaceholder(OH_Drawing_TypographyCreate* han
  * @since 11
  * @version 1.0
  */
-bool OH_Drawing_TypographyDidExceedMaxLines(OH_Drawing_Typography* typography);
+bool OH_Drawing_TypographyDidExceedMaxLines(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the rects for range.
@@ -1390,7 +1444,8 @@ bool OH_Drawing_TypographyDidExceedMaxLines(OH_Drawing_Typography* typography);
  * @version 1.0
  */
 OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange(OH_Drawing_Typography* typography,
-    size_t start, size_t end, OH_Drawing_RectHeightStyle heightStyle, OH_Drawing_RectWidthStyle widthStyle);
+    size_t start, size_t end, OH_Drawing_RectHeightStyle heightStyle, OH_Drawing_RectWidthStyle widthStyle)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the rects for placeholders.
@@ -1401,7 +1456,8 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange(OH_Drawing_Typography*
  * @since 11
  * @version 1.0
  */
-OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders(OH_Drawing_Typography* typography);
+OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets left from textbox.
@@ -1413,7 +1469,8 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders(OH_Drawing_Typo
  * @since 11
  * @version 1.0
  */
-float OH_Drawing_GetLeftFromTextBox(OH_Drawing_TextBox* textbox, int index);
+float OH_Drawing_GetLeftFromTextBox(OH_Drawing_TextBox* textbox, int index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets right from textbox.
@@ -1425,7 +1482,8 @@ float OH_Drawing_GetLeftFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @since 11
  * @version 1.0
  */
-float OH_Drawing_GetRightFromTextBox(OH_Drawing_TextBox* textbox, int index);
+float OH_Drawing_GetRightFromTextBox(OH_Drawing_TextBox* textbox, int index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets top from textbox.
@@ -1437,7 +1495,8 @@ float OH_Drawing_GetRightFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @since 11
  * @version 1.0
  */
-float OH_Drawing_GetTopFromTextBox(OH_Drawing_TextBox* textbox, int index);
+float OH_Drawing_GetTopFromTextBox(OH_Drawing_TextBox* textbox, int index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets bottom from textbox.
@@ -1449,7 +1508,8 @@ float OH_Drawing_GetTopFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @since 11
  * @version 1.0
  */
-float OH_Drawing_GetBottomFromTextBox(OH_Drawing_TextBox* textbox, int index);
+float OH_Drawing_GetBottomFromTextBox(OH_Drawing_TextBox* textbox, int index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets direction from textbox.
@@ -1461,7 +1521,8 @@ float OH_Drawing_GetBottomFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @since 11
  * @version 1.0
  */
-int OH_Drawing_GetTextDirectionFromTextBox(OH_Drawing_TextBox* textbox, int index);
+int OH_Drawing_GetTextDirectionFromTextBox(OH_Drawing_TextBox* textbox, int index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets size of textBox.
@@ -1472,7 +1533,8 @@ int OH_Drawing_GetTextDirectionFromTextBox(OH_Drawing_TextBox* textbox, int inde
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox* textBox);
+size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox* textBox)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the glyphposition at coordinate.
@@ -1488,7 +1550,8 @@ size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox* textBox);
  * @useinstead OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster
  */
 OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinate(OH_Drawing_Typography* typography,
-    double dx, double dy);
+    double dx, double dy)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the glyphposition at coordinate with cluster.
@@ -1502,7 +1565,8 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
  * @version 1.0
  */
 OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster(
-    OH_Drawing_Typography* typography, double dx, double dy);
+    OH_Drawing_Typography* typography, double dx, double dy)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets position from position and affinity.
@@ -1513,7 +1577,8 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity);
+size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets affinity from position and affinity.
@@ -1524,7 +1589,8 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffin
  * @since 11
  * @version 1.0
  */
-int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionandaffinity);
+int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionandaffinity)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the word boundary.
@@ -1536,7 +1602,8 @@ int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary(OH_Drawing_Typography* typography, size_t offset);
+OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary(OH_Drawing_Typography* typography, size_t offset)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets start from range.
@@ -1547,7 +1614,7 @@ OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary(OH_Drawing_Typography* ty
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetStartFromRange(OH_Drawing_Range* range);
+size_t OH_Drawing_GetStartFromRange(OH_Drawing_Range* range) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets end from range.
@@ -1558,7 +1625,7 @@ size_t OH_Drawing_GetStartFromRange(OH_Drawing_Range* range);
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetEndFromRange(OH_Drawing_Range* range);
+size_t OH_Drawing_GetEndFromRange(OH_Drawing_Range* range) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets the line count.
@@ -1569,7 +1636,8 @@ size_t OH_Drawing_GetEndFromRange(OH_Drawing_Range* range);
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography* typography);
+size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the decoration style.
@@ -1581,7 +1649,8 @@ size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography* typography);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleDecorationStyle(OH_Drawing_TextStyle* style, int decorationStyle);
+void OH_Drawing_SetTextStyleDecorationStyle(OH_Drawing_TextStyle* style, int decorationStyle)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the decoration thickness scale.
@@ -1592,7 +1661,8 @@ void OH_Drawing_SetTextStyleDecorationStyle(OH_Drawing_TextStyle* style, int dec
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style, double decorationThicknessScale);
+void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style, double decorationThicknessScale)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the letter spacing.
@@ -1603,7 +1673,8 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleLetterSpacing(OH_Drawing_TextStyle* style, double letterSpacing);
+void OH_Drawing_SetTextStyleLetterSpacing(OH_Drawing_TextStyle* style, double letterSpacing)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the word spacing.
@@ -1614,7 +1685,8 @@ void OH_Drawing_SetTextStyleLetterSpacing(OH_Drawing_TextStyle* style, double le
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleWordSpacing(OH_Drawing_TextStyle* style, double wordSpacing);
+void OH_Drawing_SetTextStyleWordSpacing(OH_Drawing_TextStyle* style, double wordSpacing)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the half leading.
@@ -1625,7 +1697,8 @@ void OH_Drawing_SetTextStyleWordSpacing(OH_Drawing_TextStyle* style, double word
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleHalfLeading(OH_Drawing_TextStyle* style, bool halfLeading);
+void OH_Drawing_SetTextStyleHalfLeading(OH_Drawing_TextStyle* style, bool halfLeading)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the ellipsis.
@@ -1638,7 +1711,8 @@ void OH_Drawing_SetTextStyleHalfLeading(OH_Drawing_TextStyle* style, bool halfLe
  * @deprecated since 18
  * @useinstead OH_Drawing_SetTypographyTextEllipsis
  */
-void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* ellipsis);
+void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* ellipsis)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the ellipsis modal.
@@ -1651,7 +1725,8 @@ void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* el
  * @deprecated since 18
  * @useinstead OH_Drawing_SetTypographyTextEllipsisModal
  */
-void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellipsisModal);
+void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellipsisModal)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the break strategy.
@@ -1662,7 +1737,8 @@ void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellip
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextBreakStrategy(OH_Drawing_TypographyStyle* style, int breakStrategy);
+void OH_Drawing_SetTypographyTextBreakStrategy(OH_Drawing_TypographyStyle* style, int breakStrategy)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the word break type.
@@ -1673,7 +1749,8 @@ void OH_Drawing_SetTypographyTextBreakStrategy(OH_Drawing_TypographyStyle* style
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextWordBreakType(OH_Drawing_TypographyStyle* style, int wordBreakType);
+void OH_Drawing_SetTypographyTextWordBreakType(OH_Drawing_TypographyStyle* style, int wordBreakType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the ellipsis modal.
@@ -1684,7 +1761,8 @@ void OH_Drawing_SetTypographyTextWordBreakType(OH_Drawing_TypographyStyle* style
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style, int ellipsisModal);
+void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style, int ellipsisModal)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief get line height.
@@ -1696,7 +1774,8 @@ void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style
  * @since 11
  * @version 1.0
  */
-double OH_Drawing_TypographyGetLineHeight(OH_Drawing_Typography* typography, int lineNumber);
+double OH_Drawing_TypographyGetLineHeight(OH_Drawing_Typography* typography, int lineNumber)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief get line width.
@@ -1708,7 +1787,8 @@ double OH_Drawing_TypographyGetLineHeight(OH_Drawing_Typography* typography, int
  * @since 11
  * @version 1.0
  */
-double OH_Drawing_TypographyGetLineWidth(OH_Drawing_Typography* typography, int lineNumber);
+double OH_Drawing_TypographyGetLineWidth(OH_Drawing_Typography* typography, int lineNumber)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief get line text range.
@@ -1722,7 +1802,8 @@ double OH_Drawing_TypographyGetLineWidth(OH_Drawing_Typography* typography, int 
  * @version 1.0
  */
 OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange(OH_Drawing_Typography* typography,
-    int lineNumber, bool includeSpaces);
+    int lineNumber, bool includeSpaces)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_FontDescriptor</b> object.
@@ -1732,7 +1813,8 @@ OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange(OH_Drawing_Typography* t
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontDescriptor* OH_Drawing_CreateFontDescriptor(void);
+OH_Drawing_FontDescriptor* OH_Drawing_CreateFontDescriptor(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_FontDescriptor</b> object.
@@ -1742,7 +1824,8 @@ OH_Drawing_FontDescriptor* OH_Drawing_CreateFontDescriptor(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroyFontDescriptor(OH_Drawing_FontDescriptor* descriptor);
+void OH_Drawing_DestroyFontDescriptor(OH_Drawing_FontDescriptor* descriptor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_FontParser</b> object.
@@ -1752,7 +1835,7 @@ void OH_Drawing_DestroyFontDescriptor(OH_Drawing_FontDescriptor* descriptor);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontParser* OH_Drawing_CreateFontParser(void);
+OH_Drawing_FontParser* OH_Drawing_CreateFontParser(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_FontParser</b> object.
@@ -1762,7 +1845,8 @@ OH_Drawing_FontParser* OH_Drawing_CreateFontParser(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroyFontParser(OH_Drawing_FontParser* parser);
+void OH_Drawing_DestroyFontParser(OH_Drawing_FontParser* parser)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets a list of system font names.
@@ -1774,7 +1858,8 @@ void OH_Drawing_DestroyFontParser(OH_Drawing_FontParser* parser);
  * @since 12
  * @version 1.0
  */
-char** OH_Drawing_FontParserGetSystemFontList(OH_Drawing_FontParser* fontParser, size_t* num);
+char** OH_Drawing_FontParserGetSystemFontList(OH_Drawing_FontParser* fontParser, size_t* num)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by a list of system font names.
@@ -1785,7 +1870,8 @@ char** OH_Drawing_FontParserGetSystemFontList(OH_Drawing_FontParser* fontParser,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroySystemFontList(char** fontList, size_t num);
+void OH_Drawing_DestroySystemFontList(char** fontList, size_t num)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets information about the system font by font name.
@@ -1797,7 +1883,8 @@ void OH_Drawing_DestroySystemFontList(char** fontList, size_t num);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontDescriptor* OH_Drawing_FontParserGetFontByName(OH_Drawing_FontParser* fontParser, const char* name);
+OH_Drawing_FontDescriptor* OH_Drawing_FontParserGetFontByName(OH_Drawing_FontParser* fontParser, const char* name)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get line metrics information.
@@ -1808,7 +1895,8 @@ OH_Drawing_FontDescriptor* OH_Drawing_FontParserGetFontByName(OH_Drawing_FontPar
  * @since 12
  * @version 1.0
  */
-OH_Drawing_LineMetrics* OH_Drawing_TypographyGetLineMetrics(OH_Drawing_Typography* typography);
+OH_Drawing_LineMetrics* OH_Drawing_TypographyGetLineMetrics(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the number of lines.
@@ -1819,7 +1907,8 @@ OH_Drawing_LineMetrics* OH_Drawing_TypographyGetLineMetrics(OH_Drawing_Typograph
  * @since 12
  * @version 1.0
  */
-size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics* lineMetrics);
+size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics* lineMetrics)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by line metrics.
@@ -1829,7 +1918,8 @@ size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics* lineMetrics);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroyLineMetrics(OH_Drawing_LineMetrics* lineMetrics);
+void OH_Drawing_DestroyLineMetrics(OH_Drawing_LineMetrics* lineMetrics)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the specified line by line number.
@@ -1843,7 +1933,8 @@ void OH_Drawing_DestroyLineMetrics(OH_Drawing_LineMetrics* lineMetrics);
  * @version 1.0
  */
 bool OH_Drawing_TypographyGetLineMetricsAt(OH_Drawing_Typography* typography,
-    int lineNumber, OH_Drawing_LineMetrics* lineMetric);
+    int lineNumber, OH_Drawing_LineMetrics* lineMetric)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief  Sets the ellipsis of lines in a text file.
@@ -1854,7 +1945,8 @@ bool OH_Drawing_TypographyGetLineMetricsAt(OH_Drawing_Typography* typography,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextEllipsis(OH_Drawing_TypographyStyle* style, const char* ellipsis);
+void OH_Drawing_SetTypographyTextEllipsis(OH_Drawing_TypographyStyle* style, const char* ellipsis)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the locale of lines in a text file.
@@ -1866,7 +1958,8 @@ void OH_Drawing_SetTypographyTextEllipsis(OH_Drawing_TypographyStyle* style, con
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLocale(OH_Drawing_TypographyStyle* style, const char* locale);
+void OH_Drawing_SetTypographyTextLocale(OH_Drawing_TypographyStyle* style, const char* locale)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the textSplitRatio of lines in a text file.
@@ -1878,7 +1971,8 @@ void OH_Drawing_SetTypographyTextLocale(OH_Drawing_TypographyStyle* style, const
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextSplitRatio(OH_Drawing_TypographyStyle* style, float textSplitRatio);
+void OH_Drawing_SetTypographyTextSplitRatio(OH_Drawing_TypographyStyle* style, float textSplitRatio)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the TextStyle of lines in a text file.
@@ -1890,7 +1984,8 @@ void OH_Drawing_SetTypographyTextSplitRatio(OH_Drawing_TypographyStyle* style, f
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextStyle* OH_Drawing_TypographyGetTextStyle(OH_Drawing_TypographyStyle* style);
+OH_Drawing_TextStyle* OH_Drawing_TypographyGetTextStyle(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the EffectiveAlign of lines in a text file.
@@ -1904,7 +1999,8 @@ OH_Drawing_TextStyle* OH_Drawing_TypographyGetTextStyle(OH_Drawing_TypographySty
  * @deprecated since 18
  * @useinstead OH_Drawing_TypographyStyleGetEffectiveAlignment
  */
-int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style);
+int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the UnlimitedLines of lines in a text file.
@@ -1917,7 +2013,8 @@ int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyIsLineUnlimited(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyIsLineUnlimited(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the IsEllipsized of lines in a text file.
@@ -1930,7 +2027,8 @@ bool OH_Drawing_TypographyIsLineUnlimited(OH_Drawing_TypographyStyle* style);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyIsEllipsized(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyIsEllipsized(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief set line textstyle.
@@ -1942,7 +2040,8 @@ bool OH_Drawing_TypographyIsEllipsized(OH_Drawing_TypographyStyle* style);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextStyle(OH_Drawing_TypographyStyle* handler, OH_Drawing_TextStyle* style);
+void OH_Drawing_SetTypographyTextStyle(OH_Drawing_TypographyStyle* handler, OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief get line fontmetrics.
@@ -1956,7 +2055,8 @@ void OH_Drawing_SetTypographyTextStyle(OH_Drawing_TypographyStyle* handler, OH_D
  * @version 1.0
  */
 bool OH_Drawing_TextStyleGetFontMetrics(OH_Drawing_Typography* typography,
-    OH_Drawing_TextStyle* style, OH_Drawing_Font_Metrics* fontmetrics);
+    OH_Drawing_TextStyle* style, OH_Drawing_Font_Metrics* fontmetrics)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the position of the specified line or the first text of the specified line.
@@ -1972,7 +2072,8 @@ bool OH_Drawing_TextStyleGetFontMetrics(OH_Drawing_Typography* typography,
  * @version 1.0
  */
 bool OH_Drawing_TypographyGetLineInfo(OH_Drawing_Typography* typography, int lineNumber, bool oneLine,
-    bool includeWhitespace, OH_Drawing_LineMetrics* drawingLineMetrics);
+    bool includeWhitespace, OH_Drawing_LineMetrics* drawingLineMetrics)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font weight of text typography.
@@ -1985,7 +2086,8 @@ bool OH_Drawing_TypographyGetLineInfo(OH_Drawing_Typography* typography, int lin
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextFontWeight(OH_Drawing_TypographyStyle* style, int weight);
+void OH_Drawing_SetTypographyTextFontWeight(OH_Drawing_TypographyStyle* style, int weight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font style of text typography.
@@ -1998,7 +2100,8 @@ void OH_Drawing_SetTypographyTextFontWeight(OH_Drawing_TypographyStyle* style, i
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle);
+void OH_Drawing_SetTypographyTextFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font family of text typography.
@@ -2010,7 +2113,8 @@ void OH_Drawing_SetTypographyTextFontStyle(OH_Drawing_TypographyStyle* style, in
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextFontFamily(OH_Drawing_TypographyStyle* style, const char* fontFamily);
+void OH_Drawing_SetTypographyTextFontFamily(OH_Drawing_TypographyStyle* style, const char* fontFamily)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font size of text typography.
@@ -2022,7 +2126,8 @@ void OH_Drawing_SetTypographyTextFontFamily(OH_Drawing_TypographyStyle* style, c
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextFontSize(OH_Drawing_TypographyStyle* style, double fontSize);
+void OH_Drawing_SetTypographyTextFontSize(OH_Drawing_TypographyStyle* style, double fontSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font height of text typography.
@@ -2034,7 +2139,8 @@ void OH_Drawing_SetTypographyTextFontSize(OH_Drawing_TypographyStyle* style, dou
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextFontHeight(OH_Drawing_TypographyStyle* style, double fontHeight);
+void OH_Drawing_SetTypographyTextFontHeight(OH_Drawing_TypographyStyle* style, double fontHeight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the half leading of text typography.
@@ -2046,7 +2152,8 @@ void OH_Drawing_SetTypographyTextFontHeight(OH_Drawing_TypographyStyle* style, d
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, bool halfLeading);
+void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, bool halfLeading)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to enable line style for text typography.
@@ -2058,7 +2165,8 @@ void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextUseLineStyle(OH_Drawing_TypographyStyle* style, bool useLineStyle);
+void OH_Drawing_SetTypographyTextUseLineStyle(OH_Drawing_TypographyStyle* style, bool useLineStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font weight of line style for text typography.
@@ -2071,7 +2179,8 @@ void OH_Drawing_SetTypographyTextUseLineStyle(OH_Drawing_TypographyStyle* style,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle* style, int weight);
+void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle* style, int weight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font style of line style for text typography.
@@ -2084,7 +2193,8 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle*
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle);
+void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font families of line style for text typography.
@@ -2098,7 +2208,8 @@ void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* 
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyle* style,
-    int fontFamiliesNumber, const char* fontFamilies[]);
+    int fontFamiliesNumber, const char* fontFamilies[])
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font size of line style for text typography.
@@ -2110,7 +2221,8 @@ void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyl
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleFontSize(OH_Drawing_TypographyStyle* style, double lineStyleFontSize);
+void OH_Drawing_SetTypographyTextLineStyleFontSize(OH_Drawing_TypographyStyle* style, double lineStyleFontSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font height of line style for text typography.
@@ -2122,7 +2234,8 @@ void OH_Drawing_SetTypographyTextLineStyleFontSize(OH_Drawing_TypographyStyle* s
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleFontHeight(OH_Drawing_TypographyStyle* style, double lineStyleFontHeight);
+void OH_Drawing_SetTypographyTextLineStyleFontHeight(OH_Drawing_TypographyStyle* style, double lineStyleFontHeight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the half leading of line style for text typography.
@@ -2134,7 +2247,8 @@ void OH_Drawing_SetTypographyTextLineStyleFontHeight(OH_Drawing_TypographyStyle*
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle* style, bool lineStyleHalfLeading);
+void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle* style, bool lineStyleHalfLeading)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the spacing scale of line style for text typography.
@@ -2146,7 +2260,8 @@ void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyle* style, double spacingScale);
+void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyle* style, double spacingScale)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether only line style is enabled for text typography.
@@ -2158,7 +2273,8 @@ void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyl
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style, bool lineStyleOnly);
+void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style, bool lineStyleOnly)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_TextShadow</b> object.
@@ -2168,7 +2284,7 @@ void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void);
+OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by the text shadow object <b>OH_Drawing_TextShadow</b>.
@@ -2178,7 +2294,8 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow);
+void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the vector of TextShadow in TextStyle.
@@ -2191,7 +2308,8 @@ void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style);
+OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the size of vector of TextShadow in TextStyle.
@@ -2202,7 +2320,8 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* styl
  * @since 12
  * @version 1.0
  */
-int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style);
+int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds element in vector of TextShadow in TextStyle.
@@ -2213,7 +2332,8 @@ int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow);
+void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief clear elements in vector of TextShadow in TextStyle.
@@ -2223,7 +2343,8 @@ void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style);
+void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets element in vector of TextShadow with index.
@@ -2236,7 +2357,8 @@ void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextStyle* style, int index);
+OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextStyle* style, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set indents of the typography.
@@ -2248,7 +2370,8 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextSty
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographySetIndents(OH_Drawing_Typography* typography, int indentsNumber, const float indents[]);
+void OH_Drawing_TypographySetIndents(OH_Drawing_Typography* typography, int indentsNumber, const float indents[])
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets element with index in vector of Indents.
@@ -2260,7 +2383,8 @@ void OH_Drawing_TypographySetIndents(OH_Drawing_Typography* typography, int inde
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_TypographyGetIndentsWithIndex(OH_Drawing_Typography* typography, int index);
+float OH_Drawing_TypographyGetIndentsWithIndex(OH_Drawing_Typography* typography, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by vector with the text shadow object <b>OH_Drawing_TextShadow</b>.
@@ -2270,7 +2394,8 @@ float OH_Drawing_TypographyGetIndentsWithIndex(OH_Drawing_Typography* typography
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow);
+void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set mode of applying the leading over and under text.
@@ -2282,7 +2407,8 @@ void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow);
  * @version 1.0
  */
 void OH_Drawing_TypographyTextSetHeightBehavior(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_TextHeightBehavior heightMode);
+    OH_Drawing_TextHeightBehavior heightMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get mode of applying the leading over and under text.
@@ -2293,7 +2419,8 @@ void OH_Drawing_TypographyTextSetHeightBehavior(OH_Drawing_TypographyStyle* styl
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextHeightBehavior OH_Drawing_TypographyTextGetHeightBehavior(OH_Drawing_TypographyStyle* style);
+OH_Drawing_TextHeightBehavior OH_Drawing_TypographyTextGetHeightBehavior(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set struct of background rect and styleId of text.
@@ -2306,7 +2433,8 @@ OH_Drawing_TextHeightBehavior OH_Drawing_TypographyTextGetHeightBehavior(OH_Draw
  * @version 1.0
  */
 void OH_Drawing_TextStyleSetBackgroundRect(OH_Drawing_TextStyle* style,
-    const OH_Drawing_RectStyle_Info* rectStyleInfo, int styleId);
+    const OH_Drawing_RectStyle_Info* rectStyleInfo, int styleId)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add symbols in creating typography.
@@ -2317,7 +2445,8 @@ void OH_Drawing_TextStyleSetBackgroundRect(OH_Drawing_TextStyle* style,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyHandlerAddSymbol(OH_Drawing_TypographyCreate* handler, uint32_t symbol);
+void OH_Drawing_TypographyHandlerAddSymbol(OH_Drawing_TypographyCreate* handler, uint32_t symbol)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add font feature.
@@ -2329,7 +2458,8 @@ void OH_Drawing_TypographyHandlerAddSymbol(OH_Drawing_TypographyCreate* handler,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleAddFontFeature(OH_Drawing_TextStyle* style, const char* tag, int value);
+void OH_Drawing_TextStyleAddFontFeature(OH_Drawing_TextStyle* style, const char* tag, int value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add font variation.
@@ -2341,7 +2471,8 @@ void OH_Drawing_TextStyleAddFontFeature(OH_Drawing_TextStyle* style, const char*
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleAddFontVariation(OH_Drawing_TextStyle* style, const char* axis, const float value);
+void OH_Drawing_TextStyleAddFontVariation(OH_Drawing_TextStyle* style, const char* axis, const float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get all font features.
@@ -2353,7 +2484,8 @@ void OH_Drawing_TextStyleAddFontVariation(OH_Drawing_TextStyle* style, const cha
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontFeature* OH_Drawing_TextStyleGetFontFeatures(OH_Drawing_TextStyle* style);
+OH_Drawing_FontFeature* OH_Drawing_TextStyleGetFontFeatures(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the memory occupied by array of structures of font features.
@@ -2364,7 +2496,8 @@ OH_Drawing_FontFeature* OH_Drawing_TextStyleGetFontFeatures(OH_Drawing_TextStyle
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleDestroyFontFeatures(OH_Drawing_FontFeature* fontFeature, size_t fontFeatureSize);
+void OH_Drawing_TextStyleDestroyFontFeatures(OH_Drawing_FontFeature* fontFeature, size_t fontFeatureSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get size of font features.
@@ -2375,7 +2508,8 @@ void OH_Drawing_TextStyleDestroyFontFeatures(OH_Drawing_FontFeature* fontFeature
  * @since 12
  * @version 1.0
  */
-size_t OH_Drawing_TextStyleGetFontFeatureSize(OH_Drawing_TextStyle* style);
+size_t OH_Drawing_TextStyleGetFontFeatureSize(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clear font features.
@@ -2385,7 +2519,8 @@ size_t OH_Drawing_TextStyleGetFontFeatureSize(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleClearFontFeature(OH_Drawing_TextStyle* style);
+void OH_Drawing_TextStyleClearFontFeature(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set baseline shift of text.
@@ -2396,7 +2531,8 @@ void OH_Drawing_TextStyleClearFontFeature(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleSetBaselineShift(OH_Drawing_TextStyle* style, double lineShift);
+void OH_Drawing_TextStyleSetBaselineShift(OH_Drawing_TextStyle* style, double lineShift)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get baseline shift of text.
@@ -2407,7 +2543,8 @@ void OH_Drawing_TextStyleSetBaselineShift(OH_Drawing_TextStyle* style, double li
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TextStyleGetBaselineShift(OH_Drawing_TextStyle* style);
+double OH_Drawing_TextStyleGetBaselineShift(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the text color.
@@ -2418,7 +2555,8 @@ double OH_Drawing_TextStyleGetBaselineShift(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-uint32_t OH_Drawing_TextStyleGetColor(OH_Drawing_TextStyle* style);
+uint32_t OH_Drawing_TextStyleGetColor(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets text decoration style.
@@ -2429,7 +2567,8 @@ uint32_t OH_Drawing_TextStyleGetColor(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextDecorationStyle OH_Drawing_TextStyleGetDecorationStyle(OH_Drawing_TextStyle* style);
+OH_Drawing_TextDecorationStyle OH_Drawing_TextStyleGetDecorationStyle(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets font weight.
@@ -2440,7 +2579,8 @@ OH_Drawing_TextDecorationStyle OH_Drawing_TextStyleGetDecorationStyle(OH_Drawing
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight(OH_Drawing_TextStyle* style);
+OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets font style.
@@ -2451,7 +2591,8 @@ OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight(OH_Drawing_TextStyle* st
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle(OH_Drawing_TextStyle* style);
+OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the font baseline.
@@ -2462,7 +2603,8 @@ OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle(OH_Drawing_TextStyle* styl
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline(OH_Drawing_TextStyle* style);
+OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets a list of font families.
@@ -2474,7 +2616,8 @@ OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline(OH_Drawing_TextStyle* st
  * @since 12
  * @version 1.0
  */
-char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* num);
+char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* num)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by a list of font families.
@@ -2485,7 +2628,8 @@ char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleDestroyFontFamilies(char** fontFamilies, size_t num);
+void OH_Drawing_TextStyleDestroyFontFamilies(char** fontFamilies, size_t num)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets font size.
@@ -2496,7 +2640,8 @@ void OH_Drawing_TextStyleDestroyFontFamilies(char** fontFamilies, size_t num);
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TextStyleGetFontSize(OH_Drawing_TextStyle* style);
+double OH_Drawing_TextStyleGetFontSize(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the letter spacing of the text.
@@ -2507,7 +2652,8 @@ double OH_Drawing_TextStyleGetFontSize(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TextStyleGetLetterSpacing(OH_Drawing_TextStyle* style);
+double OH_Drawing_TextStyleGetLetterSpacing(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the word spacing of the text.
@@ -2518,7 +2664,8 @@ double OH_Drawing_TextStyleGetLetterSpacing(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TextStyleGetWordSpacing(OH_Drawing_TextStyle* style);
+double OH_Drawing_TextStyleGetWordSpacing(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets font height.
@@ -2529,7 +2676,8 @@ double OH_Drawing_TextStyleGetWordSpacing(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TextStyleGetFontHeight(OH_Drawing_TextStyle* style);
+double OH_Drawing_TextStyleGetFontHeight(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether to set the text to half line spacing.
@@ -2541,7 +2689,8 @@ double OH_Drawing_TextStyleGetFontHeight(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TextStyleGetHalfLeading(OH_Drawing_TextStyle* style);
+bool OH_Drawing_TextStyleGetHalfLeading(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the typography vertical alignment mode.
@@ -2554,7 +2703,8 @@ bool OH_Drawing_TextStyleGetHalfLeading(OH_Drawing_TextStyle* style);
  * @version 1.0
  */
 void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style,
-    OH_Drawing_TextVerticalAlignment align);
+    OH_Drawing_TextVerticalAlignment align)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the locale.
@@ -2566,7 +2716,8 @@ void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style
  * @since 12
  * @version 1.0
  */
-const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style);
+const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to use superscript or subscript in text layout.
@@ -2576,7 +2727,8 @@ const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style);
  * @param textBadgeType Superscript or subscript to use.
  * @since 20
  */
-void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType);
+void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the text style, including font weight, font width and font slant.
@@ -2588,7 +2740,8 @@ void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_Te
  * @version 1.0
  */
 void OH_Drawing_SetTextStyleFontStyleStruct(OH_Drawing_TextStyle* drawingTextStyle,
-    OH_Drawing_FontStyleStruct fontStyle);
+    OH_Drawing_FontStyleStruct fontStyle)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the text style, including font weight, font width and font slant.
@@ -2599,7 +2752,8 @@ void OH_Drawing_SetTextStyleFontStyleStruct(OH_Drawing_TextStyle* drawingTextSty
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontStyleStruct OH_Drawing_TextStyleGetFontStyleStruct(OH_Drawing_TextStyle* drawingTextStyle);
+OH_Drawing_FontStyleStruct OH_Drawing_TextStyleGetFontStyleStruct(OH_Drawing_TextStyle* drawingTextStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the typography style, including font weight, font width and font slant.
@@ -2611,7 +2765,8 @@ OH_Drawing_FontStyleStruct OH_Drawing_TextStyleGetFontStyleStruct(OH_Drawing_Tex
  * @version 1.0
  */
 void OH_Drawing_SetTypographyStyleFontStyleStruct(OH_Drawing_TypographyStyle* drawingStyle,
-    OH_Drawing_FontStyleStruct fontStyle);
+    OH_Drawing_FontStyleStruct fontStyle)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the typography style, including font weight, font width and font slant.
@@ -2622,7 +2777,8 @@ void OH_Drawing_SetTypographyStyleFontStyleStruct(OH_Drawing_TypographyStyle* dr
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontStyleStruct OH_Drawing_TypographyStyleGetFontStyleStruct(OH_Drawing_TypographyStyle* drawingStyle);
+OH_Drawing_FontStyleStruct OH_Drawing_TypographyStyleGetFontStyleStruct(OH_Drawing_TypographyStyle* drawingStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether the two TextStyle objects are equal.
@@ -2634,7 +2790,8 @@ OH_Drawing_FontStyleStruct OH_Drawing_TypographyStyleGetFontStyleStruct(OH_Drawi
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TextStyleIsEqual(const OH_Drawing_TextStyle* style, const OH_Drawing_TextStyle* comparedStyle);
+bool OH_Drawing_TextStyleIsEqual(const OH_Drawing_TextStyle* style, const OH_Drawing_TextStyle* comparedStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether the font properties of two TextStyle objects are equal.
@@ -2646,7 +2803,8 @@ bool OH_Drawing_TextStyleIsEqual(const OH_Drawing_TextStyle* style, const OH_Dra
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TextStyleIsEqualByFont(const OH_Drawing_TextStyle* style, const OH_Drawing_TextStyle* comparedStyle);
+bool OH_Drawing_TextStyleIsEqualByFont(const OH_Drawing_TextStyle* style, const OH_Drawing_TextStyle* comparedStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether two TextStyle objects match attributes
@@ -2660,7 +2818,8 @@ bool OH_Drawing_TextStyleIsEqualByFont(const OH_Drawing_TextStyle* style, const 
  * @version 1.0
  */
 bool OH_Drawing_TextStyleIsAttributeMatched(const OH_Drawing_TextStyle* style,
-    const OH_Drawing_TextStyle* comparedStyle, OH_Drawing_TextStyleType textStyleType);
+    const OH_Drawing_TextStyle* comparedStyle, OH_Drawing_TextStyleType textStyleType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set placeholder of TextStyle.
@@ -2670,7 +2829,8 @@ bool OH_Drawing_TextStyleIsAttributeMatched(const OH_Drawing_TextStyle* style,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TextStyleSetPlaceholder(OH_Drawing_TextStyle* style);
+void OH_Drawing_TextStyleSetPlaceholder(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether placeholder is enable.
@@ -2681,7 +2841,8 @@ void OH_Drawing_TextStyleSetPlaceholder(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TextStyleIsPlaceholder(OH_Drawing_TextStyle* style);
+bool OH_Drawing_TextStyleIsPlaceholder(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets text alignment mode.
@@ -2692,7 +2853,8 @@ bool OH_Drawing_TextStyleIsPlaceholder(OH_Drawing_TextStyle* style);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextAlign OH_Drawing_TypographyStyleGetEffectiveAlignment(OH_Drawing_TypographyStyle* style);
+OH_Drawing_TextAlign OH_Drawing_TypographyStyleGetEffectiveAlignment(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether the hinting is enabled.
@@ -2703,7 +2865,8 @@ OH_Drawing_TextAlign OH_Drawing_TypographyStyleGetEffectiveAlignment(OH_Drawing_
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyStyleIsHintEnabled(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyStyleIsHintEnabled(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets system font configuration information.
@@ -2717,7 +2880,8 @@ bool OH_Drawing_TypographyStyleIsHintEnabled(OH_Drawing_TypographyStyle* style);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontConfigInfo* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode* errorCode);
+OH_Drawing_FontConfigInfo* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode* errorCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by system font configuration information.
@@ -2727,7 +2891,8 @@ OH_Drawing_FontConfigInfo* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontCon
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontCfgInfo);
+void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontCfgInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the strut style for text typography.
@@ -2738,7 +2903,8 @@ void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontC
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTypographyStyleTextStrutStyle(OH_Drawing_TypographyStyle* style, OH_Drawing_StrutStyle* strutstyle);
+void OH_Drawing_SetTypographyStyleTextStrutStyle(OH_Drawing_TypographyStyle* style, OH_Drawing_StrutStyle* strutstyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_StrutStyle</b> object.
@@ -2748,7 +2914,8 @@ void OH_Drawing_SetTypographyStyleTextStrutStyle(OH_Drawing_TypographyStyle* sty
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyStyleDestroyStrutStyle(OH_Drawing_StrutStyle* strutstyle);
+void OH_Drawing_TypographyStyleDestroyStrutStyle(OH_Drawing_StrutStyle* strutstyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the strut style for text typography.
@@ -2759,7 +2926,8 @@ void OH_Drawing_TypographyStyleDestroyStrutStyle(OH_Drawing_StrutStyle* strutsty
  * @since 12
  * @version 1.0
  */
-OH_Drawing_StrutStyle* OH_Drawing_TypographyStyleGetStrutStyle(OH_Drawing_TypographyStyle* style);
+OH_Drawing_StrutStyle* OH_Drawing_TypographyStyleGetStrutStyle(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Overriding the struct StrutStyle equals operator.
@@ -2770,7 +2938,8 @@ OH_Drawing_StrutStyle* OH_Drawing_TypographyStyleGetStrutStyle(OH_Drawing_Typogr
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_Drawing_StrutStyle* to);
+bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_Drawing_StrutStyle* to)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the hinting of text typography.
@@ -2781,7 +2950,8 @@ bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyStyleSetHintsEnabled(OH_Drawing_TypographyStyle* style, bool hintsEnabled);
+void OH_Drawing_TypographyStyleSetHintsEnabled(OH_Drawing_TypographyStyle* style, bool hintsEnabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Getting all font metrics from target row.
@@ -2795,7 +2965,8 @@ void OH_Drawing_TypographyStyleSetHintsEnabled(OH_Drawing_TypographyStyle* style
  * @version 1.0
  */
 OH_Drawing_Font_Metrics* OH_Drawing_TypographyGetLineFontMetrics(OH_Drawing_Typography* typography,
-    size_t lineNumber, size_t* fontMetricsSize);
+    size_t lineNumber, size_t* fontMetricsSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Free up all the space taken up by the lineFontMetric.
@@ -2805,7 +2976,8 @@ OH_Drawing_Font_Metrics* OH_Drawing_TypographyGetLineFontMetrics(OH_Drawing_Typo
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyDestroyLineFontMetrics(OH_Drawing_Font_Metrics* lineFontMetric);
+void OH_Drawing_TypographyDestroyLineFontMetrics(OH_Drawing_Font_Metrics* lineFontMetric)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Mark the Typography as dirty, and initially state the Typography.
@@ -2815,7 +2987,8 @@ void OH_Drawing_TypographyDestroyLineFontMetrics(OH_Drawing_Font_Metrics* lineFo
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography);
+void OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the unresolved Glyphs count of lines in a text.
@@ -2826,7 +2999,8 @@ void OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography);
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typography);
+int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typography)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Update the font size of lines in a text.
@@ -2839,7 +3013,8 @@ int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typ
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyUpdateFontSize(OH_Drawing_Typography* typography, size_t from, size_t to, float fontSize);
+void OH_Drawing_TypographyUpdateFontSize(OH_Drawing_Typography* typography, size_t from, size_t to, float fontSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Update the font color of the typography
@@ -2850,7 +3025,8 @@ void OH_Drawing_TypographyUpdateFontSize(OH_Drawing_Typography* typography, size
  * @since 20
  * @version 1.0
  */
-void OH_Drawing_TypographyUpdateFontColor(OH_Drawing_Typography* typography, uint32_t color);
+void OH_Drawing_TypographyUpdateFontColor(OH_Drawing_Typography* typography, uint32_t color)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Update the decoration of the typography.
@@ -2862,7 +3038,8 @@ void OH_Drawing_TypographyUpdateFontColor(OH_Drawing_Typography* typography, uin
  * @since 20
  * @version 1.0
  */
-void OH_Drawing_TypographyUpdateDecoration(OH_Drawing_Typography* typography, OH_Drawing_TextDecoration decoration);
+void OH_Drawing_TypographyUpdateDecoration(OH_Drawing_Typography* typography, OH_Drawing_TextDecoration decoration)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Update the decoration thickness scale of the typography.
@@ -2874,7 +3051,8 @@ void OH_Drawing_TypographyUpdateDecoration(OH_Drawing_Typography* typography, OH
  * @version 1.0
  */
 void OH_Drawing_TypographyUpdateDecorationThicknessScale(OH_Drawing_Typography* typography,
-    double decorationThicknessScale);
+    double decorationThicknessScale)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Update the decoration style of typography.
@@ -2887,7 +3065,8 @@ void OH_Drawing_TypographyUpdateDecorationThicknessScale(OH_Drawing_Typography* 
  * @version 1.0
  */
 void OH_Drawing_TypographyUpdateDecorationStyle(OH_Drawing_Typography* typography,
-    OH_Drawing_TextDecorationStyle decorationStyle);
+    OH_Drawing_TextDecorationStyle decorationStyle)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Updates the decoration color of the paragraph.
@@ -2898,7 +3077,8 @@ void OH_Drawing_TypographyUpdateDecorationStyle(OH_Drawing_Typography* typograph
  * @since 20
  * @version 1.0
  */
-void OH_Drawing_TypographyUpdateDecorationColor(OH_Drawing_Typography* typography, uint32_t color);
+void OH_Drawing_TypographyUpdateDecorationColor(OH_Drawing_Typography* typography, uint32_t color)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get whether the text layout enables line styles.
@@ -2909,7 +3089,8 @@ void OH_Drawing_TypographyUpdateDecorationColor(OH_Drawing_Typography* typograph
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyTextGetLineStyle(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyTextGetLineStyle(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the font weight of line style for text typography.
@@ -2922,7 +3103,8 @@ bool OH_Drawing_TypographyTextGetLineStyle(OH_Drawing_TypographyStyle* style);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight(OH_Drawing_TypographyStyle* style);
+OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the font style of line style for text typography.
@@ -2935,7 +3117,8 @@ OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight(OH_Drawing
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle(OH_Drawing_TypographyStyle* style);
+OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the font families of line style for text typography.
@@ -2948,7 +3131,8 @@ OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle(OH_Drawing_T
  * @since 12
  * @version 1.0
  */
-char** OH_Drawing_TypographyTextlineStyleGetFontFamilies(OH_Drawing_TypographyStyle* style, size_t* num);
+char** OH_Drawing_TypographyTextlineStyleGetFontFamilies(OH_Drawing_TypographyStyle* style, size_t* num)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by a list of font families names.
@@ -2959,7 +3143,8 @@ char** OH_Drawing_TypographyTextlineStyleGetFontFamilies(OH_Drawing_TypographySt
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, size_t fontFamiliesNum);
+void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, size_t fontFamiliesNum)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the font size of font size for text typography.
@@ -2971,7 +3156,8 @@ void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, 
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TypographyTextlineStyleGetFontSize(OH_Drawing_TypographyStyle* style);
+double OH_Drawing_TypographyTextlineStyleGetFontSize(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the font height scale in text layout.
@@ -2983,7 +3169,8 @@ double OH_Drawing_TypographyTextlineStyleGetFontSize(OH_Drawing_TypographyStyle*
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TypographyTextlineStyleGetHeightScale(OH_Drawing_TypographyStyle* style);
+double OH_Drawing_TypographyTextlineStyleGetHeightScale(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get whether to enable font height for line styles in text layout only.
@@ -2996,7 +3183,8 @@ double OH_Drawing_TypographyTextlineStyleGetHeightScale(OH_Drawing_TypographySty
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyTextlineStyleGetHeightOnly(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyTextlineStyleGetHeightOnly(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the half leading of line style for text typography.
@@ -3008,7 +3196,8 @@ bool OH_Drawing_TypographyTextlineStyleGetHeightOnly(OH_Drawing_TypographyStyle*
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyTextlineStyleGetHalfLeading(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyTextlineStyleGetHalfLeading(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the spacing scale of line style for text typography.
@@ -3020,7 +3209,8 @@ bool OH_Drawing_TypographyTextlineStyleGetHalfLeading(OH_Drawing_TypographyStyle
  * @since 12
  * @version 1.0
  */
-double OH_Drawing_TypographyTextlineStyleGetSpacingScale(OH_Drawing_TypographyStyle* style);
+double OH_Drawing_TypographyTextlineStyleGetSpacingScale(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get whether only line style is enabled for text typography.
@@ -3033,7 +3223,8 @@ double OH_Drawing_TypographyTextlineStyleGetSpacingScale(OH_Drawing_TypographySt
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyTextlineGetStyleOnly(OH_Drawing_TypographyStyle* style);
+bool OH_Drawing_TypographyTextlineGetStyleOnly(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the text alignment mode.
@@ -3045,7 +3236,8 @@ bool OH_Drawing_TypographyTextlineGetStyleOnly(OH_Drawing_TypographyStyle* style
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextAlign OH_Drawing_TypographyGetTextAlign(OH_Drawing_TypographyStyle* style);
+OH_Drawing_TextAlign OH_Drawing_TypographyGetTextAlign(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the text direction.
@@ -3057,7 +3249,8 @@ OH_Drawing_TextAlign OH_Drawing_TypographyGetTextAlign(OH_Drawing_TypographyStyl
  * @since 12
  * @version 1.0
  */
-OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection(OH_Drawing_TypographyStyle* style);
+OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the maximum number of lines in a text.
@@ -3069,7 +3262,8 @@ OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection(OH_Drawing_Typogr
  * @since 12
  * @version 1.0
  */
-size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style);
+size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the ellipsis of lines in a text.
@@ -3081,7 +3275,8 @@ size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style);
  * @since 12
  * @version 1.0
  */
-char* OH_Drawing_TypographyGetTextEllipsis(OH_Drawing_TypographyStyle* style);
+char* OH_Drawing_TypographyGetTextEllipsis(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by a list of Ellipsis names.
@@ -3091,7 +3286,7 @@ char* OH_Drawing_TypographyGetTextEllipsis(OH_Drawing_TypographyStyle* style);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis);
+void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Overriding the class ParagraphStyle equals operator.
@@ -3103,7 +3298,8 @@ void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_TypographyStyleEquals(OH_Drawing_TypographyStyle* from, OH_Drawing_TypographyStyle* to);
+bool OH_Drawing_TypographyStyleEquals(OH_Drawing_TypographyStyle* from, OH_Drawing_TypographyStyle* to)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory occupied by text box.
@@ -3113,7 +3309,8 @@ bool OH_Drawing_TypographyStyleEquals(OH_Drawing_TypographyStyle* from, OH_Drawi
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox);
+void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the parameter of text-shadow.
@@ -3127,7 +3324,8 @@ void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox);
  * @version 1.0
  */
 void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset,
-    double blurRadius);
+    double blurRadius)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_TextTab</b> object.
@@ -3142,7 +3340,8 @@ void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_
  * @since 18
  * @version 1.0
  */
-OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, float location);
+OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, float location)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_TextTab</b> object.
@@ -3152,7 +3351,7 @@ OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, flo
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab);
+void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get alignment of an <b>OH_Drawing_TextTab</b> object.
@@ -3163,7 +3362,8 @@ void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab);
  * @since 18
  * @version 1.0
  */
-OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab);
+OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get location of an <b>OH_Drawing_TextTab</b> object.
@@ -3174,7 +3374,7 @@ OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab);
  * @since 18
  * @version 1.0
  */
-float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
+float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the text tab of <b>OH_Drawing_TypographyStyle</b> object.
@@ -3188,7 +3388,8 @@ float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawing_TextTab* tab);
+void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawing_TextTab* tab)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get DrawingArray size.
@@ -3199,7 +3400,8 @@ void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawi
  * @since 14
  * @version 1.0
  */
-size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
+size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Sets whether to optimize whitespace at the end of each line for text typography.
@@ -3211,7 +3413,8 @@ size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
  * @since 20
  * @version 1.0
  */
-void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographyStyle* style, bool trailingSpaceOptimized);
+void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographyStyle* style, bool trailingSpaceOptimized)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the text content. The content supports UTF-8, UTF-16, and UTF-32 formats.
@@ -3225,7 +3428,8 @@ void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographySty
  * @version 1.0
  */
 void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* handler, const void* text,
-    size_t byteLength, OH_Drawing_TextEncoding textEncodingType);
+    size_t byteLength, OH_Drawing_TextEncoding textEncodingType)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set whether to enable automatic spacing between Chinese and English for paragraph.
@@ -3235,7 +3439,8 @@ void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* han
  * @param enableAutoSpace Indicates Whether to enable automatic spacing between Chinese and English.
  * @since 20
  */
-void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle* style, bool enableAutoSpace);
+void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle* style, bool enableAutoSpace)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Copy a typography style object.
@@ -3246,7 +3451,8 @@ void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle* style, bo
  * @since 20
  * @version 1.0
  */
-OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle* style);
+OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle* style)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Copy a text style object.
@@ -3257,7 +3463,8 @@ OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_Typography
  * @since 20
  * @version 1.0
  */
-OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style);
+OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Copy a text shadow object.
@@ -3268,7 +3475,8 @@ OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow);
+OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

@@ -38,6 +38,7 @@
 #ifndef FILEMANAGEMENT_KIT_OH_CLOUD_DISK_MANAGER_NDK_H
 #define FILEMANAGEMENT_KIT_OH_CLOUD_DISK_MANAGER_NDK_H
 
+#include "info/application_target_sdk_version.h"
 #include <cstddef>
 #include <cstdint>
 
@@ -366,7 +367,8 @@ typedef struct CloudDisk_SyncFolder {
 CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderChanges(const CloudDisk_SyncFolderPath syncFolderPath,
     void (*callback)(const CloudDisk_SyncFolderPath syncFolderPath,
                      const CloudDisk_ChangeData changeDatas[],
-                     size_t bufferLength));
+                     size_t bufferLength))
+                     __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters a callback function for sync folder changes.
@@ -376,7 +378,8 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderChanges(const CloudDisk_SyncF
  * <br> returns an error code defined in {@link cloud_disk_error_code.h} otherwise.
  * @since 21
  */
-CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolderChanges(const CloudDisk_SyncFolderPath syncFolderPath);
+CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolderChanges(const CloudDisk_SyncFolderPath syncFolderPath)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the change datas of specified folder.
@@ -392,7 +395,8 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolderChanges(const CloudDisk_Syn
 CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolderChanges(const CloudDisk_SyncFolderPath syncFolderPath,
                                                       uint64_t startUsn,
                                                       size_t count,
-                                                      CloudDisk_ChangesResult **changesResult);
+                                                      CloudDisk_ChangesResult **changesResult)
+                                                      __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the synchronization state for specified files in a sync folder.
@@ -412,7 +416,8 @@ CloudDisk_ErrorCode OH_CloudDisk_SetFileSyncStates(const CloudDisk_SyncFolderPat
                                                    const CloudDisk_FileSyncState fileSyncStates[],
                                                    size_t bufferLength,
                                                    CloudDisk_FailedList **failedLists,
-                                                   size_t *failedCount);
+                                                   size_t *failedCount)
+                                                   __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Queries the synchronization state of specified files in a sync folder.
@@ -431,7 +436,8 @@ CloudDisk_ErrorCode OH_CloudDisk_GetFileSyncStates(const CloudDisk_SyncFolderPat
                                                    const CloudDisk_PathInfo paths[],
                                                    size_t bufferLength,
                                                    CloudDisk_ResultList **resultLists,
-                                                   size_t *resultCount);
+                                                   size_t *resultCount)
+                                                   __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Registers a sync folder.
@@ -441,7 +447,8 @@ CloudDisk_ErrorCode OH_CloudDisk_GetFileSyncStates(const CloudDisk_SyncFolderPat
  * <br> returns an error code defined in {@link cloud_disk_error_code.h} otherwise.
  * @since 21
  */
-CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolder(const CloudDisk_SyncFolder *syncFolder);
+CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolder(const CloudDisk_SyncFolder *syncFolder)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Unregisters a sync folder.
@@ -451,7 +458,8 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolder(const CloudDisk_SyncFolder *
  * <br> returns an error code defined in {@link cloud_disk_error_code.h} otherwise.
  * @since 21
  */
-CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolder(const CloudDisk_SyncFolderPath syncFolderPath);
+CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolder(const CloudDisk_SyncFolderPath syncFolderPath)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Activates a sync folder.
@@ -461,7 +469,8 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolder(const CloudDisk_SyncFolder
  * <br> returns an error code defined in {@link cloud_disk_error_code.h} otherwise.
  * @since 21
  */
-CloudDisk_ErrorCode OH_CloudDisk_ActiveSyncFolder(const CloudDisk_SyncFolderPath syncFolderPath);
+CloudDisk_ErrorCode OH_CloudDisk_ActiveSyncFolder(const CloudDisk_SyncFolderPath syncFolderPath)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Deactivates a sync folder.
@@ -471,7 +480,8 @@ CloudDisk_ErrorCode OH_CloudDisk_ActiveSyncFolder(const CloudDisk_SyncFolderPath
  * <br> returns an error code defined in {@link cloud_disk_error_code.h} otherwise.
  * @since 21
  */
-CloudDisk_ErrorCode OH_CloudDisk_DeactiveSyncFolder(const CloudDisk_SyncFolderPath syncFolderPath);
+CloudDisk_ErrorCode OH_CloudDisk_DeactiveSyncFolder(const CloudDisk_SyncFolderPath syncFolderPath)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the sync folders.
@@ -482,7 +492,8 @@ CloudDisk_ErrorCode OH_CloudDisk_DeactiveSyncFolder(const CloudDisk_SyncFolderPa
  * <br> returns an error code defined in {@link cloud_disk_error_code.h} otherwise.
  * @since 21
  */
-CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolders(CloudDisk_SyncFolder **syncFolders, size_t *count);
+CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolders(CloudDisk_SyncFolder **syncFolders, size_t *count)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Updates the display name of a sync folder.
@@ -495,7 +506,8 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolders(CloudDisk_SyncFolder **syncFolde
  * @since 21
  */
 CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
-    const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
+    const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 #ifdef __cplusplus
 };
 #endif

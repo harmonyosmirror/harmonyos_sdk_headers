@@ -36,6 +36,7 @@
 #ifndef NATIVE_GCP_API_H
 #define NATIVE_GCP_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -159,7 +160,8 @@ typedef void (*HMS_GCP_OnResult)(void* userData, HMS_GCP_PickedColorInfo colorIn
  * @since 5.0.0(12)
  */
 int32_t HMS_GCP_StartColorPicker(
-    int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData);
+    int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Start global color picker.
@@ -180,7 +182,8 @@ int32_t HMS_GCP_StartColorPicker(
  * @since 5.1.0(18)
  */
 int32_t HMS_GCP_StartColorPickerWithColorValue(
-    int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData);
+    int32_t initialPosX, int32_t initialPosY, HMS_GCP_OnResult onResultCallback, void *userData)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

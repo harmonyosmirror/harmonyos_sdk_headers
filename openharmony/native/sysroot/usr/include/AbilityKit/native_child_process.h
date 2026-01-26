@@ -38,6 +38,7 @@
 #ifndef OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
 #define OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
 
+#include "info/application_target_sdk_version.h"
 #include "IPCKit/ipc_cparcel.h"
 
 #ifdef __cplusplus
@@ -117,6 +118,13 @@ typedef enum Ability_NativeChildProcess_ErrCode {
      * @since 20
      */
     NCP_ERR_CALLBACK_NOT_EXIST = 16010009,
+
+    /**
+     * @error The specified PID does not exist or is not a child process of the current process
+     * or is a SELF_FORK mode child process.
+     * @since 22
+     */
+    NCP_ERR_INVALID_PID = 16010010,
 } Ability_NativeChildProcess_ErrCode;
 
 /**
@@ -149,7 +157,8 @@ typedef struct Ability_ChildProcessConfigs Ability_ChildProcessConfigs;
  *         Returns nullptr if an internal error occurs or memory allocation fails.
  * @since 20
  */
-Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
+Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys a child process configs object and releases associated resources.
@@ -161,7 +170,8 @@ Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
  *         Returns {@link NCP_ERR_INVALID_PARAM} if the input parameters are invalid.
  * @since 20
  */
-Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability_ChildProcessConfigs* configs);
+Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability_ChildProcessConfigs* configs)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the isolation mode for the specified child process configs.
@@ -173,7 +183,8 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
  * @since 20
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMode(
-    Ability_ChildProcessConfigs* configs, NativeChildProcess_IsolationMode isolationMode);
+    Ability_ChildProcessConfigs* configs, NativeChildProcess_IsolationMode isolationMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the UID isolation flag for the specified child process configs.
@@ -189,7 +200,8 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMo
  * @since 21
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationUid(
-    Ability_ChildProcessConfigs* configs, bool isolationUid);
+    Ability_ChildProcessConfigs* configs, bool isolationUid)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the process name for the specified child process configs.
@@ -204,7 +216,8 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationUi
  * @since 20
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName(Ability_ChildProcessConfigs* configs,
-    const char* processName);
+    const char* processName)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines a callback function for notifying the child process startup result.
@@ -263,7 +276,8 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
  * @since 12
  */
 int OH_Ability_CreateNativeChildProcess(const char* libName,
-                                        OH_Ability_OnNativeChildProcessStarted onProcessStarted);
+                                        OH_Ability_OnNativeChildProcessStarted onProcessStarted)
+                                        __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a child process, loads the specified dynamic library file, and returns the startup result
@@ -305,7 +319,8 @@ int OH_Ability_CreateNativeChildProcess(const char* libName,
  * @since 20
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_CreateNativeChildProcessWithConfigs(const char* libName,
-    Ability_ChildProcessConfigs* configs, OH_Ability_OnNativeChildProcessStarted onProcessStarted);
+    Ability_ChildProcessConfigs* configs, OH_Ability_OnNativeChildProcessStarted onProcessStarted)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief The info of the file descriptors passed to child process.
@@ -395,7 +410,8 @@ typedef struct NativeChildProcess_Args {
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
     const char* entry, NativeChildProcess_Args args,
-    NativeChildProcess_Options options, int32_t *pid);
+    NativeChildProcess_Options options, int32_t *pid)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Starts a child process, loads the specified dynamic library file.
@@ -429,7 +445,8 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
  * @since 20
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcessWithConfigs(
-    const char* entry, NativeChildProcess_Args args, Ability_ChildProcessConfigs* configs, int32_t *pid);
+    const char* entry, NativeChildProcess_Args args, Ability_ChildProcessConfigs* configs, int32_t *pid)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Child process get self NativeChildProcess_Args.
@@ -438,7 +455,8 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcessWithConfigs
  * For details, see {@link NativeChildProcess_Args}.
  * @since 17
  */
-NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs()
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Defines a callback function to handle the exit of a native child process.
@@ -461,7 +479,8 @@ typedef void (*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)
  * @since 20
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCallback(
-    OH_Ability_OnNativeChildProcessExit onProcessExit);
+    OH_Ability_OnNativeChildProcessExit onProcessExit)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
  /**
  * @brief Unregister a native child process exit callback.
@@ -475,7 +494,28 @@ Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCall
  * @since 20
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCallback(
-    OH_Ability_OnNativeChildProcessExit onProcessExit);
+    OH_Ability_OnNativeChildProcessExit onProcessExit)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Terminates a child process created by the current process.
+ *
+ * <p>**NOTE**:
+ * <br>Child processes created in SELF_FORK mode cannot be terminated.
+ * </p>
+ *
+ * @param pid Process ID of the target child process to terminate.
+ * @return Returns {@link NCP_NO_ERROR} if the operation succeeds.
+ *         Returns {@link NCP_ERR_SERVICE_ERROR} if system service error occurs, please try again later.
+ *         Returns {@link NCP_ERR_INVALID_PID} if:
+ *           - The specified PID does not exist
+ *           - The PID is not a child process of the current process
+ *           - The PID is a SELF_FORK mode child process
+ *         For details, see {@link Ability_NativeChildProcess_ErrCode}.
+ * @since 22
+ */
+Ability_NativeChildProcess_ErrCode OH_Ability_KillChildProcess(int32_t pid)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 } // extern "C"

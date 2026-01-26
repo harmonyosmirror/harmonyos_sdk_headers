@@ -30,6 +30,7 @@
 #ifndef FRAME_GENERATION_VK_H
 #define FRAME_GENERATION_VK_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <vulkan/vulkan.h>
 
@@ -158,7 +159,8 @@ typedef struct FG_DispatchDescription_VK {
  * @return Returns the pointer to a {@link FG_Context_VK} context instance.
  * @since 5.0.0(12)
  */
-FG_Context_VK* HMS_FG_CreateContext_VK(const FG_ContextDescription_VK* contextDescription);
+FG_Context_VK* HMS_FG_CreateContext_VK(const FG_ContextDescription_VK* contextDescription)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the selection of the prediction mode and motion vector estimation mode of Frame Generation.
@@ -171,7 +173,8 @@ FG_Context_VK* HMS_FG_CreateContext_VK(const FG_ContextDescription_VK* contextDe
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetAlgorithmMode_VK(FG_Context_VK* context, const FG_AlgorithmModeInfo* predictionModeInfo);
+FG_ErrorCode HMS_FG_SetAlgorithmMode_VK(FG_Context_VK* context, const FG_AlgorithmModeInfo* predictionModeInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the resolution in pixels of frame generation input and output images.
@@ -184,7 +187,8 @@ FG_ErrorCode HMS_FG_SetAlgorithmMode_VK(FG_Context_VK* context, const FG_Algorit
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetResolution_VK(FG_Context_VK* context, const FG_ResolutionInfo* resolutionInfo);
+FG_ErrorCode HMS_FG_SetResolution_VK(FG_Context_VK* context, const FG_ResolutionInfo* resolutionInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide the Z range semantic of projection matrix used by application.
@@ -196,7 +200,8 @@ FG_ErrorCode HMS_FG_SetResolution_VK(FG_Context_VK* context, const FG_Resolution
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetCvvZSemantic_VK(FG_Context_VK* context, FG_CvvZSemantic semantic);
+FG_ErrorCode HMS_FG_SetCvvZSemantic_VK(FG_Context_VK* context, FG_CvvZSemantic semantic)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Provide frame generation input and output image formats.
@@ -208,7 +213,8 @@ FG_ErrorCode HMS_FG_SetCvvZSemantic_VK(FG_Context_VK* context, FG_CvvZSemantic s
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetImageFormat_VK(FG_Context_VK* context, const FG_ImageFormat_VK* format);
+FG_ErrorCode HMS_FG_SetImageFormat_VK(FG_Context_VK* context, const FG_ImageFormat_VK* format)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This should be called when color buffer is Y axis inverted relative to Depth/Stencil buffer.
@@ -220,7 +226,8 @@ FG_ErrorCode HMS_FG_SetImageFormat_VK(FG_Context_VK* context, const FG_ImageForm
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_VK(FG_Context_VK* context, bool inverted);
+FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_VK(FG_Context_VK* context, bool inverted)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Make connection between user provided images and internal implementation and returns an image instance
@@ -233,7 +240,8 @@ FG_ErrorCode HMS_FG_SetDepthStencilYDirectionInverted_VK(FG_Context_VK* context,
  * @return The image instance handle which represents the connection.
  * @since 5.0.0(12)
  */
-FG_Image_VK* HMS_FG_CreateImage_VK(FG_Context_VK* context, VkImage image, VkImageView view);
+FG_Image_VK* HMS_FG_CreateImage_VK(FG_Context_VK* context, VkImage image, VkImageView view)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy connection between user provided images and internal implementation and destroy the image instance.
@@ -245,7 +253,8 @@ FG_Image_VK* HMS_FG_CreateImage_VK(FG_Context_VK* context, VkImage image, VkImag
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_DestroyImage_VK(FG_Context_VK* context, FG_Image_VK* image);
+FG_ErrorCode HMS_FG_DestroyImage_VK(FG_Context_VK* context, FG_Image_VK* image)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Activate Frame Generation instance on Vulkan platform. An "activated" instance is ready to draw frames.
@@ -258,7 +267,7 @@ FG_ErrorCode HMS_FG_DestroyImage_VK(FG_Context_VK* context, FG_Image_VK* image);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_Activate_VK(FG_Context_VK* context);
+FG_ErrorCode HMS_FG_Activate_VK(FG_Context_VK* context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deactivate Frame Generation instance on Vulkan platform.
@@ -269,7 +278,7 @@ FG_ErrorCode HMS_FG_Activate_VK(FG_Context_VK* context);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_Deactivate_VK(FG_Context_VK* context);
+FG_ErrorCode HMS_FG_Deactivate_VK(FG_Context_VK* context) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query if the frame generation instance is currently activated.
@@ -282,7 +291,8 @@ FG_ErrorCode HMS_FG_Deactivate_VK(FG_Context_VK* context);
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_IsActive_VK(FG_Context_VK* context, bool* isActive);
+FG_ErrorCode HMS_FG_IsActive_VK(FG_Context_VK* context, bool* isActive)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets all required data for prediction of a frame to draw predicted frames on Vulkan platform.
@@ -294,7 +304,8 @@ FG_ErrorCode HMS_FG_IsActive_VK(FG_Context_VK* context, bool* isActive);
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_Dispatch_VK(FG_Context_VK* context, const FG_DispatchDescription_VK* desc);
+FG_ErrorCode HMS_FG_Dispatch_VK(FG_Context_VK* context, const FG_DispatchDescription_VK* desc)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy Frame Generation instance and memory resource reclamation on Vulkan platform.
@@ -304,7 +315,8 @@ FG_ErrorCode HMS_FG_Dispatch_VK(FG_Context_VK* context, const FG_DispatchDescrip
  * If the operation fails, an error code is returned. For details, see {@link FG_ErrorCode}.
  * @since 5.0.0(12)
  */
-FG_ErrorCode HMS_FG_DestroyContext_VK(FG_Context_VK** context);
+FG_ErrorCode HMS_FG_DestroyContext_VK(FG_Context_VK** context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the frame prediction integration information on the vulkan platform.
@@ -316,7 +328,8 @@ FG_ErrorCode HMS_FG_DestroyContext_VK(FG_Context_VK** context);
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.1.0(18)
  */
-FG_ErrorCode HMS_FG_SetIntegrationMode_VK(FG_Context_VK* context, const FG_IntegrationInfo* integrationInfo);
+FG_ErrorCode HMS_FG_SetIntegrationMode_VK(FG_Context_VK* context, const FG_IntegrationInfo* integrationInfo)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Select whether to enable the UI prediction feature on the vulkan platform.
@@ -328,7 +341,8 @@ FG_ErrorCode HMS_FG_SetIntegrationMode_VK(FG_Context_VK* context, const FG_Integ
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.1.0(18)
  */
-FG_ErrorCode HMS_FG_SetUiPredictionEnabled_VK(FG_Context_VK* context, bool isEnabled);
+FG_ErrorCode HMS_FG_SetUiPredictionEnabled_VK(FG_Context_VK* context, bool isEnabled)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the target frame rate after enabling frame prediction on the vulkan platform.
@@ -341,7 +355,8 @@ FG_ErrorCode HMS_FG_SetUiPredictionEnabled_VK(FG_Context_VK* context, bool isEna
  * an error code is returned. For details about the error codes, see {@link FG_ErrorCode}.
  * @since 5.1.0(18)
  */
-FG_ErrorCode HMS_FG_SetTargetFps_VK(FG_Context_VK* context, int targetFps);
+FG_ErrorCode HMS_FG_SetTargetFps_VK(FG_Context_VK* context, int targetFps)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

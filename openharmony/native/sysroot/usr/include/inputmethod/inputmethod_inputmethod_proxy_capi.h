@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
 #define OHOS_INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 
 #include "inputmethod_types_capi.h"
@@ -66,7 +67,8 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
+InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodProxy *inputMethodProxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief ShowTextInput.
  *
@@ -85,7 +87,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodPr
  * @since 15
  */
 InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
-    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_AttachOptions *options);
+    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_AttachOptions *options)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 /**
  * @brief Hide keyboard.
  *
@@ -100,7 +103,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
+InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodProxy *inputMethodProxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Notify selection change.
@@ -124,7 +128,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodPr
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
-    InputMethod_InputMethodProxy *inputMethodProxy, char16_t text[], size_t length, int start, int end);
+    InputMethod_InputMethodProxy *inputMethodProxy, char16_t text[], size_t length, int start, int end)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Notify text editor configuration change.
@@ -144,7 +149,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_InputMethodProxy *inputMethodProxy,
-    InputMethod_EnterKeyType enterKey, InputMethod_TextInputType textType);
+    InputMethod_EnterKeyType enterKey, InputMethod_TextInputType textType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Notify cursor update.
@@ -164,7 +170,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
-    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_CursorInfo *cursorInfo);
+    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_CursorInfo *cursorInfo)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Send private command.
@@ -184,7 +191,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
-    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_PrivateCommand *privateCommand[], size_t size);
+    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_PrivateCommand *privateCommand[], size_t size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

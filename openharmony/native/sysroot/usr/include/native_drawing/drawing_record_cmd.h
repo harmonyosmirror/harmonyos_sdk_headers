@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_RECORD_CMD_H
 #define C_INCLUDE_DRAWING_RECORD_CMD_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 #include "drawing_error_code.h"
 
@@ -55,7 +56,8 @@ extern "C" {
  * @since 13
  * @version 1.0
  */
-OH_Drawing_RecordCmdUtils* OH_Drawing_RecordCmdUtilsCreate(void);
+OH_Drawing_RecordCmdUtils* OH_Drawing_RecordCmdUtilsCreate(void)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_RecordCmdUtils</b> object and reclaims the memory occupied by the object.
@@ -68,7 +70,8 @@ OH_Drawing_RecordCmdUtils* OH_Drawing_RecordCmdUtilsCreate(void);
  * @since 13
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsDestroy(OH_Drawing_RecordCmdUtils* recordCmdUtils);
+OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsDestroy(OH_Drawing_RecordCmdUtils* recordCmdUtils)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get the canvas that records the drawing command.
@@ -87,7 +90,8 @@ OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsDestroy(OH_Drawing_RecordCmdUtils*
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsBeginRecording(OH_Drawing_RecordCmdUtils* recordCmdUtils,
-    int32_t width, int32_t height, OH_Drawing_Canvas** canvas);
+    int32_t width, int32_t height, OH_Drawing_Canvas** canvas)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Finish the recording and get the recording command object.
@@ -103,7 +107,8 @@ OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsBeginRecording(OH_Drawing_RecordCm
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsFinishRecording(OH_Drawing_RecordCmdUtils* recordCmdUtils,
-    OH_Drawing_RecordCmd** recordCmd);
+    OH_Drawing_RecordCmd** recordCmd)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_RecordCmd</b> object and reclaims the memory occupied by the object.
@@ -116,7 +121,8 @@ OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsFinishRecording(OH_Drawing_RecordC
  * @since 13
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_RecordCmdDestroy(OH_Drawing_RecordCmd* recordCmd);
+OH_Drawing_ErrorCode OH_Drawing_RecordCmdDestroy(OH_Drawing_RecordCmd* recordCmd)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

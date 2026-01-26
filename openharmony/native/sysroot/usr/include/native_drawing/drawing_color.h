@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_COLOR_H
 #define C_INCLUDE_DRAWING_COLOR_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -58,7 +59,8 @@ extern "C" {
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_ColorSetArgb(uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue);
+uint32_t OH_Drawing_ColorSetArgb(uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 #ifdef __cplusplus
 }

@@ -25,6 +25,7 @@
 #ifndef AIP_RETRIEVAL_RECORD_H
 #define AIP_RETRIEVAL_RECORD_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -58,7 +59,7 @@ typedef struct OH_Retrieval_RecordItem OH_Retrieval_RecordItem;
  * @see OH_Retrieval_Record, OH_Aip_ErrCode, OH_Retriever_Retrieve.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_DestroyRecord(OH_Retrieval_Record *record);
+int OH_Retrieval_DestroyRecord(OH_Retrieval_Record *record) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get length of the retrieval result {@link OH_Retrieval_Record}.
@@ -71,7 +72,8 @@ int OH_Retrieval_DestroyRecord(OH_Retrieval_Record *record);
  * @see OH_Retrieval_Record, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_GetRecordLength(const OH_Retrieval_Record *record, uint32_t *length);
+int OH_Retrieval_GetRecordLength(const OH_Retrieval_Record *record, uint32_t *length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the database bucket array from the retrieval result {@link OH_Retrieval_Record}.
@@ -87,7 +89,8 @@ int OH_Retrieval_GetRecordLength(const OH_Retrieval_Record *record, uint32_t *le
  * @since 6.0.0(20)
  */
 int OH_Retrieval_GetRecordItem(const OH_Retrieval_Record *record, uint32_t index,
-    const OH_Retrieval_RecordItem **item);
+    const OH_Retrieval_RecordItem **item)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the size of the value for a specified field in the database bucket array {@link OH_Retrieval_RecordItem}.
@@ -103,7 +106,8 @@ int OH_Retrieval_GetRecordItem(const OH_Retrieval_Record *record, uint32_t index
  * @see OH_Retrieval_RecordItem, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_GetItemSize(const OH_Retrieval_RecordItem *items, const char *fieldName, size_t *size);
+int OH_Retrieval_GetItemSize(const OH_Retrieval_RecordItem *items, const char *fieldName, size_t *size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the value of a specified field in the database bucket array {@link OH_Retrieval_RecordItem}.
@@ -119,7 +123,8 @@ int OH_Retrieval_GetItemSize(const OH_Retrieval_RecordItem *items, const char *f
  * @see OH_Retrieval_RecordItem, OH_Aip_ErrCode.
  * @since 6.0.0(20)
  */
-int OH_Retrieval_GetItemText(const OH_Retrieval_RecordItem *items, const char *fieldName, char *value, size_t size);
+int OH_Retrieval_GetItemText(const OH_Retrieval_RecordItem *items, const char *fieldName, char *value, size_t size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_TIMER_H
 #define FFRT_API_C_TIMER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include "type_def.h"
 
@@ -52,7 +53,8 @@
  * @return Returns a timer handle.
  * @since 12
  */
-FFRT_C_API ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
+FFRT_C_API ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stops a timer on ffrt worker
@@ -63,7 +65,8 @@ FFRT_C_API ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void*
            returns -1 otherwise.
  * @since 12
  */
-FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
+FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif // FFRT_API_C_TIMER_H
 /** @} */

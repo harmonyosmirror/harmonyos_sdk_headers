@@ -37,6 +37,7 @@
 #ifndef INCLUDE_OH_WINDOW_EVENT_FILTER_H
 #define INCLUDE_OH_WINDOW_EVENT_FILTER_H
 
+#include "info/application_target_sdk_version.h"
 #include "stdbool.h"
 #include "stdint.h"
 #include "oh_window_comm.h"
@@ -63,7 +64,8 @@ typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId,
-    OH_NativeWindowManager_KeyEventFilter keyEventFilter);
+    OH_NativeWindowManager_KeyEventFilter keyEventFilter)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregisters a function for filtering multimodal key events
@@ -72,7 +74,8 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
  * @return Returns the status code of the execution.
  * @since 12
  */
-WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId);
+WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines a function for filtering multimodal mouse events
@@ -94,7 +97,8 @@ typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseE
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,
-    OH_NativeWindowManager_MouseEventFilter mouseEventFilter);
+    OH_NativeWindowManager_MouseEventFilter mouseEventFilter)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Unregisters a function for filtering multimodal mouse events
@@ -106,7 +110,8 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
  *         Returns {@link SERVICE_ERROR} if the window manager service error occurs.
  * @since 15
  */
-WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId);
+WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Defines a function for filtering multimodal touch events
@@ -128,7 +133,8 @@ typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchE
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,
-    OH_NativeWindowManager_TouchEventFilter touchEventFilter);
+    OH_NativeWindowManager_TouchEventFilter touchEventFilter)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Unregisters a function for filtering multimodal touch events
@@ -140,7 +146,8 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
  *         Returns {@link SERVICE_ERROR} if the window manager service error occurs.
  * @since 15
  */
-WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId);
+WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 #ifdef __cplusplus
 }

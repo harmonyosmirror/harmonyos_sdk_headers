@@ -36,6 +36,7 @@
 #ifndef ABILITY_RESOURCE_INFO_H
 #define ABILITY_RESOURCE_INFO_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include "bundle_manager_common.h"
@@ -64,7 +65,8 @@ typedef struct OH_NativeBundle_AbilityResourceInfo OH_NativeBundle_AbilityResour
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetBundleName(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** bundleName);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** bundleName)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Get the module name of the abilityResourceInfo.
@@ -77,7 +79,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetBundleName(
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetModuleName(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** moduleName);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** moduleName)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Get the ability name of the abilityResourceInfo.
@@ -90,7 +93,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetModuleName(
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetAbilityName(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** abilityName);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** abilityName)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Get the label of the abilityResourceInfo.
@@ -103,7 +107,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetAbilityName(
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetLabel(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** label);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, char** label)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Get the appIndex of the abilityResourceInfo.
@@ -116,7 +121,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetLabel(
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetAppIndex(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, int* appIndex);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, int* appIndex)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Check whether abilityResourceInfo is the default application.
@@ -129,7 +135,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetAppIndex(
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_CheckDefaultApp(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, bool* isDefault);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, bool* isDefault)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Destroy the ability resource info.
@@ -142,7 +149,8 @@ BundleManager_ErrorCode OH_NativeBundle_CheckDefaultApp(
  * @since 21
  */
 BundleManager_ErrorCode OH_AbilityResourceInfo_Destroy(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, size_t count);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, size_t count)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Get the size of ability resource info.
@@ -151,7 +159,7 @@ BundleManager_ErrorCode OH_AbilityResourceInfo_Destroy(
  *
  * @since 21
  */
-int OH_NativeBundle_GetSize();
+int OH_NativeBundle_GetSize() __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
 * @brief Get the drawable descriptor of the abilityResourceInfo.
@@ -164,7 +172,8 @@ int OH_NativeBundle_GetSize();
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetDrawableDescriptor(
-    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, ArkUI_DrawableDescriptor** drawableIcon);
+    OH_NativeBundle_AbilityResourceInfo* abilityResourceInfo, ArkUI_DrawableDescriptor** drawableIcon)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 #ifdef __cplusplus
 } // extern "C"
 #endif

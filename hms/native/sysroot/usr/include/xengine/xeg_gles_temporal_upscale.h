@@ -27,6 +27,7 @@
 #ifndef XEG_GLES_TEMPORAL_UPSCALE_H
 #define XEG_GLES_TEMPORAL_UPSCALE_H
 
+#include "info/application_target_sdk_version.h"
 #include <GLES3/gl3.h>
 
 #ifdef __cplusplus
@@ -106,7 +107,8 @@ extern "C" {
  * input parameters.
  * @since 6.0.0(20)
  */
-GL_APICALL void GL_APIENTRY HMS_XEG_TemporalUpscaleParameter(GLenum pname, const GLvoid *param);
+GL_APICALL void GL_APIENTRY HMS_XEG_TemporalUpscaleParameter(GLenum pname, const GLvoid *param)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Executes the rendering command for AI temporal upscaling.
@@ -125,7 +127,8 @@ GL_APICALL void GL_APIENTRY HMS_XEG_TemporalUpscaleParameter(GLenum pname, const
  * @since 6.0.0(20)
  */
 GL_APICALL void GL_APIENTRY HMS_XEG_RenderTemporalUpscale(GLuint inputTexture, GLuint depthTexture,
-    GLuint motionVectorTexture, GLuint dynamicMaskTexture, GLfloat jitterX, GLfloat jitterY);
+    GLuint motionVectorTexture, GLuint dynamicMaskTexture, GLfloat jitterX, GLfloat jitterY)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 #endif /* XEG_NO_PROTOTYPES */
 
 /**

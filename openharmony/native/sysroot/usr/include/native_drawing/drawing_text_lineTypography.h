@@ -40,6 +40,7 @@
 #ifndef DRAWING_TEXT_LINETYPOGRAPHY_H
 #define DRAWING_TEXT_LINETYPOGRAPHY_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_text_declaration.h"
 
 #ifdef __cplusplus
@@ -54,7 +55,8 @@ extern "C" {
  * @return Returns the pointer to the <b>OH_Drawing_LineTypography</b> object created.
  * @since 18
  */
-OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_TypographyCreate* handler);
+OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_TypographyCreate* handler)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_LineTypography</b> object.
@@ -63,7 +65,8 @@ OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_Typography
  * @param lineTypography Indicates the pointer to an <b>OH_Drawing_LineTypography</b> object.
  * @since 18
  */
-void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography);
+void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Calculate the line breakpoint based on the width provided.
@@ -76,7 +79,8 @@ void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography)
  * @since 18
  */
 size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypography,
-                                             size_t startIndex, double width);
+                                             size_t startIndex, double width)
+                                             __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates a text line object based on the text range provided.
@@ -89,7 +93,8 @@ size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypo
  * @since 18
  */
 OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine(OH_Drawing_LineTypography* lineTypography,
-                                                         size_t startIndex, size_t count);
+                                                         size_t startIndex, size_t count)
+                                                         __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

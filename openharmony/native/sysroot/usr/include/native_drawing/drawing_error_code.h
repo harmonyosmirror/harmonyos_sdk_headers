@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_ERROR_CODE_H
 #define C_INCLUDE_DRAWING_ERROR_CODE_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -75,6 +76,11 @@ typedef enum {
      * @since 21
      */
     OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH = 26200003,
+    /**
+     * @error incorrect input parameter. The possible cause is that the provided pointer is null.
+     * @since 22
+     */
+    OH_DRAWING_ERROR_INCORRECT_PARAMETER = 26200004,
 } OH_Drawing_ErrorCode;
 
 /**
@@ -85,7 +91,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet();
+OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets the error code of the drawing module to OH_DRAWING_SUCCESS.
@@ -94,7 +100,7 @@ OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet();
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_ErrorCodeReset(void);
+void OH_Drawing_ErrorCodeReset(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 #ifdef __cplusplus
 }
 #endif

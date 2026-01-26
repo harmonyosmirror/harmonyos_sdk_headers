@@ -41,6 +41,7 @@
 #ifndef OH_SCAN_H
 #define OH_SCAN_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -157,7 +158,7 @@ typedef void (*Scan_ScannerDiscoveryCallback)(Scan_ScannerDevice** devices, int3
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_Init();
+int32_t OH_Scan_Init() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API starts discovering scanners, Register a callback to handle discovered scanner devices.
@@ -171,7 +172,8 @@ int32_t OH_Scan_Init();
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_StartScannerDiscovery(Scan_ScannerDiscoveryCallback callback);
+int32_t OH_Scan_StartScannerDiscovery(Scan_ScannerDiscoveryCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API connects to scanner devices.
@@ -189,7 +191,7 @@ int32_t OH_Scan_StartScannerDiscovery(Scan_ScannerDiscoveryCallback callback);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_OpenScanner(const char* scannerId);
+int32_t OH_Scan_OpenScanner(const char* scannerId) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API is used to close the connected scanner device.
@@ -204,7 +206,7 @@ int32_t OH_Scan_OpenScanner(const char* scannerId);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_CloseScanner(const char* scannerId);
+int32_t OH_Scan_CloseScanner(const char* scannerId) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API can be used to get a list of options that can be set by the scanner.
@@ -223,7 +225,8 @@ int32_t OH_Scan_CloseScanner(const char* scannerId);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t* errorCode);
+Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t* errorCode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API can be used to set one of the scanner's option parameters.
@@ -243,7 +246,8 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option, const char* value);
+int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option, const char* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API allows the scanner to start scanning.
@@ -265,7 +269,8 @@ int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option,
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_StartScan(const char* scannerId, bool batchMode);
+int32_t OH_Scan_StartScan(const char* scannerId, bool batchMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API allows the scanner to cancel the scan.
@@ -280,7 +285,7 @@ int32_t OH_Scan_StartScan(const char* scannerId, bool batchMode);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_CancelScan(const char* scannerId);
+int32_t OH_Scan_CancelScan(const char* scannerId) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API can get the progress of the scanner scanning the picture.A non-null value must be passed in,
@@ -303,7 +308,8 @@ int32_t OH_Scan_CancelScan(const char* scannerId);
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_GetPictureScanProgress(const char* scannerId, Scan_PictureScanProgress* prog);
+int32_t OH_Scan_GetPictureScanProgress(const char* scannerId, Scan_PictureScanProgress* prog)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief This API can be used to exit the scanning service, free the Scan Framework Memory,
@@ -317,7 +323,7 @@ int32_t OH_Scan_GetPictureScanProgress(const char* scannerId, Scan_PictureScanPr
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
-int32_t OH_Scan_Exit();
+int32_t OH_Scan_Exit() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

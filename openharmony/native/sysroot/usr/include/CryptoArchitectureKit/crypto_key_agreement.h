@@ -36,6 +36,7 @@
 #ifndef CRYPTO_KEY_AGREEMENT_H
 #define CRYPTO_KEY_AGREEMENT_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 #include "crypto_asym_key.h"
 
@@ -62,7 +63,8 @@ typedef struct OH_CryptoKeyAgreement OH_CryptoKeyAgreement;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoKeyAgreement_Create(const char *algoName, OH_CryptoKeyAgreement **ctx);
+OH_Crypto_ErrCode OH_CryptoKeyAgreement_Create(const char *algoName, OH_CryptoKeyAgreement **ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Generates a secret value.
@@ -79,7 +81,8 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_Create(const char *algoName, OH_CryptoKe
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoKeyAgreement_GenerateSecret(OH_CryptoKeyAgreement *ctx, OH_CryptoPrivKey *privkey,
-    OH_CryptoPubKey *pubkey, Crypto_DataBlob *secret);
+    OH_CryptoPubKey *pubkey, Crypto_DataBlob *secret)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the key agreement context.
@@ -87,7 +90,8 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_GenerateSecret(OH_CryptoKeyAgreement *ct
  * @param ctx Indicates the key agreement context.
  * @since 20
  */
-void OH_CryptoKeyAgreement_Destroy(OH_CryptoKeyAgreement *ctx);
+void OH_CryptoKeyAgreement_Destroy(OH_CryptoKeyAgreement *ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_PATH_H
 #define C_INCLUDE_DRAWING_PATH_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -148,7 +149,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_Path* OH_Drawing_PathCreate(void);
+OH_Drawing_Path* OH_Drawing_PathCreate(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Path</b> copy object.
@@ -159,7 +160,7 @@ OH_Drawing_Path* OH_Drawing_PathCreate(void);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path);
+OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Path</b> object and reclaims the memory occupied by the object.
@@ -169,7 +170,7 @@ OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PathDestroy(OH_Drawing_Path* path);
+void OH_Drawing_PathDestroy(OH_Drawing_Path* path) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets <b>OH_Drawing_Path</b> object with the same content of another.
@@ -183,7 +184,8 @@ void OH_Drawing_PathDestroy(OH_Drawing_Path* path);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PathSetPath(OH_Drawing_Path* path, OH_Drawing_Path* other);
+OH_Drawing_ErrorCode OH_Drawing_PathSetPath(OH_Drawing_Path* path, OH_Drawing_Path* other)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Checks if <b>OH_Drawing_Path</b> object is empty.
@@ -197,7 +199,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathSetPath(OH_Drawing_Path* path, OH_Drawing_Pa
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PathIsEmpty(OH_Drawing_Path* path, bool* isEmpty);
+OH_Drawing_ErrorCode OH_Drawing_PathIsEmpty(OH_Drawing_Path* path, bool* isEmpty)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Checks if <b>OH_Drawing_Path</b> represents a rectangle.
@@ -212,7 +215,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathIsEmpty(OH_Drawing_Path* path, bool* isEmpty
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PathIsRect(OH_Drawing_Path* path, OH_Drawing_Rect* rect, bool* isRect);
+OH_Drawing_ErrorCode OH_Drawing_PathIsRect(OH_Drawing_Path* path, OH_Drawing_Rect* rect, bool* isRect)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the start point of a path.
@@ -224,7 +228,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathIsRect(OH_Drawing_Path* path, OH_Drawing_Rec
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PathMoveTo(OH_Drawing_Path* path, float x, float y);
+void OH_Drawing_PathMoveTo(OH_Drawing_Path* path, float x, float y)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Draws a line segment from the last point of a path to the target point.
@@ -236,7 +241,8 @@ void OH_Drawing_PathMoveTo(OH_Drawing_Path* path, float x, float y);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PathLineTo(OH_Drawing_Path* path, float x, float y);
+void OH_Drawing_PathLineTo(OH_Drawing_Path* path, float x, float y)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Draws an arc to a path. 
@@ -258,7 +264,8 @@ void OH_Drawing_PathLineTo(OH_Drawing_Path* path, float x, float y);
  * @version 1.0
  */
 void OH_Drawing_PathArcTo(OH_Drawing_Path* path,
-    float x1, float y1, float x2, float y2, float startDeg, float sweepDeg);
+    float x1, float y1, float x2, float y2, float startDeg, float sweepDeg)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Draws a quadratic Bezier curve from the last point of a path to the target point.
@@ -272,7 +279,8 @@ void OH_Drawing_PathArcTo(OH_Drawing_Path* path,
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PathQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY);
+void OH_Drawing_PathQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Draws a conic from the last point of a path to the target point.
@@ -287,7 +295,8 @@ void OH_Drawing_PathQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, floa
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY, float weight);
+void OH_Drawing_PathConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY, float weight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a cubic Bezier curve from the last point of a path to the target point.
@@ -304,7 +313,8 @@ void OH_Drawing_PathConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, flo
  * @version 1.0
  */
 void OH_Drawing_PathCubicTo(
-    OH_Drawing_Path* path, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY);
+    OH_Drawing_Path* path, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Sets the relative starting point of a path.
@@ -316,7 +326,8 @@ void OH_Drawing_PathCubicTo(
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathRMoveTo(OH_Drawing_Path* path, float x, float y);
+void OH_Drawing_PathRMoveTo(OH_Drawing_Path* path, float x, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a line segment from the last point of a path to the relative target point.
@@ -328,7 +339,8 @@ void OH_Drawing_PathRMoveTo(OH_Drawing_Path* path, float x, float y);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathRLineTo(OH_Drawing_Path* path, float x, float y);
+void OH_Drawing_PathRLineTo(OH_Drawing_Path* path, float x, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a quadratic bezier curve from the last point of a path to the relative target point.
@@ -342,7 +354,8 @@ void OH_Drawing_PathRLineTo(OH_Drawing_Path* path, float x, float y);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathRQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY);
+void OH_Drawing_PathRQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a conic from the last point of a path to the relative target point.
@@ -357,7 +370,8 @@ void OH_Drawing_PathRQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, flo
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathRConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY, float weight);
+void OH_Drawing_PathRConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, float endX, float endY, float weight)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Draws a cubic bezier curve from the last point of a path to the relative target point.
@@ -374,7 +388,8 @@ void OH_Drawing_PathRConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, fl
  * @version 1.0
  */
 void OH_Drawing_PathRCubicTo(OH_Drawing_Path* path, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2,
-    float endX, float endY);
+    float endX, float endY)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a new contour to the path, defined by the rect, and wound in the specified direction.
@@ -390,7 +405,8 @@ void OH_Drawing_PathRCubicTo(OH_Drawing_Path* path, float ctrlX1, float ctrlY1, 
  * @version 1.0
  */
 void OH_Drawing_PathAddRect(OH_Drawing_Path* path, float left, float top, float right, float bottom,
-    OH_Drawing_PathDirection pathDirection);
+    OH_Drawing_PathDirection pathDirection)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a new contour to the path, defined by the rect, and wound in the specified direction.
@@ -404,7 +420,8 @@ void OH_Drawing_PathAddRect(OH_Drawing_Path* path, float left, float top, float 
  * @version 1.0
  */
 void OH_Drawing_PathAddRectWithInitialCorner(OH_Drawing_Path* path, const OH_Drawing_Rect* rect,
-    OH_Drawing_PathDirection pathDirection, uint32_t start);
+    OH_Drawing_PathDirection pathDirection, uint32_t start)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a new contour to the path, defined by the round rect, and wound in the specified direction.
@@ -417,7 +434,8 @@ void OH_Drawing_PathAddRectWithInitialCorner(OH_Drawing_Path* path, const OH_Dra
  * @version 1.0
  */
 void OH_Drawing_PathAddRoundRect(OH_Drawing_Path* path,
-    const OH_Drawing_RoundRect* roundRect, OH_Drawing_PathDirection pathDirection);
+    const OH_Drawing_RoundRect* roundRect, OH_Drawing_PathDirection pathDirection)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a oval to the path, defined by the rect, and wound in the specified direction.
@@ -431,7 +449,8 @@ void OH_Drawing_PathAddRoundRect(OH_Drawing_Path* path,
  * @version 1.0
  */
 void OH_Drawing_PathAddOvalWithInitialPoint(OH_Drawing_Path* path, const OH_Drawing_Rect* rect,
-    uint32_t start, OH_Drawing_PathDirection pathDirection);
+    uint32_t start, OH_Drawing_PathDirection pathDirection)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds a oval to the path, defined by the rect, and wound in the specified direction.
@@ -444,7 +463,8 @@ void OH_Drawing_PathAddOvalWithInitialPoint(OH_Drawing_Path* path, const OH_Draw
  * @version 1.0
  */
 void OH_Drawing_PathAddOval(OH_Drawing_Path* path,
-    const OH_Drawing_Rect* rect, OH_Drawing_PathDirection pathDirection);
+    const OH_Drawing_Rect* rect, OH_Drawing_PathDirection pathDirection)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Appends arc to path, as the start of new contour.Arc added is part of ellipse bounded by oval,
@@ -461,7 +481,8 @@ void OH_Drawing_PathAddOval(OH_Drawing_Path* path,
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathAddArc(OH_Drawing_Path* path, const OH_Drawing_Rect* rect, float startAngle, float sweepAngle);
+void OH_Drawing_PathAddArc(OH_Drawing_Path* path, const OH_Drawing_Rect* rect, float startAngle, float sweepAngle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Appends src path to path, transformed by matrix. Transformed curves may have different verbs,
@@ -474,7 +495,8 @@ void OH_Drawing_PathAddArc(OH_Drawing_Path* path, const OH_Drawing_Rect* rect, f
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathAddPath(OH_Drawing_Path* path, const OH_Drawing_Path* src, const OH_Drawing_Matrix* matrix);
+void OH_Drawing_PathAddPath(OH_Drawing_Path* path, const OH_Drawing_Path* src, const OH_Drawing_Matrix* matrix)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Appends src path to path, transformed by matrix and mode. Transformed curves may have different verbs,
@@ -489,7 +511,8 @@ void OH_Drawing_PathAddPath(OH_Drawing_Path* path, const OH_Drawing_Path* src, c
  * @version 1.0
  */
 void OH_Drawing_PathAddPathWithMatrixAndMode(OH_Drawing_Path* path, const OH_Drawing_Path* src,
-    const OH_Drawing_Matrix* matrix, OH_Drawing_PathAddMode pathAddMode);
+    const OH_Drawing_Matrix* matrix, OH_Drawing_PathAddMode pathAddMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Appends src path to path, transformed by mode. Transformed curves may have different verbs,
@@ -503,7 +526,8 @@ void OH_Drawing_PathAddPathWithMatrixAndMode(OH_Drawing_Path* path, const OH_Dra
  * @version 1.0
  */
 void OH_Drawing_PathAddPathWithMode(OH_Drawing_Path* path,
-    const OH_Drawing_Path* src, OH_Drawing_PathAddMode pathAddMode);
+    const OH_Drawing_Path* src, OH_Drawing_PathAddMode pathAddMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Appends src path to path, transformed by offset and mode. Transformed curves may have different verbs,
@@ -519,7 +543,8 @@ void OH_Drawing_PathAddPathWithMode(OH_Drawing_Path* path,
  * @version 1.0
  */
 void OH_Drawing_PathAddPathWithOffsetAndMode(OH_Drawing_Path* path, const OH_Drawing_Path* src, float dx, float dy,
-    OH_Drawing_PathAddMode pathAddMode);
+    OH_Drawing_PathAddMode pathAddMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Adds contour created from point array, adding (count - 1) line segments.
@@ -532,7 +557,8 @@ void OH_Drawing_PathAddPathWithOffsetAndMode(OH_Drawing_Path* path, const OH_Dra
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathAddPolygon(OH_Drawing_Path* path, const OH_Drawing_Point2D* points, uint32_t count, bool isClosed);
+void OH_Drawing_PathAddPolygon(OH_Drawing_Path* path, const OH_Drawing_Point2D* points, uint32_t count, bool isClosed)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief  Adds a circle to the path, and wound in the specified direction.
@@ -547,7 +573,8 @@ void OH_Drawing_PathAddPolygon(OH_Drawing_Path* path, const OH_Drawing_Point2D* 
  * @version 1.0
  */
 void OH_Drawing_PathAddCircle(OH_Drawing_Path* path,
-    float x, float y, float radius, OH_Drawing_PathDirection pathDirection);
+    float x, float y, float radius, OH_Drawing_PathDirection pathDirection)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Parses the svg path from the string.
@@ -559,7 +586,8 @@ void OH_Drawing_PathAddCircle(OH_Drawing_Path* path,
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_PathBuildFromSvgString(OH_Drawing_Path* path, const char* str);
+bool OH_Drawing_PathBuildFromSvgString(OH_Drawing_Path* path, const char* str)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Return the status that point (x, y) is contained by path.
@@ -572,7 +600,8 @@ bool OH_Drawing_PathBuildFromSvgString(OH_Drawing_Path* path, const char* str);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_PathContains(OH_Drawing_Path* path, float x, float y);
+bool OH_Drawing_PathContains(OH_Drawing_Path* path, float x, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Transforms verb array, point array, and weight by matrix. transform may change verbs
@@ -584,7 +613,8 @@ bool OH_Drawing_PathContains(OH_Drawing_Path* path, float x, float y);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathTransform(OH_Drawing_Path* path, const OH_Drawing_Matrix* matrix);
+void OH_Drawing_PathTransform(OH_Drawing_Path* path, const OH_Drawing_Matrix* matrix)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Transforms verb array, point array, and weight by matrix.
@@ -599,7 +629,8 @@ void OH_Drawing_PathTransform(OH_Drawing_Path* path, const OH_Drawing_Matrix* ma
  * @version 1.0
  */
 void OH_Drawing_PathTransformWithPerspectiveClip(OH_Drawing_Path* src, const OH_Drawing_Matrix* matrix,
-    OH_Drawing_Path* dst, bool applyPerspectiveClip);
+    OH_Drawing_Path* dst, bool applyPerspectiveClip)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets FillType, the rule used to fill path.
@@ -610,7 +641,8 @@ void OH_Drawing_PathTransformWithPerspectiveClip(OH_Drawing_Path* src, const OH_
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathSetFillType(OH_Drawing_Path* path, OH_Drawing_PathFillType pathFillType);
+void OH_Drawing_PathSetFillType(OH_Drawing_Path* path, OH_Drawing_PathFillType pathFillType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets FillType, the rule used to fill path.
@@ -624,7 +656,8 @@ void OH_Drawing_PathSetFillType(OH_Drawing_Path* path, OH_Drawing_PathFillType p
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PathGetFillType(OH_Drawing_Path* path, OH_Drawing_PathFillType* pathFillType);
+OH_Drawing_ErrorCode OH_Drawing_PathGetFillType(OH_Drawing_Path* path, OH_Drawing_PathFillType* pathFillType)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the length of the current path object.
@@ -636,7 +669,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathGetFillType(OH_Drawing_Path* path, OH_Drawin
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_PathGetLength(OH_Drawing_Path* path, bool forceClosed);
+float OH_Drawing_PathGetLength(OH_Drawing_Path* path, bool forceClosed)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the smallest bounding box that contains the path.
@@ -647,7 +681,8 @@ float OH_Drawing_PathGetLength(OH_Drawing_Path* path, bool forceClosed);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathGetBounds(OH_Drawing_Path* path, OH_Drawing_Rect* rect);
+void OH_Drawing_PathGetBounds(OH_Drawing_Path* path, OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Closes a path. A line segment from the start point to the last point of the path is added.
@@ -657,7 +692,7 @@ void OH_Drawing_PathGetBounds(OH_Drawing_Path* path, OH_Drawing_Rect* rect);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PathClose(OH_Drawing_Path* path);
+void OH_Drawing_PathClose(OH_Drawing_Path* path) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Offset path replaces dst.
@@ -670,7 +705,8 @@ void OH_Drawing_PathClose(OH_Drawing_Path* path);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathOffset(OH_Drawing_Path* path, OH_Drawing_Path* dst, float dx, float dy);
+void OH_Drawing_PathOffset(OH_Drawing_Path* path, OH_Drawing_Path* dst, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets path data.
@@ -680,7 +716,7 @@ void OH_Drawing_PathOffset(OH_Drawing_Path* path, OH_Drawing_Path* dst, float dx
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_PathReset(OH_Drawing_Path* path);
+void OH_Drawing_PathReset(OH_Drawing_Path* path) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Determines whether the path current contour is closed.
@@ -692,7 +728,8 @@ void OH_Drawing_PathReset(OH_Drawing_Path* path);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_PathIsClosed(OH_Drawing_Path* path, bool forceClosed);
+bool OH_Drawing_PathIsClosed(OH_Drawing_Path* path, bool forceClosed)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the position and tangent of the distance from the starting position of the Path.
@@ -708,7 +745,8 @@ bool OH_Drawing_PathIsClosed(OH_Drawing_Path* path, bool forceClosed);
  * @version 1.0
  */
 bool OH_Drawing_PathGetPositionTangent(OH_Drawing_Path* path, bool forceClosed,
-    float distance, OH_Drawing_Point2D* position, OH_Drawing_Point2D* tangent);
+    float distance, OH_Drawing_Point2D* position, OH_Drawing_Point2D* tangent)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the path between the start and end points.
@@ -729,7 +767,8 @@ bool OH_Drawing_PathGetPositionTangent(OH_Drawing_Path* path, bool forceClosed,
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PathGetSegment(OH_Drawing_Path* path, bool forceClosed,
-    float start, float stop, bool startWithMoveTo, OH_Drawing_Path* dst, bool* result);
+    float start, float stop, bool startWithMoveTo, OH_Drawing_Path* dst, bool* result)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Combines two paths.
@@ -742,7 +781,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathGetSegment(OH_Drawing_Path* path, bool force
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_PathOp(OH_Drawing_Path* path, const OH_Drawing_Path* other, OH_Drawing_PathOpMode op);
+bool OH_Drawing_PathOp(OH_Drawing_Path* path, const OH_Drawing_Path* other, OH_Drawing_PathOpMode op)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Computes the corresponding matrix at the specified distance.
@@ -759,7 +799,8 @@ bool OH_Drawing_PathOp(OH_Drawing_Path* path, const OH_Drawing_Path* other, OH_D
  * @version 1.0
  */
 bool OH_Drawing_PathGetMatrix(OH_Drawing_Path* path, bool forceClosed,
-    float distance, OH_Drawing_Matrix* matrix, OH_Drawing_PathMeasureMatrixFlags flag);
+    float distance, OH_Drawing_Matrix* matrix, OH_Drawing_PathMeasureMatrixFlags flag)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Approximates the path with a series of line segments.
@@ -781,7 +822,8 @@ bool OH_Drawing_PathGetMatrix(OH_Drawing_Path* path, bool forceClosed,
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PathApproximate(OH_Drawing_Path* path, float acceptableError, float* vals,
-    uint32_t* count);
+    uint32_t* count)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Performs interpolation between the current path and another path based on a given weight, and stores the
@@ -802,7 +844,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathApproximate(OH_Drawing_Path* path, float acc
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PathInterpolate(OH_Drawing_Path* path, OH_Drawing_Path* other,
-    float weight, bool* success, OH_Drawing_Path* interpolatedPath);
+    float weight, bool* success, OH_Drawing_Path* interpolatedPath)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Checks whether the current path is compatible with another path (other) for interpolation, which means
@@ -820,7 +863,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathInterpolate(OH_Drawing_Path* path, OH_Drawin
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_PathIsInterpolate(OH_Drawing_Path* path, OH_Drawing_Path* other, bool* result);
+OH_Drawing_ErrorCode OH_Drawing_PathIsInterpolate(OH_Drawing_Path* path, OH_Drawing_Path* other, bool* result)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

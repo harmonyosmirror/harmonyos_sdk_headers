@@ -40,6 +40,7 @@
 #ifndef NATIVE_AUDIORENDERER_H
 #define NATIVE_AUDIORENDERER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <time.h>
 #include "native_audiostream_base.h"
@@ -59,7 +60,8 @@ extern "C" {
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer);
+OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to start the renderer stream.
@@ -72,7 +74,8 @@ OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer);
+OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to pause the renderer stream.
@@ -85,7 +88,8 @@ OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
+OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to stop renderer stream.
@@ -98,7 +102,8 @@ OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer);
+OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to flush the renderer stream.
@@ -111,7 +116,8 @@ OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer);
+OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the current state of the renderer client.
@@ -127,7 +133,8 @@ OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer* renderer,
-    OH_AudioStream_State* state);
+    OH_AudioStream_State* state)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the sample rate value of the renderer client
@@ -142,7 +149,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* renderer, int32_t* rate);
+OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* renderer, int32_t* rate)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the stream id of the renderer client.
@@ -155,7 +163,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, uint32_t* streamId);
+OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, uint32_t* streamId)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the channel count of the renderer client.
@@ -168,7 +177,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, u
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* renderer, int32_t* channelCount);
+OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* renderer, int32_t* channelCount)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the sample format of the renderer client.
@@ -182,7 +192,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* renderer,
-    OH_AudioStream_SampleFormat* sampleFormat);
+    OH_AudioStream_SampleFormat* sampleFormat)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the latency mode of the renderer client.
@@ -196,7 +207,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer,
-    OH_AudioStream_LatencyMode* latencyMode);
+    OH_AudioStream_LatencyMode* latencyMode)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the renderer info of the renderer client.
@@ -212,7 +224,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* renderer,
-    OH_AudioStream_Usage* usage);
+    OH_AudioStream_Usage* usage)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the encoding type of the renderer client.
@@ -226,7 +239,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* renderer,
-    OH_AudioStream_EncodingType* encodingType);
+    OH_AudioStream_EncodingType* encodingType)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the the number of frames that have been written since the stream was created.
@@ -239,7 +253,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* renderer, int64_t* frames);
+OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* renderer, int64_t* frames)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the the time at which a particular frame was presented.
@@ -262,7 +277,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* render
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
-    clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
+    clockid_t clockId, int64_t* framePosition, int64_t* timestamp)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the frame size in callback, it is a fixed length that the stream want to be filled for each callback.
@@ -275,7 +291,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* renderer, int32_t* frameSize);
+OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* renderer, int32_t* frameSize)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the playback speed of the stream client
@@ -288,7 +305,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* 
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, float* speed);
+OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, float* speed)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * Set the playback speed of the stream client
@@ -301,7 +319,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, floa
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_SetSpeed(OH_AudioRenderer* renderer, float speed);
+OH_AudioStream_Result OH_AudioRenderer_SetSpeed(OH_AudioRenderer* renderer, float speed)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * Set volume of current renderer.
@@ -318,7 +337,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetSpeed(OH_AudioRenderer* renderer, floa
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  *         {@link AUDIOSTREAM_ERROR_SYSTEM} An system error has occurred.
  */
-OH_AudioStream_Result OH_AudioRenderer_SetVolume(OH_AudioRenderer* renderer, float volume);
+OH_AudioStream_Result OH_AudioRenderer_SetVolume(OH_AudioRenderer* renderer, float volume)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * Changes the volume with ramp for a duration.
@@ -336,7 +356,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolume(OH_AudioRenderer* renderer, flo
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  *         {@link AUDIOSTREAM_ERROR_SYSTEM} An system error has occurred.
  */
-OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp(OH_AudioRenderer* renderer, float volume, int32_t durationMs);
+OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp(OH_AudioRenderer* renderer, float volume, int32_t durationMs)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * Get Volume of current renderer.
@@ -351,7 +372,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp(OH_AudioRenderer* rende
  *                                                 1.The param of renderer is nullptr;
  *                                                 2.The param of volume is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer* renderer, float* volume);
+OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer* renderer, float* volume)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set mark position on current renderer. Calling this function will overwrite the mark postion which has already
@@ -372,7 +394,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer* renderer, flo
  *         {@link AUDIOSTREAM_ERROR_SYSTEM} An system error has occurred.
  */
 OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition(OH_AudioRenderer* renderer, uint32_t samplePos,
-    OH_AudioRenderer_OnMarkReachedCallback callback, void* userData);
+    OH_AudioRenderer_OnMarkReachedCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Cancel mark which has set by {@link #OH_AudioRenderer_SetMarkPosition}.
@@ -384,7 +407,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition(OH_AudioRenderer* rendere
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_CancelMark(OH_AudioRenderer* renderer);
+OH_AudioStream_Result OH_AudioRenderer_CancelMark(OH_AudioRenderer* renderer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the underflow count on this stream.
@@ -399,7 +423,8 @@ OH_AudioStream_Result OH_AudioRenderer_CancelMark(OH_AudioRenderer* renderer);
  *                                                 1.The param of renderer is nullptr;
  *                                                 2.The param of count is nullptr.
  */
-OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* renderer, uint32_t* count);
+OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* renderer, uint32_t* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the channel layout of the renderer client.
@@ -413,7 +438,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* rende
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout(OH_AudioRenderer* renderer,
-    OH_AudioChannelLayout* channelLayout);
+    OH_AudioChannelLayout* channelLayout)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query current audio effect mode.
@@ -427,7 +453,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout(OH_AudioRenderer* render
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer* renderer,
-    OH_AudioStream_AudioEffectMode* effectMode);
+    OH_AudioStream_AudioEffectMode* effectMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set current audio effect mode.
@@ -441,7 +468,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer* renderer,
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_SetEffectMode(OH_AudioRenderer* renderer,
-    OH_AudioStream_AudioEffectMode effectMode);
+    OH_AudioStream_AudioEffectMode effectMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the privacy of this stream.
@@ -455,7 +483,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetEffectMode(OH_AudioRenderer* renderer,
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy(OH_AudioRenderer* renderer,
-    OH_AudioStream_PrivacyType* privacy);
+    OH_AudioStream_PrivacyType* privacy)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set silent and mix with other streams for this stream.
@@ -470,7 +499,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy(OH_AudioRenderer* rend
  * @since 12
  */
 OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers(
-    OH_AudioRenderer* renderer, bool on);
+    OH_AudioRenderer* renderer, bool on)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query silent and mix with other streams status for this stream.
@@ -483,7 +513,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers(
  * @since 12
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(
-    OH_AudioRenderer* renderer, bool* on);
+    OH_AudioRenderer* renderer, bool* on)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Temporarily changes the current audio device
@@ -506,7 +537,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(
  * @since 12
  */
 OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
-    OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType);
+    OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query the timestamp at which a particular frame was presented in clock monotonic timebase,
@@ -540,7 +572,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
  * @since 15
  */
 OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
-    int64_t* framePosition, int64_t* timestamp);
+    int64_t* framePosition, int64_t* timestamp)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Called when an interrupt event occurs in an AudioRenderer instance.
@@ -583,7 +616,8 @@ typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, voi
  * @since 20
  */
 OH_AudioStream_Result OH_AudioRenderer_GetFastStatus(OH_AudioRenderer* renderer,
-    OH_AudioStream_FastStatus* status);
+    OH_AudioStream_FastStatus* status)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Callback function of fast status change event for audio renderer.
@@ -616,7 +650,8 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(
  *                                                 2.The param of loudnessGain is invalid.
  * @since 20
  */
-OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* renderer, float loudnessGain);
+OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* renderer, float loudnessGain)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the loudness gain of current renderer.
@@ -630,7 +665,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* rendere
  *                                                 2.The param of loudnessGain is nullptr.
  * @since 20
  */
-OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain);
+OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Callback function of write data on Render.

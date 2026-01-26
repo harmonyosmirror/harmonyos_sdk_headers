@@ -40,6 +40,7 @@
 #ifndef NATIVE_AUDIO_VOLUME_MANAGER_H
 #define NATIVE_AUDIO_VOLUME_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_audio_common.h"
 #include "native_audiostream_base.h"
 
@@ -98,7 +99,8 @@ typedef void (*OH_AudioVolumeManager_OnRingerModeChangeCallback)(
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioManager_GetAudioVolumeManager(
-    OH_AudioVolumeManager **volumeManager);
+    OH_AudioVolumeManager **volumeManager)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the maximum volume level for a specific stream usage type.
@@ -115,7 +117,8 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioVolumeManager(
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_GetMaxVolumeByUsage(OH_AudioVolumeManager *volumeManager,
-    OH_AudioStream_Usage usage, int32_t *maxVolumeLevel);
+    OH_AudioStream_Usage usage, int32_t *maxVolumeLevel)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the minimum volume level for a specific stream usage type.
@@ -132,7 +135,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetMaxVolumeByUsage(OH_AudioVolumeMa
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_GetMinVolumeByUsage(OH_AudioVolumeManager *volumeManager,
-    OH_AudioStream_Usage usage, int32_t *minVolumeLevel);
+    OH_AudioStream_Usage usage, int32_t *minVolumeLevel)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the system volume level for a specific stream usage type.
@@ -149,7 +153,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetMinVolumeByUsage(OH_AudioVolumeMa
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_GetVolumeByUsage(OH_AudioVolumeManager *volumeManager,
-    OH_AudioStream_Usage usage, int32_t *volumeLevel);
+    OH_AudioStream_Usage usage, int32_t *volumeLevel)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Checks whether a stream is muted for a specific stream usage type.
@@ -166,7 +171,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetVolumeByUsage(OH_AudioVolumeManag
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_IsMuteByUsage(OH_AudioVolumeManager *volumeManager,
-    OH_AudioStream_Usage usage, bool *muted);
+    OH_AudioStream_Usage usage, bool *muted)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register callback to receive stream volume changed events.
@@ -185,7 +191,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_IsMuteByUsage(OH_AudioVolumeManager 
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_RegisterStreamVolumeChangeCallback(
     OH_AudioVolumeManager *volumeManager, OH_AudioStream_Usage usage,
-    OH_AudioVolumeManager_OnStreamVolumeChangeCallback callback, void *userData);
+    OH_AudioVolumeManager_OnStreamVolumeChangeCallback callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister stream volume change callback.
@@ -203,7 +210,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_RegisterStreamVolumeChangeCallback(
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_UnregisterStreamVolumeChangeCallback(
     OH_AudioVolumeManager *volumeManager,
-    OH_AudioVolumeManager_OnStreamVolumeChangeCallback callback);
+    OH_AudioVolumeManager_OnStreamVolumeChangeCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get current ringer mode.
@@ -219,7 +227,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_UnregisterStreamVolumeChangeCallback
  * @since 20
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_GetRingerMode(OH_AudioVolumeManager *volumeManager,
-    OH_AudioRingerMode *ringerMode);
+    OH_AudioRingerMode *ringerMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Register callback to receive ringer mode changed events.
@@ -237,7 +246,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetRingerMode(OH_AudioVolumeManager 
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_RegisterRingerModeChangeCallback(
     OH_AudioVolumeManager *volumeManager,
-    OH_AudioVolumeManager_OnRingerModeChangeCallback callback, void *userData);
+    OH_AudioVolumeManager_OnRingerModeChangeCallback callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Unregister ringer mode change callback.
@@ -255,7 +265,8 @@ OH_AudioCommon_Result OH_AudioVolumeManager_RegisterRingerModeChangeCallback(
  */
 OH_AudioCommon_Result OH_AudioVolumeManager_UnregisterRingerModeChangeCallback(
     OH_AudioVolumeManager *volumeManager,
-    OH_AudioVolumeManager_OnRingerModeChangeCallback callback);
+    OH_AudioVolumeManager_OnRingerModeChangeCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

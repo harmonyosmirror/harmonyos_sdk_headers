@@ -39,6 +39,7 @@
 #ifndef VIDEO_PROCESSING_ENGINE_C_API_IMAGE_PROCESSING_H
 #define VIDEO_PROCESSING_ENGINE_C_API_IMAGE_PROCESSING_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "image_processing_types.h"
@@ -60,7 +61,8 @@ extern "C" {
  * You can check if the device GPU is working properly.
  * @since 13
  */
-ImageProcessing_ErrorCode OH_ImageProcessing_InitializeEnvironment(void);
+ImageProcessing_ErrorCode OH_ImageProcessing_InitializeEnvironment(void)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Deinitialize global environment for image processing.
@@ -76,7 +78,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_InitializeEnvironment(void);
  * {@link OH_ImageProcessing_InitializeEnvironment} is not called. \n
  * @since 13
  */
-ImageProcessing_ErrorCode OH_ImageProcessing_DeinitializeEnvironment(void);
+ImageProcessing_ErrorCode OH_ImageProcessing_DeinitializeEnvironment(void)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Query whether the image color space conversion is supported.
@@ -89,7 +92,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_DeinitializeEnvironment(void);
  */
 bool OH_ImageProcessing_IsColorSpaceConversionSupported(
     const ImageProcessing_ColorSpaceInfo* sourceImageInfo,
-    const ImageProcessing_ColorSpaceInfo* destinationImageInfo);
+    const ImageProcessing_ColorSpaceInfo* destinationImageInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Query whether the image composition is supported.
@@ -104,7 +108,8 @@ bool OH_ImageProcessing_IsColorSpaceConversionSupported(
 bool OH_ImageProcessing_IsCompositionSupported(
     const ImageProcessing_ColorSpaceInfo* sourceImageInfo,
     const ImageProcessing_ColorSpaceInfo* sourceGainmapInfo,
-    const ImageProcessing_ColorSpaceInfo* destinationImageInfo);
+    const ImageProcessing_ColorSpaceInfo* destinationImageInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Query whether the image decomposition is supported.
@@ -119,7 +124,8 @@ bool OH_ImageProcessing_IsCompositionSupported(
 bool OH_ImageProcessing_IsDecompositionSupported(
     const ImageProcessing_ColorSpaceInfo* sourceImageInfo,
     const ImageProcessing_ColorSpaceInfo* destinationImageInfo,
-    const ImageProcessing_ColorSpaceInfo* destinationGainmapInfo);
+    const ImageProcessing_ColorSpaceInfo* destinationGainmapInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Query whether the image metadata generation is supported.
@@ -130,7 +136,8 @@ bool OH_ImageProcessing_IsDecompositionSupported(
  * @since 13
  */
 bool OH_ImageProcessing_IsMetadataGenerationSupported(
-    const ImageProcessing_ColorSpaceInfo* sourceImageInfo);
+    const ImageProcessing_ColorSpaceInfo* sourceImageInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
     
 /**
  * @brief Create an image processing instance.
@@ -147,7 +154,8 @@ bool OH_ImageProcessing_IsMetadataGenerationSupported(
  * {@link IMAGE_PROCESSING_ERROR_INVALID_PARAMETER} if type is invalid. \n
  * @since 13
  */
-ImageProcessing_ErrorCode OH_ImageProcessing_Create(OH_ImageProcessing** imageProcessor, int32_t type);
+ImageProcessing_ErrorCode OH_ImageProcessing_Create(OH_ImageProcessing** imageProcessor, int32_t type)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy the image processing instance.
@@ -158,7 +166,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Create(OH_ImageProcessing** imagePr
  * {@link IMAGE_PROCESSING_ERROR_INVALID_INSTANCE} if instance is null or not an image processing instance.
  * @since 13
  */
-ImageProcessing_ErrorCode OH_ImageProcessing_Destroy(OH_ImageProcessing* imageProcessor);
+ImageProcessing_ErrorCode OH_ImageProcessing_Destroy(OH_ImageProcessing* imageProcessor)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set parameter for image processing.
@@ -176,7 +185,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Destroy(OH_ImageProcessing* imagePr
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_SetParameter(OH_ImageProcessing* imageProcessor,
-    const OH_AVFormat* parameter);
+    const OH_AVFormat* parameter)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get parameter of image processing.
@@ -191,7 +201,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_SetParameter(OH_ImageProcessing* im
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* imageProcessor,
-    OH_AVFormat* parameter);
+    OH_AVFormat* parameter)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Conversion between single-layer images.
@@ -214,7 +225,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* im
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_ConvertColorSpace(OH_ImageProcessing* imageProcessor,
-    OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage);
+    OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Composition from dual-layer HDR images to single-layer HDR images.
@@ -237,7 +249,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_ConvertColorSpace(OH_ImageProcessin
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_Compose(OH_ImageProcessing* imageProcessor,
-    OH_PixelmapNative* sourceImage, OH_PixelmapNative* sourceGainmap, OH_PixelmapNative* destinationImage);
+    OH_PixelmapNative* sourceImage, OH_PixelmapNative* sourceGainmap, OH_PixelmapNative* destinationImage)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Decomposition from single-layer HDR images to dual-layer HDR images.
@@ -260,7 +273,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Compose(OH_ImageProcessing* imagePr
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_Decompose(OH_ImageProcessing* imageProcessor,
-    OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage, OH_PixelmapNative* destinationGainmap);
+    OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage, OH_PixelmapNative* destinationGainmap)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Metadata Generation for HDR images.
@@ -281,7 +295,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Decompose(OH_ImageProcessing* image
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_GenerateMetadata(OH_ImageProcessing* imageProcessor,
-    OH_PixelmapNative* sourceImage);
+    OH_PixelmapNative* sourceImage)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Clarity enhancement for images.
@@ -305,7 +320,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GenerateMetadata(OH_ImageProcessing
  * @since 13
  */
 ImageProcessing_ErrorCode OH_ImageProcessing_EnhanceDetail(OH_ImageProcessing* imageProcessor,
-    OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage);
+    OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif

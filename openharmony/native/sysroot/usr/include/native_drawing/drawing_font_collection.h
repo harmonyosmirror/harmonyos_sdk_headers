@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_FONT_COLLECTION_H
 #define C_INCLUDE_DRAWING_FONT_COLLECTION_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_text_declaration.h"
 
 #ifdef __cplusplus
@@ -53,7 +54,8 @@ extern "C" {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);
+OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Releases the memory occupied by an <b>OH_Drawing_FontCollection</b> object.
@@ -63,7 +65,8 @@ OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection);
+void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Disable the font collection fallback.
@@ -75,7 +78,8 @@ void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection)
  * @deprecated since 18
  * @useinstead OH_Drawing_DisableFontCollectionSystemFont
  */
-void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCollection);
+void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCollection)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disable the font collection systemfont.
@@ -85,7 +89,8 @@ void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCol
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontCollection);
+void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontCollection)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_FontCollection</b> object with shared usage between
@@ -96,7 +101,8 @@ void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontC
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
+OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clear font caches.
@@ -106,7 +112,8 @@ OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection* fontCollection);
+void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection* fontCollection)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the <b>OH_Drawing_FontCollection</b> global instance.
@@ -116,7 +123,8 @@ void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection* fontCollection);
  * @since 14
  * @version 1.0
  */
-OH_Drawing_FontCollection* OH_Drawing_GetFontCollectionGlobalInstance(void);
+OH_Drawing_FontCollection* OH_Drawing_GetFontCollectionGlobalInstance(void)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 #ifdef __cplusplus
 }
 #endif

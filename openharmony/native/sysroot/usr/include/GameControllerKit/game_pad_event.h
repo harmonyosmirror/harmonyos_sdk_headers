@@ -34,6 +34,7 @@
 #ifndef GAME_PAD_EVENT_H
 #define GAME_PAD_EVENT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "game_controller_type.h"
 
@@ -133,7 +134,8 @@ typedef void(* GamePad_AxisInputMonitorCallback)(const struct GamePad_AxisEvent*
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetDeviceId(const struct GamePad_ButtonEvent* buttonEvent,
-                                                            char** deviceId);
+                                                            char** deviceId)
+                                                            __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the button action type from {@link GamePad_ButtonEvent}.
@@ -145,7 +147,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetDeviceId(const struct GamePad
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonAction(const struct GamePad_ButtonEvent* buttonEvent,
-                                                                GamePad_Button_ActionType* actionType);
+                                                                GamePad_Button_ActionType* actionType)
+                                                                __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains the button code from {@link GamePad_ButtonEvent}.
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
@@ -156,7 +159,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonAction(const struct Gam
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCode(const struct GamePad_ButtonEvent* buttonEvent,
-                                                              int32_t* code);
+                                                              int32_t* code)
+                                                              __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains the button name from {@link GamePad_ButtonEvent}.
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
@@ -168,7 +172,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCode(const struct GameP
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCodeName(const struct GamePad_ButtonEvent* buttonEvent,
-                                                                  char** codeName);
+                                                                  char** codeName)
+                                                                  __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the number of pressed buttons from {@link GamePad_ButtonEvent}.
@@ -180,7 +185,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCodeName(const struct G
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad_ButtonEvent* buttonEvent,
-                                                            int32_t* count);
+                                                            int32_t* count)
+                                                            __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the button with a specified index from {@link GamePad_ButtonEvent}.
@@ -195,7 +201,8 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct GamePad_ButtonEvent* buttonEvent,
                                                                  const int32_t index,
-                                                                 GamePad_PressedButton** pressedButton);
+                                                                 GamePad_PressedButton** pressedButton)
+                                                                 __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Destroys a {@link GamePad_PressedButton} instance when it is no longer used.
@@ -205,7 +212,8 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct Ga
  * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of pressedButton is null.
  * @since 21
  */
-GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton** pressedButton);
+GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton** pressedButton)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the button code from {@link GamePad_PressedButton}.
@@ -217,7 +225,8 @@ GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton**
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCode(const struct GamePad_PressedButton* pressedButton,
-                                                                int32_t* code);
+                                                                int32_t* code)
+                                                                __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the button name from {@link GamePad_PressedButton}.
@@ -230,7 +239,8 @@ GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCode(const struct Gam
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCodeName(const struct GamePad_PressedButton* pressedButton,
-                                                                    char** codeName);
+                                                                    char** codeName)
+                                                                    __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains the action time from {@link GamePad_ButtonEvent}.
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
@@ -241,7 +251,8 @@ GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCodeName(const struct
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetActionTime(const struct GamePad_ButtonEvent* buttonEvent,
-                                                              int64_t* actionTime);
+                                                              int64_t* actionTime)
+                                                              __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the device ID from {@link GamePad_AxisEvent}.
@@ -254,7 +265,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetActionTime(const struct GameP
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetDeviceId(const struct GamePad_AxisEvent* axisEvent,
-                                                          char** deviceId);
+                                                          char** deviceId)
+                                                          __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the axis type from {@link GamePad_AxisEvent}.
@@ -266,7 +278,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetDeviceId(const struct GamePad_A
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetAxisSourceType(const struct GamePad_AxisEvent* axisEvent,
-                                                                GamePad_AxisSourceType* axisSourceType);
+                                                                GamePad_AxisSourceType* axisSourceType)
+                                                                __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the X axis from {@link GamePad_AxisEvent}.
@@ -278,7 +291,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetAxisSourceType(const struct Gam
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetXAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                            double* axisValue);
+                                                            double* axisValue)
+                                                            __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains the value of the Y axis from {@link GamePad_AxisEvent}.
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
@@ -289,7 +303,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetXAxisValue(const struct GamePad
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetYAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                            double* axisValue);
+                                                            double* axisValue)
+                                                            __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the Z axis from {@link GamePad_AxisEvent}.
@@ -301,7 +316,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetYAxisValue(const struct GamePad
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetZAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                            double* axisValue);
+                                                            double* axisValue)
+                                                            __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the RZ axis from {@link GamePad_AxisEvent}.
@@ -313,7 +329,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetZAxisValue(const struct GamePad
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetRZAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                             double* axisValue);
+                                                             double* axisValue)
+                                                             __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the HatX axis from {@link GamePad_AxisEvent}.
@@ -325,7 +342,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetRZAxisValue(const struct GamePa
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetHatXAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                               double* axisValue);
+                                                               double* axisValue)
+                                                               __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the HatY axis from {@link GamePad_AxisEvent}.
@@ -337,7 +355,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetHatXAxisValue(const struct Game
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetHatYAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                               double* axisValue);
+                                                               double* axisValue)
+                                                               __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the Brake axis from {@link GamePad_AxisEvent}.
@@ -349,7 +368,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetHatYAxisValue(const struct Game
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetBrakeAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                                double* axisValue);
+                                                                double* axisValue)
+                                                                __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Obtains the value of the Gas axis from {@link GamePad_AxisEvent}.
@@ -361,7 +381,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetBrakeAxisValue(const struct Gam
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetGasAxisValue(const struct GamePad_AxisEvent* axisEvent,
-                                                              double* axisValue);
+                                                              double* axisValue)
+                                                              __attribute__((__availability__(ohos, introduced=21.0.0)));
 /**
  * @brief Obtains the action time from {@link GamePad_AxisEvent}.
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
@@ -372,7 +393,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetGasAxisValue(const struct GameP
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetActionTime(const struct GamePad_AxisEvent* axisEvent,
-                                                            int64_t* actionTime);
+                                                            int64_t* actionTime)
+                                                            __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

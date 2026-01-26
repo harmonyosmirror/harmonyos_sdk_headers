@@ -37,6 +37,7 @@
 #ifndef CAPI_INCLUDE_IPC_CPARCEL_H
 #define CAPI_INCLUDE_IPC_CPARCEL_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -109,7 +110,7 @@ typedef void* (*OH_IPC_MemAllocator)(int32_t len);
  * returns NULL otherwise.
  * @since 12
  */
-OHIPCParcel* OH_IPCParcel_Create(void);
+OHIPCParcel* OH_IPCParcel_Create(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OHIPCParcel</b> object.
@@ -118,7 +119,7 @@ OHIPCParcel* OH_IPCParcel_Create(void);
  * @param parcel Pointer to the <b>OHIPCParcel</b> object to destroy.
  * @since 12
  */
-void OH_IPCParcel_Destroy(OHIPCParcel *parcel);
+void OH_IPCParcel_Destroy(OHIPCParcel *parcel) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the size of the data contained in an <b>OHIPCParcel</b> object.
@@ -129,7 +130,7 @@ void OH_IPCParcel_Destroy(OHIPCParcel *parcel);
  * Returns <b>-1</b> if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_GetDataSize(const OHIPCParcel *parcel);
+int OH_IPCParcel_GetDataSize(const OHIPCParcel *parcel) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of bytes that can be written to an <b>OHIPCParcel</b> object.
@@ -140,7 +141,7 @@ int OH_IPCParcel_GetDataSize(const OHIPCParcel *parcel);
  * Returns <b>-1</b> if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_GetWritableBytes(const OHIPCParcel *parcel);
+int OH_IPCParcel_GetWritableBytes(const OHIPCParcel *parcel) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of bytes that can be read from an <b>OHIPCParcel</b> object.
@@ -151,7 +152,7 @@ int OH_IPCParcel_GetWritableBytes(const OHIPCParcel *parcel);
  * Returns <b>-1</b> if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_GetReadableBytes(const OHIPCParcel *parcel);
+int OH_IPCParcel_GetReadableBytes(const OHIPCParcel *parcel) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the position where data is read in an <b>OHIPCParcel</b> object.
@@ -162,7 +163,7 @@ int OH_IPCParcel_GetReadableBytes(const OHIPCParcel *parcel);
  * Returns <b>-1</b> if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_GetReadPosition(const OHIPCParcel *parcel);
+int OH_IPCParcel_GetReadPosition(const OHIPCParcel *parcel) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the position where data is written in an <b>OHIPCParcel</b> object.
@@ -173,7 +174,7 @@ int OH_IPCParcel_GetReadPosition(const OHIPCParcel *parcel);
  * Returns <b>-1</b> if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_GetWritePosition(const OHIPCParcel *parcel);
+int OH_IPCParcel_GetWritePosition(const OHIPCParcel *parcel) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets the position to read data in an IPC parcel.
@@ -185,7 +186,8 @@ int OH_IPCParcel_GetWritePosition(const OHIPCParcel *parcel);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos);
+int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resets the position to write data in an <b>OHIPCParcel</b> object.
@@ -197,7 +199,8 @@ int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.
  * @since 12
  */
-int OH_IPCParcel_RewindWritePosition(OHIPCParcel *parcel, uint32_t newWritePos);
+int OH_IPCParcel_RewindWritePosition(OHIPCParcel *parcel, uint32_t newWritePos)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an int8_t value to an <b>OHIPCParcel</b> object.
@@ -210,7 +213,7 @@ int OH_IPCParcel_RewindWritePosition(OHIPCParcel *parcel, uint32_t newWritePos);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteInt8(OHIPCParcel *parcel, int8_t value);
+int OH_IPCParcel_WriteInt8(OHIPCParcel *parcel, int8_t value) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads an int8_t value from an <b>OHIPCParcel</b> object.
@@ -223,7 +226,8 @@ int OH_IPCParcel_WriteInt8(OHIPCParcel *parcel, int8_t value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadInt8(const OHIPCParcel *parcel, int8_t *value);
+int OH_IPCParcel_ReadInt8(const OHIPCParcel *parcel, int8_t *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an int16_t value to an <b>OHIPCParcel</b> object.
@@ -236,7 +240,8 @@ int OH_IPCParcel_ReadInt8(const OHIPCParcel *parcel, int8_t *value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteInt16(OHIPCParcel *parcel, int16_t value);
+int OH_IPCParcel_WriteInt16(OHIPCParcel *parcel, int16_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads an int16_t value from an <b>OHIPCParcel</b> object.
@@ -249,7 +254,8 @@ int OH_IPCParcel_WriteInt16(OHIPCParcel *parcel, int16_t value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadInt16(const OHIPCParcel *parcel, int16_t *value);
+int OH_IPCParcel_ReadInt16(const OHIPCParcel *parcel, int16_t *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an int32_t value to an <b>OHIPCParcel</b> object.
@@ -262,7 +268,8 @@ int OH_IPCParcel_ReadInt16(const OHIPCParcel *parcel, int16_t *value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteInt32(OHIPCParcel *parcel, int32_t value);
+int OH_IPCParcel_WriteInt32(OHIPCParcel *parcel, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads an int32_t value from an <b>OHIPCParcel</b> object.
@@ -275,7 +282,8 @@ int OH_IPCParcel_WriteInt32(OHIPCParcel *parcel, int32_t value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadInt32(const OHIPCParcel *parcel, int32_t *value);
+int OH_IPCParcel_ReadInt32(const OHIPCParcel *parcel, int32_t *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an int64_t value to an <b>OHIPCParcel</b> object.
@@ -288,7 +296,8 @@ int OH_IPCParcel_ReadInt32(const OHIPCParcel *parcel, int32_t *value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteInt64(OHIPCParcel *parcel, int64_t value);
+int OH_IPCParcel_WriteInt64(OHIPCParcel *parcel, int64_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads an int64_t value from an <b>OHIPCParcel</b> object.
@@ -301,7 +310,8 @@ int OH_IPCParcel_WriteInt64(OHIPCParcel *parcel, int64_t value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadInt64(const OHIPCParcel *parcel, int64_t *value);
+int OH_IPCParcel_ReadInt64(const OHIPCParcel *parcel, int64_t *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes a float value to an <b>OHIPCParcel</b> object.
@@ -314,7 +324,7 @@ int OH_IPCParcel_ReadInt64(const OHIPCParcel *parcel, int64_t *value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteFloat(OHIPCParcel *parcel, float value);
+int OH_IPCParcel_WriteFloat(OHIPCParcel *parcel, float value) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads a float value from an <b>OHIPCParcel</b> object.
@@ -327,7 +337,8 @@ int OH_IPCParcel_WriteFloat(OHIPCParcel *parcel, float value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadFloat(const OHIPCParcel *parcel, float *value);
+int OH_IPCParcel_ReadFloat(const OHIPCParcel *parcel, float *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes a double value to an <b>OHIPCParcel</b> object.
@@ -340,7 +351,8 @@ int OH_IPCParcel_ReadFloat(const OHIPCParcel *parcel, float *value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteDouble(OHIPCParcel *parcel, double value);
+int OH_IPCParcel_WriteDouble(OHIPCParcel *parcel, double value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads a double value from an <b>OHIPCParcel</b> object.
@@ -353,7 +365,8 @@ int OH_IPCParcel_WriteDouble(OHIPCParcel *parcel, double value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadDouble(const OHIPCParcel *parcel, double *value);
+int OH_IPCParcel_ReadDouble(const OHIPCParcel *parcel, double *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes a string including a string terminator to an <b>OHIPCParcel</b> object.
@@ -366,7 +379,8 @@ int OH_IPCParcel_ReadDouble(const OHIPCParcel *parcel, double *value);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str);
+int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads a string from an <b>OHIPCParcel</b> object. You can obtain the length of the string from <b>strlen</b>.
@@ -377,7 +391,8 @@ int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str);
  * returns NULL if the operation fails or invalid parameters are found.
  * @since 12
  */
-const char* OH_IPCParcel_ReadString(const OHIPCParcel *parcel);
+const char* OH_IPCParcel_ReadString(const OHIPCParcel *parcel)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes data of the specified length from the memory to an <b>OHIPCParcel</b> object.
@@ -391,7 +406,8 @@ const char* OH_IPCParcel_ReadString(const OHIPCParcel *parcel);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteBuffer(OHIPCParcel *parcel, const uint8_t *buffer, int32_t len);
+int OH_IPCParcel_WriteBuffer(OHIPCParcel *parcel, const uint8_t *buffer, int32_t len)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads memory information of the specified length from an <b>OHIPCParcel</b> object.
@@ -403,7 +419,8 @@ int OH_IPCParcel_WriteBuffer(OHIPCParcel *parcel, const uint8_t *buffer, int32_t
  * returns NULL if invalid parameters are found or <b>len</b> exceeds the readable length of <b>parcel</b>.
  * @since 12
  */
-const uint8_t* OH_IPCParcel_ReadBuffer(const OHIPCParcel *parcel, int32_t len);
+const uint8_t* OH_IPCParcel_ReadBuffer(const OHIPCParcel *parcel, int32_t len)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an <b>OHIPCRemoteStub</b> object to an <b>OHIPCParcel</b> object.
@@ -416,7 +433,8 @@ const uint8_t* OH_IPCParcel_ReadBuffer(const OHIPCParcel *parcel, int32_t len);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stub);
+int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stub)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads the <b>OHIPCRemoteStub</b> object from an <b>OHIPCParcel</b> object.
@@ -427,7 +445,8 @@ int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stu
  * returns NULL otherwise.
  * @since 12
  */
-OHIPCRemoteStub* OH_IPCParcel_ReadRemoteStub(const OHIPCParcel *parcel);
+OHIPCRemoteStub* OH_IPCParcel_ReadRemoteStub(const OHIPCParcel *parcel)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an <b>OHIPCRemoteProxy</b> object to an <b>OHIPCParcel</b> object.
@@ -440,7 +459,8 @@ OHIPCRemoteStub* OH_IPCParcel_ReadRemoteStub(const OHIPCParcel *parcel);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *proxy);
+int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *proxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads the <b>OHIPCRemoteProxy</b> object from an <b>OHIPCParcel</b> object.
@@ -451,7 +471,8 @@ int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *p
  * returns NULL otherwise.
  * @since 12
  */
-OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
+OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes a file descriptor to an <b>OHIPCParcel</b> object.
@@ -464,7 +485,8 @@ OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd);
+int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads a file descriptor from an <b>OHIPCParcel</b> object.
@@ -477,7 +499,8 @@ int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */
-int OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_t *fd);
+int OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_t *fd)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Appends data to an <b>OHIPCParcel</b> object.
@@ -490,7 +513,8 @@ int OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_t *fd);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the operation fails.
  * @since 12
  */
-int OH_IPCParcel_Append(OHIPCParcel *parcel, const OHIPCParcel *data);
+int OH_IPCParcel_Append(OHIPCParcel *parcel, const OHIPCParcel *data)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Writes an interface token to an <b>OHIPCParcel</b> object for interface identity verification.
@@ -503,7 +527,8 @@ int OH_IPCParcel_Append(OHIPCParcel *parcel, const OHIPCParcel *data);
  * Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the data write operation fails.
  * @since 12
  */
-int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token);
+int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads an interface token from an <b>OHIPCParcel</b> object for interface identity verification.
@@ -522,7 +547,8 @@ int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token);
  * @since 12
  */
 int OH_IPCParcel_ReadInterfaceToken(const OHIPCParcel *parcel, char **token, int32_t *len,
-    OH_IPC_MemAllocator allocator);
+    OH_IPC_MemAllocator allocator)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

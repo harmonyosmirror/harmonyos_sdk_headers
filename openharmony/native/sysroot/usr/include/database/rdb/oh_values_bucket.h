@@ -39,6 +39,7 @@
 #ifndef OH_VALUES_BUCKET_H
 #define OH_VALUES_BUCKET_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -167,7 +168,8 @@ struct OH_VBucket {
  * @see OH_VBucket.
  * @since 11
  */
-int OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Data_Asset *value);
+int OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Data_Asset *value)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Put the {@link Data_Asset} * value of given count to this {@link OH_VBucket} object for the given column name.
@@ -182,7 +184,8 @@ int OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Data_Asset *value
  * @see OH_VBucket.
  * @since 11
  */
-int OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Data_Asset **value, uint32_t count);
+int OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Data_Asset **value, uint32_t count)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Put the float vector to the OH_VBucket object.
@@ -197,7 +200,8 @@ int OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Data_Asset **val
  * @see OH_VBucket.
  * @since 18
  */
-int OH_VBucket_PutFloatVector(OH_VBucket *bucket, const char *field, const float *vec, size_t len);
+int OH_VBucket_PutFloatVector(OH_VBucket *bucket, const char *field, const float *vec, size_t len)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Put the an integer of any length to the OH_VBucket object.
@@ -213,7 +217,8 @@ int OH_VBucket_PutFloatVector(OH_VBucket *bucket, const char *field, const float
  * @see OH_VBucket.
  * @since 18
  */
-int OH_VBucket_PutUnlimitedInt(OH_VBucket *bucket, const char *field, int sign, const uint64_t *trueForm, size_t len);
+int OH_VBucket_PutUnlimitedInt(OH_VBucket *bucket, const char *field, int sign, const uint64_t *trueForm, size_t len)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 #ifdef __cplusplus
 };
 #endif

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,6 +20,30 @@
 extern "C" {
 #endif
 
+#define __INNER_CONCAT(a, b) a##.##b
+#define __INNER_APIAVAILABLE(ver) __builtin_available(ohos ver, *)
+
+// check the val between 0-99
+#define __CHECK_RANGE(val) ((void)sizeof(char[(val) >= 0 && (val) <= 99 ? 1 : -1]))
+
+/**
+  * @brief To ensure compatibility and stability of an application across different versions.
+  * Prevent crashes caused by invoking non-existent APIs on older systems through compile-time
+  * and runtime conditional checks.
+  * Whenever using APIs that are newer than the distribution target version,
+  * it is essential to protect them with the APIAVAILABLE method and provide a reasonable fallback solution.
+  *
+  * @param maj, int value 0 - 99.
+  * @param min, int value 0 - 99.
+  * @param patch, int value 0 - 99.
+  * @since 22
+  */
+#define APIAVAILABLE(maj, min, patch) \
+    __CHECK_RANGE(maj), \
+    __CHECK_RANGE(min), \
+    __CHECK_RANGE(patch), \
+    __INNER_APIAVAILABLE(__INNER_CONCAT(maj, min##.##patch))
+
 #define SDK_VERSION_FUTURE 9999
 #define SDK_VERSION_7 7
 #define SDK_VERSION_8 8
@@ -36,7 +60,8 @@ extern "C" {
 #define OH_API_VERSION_19 19
 #define OH_API_VERSION_20 20
 #define OH_API_VERSION_21 21
-#define OH_CURRENT_API_VERSION OH_API_VERSION_21
+#define OH_API_VERSION_22 22
+#define OH_CURRENT_API_VERSION OH_API_VERSION_22
 
 /**
   * @brief Get the target sdk version number of the application.

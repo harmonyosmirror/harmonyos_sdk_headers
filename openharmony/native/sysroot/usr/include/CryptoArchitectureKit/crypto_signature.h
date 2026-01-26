@@ -36,6 +36,7 @@
 #ifndef CRYPTO_SIGNATURE_H
 #define CRYPTO_SIGNATURE_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 #include "crypto_asym_key.h"
 #include <stdbool.h>
@@ -90,7 +91,8 @@ typedef struct OH_CryptoSign OH_CryptoSign;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoVerify_Create(const char *algoName, OH_CryptoVerify **verify);
+OH_Crypto_ErrCode OH_CryptoVerify_Create(const char *algoName, OH_CryptoVerify **verify)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Init verify context with given public Key.
@@ -106,7 +108,8 @@ OH_Crypto_ErrCode OH_CryptoVerify_Create(const char *algoName, OH_CryptoVerify *
  * @see OH_CryptoVerify_Final
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoVerify_Init(OH_CryptoVerify *ctx, OH_CryptoPubKey *pubKey);
+OH_Crypto_ErrCode OH_CryptoVerify_Init(OH_CryptoVerify *ctx, OH_CryptoPubKey *pubKey)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Used to append the message that needs to be verified.
@@ -122,7 +125,8 @@ OH_Crypto_ErrCode OH_CryptoVerify_Init(OH_CryptoVerify *ctx, OH_CryptoPubKey *pu
  * @see OH_CryptoVerify_Final
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoVerify_Update(OH_CryptoVerify *ctx, Crypto_DataBlob *in);
+OH_Crypto_ErrCode OH_CryptoVerify_Update(OH_CryptoVerify *ctx, Crypto_DataBlob *in)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Used to verify the message.
@@ -135,7 +139,8 @@ OH_Crypto_ErrCode OH_CryptoVerify_Update(OH_CryptoVerify *ctx, Crypto_DataBlob *
  * @see OH_CryptoVerify_Update
  * @since 12
  */
-bool OH_CryptoVerify_Final(OH_CryptoVerify *ctx, Crypto_DataBlob *in, Crypto_DataBlob *signData);
+bool OH_CryptoVerify_Final(OH_CryptoVerify *ctx, Crypto_DataBlob *in, Crypto_DataBlob *signData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Used to recover signed data.
@@ -151,7 +156,8 @@ bool OH_CryptoVerify_Final(OH_CryptoVerify *ctx, Crypto_DataBlob *in, Crypto_Dat
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoVerify_Recover(OH_CryptoVerify *ctx, Crypto_DataBlob *signData,
-    Crypto_DataBlob *rawSignData);
+    Crypto_DataBlob *rawSignData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the algorithm name of the verify context.
@@ -160,7 +166,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_Recover(OH_CryptoVerify *ctx, Crypto_DataBlob 
  * @return Return verify algorithm name.
  * @since 12
  */
-const char *OH_CryptoVerify_GetAlgoName(OH_CryptoVerify *ctx);
+const char *OH_CryptoVerify_GetAlgoName(OH_CryptoVerify *ctx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the specified parameter to the verify context.
@@ -176,7 +182,8 @@ const char *OH_CryptoVerify_GetAlgoName(OH_CryptoVerify *ctx);
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoVerify_SetParam(OH_CryptoVerify *ctx, CryptoSignature_ParamType type,
-    Crypto_DataBlob *value);
+    Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the specified parameter from the verify context.
@@ -192,7 +199,8 @@ OH_Crypto_ErrCode OH_CryptoVerify_SetParam(OH_CryptoVerify *ctx, CryptoSignature
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoVerify_GetParam(OH_CryptoVerify *ctx, CryptoSignature_ParamType type,
-    Crypto_DataBlob *value);
+    Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the verify context.
@@ -200,7 +208,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_GetParam(OH_CryptoVerify *ctx, CryptoSignature
  * @param ctx Indicates the verify context.
  * @since 12
  */
-void OH_CryptoVerify_Destroy(OH_CryptoVerify *ctx);
+void OH_CryptoVerify_Destroy(OH_CryptoVerify *ctx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a sign context according to the given algorithm name.
@@ -214,7 +222,8 @@ void OH_CryptoVerify_Destroy(OH_CryptoVerify *ctx);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSign_Create(const char *algoName, OH_CryptoSign **sign);
+OH_Crypto_ErrCode OH_CryptoSign_Create(const char *algoName, OH_CryptoSign **sign)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Initializes the sign context.
@@ -230,7 +239,8 @@ OH_Crypto_ErrCode OH_CryptoSign_Create(const char *algoName, OH_CryptoSign **sig
  * @see OH_CryptoSign_Final
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSign_Init(OH_CryptoSign *ctx, OH_CryptoPrivKey *privKey);
+OH_Crypto_ErrCode OH_CryptoSign_Init(OH_CryptoSign *ctx, OH_CryptoPrivKey *privKey)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Updates the data to be signed.
@@ -246,7 +256,8 @@ OH_Crypto_ErrCode OH_CryptoSign_Init(OH_CryptoSign *ctx, OH_CryptoPrivKey *privK
  * @see OH_CryptoSign_Final
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSign_Update(OH_CryptoSign *ctx, const Crypto_DataBlob *in);
+OH_Crypto_ErrCode OH_CryptoSign_Update(OH_CryptoSign *ctx, const Crypto_DataBlob *in)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Finalizes the sign operation.
@@ -263,7 +274,8 @@ OH_Crypto_ErrCode OH_CryptoSign_Update(OH_CryptoSign *ctx, const Crypto_DataBlob
  * @see OH_CryptoSign_Update
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSign_Final(OH_CryptoSign *ctx, const Crypto_DataBlob *in, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoSign_Final(OH_CryptoSign *ctx, const Crypto_DataBlob *in, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the algorithm name of the sign context.
@@ -272,7 +284,7 @@ OH_Crypto_ErrCode OH_CryptoSign_Final(OH_CryptoSign *ctx, const Crypto_DataBlob 
  * @return Return signature algorithm name.
  * @since 20
  */
-const char *OH_CryptoSign_GetAlgoName(OH_CryptoSign *ctx);
+const char *OH_CryptoSign_GetAlgoName(OH_CryptoSign *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the specified parameter to the sign context.
@@ -288,7 +300,8 @@ const char *OH_CryptoSign_GetAlgoName(OH_CryptoSign *ctx);
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoSign_SetParam(OH_CryptoSign *ctx, CryptoSignature_ParamType type,
-    const Crypto_DataBlob *value);
+    const Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the specified parameter from the sign context.
@@ -303,7 +316,8 @@ OH_Crypto_ErrCode OH_CryptoSign_SetParam(OH_CryptoSign *ctx, CryptoSignature_Par
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSign_GetParam(OH_CryptoSign *ctx, CryptoSignature_ParamType type, Crypto_DataBlob *value);
+OH_Crypto_ErrCode OH_CryptoSign_GetParam(OH_CryptoSign *ctx, CryptoSignature_ParamType type, Crypto_DataBlob *value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the sign context.
@@ -311,7 +325,7 @@ OH_Crypto_ErrCode OH_CryptoSign_GetParam(OH_CryptoSign *ctx, CryptoSignature_Par
  * @param ctx Indicates the sign context.
  * @since 20
  */
-void OH_CryptoSign_Destroy(OH_CryptoSign *ctx);
+void OH_CryptoSign_Destroy(OH_CryptoSign *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the ECC signature spec.
@@ -334,7 +348,8 @@ typedef struct OH_CryptoEccSignatureSpec OH_CryptoEccSignatureSpec;
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *eccSignature,
-    OH_CryptoEccSignatureSpec **spec);
+    OH_CryptoEccSignatureSpec **spec)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the r and s value from the ECC signature spec.
@@ -350,7 +365,8 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *eccSignature
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_GetRAndS(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *r,
-    Crypto_DataBlob *s);
+    Crypto_DataBlob *s)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the r and s value to the ECC signature spec.
@@ -366,7 +382,8 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_GetRAndS(OH_CryptoEccSignatureSpec *
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_SetRAndS(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *r,
-    Crypto_DataBlob *s);
+    Crypto_DataBlob *s)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Encodes the ECC signature spec to signature data in DER format.
@@ -380,7 +397,8 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_SetRAndS(OH_CryptoEccSignatureSpec *
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Encode(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Encode(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the ECC signature spec.
@@ -388,7 +406,8 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Encode(OH_CryptoEccSignatureSpec *sp
  * @param spec Indicates the ECC signature spec.
  * @since 20
  */
-void OH_CryptoEccSignatureSpec_Destroy(OH_CryptoEccSignatureSpec *spec);
+void OH_CryptoEccSignatureSpec_Destroy(OH_CryptoEccSignatureSpec *spec)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 
 #ifdef __cplusplus

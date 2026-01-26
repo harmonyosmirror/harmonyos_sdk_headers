@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
 #define OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -59,14 +60,16 @@ typedef struct InputMethod_PrivateCommand InputMethod_PrivateCommand;
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_PrivateCommand *OH_PrivateCommand_Create(char key[], size_t keyLength);
+InputMethod_PrivateCommand *OH_PrivateCommand_Create(char key[], size_t keyLength)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Destroy a {@link InputMethod_PrivateCommand} instance.
  *
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be destroyed.
  * @since 12
  */
-void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command);
+void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set key value into {@link InputMethod_PrivateCommand}.
  *
@@ -79,7 +82,8 @@ void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command);
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *command, char key[], size_t keyLength);
+InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *command, char key[], size_t keyLength)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set bool data value into {@link InputMethod_PrivateCommand}.
  *
@@ -91,7 +95,8 @@ InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *comma
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand *command, bool value);
+InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand *command, bool value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set integer data value into {@link InputMethod_PrivateCommand}.
  *
@@ -103,7 +108,8 @@ InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand 
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *command, int32_t value);
+InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *command, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Set string data value into {@link InputMethod_PrivateCommand}.
  *
@@ -117,7 +123,8 @@ InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
-    InputMethod_PrivateCommand *command, char value[], size_t valueLength);
+    InputMethod_PrivateCommand *command, char value[], size_t valueLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get key value from {@link InputMethod_PrivateCommand}.
@@ -132,7 +139,8 @@ InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetKey(
-    InputMethod_PrivateCommand *command, const char **key, size_t *keyLength);
+    InputMethod_PrivateCommand *command, const char **key, size_t *keyLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get value type from {@link InputMethod_PrivateCommand}.
  *
@@ -146,7 +154,8 @@ InputMethod_ErrorCode OH_PrivateCommand_GetKey(
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
-    InputMethod_PrivateCommand *command, InputMethod_CommandValueType *type);
+    InputMethod_PrivateCommand *command, InputMethod_CommandValueType *type)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get bool data value from {@link InputMethod_PrivateCommand}.
  *
@@ -159,7 +168,8 @@ InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand *command, bool *value);
+InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand *command, bool *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get integer data value from {@link InputMethod_PrivateCommand}.
  *
@@ -172,7 +182,8 @@ InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand 
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *command, int32_t *value);
+InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *command, int32_t *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get string data value from {@link InputMethod_PrivateCommand}.
  *
@@ -187,7 +198,8 @@ InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetStrValue(
-    InputMethod_PrivateCommand *command, const char **value, size_t *valueLength);
+    InputMethod_PrivateCommand *command, const char **value, size_t *valueLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

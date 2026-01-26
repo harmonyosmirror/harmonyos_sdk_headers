@@ -39,6 +39,7 @@
 #ifndef OH_CURSOR_H
 #define OH_CURSOR_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -286,7 +287,8 @@ struct OH_Cursor {
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  * @since 18
  */
-int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length);
+int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the value of the requested column as a float array.
@@ -314,7 +316,8 @@ int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t
  * @see OH_Cursor_GetFloatVectorCount.
  * @since 18
  */
-int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen);
+int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

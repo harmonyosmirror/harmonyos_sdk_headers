@@ -25,6 +25,7 @@
 #ifndef ABR_GLES_H
 #define ABR_GLES_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include "abr_base.h"
 
@@ -42,7 +43,8 @@ extern "C" {
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_MarkFrameBuffer_GLES(ABR_Context* context);
+ABR_ErrorCode HMS_ABR_MarkFrameBuffer_GLES(ABR_Context* context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get ABR scaled texture corresponding to the original texture for ABR context instance.
@@ -56,7 +58,8 @@ ABR_ErrorCode HMS_ABR_MarkFrameBuffer_GLES(ABR_Context* context);
  * otherwise. For details about the error codes, see {@link ABR_ErrorCode}.
  * @since 5.0.0(12)
  */
-ABR_ErrorCode HMS_ABR_GetScaledTexture_GLES(ABR_Context* context, uint32_t originTexture, uint32_t* scaledTexture);
+ABR_ErrorCode HMS_ABR_GetScaledTexture_GLES(ABR_Context* context, uint32_t originTexture, uint32_t* scaledTexture)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

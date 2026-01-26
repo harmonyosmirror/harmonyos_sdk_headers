@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_TEXT_RUN_H
 #define C_INCLUDE_DRAWING_TEXT_RUN_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_text_declaration.h"
 #include "drawing_text_typography.h"
 #include "drawing_types.h"
@@ -57,7 +58,8 @@ extern "C" {
  * @return Run of glyph indices array object <b>OH_Drawing_Array</b>.
  * @since 18
  */
-OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t start, int64_t length);
+OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t start, int64_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the run glyph indices by index.
@@ -68,7 +70,8 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t st
  * @return Run of glyph indices element.
  * @since 18
  */
-uint64_t OH_Drawing_GetRunStringIndicesByIndex(OH_Drawing_Array* stringIndices, size_t index);
+uint64_t OH_Drawing_GetRunStringIndicesByIndex(OH_Drawing_Array* stringIndices, size_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory run glyph indices array.
@@ -77,7 +80,8 @@ uint64_t OH_Drawing_GetRunStringIndicesByIndex(OH_Drawing_Array* stringIndices, 
  * @param stringIndices glyph indices array object <b>OH_Drawing_Array</b>.
  * @since 18
  */
-void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices);
+void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the range run glyph location and length.
@@ -88,7 +92,8 @@ void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices);
  * @param length The run of glyph length.
  * @since 18
  */
-void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint64_t* length);
+void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint64_t* length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the run typographic bound.
@@ -101,7 +106,8 @@ void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint6
  * @return run typographic width.
  * @since 18
  */
-float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, float* descent, float* leading);
+float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, float* descent, float* leading)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Paints text on the canvas.
@@ -113,7 +119,8 @@ float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, flo
  * @param y Indicates the y coordinate.
  * @since 18
  */
-void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double x, double y);
+void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double x, double y)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the run image bound.
@@ -123,7 +130,8 @@ void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double 
  * @return The run image bounds to an <b>OH_Drawing_Rect</b> object.
  * @since 18
  */
-OH_Drawing_Rect* OH_Drawing_GetRunImageBounds(OH_Drawing_Run* run);
+OH_Drawing_Rect* OH_Drawing_GetRunImageBounds(OH_Drawing_Run* run)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
  /**
  * @brief Releases the memory run image bounds pointer.
@@ -132,7 +140,7 @@ OH_Drawing_Rect* OH_Drawing_GetRunImageBounds(OH_Drawing_Run* run);
  * @param rect Run image bounds to an <b>OH_Drawing_Rect</b> object.
  * @since 18
  */
-void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect);
+void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the range glyph identifier for each character.
@@ -144,7 +152,8 @@ void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect);
  * @return Run of glyph array object <b>OH_Drawing_Array</b.
  * @since 18
  */
-OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, int64_t length);
+OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, int64_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the glyph identifier by index.
@@ -156,7 +165,8 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, in
  * @since 18
  * @version 1.0
  */
-uint16_t OH_Drawing_GetRunGlyphsByIndex(OH_Drawing_Array* glyphs, size_t index);
+uint16_t OH_Drawing_GetRunGlyphsByIndex(OH_Drawing_Array* glyphs, size_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory run glyph array.
@@ -165,7 +175,7 @@ uint16_t OH_Drawing_GetRunGlyphsByIndex(OH_Drawing_Array* glyphs, size_t index);
  * @param glyphs The run of glyph array object <b>OH_Drawing_Array</b>.
  * @since 18
  */
-void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs);
+void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the range glyph position array.
@@ -177,7 +187,8 @@ void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs);
  * @return Run of position array object <b>OH_Drawing_Array</b>.
  * @since 18
  */
-OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start, int64_t length);
+OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start, int64_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the glyph position by index.
@@ -189,7 +200,8 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start,
  * @since 18
  * @version 1.0
  */
-OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex(OH_Drawing_Array* positions, size_t index);
+OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex(OH_Drawing_Array* positions, size_t index)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the memory run of position array.
@@ -198,7 +210,8 @@ OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex(OH_Drawing_Array* positions,
  * @param positions The run of position array object <b>OH_Drawing_Array</b>.
  * @since 18
  */
-void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions);
+void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the number of glyph.
@@ -208,7 +221,7 @@ void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions);
  * @return The number of glyph.
  * @since 18
  */
-uint32_t OH_Drawing_GetRunGlyphCount(OH_Drawing_Run* run);
+uint32_t OH_Drawing_GetRunGlyphCount(OH_Drawing_Run* run) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the Font Object of run.
@@ -219,7 +232,7 @@ uint32_t OH_Drawing_GetRunGlyphCount(OH_Drawing_Run* run);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_Font* OH_Drawing_GetRunFont(OH_Drawing_Run* run);
+OH_Drawing_Font* OH_Drawing_GetRunFont(OH_Drawing_Run* run) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get the text direction.
@@ -229,7 +242,8 @@ OH_Drawing_Font* OH_Drawing_GetRunFont(OH_Drawing_Run* run);
  * @return Return the text direction of an <b>OH_Drawing_TextDirection</b> object.
  * @since 20
  */
-OH_Drawing_TextDirection OH_Drawing_GetRunTextDirection(OH_Drawing_Run* run);
+OH_Drawing_TextDirection OH_Drawing_GetRunTextDirection(OH_Drawing_Run* run)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the glyph advance array.
@@ -241,7 +255,8 @@ OH_Drawing_TextDirection OH_Drawing_GetRunTextDirection(OH_Drawing_Run* run);
  * @return Indicates the pointer to the glyph advance array object <b>OH_Drawing_Array</b>.
  * @since 20
  */
-OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t start, uint32_t length);
+OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t start, uint32_t length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the glyph advance by index.
@@ -252,7 +267,8 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t s
  * @return Run of glyph advance pointer to an <b>OH_Drawing_Point</b> object.
  * @since 20
  */
-OH_Drawing_Point* OH_Drawing_GetRunGlyphAdvanceByIndex(OH_Drawing_Array* advances, size_t index);
+OH_Drawing_Point* OH_Drawing_GetRunGlyphAdvanceByIndex(OH_Drawing_Array* advances, size_t index)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the memory of glyph advance array.
@@ -261,7 +277,8 @@ OH_Drawing_Point* OH_Drawing_GetRunGlyphAdvanceByIndex(OH_Drawing_Array* advance
  * @param advances The run of glyph advance array object <b>OH_Drawing_Array</b>.
  * @since 20
  */
-void OH_Drawing_DestroyRunGlyphAdvances(OH_Drawing_Array* advances);
+void OH_Drawing_DestroyRunGlyphAdvances(OH_Drawing_Array* advances)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

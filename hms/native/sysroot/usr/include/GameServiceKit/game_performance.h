@@ -25,6 +25,7 @@
  */
 #ifndef GAME_PERFORMANCE_H
 #define GAME_PERFORMANCE_H
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 #ifdef __cplusplus
@@ -32,19 +33,25 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines device information.
+ * @brief Defines device performance information.
  * @since 5.0.2(14)
  */
 typedef struct GamePerformance_DeviceInfo GamePerformance_DeviceInfo;
 
 /**
- * @brief Defines GPU information.
+ * @brief Defines GPU performance information.
  * @since 5.0.2(14)
  */
 typedef struct GamePerformance_GpuInfo GamePerformance_GpuInfo;
 
 /**
- * @brief Defines thermal information.
+ * @brief Defines CPU performance information.
+ * @since 6.0.2(22)
+ */
+typedef struct GamePerformance_CpuInfo GamePerformance_CpuInfo;
+
+/**
+ * @brief Defines thermal performance information.
  * @since 5.0.2(14)
  */
 typedef struct GamePerformance_ThermalInfo GamePerformance_ThermalInfo;
@@ -333,6 +340,11 @@ typedef enum GamePerformance_ErrorCode {
      * Invalid request.
      */
     GAME_PERFORMANCE_INVALID_REQUEST = 1010300003,
+
+    /**
+     * Parameter error.
+     */
+    GAME_PERFORMANCE_PARAM_ERROR = 1010300004,
 } GamePerformance_ErrorCode;
 
 /**
@@ -341,14 +353,22 @@ typedef enum GamePerformance_ErrorCode {
  */
 typedef enum GamePerformance_DeviceInfoType {
     /**
-     * THERMAL.
+     * @brief THERMAL.
+     * @since 5.0.2(14)
      */
     GAME_PERFORMANCE_DEVICEINFO_TYPE_THERMAL = 0,
 
     /**
-     * GPU.
+     * @brief GPU.
+     * @since 5.0.2(14)
      */
     GAME_PERFORMANCE_DEVICEINFO_TYPE_GPU = 1,
+
+    /**
+     * @brief CPU.
+     * @since 6.0.2(22)
+     */
+    GAME_PERFORMANCE_DEVICEINFO_TYPE_CPU = 2,
 } GamePerformance_DeviceInfoType;
 
 /**
@@ -370,7 +390,8 @@ typedef void (*GamePerformance_ThermalLevelChangedCallback)(GamePerformance_Devi
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_CreateInitParameters(GamePerformance_InitParameters **initParameters);
+GamePerformance_ErrorCode HMS_GamePerformance_CreateInitParameters(GamePerformance_InitParameters **initParameters)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_InitParameters} instance, When the instance is no longer needed.
@@ -382,7 +403,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateInitParameters(GamePerforman
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyInitParameters(GamePerformance_InitParameters **initParameters);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyInitParameters(GamePerformance_InitParameters **initParameters)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set bundle name for {@link GamePerformance_InitParameters} instance.
@@ -396,7 +418,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyInitParameters(GamePerforma
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetBundleName(
-    GamePerformance_InitParameters *initParameters, const char *bundleName);
+    GamePerformance_InitParameters *initParameters, const char *bundleName)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set app version for {@link GamePerformance_InitParameters} instance.
@@ -410,7 +433,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetBundleName(
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetAppVersion(
-    GamePerformance_InitParameters *initParameters, const char *appVersion);
+    GamePerformance_InitParameters *initParameters, const char *appVersion)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * Init game performance with {@link GamePerformance_InitParameters} instance.
@@ -424,7 +448,131 @@ GamePerformance_ErrorCode HMS_GamePerformance_InitParameters_SetAppVersion(
  *         {@link GAME_PERFORMANCE_AUTH_FAILED} 1010300002 - Invalid caller.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_Init(GamePerformance_InitParameters *initParameters);
+GamePerformance_ErrorCode HMS_GamePerformance_Init(GamePerformance_InitParameters *initParameters)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
+
+/**
+ * @brief Destroy {@link GamePerformance_CpuInfo} instance, When the instance is no longer needed.
+ *
+ * @param cpuInfo Secondary pointer to the {@link GamePerformance_CpuInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyCpuInfo(GamePerformance_CpuInfo **cpuInfo)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Query CPU info.
+ *
+ * @param cpuInfo Output data. {@link GamePerformance_CpuInfo} instance.
+ * When the CPU info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyCpuInfo}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_INTERNAL_ERROR} 1010300001 - System internal error.
+ *                                                              Please submit this issue via the online ticket system.
+ *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
+ *                                                             {@link HMS_GamePerformance_Init} should be called first.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_QueryCpuInfo(GamePerformance_CpuInfo **cpuInfo)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get CPU info {@link GamePerformance_CpuInfo} from device info {@link GamePerformance_DeviceInfo}.
+ *
+ * @param deviceInfo Pointer to the {@link GamePerformance_DeviceInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @param cpuInfo Output data. Secondary pointer to the {@link GamePerformance_CpuInfo} instance.
+ * When the CPU info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyCpuInfo}.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetCpuInfo(GamePerformance_DeviceInfo *deviceInfo,
+                                                                    GamePerformance_CpuInfo **cpuInfo)
+                                                                    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get CPU load level from CPU info {@link GamePerformance_CpuInfo}.
+ *
+ * @param cpuInfo Pointer to the {@link GamePerformance_CpuInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @param cpuLoadLevel Output data. CPU load level of the previous ten frames,
+ * the value ranges from 1 to 10 in ascending order.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_CpuInfo_GetCpuLoadLevel(GamePerformance_CpuInfo *cpuInfo,
+                                                                      int32_t *cpuLoadLevel)
+                                                                      __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get single thread CPU load level from CPU info {@link GamePerformance_CpuInfo}.
+ *
+ * @param cpuInfo Pointer to the {@link GamePerformance_CpuInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @param singleThreadLoadLevel Output data. Single thread CPU load level of the previous ten frames, 
+ * the value ranges from 1 to 10 in ascending order. 
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_CpuInfo_GetSingleThreadLoadLevel(GamePerformance_CpuInfo *cpuInfo,
+                                                                               int32_t *singleThreadLoadLevel)
+                                                                               __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get recommend normalized current from thermal info {@link GamePerformance_ThermalInfo}.
+ *
+ * @param thermalInfo Pointer to the {@link GamePerformance_ThermalInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @param recommendCurrent Output data. Recommend normalized current.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetRecommendNormalizedCurrent(
+    GamePerformance_ThermalInfo *thermalInfo, int32_t *recommendCurrent)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get normalized current of now from thermal info {@link GamePerformance_ThermalInfo}.
+ *
+ * @param thermalInfo Pointer to the {@link GamePerformance_ThermalInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @param nowCurrent Output data. Normalized current of now.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetNowNormalizedCurrent(
+    GamePerformance_ThermalInfo *thermalInfo, int32_t *nowCurrent)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get recommend max normalized current from thermal info {@link GamePerformance_ThermalInfo}.
+ *
+ * @param thermalInfo Pointer to the {@link GamePerformance_ThermalInfo} instance.
+ * The value can not be null. Otherwise, an error code will be returned.
+ * @param recommendMaxCurrent Output data. Recommend max normalized current.
+ * @return Returns the status code of the exception.
+ *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
+ *         {@link GAME_PERFORMANCE_PARAM_ERROR} 1010300004 - Parameter error. Parameter should't be nullptr.
+ * @since 6.0.2(22)
+ */
+GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetRecommendMaxNormalizedCurrent(
+    GamePerformance_ThermalInfo *thermalInfo, int32_t *recommendMaxCurrent)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Create {@link GamePerformance_PackageInfo} instance,
@@ -435,7 +583,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_Init(GamePerformance_InitParameter
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_CreatePackageInfo(GamePerformance_PackageInfo **packageInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_CreatePackageInfo(GamePerformance_PackageInfo **packageInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_PackageInfo} instance, When the instance is no longer needed.
@@ -447,7 +596,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreatePackageInfo(GamePerformance_
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyPackageInfo(GamePerformance_PackageInfo **packageInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyPackageInfo(GamePerformance_PackageInfo **packageInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set bundle name for {@link GamePerformance_PackageInfo} instance.
@@ -461,7 +611,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyPackageInfo(GamePerformance
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetBundleName(GamePerformance_PackageInfo *packageInfo,
-                                                                        const char *bundleName);
+                                                                        const char *bundleName)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set app version for {@link GamePerformance_PackageInfo} instance.
  *
@@ -474,7 +625,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetBundleName(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetAppVersion(GamePerformance_PackageInfo *packageInfo,
-                                                                        const char *appVersion);
+                                                                        const char *appVersion)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set engine type for {@link GamePerformance_PackageInfo} instance.
  *
@@ -487,7 +639,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetAppVersion(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineType(GamePerformance_PackageInfo *packageInfo,
-                                                                        const GamePerformance_EngineType engineType);
+                                                                        const GamePerformance_EngineType engineType)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set engine version for {@link GamePerformance_PackageInfo} instance.
@@ -501,7 +654,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineType(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineVersion(GamePerformance_PackageInfo *packageInfo,
-                                                                           const char *engineVersion);
+                                                                           const char *engineVersion)
+                                                                           __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set game type for {@link GamePerformance_PackageInfo} instance.
  *
@@ -514,7 +668,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetEngineVersion(GameP
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetGameType(GamePerformance_PackageInfo *packageInfo,
-                                                                      const GamePerformance_GameType gameType);
+                                                                      const GamePerformance_GameType gameType)
+                                                                      __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set whether vulkan is supported  for {@link GamePerformance_PackageInfo} instance.
  *
@@ -527,7 +682,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetGameType(GamePerfor
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetVulkanSupported(GamePerformance_PackageInfo *packageInfo,
-                                                                             const bool vulkanSupported);
+                                                                             const bool vulkanSupported)
+                                                                             __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Update game package info.
  *
@@ -540,7 +696,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PackageInfo_SetVulkanSupported(Gam
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_UpdatePackageInfo(GamePerformance_PackageInfo *packageInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_UpdatePackageInfo(GamePerformance_PackageInfo *packageInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create {@link GamePerformance_ConfigInfo} instance,
@@ -551,7 +708,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdatePackageInfo(GamePerformance_
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_CreateConfigInfo(GamePerformance_ConfigInfo **configInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_CreateConfigInfo(GamePerformance_ConfigInfo **configInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_ConfigInfo} instance, When the instance is no longer needed.
@@ -563,7 +721,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateConfigInfo(GamePerformance_C
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyConfigInfo(GamePerformance_ConfigInfo **configInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyConfigInfo(GamePerformance_ConfigInfo **configInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set max picture quality level for {@link GamePerformance_ConfigInfo} instance.
@@ -577,7 +736,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyConfigInfo(GamePerformance_
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxPictureQualityLevel(
-    GamePerformance_ConfigInfo *configInfo, const GamePerformance_PictureQualityLevel maxPictureQualityLevel);
+    GamePerformance_ConfigInfo *configInfo, const GamePerformance_PictureQualityLevel maxPictureQualityLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set current picture quality level for {@link GamePerformance_ConfigInfo} instance.
@@ -591,7 +751,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxPictureQualityLev
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentPictureQualityLevel(
-    GamePerformance_ConfigInfo *configInfo, const GamePerformance_PictureQualityLevel currentPictureQualityLevel);
+    GamePerformance_ConfigInfo *configInfo, const GamePerformance_PictureQualityLevel currentPictureQualityLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set max frame rate for {@link GamePerformance_ConfigInfo} instance.
@@ -605,7 +766,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentPictureQualit
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxFrameRate(GamePerformance_ConfigInfo *configInfo,
-                                                                         const int64_t maxFrameRate);
+                                                                         const int64_t maxFrameRate)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set current frame rate for {@link GamePerformance_ConfigInfo} instance.
  *
@@ -618,7 +780,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxFrameRate(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentFrameRate(GamePerformance_ConfigInfo *configInfo,
-                                                                             const int64_t currentFrameRate);
+                                                                             const int64_t currentFrameRate)
+                                                                             __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set max resolution for {@link GamePerformance_ConfigInfo} instance.
  *
@@ -631,7 +794,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentFrameRate(Gam
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxResolution(GamePerformance_ConfigInfo *configInfo,
-                                                                          const char *maxResolution);
+                                                                          const char *maxResolution)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set current resolution for {@link GamePerformance_ConfigInfo} instance.
  *
@@ -644,7 +808,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMaxResolution(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentResolution(GamePerformance_ConfigInfo *configInfo,
-                                                                              const char *currentResolution);
+                                                                              const char *currentResolution)
+                                                                              __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set whether antiAliasing is enabled for {@link GamePerformance_ConfigInfo} instance.
@@ -658,7 +823,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetCurrentResolution(Ga
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetAntiAliasingEnabled(GamePerformance_ConfigInfo *configInfo,
-                                                                                const bool antiAliasingEnabled);
+                                                                                const bool antiAliasingEnabled)
+                                                                                __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set whether shadow is enabled for {@link GamePerformance_ConfigInfo} instance.
@@ -672,7 +838,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetAntiAliasingEnabled(
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetShadowEnabled(GamePerformance_ConfigInfo *configInfo,
-                                                                          const bool shadowEnabled);
+                                                                          const bool shadowEnabled)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set whether multi thread is enabled for {@link GamePerformance_ConfigInfo} instance.
@@ -686,7 +853,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetShadowEnabled(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMultithreadingEnabled(
-    GamePerformance_ConfigInfo *configInfo, const bool multithreadingEnabled);
+    GamePerformance_ConfigInfo *configInfo, const bool multithreadingEnabled)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set whether particle is enabled for {@link GamePerformance_ConfigInfo} instance.
@@ -700,7 +868,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetMultithreadingEnable
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetParticleEnabled(GamePerformance_ConfigInfo *configInfo,
-                                                                            const bool particleEnabled);
+                                                                            const bool particleEnabled)
+                                                                            __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set whether HD mode is enabled for {@link GamePerformance_ConfigInfo} instance.
@@ -714,7 +883,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetParticleEnabled(Game
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetHdModeEnabled(GamePerformance_ConfigInfo *configInfo,
-                                                                          const bool hdModeEnabled);
+                                                                          const bool hdModeEnabled)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Update game config info.
@@ -728,7 +898,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ConfigInfo_SetHdModeEnabled(GamePe
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_UpdateConfigInfo(GamePerformance_ConfigInfo *configInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_UpdateConfigInfo(GamePerformance_ConfigInfo *configInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create {@link GamePerformance_SceneInfo} instance,
@@ -739,7 +910,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdateConfigInfo(GamePerformance_C
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_CreateSceneInfo(GamePerformance_SceneInfo **sceneInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_CreateSceneInfo(GamePerformance_SceneInfo **sceneInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_SceneInfo} instance, When the instance is no longer needed.
@@ -751,7 +923,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateSceneInfo(GamePerformance_Sc
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroySceneInfo(GamePerformance_SceneInfo **sceneInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroySceneInfo(GamePerformance_SceneInfo **sceneInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set scene ID for {@link GamePerformance_SceneInfo} instance.
@@ -765,7 +938,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroySceneInfo(GamePerformance_S
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneID(GamePerformance_SceneInfo *sceneInfo,
-                                                                   const int64_t sceneID);
+                                                                   const int64_t sceneID)
+                                                                   __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set scene description for {@link GamePerformance_SceneInfo} instance.
@@ -779,7 +953,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneID(GamePerforman
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDescription(GamePerformance_SceneInfo *sceneInfo,
-                                                                       const char *description);
+                                                                       const char *description)
+                                                                       __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set sub scene ID for {@link GamePerformance_SceneInfo} instance.
  *
@@ -792,7 +967,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDescription(GamePerfo
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubSceneID(GamePerformance_SceneInfo *sceneInfo,
-                                                                      const char *subSceneID);
+                                                                      const char *subSceneID)
+                                                                      __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set sub scene description for {@link GamePerformance_SceneInfo} instance.
@@ -806,7 +982,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubSceneID(GamePerfor
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubDescription(GamePerformance_SceneInfo *sceneInfo,
-                                                                          const char *subDescription);
+                                                                          const char *subDescription)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set importance level of scene for {@link GamePerformance_SceneInfo} instance.
@@ -820,7 +997,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSubDescription(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetImportanceLevel(GamePerformance_SceneInfo *sceneInfo,
-    const GamePerformance_SceneImportanceLevel importanceLevel);
+    const GamePerformance_SceneImportanceLevel importanceLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set scene frequency for {@link GamePerformance_SceneInfo} instance.
@@ -834,7 +1012,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetImportanceLevel(GameP
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneFrequency(GamePerformance_SceneInfo *sceneInfo,
-                                                                          const int64_t sceneFrequency);
+                                                                          const int64_t sceneFrequency)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set length of time in the scene for {@link GamePerformance_SceneInfo} instance.
@@ -848,7 +1027,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneFrequency(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneTime(GamePerformance_SceneInfo *sceneInfo,
-                                                                     const int64_t sceneTime);
+                                                                     const int64_t sceneTime)
+                                                                     __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set recommended CPU level for {@link GamePerformance_SceneInfo} instance.
@@ -862,7 +1042,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetSceneTime(GamePerform
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedCpuLevel(GamePerformance_SceneInfo *sceneInfo,
-    const GamePerformance_CpuLevel recommendedCpuLevel);
+    const GamePerformance_CpuLevel recommendedCpuLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set recommended GPU level for {@link GamePerformance_SceneInfo} instance.
@@ -876,7 +1057,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedCpuLevel(G
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedGpuLevel(GamePerformance_SceneInfo *sceneInfo,
-    const GamePerformance_GpuLevel recommendedGpuLevel);
+    const GamePerformance_GpuLevel recommendedGpuLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set recommended DDR level for {@link GamePerformance_SceneInfo} instance.
@@ -890,7 +1072,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedGpuLevel(G
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedDdrLevel(GamePerformance_SceneInfo *sceneInfo,
-    const GamePerformance_DdrLevel recommendedDdrLevel);
+    const GamePerformance_DdrLevel recommendedDdrLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set max frame rate in the scene for {@link GamePerformance_SceneInfo} instance.
@@ -904,7 +1087,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetRecommendedDdrLevel(G
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMaxFrameRate(GamePerformance_SceneInfo *sceneInfo,
-                                                                        const int64_t maxFrameRate);
+                                                                        const int64_t maxFrameRate)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set current frame rate in the scene for {@link GamePerformance_SceneInfo} instance.
@@ -918,7 +1102,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMaxFrameRate(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetCurrentFrameRate(GamePerformance_SceneInfo *sceneInfo,
-                                                                            const int64_t currentFrameRate);
+                                                                            const int64_t currentFrameRate)
+                                                                            __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set name of key thread for {@link GamePerformance_SceneInfo} instance.
@@ -932,7 +1117,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetCurrentFrameRate(Game
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetKeyThread(GamePerformance_SceneInfo *sceneInfo,
-                                                                     const char *keyThread);
+                                                                     const char *keyThread)
+                                                                     __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set drawCall count for {@link GamePerformance_SceneInfo} instance.
@@ -946,7 +1132,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetKeyThread(GamePerform
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDrawCallCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                         const int64_t drawCallCount);
+                                                                         const int64_t drawCallCount)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set vertex count for {@link GamePerformance_SceneInfo} instance.
@@ -960,7 +1147,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetDrawCallCount(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetVertexCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                       const int64_t vertexCount);
+                                                                       const int64_t vertexCount)
+                                                                       __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set triangle count for {@link GamePerformance_SceneInfo} instance.
@@ -974,7 +1162,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetVertexCount(GamePerfo
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTriangleCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                         const int64_t triangleCount);
+                                                                         const int64_t triangleCount)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set shader count for {@link GamePerformance_SceneInfo} instance.
@@ -988,7 +1177,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTriangleCount(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetShaderCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                       const int64_t shaderCount);
+                                                                       const int64_t shaderCount)
+                                                                       __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set texture count for {@link GamePerformance_SceneInfo} instance.
@@ -1002,7 +1192,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetShaderCount(GamePerfo
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTextureCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                        const int64_t textureCount);
+                                                                        const int64_t textureCount)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set mesh count for {@link GamePerformance_SceneInfo} instance.
@@ -1016,7 +1207,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetTextureCount(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMeshCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                     const int64_t meshCount);
+                                                                     const int64_t meshCount)
+                                                                     __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set channel count for {@link GamePerformance_SceneInfo} instance.
@@ -1030,7 +1222,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetMeshCount(GamePerform
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetChannelCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                        const int64_t channelCount);
+                                                                        const int64_t channelCount)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set participant count for {@link GamePerformance_SceneInfo} instance.
@@ -1044,7 +1237,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetChannelCount(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetParticipantCount(GamePerformance_SceneInfo *sceneInfo,
-                                                                            const int64_t participantCount);
+                                                                            const int64_t participantCount)
+                                                                            __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Update game scene info.
@@ -1058,7 +1252,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_SceneInfo_SetParticipantCount(Game
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_UpdateSceneInfo(GamePerformance_SceneInfo *sceneInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_UpdateSceneInfo(GamePerformance_SceneInfo *sceneInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create {@link GamePerformance_NetInfo} instance,
@@ -1069,7 +1264,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdateSceneInfo(GamePerformance_Sc
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_CreateNetInfo(GamePerformance_NetInfo **netInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_CreateNetInfo(GamePerformance_NetInfo **netInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_NetInfo} instance, When the instance is no longer needed.
@@ -1081,7 +1277,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateNetInfo(GamePerformance_NetI
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyNetInfo(GamePerformance_NetInfo **netInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyNetInfo(GamePerformance_NetInfo **netInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set total net latency for {@link GamePerformance_NetInfo} instance.
@@ -1095,7 +1292,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyNetInfo(GamePerformance_Net
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetTotalLatency(GamePerformance_NetInfo *netInfo,
-                                                                      const int64_t total);
+                                                                      const int64_t total)
+                                                                      __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set up net latency for {@link GamePerformance_NetInfo} instance.
@@ -1109,7 +1307,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetTotalLatency(GamePerfor
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetUplinkLatency(GamePerformance_NetInfo *netInfo,
-                                                                       const int64_t up);
+                                                                       const int64_t up)
+                                                                       __attribute__((__availability__(ohos, introduced=14.0.0)));
 /**
  * @brief Set down net latency for {@link GamePerformance_NetInfo} instance.
  *
@@ -1122,7 +1321,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetUplinkLatency(GamePerfo
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetDownlinkLatency(GamePerformance_NetInfo *netInfo,
-                                                                         const int64_t down);
+                                                                         const int64_t down)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set server net latency for {@link GamePerformance_NetInfo} instance.
@@ -1136,7 +1336,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetDownlinkLatency(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetServerLatency(GamePerformance_NetInfo *netInfo,
-                                                                       const int64_t server);
+                                                                       const int64_t server)
+                                                                       __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set net load for {@link GamePerformance_NetInfo} instance.
@@ -1150,7 +1351,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetServerLatency(GamePerfo
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetNetLoad(GamePerformance_NetInfo *netInfo,
-                                                                 const GamePerformance_NetLoad netLoad);
+                                                                 const GamePerformance_NetLoad netLoad)
+                                                                 __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Update game net info.
@@ -1164,7 +1366,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_NetInfo_SetNetLoad(GamePerformance
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_UpdateNetInfo(GamePerformance_NetInfo *netInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_UpdateNetInfo(GamePerformance_NetInfo *netInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create {@link GamePerformance_PlayerInfo} instance,
@@ -1175,7 +1378,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UpdateNetInfo(GamePerformance_NetI
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_CreatePlayerInfo(GamePerformance_PlayerInfo **playerInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_CreatePlayerInfo(GamePerformance_PlayerInfo **playerInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_PlayerInfo} instance, When the instance is no longer needed.
@@ -1187,7 +1391,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreatePlayerInfo(GamePerformance_P
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyPlayerInfo(GamePerformance_PlayerInfo **playerInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyPlayerInfo(GamePerformance_PlayerInfo **playerInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set gamePlayerId for {@link GamePerformance_PlayerInfo} instance.
@@ -1201,7 +1406,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyPlayerInfo(GamePerformance_
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetGamePlayerId(GamePerformance_PlayerInfo *playerInfo,
-                                                                         const char *gamePlayerId);
+                                                                         const char *gamePlayerId)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set teamPlayerId for {@link GamePerformance_PlayerInfo} instance.
@@ -1215,7 +1421,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetGamePlayerId(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetTeamPlayerId(GamePerformance_PlayerInfo *playerInfo,
-                                                                         const char *teamPlayerId);
+                                                                         const char *teamPlayerId)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set thirdOpenId for {@link GamePerformance_PlayerInfo} instance.
@@ -1229,7 +1436,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetTeamPlayerId(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetThirdOpenId(GamePerformance_PlayerInfo *playerInfo,
-                                                                        const char *thirdOpenId);
+                                                                        const char *thirdOpenId)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Update game player info.
@@ -1243,7 +1451,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_PlayerInfo_SetThirdOpenId(GamePerf
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_UpdatePlayerInfo(GamePerformance_PlayerInfo *playerInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_UpdatePlayerInfo(GamePerformance_PlayerInfo *playerInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Subscribes thermal level change event. When target word is detected, the callback is invoked.
@@ -1266,7 +1475,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_RegisterThermalLevelChangedCallbac
     GamePerformance_DeviceInfoType *types[],
     size_t size,
     GamePerformance_ThermalLevelChangedCallback callback,
-    void *userData);
+    void *userData)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Unsubscribes thermal level change event for the callback.
@@ -1280,7 +1490,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_RegisterThermalLevelChangedCallbac
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_UnregisterThermalLevelChangedCallback(
-    GamePerformance_ThermalLevelChangedCallback callback);
+    GamePerformance_ThermalLevelChangedCallback callback)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Unsubscribes thermal level change event for all of callbacks.
@@ -1291,7 +1502,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UnregisterThermalLevelChangedCallb
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_UnregisterAllThermalLevelChangedCallbacks(void);
+GamePerformance_ErrorCode HMS_GamePerformance_UnregisterAllThermalLevelChangedCallbacks(void)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create {@link GamePerformance_ThermalInfoQueryParameters} instance ,
@@ -1303,7 +1515,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_UnregisterAllThermalLevelChangedCa
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_CreateThermalInfoQueryParameters(
-    GamePerformance_ThermalInfoQueryParameters **parameters);
+    GamePerformance_ThermalInfoQueryParameters **parameters)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_ThermalInfoQueryParameters} instance, When the instance is no longer needed.
@@ -1316,7 +1529,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_CreateThermalInfoQueryParameters(
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfoQueryParameters(
-    GamePerformance_ThermalInfoQueryParameters **parameters);
+    GamePerformance_ThermalInfoQueryParameters **parameters)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set needsPrediction for {@link GamePerformance_ThermalInfoQueryParameters} instance.
@@ -1330,7 +1544,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfoQueryParameters(
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetNeedsPrediction(
-    GamePerformance_ThermalInfoQueryParameters *parameters, const bool needsPrediction);
+    GamePerformance_ThermalInfoQueryParameters *parameters, const bool needsPrediction)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set target thermal level of thermal predict for {@link GamePerformance_ThermalInfoQueryParameters} instance.
@@ -1345,7 +1560,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetNeed
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetTargetThermalLevel(
-    GamePerformance_ThermalInfoQueryParameters *parameters, const int32_t targetThermalLevel);
+    GamePerformance_ThermalInfoQueryParameters *parameters, const int32_t targetThermalLevel)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Query thermal info.
@@ -1353,6 +1569,7 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetTarg
  * @param parameters Pointer to the {@link GamePerformance_ThermalInfoQueryParameters} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param thermalInfo Output data. {@link GamePerformance_ThermalInfo} instance.
+ * When the thermal info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyThermalInfo}.
  * @return Returns the status code of the exception.
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
@@ -1361,7 +1578,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfoQueryParameters_SetTarg
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_QueryThermalInfo(
-    GamePerformance_ThermalInfoQueryParameters *parameters, GamePerformance_ThermalInfo **thermalInfo);
+    GamePerformance_ThermalInfoQueryParameters *parameters, GamePerformance_ThermalInfo **thermalInfo)
+    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_ThermalInfo} instance, When the instance is no longer needed.
@@ -1373,12 +1591,14 @@ GamePerformance_ErrorCode HMS_GamePerformance_QueryThermalInfo(
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfo(GamePerformance_ThermalInfo **thermalInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfo(GamePerformance_ThermalInfo **thermalInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Query GPU info.
  *
  * @param gpuInfo Output data. {@link GamePerformance_GpuInfo} instance.
+ * When the GPU info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyGpuInfo}.
  * @return Returns the status code of the exception.
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
@@ -1386,7 +1606,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyThermalInfo(GamePerformance
  *         {@link GAME_PERFORMANCE_INVALID_REQUEST} 1010300003 - Invalid request.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_QueryGpuInfo(GamePerformance_GpuInfo **gpuInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_QueryGpuInfo(GamePerformance_GpuInfo **gpuInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_GpuInfo} instance, When the instance is no longer needed.
@@ -1398,7 +1619,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_QueryGpuInfo(GamePerformance_GpuIn
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyGpuInfo(GamePerformance_GpuInfo **gpuInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyGpuInfo(GamePerformance_GpuInfo **gpuInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get GPU info {@link GamePerformance_GpuInfo} from device info {@link GamePerformance_DeviceInfo}.
@@ -1406,13 +1628,15 @@ GamePerformance_ErrorCode HMS_GamePerformance_DestroyGpuInfo(GamePerformance_Gpu
  * @param deviceInfo Pointer to the {@link GamePerformance_DeviceInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param gpuInfo Output data. Secondary pointer to the {@link GamePerformance_GpuInfo} instance.
+ * When the GPU info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyGpuInfo}.
  * @return Returns the status code of the exception.
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetGpuInfo(GamePerformance_DeviceInfo *deviceInfo,
-                                                                    GamePerformance_GpuInfo **gpuInfo);
+                                                                    GamePerformance_GpuInfo **gpuInfo)
+                                                                    __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get thermal info {@link GamePerformance_ThermalInfo} from device info {@link GamePerformance_DeviceInfo}.
@@ -1420,13 +1644,15 @@ GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetGpuInfo(GamePerforma
  * @param deviceInfo Pointer to the {@link GamePerformance_DeviceInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
  * @param thermalInfo Output data. Secondary pointer to the {@link GamePerformance_GpuInfo} instance.
+ * When the thermal info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyThermalInfo}.
  * @return Returns the status code of the exception.
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetThermalInfo(GamePerformance_DeviceInfo *deviceInfo,
-                                                                        GamePerformance_ThermalInfo **thermalInfo);
+                                                                        GamePerformance_ThermalInfo **thermalInfo)
+                                                                        __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get thermal margin from thermal info {@link GamePerformance_ThermalInfo}.
@@ -1443,7 +1669,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetThermalInfo(GamePerf
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalMargin(GamePerformance_ThermalInfo *thermalInfo,
-                                                                           int32_t *thermalMargin);
+                                                                           int32_t *thermalMargin)
+                                                                           __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get thermal trend from thermal info {@link GamePerformance_ThermalInfo}.
@@ -1460,7 +1687,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalMargin(GameP
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalTrend(GamePerformance_ThermalInfo *thermalInfo,
-                                                                          int32_t *thermalTrend);
+                                                                          int32_t *thermalTrend)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get thermal level from thermal info {@link GamePerformance_ThermalInfo}.
@@ -1475,7 +1703,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalTrend(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalLevel(GamePerformance_ThermalInfo *thermalInfo,
-                                                                          int32_t *thermalLevel);
+                                                                          int32_t *thermalLevel)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get GPU load level from GPU info {@link GamePerformance_GpuInfo}.
@@ -1489,7 +1718,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_ThermalInfo_GetThermalLevel(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetGpuLoadLevel(GamePerformance_GpuInfo *gpuInfo,
-                                                                      int32_t *gpuLoadLevel);
+                                                                      int32_t *gpuLoadLevel)
+                                                                      __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get vertex load level from GPU info {@link GamePerformance_GpuInfo}.
@@ -1503,7 +1733,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetGpuLoadLevel(GamePerfor
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetVertexLoadLevel(GamePerformance_GpuInfo *gpuInfo,
-                                                                         int32_t *vertexLoadLevel);
+                                                                         int32_t *vertexLoadLevel)
+                                                                         __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get fragment load level from GPU info {@link GamePerformance_GpuInfo}.
@@ -1517,7 +1748,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetVertexLoadLevel(GamePer
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetFragmentLoadLevel(GamePerformance_GpuInfo *gpuInfo,
-                                                                           int32_t *fragmentLoadLevel);
+                                                                           int32_t *fragmentLoadLevel)
+                                                                           __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get texture load level from GPU info {@link GamePerformance_GpuInfo}.
@@ -1531,7 +1763,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetFragmentLoadLevel(GameP
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetTextureLoadLevel(GamePerformance_GpuInfo *gpuInfo,
-                                                                          int32_t *textureLoadLevel);
+                                                                          int32_t *textureLoadLevel)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get bindwith load level from GPU info {@link GamePerformance_GpuInfo}.
@@ -1545,7 +1778,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetTextureLoadLevel(GamePe
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetBandwidthLoadLevel(GamePerformance_GpuInfo *gpuInfo,
-                                                                            int32_t *bandwidthLoadLevel);
+                                                                            int32_t *bandwidthLoadLevel)
+                                                                            __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get current GPU current frequency from GPU info {@link GamePerformance_GpuInfo}.
@@ -1559,7 +1793,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetBandwidthLoadLevel(Game
  * @since 5.0.2(14)
  */
 GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetCurrentFrequency(GamePerformance_GpuInfo *gpuInfo,
-                                                                          int32_t *currentFrequency);
+                                                                          int32_t *currentFrequency)
+                                                                          __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy {@link GamePerformance_DeviceInfo} instance, When the instance is no longer needed.
@@ -1571,7 +1806,8 @@ GamePerformance_ErrorCode HMS_GamePerformance_GpuInfo_GetCurrentFrequency(GamePe
  *         {@link GAME_PERFORMANCE_PARAM_INVALID} 401 - Invalid parameter.
  * @since 5.0.2(14)
  */
-GamePerformance_ErrorCode HMS_GamePerformance_DestroyDeviceInfo(GamePerformance_DeviceInfo **deviceInfo);
+GamePerformance_ErrorCode HMS_GamePerformance_DestroyDeviceInfo(GamePerformance_DeviceInfo **deviceInfo)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 #ifdef __cplusplus
 }
 #endif

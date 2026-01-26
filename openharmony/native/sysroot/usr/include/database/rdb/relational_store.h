@@ -39,6 +39,7 @@
 #ifndef RELATIONAL_STORE_H
 #define RELATIONAL_STORE_H
 
+#include "info/application_target_sdk_version.h"
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
 #include "database/rdb/oh_value_object.h"
@@ -220,7 +221,7 @@ typedef enum Rdb_Tokenizer {
  * @see OH_Rdb_ConfigV2
  * @since 14
  */
-OH_Rdb_ConfigV2 *OH_Rdb_CreateConfig();
+OH_Rdb_ConfigV2 *OH_Rdb_CreateConfig() __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Destroy OH_Rdb_ConfigV2 which is created by OH_Rdb_CreateConfig
@@ -232,7 +233,7 @@ OH_Rdb_ConfigV2 *OH_Rdb_CreateConfig();
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_DestroyConfig(OH_Rdb_ConfigV2 *config);
+int OH_Rdb_DestroyConfig(OH_Rdb_ConfigV2 *config) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property databaseDir into config
@@ -245,7 +246,8 @@ int OH_Rdb_DestroyConfig(OH_Rdb_ConfigV2 *config);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetDatabaseDir(OH_Rdb_ConfigV2 *config, const char *databaseDir);
+int OH_Rdb_SetDatabaseDir(OH_Rdb_ConfigV2 *config, const char *databaseDir)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property storeName into config
@@ -258,7 +260,8 @@ int OH_Rdb_SetDatabaseDir(OH_Rdb_ConfigV2 *config, const char *databaseDir);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetStoreName(OH_Rdb_ConfigV2 *config, const char *storeName);
+int OH_Rdb_SetStoreName(OH_Rdb_ConfigV2 *config, const char *storeName)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property bundleName into config
@@ -271,7 +274,8 @@ int OH_Rdb_SetStoreName(OH_Rdb_ConfigV2 *config, const char *storeName);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetBundleName(OH_Rdb_ConfigV2 *config, const char *bundleName);
+int OH_Rdb_SetBundleName(OH_Rdb_ConfigV2 *config, const char *bundleName)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property moduleName into config
@@ -284,7 +288,8 @@ int OH_Rdb_SetBundleName(OH_Rdb_ConfigV2 *config, const char *bundleName);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetModuleName(OH_Rdb_ConfigV2 *config, const char *moduleName);
+int OH_Rdb_SetModuleName(OH_Rdb_ConfigV2 *config, const char *moduleName)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property isEncrypted into config
@@ -297,7 +302,8 @@ int OH_Rdb_SetModuleName(OH_Rdb_ConfigV2 *config, const char *moduleName);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetEncrypted(OH_Rdb_ConfigV2 *config, bool isEncrypted);
+int OH_Rdb_SetEncrypted(OH_Rdb_ConfigV2 *config, bool isEncrypted)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property securityLevel into config
@@ -310,7 +316,8 @@ int OH_Rdb_SetEncrypted(OH_Rdb_ConfigV2 *config, bool isEncrypted);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetSecurityLevel(OH_Rdb_ConfigV2 *config, int securityLevel);
+int OH_Rdb_SetSecurityLevel(OH_Rdb_ConfigV2 *config, int securityLevel)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property area into config
@@ -323,7 +330,7 @@ int OH_Rdb_SetSecurityLevel(OH_Rdb_ConfigV2 *config, int securityLevel);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 14
  */
-int OH_Rdb_SetArea(OH_Rdb_ConfigV2 *config, int area);
+int OH_Rdb_SetArea(OH_Rdb_ConfigV2 *config, int area) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Set property dbType into config
@@ -335,7 +342,7 @@ int OH_Rdb_SetArea(OH_Rdb_ConfigV2 *config, int area);
  *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support db types.
  * @since 14
  */
-int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
+int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Sets the customized directory relative to the database.
@@ -347,7 +354,8 @@ int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Rdb_SetCustomDir(OH_Rdb_ConfigV2 *config, const char *customDir);
+int OH_Rdb_SetCustomDir(OH_Rdb_ConfigV2 *config, const char *customDir)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the relation database store is read-only mode.
@@ -359,7 +367,8 @@ int OH_Rdb_SetCustomDir(OH_Rdb_ConfigV2 *config, const char *customDir);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Rdb_SetReadOnly(OH_Rdb_ConfigV2 *config, bool readOnly);
+int OH_Rdb_SetReadOnly(OH_Rdb_ConfigV2 *config, bool readOnly)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the dynamic libraries with capabilities such as Full-Text Search (FTS).
@@ -372,7 +381,8 @@ int OH_Rdb_SetReadOnly(OH_Rdb_ConfigV2 *config, bool readOnly);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Rdb_SetPlugins(OH_Rdb_ConfigV2 *config, const char **plugins, int32_t length);
+int OH_Rdb_SetPlugins(OH_Rdb_ConfigV2 *config, const char **plugins, int32_t length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the custom encryption parameters.
@@ -384,7 +394,8 @@ int OH_Rdb_SetPlugins(OH_Rdb_ConfigV2 *config, const char **plugins, int32_t len
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 20
  */
-int OH_Rdb_SetCryptoParam(OH_Rdb_ConfigV2 *config, const OH_Rdb_CryptoParam *cryptoParam);
+int OH_Rdb_SetCryptoParam(OH_Rdb_ConfigV2 *config, const OH_Rdb_CryptoParam *cryptoParam)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set property tokenizer into config
@@ -396,7 +407,8 @@ int OH_Rdb_SetCryptoParam(OH_Rdb_ConfigV2 *config, const OH_Rdb_CryptoParam *cry
  *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support tokenizer.
  * @since 17
  */
-int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
+int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Set property persist into config
@@ -409,7 +421,8 @@ int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 18
  */
-int OH_Rdb_SetPersistent(OH_Rdb_ConfigV2 *config, bool isPersistent);
+int OH_Rdb_SetPersistent(OH_Rdb_ConfigV2 *config, bool isPersistent)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set whether the database enable the capabilities for semantic indexing processing.
@@ -422,7 +435,8 @@ int OH_Rdb_SetPersistent(OH_Rdb_ConfigV2 *config, bool isPersistent);
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @since 20
  */
-int OH_Rdb_SetSemanticIndex(OH_Rdb_ConfigV2 *config, bool enableSemanticIndex);
+int OH_Rdb_SetSemanticIndex(OH_Rdb_ConfigV2 *config, bool enableSemanticIndex)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Check if a tokenizer is supported or not.
@@ -434,7 +448,8 @@ int OH_Rdb_SetSemanticIndex(OH_Rdb_ConfigV2 *config, bool enableSemanticIndex);
  *         {@link RDB_E_INVALID_ARGS} indicates invalid args are passed in.
  * @since 18
  */
-int OH_Rdb_IsTokenizerSupported(Rdb_Tokenizer tokenizer, bool *isSupported);
+int OH_Rdb_IsTokenizerSupported(Rdb_Tokenizer tokenizer, bool *isSupported)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get support db type list
@@ -442,7 +457,7 @@ int OH_Rdb_IsTokenizerSupported(Rdb_Tokenizer tokenizer, bool *isSupported);
  * @return Return Rdb_DBType array contains supported db type, array length is number of support type
  * @since 14
  */
-const int *OH_Rdb_GetSupportedDbType(int *typeCount);
+const int *OH_Rdb_GetSupportedDbType(int *typeCount) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Creates an {@link OH_VObject} instance.
@@ -452,7 +467,7 @@ const int *OH_Rdb_GetSupportedDbType(int *typeCount);
  * @see OH_VObject.
  * @since 10
  */
-OH_VObject *OH_Rdb_CreateValueObject();
+OH_VObject *OH_Rdb_CreateValueObject() __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an {@link OH_VBucket} object.
@@ -462,7 +477,7 @@ OH_VObject *OH_Rdb_CreateValueObject();
  * @see OH_VBucket.
  * @since 10
  */
-OH_VBucket *OH_Rdb_CreateValuesBucket();
+OH_VBucket *OH_Rdb_CreateValuesBucket() __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Creates an {@link OH_Predicates} instance.
@@ -473,7 +488,7 @@ OH_VBucket *OH_Rdb_CreateValuesBucket();
  * @see OH_Predicates.
  * @since 10
  */
-OH_Predicates *OH_Rdb_CreatePredicates(const char *table);
+OH_Predicates *OH_Rdb_CreatePredicates(const char *table) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains an RDB store.
@@ -491,7 +506,8 @@ OH_Predicates *OH_Rdb_CreatePredicates(const char *table);
  * @see OH_Rdb_Config, OH_Rdb_Store.
  * @since 10
  */
-OH_Rdb_Store *OH_Rdb_GetOrOpen(const OH_Rdb_Config *config, int *errCode);
+OH_Rdb_Store *OH_Rdb_GetOrOpen(const OH_Rdb_Config *config, int *errCode)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains an RDB store with OH_Rdb_ConfigV2.
@@ -509,7 +525,8 @@ OH_Rdb_Store *OH_Rdb_GetOrOpen(const OH_Rdb_Config *config, int *errCode);
  * @see OH_Rdb_ConfigV2, OH_Rdb_Store.
  * @since 14
  */
-OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode);
+OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Close the {@link OH_Rdb_Store} object and reclaim the memory occupied by the object.
@@ -522,7 +539,7 @@ OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode);
  * @see OH_Rdb_Store, OH_Rdb_ErrCode.
  * @since 10
  */
-int OH_Rdb_CloseStore(OH_Rdb_Store *store);
+int OH_Rdb_CloseStore(OH_Rdb_Store *store) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Deletes the database with a specified path.
@@ -536,7 +553,7 @@ int OH_Rdb_CloseStore(OH_Rdb_Store *store);
  * @see OH_Rdb_ErrCode.
  * @since 10
  */
-int OH_Rdb_DeleteStore(const OH_Rdb_Config *config);
+int OH_Rdb_DeleteStore(const OH_Rdb_Config *config) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Deletes the database with a specified path.
@@ -550,7 +567,7 @@ int OH_Rdb_DeleteStore(const OH_Rdb_Config *config);
  * @see OH_Rdb_ErrCode.
  * @since 14
  */
-int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config);
+int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Inserts a row of data into the target table.
@@ -565,7 +582,8 @@ int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config);
  * @see OH_Rdb_Store, OH_VBucket, OH_Rdb_ErrCode.
  * @since 10
  */
-int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBucket);
+int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBucket)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Inserts a row of data into the target table and support conflict resolution.
@@ -595,7 +613,8 @@ int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuck
  * @since 20
  */
 int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, OH_VBucket *row,
-    Rdb_ConflictResolution resolution, int64_t *rowId);
+    Rdb_ConflictResolution resolution, int64_t *rowId)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Inserts a batch of data into the target table.
@@ -625,7 +644,8 @@ int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, 
  * @since 18
  */
 int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
-    const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes);
+    const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Updates data in the database based on specified conditions.
@@ -641,7 +661,8 @@ int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
  * @see OH_Rdb_Store, OH_Bucket, OH_Predicates, OH_Rdb_ErrCode.
  * @since 10
  */
-int OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates);
+int OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
  
 /**
  * @brief Updates data in the database based on specified conditions and support conflict resolution.
@@ -671,7 +692,8 @@ int OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *
  * @since 20
  */
 int OH_Rdb_UpdateWithConflictResolution(OH_Rdb_Store *store, OH_VBucket *row, OH_Predicates *predicates,
-    Rdb_ConflictResolution resolution, int64_t *changes);
+    Rdb_ConflictResolution resolution, int64_t *changes)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes data from the database based on specified conditions.
@@ -686,7 +708,8 @@ int OH_Rdb_UpdateWithConflictResolution(OH_Rdb_Store *store, OH_VBucket *row, OH
  * @see OH_Rdb_Store, OH_Predicates, OH_Rdb_ErrCode.
  * @since 10
  */
-int OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates);
+int OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Queries data in the database based on specified conditions.
@@ -701,7 +724,8 @@ int OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates);
  * @see OH_Rdb_Store, OH_Predicates, OH_Cursor.
  * @since 10
  */
-OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length);
+OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Executes an SQL statement.
@@ -714,7 +738,7 @@ OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const ch
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_Execute(OH_Rdb_Store *store, const char *sql);
+int OH_Rdb_Execute(OH_Rdb_Store *store, const char *sql) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Executes an SQL statement.
@@ -743,7 +767,8 @@ int OH_Rdb_Execute(OH_Rdb_Store *store, const char *sql);
  * @see OH_Value_Destroy.
  * @since 18
  */
-int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result);
+int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Write operations are performed using the specified transaction represented by the transaction ID
@@ -758,7 +783,8 @@ int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values 
  * @see OH_Rdb_Store.
  * @since 14
  */
-int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql);
+int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Queries data in the database based on an SQL statement.
@@ -770,7 +796,8 @@ int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql);
  * @see OH_Rdb_Store.
  * @since 10
  */
-OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql);
+OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Queries data in the database based on an SQL statement.
@@ -783,7 +810,8 @@ OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql);
  * @see OH_Rdb_Store.
  * @since 18
  */
-OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args);
+OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Begins a transaction in EXCLUSIVE mode.
@@ -795,7 +823,7 @@ OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_BeginTransaction(OH_Rdb_Store *store);
+int OH_Rdb_BeginTransaction(OH_Rdb_Store *store) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Rolls back a transaction in EXCLUSIVE mode.
@@ -807,7 +835,7 @@ int OH_Rdb_BeginTransaction(OH_Rdb_Store *store);
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_RollBack(OH_Rdb_Store *store);
+int OH_Rdb_RollBack(OH_Rdb_Store *store) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Commits a transaction in EXCLUSIVE mode.
@@ -819,7 +847,7 @@ int OH_Rdb_RollBack(OH_Rdb_Store *store);
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_Commit(OH_Rdb_Store *store);
+int OH_Rdb_Commit(OH_Rdb_Store *store) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Begin a transaction and the transaction ID corresponding to the transaction.
@@ -833,7 +861,8 @@ int OH_Rdb_Commit(OH_Rdb_Store *store);
  * @see OH_Rdb_Store.
  * @since 14
  */
-int OH_Rdb_BeginTransWithTrxId(OH_Rdb_Store *store, int64_t *trxId);
+int OH_Rdb_BeginTransWithTrxId(OH_Rdb_Store *store, int64_t *trxId)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Roll back a transaction that is represented by a specified transaction ID
@@ -847,7 +876,8 @@ int OH_Rdb_BeginTransWithTrxId(OH_Rdb_Store *store, int64_t *trxId);
  * @see OH_Rdb_Store.
  * @since 14
  */
-int OH_Rdb_RollBackByTrxId(OH_Rdb_Store *store, int64_t trxId);
+int OH_Rdb_RollBackByTrxId(OH_Rdb_Store *store, int64_t trxId)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Commit a transaction that is represented by a specified transaction ID
@@ -861,7 +891,7 @@ int OH_Rdb_RollBackByTrxId(OH_Rdb_Store *store, int64_t trxId);
  * @see OH_Rdb_Store.
  * @since 14
  */
-int OH_Rdb_CommitByTrxId(OH_Rdb_Store *store, int64_t trxId);
+int OH_Rdb_CommitByTrxId(OH_Rdb_Store *store, int64_t trxId) __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Backs up a database on specified path.
@@ -874,7 +904,8 @@ int OH_Rdb_CommitByTrxId(OH_Rdb_Store *store, int64_t trxId);
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_Backup(OH_Rdb_Store *store, const char *databasePath);
+int OH_Rdb_Backup(OH_Rdb_Store *store, const char *databasePath)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Restores a database from a specified database file.
@@ -887,7 +918,8 @@ int OH_Rdb_Backup(OH_Rdb_Store *store, const char *databasePath);
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_Restore(OH_Rdb_Store *store, const char *databasePath);
+int OH_Rdb_Restore(OH_Rdb_Store *store, const char *databasePath)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the version of a database.
@@ -900,7 +932,7 @@ int OH_Rdb_Restore(OH_Rdb_Store *store, const char *databasePath);
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_GetVersion(OH_Rdb_Store *store, int *version);
+int OH_Rdb_GetVersion(OH_Rdb_Store *store, int *version) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the version of a database.
@@ -913,7 +945,7 @@ int OH_Rdb_GetVersion(OH_Rdb_Store *store, int *version);
  * @see OH_Rdb_Store.
  * @since 10
  */
-int OH_Rdb_SetVersion(OH_Rdb_Store *store, int version);
+int OH_Rdb_SetVersion(OH_Rdb_Store *store, int version) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Describes the distribution type of the tables.
@@ -965,7 +997,8 @@ typedef struct Rdb_DistributedConfig {
  * @since 11
  */
 int OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint32_t count, Rdb_DistributedType type,
-    const Rdb_DistributedConfig *config);
+    const Rdb_DistributedConfig *config)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set table to be distributed table.
@@ -985,7 +1018,8 @@ int OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint3
  * @since 11
  */
 OH_Cursor *OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, const char *columnName,
-    OH_VObject *values);
+    OH_VObject *values)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Describes the change type.
@@ -1178,7 +1212,8 @@ typedef struct Rdb_DataObserver {
  * @see Rdb_DataObserver.
  * @since 11
  */
-int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer);
+int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Remove specified observer of specified type from the database.
@@ -1194,7 +1229,8 @@ int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Data
  * @see Rdb_DataObserver.
  * @since 11
  */
-int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer);
+int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Indicates the database synchronization mode.
@@ -1375,7 +1411,8 @@ typedef struct Rdb_ProgressDetails {
  * @see Rdb_TableDetails
  * @since 11
  */
-Rdb_TableDetails *OH_Rdb_GetTableDetails(Rdb_ProgressDetails *progress, int32_t version);
+Rdb_TableDetails *OH_Rdb_GetTableDetails(Rdb_ProgressDetails *progress, int32_t version)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief The callback function of progress.
@@ -1428,7 +1465,8 @@ typedef struct Rdb_ProgressObserver {
  * @since 11
  */
 int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count,
-    const Rdb_ProgressObserver *observer);
+    const Rdb_ProgressObserver *observer)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Subscribes to the automatic synchronization progress of an RDB store.
@@ -1444,7 +1482,8 @@ int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[
  * @see Rdb_ProgressObserver.
  * @since 11
  **/
-int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer);
+int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unsubscribes from the automatic synchronization progress of an RDB store.
@@ -1459,7 +1498,8 @@ int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObse
  * @see Rdb_ProgressObserver.
  * @since 11
  */
-int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer);
+int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Lock data from the database based on specified conditions.
@@ -1473,7 +1513,8 @@ int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressOb
  * @see OH_Rdb_Store, OH_Predicates, OH_Rdb_ErrCode.
  * @since 12
  */
-int OH_Rdb_LockRow(OH_Rdb_Store *store, OH_Predicates *predicates);
+int OH_Rdb_LockRow(OH_Rdb_Store *store, OH_Predicates *predicates)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unlock data from the database based on specified conditions.
@@ -1487,7 +1528,8 @@ int OH_Rdb_LockRow(OH_Rdb_Store *store, OH_Predicates *predicates);
  * @see OH_Rdb_Store, OH_Predicates, OH_Rdb_ErrCode.
  * @since 12
  */
-int OH_Rdb_UnlockRow(OH_Rdb_Store *store, OH_Predicates *predicates);
+int OH_Rdb_UnlockRow(OH_Rdb_Store *store, OH_Predicates *predicates)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Queries locked data in the database based on specified conditions.
@@ -1503,7 +1545,8 @@ int OH_Rdb_UnlockRow(OH_Rdb_Store *store, OH_Predicates *predicates);
  * @since 12
  */
 OH_Cursor *OH_Rdb_QueryLockedRow(
-    OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length);
+    OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an OH_Rdb_Transaction instance object.
@@ -1529,7 +1572,8 @@ OH_Cursor *OH_Rdb_QueryLockedRow(
  * @see OH_RdbTrans_Destroy.
  * @since 18
  */
-int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans);
+int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Attaches a database file to the currently linked database.
@@ -1560,7 +1604,8 @@ int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *opt
  * @since 20
  */
 int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char *attachName, int64_t waitTime,
-    size_t *attachedNumber);
+    size_t *attachedNumber)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Detaches a database from this database.
@@ -1590,7 +1635,8 @@ int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char
  * @see OH_Rdb_Store, OH_Rdb_ErrCode.
  * @since 20
  */
-int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime, size_t *attachedNumber);
+int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime, size_t *attachedNumber)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Support for collations in different languages.
@@ -1608,7 +1654,71 @@ int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime,
  * @see OH_Rdb_Store.
  * @since 20
  */
-int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale);
+int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale) __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief The callback function of database corruption handle.
+ *
+ * @param context Represents the context corruption handler.
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
+ * @since 22
+ */
+typedef void (*Rdb_CorruptedHandler)(void *context, OH_Rdb_ConfigV2 *config, OH_Rdb_Store *store);
+
+/**
+ * @brief Registers corrupted handler for the database.
+ *
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param context Represents the context corruption handle.
+ * @param handler The callback function of database corruption handle.
+ * @return Returns a specific error code.
+ *     {@link RDB_OK} if the execution is successful.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ *     {@link RDB_E_SUB_OVER_LIMIT} - Indicates the number of subscriptions exceeds the limit.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_RegisterCorruptedHandler.
+ * @since 22
+ */
+int OH_Rdb_RegisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Unregisters corrupted handler for the database.
+ *
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param context Represents the context corruption handle.
+ * @param handler The callback function of database corruption handle.
+ * @return Returns a specific error code.
+ *     {@link RDB_OK} if the execution is successful.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_UnregisterCorruptedHandler.
+ * @since 22
+ */
+int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Change the encrypted database key.
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param param Represents a pointer to an instance of OH_Rdb_CryptoParam.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_ERROR} database common error.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ * @since 22
+ */
+int OH_Rdb_RekeyEx(OH_Rdb_Store *store, OH_Rdb_CryptoParam *param)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 };

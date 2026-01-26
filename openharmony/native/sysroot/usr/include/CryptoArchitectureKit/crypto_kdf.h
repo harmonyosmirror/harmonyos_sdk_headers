@@ -36,6 +36,7 @@
 #ifndef CRYPTO_KDF_H
 #define CRYPTO_KDF_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 
 #ifdef __cplusplus
@@ -99,7 +100,8 @@ typedef enum {
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfParams **params);
+OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfParams **params)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets a parameter to the KDF parameters.
@@ -115,7 +117,8 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfPa
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, CryptoKdf_ParamType type,
-    Crypto_DataBlob *value);
+    Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the KDF params.
@@ -123,7 +126,7 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, Crypto
  * @param params Indicates the KDF parameters.
  * @since 20
  */
-void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params);
+void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates a KDF context.
@@ -137,7 +140,8 @@ void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx);
+OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Derives a key.
@@ -154,7 +158,8 @@ OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx);
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoKdf_Derive(OH_CryptoKdf *ctx, const OH_CryptoKdfParams *params, int keyLen,
-    Crypto_DataBlob *key);
+    Crypto_DataBlob *key)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the KDF context.
@@ -162,7 +167,7 @@ OH_Crypto_ErrCode OH_CryptoKdf_Derive(OH_CryptoKdf *ctx, const OH_CryptoKdfParam
  * @param ctx The KDF context.
  * @since 20
  */
-void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx);
+void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 
 #ifdef __cplusplus

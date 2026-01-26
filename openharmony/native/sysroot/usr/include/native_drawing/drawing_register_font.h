@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_REGISTER_FONT_H
 #define C_INCLUDE_DRAWING_REGISTER_FONT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_text_declaration.h"
 #include "drawing_types.h"
 
@@ -57,7 +58,8 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection*, const char* fontFamily, const char* familySrc);
+uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection*, const char* fontFamily, const char* familySrc)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines an <b>OH_Drawing_RegisterFontBuffer</b>, which is used to register a customized font in the
@@ -73,7 +75,8 @@ uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection*, const char* fontFam
  * @version 1.0
  */
 uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* fontFamily, uint8_t* fontBuffer,
-    size_t length);
+    size_t length)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregister a customized font by the font family.
@@ -87,7 +90,8 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
  * @return error code.
  * @since 20
  */
-uint32_t OH_Drawing_UnregisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily);
+uint32_t OH_Drawing_UnregisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

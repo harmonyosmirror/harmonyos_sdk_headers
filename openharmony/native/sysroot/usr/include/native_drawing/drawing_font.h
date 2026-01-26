@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_FONT_H
 #define C_INCLUDE_DRAWING_FONT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -55,7 +56,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Font* OH_Drawing_FontCreate(void);
+OH_Drawing_Font* OH_Drawing_FontCreate(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enumerates font hinting pattern.
@@ -98,7 +99,8 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetBaselineSnap(OH_Drawing_Font* font, bool baselineSnap);
+void OH_Drawing_FontSetBaselineSnap(OH_Drawing_Font* font, bool baselineSnap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether the font baselines and pixels alignment when the transformation matrix is ​​axis aligned.
@@ -109,7 +111,8 @@ void OH_Drawing_FontSetBaselineSnap(OH_Drawing_Font* font, bool baselineSnap);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_FontIsBaselineSnap(const OH_Drawing_Font* font);
+bool OH_Drawing_FontIsBaselineSnap(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether the font uses sub-pixel rendering.
@@ -120,7 +123,8 @@ bool OH_Drawing_FontIsBaselineSnap(const OH_Drawing_Font* font);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetSubpixel(OH_Drawing_Font* font, bool isSubpixel);
+void OH_Drawing_FontSetSubpixel(OH_Drawing_Font* font, bool isSubpixel)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether the font uses sub-pixel rendering.
@@ -131,7 +135,7 @@ void OH_Drawing_FontSetSubpixel(OH_Drawing_Font* font, bool isSubpixel);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_FontIsSubpixel(const OH_Drawing_Font* font);
+bool OH_Drawing_FontIsSubpixel(const OH_Drawing_Font* font) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether the font outline is automatically adjusted.
@@ -142,7 +146,8 @@ bool OH_Drawing_FontIsSubpixel(const OH_Drawing_Font* font);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetForceAutoHinting(OH_Drawing_Font* font, bool isForceAutoHinting);
+void OH_Drawing_FontSetForceAutoHinting(OH_Drawing_Font* font, bool isForceAutoHinting)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether the font outline is automatically adjusted.
@@ -153,7 +158,8 @@ void OH_Drawing_FontSetForceAutoHinting(OH_Drawing_Font* font, bool isForceAutoH
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_FontIsForceAutoHinting(const OH_Drawing_Font* font);
+bool OH_Drawing_FontIsForceAutoHinting(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets an <b>OH_Drawing_Typeface</b> object for an <b>OH_Drawing_Font</b> object.
@@ -164,7 +170,8 @@ bool OH_Drawing_FontIsForceAutoHinting(const OH_Drawing_Font* font);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FontSetTypeface(OH_Drawing_Font* font, OH_Drawing_Typeface* typeface);
+void OH_Drawing_FontSetTypeface(OH_Drawing_Font* font, OH_Drawing_Typeface* typeface)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets an <b>OH_Drawing_Typeface</b> object from the <b>OH_Drawing_Typeface</b> object.
@@ -175,7 +182,8 @@ void OH_Drawing_FontSetTypeface(OH_Drawing_Font* font, OH_Drawing_Typeface* type
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Typeface* OH_Drawing_FontGetTypeface(OH_Drawing_Font* font);
+OH_Drawing_Typeface* OH_Drawing_FontGetTypeface(OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets text size for an <b>OH_Drawing_Font</b> object.
@@ -186,7 +194,8 @@ OH_Drawing_Typeface* OH_Drawing_FontGetTypeface(OH_Drawing_Font* font);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FontSetTextSize(OH_Drawing_Font* font, float textSize);
+void OH_Drawing_FontSetTextSize(OH_Drawing_Font* font, float textSize)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets text size for an <b>OH_Drawing_Font</b> object.
@@ -197,7 +206,7 @@ void OH_Drawing_FontSetTextSize(OH_Drawing_Font* font, float textSize);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_FontGetTextSize(const OH_Drawing_Font* font);
+float OH_Drawing_FontGetTextSize(const OH_Drawing_Font* font) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Calculate number of glyphs represented by text.
@@ -211,7 +220,8 @@ float OH_Drawing_FontGetTextSize(const OH_Drawing_Font* font);
  * @version 1.0
  */
 int OH_Drawing_FontCountText(OH_Drawing_Font* font, const void* text, size_t byteLength,
-    OH_Drawing_TextEncoding encoding);
+    OH_Drawing_TextEncoding encoding)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Converts text into glyph indices.
@@ -228,7 +238,8 @@ int OH_Drawing_FontCountText(OH_Drawing_Font* font, const void* text, size_t byt
  * @version 1.0
  */
 uint32_t OH_Drawing_FontTextToGlyphs(const OH_Drawing_Font* font, const void* text, uint32_t byteLength,
-    OH_Drawing_TextEncoding encoding, uint16_t* glyphs, int maxGlyphCount);
+    OH_Drawing_TextEncoding encoding, uint16_t* glyphs, int maxGlyphCount)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Retrieves the advance for each glyph in glyphs.
@@ -241,7 +252,8 @@ uint32_t OH_Drawing_FontTextToGlyphs(const OH_Drawing_Font* font, const void* te
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontGetWidths(const OH_Drawing_Font* font, const uint16_t* glyphs, int count, float* widths);
+void OH_Drawing_FontGetWidths(const OH_Drawing_Font* font, const uint16_t* glyphs, int count, float* widths)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Measures the width of a single character.
@@ -258,7 +270,8 @@ void OH_Drawing_FontGetWidths(const OH_Drawing_Font* font, const uint16_t* glyph
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacter(const OH_Drawing_Font* font, const char* str,
-    float* textWidth);
+    float* textWidth)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Measures the width of a single character with font features.
@@ -276,7 +289,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacter(const OH_Drawing_Font
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacterWithFeatures(const OH_Drawing_Font* font, const char* str,
-    const OH_Drawing_FontFeatures* fontFeatures, float* textWidth);
+    const OH_Drawing_FontFeatures* fontFeatures, float* textWidth)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Measures the width of text.
@@ -296,7 +310,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacterWithFeatures(const OH_
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontMeasureText(const OH_Drawing_Font* font, const void* text, size_t byteLength,
-    OH_Drawing_TextEncoding encoding, OH_Drawing_Rect* bounds, float* textWidth);
+    OH_Drawing_TextEncoding encoding, OH_Drawing_Rect* bounds, float* textWidth)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Measures the width of text with brush or pen.
@@ -319,7 +334,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureText(const OH_Drawing_Font* font, con
  */
 OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_Font* font, const void* text,
     size_t byteLength, OH_Drawing_TextEncoding encoding, const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen,
-    OH_Drawing_Rect* bounds, float* textWidth);
+    OH_Drawing_Rect* bounds, float* textWidth)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Retrieves the advance and bounding box for each glyph in glyphs.
@@ -340,7 +356,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_F
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,
-    const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, float* widths, OH_Drawing_Array* bounds);
+    const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, float* widths, OH_Drawing_Array* bounds)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Retrieves the positions for each glyph, beginning at the specified origin.
@@ -359,7 +376,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font,
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetPos(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,
-    const OH_Drawing_Point* origin, OH_Drawing_Point2D* points);
+    const OH_Drawing_Point* origin, OH_Drawing_Point2D* points)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Returns the recommended spacing between lines.
@@ -373,7 +391,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPos(const OH_Drawing_Font* font, const ui
  * @since 19
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing(const OH_Drawing_Font* font, float* spacing);
+OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing(const OH_Drawing_Font* font, float* spacing)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Enables or disables linearly scalable font for an <b>OH_Drawing_Font</b> object.
@@ -384,7 +403,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing(const OH_Drawing_Font* font, floa
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FontSetLinearText(OH_Drawing_Font* font, bool isLinearText);
+void OH_Drawing_FontSetLinearText(OH_Drawing_Font* font, bool isLinearText)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets whether the font is linearly scalable.
@@ -395,7 +415,7 @@ void OH_Drawing_FontSetLinearText(OH_Drawing_Font* font, bool isLinearText);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_FontIsLinearText(const OH_Drawing_Font* font);
+bool OH_Drawing_FontIsLinearText(const OH_Drawing_Font* font) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets text skew on x-axis for an <b>OH_Drawing_Font</b> object.
@@ -406,7 +426,8 @@ bool OH_Drawing_FontIsLinearText(const OH_Drawing_Font* font);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FontSetTextSkewX(OH_Drawing_Font* font, float skewX);
+void OH_Drawing_FontSetTextSkewX(OH_Drawing_Font* font, float skewX)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets text skew on x-axis for an <b>OH_Drawing_Font</b> object.
@@ -417,7 +438,8 @@ void OH_Drawing_FontSetTextSkewX(OH_Drawing_Font* font, float skewX);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_FontGetTextSkewX(const OH_Drawing_Font* font);
+float OH_Drawing_FontGetTextSkewX(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Enables or disables to increase stroke width to approximate bold fonts for an <b>OH_Drawing_Font</b> object.
@@ -428,7 +450,8 @@ float OH_Drawing_FontGetTextSkewX(const OH_Drawing_Font* font);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FontSetFakeBoldText(OH_Drawing_Font* font, bool isFakeBoldText);
+void OH_Drawing_FontSetFakeBoldText(OH_Drawing_Font* font, bool isFakeBoldText)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets whether to increase the stroke width to approximate bold fonts.
@@ -439,7 +462,8 @@ void OH_Drawing_FontSetFakeBoldText(OH_Drawing_Font* font, bool isFakeBoldText);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_FontIsFakeBoldText(const OH_Drawing_Font* font);
+bool OH_Drawing_FontIsFakeBoldText(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets text scale on x-axis for an <b>OH_Drawing_Font</b> object.
@@ -450,7 +474,8 @@ bool OH_Drawing_FontIsFakeBoldText(const OH_Drawing_Font* font);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetScaleX(OH_Drawing_Font* font, float scaleX);
+void OH_Drawing_FontSetScaleX(OH_Drawing_Font* font, float scaleX)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets text scale on x-axis from an <b>OH_Drawing_Font</b> object.
@@ -461,7 +486,7 @@ void OH_Drawing_FontSetScaleX(OH_Drawing_Font* font, float scaleX);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_FontGetScaleX(const OH_Drawing_Font* font);
+float OH_Drawing_FontGetScaleX(const OH_Drawing_Font* font) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets hinting pattern for an <b>OH_Drawing_Font</b> object.
@@ -472,7 +497,8 @@ float OH_Drawing_FontGetScaleX(const OH_Drawing_Font* font);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetHinting(OH_Drawing_Font* font, OH_Drawing_FontHinting fontHinting);
+void OH_Drawing_FontSetHinting(OH_Drawing_Font* font, OH_Drawing_FontHinting fontHinting)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets hinting pattern from an <b>OH_Drawing_Font</b> object.
@@ -483,7 +509,8 @@ void OH_Drawing_FontSetHinting(OH_Drawing_Font* font, OH_Drawing_FontHinting fon
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontHinting OH_Drawing_FontGetHinting(const OH_Drawing_Font* font);
+OH_Drawing_FontHinting OH_Drawing_FontGetHinting(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to use bitmaps instead of outlines in the <b>OH_Drawing_Font</b> object.
@@ -494,7 +521,8 @@ OH_Drawing_FontHinting OH_Drawing_FontGetHinting(const OH_Drawing_Font* font);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetEmbeddedBitmaps(OH_Drawing_Font* font, bool isEmbeddedBitmaps);
+void OH_Drawing_FontSetEmbeddedBitmaps(OH_Drawing_Font* font, bool isEmbeddedBitmaps)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets whether to use bitmaps instead of outlines in the <b>OH_Drawing_Font</b> object.
@@ -505,7 +533,8 @@ void OH_Drawing_FontSetEmbeddedBitmaps(OH_Drawing_Font* font, bool isEmbeddedBit
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_FontIsEmbeddedBitmaps(const OH_Drawing_Font* font);
+bool OH_Drawing_FontIsEmbeddedBitmaps(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the font edging effect for an <b>OH_Drawing_Font</b> object.
@@ -516,7 +545,8 @@ bool OH_Drawing_FontIsEmbeddedBitmaps(const OH_Drawing_Font* font);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FontSetEdging(OH_Drawing_Font* font, OH_Drawing_FontEdging fontEdging);
+void OH_Drawing_FontSetEdging(OH_Drawing_Font* font, OH_Drawing_FontEdging fontEdging)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the font edging effect from an <b>OH_Drawing_Font</b> object.
@@ -527,7 +557,8 @@ void OH_Drawing_FontSetEdging(OH_Drawing_Font* font, OH_Drawing_FontEdging fontE
  * @since 12
  * @version 1.0
  */
-OH_Drawing_FontEdging OH_Drawing_FontGetEdging(const OH_Drawing_Font* font);
+OH_Drawing_FontEdging OH_Drawing_FontGetEdging(const OH_Drawing_Font* font)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Font</b> object and reclaims the memory occupied by the object.
@@ -537,7 +568,7 @@ OH_Drawing_FontEdging OH_Drawing_FontGetEdging(const OH_Drawing_Font* font);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FontDestroy(OH_Drawing_Font* font);
+void OH_Drawing_FontDestroy(OH_Drawing_Font* font) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines a run, supplies storage for the metrics of an <b>OH_Drawing_Font</b>.
@@ -590,7 +621,8 @@ typedef struct OH_Drawing_Font_Metrics {
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* fontMetrics);
+float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* fontMetrics)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Retrieves the bound rect for each glyph in glyph array.
@@ -608,7 +640,8 @@ float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* 
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetBounds(const OH_Drawing_Font* font, const uint16_t* glyphs, uint32_t count,
-    OH_Drawing_Array* bounds);
+    OH_Drawing_Array* bounds)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Retrieves the path for specified Glyph.
@@ -625,7 +658,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetBounds(const OH_Drawing_Font* font, const
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph(const OH_Drawing_Font* font, uint16_t glyph,
-    OH_Drawing_Path* path);
+    OH_Drawing_Path* path)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the text outline path.
@@ -645,7 +679,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph(const OH_Drawing_Font* font,
  * @since 18
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, const void* text, size_t byteLength,
-    OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path);
+    OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_FontFeatures</b> object.
@@ -657,7 +692,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
  * @since 20
  * @version 1.0
  */
-OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void);
+OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Adds a font feature for an <b>OH_Drawing_FontFeatures</b> object.
@@ -673,7 +708,8 @@ OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void);
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontFeaturesAddFeature(OH_Drawing_FontFeatures* fontFeatures,
-    const char* name, float value);
+    const char* name, float value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_FontFeatures</b> object and reclaims the memory occupied by the object.
@@ -686,7 +722,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontFeaturesAddFeature(OH_Drawing_FontFeatures* 
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fontFeatures);
+OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fontFeatures)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets whether to follow the theme font. If the value is true, the theme font is used when typeface is not set.
@@ -699,7 +736,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fon
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font is nullptr.
  * @since 15
  */
-OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, bool followed);
+OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, bool followed)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Gets whether to follow the theme font.
@@ -712,7 +750,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, 
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font or followed is nullptr.
  * @since 15
  */
-OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed(const OH_Drawing_Font* font, bool* followed);
+OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed(const OH_Drawing_Font* font, bool* followed)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 #ifdef __cplusplus
 }

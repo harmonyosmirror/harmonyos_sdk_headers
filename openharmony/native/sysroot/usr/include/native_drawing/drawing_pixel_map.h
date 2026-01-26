@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_PIXEL_MAP_H
 #define C_INCLUDE_DRAWING_PIXEL_MAP_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -69,7 +70,8 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* nativePixelMap);
+OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* nativePixelMap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets an <b>OH_Drawing_PixelMap</b> object.
@@ -82,7 +84,8 @@ OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* n
  * @since 12
  * @version 1.0
  */
-OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNative* pixelmapNative);
+OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNative* pixelmapNative)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Dissolves the relationship between <b>OH_Drawing_PixelMap</b> object and <b>NativePixelMap_</b> or
@@ -93,7 +96,8 @@ OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNativ
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PixelMapDissolve(OH_Drawing_PixelMap* pixelMap);
+void OH_Drawing_PixelMapDissolve(OH_Drawing_PixelMap* pixelMap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

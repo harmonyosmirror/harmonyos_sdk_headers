@@ -1,6 +1,7 @@
 #ifndef	_DLFCN_H
 #define	_DLFCN_H
 
+#include "info/application_target_sdk_version.h"
 #include <features.h>
 #include <stdbool.h>
 
@@ -36,7 +37,8 @@ void  *dlsym(void *__restrict, const char *__restrict);
  * @return On success, return the address associated with symbol. On failure, return NULL
  * @since 12
 */
-void *dlvsym(void *__restrict, const char *__restrict, const char *__restrict);
+void *dlvsym(void *__restrict, const char *__restrict, const char *__restrict)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /* namespace apis */
 #define NS_NAME_MAX 255

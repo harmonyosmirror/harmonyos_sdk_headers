@@ -35,6 +35,7 @@
 #ifndef MINDSPORE_INCLUDE_C_API_TENSOE_C_H
 #define MINDSPORE_INCLUDE_C_API_TENSOE_C_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include "mindspore/status.h"
 #include "mindspore/types.h"
@@ -66,14 +67,15 @@ typedef void *OH_AI_AllocatorHandle;
  * @since 9
  */
 OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate(const char *name, OH_AI_DataType type, const int64_t *shape,
-                                                size_t shape_num, const void *data, size_t data_len);
+                                                size_t shape_num, const void *data, size_t data_len)
+                                                __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroy the tensor object.
  * @param tensor Tensor object handle address.
  * @since 9
  */
-OH_AI_API void OH_AI_TensorDestroy(OH_AI_TensorHandle *tensor);
+OH_AI_API void OH_AI_TensorDestroy(OH_AI_TensorHandle *tensor) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain a deep copy of the tensor.
@@ -81,7 +83,8 @@ OH_AI_API void OH_AI_TensorDestroy(OH_AI_TensorHandle *tensor);
  * @return Tensor object handle.
  * @since 9
  */
-OH_AI_API OH_AI_TensorHandle OH_AI_TensorClone(OH_AI_TensorHandle tensor);
+OH_AI_API OH_AI_TensorHandle OH_AI_TensorClone(OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the name for the tensor.
@@ -89,7 +92,8 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorClone(OH_AI_TensorHandle tensor);
  * @param name The name of the tensor.
  * @since 9
  */
-OH_AI_API void OH_AI_TensorSetName(OH_AI_TensorHandle tensor, const char *name);
+OH_AI_API void OH_AI_TensorSetName(OH_AI_TensorHandle tensor, const char *name)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the name of the tensor.
@@ -97,7 +101,8 @@ OH_AI_API void OH_AI_TensorSetName(OH_AI_TensorHandle tensor, const char *name);
  * @return The name of the tensor.
  * @since 9
  */
-OH_AI_API const char *OH_AI_TensorGetName(const OH_AI_TensorHandle tensor);
+OH_AI_API const char *OH_AI_TensorGetName(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the data type for the tensor.
@@ -105,7 +110,8 @@ OH_AI_API const char *OH_AI_TensorGetName(const OH_AI_TensorHandle tensor);
  * @param type The data type of the tensor.
  * @since 9
  */
-OH_AI_API void OH_AI_TensorSetDataType(OH_AI_TensorHandle tensor, OH_AI_DataType type);
+OH_AI_API void OH_AI_TensorSetDataType(OH_AI_TensorHandle tensor, OH_AI_DataType type)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the data type of the tensor.
@@ -113,7 +119,8 @@ OH_AI_API void OH_AI_TensorSetDataType(OH_AI_TensorHandle tensor, OH_AI_DataType
  * @return The date type of the tensor.
  * @since 9
  */
-OH_AI_API OH_AI_DataType OH_AI_TensorGetDataType(const OH_AI_TensorHandle tensor);
+OH_AI_API OH_AI_DataType OH_AI_TensorGetDataType(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the shape for the tensor.
@@ -122,7 +129,8 @@ OH_AI_API OH_AI_DataType OH_AI_TensorGetDataType(const OH_AI_TensorHandle tensor
  * @param shape_num Dimension of shape.
  * @since 9
  */
-OH_AI_API void OH_AI_TensorSetShape(OH_AI_TensorHandle tensor, const int64_t *shape, size_t shape_num);
+OH_AI_API void OH_AI_TensorSetShape(OH_AI_TensorHandle tensor, const int64_t *shape, size_t shape_num)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the shape of the tensor.
@@ -131,7 +139,8 @@ OH_AI_API void OH_AI_TensorSetShape(OH_AI_TensorHandle tensor, const int64_t *sh
  * @return The shape array of the tensor.
  * @since 9
  */
-OH_AI_API const int64_t *OH_AI_TensorGetShape(const OH_AI_TensorHandle tensor, size_t *shape_num);
+OH_AI_API const int64_t *OH_AI_TensorGetShape(const OH_AI_TensorHandle tensor, size_t *shape_num)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the format for the tensor.
@@ -139,7 +148,8 @@ OH_AI_API const int64_t *OH_AI_TensorGetShape(const OH_AI_TensorHandle tensor, s
  * @param format The format of the tensor.
  * @since 9
  */
-OH_AI_API void OH_AI_TensorSetFormat(OH_AI_TensorHandle tensor, OH_AI_Format format);
+OH_AI_API void OH_AI_TensorSetFormat(OH_AI_TensorHandle tensor, OH_AI_Format format)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the format of the tensor.
@@ -147,7 +157,8 @@ OH_AI_API void OH_AI_TensorSetFormat(OH_AI_TensorHandle tensor, OH_AI_Format for
  * @return The format of the tensor.
  * @since 9
  */
-OH_AI_API OH_AI_Format OH_AI_TensorGetFormat(const OH_AI_TensorHandle tensor);
+OH_AI_API OH_AI_Format OH_AI_TensorGetFormat(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the data for the tensor.
@@ -155,7 +166,8 @@ OH_AI_API OH_AI_Format OH_AI_TensorGetFormat(const OH_AI_TensorHandle tensor);
  * @param data A pointer to the data of the tensor.
  * @since 9
  */
-OH_AI_API void OH_AI_TensorSetData(OH_AI_TensorHandle tensor, void *data);
+OH_AI_API void OH_AI_TensorSetData(OH_AI_TensorHandle tensor, void *data)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the data pointer of the tensor.
@@ -163,7 +175,8 @@ OH_AI_API void OH_AI_TensorSetData(OH_AI_TensorHandle tensor, void *data);
  * @return The data pointer of the tensor.
  * @since 9
  */
-OH_AI_API const void *OH_AI_TensorGetData(const OH_AI_TensorHandle tensor);
+OH_AI_API const void *OH_AI_TensorGetData(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the mutable data pointer of the tensor. If the internal data is empty, it will allocate memory.
@@ -171,7 +184,8 @@ OH_AI_API const void *OH_AI_TensorGetData(const OH_AI_TensorHandle tensor);
  * @return The data pointer of the tensor.
  * @since 9
  */
-OH_AI_API void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor);
+OH_AI_API void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the element number of the tensor.
@@ -179,7 +193,8 @@ OH_AI_API void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor);
  * @return The element number of the tensor.
  * @since 9
  */
-OH_AI_API int64_t OH_AI_TensorGetElementNum(const OH_AI_TensorHandle tensor);
+OH_AI_API int64_t OH_AI_TensorGetElementNum(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the data size fo the tensor.
@@ -187,7 +202,8 @@ OH_AI_API int64_t OH_AI_TensorGetElementNum(const OH_AI_TensorHandle tensor);
  * @return The data size of the tensor.
  * @since 9
  */
-OH_AI_API size_t OH_AI_TensorGetDataSize(const OH_AI_TensorHandle tensor);
+OH_AI_API size_t OH_AI_TensorGetDataSize(const OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the data for the tensor with user-allocated data buffer.
@@ -203,7 +219,8 @@ OH_AI_API size_t OH_AI_TensorGetDataSize(const OH_AI_TensorHandle tensor);
  * @return OH_AI_STATUS_SUCCESS if success, or detail error code if failed.
  * @since 10
  */
-OH_AI_API OH_AI_Status OH_AI_TensorSetUserData(OH_AI_TensorHandle tensor, void *data, size_t data_size);
+OH_AI_API OH_AI_Status OH_AI_TensorSetUserData(OH_AI_TensorHandle tensor, void *data, size_t data_size)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get allocator for the tensor.
@@ -214,7 +231,8 @@ OH_AI_API OH_AI_Status OH_AI_TensorSetUserData(OH_AI_TensorHandle tensor, void *
  * @return handle of the tensor's allocator.
  * @since 12
  */
-OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor);
+OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set allocator to the tensor.
@@ -227,7 +245,8 @@ OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tens
  * @return OH_AI_STATUS_SUCCESS if success, or detail error code if failed.
  * @since 12
  */
-OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator);
+OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

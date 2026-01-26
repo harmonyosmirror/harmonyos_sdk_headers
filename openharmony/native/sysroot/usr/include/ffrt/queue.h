@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_QUEUE_H
 #define FFRT_API_C_QUEUE_H
 
+#include "info/application_target_sdk_version.h"
 #include "type_def.h"
 
 /**
@@ -67,7 +68,7 @@ typedef void* ffrt_queue_t;
            returns <b>-1</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
+FFRT_C_API int ffrt_queue_attr_init(ffrt_queue_attr_t* attr) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroys a queue attribute, the user needs to invoke this interface.
@@ -75,7 +76,8 @@ FFRT_C_API int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
  * @param attr Indicates a pointer to the queue attribute.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
+FFRT_C_API void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the QoS for a queue attribute.
@@ -84,7 +86,8 @@ FFRT_C_API void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
  * @param qos Indicates the QoS.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos);
+FFRT_C_API void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the QoS of a queue attribute.
@@ -93,7 +96,8 @@ FFRT_C_API void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
  * @return Returns the QoS.
  * @since 10
  */
-FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
+FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the execution timeout of a serial queue attribute.
@@ -104,7 +108,8 @@ FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
  * @param timeout_us Serial queue task execution timeout.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us);
+FFRT_C_API void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the execution timeout of a serial queue attribute.
@@ -113,7 +118,8 @@ FFRT_C_API void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t ti
  * @return Returns the serial queue task execution timeout.
  * @since 10
  */
-FFRT_C_API uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
+FFRT_C_API uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the timeout callback function of a serial queue attribute.
@@ -123,7 +129,8 @@ FFRT_C_API uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
  * @param f Serial queue timeout callback function.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f);
+FFRT_C_API void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the timeout callback function of a serial queue attribute.
@@ -132,7 +139,8 @@ FFRT_C_API void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_funct
  * @return Returns the serial queue task timeout callback function.
  * @since 10
  */
-FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr);
+FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Sets the queue max concurrency of a queue attribute.
@@ -141,7 +149,8 @@ FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue
  * @param max_concurrency queue max_concurrency.
  * @since 12
  */
-FFRT_C_API void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
+FFRT_C_API void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the queue max concurrency of a queue attribute.
@@ -150,7 +159,8 @@ FFRT_C_API void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, con
  * @return Returns the queue max concurrency.
  * @since 12
  */
-FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
+FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the execution mode of a queue attribute.
@@ -165,7 +175,8 @@ FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr
  *           - <b>false</b>: Tasks are executed as coroutines (default).
  * @since 20
  */
-FFRT_C_API void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr,  bool mode);
+FFRT_C_API void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr,  bool mode)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
  
 /**
  * @brief Gets the execution mode of a queue attribute.
@@ -177,7 +188,8 @@ FFRT_C_API void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr,  bool m
  *         returns <b>false</b> if tasks are executed as coroutines (default).
  * @since 20
  */
-FFRT_C_API bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr);
+FFRT_C_API bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates a queue.
@@ -189,7 +201,8 @@ FFRT_C_API bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr);
            returns a null pointer otherwise.
  * @since 10
  */
-FFRT_C_API ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr);
+FFRT_C_API ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroys a queue, the user needs to invoke this interface.
@@ -197,7 +210,7 @@ FFRT_C_API ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* na
  * @param queue Indicates a queue handle.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_destroy(ffrt_queue_t queue);
+FFRT_C_API void ffrt_queue_destroy(ffrt_queue_t queue) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Submits a task to a queue.
@@ -207,7 +220,8 @@ FFRT_C_API void ffrt_queue_destroy(ffrt_queue_t queue);
  * @param attr Indicates a pointer to the task attribute.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
+FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Submits a task to the queue, and obtains a task handle.
@@ -220,7 +234,8 @@ FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f,
  * @since 10
  */
 FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h(
-    ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
+    ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Submits a task to a queue, simplified from of the ffrt_queue_submit interface.
@@ -238,7 +253,8 @@ FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h(
  * @see ffrt_queue_submit
  * @since 20
  */
-FFRT_C_API void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+FFRT_C_API void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Submits a task to a queue, and obtains a task handle, simplified from the ffrt_queue_submit_h interface.
@@ -259,7 +275,8 @@ FFRT_C_API void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, vo
  * @since 20
  */
 FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h_f(
-    ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+    ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Waits until a task in the queue is complete.
@@ -267,7 +284,7 @@ FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h_f(
  * @param handle Indicates a task handle.
  * @since 10
  */
-FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle);
+FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Cancels a task in the queue.
@@ -277,7 +294,7 @@ FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle);
            returns <b>-1</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_queue_cancel(ffrt_task_handle_t handle);
+FFRT_C_API int ffrt_queue_cancel(ffrt_task_handle_t handle) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the application main thread queue.
@@ -285,7 +302,7 @@ FFRT_C_API int ffrt_queue_cancel(ffrt_task_handle_t handle);
  * @return Returns application main thread queue.
  * @since 12
  */
-FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void);
+FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the application worker(ArkTs) thread queue.
@@ -294,7 +311,7 @@ FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void);
  * @deprecated since 18
  * @since 12
  */
-FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void);
+FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif // FFRT_API_C_QUEUE_H
 /** @} */

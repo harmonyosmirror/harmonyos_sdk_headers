@@ -36,6 +36,7 @@
 #ifndef NATIVE_HANDWRITE_API_H
 #define NATIVE_HANDWRITE_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -86,7 +87,8 @@ typedef struct {
  * @since 6.0.0(20)
  */
 int32_t HMS_HandWrite_GetPredictPoint(
-    const HandWrite_HistoricalPoint* event, int32_t size, float *predictPointX, float *predictPointY);
+    const HandWrite_HistoricalPoint* event, int32_t size, float *predictPointX, float *predictPointY)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

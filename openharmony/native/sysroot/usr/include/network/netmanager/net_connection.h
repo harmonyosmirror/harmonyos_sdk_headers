@@ -38,6 +38,7 @@
 #ifndef NATIVE_NET_CONN_API_H
 #define NATIVE_NET_CONN_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <netdb.h>
 
 #include "net_connection_type.h"
@@ -58,7 +59,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet);
+int32_t OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the default activated data network.
@@ -72,7 +73,8 @@ int32_t OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet);
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle);
+int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Checks whether metering is enabled for the default data network.
@@ -86,7 +88,7 @@ int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle);
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered);
+int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the connection properties of a data network.
@@ -101,7 +103,8 @@ int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered);
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *prop);
+int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *prop)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the capabilities of a data network.
@@ -116,7 +119,8 @@ int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapabilities);
+int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapabilities)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the default http proxy.
@@ -129,7 +133,8 @@ int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetC
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy);
+int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get DNS result with netId.
@@ -147,7 +152,8 @@ int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy);
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_GetAddrInfo(char *host, char *serv, struct addrinfo *hint, struct addrinfo **res, int32_t netId);
+int32_t OH_NetConn_GetAddrInfo(char *host, char *serv, struct addrinfo *hint, struct addrinfo **res, int32_t netId)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Free DNS result.
@@ -161,7 +167,7 @@ int32_t OH_NetConn_GetAddrInfo(char *host, char *serv, struct addrinfo *hint, st
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_FreeDnsResult(struct addrinfo *res);
+int32_t OH_NetConn_FreeDnsResult(struct addrinfo *res) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries all activated data networks.
@@ -175,38 +181,38 @@ int32_t OH_NetConn_FreeDnsResult(struct addrinfo *res);
  * @since 11
  * @version 1.0
  */
-int32_t OH_NetConn_GetAllNets(NetConn_NetHandleList *netHandleList);
+int32_t OH_NetConn_GetAllNets(NetConn_NetHandleList *netHandleList)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers a custom DNS resolver.
  *
  * @param resolver Pointer to the custom DNS resolver.
- * @return 0 - Success. 201 - Missing permissions.
+ * @return 0 - Success.
  *         401 - Parameter error. 2100002 - Unable to connect to service.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @deprecated since 13
  * @useinstead OH_NetConn_RegisterDnsResolver
  * @since 11
  * @version 1.0
  */
-int32_t OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
+int32_t OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Unregisters a custom DNS resolver.
  *
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
+ * @return 0 - Success.
+ *         2100002 - Unable to connect to service.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @deprecated since 13
  * @useinstead OH_NetConn_UnregisterDnsResolver
  * @since 11
  * @version 1.0
  */
-int32_t OHOS_NetConn_UnregisterDnsResolver(void);
+int32_t OHOS_NetConn_UnregisterDnsResolver(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Registers a custom DNS resolver.
@@ -214,27 +220,25 @@ int32_t OHOS_NetConn_UnregisterDnsResolver(void);
  * @param resolver Pointer to the custom DNS resolver.
  * @return Returns the result code.
  *         {@link NETMANAGER_EXT_SUCCESS} if the operation is successful.
- *         {@link NETMANAGER_ERR_PERMISSION_DENIED} Missing permissions, add permission.
  *         {@link NETMANAGER_ERR_PARAMETER_ERROR} Parameter error. Please enter a correct parameter.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 13
  * @version 1.0
  */
-int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
+int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unregisters a custom DNS resolver.
  *
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
+ * @return 0 - Success.
+ *         2100002 - Unable to connect to service.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 13
  * @version 1.0
  */
-int32_t OH_NetConn_UnregisterDnsResolver(void);
+int32_t OH_NetConn_UnregisterDnsResolver(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Binds a socket to the specific network.
@@ -249,7 +253,8 @@ int32_t OH_NetConn_UnregisterDnsResolver(void);
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle *netHandle);
+int32_t OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle *netHandle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets http proxy information to current application.
@@ -261,7 +266,8 @@ int32_t OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle *netHandle);
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy);
+int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers callback to listen for changes to the application-level http proxy.
@@ -274,7 +280,8 @@ int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy);
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange appHttpProxyChange, uint32_t *callbackId);
+int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange appHttpProxyChange, uint32_t *callbackId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregisters a callback function that listens for application-level proxy changes.
@@ -284,7 +291,8 @@ int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange ap
  * @since 12
  * @version 1.0
  */
-void OH_NetConn_UnregisterAppHttpProxyCallback(uint32_t callbackId);
+void OH_NetConn_UnregisterAppHttpProxyCallback(uint32_t callbackId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers callback, used to monitor specific network status.
@@ -306,7 +314,8 @@ void OH_NetConn_UnregisterAppHttpProxyCallback(uint32_t callbackId);
  * @version 1.0
  */
 int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetConn_NetConnCallback *netConnCallback,
-                                           uint32_t timeout, uint32_t *callbackId);
+                                           uint32_t timeout, uint32_t *callbackId)
+                                           __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers a callback to listen default network's status changed.
@@ -325,7 +334,8 @@ int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetC
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netConnCallback, uint32_t *callbackId);
+int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netConnCallback, uint32_t *callbackId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregisters network status callback.
@@ -342,7 +352,8 @@ int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netCo
  * @since 12
  * @version 1.0
  */
-int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId);
+int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the URL of the current PAC script.
@@ -357,7 +368,7 @@ int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId);
  * @permission ohos.permission.SET_PAC_URL
  * @since 15
  */
-NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl);
+NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the URL of the current PAC script.
@@ -370,7 +381,7 @@ NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl);
  *         {@link NETCONN_INTERNAL_ERROR} System internal error.
  * @since 15
  */
-NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
+NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Query a network probe result.
@@ -385,7 +396,8 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
  * @permission ohos.permission.INTERNET
  * @since 20
  */
-int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
+int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Query a network trace route.
@@ -399,7 +411,8 @@ int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn
  * @since 20
  */
 int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,
-    NetConn_TraceRouteInfo *traceRouteInfo);
+    NetConn_TraceRouteInfo *traceRouteInfo)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

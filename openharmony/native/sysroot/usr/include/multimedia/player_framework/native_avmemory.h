@@ -38,6 +38,7 @@
 #ifndef NATIVE_AVMEMORY_H
 #define NATIVE_AVMEMORY_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_averrors.h"
 
@@ -63,7 +64,7 @@ typedef struct OH_AVMemory OH_AVMemory;
  * @useinstead OH_AVBuffer_Create
  * @since 10
  */
-OH_AVMemory *OH_AVMemory_Create(int32_t size);
+OH_AVMemory *OH_AVMemory_Create(int32_t size) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Get the memory's virtual address
@@ -76,7 +77,7 @@ OH_AVMemory *OH_AVMemory_Create(int32_t size);
  * @since 9
  * @version 1.0
  */
-uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem);
+uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Get the memory's size
@@ -89,7 +90,7 @@ uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem);
  * @since 9
  * @version 1.0
  */
-int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem);
+int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Clear the internal resources of the memory and destroy the memory
@@ -103,7 +104,7 @@ int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem);
  * @useinstead OH_AVBuffer_Destroy
  * @since 10
  */
-OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem);
+OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #ifdef __cplusplus
 }

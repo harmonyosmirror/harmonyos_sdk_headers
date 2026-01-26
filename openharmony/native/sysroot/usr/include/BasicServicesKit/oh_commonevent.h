@@ -36,6 +36,7 @@
 #ifndef OH_COMMONEVENT_H
 #define OH_COMMONEVENT_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -136,7 +137,8 @@ typedef void (*CommonEvent_ReceiveCallback)(const CommonEvent_RcvData *data);
  * @return Returns the CommonEvent_SubscribeInfo, if allocate memory failed, returns null.
  * @since 12
  */
-CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events[], int32_t eventsNum);
+CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events[], int32_t eventsNum)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the permission of the subscribe information.
@@ -148,7 +150,8 @@ CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 12
  */
-CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeInfo* info, const char* permission);
+CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeInfo* info, const char* permission)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the bundleName of the subscribe information.
@@ -160,7 +163,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeI
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 12
  */
-CommonEvent_ErrCode OH_CommonEvent_SetPublisherBundleName(CommonEvent_SubscribeInfo* info, const char* bundleName);
+CommonEvent_ErrCode OH_CommonEvent_SetPublisherBundleName(CommonEvent_SubscribeInfo* info, const char* bundleName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the subscribe information.
@@ -168,7 +172,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherBundleName(CommonEvent_SubscribeI
  * @param info Indicates the subscribe info.
  * @since 12
  */
-void OH_CommonEvent_DestroySubscribeInfo(CommonEvent_SubscribeInfo* info);
+void OH_CommonEvent_DestroySubscribeInfo(CommonEvent_SubscribeInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a subscriber.
@@ -179,7 +184,8 @@ void OH_CommonEvent_DestroySubscribeInfo(CommonEvent_SubscribeInfo* info);
  * @since 12
  */
 CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_SubscribeInfo* info,
-    CommonEvent_ReceiveCallback callback);
+    CommonEvent_ReceiveCallback callback)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destory the subscriber.
@@ -187,7 +193,8 @@ CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_Subscr
  * @param subscriber Indicates the created subscriber.
  * @since 12
  */
-void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber);
+void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Subscribe event by a subscriber.
@@ -202,7 +209,8 @@ void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber);
  *         Returns {@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED } if a memory allocation error occurs.
  * @since 12
  */
-CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subscriber);
+CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unsubscribe event by a subscriber.
@@ -215,7 +223,8 @@ CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subsc
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
  * @since 12
  */
-CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber);
+CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get event name from callback data.
@@ -224,7 +233,8 @@ CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* sub
  * @return Returns the event name.
  * @since 12
  */
-const char* OH_CommonEvent_GetEventFromRcvData(const CommonEvent_RcvData* rcvData);
+const char* OH_CommonEvent_GetEventFromRcvData(const CommonEvent_RcvData* rcvData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get event code from callback data.
@@ -233,7 +243,8 @@ const char* OH_CommonEvent_GetEventFromRcvData(const CommonEvent_RcvData* rcvDat
  * @return Returns the event of code, default is 0.
  * @since 12
  */
-int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData);
+int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get event data from callback data.
@@ -242,7 +253,8 @@ int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData);
  * @return Returns the event of data, default is null.
  * @since 12
  */
-const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvData);
+const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get event bundlename from callback data.
@@ -251,7 +263,8 @@ const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvD
  * @return Returns the event of bundlename, default is null.
  * @since 12
  */
-const char* OH_CommonEvent_GetBundleNameFromRcvData(const CommonEvent_RcvData* rcvData);
+const char* OH_CommonEvent_GetBundleNameFromRcvData(const CommonEvent_RcvData* rcvData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get event parameters data from callback data.
@@ -260,7 +273,8 @@ const char* OH_CommonEvent_GetBundleNameFromRcvData(const CommonEvent_RcvData* r
  * @return Returns the event parameters data, default is null.
  * @since 12
  */
-const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const CommonEvent_RcvData* rcvData);
+const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const CommonEvent_RcvData* rcvData)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a common event publish information.
@@ -269,7 +283,8 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
  * @return Returns the CommonEvent_PublishInfo, if create failed, returns null.
  * @since 18
  */
-CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered);
+CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroy the common event publish information.
@@ -277,7 +292,8 @@ CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered);
  * @param info Indicates the publish information.
  * @since 18
  */
-void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info);
+void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the bundleName of publish information.
@@ -289,7 +305,8 @@ void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info);
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishInfo* info, const char* bundleName);
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishInfo* info, const char* bundleName)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the permissions of publish information.
@@ -303,7 +320,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info,
-    const char* permissions[], int32_t num);
+    const char* permissions[], int32_t num)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the code of publish information.
@@ -315,7 +333,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* info, int32_t code);
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* info, int32_t code)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the data of publish information.
@@ -329,7 +348,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* info,
-    const char* data, size_t length);
+    const char* data, size_t length)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the parameters of publish information.
@@ -342,7 +362,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishInfo* info,
-    CommonEvent_Parameters* param);
+    CommonEvent_Parameters* param)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Create a common event publish information.
@@ -350,7 +371,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
  * @return Returns the CommonEvent_PublishInfo, if create failed, returns null.
  * @since 18
  */
-CommonEvent_Parameters* OH_CommonEvent_CreateParameters();
+CommonEvent_Parameters* OH_CommonEvent_CreateParameters() __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroy the common event publish information.
@@ -358,7 +379,8 @@ CommonEvent_Parameters* OH_CommonEvent_CreateParameters();
  * @param param Indicates the publish information.
  * @since 18
  */
-void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param);
+void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Check whether the parameters data contains a key.
@@ -368,7 +390,8 @@ void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param);
  * @return Returns the result of check, true means it contains.
  * @since 12
  */
-bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const char* key);
+bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const char* key)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get int data from parameters data by key.
@@ -379,7 +402,8 @@ bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const
  * @return Returns the int data of the key in the parameters.
  * @since 12
  */
-int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, const char* key, const int defaultValue);
+int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, const char* key, const int defaultValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set int data to parameters data by key.
@@ -392,7 +416,8 @@ int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, cons
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* param, const char* key, int value);
+CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* param, const char* key, int value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get int array data from parameters data by key.
@@ -403,7 +428,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* pa
  * @return Returns the length of the array.
  * @since 12
  */
-int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* para, const char* key, int** array);
+int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* para, const char* key, int** array)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set int array data to parameters data by key.
@@ -419,7 +445,8 @@ int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* p
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameters* param, const char* key,
-    const int* value, size_t num);
+    const int* value, size_t num)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get long data from parameters data by key.
@@ -430,7 +457,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameter
  * @return Returns the long data of the key in the parameters.
  * @since 12
  */
-long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, const char* key, const long defaultValue);
+long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, const char* key, const long defaultValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set long data to parameters data by key.
@@ -443,7 +471,8 @@ long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, co
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* param, const char* key, long value);
+CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* param, const char* key, long value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get long array data from parameters data by key.
@@ -454,7 +483,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* p
  * @return Returns the length of the array.
  * @since 12
  */
-int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* para, const char* key, long** array);
+int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* para, const char* key, long** array)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set long array data to parameters data by key.
@@ -470,7 +500,8 @@ int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* 
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Parameters* param, const char* key,
-    const long* value, size_t num);
+    const long* value, size_t num)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get bool data from parameters data by key.
@@ -481,7 +512,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Paramete
  * @return Returns the bool data of the key in the parameters.
  * @since 12
  */
-bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, const char* key, const bool defaultValue);
+bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, const char* key, const bool defaultValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set bool data to parameters data by key.
@@ -494,7 +526,8 @@ bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, co
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* param, const char* key, bool value);
+CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* param, const char* key, bool value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get bool array data from parameters data by key.
@@ -505,7 +538,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* p
  * @return Returns the length of the array.
  * @since 12
  */
-int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* para, const char* key, bool** array);
+int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* para, const char* key, bool** array)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set bool array data to parameters data by key.
@@ -521,7 +555,8 @@ int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* 
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Parameters* param, const char* key,
-    const bool* value, size_t num);
+    const bool* value, size_t num)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get char data from parameters data by key.
@@ -532,7 +567,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Paramete
  * @return Returns the char data of the key in the parameters.
  * @since 12
  */
-char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, const char* key, const char defaultValue);
+char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, const char* key, const char defaultValue)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set char data to parameters data by key.
@@ -545,7 +581,8 @@ char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, co
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* param, const char* key, char value);
+CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* param, const char* key, char value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get char array data from parameters data by key.
@@ -556,7 +593,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* p
  * @return Returns the length of the array.
  * @since 12
  */
-int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* para, const char* key, char** array);
+int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* para, const char* key, char** array)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set char array data to parameters data by key.
@@ -571,7 +609,8 @@ int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* 
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Parameters* param, const char* key,
-    const char* value, size_t num);
+    const char* value, size_t num)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get double data from parameters data by key.
@@ -583,7 +622,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Paramete
  * @since 12
  */
 double OH_CommonEvent_GetDoubleFromParameters(const CommonEvent_Parameters* para, const char* key,
-    const double defaultValue);
+    const double defaultValue)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set double data to parameters data by key.
@@ -597,7 +637,8 @@ double OH_CommonEvent_GetDoubleFromParameters(const CommonEvent_Parameters* para
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters* param, const char* key,
-    double value);
+    double value)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get double array data from parameters data by key.
@@ -609,7 +650,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters*
  * @since 12
  */
 int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters* para, const char* key,
-    double** array);
+    double** array)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set double array data to parameters data by key.
@@ -625,7 +667,8 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parameters* param, const char* key,
-    const double* value, size_t num);
+    const double* value, size_t num)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Publish a commen event.
@@ -640,7 +683,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
+CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Publish a commen event with specified publish information.
@@ -656,7 +699,8 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
  * @since 18
  */
-CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info);
+CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Check an event by a subscriber whether it is ordered.
@@ -665,7 +709,8 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
  * @return Returns the result of check, true means ordered.
  * @since 18
  */
-bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscriber);
+bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Finish an ordered event by a subscriber.
@@ -674,7 +719,8 @@ bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscribe
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */
-bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber);
+bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Check an event by a subscriber whether it is aborted.
@@ -683,7 +729,8 @@ bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber);
  * @return Returns the result of check, true means aborted.
  * @since 18
  */
-bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber);
+bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Abort an ordered event by a subscriber.
@@ -692,7 +739,8 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */
-bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber);
+bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Clear the aborted flag of an ordered event by a subscriber.
@@ -701,7 +749,8 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber);
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */
-bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber);
+bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get code from an ordered event by a subscriber.
@@ -710,7 +759,8 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber);
  * @return Returns the code, default is 0.
  * @since 18
  */
-int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subscriber);
+int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set code to an ordered event by a subscriber.
@@ -720,7 +770,8 @@ int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subsc
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */
-bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int32_t code);
+bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int32_t code)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get data from an ordered event by a subscriber.
@@ -729,7 +780,8 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
  * @return Returns the data, default is null.
  * @since 18
  */
-const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber);
+const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set data to an ordered event by a subscriber.
@@ -740,7 +792,8 @@ const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* s
  * @return Returns the result of operation, true means succeeded.
  * @since 18
  */
-bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, const char* data, size_t length);
+bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, const char* data, size_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

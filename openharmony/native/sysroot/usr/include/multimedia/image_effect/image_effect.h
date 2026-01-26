@@ -36,6 +36,7 @@
 #ifndef NATIVE_IMAGE_EFFECT_H
 #define NATIVE_IMAGE_EFFECT_H
 
+#include "info/application_target_sdk_version.h"
 #include "image_effect_errors.h"
 #include "image_effect_filter.h"
 #include "native_buffer/native_buffer.h"
@@ -63,7 +64,7 @@ typedef struct OH_ImageEffect OH_ImageEffect;
  * @return Returns a pointer to an OH_ImageEffect instance if the execution is successful, otherwise returns nullptr
  * @since 12
  */
-OH_ImageEffect *OH_ImageEffect_Create(const char *name);
+OH_ImageEffect *OH_ImageEffect_Create(const char *name) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create and add the OH_EffectFilter to the OH_ImageEffect
@@ -74,7 +75,8 @@ OH_ImageEffect *OH_ImageEffect_Create(const char *name);
  * @return Returns a pointer to an OH_EffectFilter instance if the filter name is valid, otherwise returns nullptr
  * @since 12
  */
-OH_EffectFilter *OH_ImageEffect_AddFilter(OH_ImageEffect *imageEffect, const char *filterName);
+OH_EffectFilter *OH_ImageEffect_AddFilter(OH_ImageEffect *imageEffect, const char *filterName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add the OH_EffectFilter to the OH_ImageEffect by the OH_EffectFilter instance pointer
@@ -87,7 +89,8 @@ OH_EffectFilter *OH_ImageEffect_AddFilter(OH_ImageEffect *imageEffect, const cha
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffect, OH_EffectFilter *filter);
+ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffect, OH_EffectFilter *filter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create and add the OH_EffectFilter to the OH_ImageEffect by specified position
@@ -100,7 +103,8 @@ ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffe
  * nullptr
  * @since 12
  */
-OH_EffectFilter *OH_ImageEffect_InsertFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName);
+OH_EffectFilter *OH_ImageEffect_InsertFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Insert the OH_EffectFilter to the OH_ImageEffect by the OH_EffectFilter instance pointer
@@ -115,7 +119,8 @@ OH_EffectFilter *OH_ImageEffect_InsertFilter(OH_ImageEffect *imageEffect, uint32
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_InsertFilterByFilter(OH_ImageEffect *imageEffect, uint32_t index,
-    OH_EffectFilter *filter);
+    OH_EffectFilter *filter)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Remove all filters of the specified filter name
@@ -126,7 +131,8 @@ ImageEffect_ErrorCode OH_ImageEffect_InsertFilterByFilter(OH_ImageEffect *imageE
  * @return Returns the number of the filters that matches the specified filter name
  * @since 12
  */
-int32_t OH_ImageEffect_RemoveFilter(OH_ImageEffect *imageEffect, const char *filterName);
+int32_t OH_ImageEffect_RemoveFilter(OH_ImageEffect *imageEffect, const char *filterName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Remove the filter of the specified position
@@ -139,7 +145,8 @@ int32_t OH_ImageEffect_RemoveFilter(OH_ImageEffect *imageEffect, const char *fil
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer or the index is invalid value
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEffect, uint32_t index);
+ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEffect, uint32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create and replace the OH_EffectFilter in the OH_ImageEffect by the filter name
@@ -152,7 +159,8 @@ ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEf
  * nullptr
  * @since 12
  */
-OH_EffectFilter *OH_ImageEffect_ReplaceFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName);
+OH_EffectFilter *OH_ImageEffect_ReplaceFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Replace the OH_EffectFilter in the OH_ImageEffect by the OH_EffectFilter instance pointer
@@ -167,7 +175,8 @@ OH_EffectFilter *OH_ImageEffect_ReplaceFilter(OH_ImageEffect *imageEffect, uint3
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_ReplaceFilterByFilter(OH_ImageEffect *imageEffect, uint32_t index,
-    OH_EffectFilter *filter);
+    OH_EffectFilter *filter)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the number of the filters in OH_ImageEffect
@@ -177,7 +186,8 @@ ImageEffect_ErrorCode OH_ImageEffect_ReplaceFilterByFilter(OH_ImageEffect *image
  * @return Returns the number of the filters in OH_ImageEffect
  * @since 12
  */
-int32_t OH_ImageEffect_GetFilterCount(OH_ImageEffect *imageEffect);
+int32_t OH_ImageEffect_GetFilterCount(OH_ImageEffect *imageEffect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get an OH_EffectFilter instance that add to OH_ImageEffect by the index
@@ -188,7 +198,8 @@ int32_t OH_ImageEffect_GetFilterCount(OH_ImageEffect *imageEffect);
  * @return Returns a pointer to an OH_EffectFilter instance if the index is valid, otherwise returns nullptr
  * @since 12
  */
-OH_EffectFilter *OH_ImageEffect_GetFilter(OH_ImageEffect *imageEffect, uint32_t index);
+OH_EffectFilter *OH_ImageEffect_GetFilter(OH_ImageEffect *imageEffect, uint32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set configuration information to the OH_ImageEffect
@@ -205,7 +216,8 @@ OH_EffectFilter *OH_ImageEffect_GetFilter(OH_ImageEffect *imageEffect, uint32_t 
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_Configure(OH_ImageEffect *imageEffect, const char *key,
-    const ImageEffect_Any *value);
+    const ImageEffect_Any *value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the Surface to the image effect, this interface must be called before
@@ -219,7 +231,8 @@ ImageEffect_ErrorCode OH_ImageEffect_Configure(OH_ImageEffect *imageEffect, cons
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffect, OHNativeWindow *nativeWindow);
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffect, OHNativeWindow *nativeWindow)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the input Surface from the image effect, this interface must be called after
@@ -233,7 +246,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffec
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect, OHNativeWindow **nativeWindow);
+ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect, OHNativeWindow **nativeWindow)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set input pixelmap that contains the image information. It should be noted that the input pixel map will be
@@ -247,7 +261,8 @@ ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffect, OH_PixelmapNative *pixelmap);
+ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffect, OH_PixelmapNative *pixelmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set output pixelmap that contains the image information
@@ -260,7 +275,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffec
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffect, OH_PixelmapNative *pixelmap);
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffect, OH_PixelmapNative *pixelmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set input NativeBuffer that contains the image information. It should be noted that the input NativeBuffer
@@ -274,7 +290,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffe
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageEffect, OH_NativeBuffer *nativeBuffer);
+ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageEffect, OH_NativeBuffer *nativeBuffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set output NativeBuffer that contains the image information
@@ -287,7 +304,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageE
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *imageEffect, OH_NativeBuffer *nativeBuffer);
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *imageEffect, OH_NativeBuffer *nativeBuffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set input URI of the image. It should be noted that the image resource will be directly rendered and modified
@@ -301,7 +319,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *image
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, const char *uri);
+ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, const char *uri)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set output URI of the image
@@ -314,7 +333,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, co
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, const char *uri);
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, const char *uri)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set input picture that contains the image information. It should be noted that the input picture will be
@@ -328,7 +348,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, c
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 13
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture);
+ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set output picture that contains the image information
@@ -341,7 +362,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 13
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture);
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets the ID of the input texture that contains the image information.
@@ -356,7 +378,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffec
  * @since 20
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetInputTextureId(OH_ImageEffect *imageEffect, int32_t textureId,
-    int32_t colorSpace);
+    int32_t colorSpace)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the ID of the output texture that contains the rendered image information.
@@ -371,7 +394,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputTextureId(OH_ImageEffect *imageEffe
  * parameter parameter is missing or incorrect.
  * @since 20
  */
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputTextureId(OH_ImageEffect *imageEffect, int32_t textureId);
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputTextureId(OH_ImageEffect *imageEffect, int32_t textureId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Render the filter effects that can be a single filter or a chain of filters
@@ -387,7 +411,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputTextureId(OH_ImageEffect *imageEff
  * {@link EFFECT_ALLOCATE_MEMORY_FAILED}, the buffer fails to be allocated.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect);
+ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stop rendering the filter effects for next image frame data
@@ -399,7 +424,8 @@ ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect);
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect);
+ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Clear the internal resources of the OH_ImageEffect and destroy the OH_ImageEffect instance
@@ -411,7 +437,8 @@ ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect);
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect);
+ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Convert the OH_ImageEffect and the information of the filters in OH_ImageEffect to JSON string
@@ -425,7 +452,8 @@ ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect);
  * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
-ImageEffect_ErrorCode OH_ImageEffect_Save(OH_ImageEffect *imageEffect, char **info);
+ImageEffect_ErrorCode OH_ImageEffect_Save(OH_ImageEffect *imageEffect, char **info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create an OH_ImageEffect instance by deserializing the JSON string info
@@ -436,7 +464,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Save(OH_ImageEffect *imageEffect, char **in
  * @return Returns a pointer to an OH_ImageEffect instance if the execution is successful, otherwise returns nullptr
  * @since 12
  */
-OH_ImageEffect *OH_ImageEffect_Restore(const char *info);
+OH_ImageEffect *OH_ImageEffect_Restore(const char *info) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

@@ -27,6 +27,7 @@
 #ifndef XEG_VULKAN_ADAPTIVE_VRS_H
 #define XEG_VULKAN_ADAPTIVE_VRS_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <vulkan/vulkan.h>
 
@@ -157,7 +158,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateAdaptiveVRS(
     VkDevice                     device,
     XEG_AdaptiveVRSCreateInfo*   pXegAdaptiveVRSCreateInfo,
     XEG_AdaptiveVRS*             pXegAdaptiveVRS
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Executes the command for computing the adaptive VRS.
@@ -174,7 +176,8 @@ VKAPI_ATTR void VKAPI_CALL HMS_XEG_CmdDispatchAdaptiveVRS(
     VkCommandBuffer                commandBuffer,
     XEG_AdaptiveVRS                xegAdaptiveVRS,
     XEG_AdaptiveVRSDescription*    pXegAdaptiveVRSDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroys an {@link XEG_AdaptiveVRS} object.
@@ -185,7 +188,8 @@ VKAPI_ATTR void VKAPI_CALL HMS_XEG_CmdDispatchAdaptiveVRS(
 */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroyAdaptiveVRS(
     XEG_AdaptiveVRS  xegAdaptiveVRS
-);
+)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

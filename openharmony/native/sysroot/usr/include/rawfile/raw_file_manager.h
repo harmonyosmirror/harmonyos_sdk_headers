@@ -41,6 +41,7 @@
 #ifndef GLOBAL_NATIVE_RESOURCE_MANAGER_H
 #define GLOBAL_NATIVE_RESOURCE_MANAGER_H
 
+#include "info/application_target_sdk_version.h"
 #include "napi/native_api.h"
 #include "raw_dir.h"
 #include "raw_file.h"
@@ -73,7 +74,8 @@ typedef struct NativeResourceManager NativeResourceManager;
  * @since 8
  * @version 1.0
  */
-NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr);
+NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Releases the native resource manager.
@@ -84,7 +86,8 @@ NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env
  * @since 8
  * @version 1.0
  */
-void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr);
+void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Opens a raw file directory.
@@ -102,7 +105,8 @@ void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resM
  * @since 8
  * @version 1.0
  */
-RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName);
+RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Opens a raw file.
@@ -119,7 +123,8 @@ RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const ch
  * @since 8
  * @version 1.0
  */
-RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName);
+RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Opens a raw file.
@@ -136,7 +141,8 @@ RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const 
  * @since 11
  * @version 1.0
  */
-RawFile64 *OH_ResourceManager_OpenRawFile64(const NativeResourceManager *mgr, const char *fileName);
+RawFile64 *OH_ResourceManager_OpenRawFile64(const NativeResourceManager *mgr, const char *fileName)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Whether the rawfile resource is a directory or not.
@@ -148,7 +154,8 @@ RawFile64 *OH_ResourceManager_OpenRawFile64(const NativeResourceManager *mgr, co
  * @since 12
  * @version 1.0
  */
-bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path);
+bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 };

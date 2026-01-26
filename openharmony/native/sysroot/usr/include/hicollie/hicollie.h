@@ -41,6 +41,7 @@
 #ifndef HIVIEWDFX_HICOLLIE_H
 #define HIVIEWDFX_HICOLLIE_H
 
+#include "info/application_target_sdk_version.h"
 #include <time.h>
 #include <stdint.h>
 
@@ -141,7 +142,8 @@ typedef struct HiCollie_DetectionParam {
  *              The function can not be called from main thread.
  * @since 12
  */
-HiCollie_ErrorCode OH_HiCollie_Init_StuckDetection(OH_HiCollie_Task task);
+HiCollie_ErrorCode OH_HiCollie_Init_StuckDetection(OH_HiCollie_Task task)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set up periodic tasks for stuck detection.
@@ -154,7 +156,8 @@ HiCollie_ErrorCode OH_HiCollie_Init_StuckDetection(OH_HiCollie_Task task);
  *              The function can not be called from main thread.
  * @since 18
  */
-HiCollie_ErrorCode OH_HiCollie_Init_StuckDetectionWithTimeout(OH_HiCollie_Task task, uint32_t stuckTimeout);
+HiCollie_ErrorCode OH_HiCollie_Init_StuckDetectionWithTimeout(OH_HiCollie_Task task, uint32_t stuckTimeout)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set up stub functions for jank detection.
@@ -170,7 +173,8 @@ HiCollie_ErrorCode OH_HiCollie_Init_StuckDetectionWithTimeout(OH_HiCollie_Task t
  * @since 12
  */
 HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFunc,
-    OH_HiCollie_EndFunc* endFunc, HiCollie_DetectionParam param);
+    OH_HiCollie_EndFunc* endFunc, HiCollie_DetectionParam param)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Report a stuck event.
@@ -185,7 +189,7 @@ HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFu
  *         {@link HICOLLIE_REMOTE_FAILED} 29800002 - Remote call failed.
  * @since 12
  */
-HiCollie_ErrorCode OH_HiCollie_Report(bool* isSixSecond);
+HiCollie_ErrorCode OH_HiCollie_Report(bool* isSixSecond) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief When user call {@link OH_HiCollie_SetTimer} and do not call {@link OH_HiCollie_CancelTimer}
@@ -243,7 +247,8 @@ typedef struct HiCollie_SetTimerParam {
  *              should not be NULL.
  * @since 18
  */
-HiCollie_ErrorCode OH_HiCollie_SetTimer(HiCollie_SetTimerParam param, int *id);
+HiCollie_ErrorCode OH_HiCollie_SetTimer(HiCollie_SetTimerParam param, int *id)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Cancel the timer right after calling the time-consuming function.
@@ -251,7 +256,7 @@ HiCollie_ErrorCode OH_HiCollie_SetTimer(HiCollie_SetTimerParam param, int *id);
  * @param id The timer id that is return from {@link OH_HiCollie_SetTimer}.
  * @since 18
  */
-void OH_HiCollie_CancelTimer(int id);
+void OH_HiCollie_CancelTimer(int id) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 }

@@ -38,6 +38,7 @@
 #ifndef MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MOVING_PHOTO_H
 #define MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MOVING_PHOTO_H
 
+#include "info/application_target_sdk_version.h"
 #include "media_asset_base_capi.h"
 
 #ifdef __cplusplus
@@ -57,7 +58,8 @@ extern "C" {
  *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
  * @since 13
 */
-MediaLibrary_ErrorCode OH_MovingPhoto_GetUri(OH_MovingPhoto* movingPhoto, const char** uri);
+MediaLibrary_ErrorCode OH_MovingPhoto_GetUri(OH_MovingPhoto* movingPhoto, const char** uri)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request the image and video content of the moving photo and write to destination uri.
@@ -76,7 +78,8 @@ MediaLibrary_ErrorCode OH_MovingPhoto_GetUri(OH_MovingPhoto* movingPhoto, const 
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUris(OH_MovingPhoto* movingPhoto, char* imageUri,
-    char* videoUri);
+    char* videoUri)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request the image or video content of the moving photo and write to destination uri.
@@ -95,7 +98,8 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUris(OH_MovingPhoto* mov
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUri(OH_MovingPhoto* movingPhoto,
-    MediaLibrary_ResourceType resourceType, char* uri);
+    MediaLibrary_ResourceType resourceType, char* uri)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Request data of the moving photo.
@@ -115,7 +119,8 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUri(OH_MovingPhoto* movi
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithBuffer(OH_MovingPhoto* movingPhoto,
-    MediaLibrary_ResourceType resourceType, const uint8_t** buffer, uint32_t* size);
+    MediaLibrary_ResourceType resourceType, const uint8_t** buffer, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Release the {@link OH_MovingPhoto} instance.
@@ -128,7 +133,8 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithBuffer(OH_MovingPhoto* m
  *                                                3. Parameter verification failed.
  * @since 13
 */
-MediaLibrary_ErrorCode OH_MovingPhoto_Release(OH_MovingPhoto* movingPhoto);
+MediaLibrary_ErrorCode OH_MovingPhoto_Release(OH_MovingPhoto* movingPhoto)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

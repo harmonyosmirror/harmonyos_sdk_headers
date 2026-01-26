@@ -38,6 +38,7 @@
 #ifndef MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_CHANGE_REQUEST_H
 #define MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_CHANGE_REQUEST_H
 
+#include "info/application_target_sdk_version.h"
 #include "media_asset_base_capi.h"
 
 #ifdef __cplusplus
@@ -56,7 +57,8 @@ extern "C" {
  *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
  * @since 12
 */
-OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* mediaAsset);
+OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* mediaAsset)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Add resource of the asset using file uri.
@@ -75,7 +77,8 @@ OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* med
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithUri(OH_MediaAssetChangeRequest* changeRequest,
-    MediaLibrary_ResourceType resourceType, char* fileUri);
+    MediaLibrary_ResourceType resourceType, char* fileUri)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Add resource of the asset using ArrayBuffer.
@@ -94,7 +97,8 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithUri(OH_MediaAss
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithBuffer(OH_MediaAssetChangeRequest* changeRequest,
-    MediaLibrary_ResourceType resourceType, uint8_t* buffer, uint32_t length);
+    MediaLibrary_ResourceType resourceType, uint8_t* buffer, uint32_t length)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get write cache handler.
@@ -113,7 +117,8 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithBuffer(OH_Media
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_GetWriteCacheHandler(OH_MediaAssetChangeRequest* changeRequest,
-    int32_t* fd);
+    int32_t* fd)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Save the photo asset captured by camera.
@@ -130,7 +135,8 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_GetWriteCacheHandler(OH_MediaA
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_SaveCameraPhoto(OH_MediaAssetChangeRequest* changeRequest,
-    MediaLibrary_ImageFileType imageFileType);
+    MediaLibrary_ImageFileType imageFileType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Discard the photo asset captured by camera.
@@ -145,7 +151,8 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_SaveCameraPhoto(OH_MediaAssetC
  *         {@link #MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED} if operation is not supported.
  * @since 12
 */
-MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_DiscardCameraPhoto(OH_MediaAssetChangeRequest* changeRequest);
+MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_DiscardCameraPhoto(OH_MediaAssetChangeRequest* changeRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release the {@link OH_MediaAssetChangeRequest} instance.
@@ -158,7 +165,8 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_DiscardCameraPhoto(OH_MediaAss
  *                                                3. Parameter verification failed.
  * @since 12
 */
-MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_Release(OH_MediaAssetChangeRequest* changeRequest);
+MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_Release(OH_MediaAssetChangeRequest* changeRequest)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

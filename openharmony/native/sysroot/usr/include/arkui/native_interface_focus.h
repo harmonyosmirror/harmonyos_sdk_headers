@@ -36,6 +36,7 @@
 #ifndef ARKUI_NATIVE_INTERFACE_FOCUS_H
 #define ARKUI_NATIVE_INTERFACE_FOCUS_H
 
+#include "info/application_target_sdk_version.h"
 #include "napi/native_api.h"
 #include "native_type.h"
 
@@ -66,7 +67,7 @@ typedef enum {
  *         {@link ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT} if the node is not exists.
  * @since 15
  */
-ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
+ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Clear current focus to root scope.
@@ -74,7 +75,7 @@ ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
  * @param uiContext Indicates the pointer to a UI instance.
  * @since 15
  */
-void OH_ArkUI_FocusClear(ArkUI_ContextHandle uiContext);
+void OH_ArkUI_FocusClear(ArkUI_ContextHandle uiContext) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the focus active state in current window, the focus node would show its focus box.
@@ -86,7 +87,8 @@ void OH_ArkUI_FocusClear(ArkUI_ContextHandle uiContext);
  *                    "false" indicates to maintain the state until relative API is called.
  * @since 15
  */
-void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool isAutoInactive);
+void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool isAutoInactive)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set the focus transfer behaviour when current focus view changes.
@@ -95,7 +97,8 @@ void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool i
  * @param autoTransfer Indicates whether to transfer focus when focus view show.
  * @since 15
  */
-void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTransfer);
+void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTransfer)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 
 /**
@@ -105,7 +108,8 @@ void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTrans
  * @param mode Indicates the key processing mode.
  * @since 15
 */
-void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_KeyProcessingMode mode);
+void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_KeyProcessingMode mode)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 #ifdef __cplusplus
 };
 #endif

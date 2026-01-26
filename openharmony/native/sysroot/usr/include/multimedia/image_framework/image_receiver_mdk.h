@@ -39,6 +39,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_RECEIVER_MDK_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_RECEIVER_MDK_H_
+#include "info/application_target_sdk_version.h"
 #include "napi/native_api.h"
 #include "image_mdk_common.h"
 #include "image_mdk.h"
@@ -109,7 +110,8 @@ struct OhosImageReceiverInfo {
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_CreateImageReceiver(napi_env env, struct OhosImageReceiverInfo info, napi_value* res);
+int32_t OH_Image_Receiver_CreateImageReceiver(napi_env env, struct OhosImageReceiverInfo info, napi_value* res)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Initializes an {@link ImageReceiverNative} object at the native layer
@@ -123,7 +125,8 @@ int32_t OH_Image_Receiver_CreateImageReceiver(napi_env env, struct OhosImageRece
  * @since 10
  * @version 2.0
  */
-ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative(napi_env env, napi_value source);
+ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative(napi_env env, napi_value source)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the receiver ID through an {@link ImageReceiverNative} object.
@@ -143,7 +146,8 @@ ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative(napi_env env, nap
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_GetReceivingSurfaceId(const ImageReceiverNative* native, char* id, size_t len);
+int32_t OH_Image_Receiver_GetReceivingSurfaceId(const ImageReceiverNative* native, char* id, size_t len)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the latest image through an {@link ImageReceiverNative} object.
@@ -165,7 +169,8 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId(const ImageReceiverNative* nativ
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_ReadLatestImage(const ImageReceiverNative* native, napi_value* image);
+int32_t OH_Image_Receiver_ReadLatestImage(const ImageReceiverNative* native, napi_value* image)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the next image through an {@link ImageReceiverNative} object.
@@ -187,7 +192,8 @@ int32_t OH_Image_Receiver_ReadLatestImage(const ImageReceiverNative* native, nap
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_ReadNextImage(const ImageReceiverNative* native, napi_value* image);
+int32_t OH_Image_Receiver_ReadNextImage(const ImageReceiverNative* native, napi_value* image)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Registers an {@link OH_Image_Receiver_On_Callback} callback event.
@@ -208,7 +214,8 @@ int32_t OH_Image_Receiver_ReadNextImage(const ImageReceiverNative* native, napi_
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_On(const ImageReceiverNative* native, OH_Image_Receiver_On_Callback callback);
+int32_t OH_Image_Receiver_On(const ImageReceiverNative* native, OH_Image_Receiver_On_Callback callback)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the size of the image receiver through an {@link ImageReceiverNative} object.
@@ -224,7 +231,8 @@ int32_t OH_Image_Receiver_On(const ImageReceiverNative* native, OH_Image_Receive
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_GetSize(const ImageReceiverNative* native, struct OhosImageSize* size);
+int32_t OH_Image_Receiver_GetSize(const ImageReceiverNative* native, struct OhosImageSize* size)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the capacity of the image receiver through an {@link ImageReceiverNative} object.
@@ -240,7 +248,8 @@ int32_t OH_Image_Receiver_GetSize(const ImageReceiverNative* native, struct Ohos
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_GetCapacity(const ImageReceiverNative* native, int32_t* capacity);
+int32_t OH_Image_Receiver_GetCapacity(const ImageReceiverNative* native, int32_t* capacity)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtains the format of the image receiver through an {@link ImageReceiverNative} object.
@@ -257,7 +266,8 @@ int32_t OH_Image_Receiver_GetCapacity(const ImageReceiverNative* native, int32_t
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* format);
+int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* format)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Releases an {@link ImageReceiverNative} object at the native layer.
@@ -273,7 +283,8 @@ int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* 
  * @since 10
  * @version 2.0
  */
-int32_t OH_Image_Receiver_Release(ImageReceiverNative* native);
+int32_t OH_Image_Receiver_Release(ImageReceiverNative* native)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 #ifdef __cplusplus
 };
 #endif

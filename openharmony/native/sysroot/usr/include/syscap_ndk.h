@@ -34,6 +34,7 @@
 #ifndef SYSCAP_NDK_H
 #define SYSCAP_NDK_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 
 #ifdef __cplusplus
@@ -49,7 +50,7 @@ extern "C" {
  *     false - The specified SystemCapability is not supported.
  * @since 8
  */
-bool canIUse(const char *cap);
+bool canIUse(const char *cap) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 #ifdef __cplusplus
 #if __cplusplus

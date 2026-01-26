@@ -36,6 +36,7 @@
 #ifndef ABILITY_ACCESS_CONTROL_H
 #define ABILITY_ACCESS_CONTROL_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -51,7 +52,7 @@ extern "C" {
  *         false - The permission has not been granted to this application.
  * @since 12
  */
-bool OH_AT_CheckSelfPermission(const char *permission);
+bool OH_AT_CheckSelfPermission(const char *permission) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

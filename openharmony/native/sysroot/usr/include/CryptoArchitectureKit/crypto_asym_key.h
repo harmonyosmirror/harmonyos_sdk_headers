@@ -36,6 +36,7 @@
 #ifndef CRYPTO_ASYM_KEY_H
 #define CRYPTO_ASYM_KEY_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 
 #ifdef __cplusplus
@@ -166,7 +167,8 @@ typedef struct OH_CryptoAsymKeyGenerator OH_CryptoAsymKeyGenerator;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Create(const char *algoName, OH_CryptoAsymKeyGenerator **ctx);
+OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Create(const char *algoName, OH_CryptoAsymKeyGenerator **ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Generate an asymmetric key(a key pair).
@@ -180,7 +182,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Create(const char *algoName, OH_Cryp
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Generate(OH_CryptoAsymKeyGenerator *ctx, OH_CryptoKeyPair **keyCtx);
+OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Generate(OH_CryptoAsymKeyGenerator *ctx, OH_CryptoKeyPair **keyCtx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Convert the asymmetric key data to a key pair.
@@ -198,7 +201,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Generate(OH_CryptoAsymKeyGenerator *
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Convert(OH_CryptoAsymKeyGenerator *ctx, Crypto_EncodingType type,
-    Crypto_DataBlob *pubKeyData, Crypto_DataBlob *priKeyData, OH_CryptoKeyPair **keyCtx);
+    Crypto_DataBlob *pubKeyData, Crypto_DataBlob *priKeyData, OH_CryptoKeyPair **keyCtx)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the algorithm name of the asymmetric key generator.
@@ -207,7 +211,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Convert(OH_CryptoAsymKeyGenerator *c
  * @return Returns the asymmetric key algorithm name.
  * @since 12
  */
-const char *OH_CryptoAsymKeyGenerator_GetAlgoName(OH_CryptoAsymKeyGenerator *ctx);
+const char *OH_CryptoAsymKeyGenerator_GetAlgoName(OH_CryptoAsymKeyGenerator *ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the asymmetric key generator.
@@ -215,7 +220,8 @@ const char *OH_CryptoAsymKeyGenerator_GetAlgoName(OH_CryptoAsymKeyGenerator *ctx
  * @param ctx Indicates the asymmetric key generator context.
  * @since 12
  */
-void OH_CryptoAsymKeyGenerator_Destroy(OH_CryptoAsymKeyGenerator *ctx);
+void OH_CryptoAsymKeyGenerator_Destroy(OH_CryptoAsymKeyGenerator *ctx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the key pair.
@@ -223,7 +229,7 @@ void OH_CryptoAsymKeyGenerator_Destroy(OH_CryptoAsymKeyGenerator *ctx);
  * @param keyCtx Indicates the keyPair context.
  * @since 12
  */
-void OH_CryptoKeyPair_Destroy(OH_CryptoKeyPair *keyCtx);
+void OH_CryptoKeyPair_Destroy(OH_CryptoKeyPair *keyCtx) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the public key of the key pair.
@@ -232,7 +238,8 @@ void OH_CryptoKeyPair_Destroy(OH_CryptoKeyPair *keyCtx);
  * @return Return the public key context from the key pair.
  * @since 12
  */
-OH_CryptoPubKey *OH_CryptoKeyPair_GetPubKey(OH_CryptoKeyPair *keyCtx);
+OH_CryptoPubKey *OH_CryptoKeyPair_GetPubKey(OH_CryptoKeyPair *keyCtx)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the private key of the key pair.
@@ -241,7 +248,8 @@ OH_CryptoPubKey *OH_CryptoKeyPair_GetPubKey(OH_CryptoKeyPair *keyCtx);
  * @return Return the private key context from the key pair.
  * @since 20
  */
-OH_CryptoPrivKey *OH_CryptoKeyPair_GetPrivKey(OH_CryptoKeyPair *keyCtx);
+OH_CryptoPrivKey *OH_CryptoKeyPair_GetPrivKey(OH_CryptoKeyPair *keyCtx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Encode the public key.
@@ -258,7 +266,8 @@ OH_CryptoPrivKey *OH_CryptoKeyPair_GetPrivKey(OH_CryptoKeyPair *keyCtx);
  * @since 12
  */
 OH_Crypto_ErrCode OH_CryptoPubKey_Encode(OH_CryptoPubKey *key, Crypto_EncodingType type,
-    const char *encodingStandard, Crypto_DataBlob *out);
+    const char *encodingStandard, Crypto_DataBlob *out)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the specified param of the public key.
@@ -273,7 +282,8 @@ OH_Crypto_ErrCode OH_CryptoPubKey_Encode(OH_CryptoPubKey *key, Crypto_EncodingTy
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto opertion failed.
  * @since 12
  */
-OH_Crypto_ErrCode OH_CryptoPubKey_GetParam(OH_CryptoPubKey *key, CryptoAsymKey_ParamType item, Crypto_DataBlob *value);
+OH_Crypto_ErrCode OH_CryptoPubKey_GetParam(OH_CryptoPubKey *key, CryptoAsymKey_ParamType item, Crypto_DataBlob *value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the password to the asymmetric key generator context.
@@ -292,7 +302,8 @@ OH_Crypto_ErrCode OH_CryptoPubKey_GetParam(OH_CryptoPubKey *key, CryptoAsymKey_P
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_SetPassword(OH_CryptoAsymKeyGenerator *ctx, const unsigned char *password,
-    uint32_t passwordLen);
+    uint32_t passwordLen)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the private key encoding params structure.
@@ -325,7 +336,8 @@ typedef enum {
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_Create(OH_CryptoPrivKeyEncodingParams **ctx);
+OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_Create(OH_CryptoPrivKeyEncodingParams **ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the private key encoding params.
@@ -341,7 +353,8 @@ OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_Create(OH_CryptoPrivKeyEncoding
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_SetParam(OH_CryptoPrivKeyEncodingParams *ctx,
-    CryptoPrivKeyEncoding_ParamType type, Crypto_DataBlob *value);
+    CryptoPrivKeyEncoding_ParamType type, Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the private key encoding params.
@@ -349,7 +362,8 @@ OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_SetParam(OH_CryptoPrivKeyEncodi
  * @param ctx Indicates the private key encoding params.
  * @since 20
  */
-void OH_CryptoPrivKeyEncodingParams_Destroy(OH_CryptoPrivKeyEncodingParams *ctx);
+void OH_CryptoPrivKeyEncodingParams_Destroy(OH_CryptoPrivKeyEncodingParams *ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Encodes the private key.
@@ -368,7 +382,8 @@ void OH_CryptoPrivKeyEncodingParams_Destroy(OH_CryptoPrivKeyEncodingParams *ctx)
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoPrivKey_Encode(OH_CryptoPrivKey *key, Crypto_EncodingType type,
-    const char *encodingStandard, OH_CryptoPrivKeyEncodingParams *params, Crypto_DataBlob *out);
+    const char *encodingStandard, OH_CryptoPrivKeyEncodingParams *params, Crypto_DataBlob *out)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the specified param of the private key.
@@ -384,7 +399,8 @@ OH_Crypto_ErrCode OH_CryptoPrivKey_Encode(OH_CryptoPrivKey *key, Crypto_Encoding
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoPrivKey_GetParam(OH_CryptoPrivKey *key, CryptoAsymKey_ParamType item,
-    Crypto_DataBlob *value);
+    Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the asymmetric key spec structure.
@@ -421,7 +437,8 @@ typedef enum {
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenEcCommonParamsSpec(const char *curveName, OH_CryptoAsymKeySpec **spec);
+OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenEcCommonParamsSpec(const char *curveName, OH_CryptoAsymKeySpec **spec)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Generates a DH common parameters spec.
@@ -436,7 +453,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenEcCommonParamsSpec(const char *curveNa
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenDhCommonParamsSpec(int pLen, int skLen, OH_CryptoAsymKeySpec **spec);
+OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenDhCommonParamsSpec(int pLen, int skLen, OH_CryptoAsymKeySpec **spec)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates an asymmetric key spec according to the given algorithm name and spec type.
@@ -452,7 +470,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenDhCommonParamsSpec(int pLen, int skLen
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeySpec_Create(const char *algoName, CryptoAsymKeySpec_Type type,
-    OH_CryptoAsymKeySpec **spec);
+    OH_CryptoAsymKeySpec **spec)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the specified parameter to the asymmetric key spec.
@@ -468,7 +487,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_Create(const char *algoName, CryptoAsymKe
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeySpec_SetParam(OH_CryptoAsymKeySpec *spec, CryptoAsymKey_ParamType type,
-    Crypto_DataBlob *value);
+    Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the common parameters spec to the asymmetric key spec.
@@ -483,7 +503,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_SetParam(OH_CryptoAsymKeySpec *spec, Cryp
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeySpec_SetCommonParamsSpec(OH_CryptoAsymKeySpec *spec,
-    OH_CryptoAsymKeySpec *commonParamsSpec);
+    OH_CryptoAsymKeySpec *commonParamsSpec)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the specified parameter from the asymmetric key spec.
@@ -499,7 +520,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_SetCommonParamsSpec(OH_CryptoAsymKeySpec 
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GetParam(OH_CryptoAsymKeySpec *spec, CryptoAsymKey_ParamType type,
-    Crypto_DataBlob *value);
+    Crypto_DataBlob *value)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the asymmetric key spec.
@@ -507,7 +529,7 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GetParam(OH_CryptoAsymKeySpec *spec, Cryp
  * @param spec Indicates the asymmetric key spec.
  * @since 20
  */
-void OH_CryptoAsymKeySpec_Destroy(OH_CryptoAsymKeySpec *spec);
+void OH_CryptoAsymKeySpec_Destroy(OH_CryptoAsymKeySpec *spec) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the asymmetric key generator with spec.
@@ -529,7 +551,8 @@ typedef struct OH_CryptoAsymKeyGeneratorWithSpec OH_CryptoAsymKeyGeneratorWithSp
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeyGeneratorWithSpec_Create(OH_CryptoAsymKeySpec *keySpec,
-    OH_CryptoAsymKeyGeneratorWithSpec **generator);
+    OH_CryptoAsymKeyGeneratorWithSpec **generator)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Generates a key pair according to the asymmetric key spec.
@@ -544,7 +567,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGeneratorWithSpec_Create(OH_CryptoAsymKeySpec 
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymKeyGeneratorWithSpec_GenKeyPair(OH_CryptoAsymKeyGeneratorWithSpec *generator,
-    OH_CryptoKeyPair **keyPair);
+    OH_CryptoKeyPair **keyPair)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the asymmetric key generator with spec.
@@ -552,7 +576,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGeneratorWithSpec_GenKeyPair(OH_CryptoAsymKeyG
  * @param generator Indicates the asymmetric key generator with spec.
  * @since 20
  */
-void OH_CryptoAsymKeyGeneratorWithSpec_Destroy(OH_CryptoAsymKeyGeneratorWithSpec *generator);
+void OH_CryptoAsymKeyGeneratorWithSpec_Destroy(OH_CryptoAsymKeyGeneratorWithSpec *generator)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the EC point structure.
@@ -575,7 +600,8 @@ typedef struct OH_CryptoEcPoint OH_CryptoEcPoint;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoEcPoint_Create(const char *curveName, Crypto_DataBlob *ecKeyData, OH_CryptoEcPoint **point);
+OH_Crypto_ErrCode OH_CryptoEcPoint_Create(const char *curveName, Crypto_DataBlob *ecKeyData, OH_CryptoEcPoint **point)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the x and y coordinate of the EC point.
@@ -590,7 +616,8 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_Create(const char *curveName, Crypto_DataBlob
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoEcPoint_GetCoordinate(OH_CryptoEcPoint *point, Crypto_DataBlob *x, Crypto_DataBlob *y);
+OH_Crypto_ErrCode OH_CryptoEcPoint_GetCoordinate(OH_CryptoEcPoint *point, Crypto_DataBlob *x, Crypto_DataBlob *y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the x and y coordinate to the EC point.
@@ -605,7 +632,8 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_GetCoordinate(OH_CryptoEcPoint *point, Crypto
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoEcPoint_SetCoordinate(OH_CryptoEcPoint *point, Crypto_DataBlob *x, Crypto_DataBlob *y);
+OH_Crypto_ErrCode OH_CryptoEcPoint_SetCoordinate(OH_CryptoEcPoint *point, Crypto_DataBlob *x, Crypto_DataBlob *y)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Encodes the EC point to the specified format.
@@ -620,7 +648,8 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_SetCoordinate(OH_CryptoEcPoint *point, Crypto
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoEcPoint_Encode(OH_CryptoEcPoint *point, const char *format, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoEcPoint_Encode(OH_CryptoEcPoint *point, const char *format, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the EC point.
@@ -628,7 +657,7 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_Encode(OH_CryptoEcPoint *point, const char *f
  * @param point Indicates the EC point.
  * @since 20
  */
-void OH_CryptoEcPoint_Destroy(OH_CryptoEcPoint *point);
+void OH_CryptoEcPoint_Destroy(OH_CryptoEcPoint *point) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

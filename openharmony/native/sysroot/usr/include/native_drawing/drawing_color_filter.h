@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_COLOR_FILTER_H
 #define C_INCLUDE_DRAWING_COLOR_FILTER_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -56,7 +57,8 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH_Drawing_BlendMode blendMode);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH_Drawing_BlendMode blendMode)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> applies the outerColorFilter and then applies innerColorFilter.
@@ -69,7 +71,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH
  * @version 1.0
  */
 OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilter* outerColorFilter,
-    OH_Drawing_ColorFilter* innerColorFilter);
+    OH_Drawing_ColorFilter* innerColorFilter)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> with a 5x4 color matrix.
@@ -80,7 +83,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilt
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix(const float matrix[20]);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix(const float matrix[20])
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> applies the gamma curve of SRGB to the RGB color channel.
@@ -90,7 +94,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix(const float matrix[20
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma(void);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma(void)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> applies the RGB color channel to the gamma curve of SRGB.
@@ -100,7 +105,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma(void);
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateSrgbGammaToLinear(void);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateSrgbGammaToLinear(void)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> multiplies the luma of its input into the alpha channel,
@@ -111,7 +117,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateSrgbGammaToLinear(void);
  * @since 11
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_ColorFilter</b> with the given mutColor used to multiply source color and addColor
@@ -124,7 +131,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLighting(uint32_t mulColor, uint32_t addColor);
+OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLighting(uint32_t mulColor, uint32_t addColor)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_ColorFilter</b> object and reclaims the memory occupied by the object.
@@ -134,7 +142,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLighting(uint32_t mulColor, 
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_ColorFilterDestroy(OH_Drawing_ColorFilter* colorFilter);
+void OH_Drawing_ColorFilterDestroy(OH_Drawing_ColorFilter* colorFilter)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

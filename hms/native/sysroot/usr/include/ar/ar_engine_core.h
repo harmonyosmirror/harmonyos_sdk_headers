@@ -37,6 +37,7 @@
  */
 #ifndef NDK_INCLUDE_AR_ENGINE_CORE_H
 #define NDK_INCLUDE_AR_ENGINE_CORE_H
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <native_buffer/native_buffer.h>
 #ifdef __cplusplus
@@ -629,6 +630,12 @@ typedef enum {
      * @since 6.0.0(20)
      */
     ARENGINE_ERROR_NATIVEBUFFER_WRITE_FAILED = 1009200016,
+
+    /**
+     * The camera service is abnormal.
+     * @since 6.0.2(22)
+     */
+    ARENGINE_CAMERA_SERVICE_FATAL_ERROR = 1009200017
 } AREngine_ARStatus;
 
 /**
@@ -831,14 +838,15 @@ typedef struct {
  *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARConfig_Create(const AREngine_ARSession *session, AREngine_ARConfig **outConfig);
+AREngine_ARStatus HMS_AREngine_ARConfig_Create(const AREngine_ARSession *session, AREngine_ARConfig **outConfig)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory used by a specific configuration object.
  * @param config To-be-released configuration object.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARConfig_Destroy(AREngine_ARConfig *config);
+void HMS_AREngine_ARConfig_Destroy(AREngine_ARConfig *config) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current plane finding mode.
@@ -852,7 +860,8 @@ void HMS_AREngine_ARConfig_Destroy(AREngine_ARConfig *config);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetPlaneFindingMode(const AREngine_ARSession *session,
-    const AREngine_ARConfig *config, AREngine_ARPlaneFindingMode *planeFindingMode);
+    const AREngine_ARConfig *config, AREngine_ARPlaneFindingMode *planeFindingMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the plane finding mode.
@@ -866,7 +875,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetPlaneFindingMode(const AREngine_ARSes
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPlaneFindingMode(const AREngine_ARSession *session,
-    AREngine_ARConfig *config, AREngine_ARPlaneFindingMode planeFindingMode);
+    AREngine_ARConfig *config, AREngine_ARPlaneFindingMode planeFindingMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the preview update mode.
@@ -880,7 +890,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPlaneFindingMode(const AREngine_ARSes
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetUpdateMode(const AREngine_ARSession *session,
-    const AREngine_ARConfig *config, AREngine_ARUpdateMode *updateMode);
+    const AREngine_ARConfig *config, AREngine_ARUpdateMode *updateMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the preview update mode.
@@ -894,7 +905,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetUpdateMode(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetUpdateMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARUpdateMode updateMode);
+    AREngine_ARUpdateMode updateMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current power consumption mode.
@@ -908,7 +920,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetUpdateMode(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetPowerMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
-    AREngine_ARPowerMode *powerMode);
+    AREngine_ARPowerMode *powerMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the power consumption mode.
@@ -922,7 +935,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetPowerMode(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPowerMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARPowerMode powerMode);
+    AREngine_ARPowerMode powerMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current focus mode.
@@ -936,7 +950,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPowerMode(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetFocusMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
-    AREngine_ARFocusMode *focusMode);
+    AREngine_ARFocusMode *focusMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the focus mode.
@@ -950,7 +965,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetFocusMode(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetFocusMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARFocusMode focusMode);
+    AREngine_ARFocusMode focusMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the depth mode.
@@ -964,7 +980,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetFocusMode(const AREngine_ARSession *s
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetDepthMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
-    AREngine_ARDepthMode *outDepthMode);
+    AREngine_ARDepthMode *outDepthMode)
+    __attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Sets the depth mode.
@@ -978,7 +995,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetDepthMode(const AREngine_ARSession *s
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetDepthMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARDepthMode depthMode);
+    AREngine_ARDepthMode depthMode)
+    __attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Obtains the current mesh mode status.
@@ -992,7 +1010,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetDepthMode(const AREngine_ARSession *s
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetMeshMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
-    AREngine_ARMeshMode *outMeshMode);
+    AREngine_ARMeshMode *outMeshMode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the current mesh mode status.
@@ -1006,7 +1025,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetMeshMode(const AREngine_ARSession *se
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetMeshMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARMeshMode meshMode);
+    AREngine_ARMeshMode meshMode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the camera pose mode.
@@ -1020,7 +1040,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetMeshMode(const AREngine_ARSession *se
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPoseMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARPoseMode poseMode);
+    AREngine_ARPoseMode poseMode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the camera pose mode.
@@ -1034,7 +1055,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPoseMode(const AREngine_ARSession *se
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetPoseMode(const AREngine_ARSession *session, const AREngine_ARConfig *config,
-    AREngine_ARPoseMode *poseMode);
+    AREngine_ARPoseMode *poseMode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the semantic dense mode.
@@ -1048,7 +1070,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetPoseMode(const AREngine_ARSession *se
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticDenseMode(const AREngine_ARSession *session,
-    AREngine_ARConfig *config, AREngine_ARSemanticDenseMode semanticDenseMode);
+    AREngine_ARConfig *config, AREngine_ARSemanticDenseMode semanticDenseMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the semantic dense mode.
@@ -1062,7 +1085,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticDenseMode(const AREngine_ARSe
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticDenseMode(const AREngine_ARSession *session,
-    const AREngine_ARConfig *config, AREngine_ARSemanticDenseMode *outSemanticDenseMode);
+    const AREngine_ARConfig *config, AREngine_ARSemanticDenseMode *outSemanticDenseMode)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the preview image size.
@@ -1079,7 +1103,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticDenseMode(const AREngine_ARSe
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetPreviewSize(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    uint32_t width, uint32_t height);
+    uint32_t width, uint32_t height)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the AR capability type in use.
@@ -1093,7 +1118,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetPreviewSize(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetARType(const AREngine_ARSession *session, const AREngine_ARConfig *config,
-    AREngine_ARType *type);
+    AREngine_ARType *type)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the AR capability type to use.
@@ -1108,7 +1134,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetARType(const AREngine_ARSession *sess
 * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetARType(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARType type);
+    AREngine_ARType type)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current semantic recognition mode. This function is valid after
@@ -1123,7 +1150,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetARType(const AREngine_ARSession *sess
 * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticMode(const AREngine_ARSession *session,
-    const AREngine_ARConfig *config, AREngine_ARSemanticMode *mode);
+    const AREngine_ARConfig *config, AREngine_ARSemanticMode *mode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the semantic recognition mode.
@@ -1137,7 +1165,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetSemanticMode(const AREngine_ARSession
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    AREngine_ARSemanticMode mode);
+    AREngine_ARSemanticMode mode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the maximum memory size for storing map data.
@@ -1154,7 +1183,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetSemanticMode(const AREngine_ARSession
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetMaxMapSize(const AREngine_ARSession *session,
-    const AREngine_ARConfig *config, uint64_t *maxMapSize);
+    const AREngine_ARConfig *config, uint64_t *maxMapSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the maximum memory size for storing map data.
@@ -1173,7 +1203,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetMaxMapSize(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetMaxMapSize(const AREngine_ARSession *session, AREngine_ARConfig *config,
-    uint64_t maxMapSize);
+    uint64_t maxMapSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the preview mode.
@@ -1187,7 +1218,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetMaxMapSize(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_SetCameraPreviewMode(const AREngine_ARSession *session,
-    AREngine_ARConfig *config, AREngine_ARPreviewMode mode);
+    AREngine_ARConfig *config, AREngine_ARPreviewMode mode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current preview mode.
@@ -1201,7 +1233,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetCameraPreviewMode(const AREngine_ARSe
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARConfig_GetCameraPreviewMode(const AREngine_ARSession *session,
-    AREngine_ARConfig *config, AREngine_ARPreviewMode *outMode);
+    AREngine_ARConfig *config, AREngine_ARPreviewMode *outMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>AREngine_ARSession</b> session.
@@ -1219,7 +1252,8 @@ AREngine_ARStatus HMS_AREngine_ARConfig_GetCameraPreviewMode(const AREngine_ARSe
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_Create(void *env, void *applicationContext,
-    AREngine_ARSession **outSessionPointer);
+    AREngine_ARSession **outSessionPointer)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Stops AREngine and the camera preview stream, clears the plane and anchor data, releases the camera, and
@@ -1234,14 +1268,16 @@ AREngine_ARStatus HMS_AREngine_ARSession_Create(void *env, void *applicationCont
  *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARSession_Stop(AREngine_ARSession *session);
+AREngine_ARStatus HMS_AREngine_ARSession_Stop(AREngine_ARSession *session)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the resources used by the <b>AREngine_ARSession</b> session.
  * @param session The AREngine session.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARSession_Destroy(AREngine_ARSession *session);
+void HMS_AREngine_ARSession_Destroy(AREngine_ARSession *session)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Starts <b>AREngine_ARSession</b>, or restores <b>AREngine_ARSession</b> after
@@ -1255,7 +1291,8 @@ void HMS_AREngine_ARSession_Destroy(AREngine_ARSession *session);
  *         {@link ARENGINE_ERROR_CAMERA_NOT_AVAILABLE} Camera unavailable.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARSession_Resume(AREngine_ARSession *session);
+AREngine_ARStatus HMS_AREngine_ARSession_Resume(AREngine_ARSession *session)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Pauses the session, stops the camera preview stream, and releases the camera (otherwise, other apps will not
@@ -1268,7 +1305,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_Resume(AREngine_ARSession *session);
  *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARSession_Pause(AREngine_ARSession *session);
+AREngine_ARStatus HMS_AREngine_ARSession_Pause(AREngine_ARSession *session)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Updates the computation result of AREngine.
@@ -1292,7 +1330,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_Pause(AREngine_ARSession *session);
  *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARSession_Update(AREngine_ARSession *session, AREngine_ARFrame *outFrame);
+AREngine_ARStatus HMS_AREngine_ARSession_Update(AREngine_ARSession *session, AREngine_ARFrame *outFrame)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Configures an <b>AREngine_ARSession</b> session.
@@ -1306,7 +1345,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_Update(AREngine_ARSession *session, ARE
  *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARSession_Configure(AREngine_ARSession *session, const AREngine_ARConfig *config);
+AREngine_ARStatus HMS_AREngine_ARSession_Configure(AREngine_ARSession *session, const AREngine_ARConfig *config)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an anchor for continuous tracking.
@@ -1322,7 +1362,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_Configure(AREngine_ARSession *session, 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_AcquireNewAnchor(AREngine_ARSession *session, const AREngine_ARPose *pose,
-    AREngine_ARAnchor **outAnchor);
+    AREngine_ARAnchor **outAnchor)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the OpenGL texture for storing the camera preview stream data.
@@ -1340,7 +1381,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_AcquireNewAnchor(AREngine_ARSession *se
  *         the input parameter is empty or invalid.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARSession_SetCameraGLTexture(AREngine_ARSession *session, uint32_t textureId);
+AREngine_ARStatus HMS_AREngine_ARSession_SetCameraGLTexture(AREngine_ARSession *session, uint32_t textureId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the display height and width (in pixels). Make sure that the height and width you set here are
@@ -1356,7 +1398,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_SetCameraGLTexture(AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_SetDisplayGeometry(AREngine_ARSession *session, AREngine_ARPoseType rotation,
-    int32_t width, int32_t height);
+    int32_t width, int32_t height)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains all anchors, including anchors in all states contained in <b>AREngine_ARTrackingState</b>.
@@ -1373,7 +1416,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_SetDisplayGeometry(AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_GetAllAnchors(const AREngine_ARSession *session,
-    AREngine_ARAnchorList *outAnchorList);
+    AREngine_ARAnchorList *outAnchorList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the list of all trackable objects of the specified type.
@@ -1387,7 +1431,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_GetAllAnchors(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_GetAllTrackables(const AREngine_ARSession *session,
-    AREngine_ARTrackableType filterType, AREngine_ARTrackableList *outTrackableList);
+    AREngine_ARTrackableType filterType, AREngine_ARTrackableList *outTrackableList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the camera configuration information.
@@ -1400,7 +1445,8 @@ AREngine_ARStatus HMS_AREngine_ARSession_GetAllTrackables(const AREngine_ARSessi
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARSession_GetCameraConfig(const AREngine_ARSession *session,
-    AREngine_ARCameraConfig *outCameraConfig);
+    AREngine_ARCameraConfig *outCameraConfig)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Allocates and initializes a new pose object. You can leave poseRaw empty to create an uninitialized pose
@@ -1420,14 +1466,15 @@ AREngine_ARStatus HMS_AREngine_ARSession_GetCameraConfig(const AREngine_ARSessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPose_Create(const AREngine_ARSession *session, const float *poseRaw,
-    const uint32_t poseRawSize, AREngine_ARPose **outPose);
+    const uint32_t poseRawSize, AREngine_ARPose **outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory used by the pose object.
  * @param pose Pose object to be released.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARPose_Destroy(AREngine_ARPose *pose);
+void HMS_AREngine_ARPose_Destroy(AREngine_ARPose *pose) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains pose data from the pose object, including translation components and rotation components.
@@ -1445,7 +1492,8 @@ void HMS_AREngine_ARPose_Destroy(AREngine_ARPose *pose);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPose_GetPoseRaw(const AREngine_ARSession *session, const AREngine_ARPose *pose,
-    float *outPoseRaw, int32_t poseRawSize);
+    float *outPoseRaw, int32_t poseRawSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Converts the pose data into a 4 x 4 matrix. outMatrixColMajor4x4 is the array for storing the matrix, where
@@ -1464,7 +1512,8 @@ AREngine_ARStatus HMS_AREngine_ARPose_GetPoseRaw(const AREngine_ARSession *sessi
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPose_GetMatrix(const AREngine_ARSession *session, const AREngine_ARPose *pose,
-    float *outMatrixColMajor4x4, int32_t matrixColMajor4x4Size);
+    float *outMatrixColMajor4x4, int32_t matrixColMajor4x4Size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets outPose to the pose of the physical camera in the world space in the latest frame. The pose is that of
@@ -1486,7 +1535,8 @@ AREngine_ARStatus HMS_AREngine_ARPose_GetMatrix(const AREngine_ARSession *sessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetPose(const AREngine_ARSession *session, const AREngine_ARCamera *camera,
-    AREngine_ARPose *outPose);
+    AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets outPose to the pose of the virtual camera (facing the display) in the world space, in order to render
@@ -1508,7 +1558,8 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetPose(const AREngine_ARSession *sessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetDisplayOrientedPose(const AREngine_ARSession *session,
-    const AREngine_ARCamera *camera, AREngine_ARPose *outPose);
+    const AREngine_ARCamera *camera, AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the view matrix of the camera in the latest frame.
@@ -1529,7 +1580,8 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetDisplayOrientedPose(const AREngine_AR
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetViewMatrix(const AREngine_ARSession *session,
-    const AREngine_ARCamera *camera, float *outColMajor4x4, int32_t colMajor4x4Num);
+    const AREngine_ARCamera *camera, float *outColMajor4x4, int32_t colMajor4x4Num)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the current tracking status of the camera. The camera pose is available only when the tracking status
@@ -1545,7 +1597,8 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetViewMatrix(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingState(const AREngine_ARSession *session,
-    const AREngine_ARCamera *camera, AREngine_ARTrackingState *outTrackingState);
+    const AREngine_ARCamera *camera, AREngine_ARTrackingState *outTrackingState)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the reason why the current tracking status of the camera is <b>ARENGINE_TRACKING_STATE_PAUSED</b>.
@@ -1564,7 +1617,8 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingState(const AREngine_ARSessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingStateReason(const AREngine_ARSession *session,
-    const AREngine_ARCamera *camera, AREngine_ARTrackingStateReason *outTrackingStateReason);
+    const AREngine_ARCamera *camera, AREngine_ARTrackingStateReason *outTrackingStateReason)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the projection matrix used for rendering virtual content on top of the camera image. This matrix can
@@ -1585,7 +1639,8 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetTrackingStateReason(const AREngine_AR
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetProjectionMatrix(const AREngine_ARSession *session,
     const AREngine_ARCamera *camera, AREngine_ClipPlaneDistance clipPlaneDistance, float *outDestColMajor4x4,
-    int32_t destColMajor4x4Num);
+    int32_t destColMajor4x4Num)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the object of the offline intrinsic camera parameters. This object can be used obtain the camera's
@@ -1602,7 +1657,8 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetProjectionMatrix(const AREngine_ARSes
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCamera_GetImageIntrinsics(const AREngine_ARSession *session,
-    const AREngine_ARCamera *camera, AREngine_ARCameraIntrinsics *outIntrinsics);
+    const AREngine_ARCamera *camera, AREngine_ARCameraIntrinsics *outIntrinsics)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the reference to the camera. You need to call <b>HMS_AREngine_ARCamera_Release</b> if you have called
@@ -1611,7 +1667,7 @@ AREngine_ARStatus HMS_AREngine_ARCamera_GetImageIntrinsics(const AREngine_ARSess
  * @param camera Camera reference to be released.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARCamera_Release(AREngine_ARCamera *camera);
+void HMS_AREngine_ARCamera_Release(AREngine_ARCamera *camera) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an object of the intrinsic camera parameters.
@@ -1625,14 +1681,16 @@ void HMS_AREngine_ARCamera_Release(AREngine_ARCamera *camera);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_Create(const AREngine_ARSession *session,
-    AREngine_ARCameraIntrinsics **outIntrinsics);
+    AREngine_ARCameraIntrinsics **outIntrinsics)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a specific object of intrinsic camera parameters.
  * @param intrinsics To-be-released object of intrinsic camera parameters.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARCameraIntrinsics_Destroy(AREngine_ARCameraIntrinsics *intrinsics);
+void HMS_AREngine_ARCameraIntrinsics_Destroy(AREngine_ARCameraIntrinsics *intrinsics)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the focal length of a camera in pixels.
@@ -1647,7 +1705,8 @@ void HMS_AREngine_ARCameraIntrinsics_Destroy(AREngine_ARCameraIntrinsics *intrin
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetFocalLength(const AREngine_ARSession *session,
-    const AREngine_ARCameraIntrinsics *intrinsics, float *outFocalX, float *outFocalY);
+    const AREngine_ARCameraIntrinsics *intrinsics, float *outFocalX, float *outFocalY)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the principal point of a camera, with the location of the point expressed in pixels.
@@ -1662,7 +1721,8 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetFocalLength(const AREngine_
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetPrincipalPoint(const AREngine_ARSession *session,
-    const AREngine_ARCameraIntrinsics *intrinsics, float *outPrincipalX, float *outPrincipalY);
+    const AREngine_ARCameraIntrinsics *intrinsics, float *outPrincipalX, float *outPrincipalY)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the camera image size, including the width and height (in pixels).
@@ -1677,7 +1737,8 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetPrincipalPoint(const AREngi
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetImageDimensions(const AREngine_ARSession *session,
-    const AREngine_ARCameraIntrinsics *intrinsics, int32_t *outWidth, int32_t *outHeight);
+    const AREngine_ARCameraIntrinsics *intrinsics, int32_t *outWidth, int32_t *outHeight)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains a camera's distortion coefficients, which include 5 components: outDistortion[0] to outDistortion [2]
@@ -1696,7 +1757,8 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetImageDimensions(const AREng
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetDistortion(const AREngine_ARSession *session,
-    const AREngine_ARCameraIntrinsics *intrinsics, float *outDistortion, int32_t distortionNum);
+    const AREngine_ARCameraIntrinsics *intrinsics, float *outDistortion, int32_t distortionNum)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>AREngine_ARFrame</b> object and stores the pointer in *outFrame.
@@ -1709,14 +1771,15 @@ AREngine_ARStatus HMS_AREngine_ARCameraIntrinsics_GetDistortion(const AREngine_A
  *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARFrame_Create(const AREngine_ARSession *session, AREngine_ARFrame **outFrame);
+AREngine_ARStatus HMS_AREngine_ARFrame_Create(const AREngine_ARSession *session, AREngine_ARFrame **outFrame)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Deletes the current AREngine_ARFrame object.
  * @param frame Current frame object.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARFrame_Destroy(AREngine_ARFrame *frame);
+void HMS_AREngine_ARFrame_Destroy(AREngine_ARFrame *frame) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains whether the display (length, width, and rotation) changes. If so, you need to call
@@ -1734,7 +1797,8 @@ void HMS_AREngine_ARFrame_Destroy(AREngine_ARFrame *frame);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_GetDisplayGeometryChanged(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, int32_t *outGeometryChangeState);
+    const AREngine_ARFrame *frame, int32_t *outGeometryChangeState)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the timestamp information (in nanoseconds) of the current frame.
@@ -1748,7 +1812,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetDisplayGeometryChanged(const AREngine_
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_GetTimestamp(const AREngine_ARSession *session, const AREngine_ARFrame *frame,
-    int64_t *outTimestampNs);
+    int64_t *outTimestampNs)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Converts the texture coordinates so that the background image captured by the camera can be correctly
@@ -1771,7 +1836,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetTimestamp(const AREngine_ARSession *se
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_TransformDisplayUvCoords(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, int32_t elementSize, const float *uvsIn, float *uvsOut);
+    const AREngine_ARFrame *frame, int32_t elementSize, const float *uvsIn, float *uvsOut)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Casts a ray from the camera, with the direction of the ray determined by the points (pixelX, pixelY) in the
@@ -1795,7 +1861,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_TransformDisplayUvCoords(const AREngine_A
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_HitTest(const AREngine_ARSession *session, const AREngine_ARFrame *frame,
-    float pixelX, float pixelY, AREngine_ARHitResultList *hitResultList);
+    float pixelX, float pixelY, AREngine_ARHitResultList *hitResultList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Returns the point cloud data of the current frame.
@@ -1810,7 +1877,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_HitTest(const AREngine_ARSession *session
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquirePointCloud(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARPointCloud **outPointCloud);
+    const AREngine_ARFrame *frame, AREngine_ARPointCloud **outPointCloud)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the camera parameter object of the current frame.
@@ -1825,7 +1893,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquirePointCloud(const AREngine_ARSessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCamera(const AREngine_ARSession *session, const AREngine_ARFrame *frame,
-    AREngine_ARCamera **outCamera);
+    AREngine_ARCamera **outCamera)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the updated trackable object of the specified type after <b>HMS_AREngine_ARSession_Update</b> is
@@ -1841,7 +1910,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCamera(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_GetUpdatedTrackables(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARTrackableType filterType, AREngine_ARTrackableList *outTrackableList);
+    const AREngine_ARFrame *frame, AREngine_ARTrackableType filterType, AREngine_ARTrackableList *outTrackableList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the image of the current frame of the camera.
@@ -1856,7 +1926,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_GetUpdatedTrackables(const AREngine_ARSes
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCameraImage(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARImage **outImage);
+    const AREngine_ARFrame *frame, AREngine_ARImage **outImage)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Returns the semantic dense data of the current frame.
@@ -1871,7 +1942,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCameraImage(const AREngine_ARSessi
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireSemanticDenseData(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARSemanticDenseData **outSemanticDenseData);
+    const AREngine_ARFrame *frame, AREngine_ARSemanticDenseData **outSemanticDenseData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the coordinates of all points in a point cloud, as well as their confidence array.
@@ -1890,7 +1962,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireSemanticDenseData(const AREngine_A
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPointCloud_GetData(const AREngine_ARSession *session,
-    const AREngine_ARPointCloud *pointCloud, const float **outPointCloudData);
+    const AREngine_ARPointCloud *pointCloud, const float **outPointCloudData)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the coordinates of all points in a point cloud, as well as their confidence array size.
@@ -1905,7 +1978,8 @@ AREngine_ARStatus HMS_AREngine_ARPointCloud_GetData(const AREngine_ARSession *se
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPointCloud_GetNumberOfPoints(const AREngine_ARSession *session,
-    const AREngine_ARPointCloud *pointCloud, int32_t *outNumberOfPoints);
+    const AREngine_ARPointCloud *pointCloud, int32_t *outNumberOfPoints)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the timestamp when the current feature point cloud is detected, in nanoseconds.
@@ -1919,14 +1993,16 @@ AREngine_ARStatus HMS_AREngine_ARPointCloud_GetNumberOfPoints(const AREngine_ARS
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPointCloud_GetTimestamp(const AREngine_ARSession *session,
-    const AREngine_ARPointCloud *pointCloud, int64_t *outTimestampNs);
+    const AREngine_ARPointCloud *pointCloud, int64_t *outTimestampNs)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory used by the point cloud object.
  * @param pointCloud To-be-released point cloud object.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARPointCloud_Release(AREngine_ARPointCloud *pointCloud);
+void HMS_AREngine_ARPointCloud_Release(AREngine_ARPointCloud *pointCloud)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pose of a specific anchor in the world coordinate system.
@@ -1945,7 +2021,8 @@ void HMS_AREngine_ARPointCloud_Release(AREngine_ARPointCloud *pointCloud);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchor_GetPose(const AREngine_ARSession *session, const AREngine_ARAnchor *anchor,
-    AREngine_ARPose *outPose);
+    AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the tracking status of the pose of a specific anchor.
@@ -1961,7 +2038,8 @@ AREngine_ARStatus HMS_AREngine_ARAnchor_GetPose(const AREngine_ARSession *sessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchor_GetTrackingState(const AREngine_ARSession *session,
-    const AREngine_ARAnchor *anchor, AREngine_ARTrackingState *outTrackingState);
+    const AREngine_ARAnchor *anchor, AREngine_ARTrackingState *outTrackingState)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Instructs AREngine to stop tracking and unbinds an anchor. However, this function does not release the
@@ -1975,7 +2053,8 @@ AREngine_ARStatus HMS_AREngine_ARAnchor_GetTrackingState(const AREngine_ARSessio
  *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.0.0(12)
  */
-AREngine_ARStatus HMS_AREngine_ARAnchor_Detach(AREngine_ARSession *session, AREngine_ARAnchor *anchor);
+AREngine_ARStatus HMS_AREngine_ARAnchor_Detach(AREngine_ARSession *session, AREngine_ARAnchor *anchor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory used by a specific anchor object. Before releasing the memory,
@@ -1983,7 +2062,7 @@ AREngine_ARStatus HMS_AREngine_ARAnchor_Detach(AREngine_ARSession *session, AREn
  * @param anchor Anchor object to be released.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARAnchor_Release(AREngine_ARAnchor *anchor);
+void HMS_AREngine_ARAnchor_Release(AREngine_ARAnchor *anchor) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a list of trackable objects.
@@ -1997,14 +2076,16 @@ void HMS_AREngine_ARAnchor_Release(AREngine_ARAnchor *anchor);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackableList_Create(const AREngine_ARSession *session,
-    AREngine_ARTrackableList **outTrackableList);
+    AREngine_ARTrackableList **outTrackableList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the list of trackable objects, along with all the anchor references it holds.
  * @param trackableList To-be-released list of trackable objects.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARTrackableList_Destroy(AREngine_ARTrackableList *trackableList);
+void HMS_AREngine_ARTrackableList_Destroy(AREngine_ARTrackableList *trackableList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of trackable objects in the list.
@@ -2018,7 +2099,8 @@ void HMS_AREngine_ARTrackableList_Destroy(AREngine_ARTrackableList *trackableLis
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackableList_GetSize(const AREngine_ARSession *session,
-    const AREngine_ARTrackableList *trackableList, int32_t *outSize);
+    const AREngine_ARTrackableList *trackableList, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the object at a specific index from the trackable object list.
@@ -2033,14 +2115,16 @@ AREngine_ARStatus HMS_AREngine_ARTrackableList_GetSize(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackableList_AcquireItem(const AREngine_ARSession *session,
-    const AREngine_ARTrackableList *trackableList, int32_t index, AREngine_ARTrackable **outTrackable);
+    const AREngine_ARTrackableList *trackableList, int32_t index, AREngine_ARTrackable **outTrackable)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a trackable object.
  * @param trackable Trackable objects to be released.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARTrackable_Release(AREngine_ARTrackable *trackable);
+void HMS_AREngine_ARTrackable_Release(AREngine_ARTrackable *trackable)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the type of a trackable object.
@@ -2054,7 +2138,8 @@ void HMS_AREngine_ARTrackable_Release(AREngine_ARTrackable *trackable);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_GetType(const AREngine_ARSession *session,
-    const AREngine_ARTrackable *trackable, AREngine_ARTrackableType *outTrackableType);
+    const AREngine_ARTrackable *trackable, AREngine_ARTrackableType *outTrackableType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the tracing status of the current trackable object.
@@ -2069,7 +2154,8 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_GetType(const AREngine_ARSession *ses
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_GetTrackingState(const AREngine_ARSession *session,
-    const AREngine_ARTrackable *trackable, AREngine_ARTrackingState *outTrackingState);
+    const AREngine_ARTrackable *trackable, AREngine_ARTrackingState *outTrackingState)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an anchor object using the pose information of the trackable object. This anchor will be bound to the
@@ -2090,7 +2176,8 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_GetTrackingState(const AREngine_ARSes
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_AcquireNewAnchor(AREngine_ARSession *session,
-    AREngine_ARTrackable *trackable, AREngine_ARPose *pose, AREngine_ARAnchor **outAnchor);
+    AREngine_ARTrackable *trackable, AREngine_ARPose *pose, AREngine_ARAnchor **outAnchor)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains a list of anchor objects bound to the input trackable objects.
@@ -2105,7 +2192,8 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_AcquireNewAnchor(AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTrackable_GetAnchors(AREngine_ARSession *session,
-    const AREngine_ARTrackable *trackable, AREngine_ARAnchorList *outAnchorList);
+    const AREngine_ARTrackable *trackable, AREngine_ARAnchorList *outAnchorList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the parent plane of a plane (a parent plane is generated when a plane is merged with another one). If
@@ -2120,7 +2208,8 @@ AREngine_ARStatus HMS_AREngine_ARTrackable_GetAnchors(AREngine_ARSession *sessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_AcquireSubsumedBy(const AREngine_ARSession *session,
-    const AREngine_ARPlane *plane, AREngine_ARPlane **outSubsumedBy);
+    const AREngine_ARPlane *plane, AREngine_ARPlane **outSubsumedBy)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the plane type.
@@ -2134,7 +2223,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_AcquireSubsumedBy(const AREngine_ARSessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetType(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    AREngine_ARPlaneType *outPlaneType);
+    AREngine_ARPlaneType *outPlaneType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pose information for the conversion from the local coordinate system of a plane to the
@@ -2155,7 +2245,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetType(const AREngine_ARSession *session
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetCenterPose(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    AREngine_ARPose *outPose);
+    AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the semantic type of a plane, such as desktop and floor. When using this function,
@@ -2170,7 +2261,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetCenterPose(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetLabel(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    AREngine_ARSemanticPlaneLabel *label);
+    AREngine_ARSemanticPlaneLabel *label)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the length of the plane's bounding rectangle along the x-axis of the plane's local coordinate system,
@@ -2186,7 +2278,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetLabel(const AREngine_ARSession *sessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentX(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    float *outExtentX);
+    float *outExtentX)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the length of the plane's bounding rectangle along the z-axis of the plane's local coordinate system,
@@ -2202,7 +2295,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentX(const AREngine_ARSession *sess
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentZ(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    float *outExtentZ);
+    float *outExtentZ)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the size of the 2D vertex array of the detected plane. This function is used together
@@ -2217,7 +2311,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetExtentZ(const AREngine_ARSession *sess
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygonSize(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    int32_t *outPolygonSize);
+    int32_t *outPolygonSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the 2D vertex array of the detected plane, in the format of [x1, z1, x2, z2, ...].
@@ -2240,7 +2335,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygonSize(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygon(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    float *outPolygonXz, int32_t polygonSize);
+    float *outPolygonXz, int32_t polygonSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether a pose is within the plane's bounding rectangle.
@@ -2260,7 +2356,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_GetPolygon(const AREngine_ARSession *sess
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInExtents(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    const AREngine_ARPose *pose, int32_t *outPoseInExtents);
+    const AREngine_ARPose *pose, int32_t *outPoseInExtents)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Checks whether a pose is within the plane's bounding polygon.
@@ -2276,7 +2373,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInExtents(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInPolygon(const AREngine_ARSession *session, const AREngine_ARPlane *plane,
-    const AREngine_ARPose *pose, int32_t *outPoseInPolygon);
+    const AREngine_ARPose *pose, int32_t *outPoseInPolygon)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the orientation mode of an input point.
@@ -2291,7 +2389,8 @@ AREngine_ARStatus HMS_AREngine_ARPlane_IsPoseInPolygon(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPoint_GetOrientationMode(const AREngine_ARSession *session,
-    const AREngine_ARPoint *point, AREngine_ARPointOrientationMode *outOrientationMode);
+    const AREngine_ARPoint *point, AREngine_ARPointOrientationMode *outOrientationMode)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pose information of an input point.
@@ -2305,7 +2404,8 @@ AREngine_ARStatus HMS_AREngine_ARPoint_GetOrientationMode(const AREngine_ARSessi
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARPoint_GetPose(const AREngine_ARSession *session, const AREngine_ARPoint *point,
-    AREngine_ARPose *outPose);
+    AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a list of hit testing result objects.
@@ -2319,14 +2419,16 @@ AREngine_ARStatus HMS_AREngine_ARPoint_GetPose(const AREngine_ARSession *session
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResultList_Create(const AREngine_ARSession *session,
-    AREngine_ARHitResultList **outHitResultList);
+    AREngine_ARHitResultList **outHitResultList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the list of hit testing result objects, as well as all hit testing result objects in the list.
  * @param hitResultList To-be-released list of hit testing result objects.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARHitResultList_Destroy(AREngine_ARHitResultList *hitResultList);
+void HMS_AREngine_ARHitResultList_Destroy(AREngine_ARHitResultList *hitResultList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of objects in the hit testing result object list.
@@ -2340,7 +2442,8 @@ void HMS_AREngine_ARHitResultList_Destroy(AREngine_ARHitResultList *hitResultLis
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResultList_GetSize(const AREngine_ARSession *session,
-    const AREngine_ARHitResultList *hitResultList, int32_t *outSize);
+    const AREngine_ARHitResultList *hitResultList, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the hit testing result object at a specific index from the hit testing result list.
@@ -2356,7 +2459,8 @@ AREngine_ARStatus HMS_AREngine_ARHitResultList_GetSize(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResultList_GetItem(const AREngine_ARSession *session,
-    const AREngine_ARHitResultList *hitResultList, int32_t index, AREngine_ARHitResult *outHitResult);
+    const AREngine_ARHitResultList *hitResultList, int32_t index, AREngine_ARHitResult *outHitResult)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an empty hit testing result object.
@@ -2370,14 +2474,16 @@ AREngine_ARStatus HMS_AREngine_ARHitResultList_GetItem(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_Create(const AREngine_ARSession *session,
-    AREngine_ARHitResult **outHitResult);
+    AREngine_ARHitResult **outHitResult)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases the memory used by the hit testing result object.
  * @param hitResult Hit testing result object to be created.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARHitResult_Destroy(AREngine_ARHitResult *hitResult);
+void HMS_AREngine_ARHitResult_Destroy(AREngine_ARHitResult *hitResult)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the distance from the camera to the hit location, in meters.
@@ -2391,7 +2497,8 @@ void HMS_AREngine_ARHitResult_Destroy(AREngine_ARHitResult *hitResult);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_GetDistance(const AREngine_ARSession *session,
-    const AREngine_ARHitResult *hitResult, float *outDistance);
+    const AREngine_ARHitResult *hitResult, float *outDistance)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pose of an intersection. The pose's translation component corresponds to the intersection's
@@ -2422,7 +2529,8 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_GetDistance(const AREngine_ARSession 
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_GetHitPose(const AREngine_ARSession *session,
-    const AREngine_ARHitResult *hitResult, AREngine_ARPose *outPose);
+    const AREngine_ARHitResult *hitResult, AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the trackable object that is hit.
@@ -2436,7 +2544,8 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_GetHitPose(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireTrackable(const AREngine_ARSession *session,
-    const AREngine_ARHitResult *hitResult, AREngine_ARTrackable **outTrackable);
+    const AREngine_ARHitResult *hitResult, AREngine_ARTrackable **outTrackable)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an anchor at the intersection.
@@ -2451,7 +2560,8 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireTrackable(const AREngine_ARSes
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireNewAnchor(AREngine_ARSession *session,
-    AREngine_ARHitResult *hitResult, AREngine_ARAnchor **outAnchor);
+    AREngine_ARHitResult *hitResult, AREngine_ARAnchor **outAnchor)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pose object for the conversion from the local coordinate system of the target semantic object
@@ -2467,7 +2577,8 @@ AREngine_ARStatus HMS_AREngine_ARHitResult_AcquireNewAnchor(AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetCenterPose(const AREngine_ARSession *session,
-    const AREngine_ARTarget *target, AREngine_ARPose *outARPose);
+    const AREngine_ARTarget *target, AREngine_ARPose *outARPose)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the coordinates of the minimum bounding box of a semantic object, in the format of (xmin, ymin, zmin,
@@ -2483,7 +2594,8 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetCenterPose(const AREngine_ARSession *
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetAxisAlignedBoundingBox(const AREngine_ARSession *session,
-    const AREngine_ARTarget *target, float *outAabb, int32_t aabbSize);
+    const AREngine_ARTarget *target, float *outAabb, int32_t aabbSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the sphere radius of a semantic object.
@@ -2497,7 +2609,8 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetAxisAlignedBoundingBox(const AREngine
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetRadius(const AREngine_ARSession *session, const AREngine_ARTarget *target,
-    float *radius);
+    float *radius)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the shape type of a semantic object.
@@ -2512,7 +2625,8 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetRadius(const AREngine_ARSession *sess
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARTarget_GetShapeType(const AREngine_ARSession *session, const AREngine_ARTarget *target,
-    AREngine_ARTargetShapeLabel *shape);
+    AREngine_ARTargetShapeLabel *shape)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a list of anchor objects.
@@ -2526,14 +2640,16 @@ AREngine_ARStatus HMS_AREngine_ARTarget_GetShapeType(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchorList_Create(const AREngine_ARSession *session,
-    AREngine_ARAnchorList **outAnchorList);
+    AREngine_ARAnchorList **outAnchorList)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a list of anchor objects.
  * @param anchorList To-be-released list of anchor objects.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARAnchorList_Destroy(AREngine_ARAnchorList *anchorList);
+void HMS_AREngine_ARAnchorList_Destroy(AREngine_ARAnchorList *anchorList)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of anchors in the anchor object list.
@@ -2547,7 +2663,8 @@ void HMS_AREngine_ARAnchorList_Destroy(AREngine_ARAnchorList *anchorList);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchorList_GetSize(const AREngine_ARSession *session,
-    const AREngine_ARAnchorList *anchorList, int32_t *outSize);
+    const AREngine_ARAnchorList *anchorList, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the anchor at a specific location from the anchor object list.
@@ -2562,7 +2679,8 @@ AREngine_ARStatus HMS_AREngine_ARAnchorList_GetSize(const AREngine_ARSession *se
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARAnchorList_AcquireItem(const AREngine_ARSession *session,
-    const AREngine_ARAnchorList *anchorList, int32_t index, AREngine_ARAnchor **outAnchor);
+    const AREngine_ARAnchorList *anchorList, int32_t index, AREngine_ARAnchor **outAnchor)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a camera configuration object.
@@ -2576,14 +2694,16 @@ AREngine_ARStatus HMS_AREngine_ARAnchorList_AcquireItem(const AREngine_ARSession
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraConfig_Create(const AREngine_ARSession *session,
-    AREngine_ARCameraConfig **outCameraConfig);
+    AREngine_ARCameraConfig **outCameraConfig)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases a camera configuration object.
  * @param cameraConfig Pointer to the camera configuration object.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARCameraConfig_Destroy(AREngine_ARCameraConfig *cameraConfig);
+void HMS_AREngine_ARCameraConfig_Destroy(AREngine_ARCameraConfig *cameraConfig)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the size of the image sent by the camera to the CPU for processing from a camera configuration object.
@@ -2598,7 +2718,8 @@ void HMS_AREngine_ARCameraConfig_Destroy(AREngine_ARCameraConfig *cameraConfig);
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetImageDimensions(const AREngine_ARSession *session,
-    const AREngine_ARCameraConfig *cameraConfig, int32_t *outWidth, int32_t *outHeight);
+    const AREngine_ARCameraConfig *cameraConfig, int32_t *outWidth, int32_t *outHeight)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the size of the image texture sent by the camera to the GPU for processing from a camera configuration
@@ -2614,7 +2735,8 @@ AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetImageDimensions(const AREngine_
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetTextureDimensions(const AREngine_ARSession *session,
-    const AREngine_ARCameraConfig *cameraConfig, int32_t *outWidth, int32_t *outHeight);
+    const AREngine_ARCameraConfig *cameraConfig, int32_t *outWidth, int32_t *outHeight)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the image format of the current frame.
@@ -2629,7 +2751,8 @@ AREngine_ARStatus HMS_AREngine_ARCameraConfig_GetTextureDimensions(const AREngin
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetFormat(const AREngine_ARSession *session, const AREngine_ARImage *image,
-    AREngine_ARImageFormat *outFormat);
+    AREngine_ARImageFormat *outFormat)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the image width of the current frame.
@@ -2644,7 +2767,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetFormat(const AREngine_ARSession *sessi
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetWidth(const AREngine_ARSession *session, const AREngine_ARImage *image,
-    int32_t *outWidth);
+    int32_t *outWidth)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the image height of the current frame.
@@ -2659,7 +2783,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetWidth(const AREngine_ARSession *sessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetHeight(const AREngine_ARSession *session, const AREngine_ARImage *image,
-    int32_t *outHeight);
+    int32_t *outHeight)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of planes in the current frame.
@@ -2674,7 +2799,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetHeight(const AREngine_ARSession *sessi
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneCount(const AREngine_ARSession *session, const AREngine_ARImage *image,
-    int32_t *outCount);
+    int32_t *outCount)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the plane data in the current frame.
@@ -2691,7 +2817,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneCount(const AREngine_ARSession *s
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneData(const AREngine_ARSession *session, const AREngine_ARImage *image,
-    int32_t planeIndex, const uint8_t **outData, int32_t *outLength);
+    int32_t planeIndex, const uint8_t **outData, int32_t *outLength)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the distance between the start points of two consecutive pixels in an image, in bytes. The pixel
@@ -2708,7 +2835,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneData(const AREngine_ARSession *se
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlanePixelStride(const AREngine_ARSession *session,
-    const AREngine_ARImage *image, int32_t planeIndex, int32_t *outPixelStride);
+    const AREngine_ARImage *image, int32_t planeIndex, int32_t *outPixelStride)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of bytes between the start positions of two consecutive pixel lines in an image. The line
@@ -2725,7 +2853,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlanePixelStride(const AREngine_ARSess
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneRowStride(const AREngine_ARSession *session,
-    const AREngine_ARImage *image, int32_t planeIndex, int32_t *outRowStride);
+    const AREngine_ARImage *image, int32_t planeIndex, int32_t *outRowStride)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the timestamp of an image (in nanoseconds). Timestamps are usually monotonically increasing.
@@ -2742,7 +2871,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetPlaneRowStride(const AREngine_ARSessio
  * @since 5.0.0(12)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetTimestamp(const AREngine_ARSession *session, const AREngine_ARImage *image,
-    int64_t *outTimestamp);
+    int64_t *outTimestamp)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the nativeBuffer of the image object.
@@ -2759,7 +2889,8 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetTimestamp(const AREngine_ARSession *se
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARImage_GetNativeBuffer(const AREngine_ARSession *session,
-    const AREngine_ARImage *image, OH_NativeBuffer **outNativeBuffer);
+    const AREngine_ARImage *image, OH_NativeBuffer **outNativeBuffer)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the image object of the current frame, that is, the object created by
@@ -2767,7 +2898,7 @@ AREngine_ARStatus HMS_AREngine_ARImage_GetNativeBuffer(const AREngine_ARSession 
  * @param image Image object of the current frame.
  * @since 5.0.0(12)
  */
-void HMS_AREngine_ARImage_Release(AREngine_ARImage *image);
+void HMS_AREngine_ARImage_Release(AREngine_ARImage *image) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtain position and posture information of the tracked image center point in the world coordinate system.
@@ -2789,7 +2920,8 @@ void HMS_AREngine_ARImage_Release(AREngine_ARImage *image);
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetCenterPose(const AREngine_ARSession *session,
-    const AREngine_ARAugmentedImage *augmentedImage, AREngine_ARPose *outPose);
+    const AREngine_ARAugmentedImage *augmentedImage, AREngine_ARPose *outPose)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The center point of the obtained image is the coordinate origin, and the width (in meters) of the physical
@@ -2810,7 +2942,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetCenterPose(const AREngine_ARS
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetExtendX(const AREngine_ARSession *session,
-    const AREngine_ARAugmentedImage *augmentedImage, float *outExtendX);
+    const AREngine_ARAugmentedImage *augmentedImage, float *outExtendX)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief The center point of the obtained image is the coordinate origin, and the width (in meters) of the physical
@@ -2831,7 +2964,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetExtendX(const AREngine_ARSess
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetExtendZ(const AREngine_ARSession *session,
-    const AREngine_ARAugmentedImage *augmentedImage, float *outExtendZ);
+    const AREngine_ARAugmentedImage *augmentedImage, float *outExtendZ)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the imageIndex of the augmented image in the augmented image database.
@@ -2847,7 +2981,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetExtendZ(const AREngine_ARSess
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetIndex(const AREngine_ARSession *session,
-    const AREngine_ARAugmentedImage *augmentedImage, uint32_t *outIndex);
+    const AREngine_ARAugmentedImage *augmentedImage, uint32_t *outIndex)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Returns the imageName of the augmented image.
@@ -2866,7 +3001,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImage_GetIndex(const AREngine_ARSessio
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImage_AcquireName(const AREngine_ARSession *session,
-    const AREngine_ARAugmentedImage *augmentedImage, char *augmentedImageName, uint32_t *outNameLength);
+    const AREngine_ARAugmentedImage *augmentedImage, char *augmentedImageName, uint32_t *outNameLength)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases a image database object.
@@ -2877,7 +3013,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImage_AcquireName(const AREngine_ARSes
  *         the input parameter is empty or invalid.\n
  * @since 5.1.0(18)
  */
-AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Destroy(AREngine_ARAugmentedImageDatabase *database);
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Destroy(AREngine_ARAugmentedImageDatabase *database)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Acquires a depth image object that corresponds to the current frame.
@@ -2894,7 +3031,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Destroy(AREngine_ARAugme
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthImage16Bits(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARImage **outDepthImage);
+    const AREngine_ARFrame *frame, AREngine_ARImage **outDepthImage)
+    __attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Obtains the depth confidence image of the current frame. The confidence value is between
@@ -2912,7 +3050,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthImage16Bits(const AREngine_AR
  * @since 5.0.5(17)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthConfidenceImage(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARImage **outConfidenceImage);
+    const AREngine_ARFrame *frame, AREngine_ARImage **outConfidenceImage)
+    __attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Obtains the scene mesh data of the current frame.
@@ -2927,7 +3066,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireDepthConfidenceImage(const AREngin
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARFrame_AcquireSceneMesh(const AREngine_ARSession *session,
-    const AREngine_ARFrame *frame, AREngine_ARSceneMesh **outSceneMesh);
+    const AREngine_ARFrame *frame, AREngine_ARSceneMesh **outSceneMesh)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the size of vertices in the scene mesh.
@@ -2941,7 +3081,8 @@ AREngine_ARStatus HMS_AREngine_ARFrame_AcquireSceneMesh(const AREngine_ARSession
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVerticesSize(const AREngine_ARSession *session,
-    const AREngine_ARSceneMesh *sceneMesh, int32_t *outSize);
+    const AREngine_ARSceneMesh *sceneMesh, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the set of vertices in the scene mesh.
@@ -2956,7 +3097,8 @@ AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVerticesSize(const AREngine_AR
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVertexList(const AREngine_ARSession *session,
-    const AREngine_ARSceneMesh *sceneMesh, float *outData, int32_t dataSize);
+    const AREngine_ARSceneMesh *sceneMesh, float *outData, int32_t dataSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the set of vertexnormals in the scene mesh.
@@ -2971,7 +3113,8 @@ AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVertexList(const AREngine_ARSe
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVertexNormalList(const AREngine_ARSession *session,
-    const AREngine_ARSceneMesh *sceneMesh, float *outData, int32_t dataSize);
+    const AREngine_ARSceneMesh *sceneMesh, float *outData, int32_t dataSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the size of triangle indices in the scene mesh.
@@ -2985,7 +3128,8 @@ AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireVertexNormalList(const AREngin
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireIndexListSize(const AREngine_ARSession *session,
-    const AREngine_ARSceneMesh *sceneMesh, int32_t *outSize);
+    const AREngine_ARSceneMesh *sceneMesh, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the set of triangle indices in the scene mesh.
@@ -3000,7 +3144,8 @@ AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireIndexListSize(const AREngine_A
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireIndexList(const AREngine_ARSession *session,
-    const AREngine_ARSceneMesh *sceneMesh, int32_t *outData, int32_t dataSize);
+    const AREngine_ARSceneMesh *sceneMesh, int32_t *outData, int32_t dataSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the scenemesh object of the current frame, that is, the object created by
@@ -3008,7 +3153,8 @@ AREngine_ARStatus HMS_AREngine_ARSceneMesh_AcquireIndexList(const AREngine_ARSes
  * @param sceneMesh scenemesh object of the current frame.
  * @since 5.1.0(18)
  */
-void HMS_AREngine_ARSceneMesh_Release(AREngine_ARSceneMesh *sceneMesh);
+void HMS_AREngine_ARSceneMesh_Release(AREngine_ARSceneMesh *sceneMesh)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief This interface is used to obtain the number of images stored in the database.
@@ -3022,7 +3168,8 @@ void HMS_AREngine_ARSceneMesh_Release(AREngine_ARSceneMesh *sceneMesh);
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetImageCount(const AREngine_ARAugmentedImageDatabase *database,
-    uint32_t *outImageCount);
+    uint32_t *outImageCount)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Adds the image to the image database and outputs the index of the corresponding image.
@@ -3049,7 +3196,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetImageCount(const AREn
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_AddImage(AREngine_ARAugmentedImageDatabase *database,
-    const AREngine_ARAugmentedImageSource *image, uint32_t *outIndex, AREngine_ARAddAugmentedImageReason *outReason);
+    const AREngine_ARAugmentedImageSource *image, uint32_t *outIndex, AREngine_ARAddAugmentedImageReason *outReason)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Deserialize the augmented image database buffer returned through the
@@ -3069,7 +3217,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_AddImage(AREngine_ARAugm
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Deserialize(const uint8_t *buffer, const uint64_t bufSize,
-    AREngine_ARAugmentedImageDatabase **outDatabase);
+    AREngine_ARAugmentedImageDatabase **outDatabase)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Serializing the augmented image database into a buffer, you can save the buffer for future use.
@@ -3085,7 +3234,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Deserialize(const uint8_
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Serialize(const AREngine_ARAugmentedImageDatabase *database,
-    uint8_t **outBuffer, uint64_t *outBufSize);
+    uint8_t **outBuffer, uint64_t *outBufSize)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Sets the add augmented image mode.
@@ -3098,7 +3248,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Serialize(const AREngine
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_SetAddMode(const AREngine_ARAugmentedImageDatabase *database,
-    AREngine_ARImageDatabaseMode addMode);
+    AREngine_ARImageDatabaseMode addMode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Create an empty tracking image database.
@@ -3111,7 +3262,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_SetAddMode(const AREngin
  *         {@link ARENGINE_ERROR_FATAL} Failure.\n
  * @since 5.1.0(18)
  */
-AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Create(AREngine_ARAugmentedImageDatabase **outDatabase);
+AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Create(AREngine_ARAugmentedImageDatabase **outDatabase)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the add augmented image mode.
@@ -3124,7 +3276,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_Create(AREngine_ARAugmen
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetAddMode(const AREngine_ARAugmentedImageDatabase *database,
-    AREngine_ARImageDatabaseMode *outAddMode);
+    AREngine_ARImageDatabaseMode *outAddMode)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the maximum number of images that can be added by invoking the
@@ -3138,7 +3291,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetAddMode(const AREngin
  * @since 5.1.0(18)
  */
 AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetCapacity(const AREngine_ARAugmentedImageDatabase *database,
-    uint32_t *outCapacity);
+    uint32_t *outCapacity)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the point data of semantic dense.
@@ -3152,7 +3306,8 @@ AREngine_ARStatus HMS_AREngine_ARAugmentedImageDatabase_GetCapacity(const AREngi
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquirePointData(const AREngine_ARSession *session,
-    const AREngine_ARSemanticDenseData* semanticDenseData, AREngine_ARSemanticDensePointData **outPointData);
+    const AREngine_ARSemanticDenseData* semanticDenseData, AREngine_ARSemanticDensePointData **outPointData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the point data size of semantic dense.
@@ -3166,7 +3321,8 @@ AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquirePointData(const AREngine_A
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquirePointDataSize(const AREngine_ARSession *session,
-    const AREngine_ARSemanticDenseData* semanticDenseData, int64_t *outSize);
+    const AREngine_ARSemanticDenseData* semanticDenseData, int64_t *outSize)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the cube data of semantic dense.
@@ -3180,7 +3336,8 @@ AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquirePointDataSize(const AREngi
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquireCubeData(const AREngine_ARSession *session,
-    const AREngine_ARSemanticDenseData* semanticDenseData, AREngine_ARSemanticDenseCubeData **outCubeData);
+    const AREngine_ARSemanticDenseData* semanticDenseData, AREngine_ARSemanticDenseCubeData **outCubeData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the cube data size of semantic dense.
@@ -3194,14 +3351,109 @@ AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquireCubeData(const AREngine_AR
  * @since 6.0.0(20)
  */
 AREngine_ARStatus HMS_AREngine_ARSemanticDense_AcquireCubeDataSize(const AREngine_ARSession *session,
-    const AREngine_ARSemanticDenseData* semanticDenseData, int64_t *outSize);
+    const AREngine_ARSemanticDenseData* semanticDenseData, int64_t *outSize)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Releases the memory used by the semantic object.
  * @param semanticDenseData To-be-released point cloud object.
  * @since 6.0.0(20)
  */
-void HMS_AREngine_ARSemanticDense_Release(AREngine_ARSemanticDenseData *semanticDenseData);
+void HMS_AREngine_ARSemanticDense_Release(AREngine_ARSemanticDenseData *semanticDenseData)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief The callback is used to receive the photo image data.
+ * @since 6.0.2(22)
+ */
+typedef void (*HMS_AREngine_PhotoAvailableCallback)(OH_NativeBuffer *photoBuffer);
+
+/**
+ * @brief Set the camera stream mode to obtain different types of images.
+ * @since 6.0.2(22)
+ */
+typedef enum {
+    /**
+     * Set up preview stream.
+     * @since 6.0.2(22)
+     */
+    ARENGINE_IMAGE_STREAM_MODE_PREVIEW = 0,
+
+    /**
+     * Set up preview and photo stream.
+     * @since 6.0.2(22)
+     */
+    ARENGINE_IMAGE_STREAM_MODE_PREVIEW_AND_PHOTO = 1
+} AREngine_ARImageStreamMode;
+
+/**
+ * @brief Sets the photo image size. Only supports 4:3 resolution. It will be set to the highest resolution
+ * supported by the device with a 4:3 aspect ratio.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param width Width of the photo image, in pixels. You can check the value by calling
+ * <b>OH_CameraManager_GetSupportedCameraOutputCapability</b>.
+ * @param height Height of the photo image, in pixels. You can check the value by calling
+ * <b>OH_CameraManager_GetSupportedCameraOutputCapability</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.2(22)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetPhotoStreamSize(const AREngine_ARSession *session, AREngine_ARConfig *config,
+    uint32_t width, uint32_t height)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the photo image. Supported only in <b>ARENGINE_IMAGE_STREAM_MODE_PHOTO_AND_PREVIEW</b>.
+ * @param session The AREngine session.
+ * @param frame Current frame object.
+ * @param photoCallback The callback is used to receive the photo image data of current frame. For details, please
+ * refer to <b>HMS_AREngine_PhotoAvailableCallback</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_UNSUPPORTED_CONFIGURATION} Configuration not supported.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ *         {@link ARENGINE_ERROR_CAMERA_NOT_AVAILABLE} Camera unavailable.\n
+ *         {@link ARENGINE_CAMERA_SERVICE_FATAL_ERROR} Camera service is fatal.\n
+ * @since 6.0.2(22)
+ */
+AREngine_ARStatus HMS_AREngine_ARFrame_AcquireCameraPhotoImage(const AREngine_ARSession *session,
+    const AREngine_ARFrame *frame, HMS_AREngine_PhotoAvailableCallback photoCallback)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set the current image stream mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param mode Image stream mode. For details, please refer to <b>AREngine_ARImageStreamMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.2(22)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetImageStreamMode(const AREngine_ARSession *session,
+    AREngine_ARConfig *config, AREngine_ARImageStreamMode mode)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get the current image stream mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param outMode Image stream mode. For details, please refer to <b>AREngine_ARImageStreamMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.0.2(22)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetImageStreamMode(const AREngine_ARSession *session,
+    const AREngine_ARConfig *config, AREngine_ARImageStreamMode *outMode)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 }
 #endif

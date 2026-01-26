@@ -34,6 +34,7 @@
 #ifndef CRYPTO_RAND_H
 #define CRYPTO_RAND_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 
 #ifdef __cplusplus
@@ -58,7 +59,7 @@ typedef struct OH_CryptoRand OH_CryptoRand;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoRand_Create(OH_CryptoRand **ctx);
+OH_Crypto_ErrCode OH_CryptoRand_Create(OH_CryptoRand **ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Generates random numbers.
@@ -73,7 +74,8 @@ OH_Crypto_ErrCode OH_CryptoRand_Create(OH_CryptoRand **ctx);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoRand_GenerateRandom(OH_CryptoRand *ctx, int len, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoRand_GenerateRandom(OH_CryptoRand *ctx, int len, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the algorithm name of the random number generator context.
@@ -82,7 +84,7 @@ OH_Crypto_ErrCode OH_CryptoRand_GenerateRandom(OH_CryptoRand *ctx, int len, Cryp
  * @return Return the algorithm name of the random number generator context.
  * @since 20
  */
-const char *OH_CryptoRand_GetAlgoName(OH_CryptoRand *ctx);
+const char *OH_CryptoRand_GetAlgoName(OH_CryptoRand *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the seed to the random number generator context.
@@ -96,7 +98,8 @@ const char *OH_CryptoRand_GetAlgoName(OH_CryptoRand *ctx);
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoRand_SetSeed(OH_CryptoRand *ctx, Crypto_DataBlob *seed);
+OH_Crypto_ErrCode OH_CryptoRand_SetSeed(OH_CryptoRand *ctx, Crypto_DataBlob *seed)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Enables the hardware entropy source.
@@ -109,7 +112,8 @@ OH_Crypto_ErrCode OH_CryptoRand_SetSeed(OH_CryptoRand *ctx, Crypto_DataBlob *see
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 21
  */
-OH_Crypto_ErrCode OH_CryptoRand_EnableHardwareEntropy(OH_CryptoRand *ctx);
+OH_Crypto_ErrCode OH_CryptoRand_EnableHardwareEntropy(OH_CryptoRand *ctx)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Destroys the random number generator context.
@@ -117,7 +121,7 @@ OH_Crypto_ErrCode OH_CryptoRand_EnableHardwareEntropy(OH_CryptoRand *ctx);
  * @param ctx Indicates the random number generator context.
  * @since 20
  */
-void OH_CryptoRand_Destroy(OH_CryptoRand *ctx);
+void OH_CryptoRand_Destroy(OH_CryptoRand *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

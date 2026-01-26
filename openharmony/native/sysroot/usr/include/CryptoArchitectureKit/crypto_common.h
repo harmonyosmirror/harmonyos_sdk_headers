@@ -36,6 +36,7 @@
 #ifndef CRYPTO_COMMON_H
 #define CRYPTO_COMMON_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -96,7 +97,7 @@ typedef enum {
  * @param dataBlob Indicates the data blob.
  * @since 12
  */
-void OH_Crypto_FreeDataBlob(Crypto_DataBlob *dataBlob);
+void OH_Crypto_FreeDataBlob(Crypto_DataBlob *dataBlob) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

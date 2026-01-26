@@ -39,6 +39,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVRECORDER_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVRECORDER_H
 
+#include "info/application_target_sdk_version.h"
 #include <memory>
 #include <stdint.h>
 #include <stdio.h>
@@ -56,7 +57,7 @@ extern "C" {
  * @return Returns a pointer to an OH_AVRecorder instance for success, nullptr for failure
  * @since 18
 */
-OH_AVRecorder *OH_AVRecorder_Create(void);
+OH_AVRecorder *OH_AVRecorder_Create(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Prepare for recording with some parameters.
@@ -68,7 +69,8 @@ OH_AVRecorder *OH_AVRecorder_Create(void);
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder Prepare failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config *config);
+OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config *config)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get current recording parameters, it must be called after prepare.
@@ -81,7 +83,8 @@ OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config
  *         {@link AV_ERR_NO_MEMORY} failed to malloc memory.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config);
+OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get input surface, it must be called between prepare completed and start.
@@ -93,7 +96,8 @@ OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRec
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window);
+OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Update the video orientation before recorder start.
@@ -105,7 +109,8 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or update rotation failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation);
+OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Start AVRecorder.
@@ -116,7 +121,7 @@ OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotat
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder start failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder);
+OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Pause AVRecorder.
@@ -127,7 +132,7 @@ OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder);
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder pause failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder);
+OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Resume AVRecorder.
@@ -138,7 +143,7 @@ OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder);
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder resume failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder);
+OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Stop AVRecorder.
@@ -149,7 +154,7 @@ OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder);
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder stop failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder);
+OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Reset AVRecorder.
@@ -160,7 +165,7 @@ OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder);
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder reset failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder);
+OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Release AVRecorder.
@@ -171,7 +176,7 @@ OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder);
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder release failed.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
+OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get available encoder and encoder info for AVRecorder.
@@ -186,7 +191,8 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRecorder_EncoderInfo **info,
-    int32_t *length);
+    int32_t *length)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the state callback function so that your application can respond to the
@@ -201,7 +207,8 @@ OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRec
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_SetStateCallback(
-    OH_AVRecorder *recorder, OH_AVRecorder_OnStateChange callback, void *userData);
+    OH_AVRecorder *recorder, OH_AVRecorder_OnStateChange callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the error callback function so that your application can respond to the
@@ -215,7 +222,8 @@ OH_AVErrCode OH_AVRecorder_SetStateCallback(
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or input callback is nullptr.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnError callback, void *userData);
+OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnError callback, void *userData)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the URI callback function so that your application can respond to the
@@ -229,7 +237,8 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecord
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or input callback is nullptr.
  * @since 18
  */
-OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnUri callback, void *userData);
+OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnUri callback, void *userData)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set recorder configuration, if app want its recorder only to be muted instead of interrupted.
@@ -242,7 +251,8 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder
  *         {@link AV_ERR_INVALID_STATE} function called in invalid state, only available before prepare state.
  * @since 20
  */
-OH_AVErrCode OH_AVRecorder_SetWillMuteWhenInterrupted(OH_AVRecorder *recorder, bool muteWhenInterrupted);
+OH_AVErrCode OH_AVRecorder_SetWillMuteWhenInterrupted(OH_AVRecorder *recorder, bool muteWhenInterrupted)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

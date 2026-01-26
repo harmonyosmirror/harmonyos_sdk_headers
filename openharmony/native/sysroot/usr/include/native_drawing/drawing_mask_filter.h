@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_MASK_FILTER_H
 #define C_INCLUDE_DRAWING_MASK_FILTER_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -82,7 +83,8 @@ typedef enum {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurType, float sigma, bool respectCTM);
+OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurType, float sigma, bool respectCTM)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_MaskFilter</b> object and reclaims the memory occupied by the object.
@@ -92,7 +94,8 @@ OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurT
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_MaskFilterDestroy(OH_Drawing_MaskFilter* maskFilter);
+void OH_Drawing_MaskFilterDestroy(OH_Drawing_MaskFilter* maskFilter)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

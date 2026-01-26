@@ -63,6 +63,7 @@
 #ifndef HIVIEWDFX_HILOG_H
 #define HIVIEWDFX_HILOG_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include <stdarg.h>
 #include <stdbool.h>
@@ -178,7 +179,8 @@ typedef enum {
  * @since 8
  */
 int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, ...)
-    __attribute__((__format__(os_log, 5, 6)));
+    __attribute__((__format__(os_log, 5, 6)))
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Outputs logs.
@@ -196,7 +198,8 @@ int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *
  * than <b>0</b> otherwise.
  * @since 18
  */
-int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message);
+int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
  * @brief Outputs logs.
@@ -217,7 +220,8 @@ int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const cha
  * @since 18
  */
 int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen,
-    const char *message, size_t messageLen);
+    const char *message, size_t messageLen)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
  
 /**
  * @brief Outputs logs.
@@ -241,7 +245,8 @@ int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, cons
  * @since 18
  */
 int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap)
-    __attribute__((__format__(os_log, 5, 0)));
+    __attribute__((__format__(os_log, 5, 0)))
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Checks whether logs of the specified service domain, log tag, and log level can be output.
@@ -252,7 +257,8 @@ int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char 
  * @return Returns <b>true</b> if the specified logs can be output; returns <b>false</b> otherwise.
  * @since 8
  */
-bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
+bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level)
+__attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Outputs debug logs. This is a function-like macro.
@@ -365,7 +371,7 @@ typedef void (*LogCallback)(const LogType type, const LogLevel level, const unsi
  * you can transfer a null pointer.
  * @since 11
  */
-void OH_LOG_SetCallback(LogCallback callback);
+void OH_LOG_SetCallback(LogCallback callback) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the lowest log level of the current application process.
@@ -373,7 +379,7 @@ void OH_LOG_SetCallback(LogCallback callback);
  * @param level log level
  * @since 15
  */
-void OH_LOG_SetMinLogLevel(LogLevel level);
+void OH_LOG_SetMinLogLevel(LogLevel level) __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets the lowest log level of the current application process. Different preference strategy can be set.
@@ -382,7 +388,8 @@ void OH_LOG_SetMinLogLevel(LogLevel level);
  * @param prefer preference strategy. See {@link PreferStrategy}.
  * @since 21
  */
-void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer);
+void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 #ifdef __cplusplus
 }

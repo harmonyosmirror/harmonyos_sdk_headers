@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_BITMAP_H
 #define C_INCLUDE_DRAWING_BITMAP_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -67,7 +68,7 @@ typedef struct {
  * @since 8
  * @version 1.0
  */
-OH_Drawing_Bitmap* OH_Drawing_BitmapCreate(void);
+OH_Drawing_Bitmap* OH_Drawing_BitmapCreate(void) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Bitmap</b> object and reclaims the memory occupied by the object.
@@ -77,7 +78,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreate(void);
  * @since 8
  * @version 1.0
  */
-void OH_Drawing_BitmapDestroy(OH_Drawing_Bitmap* bitmap);
+void OH_Drawing_BitmapDestroy(OH_Drawing_Bitmap* bitmap) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Bitmap</b> object with <b>OH_Drawing_Image_Info</b> object
@@ -91,7 +92,8 @@ void OH_Drawing_BitmapDestroy(OH_Drawing_Bitmap* bitmap);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imageInfo, void* pixels, uint32_t rowBytes);
+OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imageInfo, void* pixels, uint32_t rowBytes)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Initializes the width and height of an <b>OH_Drawing_Bitmap</b> object
@@ -107,7 +109,8 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imag
  * @version 1.0
  */
 void OH_Drawing_BitmapBuild(OH_Drawing_Bitmap* bitmap,
-    const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat* bitmapFormat);
+    const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat* bitmapFormat)
+    __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the width of a bitmap.
@@ -118,7 +121,7 @@ void OH_Drawing_BitmapBuild(OH_Drawing_Bitmap* bitmap,
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_BitmapGetWidth(OH_Drawing_Bitmap* bitmap);
+uint32_t OH_Drawing_BitmapGetWidth(OH_Drawing_Bitmap* bitmap) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the height of a bitmap.
@@ -129,7 +132,7 @@ uint32_t OH_Drawing_BitmapGetWidth(OH_Drawing_Bitmap* bitmap);
  * @since 8
  * @version 1.0
  */
-uint32_t OH_Drawing_BitmapGetHeight(OH_Drawing_Bitmap* bitmap);
+uint32_t OH_Drawing_BitmapGetHeight(OH_Drawing_Bitmap* bitmap) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Obtains the color format of a bitmap.
@@ -140,7 +143,8 @@ uint32_t OH_Drawing_BitmapGetHeight(OH_Drawing_Bitmap* bitmap);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat(OH_Drawing_Bitmap* bitmap);
+OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat(OH_Drawing_Bitmap* bitmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the alpha format of a bitmap.
@@ -151,7 +155,8 @@ OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat(OH_Drawing_Bitmap* bitmap
  * @since 12
  * @version 1.0
  */
-OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat(OH_Drawing_Bitmap* bitmap);
+OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat(OH_Drawing_Bitmap* bitmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pixel address of a bitmap. You can use this address to obtain the pixel data of the bitmap.
@@ -162,7 +167,7 @@ OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat(OH_Drawing_Bitmap* bitmap
  * @since 8
  * @version 1.0
  */
-void* OH_Drawing_BitmapGetPixels(OH_Drawing_Bitmap* bitmap);
+void* OH_Drawing_BitmapGetPixels(OH_Drawing_Bitmap* bitmap) __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
  * @brief Gets the image info.
@@ -173,7 +178,8 @@ void* OH_Drawing_BitmapGetPixels(OH_Drawing_Bitmap* bitmap);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap* bitmap, OH_Drawing_Image_Info* imageInfo);
+void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap* bitmap, OH_Drawing_Image_Info* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Copies a rect of pixels from bitmap to dstPixels. Copy starts at (srcX, srcY),
@@ -191,7 +197,8 @@ void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap* bitmap, OH_Drawing_Image_I
  * @version 1.0
  */
 bool OH_Drawing_BitmapReadPixels(OH_Drawing_Bitmap* bitmap, const OH_Drawing_Image_Info* dstInfo,
-    void* dstPixels, size_t dstRowBytes, int32_t srcX, int32_t srcY);
+    void* dstPixels, size_t dstRowBytes, int32_t srcX, int32_t srcY)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 #ifdef __cplusplus
 }
 #endif

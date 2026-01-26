@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_IMAGE_H
 #define C_INCLUDE_DRAWING_IMAGE_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -54,7 +55,7 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Image* OH_Drawing_ImageCreate(void);
+OH_Drawing_Image* OH_Drawing_ImageCreate(void) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Image</b> object and reclaims the memory occupied by the object.
@@ -64,7 +65,7 @@ OH_Drawing_Image* OH_Drawing_ImageCreate(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ImageDestroy(OH_Drawing_Image* image);
+void OH_Drawing_ImageDestroy(OH_Drawing_Image* image) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Rebuilds an <b>OH_Drawing_Image</b> object, sharing or copying bitmap pixels.
@@ -76,7 +77,8 @@ void OH_Drawing_ImageDestroy(OH_Drawing_Image* image);
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_ImageBuildFromBitmap(OH_Drawing_Image* image, OH_Drawing_Bitmap* bitmap);
+bool OH_Drawing_ImageBuildFromBitmap(OH_Drawing_Image* image, OH_Drawing_Bitmap* bitmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets pixel count in each row of image.
@@ -87,7 +89,7 @@ bool OH_Drawing_ImageBuildFromBitmap(OH_Drawing_Image* image, OH_Drawing_Bitmap*
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_ImageGetWidth(OH_Drawing_Image* image);
+int32_t OH_Drawing_ImageGetWidth(OH_Drawing_Image* image) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets pixel row count of image.
@@ -98,7 +100,7 @@ int32_t OH_Drawing_ImageGetWidth(OH_Drawing_Image* image);
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_ImageGetHeight(OH_Drawing_Image* image);
+int32_t OH_Drawing_ImageGetHeight(OH_Drawing_Image* image) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the image info.
@@ -109,7 +111,8 @@ int32_t OH_Drawing_ImageGetHeight(OH_Drawing_Image* image);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ImageGetImageInfo(OH_Drawing_Image* image, OH_Drawing_Image_Info* imageInfo);
+void OH_Drawing_ImageGetImageInfo(OH_Drawing_Image* image, OH_Drawing_Image_Info* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

@@ -38,6 +38,7 @@
 #ifndef NATIVE_AVCODEC_VIDEODECODER_H
 #define NATIVE_AVCODEC_VIDEODECODER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avcodec_base.h"
@@ -61,7 +62,7 @@ typedef struct MediaKeySession MediaKeySession;
  * Return nullptr if memory ran out or the mime type is not supported.
  * @since 9
  */
-OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
+OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Create a video decoder instance through the video decoder name.
@@ -72,7 +73,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  * Return nullptr if memory ran out or the decoder name is not supported.
  * @since 9
  */
-OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
+OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Clear the internal resources of the decoder and destroy the decoder instance
@@ -86,7 +87,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
+OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the asynchronous callback function so that your application can respond to the events
@@ -106,7 +107,8 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  * @useinstead OH_VideoDecoder_RegisterCallback
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
+OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the asynchronous callback function so that your application can respond to the events
@@ -124,7 +126,8 @@ OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 11
  */
-OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
+OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Specify the output Surface to provide video decoding output,
@@ -142,7 +145,8 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *window);
+OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *window)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief To configure the video decoder, typically, you need to configure the description information of the decoded
@@ -161,7 +165,8 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * {@link AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION}, video unsupported color space conversion.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
+OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief To prepare the internal resources of the decoder, the Configure interface must be called before
@@ -178,7 +183,7 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, decoder is in buffer mode and color space conversion is configured.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
+OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Start the decoder, this interface must be called after the Prepare is successful.
@@ -195,7 +200,7 @@ OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, video color space conversion is configured but decoder is not prepared.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
+OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Stop the decoder. After stopping, you can re-enter the Started state through Start,
@@ -211,7 +216,7 @@ OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
+OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Clear the input and output data buffered in the decoder. After this interface is called, all the Buffer
@@ -228,7 +233,7 @@ OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
+OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Reset the decoder. To continue decoding, you need to call the Configure interface again
@@ -244,7 +249,7 @@ OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
+OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Get the description information of the output data of the decoder, refer to {@link OH_AVFormat}
@@ -256,7 +261,8 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
  * Return nullptr if the decoder is nullptr or invaild.
  * @since 9
  */
-OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
+OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set dynamic parameters to the decoder. Note: This interface can only be called after the decoder is started.
@@ -273,7 +279,8 @@ OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
+OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Submit the input buffer filled with data to the video decoder. The {@link OH_AVCodecOnNeedInputData} callback
@@ -298,7 +305,8 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * @useinstead OH_VideoDecoder_PushInputBuffer
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
+OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Return the processed output Buffer to the decoder, and notify the decoder to finish rendering the
@@ -319,7 +327,8 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @useinstead OH_VideoDecoder_RenderOutputBuffer
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Return the processed output Buffer to the decoder.
@@ -338,7 +347,8 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
  * @useinstead OH_VideoDecoder_FreeOutputBuffer
  * @since 9
  */
-OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Submit the input buffer filled with data to the video decoder. The {@link OH_AVCodecOnNeedInputBuffer}
@@ -362,7 +372,8 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * it is recommended to check the logs.
  * @since 11
  */
-OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Return the processed output Buffer to the decoder, and notify the decoder to finish rendering the
@@ -381,7 +392,8 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 11
  */
-OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Return the processed output buffer with render timestamp to the decoder, and notify the decoder to finish
@@ -413,7 +425,8 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 12
  */
-OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
+OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Return the processed output Buffer to the decoder.
@@ -430,7 +443,8 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 11
  */
-OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
+OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Queries the index of the next available input buffer.
@@ -455,7 +469,8 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
  * @since 20
  */
-OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Acquires the handle of an available input buffer.
@@ -469,7 +484,8 @@ OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t
  * Return nullptr if no buffer available.
  * @since 20
  */
-OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Queries the index of the next available output buffer.
@@ -497,7 +513,8 @@ OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
  * @since 20
  */
-OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Acquires the handle of an available output buffer.
@@ -511,7 +528,8 @@ OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
  * Return nullptr if no buffer available.
  * @since 20
  */
-OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Check whether the current codec instance is valid. It can be used fault recovery or app
@@ -528,7 +546,8 @@ OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * @since 10
  */
-OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
+OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set decryption info.
@@ -546,7 +565,8 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @since 11
 */
 OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
-    bool secureVideoPath);
+    bool secureVideoPath)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

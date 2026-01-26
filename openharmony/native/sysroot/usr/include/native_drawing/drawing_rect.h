@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_RECT_H
 #define C_INCLUDE_DRAWING_RECT_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -59,7 +60,8 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Rect* OH_Drawing_RectCreate(float left, float top, float right, float bottom);
+OH_Drawing_Rect* OH_Drawing_RectCreate(float left, float top, float right, float bottom)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief If rect intersects other, sets rect to intersection.
@@ -71,7 +73,8 @@ OH_Drawing_Rect* OH_Drawing_RectCreate(float left, float top, float right, float
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_RectIntersect(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other);
+bool OH_Drawing_RectIntersect(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets rect to the union of rect and other.
@@ -84,7 +87,8 @@ bool OH_Drawing_RectIntersect(OH_Drawing_Rect* rect, const OH_Drawing_Rect* othe
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_RectJoin(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other);
+bool OH_Drawing_RectJoin(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the left position of the rect.
@@ -95,7 +99,8 @@ bool OH_Drawing_RectJoin(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RectSetLeft(OH_Drawing_Rect* rect, float left);
+void OH_Drawing_RectSetLeft(OH_Drawing_Rect* rect, float left)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the top position of the rect.
@@ -106,7 +111,7 @@ void OH_Drawing_RectSetLeft(OH_Drawing_Rect* rect, float left);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RectSetTop(OH_Drawing_Rect* rect, float top);
+void OH_Drawing_RectSetTop(OH_Drawing_Rect* rect, float top) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the right position of the rect.
@@ -117,7 +122,8 @@ void OH_Drawing_RectSetTop(OH_Drawing_Rect* rect, float top);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RectSetRight(OH_Drawing_Rect* rect, float right);
+void OH_Drawing_RectSetRight(OH_Drawing_Rect* rect, float right)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the bottom position of the rect.
@@ -128,7 +134,8 @@ void OH_Drawing_RectSetRight(OH_Drawing_Rect* rect, float right);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RectSetBottom(OH_Drawing_Rect* rect, float bottom);
+void OH_Drawing_RectSetBottom(OH_Drawing_Rect* rect, float bottom)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the left position of the rect.
@@ -139,7 +146,7 @@ void OH_Drawing_RectSetBottom(OH_Drawing_Rect* rect, float bottom);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetLeft(OH_Drawing_Rect* rect);
+float OH_Drawing_RectGetLeft(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the top position of the rect.
@@ -150,7 +157,7 @@ float OH_Drawing_RectGetLeft(OH_Drawing_Rect* rect);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetTop(OH_Drawing_Rect* rect);
+float OH_Drawing_RectGetTop(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the right position of the rect.
@@ -161,7 +168,7 @@ float OH_Drawing_RectGetTop(OH_Drawing_Rect* rect);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetRight(OH_Drawing_Rect* rect);
+float OH_Drawing_RectGetRight(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the bottom position of the rect.
@@ -172,7 +179,7 @@ float OH_Drawing_RectGetRight(OH_Drawing_Rect* rect);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetBottom(OH_Drawing_Rect* rect);
+float OH_Drawing_RectGetBottom(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the height position of the rect.
@@ -182,7 +189,7 @@ float OH_Drawing_RectGetBottom(OH_Drawing_Rect* rect);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetHeight(OH_Drawing_Rect* rect);
+float OH_Drawing_RectGetHeight(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the width position of the rect.
@@ -193,7 +200,7 @@ float OH_Drawing_RectGetHeight(OH_Drawing_Rect* rect);
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetWidth(OH_Drawing_Rect* rect);
+float OH_Drawing_RectGetWidth(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Copy the original rectangular object to the destination rectangular object.
@@ -204,7 +211,8 @@ float OH_Drawing_RectGetWidth(OH_Drawing_Rect* rect);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_RectCopy(OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
+void OH_Drawing_RectCopy(OH_Drawing_Rect* src, OH_Drawing_Rect* dst)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Rect</b> object and reclaims the memory occupied by the object.
@@ -214,7 +222,7 @@ void OH_Drawing_RectCopy(OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect);
+void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Array</b> object, which is used to store multiple <b>OH_Drawing_Rect</b> object.
@@ -228,7 +236,7 @@ void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect);
  * @since 18
  * @version 1.0
  */
-OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size);
+OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the size of an <b>OH_Drawing_Array</b> object.
@@ -242,7 +250,8 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size);
  * @since 18
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, size_t* pSize);
+OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, size_t* pSize)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Gets the specified <b>OH_Drawing_Rect</b> object from <b>OH_Drawing_Array</b> object.
@@ -259,7 +268,8 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray, size_t index,
-    OH_Drawing_Rect** rect);
+    OH_Drawing_Rect** rect)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an array <b>OH_Drawing_Rect</b> object and reclaims the memory occupied by the object.
@@ -272,7 +282,40 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray,
  * @since 18
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray);
+OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
+
+/**
+ * @brief Determine whether one <b>OH_Drawing_Rect</b> object totally contains another <b>OH_Drawing_Rect</b> object.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param other Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param isContains Indicates whether rect totally contains other.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect, other or isContains is nullptr.
+ * @since 22
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectContains(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other, bool* isContains)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Add the specified values to the left and top boundaried of an <b>OH_Drawing_Rect</b> object.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param left Indicates the value added to the left boundary of an <b>OH_Drawing_Rect</b> object.
+ * @param top Indicates the value added to the top boundary of an <b>OH_Drawing_Rect</b> object.
+ * @param right Indicates the value added to the right boundary of an <b>OH_Drawing_Rect</b> object.
+ * @param bottom Indicates the value added to the bottom boundary of an <b>OH_Drawing_Rect</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect is nullptr.
+ * @since 22
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectInset(OH_Drawing_Rect* rect, float left, float top, float right, float bottom)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 }

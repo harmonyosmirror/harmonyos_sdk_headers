@@ -40,6 +40,7 @@
 #ifndef NATIVE_AUDIOCAPTURER_H
 #define NATIVE_AUDIOCAPTURER_H
 
+#include "info/application_target_sdk_version.h"
 #include <time.h>
 #include "native_audiostream_base.h"
 #include "native_audio_device_base.h"
@@ -58,7 +59,8 @@ extern "C" {
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer);
+OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to start the capturer stream.
@@ -72,7 +74,8 @@ OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
+OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to pause the capturer stream.
@@ -86,7 +89,8 @@ OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
+OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to stop the capturer stream.
@@ -100,7 +104,8 @@ OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer);
+OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Request to flush the capturer stream.
@@ -113,7 +118,8 @@ OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer);
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer);
+OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the current state of the capturer client.
@@ -128,7 +134,8 @@ OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer);
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capturer, OH_AudioStream_State* state);
+OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capturer, OH_AudioStream_State* state)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the latency mode of the capturer client.
@@ -142,7 +149,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capture
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer,
-    OH_AudioStream_LatencyMode* latencyMode);
+    OH_AudioStream_LatencyMode* latencyMode)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the stream id of the capturer client.
@@ -155,7 +163,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, uint32_t* streamId);
+OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, uint32_t* streamId)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the sample rate value of the capturer client.
@@ -170,7 +179,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, u
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capturer, int32_t* rate);
+OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capturer, int32_t* rate)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the channel count of the capturer client.
@@ -183,7 +193,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capture
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capturer, int32_t* channelCount);
+OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capturer, int32_t* channelCount)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the sample format of the capturer client.
@@ -197,7 +208,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capture
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer* capturer,
-    OH_AudioStream_SampleFormat* sampleFormat);
+    OH_AudioStream_SampleFormat* sampleFormat)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the encoding type of the capturer client.
@@ -211,7 +223,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer* capture
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer* capturer,
-    OH_AudioStream_EncodingType* encodingType);
+    OH_AudioStream_EncodingType* encodingType)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the capturer info of the capturer client.
@@ -225,7 +238,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer* capture
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capturer,
-    OH_AudioStream_SourceType* sourceType);
+    OH_AudioStream_SourceType* sourceType)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the frame size in callback, it is a fixed length of the buffer returned by each callback.
@@ -239,7 +253,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capture
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* capturer, int32_t* frameSize);
+OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* capturer, int32_t* frameSize)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the the time at which a particular frame was presented
@@ -258,7 +273,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer* capturer,
-    clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
+    clockid_t clockId, int64_t* framePosition, int64_t* timestamp)
+    __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * Query the the number of frames that have been read since the stream was created.
@@ -271,7 +287,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer* capturer,
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer, int64_t* frames);
+OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer, int64_t* frames)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Gets the overflow count on this stream.
@@ -284,7 +301,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer,
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
-OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* capturer, uint32_t* count);
+OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* capturer, uint32_t* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Called when audio data is available to read. This function is similar to
@@ -356,7 +374,8 @@ typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* capturer, voi
  * @since 20
  */
 OH_AudioStream_Result OH_AudioCapturer_GetFastStatus(OH_AudioCapturer* capturer,
-    OH_AudioStream_FastStatus* status);
+    OH_AudioStream_FastStatus* status)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Callback function of fast status change event for audio capturer.

@@ -37,6 +37,7 @@
 #ifndef NATIVE_LOWPOWER_AUDIO_SINK_H
 #define NATIVE_LOWPOWER_AUDIO_SINK_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_averrors.h"
@@ -56,7 +57,8 @@ extern "C" {
  * Return nullptr if memory ran out or the mime type is not supported.
  * @since 20
  */
-OH_LowPowerAudioSink* OH_LowPowerAudioSink_CreateByMime(const char* mime);
+OH_LowPowerAudioSink* OH_LowPowerAudioSink_CreateByMime(const char* mime)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To configure the lowpower audio sink, typically, you need to configure the description information of the
@@ -73,7 +75,8 @@ OH_LowPowerAudioSink* OH_LowPowerAudioSink_CreateByMime(const char* mime);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Configure(OH_LowPowerAudioSink* sink, const OH_AVFormat* format);
+OH_AVErrCode OH_LowPowerAudioSink_Configure(OH_LowPowerAudioSink* sink, const OH_AVFormat* format)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set dynamic parameters to the lowpower audio sink.
@@ -90,7 +93,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Configure(OH_LowPowerAudioSink* sink, const OH
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_SetParameter(OH_LowPowerAudioSink* sink, const OH_AVFormat* format);
+OH_AVErrCode OH_LowPowerAudioSink_SetParameter(OH_LowPowerAudioSink* sink, const OH_AVFormat* format)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get parameter of current lowpower audio sink.
@@ -103,7 +107,8 @@ OH_AVErrCode OH_LowPowerAudioSink_SetParameter(OH_LowPowerAudioSink* sink, const
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_GetParameter(OH_LowPowerAudioSink* sink, OH_AVFormat* format);
+OH_AVErrCode OH_LowPowerAudioSink_GetParameter(OH_LowPowerAudioSink* sink, OH_AVFormat* format)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief To prepare the internal resources of the lowpower audio sink, the Configure interface must be called before
@@ -118,7 +123,8 @@ OH_AVErrCode OH_LowPowerAudioSink_GetParameter(OH_LowPowerAudioSink* sink, OH_AV
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Prepare(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Prepare(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Start the lowpower audio sink, this interface must be called after the Prepare is successful.
@@ -133,7 +139,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Prepare(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Start(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Start(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Pause the lowpower audio sink, this interface must be called after the Start or Resume is successful.
@@ -147,7 +154,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Start(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Pause(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Pause(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Resume the lowpower audio sink, this interface must be called after the Pause is successful.
@@ -161,7 +169,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Pause(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Resume(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Resume(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clear cache data in the lowpower audio sink, this interface is suggested to not be called after the Start
@@ -175,7 +184,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Resume(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Flush(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Flush(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Stop the lowpower audio sink.
@@ -188,7 +198,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Flush(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Stop(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Stop(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Reset the lowpower audio sink. Too reuse this instance, you need to call the Configure.
@@ -201,7 +212,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Stop(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Reset(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Reset(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Clear the internal resources of the lowpower audio sink and destroy the lowpower audio sink instance.
@@ -214,7 +226,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Reset(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_Destroy(OH_LowPowerAudioSink* sink);
+OH_AVErrCode OH_LowPowerAudioSink_Destroy(OH_LowPowerAudioSink* sink)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set volume of current lowpower audio sink.
@@ -228,7 +241,8 @@ OH_AVErrCode OH_LowPowerAudioSink_Destroy(OH_LowPowerAudioSink* sink);
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_SetVolume(OH_LowPowerAudioSink* sink, const float volume);
+OH_AVErrCode OH_LowPowerAudioSink_SetVolume(OH_LowPowerAudioSink* sink, const float volume)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set playback speed for the lowpower audio sink.
@@ -242,7 +256,8 @@ OH_AVErrCode OH_LowPowerAudioSink_SetVolume(OH_LowPowerAudioSink* sink, const fl
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_SetPlaybackSpeed(OH_LowPowerAudioSink* sink, const float speed);
+OH_AVErrCode OH_LowPowerAudioSink_SetPlaybackSpeed(OH_LowPowerAudioSink* sink, const float speed)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Return frame packet buffer to lowpower audio sink.
@@ -256,7 +271,8 @@ OH_AVErrCode OH_LowPowerAudioSink_SetPlaybackSpeed(OH_LowPowerAudioSink* sink, c
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_ReturnSamples(OH_LowPowerAudioSink* sink, OH_AVSamplesBuffer* samples);
+OH_AVErrCode OH_LowPowerAudioSink_ReturnSamples(OH_LowPowerAudioSink* sink, OH_AVSamplesBuffer* samples)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the loudness gain for lowpower audio sink.
@@ -270,7 +286,8 @@ OH_AVErrCode OH_LowPowerAudioSink_ReturnSamples(OH_LowPowerAudioSink* sink, OH_A
  * {@link AV_ERR_SERVICE_DIED} media service is died.
  * @since 21
  */
-OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, float loudnessGain);
+OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, float loudnessGain)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Regsister callback instance for lowpower audio sink.
@@ -284,7 +301,8 @@ OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, fl
  * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSink_RegisterCallback(OH_LowPowerAudioSink* sink, OH_LowPowerAudioSinkCallback* callback);
+OH_AVErrCode OH_LowPowerAudioSink_RegisterCallback(OH_LowPowerAudioSink* sink, OH_LowPowerAudioSinkCallback* callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates a lowpower audio sink callback instance.
@@ -293,7 +311,8 @@ OH_AVErrCode OH_LowPowerAudioSink_RegisterCallback(OH_LowPowerAudioSink* sink, O
  * Return nullptr if memory ran out.
  * @since 20
  */
-OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void);
+OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy the lowpower audio sink callback instance.
@@ -304,7 +323,8 @@ OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void);
  * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
  * @since 20
  */
-OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* callback);
+OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* callback)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onPositionUpdated listener to the lowpower audio sink callback instance.
@@ -322,7 +342,8 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* 
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(
     OH_LowPowerAudioSinkCallback* callback,
     OH_LowPowerAudioSink_OnPositionUpdated onPositionUpdated,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onDataNeeded listener to the lowpower audio sink callback instance.
@@ -340,7 +361,8 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(
     OH_LowPowerAudioSinkCallback* callback,
     OH_LowPowerAudioSink_OnDataNeeded onDataNeeded,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onError listener to the lowpower audio sink callback instance.
@@ -358,7 +380,8 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(
     OH_LowPowerAudioSinkCallback* callback,
     OH_LowPowerAudioSink_OnError onError,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onInterrupted listener to the lowpower audio sink callback instance.
@@ -376,7 +399,8 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(
     OH_LowPowerAudioSinkCallback* callback,
     OH_LowPowerAudioSink_OnInterrupted onInterrupted,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onDeviceChanged listener to the lowpower audio sink callback instance.
@@ -394,7 +418,8 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(
     OH_LowPowerAudioSinkCallback* callback,
     OH_LowPowerAudioSink_OnDeviceChanged onDeviceChanged,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Add onEos listener to the lowpower audio sink callback instance.
@@ -412,7 +437,8 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(
     OH_LowPowerAudioSinkCallback *callback,
     OH_LowPowerAudioSink_OnEos onEos,
-    void* userData);
+    void* userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

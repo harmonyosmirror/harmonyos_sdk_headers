@@ -35,6 +35,7 @@
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_RECEIVER_NATIVE_H
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_RECEIVER_NATIVE_H
 
+#include "info/application_target_sdk_version.h"
 #include "image_native.h"
 
 #ifdef __cplusplus
@@ -92,7 +93,8 @@ typedef void (*OH_ImageReceiver_ImageArriveCallback)(OH_ImageReceiverNative *rec
  * returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options);
+Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get size of an {@link OH_ImageReceiverOptions} object.
@@ -103,7 +105,8 @@ Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options, Image_Size* size);
+Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options, Image_Size* size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set size of an {@link OH_ImageReceiverOptions} object.
@@ -114,7 +117,8 @@ Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options, Image_Size size);
+Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options, Image_Size size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get capacity from an {@link OH_ImageReceiverOptions} object.
@@ -125,7 +129,8 @@ Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* options, int32_t* capacity);
+Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* options, int32_t* capacity)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set capacity of an {@link OH_ImageReceiverOptions} object.
@@ -136,7 +141,8 @@ Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* opt
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* options, int32_t capacity);
+Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* options, int32_t capacity)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases an {@link OH_ImageReceiverOptions} object.
@@ -148,7 +154,8 @@ Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* opt
  * @see OH_ImageReceiverOptions
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options);
+Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_ImageReceiverNative</b> object at the application layer.
@@ -160,7 +167,8 @@ Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options
  * returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, OH_ImageReceiverNative** receiver);
+Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, OH_ImageReceiverNative** receiver)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the receiver ID through an {@link OH_ImageReceiverNative} object.
@@ -173,7 +181,8 @@ Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, 
  * @see OH_ImageReceiverNative
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId);
+Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the latest image through an {@link OH_ImageReceiverNative} object.
@@ -187,7 +196,8 @@ Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNat
  * @see OH_ImageReceiverNative, OH_ImageNative
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* receiver, OH_ImageNative** image);
+Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* receiver, OH_ImageNative** image)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the next image through an {@link OH_ImageReceiverNative} object.
@@ -201,7 +211,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
  * @see OH_ImageReceiverNative, OH_ImageNative
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* receiver, OH_ImageNative** image);
+Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* receiver, OH_ImageNative** image)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers an {@link OH_ImageReceiver_OnCallback} callback event.
@@ -215,7 +226,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
  * @see OH_ImageReceiverNative, OH_ImageReceiver_OnCallback
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_ImageReceiver_OnCallback callback);
+Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_ImageReceiver_OnCallback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregisters the {@link OH_ImageReceiver_OnCallback} callback event.
@@ -228,7 +240,8 @@ Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_I
  * @see OH_ImageReceiverNative, OH_ImageReceiverNative_On
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver);
+Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * Registers an {@link OH_ImageReceiver_ImageArriveCallback} callback.
@@ -241,7 +254,8 @@ Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver);
  * @since 20
  */
 Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative *receiver,
-    OH_ImageReceiver_ImageArriveCallback callback, void *userData);
+    OH_ImageReceiver_ImageArriveCallback callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * Unregisters an {@link OH_ImageReceiver_ImageArriveCallback} callback.
@@ -254,7 +268,8 @@ Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative *rec
  * @since 20
  */
 Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *receiver,
-    OH_ImageReceiver_ImageArriveCallback callback);
+    OH_ImageReceiver_ImageArriveCallback callback)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the size of the image receiver through an {@link OH_ImageReceiverNative} object.
@@ -266,7 +281,8 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *re
  * @see OH_ImageReceiverNative, Image_Size
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver, Image_Size* size);
+Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver, Image_Size* size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the capacity of the image receiver through an {@link OH_ImageReceiverNative} object.
@@ -278,7 +294,8 @@ Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver,
  * @see OH_ImageReceiverNative
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* receiver, int32_t* capacity);
+Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* receiver, int32_t* capacity)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases an {@link OH_ImageReceiverNative} object.
@@ -291,7 +308,8 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
  * @see OH_ImageReceiverNative
  * @since 12
  */
-Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver);
+Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 };

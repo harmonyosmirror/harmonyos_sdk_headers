@@ -35,6 +35,7 @@
 #ifndef MINDSPORE_INCLUDE_C_API_MODEL_C_H
 #define MINDSPORE_INCLUDE_C_API_MODEL_C_H
 
+#include "info/application_target_sdk_version.h"
 #include "mindspore/tensor.h"
 #include "mindspore/context.h"
 #include "mindspore/status.h"
@@ -72,7 +73,7 @@ typedef bool (*OH_AI_KernelCallBack)(const OH_AI_TensorHandleArray inputs, const
  * @return Model object handle.
  * @since 9
  */
-OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate(void);
+OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate(void) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroy the model object.
@@ -80,7 +81,7 @@ OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate(void);
  * @param model Model object handle address.
  * @since 9
  */
-OH_AI_API void OH_AI_ModelDestroy(OH_AI_ModelHandle *model);
+OH_AI_API void OH_AI_ModelDestroy(OH_AI_ModelHandle *model) __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Build the model from model file buffer so that it can run on a device.
@@ -94,7 +95,8 @@ OH_AI_API void OH_AI_ModelDestroy(OH_AI_ModelHandle *model);
  * @since 9
  */
 OH_AI_API OH_AI_Status OH_AI_ModelBuild(OH_AI_ModelHandle model, const void *model_data, size_t data_size,
-                                        OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context);
+                                        OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)
+                                        __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Load and build the model from model path so that it can run on a device.
@@ -107,7 +109,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild(OH_AI_ModelHandle model, const void *mod
  * @since 9
  */
 OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,
-                                                OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context);
+                                                OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)
+                                                __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Resizes the shapes of inputs.
@@ -120,7 +123,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const c
  * @since 9
  */
 OH_AI_API OH_AI_Status OH_AI_ModelResize(OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs,
-                                         OH_AI_ShapeInfo *shape_infos, size_t shape_info_num);
+                                         OH_AI_ShapeInfo *shape_infos, size_t shape_info_num)
+                                         __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Inference model.
@@ -135,7 +139,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelResize(OH_AI_ModelHandle model, const OH_AI_Te
  */
 OH_AI_API OH_AI_Status OH_AI_ModelPredict(OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs,
                                           OH_AI_TensorHandleArray *outputs, const OH_AI_KernelCallBack before,
-                                          const OH_AI_KernelCallBack after);
+                                          const OH_AI_KernelCallBack after)
+                                          __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains all input tensor handles of the model.
@@ -144,7 +149,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelPredict(OH_AI_ModelHandle model, const OH_AI_T
  * @return The array that includes all input tensor handles.
  * @since 9
  */
-OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetInputs(const OH_AI_ModelHandle model);
+OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetInputs(const OH_AI_ModelHandle model)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains all output tensor handles of the model.
@@ -153,7 +159,8 @@ OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetInputs(const OH_AI_ModelHandle m
  * @return The array that includes all output tensor handles.
  * @since 9
  */
-OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetOutputs(const OH_AI_ModelHandle model);
+OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetOutputs(const OH_AI_ModelHandle model)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the input tensor handle of the model by name.
@@ -163,7 +170,8 @@ OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetOutputs(const OH_AI_ModelHandle 
  * @return The input tensor handle with the given name, if the name is not found, an NULL is returned.
  * @since 9
  */
-OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetInputByTensorName(const OH_AI_ModelHandle model, const char *tensor_name);
+OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetInputByTensorName(const OH_AI_ModelHandle model, const char *tensor_name)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the output tensor handle of the model by name.
@@ -173,7 +181,8 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetInputByTensorName(const OH_AI_ModelHa
  * @return The output tensor handle with the given name, if the name is not found, an NULL is returned.
  * @since 9
  */
-OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName(const OH_AI_ModelHandle model, const char *tensor_name);
+OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName(const OH_AI_ModelHandle model, const char *tensor_name)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Create a TrainCfg object. Only valid for Lite Train.
@@ -181,7 +190,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName(const OH_AI_ModelH
  * @return TrainCfg object handle.
  * @since 11
  */
-OH_AI_API OH_AI_TrainCfgHandle OH_AI_TrainCfgCreate();
+OH_AI_API OH_AI_TrainCfgHandle OH_AI_TrainCfgCreate() __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroy the train_cfg object. Only valid for Lite Train.
@@ -189,7 +198,8 @@ OH_AI_API OH_AI_TrainCfgHandle OH_AI_TrainCfgCreate();
  * @param train_cfg TrainCfg object handle.
  * @since 11
  */
-OH_AI_API void OH_AI_TrainCfgDestroy(OH_AI_TrainCfgHandle *train_cfg);
+OH_AI_API void OH_AI_TrainCfgDestroy(OH_AI_TrainCfgHandle *train_cfg)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains part of the name that identify a loss kernel. Only valid for Lite Train.
@@ -199,7 +209,8 @@ OH_AI_API void OH_AI_TrainCfgDestroy(OH_AI_TrainCfgHandle *train_cfg);
  * @return loss_name.
  * @since 11
  */
-OH_AI_API char **OH_AI_TrainCfgGetLossName(OH_AI_TrainCfgHandle train_cfg, size_t *num);
+OH_AI_API char **OH_AI_TrainCfgGetLossName(OH_AI_TrainCfgHandle train_cfg, size_t *num)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set part of the name that identify a loss kernel. Only valid for Lite Train.
@@ -209,7 +220,8 @@ OH_AI_API char **OH_AI_TrainCfgGetLossName(OH_AI_TrainCfgHandle train_cfg, size_
  * @param num The num of loss_name.
  * @since 11
  */
-OH_AI_API void OH_AI_TrainCfgSetLossName(OH_AI_TrainCfgHandle train_cfg, const char **loss_name, size_t num);
+OH_AI_API void OH_AI_TrainCfgSetLossName(OH_AI_TrainCfgHandle train_cfg, const char **loss_name, size_t num)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains optimization level of the train_cfg. Only valid for Lite Train.
@@ -218,7 +230,8 @@ OH_AI_API void OH_AI_TrainCfgSetLossName(OH_AI_TrainCfgHandle train_cfg, const c
  * @return OH_AI_OptimizationLevel.
  * @since 11
  */
-OH_AI_API OH_AI_OptimizationLevel OH_AI_TrainCfgGetOptimizationLevel(OH_AI_TrainCfgHandle train_cfg);
+OH_AI_API OH_AI_OptimizationLevel OH_AI_TrainCfgGetOptimizationLevel(OH_AI_TrainCfgHandle train_cfg)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set optimization level of the train_cfg. Only valid for Lite Train.
@@ -227,7 +240,8 @@ OH_AI_API OH_AI_OptimizationLevel OH_AI_TrainCfgGetOptimizationLevel(OH_AI_Train
  * @param level The optimization level of train_cfg.
  * @since 11
  */
-OH_AI_API void OH_AI_TrainCfgSetOptimizationLevel(OH_AI_TrainCfgHandle train_cfg, OH_AI_OptimizationLevel level);
+OH_AI_API void OH_AI_TrainCfgSetOptimizationLevel(OH_AI_TrainCfgHandle train_cfg, OH_AI_OptimizationLevel level)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Build the train model from model buffer so that it can run on a device. Only valid for Lite Train.
@@ -243,7 +257,8 @@ OH_AI_API void OH_AI_TrainCfgSetOptimizationLevel(OH_AI_TrainCfgHandle train_cfg
  */
 OH_AI_API OH_AI_Status OH_AI_TrainModelBuild(OH_AI_ModelHandle model, const void *model_data, size_t data_size,
                                              OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context,
-                                             const OH_AI_TrainCfgHandle train_cfg);
+                                             const OH_AI_TrainCfgHandle train_cfg)
+                                             __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Build the train model from model file buffer so that it can run on a device. Only valid for Lite Train.
@@ -259,7 +274,8 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuild(OH_AI_ModelHandle model, const void
 OH_AI_API OH_AI_Status OH_AI_TrainModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,
                                                      OH_AI_ModelType model_type,
                                                      const OH_AI_ContextHandle model_context,
-                                                     const OH_AI_TrainCfgHandle train_cfg);
+                                                     const OH_AI_TrainCfgHandle train_cfg)
+                                                     __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Train model by step. Only valid for Lite Train.
@@ -271,7 +287,8 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuildFromFile(OH_AI_ModelHandle model, co
  * @since 11
  */
 OH_AI_API OH_AI_Status OH_AI_RunStep(OH_AI_ModelHandle model, const OH_AI_KernelCallBack before,
-                                     const OH_AI_KernelCallBack after);
+                                     const OH_AI_KernelCallBack after)
+                                     __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the Learning Rate of the training. Only valid for Lite Train.
@@ -280,7 +297,8 @@ OH_AI_API OH_AI_Status OH_AI_RunStep(OH_AI_ModelHandle model, const OH_AI_Kernel
  * @return OH_AI_Status of operation.
  * @since 11
  */
-OH_AI_API OH_AI_Status OH_AI_ModelSetLearningRate(OH_AI_ModelHandle model, float learning_rate);
+OH_AI_API OH_AI_Status OH_AI_ModelSetLearningRate(OH_AI_ModelHandle model, float learning_rate)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the Learning Rate of the optimizer. Only valid for Lite Train.
@@ -289,7 +307,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetLearningRate(OH_AI_ModelHandle model, float
  * @return Learning rate. 0.0 if no optimizer was found.
  * @since 11
  */
-OH_AI_API float OH_AI_ModelGetLearningRate(OH_AI_ModelHandle model);
+OH_AI_API float OH_AI_ModelGetLearningRate(OH_AI_ModelHandle model)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains all weights tensors of the model. Only valid for Lite Train.
@@ -298,7 +317,8 @@ OH_AI_API float OH_AI_ModelGetLearningRate(OH_AI_ModelHandle model);
  * @return The vector that includes all gradient tensors.
  * @since 11
  */
-OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetWeights(OH_AI_ModelHandle model);
+OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetWeights(OH_AI_ModelHandle model)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief update weights tensors of the model. Only valid for Lite Train.
@@ -307,7 +327,8 @@ OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetWeights(OH_AI_ModelHandle model)
  * @return OH_AI_Status
  * @since 11
  */
-OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights(OH_AI_ModelHandle model, const OH_AI_TensorHandleArray new_weights);
+OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights(OH_AI_ModelHandle model, const OH_AI_TensorHandleArray new_weights)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the model running mode.
@@ -316,7 +337,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights(OH_AI_ModelHandle model, const O
  * @return Is Train Mode or not.
  * @since 11
  */
-OH_AI_API bool OH_AI_ModelGetTrainMode(OH_AI_ModelHandle model);
+OH_AI_API bool OH_AI_ModelGetTrainMode(OH_AI_ModelHandle model)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the model running mode. Only valid for Lite Train.
@@ -326,7 +348,8 @@ OH_AI_API bool OH_AI_ModelGetTrainMode(OH_AI_ModelHandle model);
  * @return OH_AI_Status.
  * @since 11
  */
-OH_AI_API OH_AI_Status OH_AI_ModelSetTrainMode(OH_AI_ModelHandle model, bool train);
+OH_AI_API OH_AI_Status OH_AI_ModelSetTrainMode(OH_AI_ModelHandle model, bool train)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Setup training with virtual batches. Only valid for Lite Train.
@@ -339,7 +362,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetTrainMode(OH_AI_ModelHandle model, bool tra
  * @since 11
  */
 OH_AI_API OH_AI_Status OH_AI_ModelSetupVirtualBatch(OH_AI_ModelHandle model, int virtual_batch_multiplier, float lr,
-                                                    float momentum);
+                                                    float momentum)
+                                                    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Export training model from file. Only valid for Lite Train.
@@ -357,7 +381,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetupVirtualBatch(OH_AI_ModelHandle model, int
  */
 OH_AI_API OH_AI_Status OH_AI_ExportModel(OH_AI_ModelHandle model, OH_AI_ModelType model_type, const char *model_file,
                                          OH_AI_QuantizationType quantization_type, bool export_inference_only,
-                                         char **output_tensor_name, size_t num);
+                                         char **output_tensor_name, size_t num)
+                                         __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Export training model from buffer. Only valid for Lite Train.
@@ -376,7 +401,8 @@ OH_AI_API OH_AI_Status OH_AI_ExportModel(OH_AI_ModelHandle model, OH_AI_ModelTyp
  */
 OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer(OH_AI_ModelHandle model, OH_AI_ModelType model_type, void *model_data,
                                                size_t *data_size, OH_AI_QuantizationType quantization_type,
-                                               bool export_inference_only, char **output_tensor_name, size_t num);
+                                               bool export_inference_only, char **output_tensor_name, size_t num)
+                                               __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Export model's weights, which can be used in micro only. Only valid for Lite Train.
@@ -394,7 +420,8 @@ OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer(OH_AI_ModelHandle model, OH_AI_Mo
 OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle model, OH_AI_ModelType model_type,
                                                                const char *weight_file, bool is_inference,
                                                                bool enable_fp16, char **changeable_weights_name,
-                                                               size_t num);
+                                                               size_t num)
+                                                               __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Load the config file of the model.
  *
@@ -403,7 +430,8 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle
  * @return OH_AI_Status.
  * @since 20
  */
-OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path);
+OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

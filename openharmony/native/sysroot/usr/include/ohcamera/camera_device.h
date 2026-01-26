@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_CAMERA_CAMERADEVICE_H
 #define NATIVE_INCLUDE_CAMERA_CAMERADEVICE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -58,7 +59,8 @@ extern "C" {
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
-Camera_ErrorCode OH_CameraDevice_GetCameraOrientation(Camera_Device* camera, uint32_t* orientation);
+Camera_ErrorCode OH_CameraDevice_GetCameraOrientation(Camera_Device* camera, uint32_t* orientation)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets remote device name attribute for a camera device.
@@ -70,7 +72,8 @@ Camera_ErrorCode OH_CameraDevice_GetCameraOrientation(Camera_Device* camera, uin
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 15
  */
-Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char** hostDeviceName);
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char** hostDeviceName)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 
 /**
@@ -84,7 +87,8 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char**
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 15
  */
-Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera_HostDeviceType* hostDeviceType);
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera_HostDeviceType* hostDeviceType)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 #ifdef __cplusplus
 }

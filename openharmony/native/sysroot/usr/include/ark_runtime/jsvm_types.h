@@ -393,6 +393,14 @@ typedef enum {
     JSVM_MEMORY_PRESSURE_LEVEL_MODERATE,
     /** critical pressure. */
     JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL,
+    /**
+     * Notifies that the system is running low on memory.
+     * WARNING: It has strong negative impact on the garbage collection performance.
+     * RECOMMEND: Use the other value instead to influence the garbage collection schedule.
+     *
+     * @since 22
+     */
+    JSVM_MEMORY_PRESSURE_LEVEL_LOW_MEMORY,
 } JSVM_MemoryPressureLevel;
 
 /**

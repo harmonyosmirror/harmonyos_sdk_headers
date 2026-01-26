@@ -35,6 +35,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_COMMON_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_COMMON_H_
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -83,6 +84,36 @@ struct Image_Region {
  * @since 12
  */
 typedef struct Image_Region Image_Region;
+
+/**
+ * @brief Defines the area of the image pixels to read or write.
+ *
+ * @since 22
+ */
+typedef struct Image_PositionArea {
+    /** Image pixels data that will be read or written. */
+    uint8_t *pixels;
+    /** Length of the image pixels data. */
+    size_t pixelsSize;
+    /** Offset for data reading or writing. */
+    uint32_t offset;
+    /** Number of bytes per row of the region. */
+    uint32_t stride;
+    /** Region to read or write. */
+    Image_Region region;
+} Image_PositionArea;
+
+/**
+ * @brief Defines the image scale ratio.
+ *
+ * @since 22
+ */
+typedef struct Image_Scale {
+    /** Scale ratio on the x-axis. */
+    float x;
+    /** Scale ratio on the y-axis. */
+    float y;
+} Image_Scale;
 
 #ifdef __cplusplus
 /**
@@ -176,6 +207,11 @@ typedef enum {
      * @since 19
      */
     IMAGE_INVALID_PARAMETER = 7600206,
+    /**
+     * @error Unsupported data format
+     * @since 22
+     */
+    IMAGE_UNSUPPORTED_DATA_FORMAT = 7600207,
     /** failed to allocate memory */
     IMAGE_ALLOC_FAILED = 7600301,
     /** memory copy failed */
@@ -185,6 +221,16 @@ typedef enum {
      * @since 15
      */
     IMAGE_LOCK_UNLOCK_FAILED = 7600303,
+    /**
+     * @error Initialization failed
+     * @since 22
+     */
+    IMAGE_INIT_FAILED = 7600304,
+    /**
+     * @error Create PixelMap failed
+     * @since 22
+     */
+    IMAGE_CREATE_PIXELMAP_FAILED = 7600305,
     /**
      * @error unsupported allocator mode, e.g., use share memory to create a HDR image as only
      * DMA supported hdr metadata.
@@ -301,7 +347,8 @@ typedef enum {
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_PictureMetadata **metadata);
+Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_PictureMetadata **metadata)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the property of picture metadata.
@@ -316,7 +363,8 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
  *         auxiliary picture type.
  * @since 13
  */
-Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set picture metadata property.
@@ -331,7 +379,8 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
  *         auxiliary picture type.
  * @since 13
  */
-Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
  
 /**
  * @brief Obtains the property of picture metadata. The output value.data is null-terminated. 
@@ -346,7 +395,8 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
  *         auxiliary picture type.
  * @since 19
  */
-Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Releases this PictureMetadata object.
@@ -357,7 +407,8 @@ Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metad
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
  * @since 13
  */
-Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
+Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains a clone of metadata.
@@ -371,7 +422,8 @@ Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
  *         {@link IMAGE_COPY_FAILED} memory copy failed.
  * @since 13
  */
-Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata);
+Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Defines the bmp mime type.

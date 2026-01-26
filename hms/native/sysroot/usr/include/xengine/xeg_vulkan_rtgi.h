@@ -28,6 +28,7 @@
 #ifndef XEG_VULKAN_RTGI_H
 #define XEG_VULKAN_RTGI_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <vulkan/vulkan.h>
 #include "xeg_vulkan_common.h"
@@ -442,7 +443,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateRTGI(
     VkDevice      device,
     const void*   pCreateInfo,
     XEG_RTGI*     pRtGI
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
 * @brief Destroys an {@link XEG_RTGI} object.
@@ -452,7 +454,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateRTGI(
 */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroyRTGI(
     XEG_RTGI  rtGI
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
 * @brief Executes the rendering command.
@@ -470,7 +473,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdRenderRTGI(
     VkCommandBuffer  commandBuffer,
     XEG_RTGI         rtGI,
     const void*      pDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

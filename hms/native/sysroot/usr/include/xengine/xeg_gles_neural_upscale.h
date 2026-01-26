@@ -25,6 +25,7 @@
 #ifndef XEG_GLES_NEURAL_UPSCALE_H
 #define XEG_GLES_NEURAL_UPSCALE_H
 
+#include "info/application_target_sdk_version.h"
 #include <GLES3/gl3.h>
 
 #ifdef __cplusplus
@@ -106,7 +107,8 @@ typedef void (GL_APIENTRYP PFN_HMS_XEG_RENDERNEURALUPSCALE)(GLuint inputTexture)
  * parameters.
  * @since 5.0.0(12)
  */
-GL_APICALL void GL_APIENTRY HMS_XEG_NeuralUpscaleParameter(GLenum pname, GLvoid *param);
+GL_APICALL void GL_APIENTRY HMS_XEG_NeuralUpscaleParameter(GLenum pname, GLvoid *param)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Executes the AI spatial upscaling rendering command.
@@ -118,7 +120,8 @@ GL_APICALL void GL_APIENTRY HMS_XEG_NeuralUpscaleParameter(GLenum pname, GLvoid 
  * upscaling input parameter. For details, see the {@link HMS_XEG_NeuralUpscaleParameter} API.
  * @since 5.0.0(12)
  */
-GL_APICALL void GL_APIENTRY HMS_XEG_RenderNeuralUpscale(GLuint inputTexture);
+GL_APICALL void GL_APIENTRY HMS_XEG_RenderNeuralUpscale(GLuint inputTexture)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 
 #ifdef __cplusplus

@@ -36,6 +36,7 @@
 #ifndef ARKUI_NATIVE_DRAG_AND_DROP_H
 #define ARKUI_NATIVE_DRAG_AND_DROP_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "native_type.h"
@@ -183,7 +184,8 @@ typedef struct ArkUI_DragAndDropInfo ArkUI_DragAndDropInfo;
  *         Returns <b>null</b> if the parameter passed in is invalid or is not a drag-related event.
  * @since 12
  */
-ArkUI_DragEvent* OH_ArkUI_NodeEvent_GetDragEvent(ArkUI_NodeEvent* nodeEvent);
+ArkUI_DragEvent* OH_ArkUI_NodeEvent_GetDragEvent(ArkUI_NodeEvent* nodeEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the interaction state prior to a drop and drop operation.
@@ -192,7 +194,8 @@ ArkUI_DragEvent* OH_ArkUI_NodeEvent_GetDragEvent(ArkUI_NodeEvent* nodeEvent);
  * @return Returns the interaction state prior to the drop and drop operation.
  * @since 12
  */
-ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus(ArkUI_NodeEvent* nodeEvent);
+ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus(ArkUI_NodeEvent* nodeEvent)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to disable the default drop animation.
@@ -206,7 +209,8 @@ ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus(ArkUI_NodeEvent* nodeEve
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation(ArkUI_DragEvent* event, bool disable);
+int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation(ArkUI_DragEvent* event, bool disable)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the data processing mode.
@@ -218,7 +222,8 @@ int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation(ArkUI_DragEvent* event, b
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation dropOperation);
+int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation dropOperation)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the result for a drag event.
@@ -230,7 +235,8 @@ int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation(ArkUI_DragEvent* event, Ark
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_SetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult result);
+int32_t OH_ArkUI_DragEvent_SetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set drag data for a drag event.
@@ -242,7 +248,8 @@ int32_t OH_ArkUI_DragEvent_SetDragResult(ArkUI_DragEvent* event, ArkUI_DragResul
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_SetData(ArkUI_DragEvent* event, OH_UdmfData* data);
+int32_t OH_ArkUI_DragEvent_SetData(ArkUI_DragEvent* event, OH_UdmfData* data)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Use this method to provide a data loading parameter to the system instead of providing
@@ -264,7 +271,8 @@ int32_t OH_ArkUI_DragEvent_SetData(ArkUI_DragEvent* event, OH_UdmfData* data);
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 20
 */
-ArkUI_ErrorCode OH_ArkUI_DragEvent_SetDataLoadParams(ArkUI_DragEvent* event, OH_UdmfDataLoadParams* dataLoadParams);
+ArkUI_ErrorCode OH_ArkUI_DragEvent_SetDataLoadParams(ArkUI_DragEvent* event, OH_UdmfDataLoadParams* dataLoadParams)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the default drag data from a drag event.
@@ -277,7 +285,8 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_SetDataLoadParams(ArkUI_DragEvent* event, OH_
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_GetUdmfData(ArkUI_DragEvent* event, OH_UdmfData *data);
+int32_t OH_ArkUI_DragEvent_GetUdmfData(ArkUI_DragEvent* event, OH_UdmfData *data)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of drag data types from a drag event.
@@ -289,7 +298,8 @@ int32_t OH_ArkUI_DragEvent_GetUdmfData(ArkUI_DragEvent* event, OH_UdmfData *data
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_GetDataTypeCount(ArkUI_DragEvent* event, int32_t* count);
+int32_t OH_ArkUI_DragEvent_GetDataTypeCount(ArkUI_DragEvent* event, int32_t* count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the list of drag data types from a drag event.
@@ -306,7 +316,8 @@ int32_t OH_ArkUI_DragEvent_GetDataTypeCount(ArkUI_DragEvent* event, int32_t* cou
  * @since 12
  */
 int32_t OH_ArkUI_DragEvent_GetDataTypes(
-    ArkUI_DragEvent *event, char *eventTypeArray[], int32_t length, int32_t maxStrLen);
+    ArkUI_DragEvent *event, char *eventTypeArray[], int32_t length, int32_t maxStrLen)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the drag result from a drag event.
@@ -318,7 +329,8 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_GetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult* result);
+int32_t OH_ArkUI_DragEvent_GetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult* result)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the drop operation from a drag event.
@@ -331,7 +343,8 @@ int32_t OH_ArkUI_DragEvent_GetDragResult(ArkUI_DragEvent* event, ArkUI_DragResul
  *                 Possible causes: 1. The given parameters are null or the given event is not a valid DragEvent.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_GetDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation* operation);
+int32_t OH_ArkUI_DragEvent_GetDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation* operation)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the X coordinate of the touch point for a drag preview from a drag event.
@@ -341,7 +354,8 @@ int32_t OH_ArkUI_DragEvent_GetDropOperation(ArkUI_DragEvent* event, ArkUI_DropOp
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetPreviewTouchPointX(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetPreviewTouchPointX(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Y coordinate of the touch point for a drag preview from a drag event.
@@ -351,7 +365,8 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointX(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetPreviewTouchPointY(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetPreviewTouchPointY(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the width of a drag preview from a drag event.
@@ -361,7 +376,8 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointY(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetPreviewRectWidth(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetPreviewRectWidth(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the height of a drag preview from a drag event.
@@ -371,7 +387,8 @@ float OH_ArkUI_DragEvent_GetPreviewRectWidth(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetPreviewRectHeight(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetPreviewRectHeight(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the X coordinate of the touch point relative to the window from a drag event.
@@ -381,7 +398,8 @@ float OH_ArkUI_DragEvent_GetPreviewRectHeight(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetTouchPointXToWindow(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetTouchPointXToWindow(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Y coordinate of the touch point relative to the window from a drag event.
@@ -391,7 +409,8 @@ float OH_ArkUI_DragEvent_GetTouchPointXToWindow(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetTouchPointYToWindow(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetTouchPointYToWindow(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the X coordinate of the touch point relative to the current display from a drag event.
@@ -401,7 +420,8 @@ float OH_ArkUI_DragEvent_GetTouchPointYToWindow(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetTouchPointXToDisplay(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetTouchPointXToDisplay(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the Y coordinate of the touch point relative to the current display from a drag event.
@@ -411,7 +431,8 @@ float OH_ArkUI_DragEvent_GetTouchPointXToDisplay(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetTouchPointYToDisplay(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetTouchPointYToDisplay(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the global display X coordinate of the touch point from an <b>ArkUI_DragEvent</b> object.
@@ -421,7 +442,8 @@ float OH_ArkUI_DragEvent_GetTouchPointYToDisplay(ArkUI_DragEvent* event);
  *         If the input parameter is invalid, the default value <b>0</b> is returned.
  * @since 20
  */
-float OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the global display Y coordinate of the touch point from an <b>ArkUI_DragEvent</b> object.
@@ -431,7 +453,8 @@ float OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(ArkUI_DragEvent* event);
  *         If the input parameter is invalid, the default value <b>0</b> is returned.
  * @since 20
  */
-float OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(ArkUI_DragEvent* event)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the dragging velocity along the x-axis.
@@ -441,7 +464,7 @@ float OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetVelocityX(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetVelocityX(ArkUI_DragEvent* event) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the dragging velocity along the y-axis.
@@ -451,7 +474,7 @@ float OH_ArkUI_DragEvent_GetVelocityX(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetVelocityY(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetVelocityY(ArkUI_DragEvent* event) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the dragging velocity along the main axis.
@@ -461,7 +484,7 @@ float OH_ArkUI_DragEvent_GetVelocityY(ArkUI_DragEvent* event);
  *         Returns the default value <b>0</b> if the input parameter is invalid.
  * @since 12
  */
-float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event);
+float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the pressed status of modifier keys from a drag event.
@@ -474,7 +497,8 @@ float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragEvent_GetModifierKeyStates(ArkUI_DragEvent* event, uint64_t* keys);
+int32_t OH_ArkUI_DragEvent_GetModifierKeyStates(ArkUI_DragEvent* event, uint64_t* keys)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the display ID of the screen for the specified drag event.
@@ -486,7 +510,8 @@ int32_t OH_ArkUI_DragEvent_GetModifierKeyStates(ArkUI_DragEvent* event, uint64_t
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDisplayId(ArkUI_DragEvent *event, int32_t *displayId);
+ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDisplayId(ArkUI_DragEvent *event, int32_t *displayId)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Request to start the data sync process with the sync option.
@@ -502,7 +527,8 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDisplayId(ArkUI_DragEvent *event, int32_t 
  * @since 15
  */
 int32_t OH_ArkUI_DragEvent_StartDataLoading(
-    ArkUI_DragEvent* event, OH_UdmfGetDataParams* options, char* key, unsigned int keyLen);
+    ArkUI_DragEvent* event, OH_UdmfGetDataParams* options, char* key, unsigned int keyLen)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Cancel the data sync process.
@@ -514,7 +540,8 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 15
  */
-int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* key);
+int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* key)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets whether to disable data prefetch process before the onDrop callback executing.
@@ -532,7 +559,8 @@ int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* ke
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 15
  */
-int32_t OH_ArkUI_DisableDropDataPrefetchOnNode(ArkUI_NodeHandle node, bool disabled);
+int32_t OH_ArkUI_DisableDropDataPrefetchOnNode(ArkUI_NodeHandle node, bool disabled)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sets whether to enable strict reporting on drag events.
@@ -550,7 +578,8 @@ int32_t OH_ArkUI_DisableDropDataPrefetchOnNode(ArkUI_NodeHandle node, bool disab
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_SetDragEventStrictReportWithNode(ArkUI_NodeHandle node, bool enabled);
+int32_t OH_ArkUI_SetDragEventStrictReportWithNode(ArkUI_NodeHandle node, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to enable strict reporting on drag events.
@@ -567,7 +596,8 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithNode(ArkUI_NodeHandle node, bool en
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_SetDragEventStrictReportWithContext(ArkUI_ContextHandle uiContext, bool enabled);
+int32_t OH_ArkUI_SetDragEventStrictReportWithContext(ArkUI_ContextHandle uiContext, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the types of data that can be dropped to the specified component. This API resets the settings configured
@@ -581,7 +611,8 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithContext(ArkUI_ContextHandle uiConte
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_SetNodeAllowedDropDataTypes(ArkUI_NodeHandle node, const char* typesArray[], int32_t count);
+int32_t OH_ArkUI_SetNodeAllowedDropDataTypes(ArkUI_NodeHandle node, const char* typesArray[], int32_t count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Configures the specified component to disallow any data types. This API resets the settings configured through
@@ -593,7 +624,8 @@ int32_t OH_ArkUI_SetNodeAllowedDropDataTypes(ArkUI_NodeHandle node, const char* 
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DisallowNodeAnyDropDataTypes(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_DisallowNodeAnyDropDataTypes(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Configures the specified component to allow any data types. This API resets the settings configured through
@@ -605,7 +637,8 @@ int32_t OH_ArkUI_DisallowNodeAnyDropDataTypes(ArkUI_NodeHandle node);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_AllowNodeAllDropDataTypes(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_AllowNodeAllDropDataTypes(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether the specified component is draggable.
@@ -617,7 +650,8 @@ int32_t OH_ArkUI_AllowNodeAllDropDataTypes(ArkUI_NodeHandle node);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_SetNodeDraggable(ArkUI_NodeHandle node, bool enabled);
+int32_t OH_ArkUI_SetNodeDraggable(ArkUI_NodeHandle node, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets a custom drag preview for the specified component.
@@ -629,7 +663,8 @@ int32_t OH_ArkUI_SetNodeDraggable(ArkUI_NodeHandle node, bool enabled);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_SetNodeDragPreview(ArkUI_NodeHandle node, OH_PixelmapNative* preview);
+int32_t OH_ArkUI_SetNodeDragPreview(ArkUI_NodeHandle node, OH_PixelmapNative* preview)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>ArkUI_DragPreviewOption</b> object.
@@ -637,7 +672,8 @@ int32_t OH_ArkUI_SetNodeDragPreview(ArkUI_NodeHandle node, OH_PixelmapNative* pr
  * @return Returns the created <b>ArkUI_DragPreviewOption</b> object.
  * @since 12
  */
-ArkUI_DragPreviewOption* OH_ArkUI_CreateDragPreviewOption(void);
+ArkUI_DragPreviewOption* OH_ArkUI_CreateDragPreviewOption(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of a <b>ArkUI_DragPreviewOption</b> object.
@@ -645,7 +681,8 @@ ArkUI_DragPreviewOption* OH_ArkUI_CreateDragPreviewOption(void);
  * @param option Indicates the pointer to an <b>ArkUI_DragPreviewOption</b> object.
  * @since 12
  */
-void OH_ArkUI_DragPreviewOption_Dispose(ArkUI_DragPreviewOption* option);
+void OH_ArkUI_DragPreviewOption_Dispose(ArkUI_DragPreviewOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the scale mode for an <b>ArkUI_DragPreviewOption</b> object.
@@ -657,7 +694,8 @@ void OH_ArkUI_DragPreviewOption_Dispose(ArkUI_DragPreviewOption* option);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragPreviewOption_SetScaleMode(ArkUI_DragPreviewOption* option, ArkUI_DragPreviewScaleMode scaleMode);
+int32_t OH_ArkUI_DragPreviewOption_SetScaleMode(ArkUI_DragPreviewOption* option, ArkUI_DragPreviewScaleMode scaleMode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to enable the shadow effect for an <b>ArkUI_DragPreviewOption</b> object.
@@ -670,7 +708,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetScaleMode(ArkUI_DragPreviewOption* option,
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(ArkUI_DragPreviewOption* option, bool enabled);
+int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(ArkUI_DragPreviewOption* option, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to enable the rounded corner effect for an <b>ArkUI_DragPreviewOption</b> object.
@@ -683,7 +722,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(ArkUI_DragPreviewOpti
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(ArkUI_DragPreviewOption* option, bool enabled);
+int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(ArkUI_DragPreviewOption* option, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to enable the badge for an <b>ArkUI_DragPreviewOption</b> object.
@@ -696,7 +736,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(ArkUI_DragPreviewOpti
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(ArkUI_DragPreviewOption* option, bool enabled);
+int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(ArkUI_DragPreviewOption* option, bool enabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the count on the badge.
@@ -709,7 +750,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(ArkUI_DragPreviewOption
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragPreviewOption_SetBadgeNumber(ArkUI_DragPreviewOption* option, uint32_t forcedNumber);
+int32_t OH_ArkUI_DragPreviewOption_SetBadgeNumber(ArkUI_DragPreviewOption* option, uint32_t forcedNumber)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to enable the default animation on a click or touch, it's not used in drag action.
@@ -722,7 +764,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetBadgeNumber(ArkUI_DragPreviewOption* optio
  * @since 12
  */
 int32_t OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled(
-    ArkUI_DragPreviewOption* option, bool enabled);
+    ArkUI_DragPreviewOption* option, bool enabled)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Sets an <b>ArkUI_DragPreviewOption</b> object for the specified component.
  *
@@ -733,7 +776,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_SetNodeDragPreviewOption(ArkUI_NodeHandle node, ArkUI_DragPreviewOption* option);
+int32_t OH_ArkUI_SetNodeDragPreviewOption(ArkUI_NodeHandle node, ArkUI_DragPreviewOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a drag action object for a UI instance based on the specified component node of the current
@@ -743,7 +787,8 @@ int32_t OH_ArkUI_SetNodeDragPreviewOption(ArkUI_NodeHandle node, ArkUI_DragPrevi
  * @return Returns the pointer to the created drag action object; returns null if the operation fails.
  * @since 12
  */
-ArkUI_DragAction* OH_ArkUI_CreateDragActionWithNode(ArkUI_NodeHandle node);
+ArkUI_DragAction* OH_ArkUI_CreateDragActionWithNode(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a drag action object for the specified UI instance.
@@ -752,7 +797,8 @@ ArkUI_DragAction* OH_ArkUI_CreateDragActionWithNode(ArkUI_NodeHandle node);
  * @return Returns the pointer to the created drag action object; returns null if the operation fails.
  * @since 12
  */
-ArkUI_DragAction* OH_ArkUI_CreateDragActionWithContext(ArkUI_ContextHandle uiContext);
+ArkUI_DragAction* OH_ArkUI_CreateDragActionWithContext(ArkUI_ContextHandle uiContext)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of a drag action object.
@@ -760,7 +806,8 @@ ArkUI_DragAction* OH_ArkUI_CreateDragActionWithContext(ArkUI_ContextHandle uiCon
  * @param dragAction Indicates the pointer to the target drag action object.
  * @since 12
  */
-void OH_ArkUI_DragAction_Dispose(ArkUI_DragAction* dragAction);
+void OH_ArkUI_DragAction_Dispose(ArkUI_DragAction* dragAction)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the pointer ID. If only one finger is operating on the screen, the pointer ID is 0.
@@ -773,7 +820,8 @@ void OH_ArkUI_DragAction_Dispose(ArkUI_DragAction* dragAction);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragAction_SetPointerId(ArkUI_DragAction* dragAction, int32_t pointer);
+int32_t OH_ArkUI_DragAction_SetPointerId(ArkUI_DragAction* dragAction, int32_t pointer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the drag previews for a drag action.
@@ -787,7 +835,8 @@ int32_t OH_ArkUI_DragAction_SetPointerId(ArkUI_DragAction* dragAction, int32_t p
  * @since 12
  */
 int32_t OH_ArkUI_DragAction_SetPixelMaps(
-    ArkUI_DragAction* dragAction, OH_PixelmapNative* pixelmapArray[], int32_t size);
+    ArkUI_DragAction* dragAction, OH_PixelmapNative* pixelmapArray[], int32_t size)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the touch point relative to the upper left corner of the first drag preview (pixel map).
@@ -799,7 +848,8 @@ int32_t OH_ArkUI_DragAction_SetPixelMaps(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragAction_SetTouchPointX(ArkUI_DragAction* dragAction, float x);
+int32_t OH_ArkUI_DragAction_SetTouchPointX(ArkUI_DragAction* dragAction, float x)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the touch point relative to the upper left corner of the first drag preview (pixel map).
@@ -811,7 +861,8 @@ int32_t OH_ArkUI_DragAction_SetTouchPointX(ArkUI_DragAction* dragAction, float x
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y);
+int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the drag data.
@@ -823,7 +874,8 @@ int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragAction_SetData(ArkUI_DragAction* dragAction, OH_UdmfData* data);
+int32_t OH_ArkUI_DragAction_SetData(ArkUI_DragAction* dragAction, OH_UdmfData* data)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Use this method to provide a data loading parameter to the system instead of providing
@@ -846,7 +898,8 @@ int32_t OH_ArkUI_DragAction_SetData(ArkUI_DragAction* dragAction, OH_UdmfData* d
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_DragAction_SetDataLoadParams(ArkUI_DragAction* dragAction,
-    OH_UdmfDataLoadParams* dataLoadParams);
+    OH_UdmfDataLoadParams* dataLoadParams)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets an <b>ArkUI_DragPreviewOption</b> object for the specified drag action object.
@@ -858,7 +911,8 @@ ArkUI_ErrorCode OH_ArkUI_DragAction_SetDataLoadParams(ArkUI_DragAction* dragActi
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_DragAction_SetDragPreviewOption(ArkUI_DragAction* dragAction, ArkUI_DragPreviewOption* option);
+int32_t OH_ArkUI_DragAction_SetDragPreviewOption(ArkUI_DragAction* dragAction, ArkUI_DragPreviewOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Registers a drag status listener.
@@ -875,7 +929,8 @@ int32_t OH_ArkUI_DragAction_SetDragPreviewOption(ArkUI_DragAction* dragAction, A
  * @since 12
  */
 int32_t OH_ArkUI_DragAction_RegisterStatusListener(ArkUI_DragAction* dragAction, void* userData,
-    void(*listener)(ArkUI_DragAndDropInfo* dragAndDropInfo, void* userData));
+    void(*listener)(ArkUI_DragAndDropInfo* dragAndDropInfo, void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Unregisters a drag status listener.
@@ -883,7 +938,8 @@ int32_t OH_ArkUI_DragAction_RegisterStatusListener(ArkUI_DragAction* dragAction,
  * @param dragAction Indicates the pointer to the target drag action object.
  * @since 12
  */
-void OH_ArkUI_DragAction_UnregisterStatusListener(ArkUI_DragAction* dragAction);
+void OH_ArkUI_DragAction_UnregisterStatusListener(ArkUI_DragAction* dragAction)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the drag status of a drag action.
@@ -892,7 +948,8 @@ void OH_ArkUI_DragAction_UnregisterStatusListener(ArkUI_DragAction* dragAction);
  * @return Returns an <b>ArkUI_DragStatus</b> object; returns <b>ArkUI_DRAG_STATUS_UNKNOWN</b> if an error occurs.
  * @since 12
  */
-ArkUI_DragStatus OH_ArkUI_DragAndDropInfo_GetDragStatus(ArkUI_DragAndDropInfo* dragAndDropInfo);
+ArkUI_DragStatus OH_ArkUI_DragAndDropInfo_GetDragStatus(ArkUI_DragAndDropInfo* dragAndDropInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains a drag event based on the specified drag and drop information.
@@ -903,7 +960,8 @@ ArkUI_DragStatus OH_ArkUI_DragAndDropInfo_GetDragStatus(ArkUI_DragAndDropInfo* d
  * @return Returns an <b>ArkUI_DragEvent</b> object; returns null if an error occurs.
  * @since 12
  */
-ArkUI_DragEvent* OH_ArkUI_DragAndDropInfo_GetDragEvent(ArkUI_DragAndDropInfo* dragAndDropInfo);
+ArkUI_DragEvent* OH_ArkUI_DragAndDropInfo_GetDragEvent(ArkUI_DragAndDropInfo* dragAndDropInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Initiates a drag action through the specified drag action object.
@@ -914,7 +972,7 @@ ArkUI_DragEvent* OH_ArkUI_DragAndDropInfo_GetDragEvent(ArkUI_DragAndDropInfo* dr
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
-int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction);
+int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Request to delay the drop end handling for a while to wait until the process result
@@ -932,7 +990,8 @@ int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction);
  *         Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if current is not during the drop handing.
  * @since 19
  */
-int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify);
+int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Notify the system final drag result, the request identify will be checked, it should be the same
@@ -947,7 +1006,8 @@ int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t
  *         Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if current is not during the drop handing.
  * @since 19
  */
-int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result);
+int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Notify the system all handling done, the drag end pending can be finished.
@@ -959,7 +1019,8 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult resu
  *         Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if current is not during the drop handing.
  * @since 19
  */
-int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify);
+int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Use this method to obtain the application bundle name of the drag-and-drop initiator, you need
@@ -975,7 +1036,8 @@ int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource(ArkUI_DragEvent* event, char *bundleName, int32_t length);
+ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource(ArkUI_DragEvent* event, char *bundleName, int32_t length)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Call this method to determine whether the current drag and drop operation is cross-device.
@@ -987,7 +1049,8 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource(ArkUI_DragEvent* event, char *b
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote(ArkUI_DragEvent* event, bool* isRemote);
+ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote(ArkUI_DragEvent* event, bool* isRemote)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets whether to enable the display of a disallow status icon.
@@ -1012,7 +1075,8 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote(ArkUI_DragEvent* event, bool* isRemo
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
-ArkUI_ErrorCode OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext, bool enabled);
+ArkUI_ErrorCode OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext, bool enabled)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 };

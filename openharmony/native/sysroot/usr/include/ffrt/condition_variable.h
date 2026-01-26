@@ -36,6 +36,7 @@
 #ifndef FFRT_API_C_CONDITION_VARIABLE_H
 #define FFRT_API_C_CONDITION_VARIABLE_H
 
+#include "info/application_target_sdk_version.h"
 #include <time.h>
 #include "type_def.h"
 
@@ -48,7 +49,8 @@
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr);
+FFRT_C_API int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Unblocks at least one of the threads that are blocked on a condition variable.
@@ -58,7 +60,7 @@ FFRT_C_API int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_cond_signal(ffrt_cond_t* cond);
+FFRT_C_API int ffrt_cond_signal(ffrt_cond_t* cond) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Unblocks all threads currently blocked on a condition variable.
@@ -68,7 +70,7 @@ FFRT_C_API int ffrt_cond_signal(ffrt_cond_t* cond);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond);
+FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Blocks the calling thread.
@@ -79,7 +81,8 @@ FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond);
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex);
+FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Blocks the calling thread for a given duration.
@@ -95,7 +98,8 @@ FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex);
            returns <b>ffrt_error_inval</b> if the blocking fails.
  * @since 10
  */
-FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point);
+FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroys a condition variable, the user needs to invoke this interface.
@@ -105,7 +109,7 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
            returns <b>ffrt_error_inval</b> otherwise.
  * @since 10
  */
-FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond);
+FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 #endif // FFRT_API_C_CONDITION_VARIABLE_H
 /** @} */

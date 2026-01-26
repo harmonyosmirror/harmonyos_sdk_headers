@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_MATRIX_H
 #define C_INCLUDE_DRAWING_MATRIX_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_error_code.h"
 #include "drawing_types.h"
 
@@ -55,7 +56,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Matrix* OH_Drawing_MatrixCreate(void);
+OH_Drawing_Matrix* OH_Drawing_MatrixCreate(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Matrix</b> copy object.
@@ -66,7 +67,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreate(void);
  * @since 20
  * @version 1.0
  */
-OH_Drawing_Matrix* OH_Drawing_MatrixCopy(const OH_Drawing_Matrix* matrix);
+OH_Drawing_Matrix* OH_Drawing_MatrixCopy(const OH_Drawing_Matrix* matrix)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Matrix</b> object with rotation. Sets matrix to
@@ -79,7 +81,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCopy(const OH_Drawing_Matrix* matrix);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation(float deg, float x, float y);
+OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation(float deg, float x, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Matrix</b> object with scale. Sets matrix to scale
@@ -94,7 +97,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation(float deg, float x, float y);
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale(float sx, float sy, float px, float py);
+OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale(float sx, float sy, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates an <b>OH_Drawing_Matrix</b> object with translation.
@@ -106,7 +110,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale(float sx, float sy, float px, fl
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation(float dx, float dy);
+OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation(float dx, float dy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the params for a matrix.
@@ -126,7 +131,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation(float dx, float dy);
  * @version 1.0
  */
 void OH_Drawing_MatrixSetMatrix(OH_Drawing_Matrix* matrix, float scaleX, float skewX, float transX,
-    float skewY, float scaleY, float transY, float persp0, float persp1, float persp2);
+    float skewY, float scaleY, float transY, float persp0, float persp1, float persp2)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Enumerates of scale to fit flags, how matrix is constructed to map one rect to another.
@@ -170,7 +176,8 @@ typedef enum {
  * @version 1.0
  */
 bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix* matrix, const OH_Drawing_Rect* src,
-    const OH_Drawing_Rect* dst, OH_Drawing_ScaleToFit stf);
+    const OH_Drawing_Rect* dst, OH_Drawing_ScaleToFit stf)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to matrix multiplied by matrix constructed from rotating by degrees
@@ -202,7 +209,8 @@ bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix* matrix, const OH_Drawing_
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
+void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to forward scale by sx and sy, about a pivot point at (px, py).
@@ -232,7 +240,8 @@ void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix* matrix, float degree, float p
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py);
+void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets forward matrix to translate by dx and dy.
@@ -252,7 +261,8 @@ void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix* matrix, float sx, float sy, fl
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
+void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix* matrix, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to matrix constructed from rotating by degrees about pivot point(px, py),
@@ -284,7 +294,8 @@ void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix* matrix, float dx, float dy
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
+void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to backward scale by sx and sy, about a pivot point at (px, py).
@@ -309,7 +320,8 @@ void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix* matrix, float degree, float 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py);
+void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets backward matrix to translate by (dx, dy).
@@ -332,7 +344,8 @@ void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix* matrix, float sx, float sy, f
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
+void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix* matrix, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reset matrix to identity, which has no effect on mapped point, sets matrix to:
@@ -345,7 +358,7 @@ void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix* matrix, float dx, float d
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixReset(OH_Drawing_Matrix* matrix);
+void OH_Drawing_MatrixReset(OH_Drawing_Matrix* matrix) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix total to matrix a multiplied by matrix b.
@@ -365,7 +378,8 @@ void OH_Drawing_MatrixReset(OH_Drawing_Matrix* matrix);
  * @version 1.0
  */
 void OH_Drawing_MatrixConcat(OH_Drawing_Matrix* total, const OH_Drawing_Matrix* a,
-    const OH_Drawing_Matrix* b);
+    const OH_Drawing_Matrix* b)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets nine matrix values contained by matrix into array.
@@ -379,7 +393,29 @@ void OH_Drawing_MatrixConcat(OH_Drawing_Matrix* total, const OH_Drawing_Matrix* 
  * @since 12
  * @version 1.0
  */
-OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float value[9]);
+OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float value[9])
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Matrix a left-multiplied by matrix b.
+ *       Given:
+ *                    | A B C |          | J K L |
+ *                a = | D E F |,     b = | M N O |
+ *                    | G H I |          | P Q R |
+ *       Get:
+ *                   | J K L |     | A B C |     | AJ+DK+GL BJ+EK+HL CJ+FK+IL |
+ *           b * a = | M N O |  *  | D E F |  =  | AM+DN+GO BM+EN+HO CM+FN+IO |
+ *                   | P Q R |     | G H I |     | AP+DQ+GR BP+EQ+HR CP+FQ+IR |
+ * @param a Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param b Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if a or b is nullptr.
+ * @since 22
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_MatrixPreConcat(OH_Drawing_Matrix* a, OH_Drawing_Matrix* b)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Get one matrix value. Index is between the range of 0-8.
@@ -390,7 +426,8 @@ OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float va
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_MatrixGetValue(OH_Drawing_Matrix* matrix, int index);
+float OH_Drawing_MatrixGetValue(OH_Drawing_Matrix* matrix, int index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to rotate by degrees about a pivot point at (px, py). The pivot point is unchanged
@@ -404,7 +441,8 @@ float OH_Drawing_MatrixGetValue(OH_Drawing_Matrix* matrix, int index);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
+void OH_Drawing_MatrixRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to translate by (dx, dy)
@@ -416,7 +454,8 @@ void OH_Drawing_MatrixRotate(OH_Drawing_Matrix* matrix, float degree, float px, 
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
+void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix* matrix, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets matrix to scale by sx and sy, about a pivot point at (px, py).
@@ -430,7 +469,8 @@ void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_MatrixScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py);
+void OH_Drawing_MatrixScale(OH_Drawing_Matrix* matrix, float sx, float sy, float px, float py)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets inverse to reciprocal matrix, returning true if matrix can be inverted.
@@ -443,7 +483,8 @@ void OH_Drawing_MatrixScale(OH_Drawing_Matrix* matrix, float sx, float sy, float
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* inverse);
+bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* inverse)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the params of matrix to map src to dst.
@@ -459,7 +500,8 @@ bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* inver
  * @version 1.0
  */
 bool OH_Drawing_MatrixSetPolyToPoly(OH_Drawing_Matrix* matrix, const OH_Drawing_Point2D* src,
-    const OH_Drawing_Point2D* dst, uint32_t count);
+    const OH_Drawing_Point2D* dst, uint32_t count)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Maps the src point array to the dst point array by matrix transformation.
@@ -473,7 +515,8 @@ bool OH_Drawing_MatrixSetPolyToPoly(OH_Drawing_Matrix* matrix, const OH_Drawing_
  * @version 1.0
  */
 void OH_Drawing_MatrixMapPoints(const OH_Drawing_Matrix* matrix, const OH_Drawing_Point2D* src,
-    OH_Drawing_Point2D* dst, int count);
+    OH_Drawing_Point2D* dst, int count)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets dst to bounds of src corners mapped by matrix transformation.
@@ -486,7 +529,8 @@ void OH_Drawing_MatrixMapPoints(const OH_Drawing_Matrix* matrix, const OH_Drawin
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix* matrix, const OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
+bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix* matrix, const OH_Drawing_Rect* src, OH_Drawing_Rect* dst)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Returns true if the first matrix equals the second matrix.
@@ -498,7 +542,8 @@ bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix* matrix, const OH_Drawing_
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* other);
+bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* other)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Returns true if matrix is identity.
@@ -512,7 +557,7 @@ bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* othe
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_MatrixIsIdentity(OH_Drawing_Matrix* matrix);
+bool OH_Drawing_MatrixIsIdentity(OH_Drawing_Matrix* matrix) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Matrix</b> object and reclaims the memory occupied by the object.
@@ -522,7 +567,7 @@ bool OH_Drawing_MatrixIsIdentity(OH_Drawing_Matrix* matrix);
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_MatrixDestroy(OH_Drawing_Matrix* matrix);
+void OH_Drawing_MatrixDestroy(OH_Drawing_Matrix* matrix) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

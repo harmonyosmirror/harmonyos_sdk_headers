@@ -36,6 +36,7 @@
 #ifndef NATIVE_TELEPHONY_RADIO_API_H
 #define NATIVE_TELEPHONY_RADIO_API_H
 
+#include "info/application_target_sdk_version.h"
 #include "telephony_radio_type.h"
 #include "stdint.h"
 
@@ -57,7 +58,8 @@ extern "C" {
  * @syscap SystemCapability.Telephony.CoreService
  * @since 13
  */
-Telephony_RadioResult OH_Telephony_GetNetworkState(Telephony_NetworkState *state);
+Telephony_RadioResult OH_Telephony_GetNetworkState(Telephony_NetworkState *state)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the radio network state for given slot id.
@@ -75,7 +77,8 @@ Telephony_RadioResult OH_Telephony_GetNetworkState(Telephony_NetworkState *state
  * @syscap SystemCapability.Telephony.CoreService
  * @since 13
  */
-Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Telephony_NetworkState *state);
+Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Telephony_NetworkState *state)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif

@@ -39,6 +39,7 @@
 #ifndef OHOS_DRM_NATIVE_MEDIA_KEY_SYSTEM_H
 #define OHOS_DRM_NATIVE_MEDIA_KEY_SYSTEM_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -86,7 +87,8 @@ typedef Drm_ErrCode (*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem
  * @since 12
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_MediaKeySystem_Callback callback);
+Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_MediaKeySystem_Callback callback)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Acquire supported media key systems' name and uuid.
@@ -100,7 +102,8 @@ Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_Med
  * @since 12
  * @version 1.0
  */
-Drm_ErrCode  OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *descs, uint32_t *count);
+Drm_ErrCode  OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *descs, uint32_t *count)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Query if media key system is supported.
@@ -109,7 +112,7 @@ Drm_ErrCode  OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription 
  * @since 11
  * @version 1.0
  */
-bool OH_MediaKeySystem_IsSupported(const char *name);
+bool OH_MediaKeySystem_IsSupported(const char *name) __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Query if media key system is supported.
  * @param name Used to point a Digital Right Management solution.
@@ -118,7 +121,8 @@ bool OH_MediaKeySystem_IsSupported(const char *name);
  * @since 11
  * @version 1.0
  */
-bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType);
+bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Query if media key system is supported.
  * @param name Used to point a Digital Right Management solution.
@@ -129,7 +133,8 @@ bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType);
  * @version 1.0
  */
 bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,
-    DRM_ContentProtectionLevel contentProtectionLevel);
+    DRM_ContentProtectionLevel contentProtectionLevel)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Creates a media key system instance from the name.
@@ -145,7 +150,8 @@ bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKeySystem);
+Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKeySystem)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Set media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
@@ -158,7 +164,8 @@ Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKey
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySystem,
-    const char *configName, const char *value);
+    const char *configName, const char *value)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Get media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
@@ -173,7 +180,8 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySys
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySystem,
-    const char *configName, char *value, int32_t valueLen);
+    const char *configName, char *value, int32_t valueLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Set media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
@@ -188,7 +196,8 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySys
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKeySystem,
-    const char *configName, uint8_t *value, int32_t valueLen);
+    const char *configName, uint8_t *value, int32_t valueLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Get media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
@@ -203,7 +212,8 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKey
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKeySystem,
-    const char *configName, uint8_t *value, int32_t *valueLen);
+    const char *configName, uint8_t *value, int32_t *valueLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Get media key system statistics info.
  * @param mediaKeySystem Media key system instance.
@@ -215,7 +225,8 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKey
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_Statistics *statistics);
+Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_Statistics *statistics)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Get the max content protection level media key system supported.
  * @param mediaKeySystem Media key system instance.
@@ -227,7 +238,8 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *mediaKeySystem,
-    DRM_ContentProtectionLevel *contentProtectionLevel);
+    DRM_ContentProtectionLevel *contentProtectionLevel)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Set media key system event callback.
  * @param mediaKeySystem Media key system instance.
@@ -238,7 +250,8 @@ Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *media
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKeySystem,
-    MediaKeySystem_Callback callback);
+    MediaKeySystem_Callback callback)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Create a media key session instance.
@@ -257,7 +270,8 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKey
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySystem,
-    DRM_ContentProtectionLevel *level, MediaKeySession **mediaKeySession);
+    DRM_ContentProtectionLevel *level, MediaKeySession **mediaKeySession)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Generate a media key system provision request.
@@ -274,7 +288,8 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySyst
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeySystem, uint8_t *request,
-    int32_t *requestLen, char *defaultUrl, int32_t defaultUrlLen);
+    int32_t *requestLen, char *defaultUrl, int32_t defaultUrlLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Process a media key system provision response.
@@ -288,7 +303,8 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeyS
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeySystem,
-    uint8_t *response, int32_t responseLen);
+    uint8_t *response, int32_t responseLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get offline media key ids .
@@ -302,7 +318,8 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeyS
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySystem,
-    DRM_OfflineMediakeyIdArray *offlineMediaKeyIds);
+    DRM_OfflineMediakeyIdArray *offlineMediaKeyIds)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get offline media key status.
@@ -317,7 +334,8 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySyst
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeySystem,
-    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, DRM_OfflineMediaKeyStatus *status);
+    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, DRM_OfflineMediaKeyStatus *status)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clear an offline media key by id.
@@ -331,7 +349,8 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeyS
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySystem,
-    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen);
+    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get certificate status of media key system.
@@ -344,7 +363,8 @@ Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySyst
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySystem,
-    DRM_CertificateStatus *certStatus);
+    DRM_CertificateStatus *certStatus)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroy a media key system instance.
@@ -355,7 +375,8 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySyste
  * @since 11
  * @version 1.0
  */
-Drm_ErrCode OH_MediaKeySystem_Destroy(MediaKeySystem *mediaKeySystem);
+Drm_ErrCode OH_MediaKeySystem_Destroy(MediaKeySystem *mediaKeySystem)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

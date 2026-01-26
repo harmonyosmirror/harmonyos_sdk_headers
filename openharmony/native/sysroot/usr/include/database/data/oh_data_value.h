@@ -40,6 +40,7 @@
 #ifndef OH_DATA_VALUE_H
 #define OH_DATA_VALUE_H
 
+#include "info/application_target_sdk_version.h"
 #include <inttypes.h>
 #include "database/data/data_asset.h"
 
@@ -125,7 +126,7 @@ typedef struct OH_Data_Value OH_Data_Value;
  * @see OH_Value_Destroy.
  * @since 18
  */
-OH_Data_Value *OH_Value_Create(void);
+OH_Data_Value *OH_Value_Create(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an OH_Data_Value instance object.
@@ -136,7 +137,7 @@ OH_Data_Value *OH_Value_Create(void);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_Destroy(OH_Data_Value *value);
+int OH_Value_Destroy(OH_Data_Value *value) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set empty data to the OH_Data_Value object.
@@ -147,7 +148,7 @@ int OH_Value_Destroy(OH_Data_Value *value);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutNull(OH_Data_Value *value);
+int OH_Value_PutNull(OH_Data_Value *value) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set integer data to the OH_Data_Value object.
@@ -159,7 +160,7 @@ int OH_Value_PutNull(OH_Data_Value *value);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutInt(OH_Data_Value *value, int64_t val);
+int OH_Value_PutInt(OH_Data_Value *value, int64_t val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set decimal data to the OH_Data_Value object.
@@ -171,7 +172,7 @@ int OH_Value_PutInt(OH_Data_Value *value, int64_t val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutReal(OH_Data_Value *value, double val);
+int OH_Value_PutReal(OH_Data_Value *value, double val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set string data to the OH_Data_Value object.
@@ -183,7 +184,7 @@ int OH_Value_PutReal(OH_Data_Value *value, double val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutText(OH_Data_Value *value, const char *val);
+int OH_Value_PutText(OH_Data_Value *value, const char *val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set binary data to the OH_Data_Value object.
@@ -196,7 +197,8 @@ int OH_Value_PutText(OH_Data_Value *value, const char *val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutBlob(OH_Data_Value *value, const unsigned char *val, size_t length);
+int OH_Value_PutBlob(OH_Data_Value *value, const unsigned char *val, size_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set Data_Asset data to the OH_Data_Value object.
@@ -208,7 +210,8 @@ int OH_Value_PutBlob(OH_Data_Value *value, const unsigned char *val, size_t leng
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val);
+int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set multiple Data_Asset data to the OH_Data_Value object.
@@ -221,7 +224,8 @@ int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, size_t length);
+int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, size_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set float array data to the OH_Data_Value object.
@@ -234,7 +238,8 @@ int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, siz
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t length);
+int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set an integer of any length data to the OH_Data_Value object.
@@ -248,7 +253,8 @@ int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t lengt
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length);
+int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get data type from OH_Data_Value object.
@@ -260,7 +266,8 @@ int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *tru
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type);
+int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Check whether the data is empty from OH_Data_Value object.
@@ -273,7 +280,7 @@ int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 18
  */
-int OH_Value_IsNull(OH_Data_Value *value, bool *val);
+int OH_Value_IsNull(OH_Data_Value *value, bool *val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get integer data from OH_Data_Value object.
@@ -287,7 +294,7 @@ int OH_Value_IsNull(OH_Data_Value *value, bool *val);
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetInt(OH_Data_Value *value, int64_t *val);
+int OH_Value_GetInt(OH_Data_Value *value, int64_t *val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get decimal data from OH_Data_Value object.
@@ -301,7 +308,7 @@ int OH_Value_GetInt(OH_Data_Value *value, int64_t *val);
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetReal(OH_Data_Value *value, double *val);
+int OH_Value_GetReal(OH_Data_Value *value, double *val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get string data from OH_Data_Value object.
@@ -316,7 +323,7 @@ int OH_Value_GetReal(OH_Data_Value *value, double *val);
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetText(OH_Data_Value *value, const char **val);
+int OH_Value_GetText(OH_Data_Value *value, const char **val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get binary data from OH_Data_Value object.
@@ -332,7 +339,8 @@ int OH_Value_GetText(OH_Data_Value *value, const char **val);
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetBlob(OH_Data_Value *value, const uint8_t **val, size_t *length);
+int OH_Value_GetBlob(OH_Data_Value *value, const uint8_t **val, size_t *length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get Data_Asset data from OH_Data_Value object.
@@ -347,7 +355,7 @@ int OH_Value_GetBlob(OH_Data_Value *value, const uint8_t **val, size_t *length);
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetAsset(OH_Data_Value *value, Data_Asset *val);
+int OH_Value_GetAsset(OH_Data_Value *value, Data_Asset *val) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get multiple Data_Asset size from OH_Data_Value object.
@@ -361,7 +369,8 @@ int OH_Value_GetAsset(OH_Data_Value *value, Data_Asset *val);
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetAssetsCount(OH_Data_Value *value, size_t *length);
+int OH_Value_GetAssetsCount(OH_Data_Value *value, size_t *length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get multiple Data_Asset data from OH_Data_Value object.
@@ -379,7 +388,8 @@ int OH_Value_GetAssetsCount(OH_Data_Value *value, size_t *length);
  * @see OH_Value_GetAssetsCount.
  * @since 18
  */
-int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, size_t *outLen);
+int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, size_t *outLen)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get float array data size from OH_Data_Value object.
@@ -393,7 +403,8 @@ int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, siz
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length);
+int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get float array from OH_Data_Value object.
@@ -411,7 +422,8 @@ int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length);
  * @see OH_Value_GetFloatVectorCount.
  * @since 18
  */
-int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size_t *outLen);
+int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size_t *outLen)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get an integer of any length data size from OH_Data_Value object.
@@ -425,7 +437,8 @@ int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @since 18
  */
-int OH_Value_GetUnlimitedIntBand(OH_Data_Value *value, size_t *length);
+int OH_Value_GetUnlimitedIntBand(OH_Data_Value *value, size_t *length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get an integer of any length data from OH_Data_Value object.
@@ -444,7 +457,8 @@ int OH_Value_GetUnlimitedIntBand(OH_Data_Value *value, size_t *length);
  * @see OH_Value_GetUnlimitedIntBand.
  * @since 18
  */
-int OH_Value_GetUnlimitedInt(OH_Data_Value *value, int *sign, uint64_t *trueForm, size_t inLen, size_t *outLen);
+int OH_Value_GetUnlimitedInt(OH_Data_Value *value, int *sign, uint64_t *trueForm, size_t inLen, size_t *outLen)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };

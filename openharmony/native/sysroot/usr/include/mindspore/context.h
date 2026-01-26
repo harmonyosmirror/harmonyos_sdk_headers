@@ -35,6 +35,7 @@
 #ifndef MINDSPORE_INCLUDE_C_API_CONTEXT_C_H
 #define MINDSPORE_INCLUDE_C_API_CONTEXT_C_H
 
+#include "info/application_target_sdk_version.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -53,14 +54,15 @@ typedef void *OH_AI_DeviceInfoHandle;
  * @return Context object handle.
  * @since 9
  */
-OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate();
+OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate() __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroy the context object.
  * @param context Context object handle address.
  * @since 9
  */
-OH_AI_API void OH_AI_ContextDestroy(OH_AI_ContextHandle *context);
+OH_AI_API void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the number of threads at runtime.
@@ -68,7 +70,8 @@ OH_AI_API void OH_AI_ContextDestroy(OH_AI_ContextHandle *context);
  * @param thread_num the number of threads at runtime.
  * @since 9
  */
-OH_AI_API void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num);
+OH_AI_API void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the current thread number setting.
@@ -76,7 +79,8 @@ OH_AI_API void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t th
  * @return The current thread number setting.
  * @since 9
  */
-OH_AI_API int32_t OH_AI_ContextGetThreadNum(const OH_AI_ContextHandle context);
+OH_AI_API int32_t OH_AI_ContextGetThreadNum(const OH_AI_ContextHandle context)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the thread affinity to CPU cores.
@@ -84,7 +88,8 @@ OH_AI_API int32_t OH_AI_ContextGetThreadNum(const OH_AI_ContextHandle context);
  * @param mode: 0: no affinities, 1: big cores first, 2: little cores first
  * @since 9
  */
-OH_AI_API void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode);
+OH_AI_API void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the thread affinity of CPU cores.
@@ -92,7 +97,8 @@ OH_AI_API void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, i
  * @return Thread affinity to CPU cores. 0: no affinities, 1: big cores first, 2: little cores first
  * @since 9
  */
-OH_AI_API int OH_AI_ContextGetThreadAffinityMode(const OH_AI_ContextHandle context);
+OH_AI_API int OH_AI_ContextGetThreadAffinityMode(const OH_AI_ContextHandle context)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the thread lists to CPU cores.
@@ -106,7 +112,8 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode(const OH_AI_ContextHandle conte
  * @since 9
  */
 OH_AI_API void OH_AI_ContextSetThreadAffinityCoreList(OH_AI_ContextHandle context, const int32_t *core_list,
-                                                      size_t core_num);
+                                                      size_t core_num)
+                                                      __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the thread lists of CPU cores.
@@ -115,7 +122,8 @@ OH_AI_API void OH_AI_ContextSetThreadAffinityCoreList(OH_AI_ContextHandle contex
  * @return a array of thread core lists.
  * @since 9
  */
-OH_AI_API const int32_t *OH_AI_ContextGetThreadAffinityCoreList(const OH_AI_ContextHandle context, size_t *core_num);
+OH_AI_API const int32_t *OH_AI_ContextGetThreadAffinityCoreList(const OH_AI_ContextHandle context, size_t *core_num)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the status whether to perform model inference or training in parallel.
@@ -123,7 +131,8 @@ OH_AI_API const int32_t *OH_AI_ContextGetThreadAffinityCoreList(const OH_AI_Cont
  * @param is_parallel: true, parallel; false, not in parallel.
  * @since 9
  */
-OH_AI_API void OH_AI_ContextSetEnableParallel(OH_AI_ContextHandle context, bool is_parallel);
+OH_AI_API void OH_AI_ContextSetEnableParallel(OH_AI_ContextHandle context, bool is_parallel)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the status whether to perform model inference or training in parallel.
@@ -131,7 +140,8 @@ OH_AI_API void OH_AI_ContextSetEnableParallel(OH_AI_ContextHandle context, bool 
  * @return Bool value that indicates whether in parallel.
  * @since 9
  */
-OH_AI_API bool OH_AI_ContextGetEnableParallel(const OH_AI_ContextHandle context);
+OH_AI_API bool OH_AI_ContextGetEnableParallel(const OH_AI_ContextHandle context)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Add device info to context object.
@@ -139,7 +149,8 @@ OH_AI_API bool OH_AI_ContextGetEnableParallel(const OH_AI_ContextHandle context)
  * @param device_info Device info object handle.
  * @since 9
  */
-OH_AI_API void OH_AI_ContextAddDeviceInfo(OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info);
+OH_AI_API void OH_AI_ContextAddDeviceInfo(OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Create a device info object.
@@ -147,14 +158,16 @@ OH_AI_API void OH_AI_ContextAddDeviceInfo(OH_AI_ContextHandle context, OH_AI_Dev
  * @return Device info object handle.
  * @since 9
  */
-OH_AI_API OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type);
+OH_AI_API OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Destroy the device info object.
  * @param device_info Device info object handle address.
  * @since 9
  */
-OH_AI_API void OH_AI_DeviceInfoDestroy(OH_AI_DeviceInfoHandle *device_info);
+OH_AI_API void OH_AI_DeviceInfoDestroy(OH_AI_DeviceInfoHandle *device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set provider's name.
@@ -162,7 +175,8 @@ OH_AI_API void OH_AI_DeviceInfoDestroy(OH_AI_DeviceInfoHandle *device_info);
  * @param provider define the provider's name.
  * @since 9
  */
-OH_AI_API void OH_AI_DeviceInfoSetProvider(OH_AI_DeviceInfoHandle device_info, const char *provider);
+OH_AI_API void OH_AI_DeviceInfoSetProvider(OH_AI_DeviceInfoHandle device_info, const char *provider)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain provider's name
@@ -170,7 +184,8 @@ OH_AI_API void OH_AI_DeviceInfoSetProvider(OH_AI_DeviceInfoHandle device_info, c
  * @return provider's name.
  * @since 9
  */
-OH_AI_API const char *OH_AI_DeviceInfoGetProvider(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API const char *OH_AI_DeviceInfoGetProvider(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set provider's device type.
@@ -178,7 +193,8 @@ OH_AI_API const char *OH_AI_DeviceInfoGetProvider(const OH_AI_DeviceInfoHandle d
  * @param device define the provider's device type. EG: CPU.
  * @since 9
  */
-OH_AI_API void OH_AI_DeviceInfoSetProviderDevice(OH_AI_DeviceInfoHandle device_info, const char *device);
+OH_AI_API void OH_AI_DeviceInfoSetProviderDevice(OH_AI_DeviceInfoHandle device_info, const char *device)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain provider's device type.
@@ -186,7 +202,8 @@ OH_AI_API void OH_AI_DeviceInfoSetProviderDevice(OH_AI_DeviceInfoHandle device_i
  * @return provider's device type.
  * @since 9
  */
-OH_AI_API const char *OH_AI_DeviceInfoGetProviderDevice(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API const char *OH_AI_DeviceInfoGetProviderDevice(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the device type of the device info.
@@ -194,7 +211,8 @@ OH_AI_API const char *OH_AI_DeviceInfoGetProviderDevice(const OH_AI_DeviceInfoHa
  * @return Device Type of the device info.
  * @since 9
  */
-OH_AI_API OH_AI_DeviceType OH_AI_DeviceInfoGetDeviceType(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API OH_AI_DeviceType OH_AI_DeviceInfoGetDeviceType(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set enables to perform the float16 inference, Only valid for CPU/GPU.
@@ -202,7 +220,8 @@ OH_AI_API OH_AI_DeviceType OH_AI_DeviceInfoGetDeviceType(const OH_AI_DeviceInfoH
  * @param is_fp16 Enable float16 inference or not.
  * @since 9
  */
-OH_AI_API void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16);
+OH_AI_API void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain enables to perform the float16 inference, Only valid for CPU/GPU.
@@ -210,7 +229,8 @@ OH_AI_API void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info,
  * @return Whether enable float16 inference.
  * @since 9
  */
-OH_AI_API bool OH_AI_DeviceInfoGetEnableFP16(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API bool OH_AI_DeviceInfoGetEnableFP16(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Set the NPU frequency, Only valid for NPU.
@@ -219,7 +239,8 @@ OH_AI_API bool OH_AI_DeviceInfoGetEnableFP16(const OH_AI_DeviceInfoHandle device
  *        performance), default as 3.
  * @since 9
  */
-OH_AI_API void OH_AI_DeviceInfoSetFrequency(OH_AI_DeviceInfoHandle device_info, int frequency);
+OH_AI_API void OH_AI_DeviceInfoSetFrequency(OH_AI_DeviceInfoHandle device_info, int frequency)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the NPU frequency, Only valid for NPU.
@@ -227,7 +248,8 @@ OH_AI_API void OH_AI_DeviceInfoSetFrequency(OH_AI_DeviceInfoHandle device_info, 
  * @return NPU frequency
  * @since 9
  */
-OH_AI_API int OH_AI_DeviceInfoGetFrequency(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API int OH_AI_DeviceInfoGetFrequency(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the all device descriptions in NNRT.
@@ -235,7 +257,8 @@ OH_AI_API int OH_AI_DeviceInfoGetFrequency(const OH_AI_DeviceInfoHandle device_i
  * @return NNRT device description array.
  * @since 10
  */
-OH_AI_API NNRTDeviceDesc *OH_AI_GetAllNNRTDeviceDescs(size_t *num);
+OH_AI_API NNRTDeviceDesc *OH_AI_GetAllNNRTDeviceDescs(size_t *num)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the specified element in NNRt device description array.
@@ -244,14 +267,16 @@ OH_AI_API NNRTDeviceDesc *OH_AI_GetAllNNRTDeviceDescs(size_t *num);
  * @return NNRT device description.
  * @since 10
  */
-OH_AI_API NNRTDeviceDesc *OH_AI_GetElementOfNNRTDeviceDescs(NNRTDeviceDesc *descs, size_t index);
+OH_AI_API NNRTDeviceDesc *OH_AI_GetElementOfNNRTDeviceDescs(NNRTDeviceDesc *descs, size_t index)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Destroy the NNRT device descriptions returned by OH_AI_NNRTGetAllDeviceDescs().
  * @param desc NNRT device description array.
  * @since 10
  */
-OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs(NNRTDeviceDesc **desc);
+OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs(NNRTDeviceDesc **desc)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the device id in NNRT device description.
@@ -259,7 +284,8 @@ OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs(NNRTDeviceDesc **desc);
  * @return NNRT device id.
  * @since 10
  */
-OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc(const NNRTDeviceDesc *desc);
+OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc(const NNRTDeviceDesc *desc)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the device name in NNRT device description.
@@ -267,7 +293,8 @@ OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc(const NNRTDeviceDesc *desc)
  * @return NNRT device name.
  * @since 10
  */
-OH_AI_API const char *OH_AI_GetNameFromNNRTDeviceDesc(const NNRTDeviceDesc *desc);
+OH_AI_API const char *OH_AI_GetNameFromNNRTDeviceDesc(const NNRTDeviceDesc *desc)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the device type in NNRT device description.
@@ -275,7 +302,8 @@ OH_AI_API const char *OH_AI_GetNameFromNNRTDeviceDesc(const NNRTDeviceDesc *desc
  * @return NNRT device type.
  * @since 10
  */
-OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc(const NNRTDeviceDesc *desc);
+OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc(const NNRTDeviceDesc *desc)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Create the NNRT device info by exactly matching the specific device name.
@@ -283,7 +311,8 @@ OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc(const NNRTDeviceD
  * @return Device info object handle.
  * @since 10
  */
-OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName(const char *name);
+OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName(const char *name)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Create the NNRT device info by finding the first device with the specific device type.
@@ -291,7 +320,8 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName(const char *na
  * @return Device info object handle.
  * @since 10
  */
-OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDeviceType type);
+OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDeviceType type)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set the NNRT device id, Only valid for NNRT.
@@ -299,7 +329,8 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDevi
  * @param device_id NNRT device id.
  * @since 10
  */
-OH_AI_API void OH_AI_DeviceInfoSetDeviceId(OH_AI_DeviceInfoHandle device_info, size_t device_id);
+OH_AI_API void OH_AI_DeviceInfoSetDeviceId(OH_AI_DeviceInfoHandle device_info, size_t device_id)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the NNRT device id, Only valid for NNRT.
@@ -307,7 +338,8 @@ OH_AI_API void OH_AI_DeviceInfoSetDeviceId(OH_AI_DeviceInfoHandle device_info, s
  * @return NNRT device id.
  * @since 10
  */
-OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set the NNRT performance mode, Only valid for NNRT.
@@ -315,7 +347,8 @@ OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId(const OH_AI_DeviceInfoHandle device
  * @param device_id NNRT performance mode.
  * @since 10
  */
-OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode(OH_AI_DeviceInfoHandle device_info, OH_AI_PerformanceMode mode);
+OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode(OH_AI_DeviceInfoHandle device_info, OH_AI_PerformanceMode mode)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the NNRT performance mode, Only valid for NNRT.
@@ -323,7 +356,8 @@ OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode(OH_AI_DeviceInfoHandle device_
  * @return NNRT performance mode.
  * @since 10
  */
-OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Set the NNRT priority, Only valid for NNRT.
@@ -331,7 +365,8 @@ OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode(const OH_AI_D
  * @param device_id NNRT priority.
  * @since 10
  */
-OH_AI_API void OH_AI_DeviceInfoSetPriority(OH_AI_DeviceInfoHandle device_info, OH_AI_Priority priority);
+OH_AI_API void OH_AI_DeviceInfoSetPriority(OH_AI_DeviceInfoHandle device_info, OH_AI_Priority priority)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Obtain the NNRT priority, Only valid for NNRT.
@@ -339,7 +374,8 @@ OH_AI_API void OH_AI_DeviceInfoSetPriority(OH_AI_DeviceInfoHandle device_info, O
  * @return NNRT priority.
  * @since 10
  */
-OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority(const OH_AI_DeviceInfoHandle device_info);
+OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority(const OH_AI_DeviceInfoHandle device_info)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
  * @brief Add extension of key/value format to device info, Only valid for NNRT.
@@ -350,7 +386,8 @@ OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority(const OH_AI_DeviceInfoHandl
  * @return OH_AI_STATUS_SUCCESS if success, or detail error code if failed.
  * @since 10
  */
-OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension(OH_AI_DeviceInfoHandle device_info, const char *name, const char *value, size_t value_size);
+OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension(OH_AI_DeviceInfoHandle device_info, const char *name, const char *value, size_t value_size)
+__attribute__((__availability__(ohos, introduced=10.0.0)));
 #ifdef __cplusplus
 }
 #endif

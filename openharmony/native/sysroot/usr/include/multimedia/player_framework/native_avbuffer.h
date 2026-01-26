@@ -38,6 +38,7 @@
 #ifndef NATIVE_AVBUFFER_H
 #define NATIVE_AVBUFFER_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "native_averrors.h"
@@ -71,7 +72,7 @@ typedef struct OH_NativeBuffer OH_NativeBuffer;
  * 4. created buffer memory is nullptr. 5. created buffer memory's addr is nullptr. 6. failed to new OH_AVBuffer.
  * @since 11
  */
-OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
+OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Clear the internal resources of the buffer and destroy the buffer instance.
@@ -83,7 +84,7 @@ OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if input buffer is not user created.
  * @since 11
  */
-OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer);
+OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the buffer's attribute.
@@ -97,7 +98,8 @@ OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer);
  *         input buffer's buffer is nulllptr or attr is nullptr.
  * @since 11
  */
-OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr *attr);
+OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr *attr)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the buffer's attribute.
@@ -111,7 +113,8 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr
  *         input buffer's buffer is nulllptr, attr is nullptr, the size or offset of input buffer's memory is invalid.
  * @since 11
  */
-OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBufferAttr *attr);
+OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBufferAttr *attr)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the buffer's parameter. It should be noted that the life cycle of the OH_AVFormat instance pointed to
@@ -123,7 +126,7 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBuff
  * 3. input buffer's buffer is nulllptr. 4. buffer's meta is nullptr.
  * @since 11
  */
-OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
+OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Set the buffer's parameter.
@@ -136,7 +139,8 @@ OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
  *         input buffer's buffer is nulllptr, input format is nullptr or input meta is nullptr.
  * @since 11
  */
-OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *format);
+OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *format)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the buffer's virtual address.
@@ -147,7 +151,7 @@ OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *fo
  * 3. input buffer's buffer is nulllptr. 4. buffer's memory is nullptr.
  * @since 11
  */
-uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
+uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the buffer's capacity
@@ -158,7 +162,7 @@ uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
  * 3. input buffer's buffer is nulllptr. 4. buffer's memory is nullptr.
  * @since 11
  */
-int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
+int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Get the OH_NativeBuffer instance pointer,It should be noted that the life cycle of the OH_AVBuffer
@@ -170,7 +174,8 @@ int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
  * 3. input buffer's buffer is nulllptr. 4. buffer's memory is nullptr. 5. surfaceBuffer is nullptr.
  * @since 11
  */
-OH_NativeBuffer *OH_AVBuffer_GetNativeBuffer(OH_AVBuffer *buffer);
+OH_NativeBuffer *OH_AVBuffer_GetNativeBuffer(OH_AVBuffer *buffer)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

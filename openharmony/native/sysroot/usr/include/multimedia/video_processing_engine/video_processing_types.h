@@ -36,6 +36,7 @@
 #ifndef VIDEO_PROCESSING_ENGINE_C_API_VIDEO_PROCESSING_TYPES_H
 #define VIDEO_PROCESSING_ENGINE_C_API_VIDEO_PROCESSING_TYPES_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -76,7 +77,8 @@ typedef struct OH_AVFormat OH_AVFormat;
  * @see OH_VideoProcessing_Create
  * @since 12
  */
-extern const int32_t VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION;
+extern const int32_t VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Used to create a video processing instance for metadata generation.
@@ -87,7 +89,8 @@ extern const int32_t VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION;
  * @see OH_VideoProcessing_Create
  * @since 12
  */
-extern const int32_t VIDEO_PROCESSING_TYPE_METADATA_GENERATION;
+extern const int32_t VIDEO_PROCESSING_TYPE_METADATA_GENERATION
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Used to create an video processing instance of detail enhancement.
@@ -98,7 +101,7 @@ extern const int32_t VIDEO_PROCESSING_TYPE_METADATA_GENERATION;
  * @see OH_ImageProcessing_Create
  * @since 12
  */
-extern const int32_t VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER;
+extern const int32_t VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief The key is used to specify the quality level for video detail enhancement.
@@ -111,7 +114,20 @@ extern const int32_t VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER;
  * @see OH_VideoProcessing_GetParameter
  * @since 12
  */
-extern const char* VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL;
+extern const char* VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief The key is used to specify the style control for video metadata generator.
+ *
+ * See {@link VideoMetadataGeneratorStyleControl} for its values.
+ * Use {@link OH_AVFormat_SetIntValue} to set the mode value into AVFormat parameter.
+ * Use {@link OH_VideoProcessing_SetParameter} to set parameter into video processing instance.
+ * Use {@link OH_VideoProcessing_GetParameter} to get the current mode.
+ *
+ * @since 22
+ */
+extern const char* VIDEO_METADATA_GENERATOR_STYLE_CONTROL __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Video color space information structure of querying if video color space conversion is supported.
@@ -147,6 +163,23 @@ typedef enum VideoDetailEnhancer_QualityLevel {
     /** A high level of detail enhancement quality but with a relatively slow speed */
     VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH,
 } VideoDetailEnhancer_QualityLevel;
+
+/**
+ * @brief The style control is used for video metadata generator.
+ *
+ * It is the value of the key parameter {@link VIDEO_METADATA_GENERATOR_STYLE_CONTROL}.
+ *
+ * @see OH_AVFormat_SetIntValue
+ * @see OH_VideoProcessing_SetParameter
+ * @see OH_VideoProcessing_GetParameter
+ * @since 22
+ */
+typedef enum VideoMetadataGeneratorStyleControl {
+    /** Style Control into contrast mode */
+    VIDEO_METADATA_GENERATOR_CONTRAST_MODE = 0,
+    /** Style Control into bright mode */
+    VIDEO_METADATA_GENERATOR_BRIGHT_MODE = 1
+} VideoMetadataGeneratorStyleControl;
 
 /**
  * @brief Video processing error code.

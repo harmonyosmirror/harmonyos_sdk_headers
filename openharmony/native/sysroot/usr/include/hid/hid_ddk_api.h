@@ -40,6 +40,7 @@
 #ifndef HID_DDK_API_H
 #define HID_DDK_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "hid_ddk_types.h"
 
@@ -66,7 +67,8 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEventProperties);
+int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEventProperties)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sends an event list to a device.
@@ -87,7 +89,8 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  * @since 11
  * @version 1.0
  */
-int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t length);
+int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys a device.
@@ -101,7 +104,7 @@ int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t 
  * @since 11
  * @version 1.0
  */
-int32_t OH_Hid_DestroyDevice(int32_t deviceId);
+int32_t OH_Hid_DestroyDevice(int32_t deviceId) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Initializes the HID DDK.
@@ -113,7 +116,7 @@ int32_t OH_Hid_DestroyDevice(int32_t deviceId);
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  * @since 18
  */
-int32_t OH_Hid_Init(void);
+int32_t OH_Hid_Init(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Releases the HID DDK.
@@ -125,7 +128,7 @@ int32_t OH_Hid_Init(void);
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  * @since 18
  */
-int32_t OH_Hid_Release(void);
+int32_t OH_Hid_Release(void) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Open HID device by deviceId in blocking mode.
@@ -144,7 +147,8 @@ int32_t OH_Hid_Release(void);
  *         {@link HID_DDK_DEVICE_NOT_FOUND} device not found by deviceId.
  * @since 18
  */
-int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle **dev);
+int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle **dev)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Close HID device by dev.
@@ -159,7 +163,7 @@ int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle 
  *         {@link HID_DDK_INVALID_PARAMETER} dev is null.
  * @since 18
  */
-int32_t OH_Hid_Close(Hid_DeviceHandle **dev);
+int32_t OH_Hid_Close(Hid_DeviceHandle **dev) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Write an Output report to a HID device.
@@ -179,7 +183,8 @@ int32_t OH_Hid_Close(Hid_DeviceHandle **dev);
  *         {@link HID_DDK_IO_ERROR } send data failed.
  * @since 18
 */
-int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten);
+int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Read an input report from the device with timeout.
@@ -202,7 +207,8 @@ int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint
  *         {@link HID_DDK_TIMEOUT } read timeout.
  * @since 18
 */
-int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, int timeout, uint32_t *bytesRead);
+int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, int timeout, uint32_t *bytesRead)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Read an input report from the device.
@@ -224,7 +230,8 @@ int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSiz
  *         {@link HID_DDK_TIMEOUT } read timeout.
  * @since 18
 */
-int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint32_t *bytesRead);
+int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint32_t *bytesRead)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set the device handle to be non-blocking.
@@ -242,7 +249,8 @@ int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  * @since 18
 */
-int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
+int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get a raw info from the device.
@@ -260,7 +268,8 @@ int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
+int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get a raw name from the device.
@@ -280,7 +289,8 @@ int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
+int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get a physical address from the device.
@@ -300,7 +310,8 @@ int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
+int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bufSize)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get a raw unique id from the device.
@@ -320,7 +331,8 @@ int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bu
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize);
+int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Send a report to the device.
@@ -340,7 +352,8 @@ int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buf
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, const uint8_t *data, uint32_t length);
+int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, const uint8_t *data, uint32_t length)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get a report from the device.
@@ -361,7 +374,8 @@ int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, cons
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t bufSize);
+int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t bufSize)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get a report descriptor from the device.
@@ -383,7 +397,8 @@ int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
  * @since 18
 */
-int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t bufSize, uint32_t *bytesRead);
+int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t bufSize, uint32_t *bytesRead)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 /** @} */
 #ifdef __cplusplus
 }

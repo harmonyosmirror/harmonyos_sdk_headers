@@ -39,6 +39,7 @@
 #ifndef OH_PREFERENCES_OPTION_H
 #define OH_PREFERENCES_OPTION_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -72,7 +73,7 @@ typedef enum Preferences_StorageType {
  * @see OH_PreferencesOption.
  * @since 13
  */
-OH_PreferencesOption *OH_PreferencesOption_Create(void);
+OH_PreferencesOption *OH_PreferencesOption_Create(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets the file path in an {@Link OH_PreferencesOption} instance.
@@ -85,7 +86,8 @@ OH_PreferencesOption *OH_PreferencesOption_Create(void);
  * @see OH_PreferencesOption.
  * @since 13
  */
-int OH_PreferencesOption_SetFileName(OH_PreferencesOption *option, const char *fileName);
+int OH_PreferencesOption_SetFileName(OH_PreferencesOption *option, const char *fileName)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets the bundle name in an {@Link OH_PreferencesOption} instance.
@@ -98,7 +100,8 @@ int OH_PreferencesOption_SetFileName(OH_PreferencesOption *option, const char *f
  * @see OH_PreferencesOption.
  * @since 13
  */
-int OH_PreferencesOption_SetBundleName(OH_PreferencesOption *option, const char *bundleName);
+int OH_PreferencesOption_SetBundleName(OH_PreferencesOption *option, const char *bundleName)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets the data group ID in an {@Link OH_PreferencesOption} instance.
@@ -111,7 +114,8 @@ int OH_PreferencesOption_SetBundleName(OH_PreferencesOption *option, const char 
  * @see OH_PreferencesOption.
  * @since 13
  */
-int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char *dataGroupId);
+int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char *dataGroupId)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets the storage type in an {@Link OH_PreferencesOption} instance.
@@ -124,7 +128,8 @@ int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char
  * @see OH_PreferencesOption.
  * @since 18
  */
-int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type);
+int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Destroys an {@Link OH_PreferencesOption} instance.
@@ -136,7 +141,8 @@ int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preference
  * @see OH_PreferencesOption.
  * @since 13
  */
-int OH_PreferencesOption_Destroy(OH_PreferencesOption *option);
+int OH_PreferencesOption_Destroy(OH_PreferencesOption *option)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 };
 #endif

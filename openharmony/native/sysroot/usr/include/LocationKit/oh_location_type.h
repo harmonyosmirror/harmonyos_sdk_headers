@@ -34,6 +34,7 @@
 #ifndef OH_LOCATION_TYPE_H
 #define OH_LOCATION_TYPE_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -251,7 +252,8 @@ typedef struct Location_Info Location_Info;
  * For a detailed definition, please refer to {@link Location_BasicInfo}.\n
  * @since 13
  */
-Location_BasicInfo OH_LocationInfo_GetBasicInfo(Location_Info* location);
+Location_BasicInfo OH_LocationInfo_GetBasicInfo(Location_Info* location)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtain additional information from the location information.
@@ -272,7 +274,8 @@ Location_BasicInfo OH_LocationInfo_GetBasicInfo(Location_Info* location);
  * @since 13
  */
 Location_ResultCode OH_LocationInfo_GetAdditionalInfo(Location_Info* location,
-    char* additionalInfo, uint32_t length);
+    char* additionalInfo, uint32_t length)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Defines the callback function used to report location data.
@@ -301,7 +304,7 @@ typedef struct Location_RequestConfig Location_RequestConfig;
  * resulting in the inability to allocate space. \n
  * @since 13
  */
-Location_RequestConfig* OH_Location_CreateRequestConfig(void);
+Location_RequestConfig* OH_Location_CreateRequestConfig(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroy the location request parameter instance and reclaim memory.
@@ -310,7 +313,8 @@ Location_RequestConfig* OH_Location_CreateRequestConfig(void);
  * The instance was created by {@link OH_Location_CreateRequestConfig}.\n
  * @since 13
  */
-void OH_Location_DestroyRequestConfig(Location_RequestConfig* requestConfig);
+void OH_Location_DestroyRequestConfig(Location_RequestConfig* requestConfig)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the use scenario in the location request parameter.\n
@@ -329,7 +333,8 @@ void OH_Location_DestroyRequestConfig(Location_RequestConfig* requestConfig);
  * @since 13
  */
 void OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig,
-    Location_UseScene useScene);
+    Location_UseScene useScene)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the power consumption scenario in the location request parameters.
@@ -342,7 +347,8 @@ void OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig,
  * @since 13
  */
 void OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* requestConfig,
-    Location_PowerConsumptionScene powerConsumptionScene);
+    Location_PowerConsumptionScene powerConsumptionScene)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the location reporting interval in the location request parameter.
@@ -354,7 +360,8 @@ void OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* r
  * @since 13
  */
 void OH_LocationRequestConfig_SetInterval(Location_RequestConfig* requestConfig,
-    int interval);
+    int interval)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set up a callback function for receiving location information.
@@ -368,7 +375,8 @@ void OH_LocationRequestConfig_SetInterval(Location_RequestConfig* requestConfig,
  * @since 13
  */
 void OH_LocationRequestConfig_SetCallback(Location_RequestConfig* requestConfig,
-    Location_InfoCallback callback, void* userData);
+    Location_InfoCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif

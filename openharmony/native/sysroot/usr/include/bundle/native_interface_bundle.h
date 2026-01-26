@@ -37,6 +37,7 @@
 #ifndef FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
 #define FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stddef.h>
 
@@ -147,7 +148,8 @@ typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
  * @since 9
  * @version 1.0
  */
-OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo();
+OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo()
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the appId of application. AppId indicates the ID of the application to which this bundle belongs
@@ -162,7 +164,7 @@ OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo();
  * @since 11
  * @version 1.0
  */
-char* OH_NativeBundle_GetAppId();
+char* OH_NativeBundle_GetAppId() __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the appIdentifier of application. AppIdentifier does not change along the application lifecycle,
@@ -177,7 +179,7 @@ char* OH_NativeBundle_GetAppId();
  * @since 11
  * @version 1.0
  */
-char* OH_NativeBundle_GetAppIdentifier();
+char* OH_NativeBundle_GetAppIdentifier() __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
 * @brief Obtains information of the entry mainElement based on the current application, including bundle name,
@@ -190,7 +192,8 @@ char* OH_NativeBundle_GetAppIdentifier();
  * leading to space allocation failure.
  * @since 13
  */
-OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
+OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName()
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the compatible device type of the current application.
@@ -204,7 +207,7 @@ OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
  * @since 14
  * @version 1.0
  */
-char* OH_NativeBundle_GetCompatibleDeviceType();
+char* OH_NativeBundle_GetCompatibleDeviceType() __attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Obtains the application debug mode.
@@ -213,7 +216,7 @@ char* OH_NativeBundle_GetCompatibleDeviceType();
  * @return Returns true if call successful, false otherwise.
  * @since 20
  */
-bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
+bool OH_NativeBundle_IsDebugMode(bool* isDebugMode) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the module metadata array of the current application.
@@ -226,7 +229,8 @@ bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
  * leading to space allocation failure.
  * @since 20
  */
-OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
+OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtain a list of ability that support opening files in a certain format.
@@ -240,7 +244,8 @@ OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetAbilityResourceInfo(char* fileType,
-    OH_NativeBundle_AbilityResourceInfo** abilityResourceInfo, size_t* size);
+    OH_NativeBundle_AbilityResourceInfo** abilityResourceInfo, size_t* size)
+    __attribute__((__availability__(ohos, introduced=21.0.0)));
 #ifdef __cplusplus
 };
 #endif

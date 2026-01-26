@@ -37,6 +37,7 @@
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXELMAP_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXELMAP_NATIVE_H_
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 
 #include "image_common.h"
@@ -363,7 +364,8 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_InitializationOptions **options);
+Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_InitializationOptions **options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get width number for InitializationOtions struct.
@@ -374,7 +376,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_Initializati
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_InitializationOptions *options,
-    uint32_t *width);
+    uint32_t *width)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set width number for InitializationOtions struct.
@@ -385,7 +388,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_Initializa
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_InitializationOptions *options,
-    uint32_t width);
+    uint32_t width)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get height number for InitializationOtions struct.
@@ -396,7 +400,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_InitializationOptions *options,
-    uint32_t *height);
+    uint32_t *height)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set height number for InitializationOtions struct.
@@ -407,7 +412,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_Initializ
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_InitializationOptions *options,
-    uint32_t height);
+    uint32_t height)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get pixelFormat number for InitializationOtions struct.
@@ -418,7 +424,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_Initializ
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_InitializationOptions *options,
-    int32_t *pixelFormat);
+    int32_t *pixelFormat)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set pixelFormat number for InitializationOtions struct.
@@ -429,7 +436,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_InitializationOptions *options,
-    int32_t pixelFormat);
+    int32_t pixelFormat)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get pixelFormat number for InitializationOtions struct.
@@ -440,7 +448,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_Init
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options,
-    int32_t *srcpixelFormat);
+    int32_t *srcpixelFormat)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set pixelFormat number for InitializationOtions struct.
@@ -451,7 +460,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options,
-    int32_t srcpixelFormat);
+    int32_t srcpixelFormat)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get rowStride for InitializationOptions struct.
@@ -464,7 +474,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_InitializationOptions *options,
-    int32_t *rowStride);
+    int32_t *rowStride)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set rowStride number for InitializationOptions struct.
@@ -477,7 +488,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_InitializationOptions *options,
-    int32_t rowStride);
+    int32_t rowStride)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get alphaType number for InitializationOtions struct.
@@ -488,7 +500,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_InitializationOptions *options,
-    int32_t *alphaType);
+    int32_t *alphaType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set alphaType number for InitializationOtions struct.
@@ -499,7 +512,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_InitializationOptions *options,
-    int32_t alphaType);
+    int32_t alphaType)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get editable for InitializationOptions struct.
@@ -511,7 +525,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
  * @since 18
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options,
-    bool *editable);
+    bool *editable)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set editable for InitializationOptions struct.
@@ -523,7 +538,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_Initial
  * @since 18
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_InitializationOptions *options,
-    bool editable);
+    bool editable)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief delete InitializationOtions pointer.
@@ -532,7 +548,8 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_Initial
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_InitializationOptions *options);
+Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_InitializationOptions *options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Defines the pixel map information.
@@ -549,7 +566,8 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo;
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info);
+Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get width number for imageinfo struct.
@@ -559,7 +577,8 @@ Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info);
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint32_t *width);
+Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint32_t *width)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get height number for imageinfo struct.
@@ -569,7 +588,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint3
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint32_t *height);
+Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint32_t *height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get alphaMode number for imageinfo struct.
@@ -581,7 +601,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint
  *     {@link IMAGE_BAD_PARAMETER} info is nullptr, or alphaMode is nullptr.
  * @since 20
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, int32_t *alphaMode);
+Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, int32_t *alphaMode)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Get rowStride number for imageinfo struct.
@@ -591,7 +612,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, i
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, uint32_t *rowStride);
+Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, uint32_t *rowStride)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get pixelFormat number for imageinfo struct.
@@ -601,7 +623,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat);
+Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get alphaType number for imageinfo struct.
@@ -611,7 +634,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info,
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, int32_t *alphaType);
+Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, int32_t *alphaType)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get isHdr boolean for imageinfo struct.
@@ -622,7 +646,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, i
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - Parameter error.Possible causes:Parameter verification failed.
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info, bool *isHdr);
+Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info, bool *isHdr)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Delete imageinfo struct pointer.
@@ -631,7 +656,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info);
+Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a <b>PixelMap</b> object.
@@ -644,7 +670,8 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info);
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength,
-    OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+    OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used by the
@@ -668,7 +695,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
  * @since 20
  */
 Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, size_t dataLength,
-    OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap);
+    OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Convert a native <b>PixelMap</b> object to <b>PixelMap</b> napi object.
@@ -682,7 +710,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, si
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_PixelmapNative *pixelmapNative,
-    napi_value *pixelmapNapi);
+    napi_value *pixelmapNapi)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Convert a <b>PixelMap</b> napi object to native <b>PixelMap</b> object.
@@ -696,7 +725,8 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_P
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, napi_value pixelmapNapi,
-    OH_PixelmapNative **pixelmapNative);
+    OH_PixelmapNative **pixelmapNative)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads data of this pixel map to an Buffer. If this pixel map is created in the BGRA_8888 format,
@@ -708,7 +738,8 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, na
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize);
+Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reads image data in an Buffer and writes the data to a Pixelmap object.
@@ -719,7 +750,39 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8_t *source, size_t bufferSize);
+Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8_t *source, size_t bufferSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Reads data from a certain area of the PixelMap to a buffer. The resulting data will be in BGRA_8888 format.
+ *
+ * @param pixelmap The PixelMap to be read.
+ * @param area Area of the PixelMap to read the data. Data will be read and copied into area->pixels.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. pixelmap or area is incorrect.
+ *         {@link IMAGE_UNKNOWN_ERROR} Internal unknown error, e.g. unsupported pixel format.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_ReadPixelsFromArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Writes data from a buffer to a certain area of the PixelMap. The source data should be in BGRA_8888 format.
+ *
+ * @param pixelmap The PixelMap to be written.
+ * @param area Area of the PixelMap to write the data.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. pixelmap or area is incorrect.
+ *         {@link IMAGE_UNSUPPORTED_OPERATION} If the PixelMap is not editable.
+ *         {@link IMAGE_UNKNOWN_ERROR} Internal unknown error, e.g. unsupported pixel format.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Get argb pixel buffer from pixelmap.
@@ -736,7 +799,8 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * @see OH_PixelmapNative
  * @since 13
  */
-Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize);
+Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Convert {@link OH_PixelmapNative} to standard dynamic range.
@@ -747,7 +811,8 @@ Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uin
  * returns {@link Image_ErrorCode} IMAGE_UNSUPPORTED_OPERATION - Unsupported operation.Pixelmap can't be converted.
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap);
+Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains pixel map information of this image.
@@ -757,7 +822,8 @@ Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap);
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_Pixelmap_ImageInfo *imageInfo);
+Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_Pixelmap_ImageInfo *imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets an opacity rate for this image pixel map.
@@ -767,7 +833,8 @@ Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_P
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rate);
+Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rate)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Scales this image based on the input width and height.
@@ -778,7 +845,8 @@ Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rat
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scaleX, float scaleY);
+Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scaleX, float scaleY)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Scales this image based on the input width and height with anti-aliasing.
@@ -796,7 +864,8 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixelmap, float scaleX, float scaleY,
-    OH_PixelmapNative_AntiAliasingLevel level);
+    OH_PixelmapNative_AntiAliasingLevel level)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height.
@@ -812,7 +881,8 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
  * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap,
-    float scaleX, float scaleY);
+    float scaleX, float scaleY)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height with anti-aliasing.
@@ -831,7 +901,8 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
  * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap,
-    OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
+    OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)
+    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Translates this image based on the input coordinates.
@@ -842,7 +913,63 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x, float y);
+Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x, float y)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Creates a PixelMap with only alpha channel from the source PixelMap.
+ *
+ * @param srcPixelmap The source PixelMap.
+ * @param dstPixelmap The target PixelMap to be created.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. srcPixelmap or dstPixelmap is incorrect.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_CreateAlphaPixelmap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Clones a PixelMap from the source PixelMap.
+ *
+ * @param srcPixelmap The source PixelMap to be cloned.
+ * @param dstPixelmap The target PixelMap to be created.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. srcPixelmap or dstPixelmap is incorrect.
+ *         {@link IMAGE_UNSUPPORTED_DATA_FORMAT} If the pixel format is unsupported.
+ *         {@link IMAGE_TOO_LARGE} If the PixelMap size is too large.
+ *         {@link IMAGE_INIT_FAILED} If the PixelMap initialization failed.
+ *         {@link IMAGE_ALLOC_FAILED} If the copying of PixelMap data failed.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_Clone(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a cropped and then scaled PixelMap based on the source PixelMap.
+ *
+ * @param srcPixelmap The source PixelMap.
+ * @param region The crop region.
+ * @param scale The scale ratio of width and height.
+ * @param level The anti-aliasing algorithm to be used.
+ * @param dstPixelmap The target PixelMap to be created.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. srcPixelmap, region, scale, or dstPixelmap is
+ *                                     incorrect.
+ *         {@link IMAGE_UNSUPPORTED_DATA_FORMAT} If the pixel format is unsupported.
+ *         {@link IMAGE_TOO_LARGE} If the PixelMap size is too large.
+ *         {@link IMAGE_INIT_FAILED} If the PixelMap initialization failed.
+ *         {@link IMAGE_ALLOC_FAILED} If the copying of PixelMap data failed.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_CreateCroppedAndScaledPixelMap(OH_PixelmapNative *srcPixelmap, Image_Region *region,
+    Image_Scale *scale, OH_PixelmapNative_AntiAliasingLevel level, OH_PixelmapNative **dstPixelmap)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Rotates this image based on the input angle.
@@ -852,7 +979,8 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angle);
+Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Flips this image horizontally or vertically, or both.
@@ -863,7 +991,8 @@ Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angl
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically);
+Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Crops this image based on the input size.
@@ -873,7 +1002,8 @@ Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldF
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region *region);
+Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region *region)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Releases an <b>OH_Pixelmap</b> object.
@@ -882,7 +1012,8 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap);
+Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_PixelmapNative</b> object and deallocates its resources.
@@ -892,7 +1023,8 @@ Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap);
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if pixelmap is null or *pixelmap is null.
  * @since 18
  */
-Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap);
+Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Converting images to alpha format
@@ -904,7 +1036,8 @@ Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap);
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap,
-    OH_PixelmapNative* dstpixelmap, const bool isPremul);
+    OH_PixelmapNative* dstpixelmap, const bool isPremul)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a empty <b>PixelMap</b> object.
@@ -915,7 +1048,8 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
-    OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+    OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a empty pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used
@@ -936,7 +1070,41 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
  * @since 20
  */
 Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(
-    OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap);
+    OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Creates a PixelMap from a Surface with the Surface ID.
+ *
+ * @param surfaceId The Surface ID.
+ * @param length Length of the Surface ID.
+ * @param pixelmap The PixelMap to be created.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. surfaceId or pixelmap is incorrect.
+ *         {@link IMAGE_CREATE_PIXELMAP_FAILED} If the PixelMap creation failed.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurface(const char *surfaceId, size_t length,
+    OH_PixelmapNative **pixelmap)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a PixelMap from a native buffer.
+ *
+ * @param nativeBuffer The native buffer.
+ * @param pixelmap The PixelMap to be created.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. nativeBuffer or pixelmap is incorrect.
+ *         {@link IMAGE_CREATE_PIXELMAP_FAILED} If the PixelMap creation failed.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromNativeBuffer(OH_NativeBuffer *nativeBuffer,
+    OH_PixelmapNative **pixelmap)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Get metadata.
@@ -952,7 +1120,8 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key,
-    OH_Pixelmap_HdrMetadataValue **value);
+    OH_Pixelmap_HdrMetadataValue **value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set metadata.
@@ -968,7 +1137,8 @@ Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key,
-    OH_Pixelmap_HdrMetadataValue *value);
+    OH_Pixelmap_HdrMetadataValue *value)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the native buffer from the PixelMap.
@@ -982,7 +1152,8 @@ Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
  * @see OH_PixelmapNative
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, OH_NativeBuffer **nativeBuffer);
+Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, OH_NativeBuffer **nativeBuffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the native colorspace from the PixelMap.
@@ -996,7 +1167,8 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, O
  * @since 13
  */
 Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelmap,
-    OH_NativeColorSpaceManager **colorSpaceNative);
+    OH_NativeColorSpaceManager **colorSpaceNative)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set the native colorspace for the PixelMap.
@@ -1010,7 +1182,8 @@ Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelma
  * @since 13
  */
 Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelmap,
-    OH_NativeColorSpaceManager *colorSpaceNative);
+    OH_NativeColorSpaceManager *colorSpaceNative)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Set pixelmap memory name.
@@ -1025,7 +1198,8 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
  * @see OH_PixelmapNative
  * @since 13
  */
-Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size);
+Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get the total number of bytes occupied by all pixels in the Pixelmap, without any padding.
@@ -1038,7 +1212,8 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
  * @see OH_PixelmapNative
  * @since 18
  */
-Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount);
+Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get the size of the allocated memory used to store this pixelmap's pixels.
@@ -1051,7 +1226,8 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
  * @see OH_PixelmapNative
  * @since 18
  */
-Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount);
+Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Obtains the memory address of a PixelMap and locks the memory.
@@ -1067,7 +1243,8 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
  * @see OH_PixelmapNative
  * @since 15
  */
-Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr);
+Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Unlocks the memory of the PixelMap data.
@@ -1081,7 +1258,36 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
  * @see OH_PixelmapNative
  * @since 15
  */
-Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap);
+Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
+
+/**
+ * @brief Gets the unique ID of a PixelMap.
+ *
+ * @param pixelmap The PixelMap to retrieve the unique ID.
+ * @param uniqueId The resulting unique ID.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. pixelmap or uniqueId is incorrect.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_GetUniqueId(OH_PixelmapNative *pixelmap, uint32_t *uniqueId)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Checks whether the PixelMap has been released.
+ *
+ * @param pixelmap The PixelMap to check.
+ * @param released The resulting release status.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If any parameter is invalid, e.g. pixelmap or released is incorrect.
+ * @see OH_PixelmapNative
+ * @since 22
+ */
+Image_ErrorCode OH_PixelmapNative_IsReleased(OH_PixelmapNative *pixelmap, bool *released)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 #ifdef __cplusplus
 };

@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_TYPE_H
 #define ARKUI_NATIVE_TYPE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "drawable_descriptor.h"
@@ -93,6 +94,42 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle;
  * @since 12
  */
 typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle;
+
+/**
+ * @brief Defines the return value structure for the <b>onGetIrregularSizeByIndex</b> callback
+ * in <b>Grid</b> layout options.
+ *
+ * @since 22
+ */
+typedef struct {
+    /** Number of rows occupied by the <b>GridItem</b> component. */
+    uint32_t rowSpan;
+    /** Number of columns occupied by the <b>GridItem</b> component. */
+    uint32_t columnSpan;
+} ArkUI_GridItemSize;
+
+/**
+ * @brief Defines the return value structure for the <b>onGetRectByIndex</b> callback in <b>Grid</b> layout options.
+ *
+ * @since 22
+ */
+typedef struct {
+    /** Starting row position of the <b>GridItem</b> component. */
+    uint32_t rowStart;
+    /** Starting column position of the <b>GridItem</b> component. */
+    uint32_t columnStart;
+    /** Number of rows occupied by the <b>GridItem</b> component. */
+    uint32_t rowSpan;
+    /** Number of columns occupied by the <b>GridItem</b> component. */
+    uint32_t columnSpan;
+} ArkUI_GridItemRect;
+
+/**
+ * @brief Defines the <b>Grid</b> layout options.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_GridLayoutOptions ArkUI_GridLayoutOptions;
 
 /**
  * @brief Defines the water flow section configuration.
@@ -269,6 +306,13 @@ typedef struct ArkUI_PositionEdges ArkUI_PositionEdges;
  * @since 21
  */
 typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
+
+/**
+ * @brief Defines the textField's counter configuration.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 
 /**
  * @brief Defines the event callback type.
@@ -704,6 +748,20 @@ typedef enum {
 } ArkUI_EdgeEffect;
 
 /**
+ * @brief Enumerates the status of the scroll bar.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** Not displayed. */
+    ARKUI_BAR_STATE_OFF = 0,
+    /** On-demand display. */
+    ARKUI_BAR_STATE_AUTO = 1,
+    /** Resident display. */
+    ARKUI_BAR_STATE_ON = 2,
+} ArkUI_BarState;
+
+/**
  * @brief Enumerates the edges for which the effect takes effect when the boundary of the scrollable content is reached.
  *
  * @since 18
@@ -726,6 +784,50 @@ typedef enum {
     /** Focus wraps automatically when arrow keys are used. */
     ARKUI_FOCUS_WRAP_WITH_ARROW = 1,
 } ArkUI_FocusWrapMode;
+
+/**
+ * @brief Specifies the number of columns for different responsive breakpoint specifications.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** No responsive breakpoint configuration. */
+    ARKUI_ITEMFILLPOLICY_NONE = -1,
+    /**
+     * Default responsive layout:
+     * <b>List</b> or <b>Swiper</b> component: 1 column (SM or smaller), 2 columns (MD), 3 columns (LG or larger).
+     * <b>Grid</b> or <b>WaterFlow</b> component: 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger).
+     */
+    ARKUI_ITEMFILLPOLICY_DEFAULT = 0,
+    /** 1 column (SM or smaller), 2 columns (MD), 3 columns (LG or larger). */
+    ARKUI_ITEMFILLPOLICY_SM1MD2LG3 = 1,
+    /** 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger). */
+    ARKUI_ITEMFILLPOLICY_SM2MD3LG5 = 2,
+} ArkUI_ItemFillPolicy;
+
+/**
+ * @brief Enumerates the grid item alignment modes.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** Use the default alignment mode of the grid. */
+    GRID_ITEM_ALIGNMENT_DEFAULT = 0,
+    /** Set the height of all grid items in a row to match the height of the tallest item in that row. */
+    GRID_ITEM_ALIGNMENT_STRETCH = 1,
+} ArkUI_GridItemAlignment;
+
+/**
+ * @brief Enumerates styles of grid items.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** No style. */
+    GRID_ITEM_STYLE_NONE = 0,
+    /** Hover or press style. */
+    GRID_ITEM_STYLE_PLAIN = 1,
+} ArkUI_GridItemStyle;
 
 /**
  * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
@@ -762,6 +864,18 @@ typedef enum {
     /** The last item in the view is aligned at the end of the list. */
     ARKUI_SCROLL_SNAP_ALIGN_END,
 } ArkUI_ScrollSnapAlign;
+
+/**
+ * @brief Enumerates the scroll snap animation speeds for lists.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** Normal scroll snap animation speed. */
+    ARKUI_SCROLL_SNAP_ANIMATION_NORMAL = 0,
+    /** Slow scroll snap animation speed. */
+    ARKUI_SCROLL_SNAP_ANIMATION_SLOW = 1,
+} ArkUI_ScrollSnapAnimationSpeed;
 
 /**
  * @brief Enumerates the scrollbar display modes.
@@ -2346,10 +2460,40 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,
     /**
+     * @error The node is running on invalid thread.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD = 106204,
+    /**
      * @error Force dark config is invalid.
      * @since 20
      */
     ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID = 106205,
+    /**
+     * @error The node has already been adopted.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_NODE_IS_ADOPTED = 106206,
+    /**
+     * @error This node already has a parent node.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_NODE_HAS_PARENT = 106207,
+    /**
+     * @error The node cannot be adopted.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED = 106208,
+    /**
+     * @error The node cannot adopt children.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO = 106209,
+    /**
+     * @error This child node is not adopted by the parent node.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
     /**
      * @error The node type is not custom node.
      * @since 20
@@ -2375,6 +2519,22 @@ typedef enum {
      * @since 20
      */
     ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE = 106405,
+    /**
+     * @error The RenderNode is obtained from a FrameNode.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE = 106406,
+    /**
+     * @error The RenderNode is obtained from a FrameNode,
+     * and its corresponding FrameNode is no longer in the adopted state.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE = 106407,
+    /**
+     * @error The node is not adopted.
+     * @since 22
+     */
+    ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
      * @error The node requesting focus is not focusable.
      * @since 15
@@ -2930,7 +3090,7 @@ typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerR
 *
 * @since 12
 */
-ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create();
+ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Creates a deep copy of a size constraint.
@@ -2939,7 +3099,8 @@ ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create();
 * @return Returns the pointer to the new size constraint.
 * @since 12
 */
-ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy(const ArkUI_LayoutConstraint* Constraint);
+ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroys the pointer to a size constraint.
@@ -2947,7 +3108,8 @@ ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy(const ArkUI_LayoutConstra
 * @param Constraint Indicates the pointer to the size constraint.
 * @since 12
 */
-void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint);
+void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the maximum width for a size constraint, in px.
@@ -2956,7 +3118,8 @@ void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint);
 * @return Returns the maximum width.
 * @since 12
 */
-int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth(const ArkUI_LayoutConstraint* Constraint);
+int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the minimum width for a size constraint, in px.
@@ -2965,7 +3128,8 @@ int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth(const ArkUI_LayoutConstraint* Cons
 * @return Returns the minimum width.
 * @since 12
 */
-int32_t OH_ArkUI_LayoutConstraint_GetMinWidth(const ArkUI_LayoutConstraint* Constraint);
+int32_t OH_ArkUI_LayoutConstraint_GetMinWidth(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the maximum height for a size constraint, in px.
@@ -2974,7 +3138,8 @@ int32_t OH_ArkUI_LayoutConstraint_GetMinWidth(const ArkUI_LayoutConstraint* Cons
 * @return Returns the maximum height.
 * @since 12
 */
-int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight(const ArkUI_LayoutConstraint* Constraint);
+int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the minimum height for a size constraint, in px.
@@ -2983,7 +3148,8 @@ int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight(const ArkUI_LayoutConstraint* Con
 * @return Returns the minimum height.
 * @since 12
 */
-int32_t OH_ArkUI_LayoutConstraint_GetMinHeight(const ArkUI_LayoutConstraint* Constraint);
+int32_t OH_ArkUI_LayoutConstraint_GetMinHeight(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the width percentage reference for a size constraint, in px.
@@ -2992,7 +3158,8 @@ int32_t OH_ArkUI_LayoutConstraint_GetMinHeight(const ArkUI_LayoutConstraint* Con
 * @return Returns the width percentage reference.
 * @since 12
 */
-int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(const ArkUI_LayoutConstraint* Constraint);
+int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the height percentage reference for a size constraint, in px.
@@ -3001,7 +3168,8 @@ int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(const ArkUI_LayoutCon
 * @return Returns the height percentage reference.
 * @since 12
 */
-int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(const ArkUI_LayoutConstraint* Constraint);
+int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(const ArkUI_LayoutConstraint* Constraint)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the maximum width.
@@ -3010,7 +3178,8 @@ int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(const ArkUI_LayoutCo
 * @param value Indicates the maximum width, in px.
 * @since 12
 */
-void OH_ArkUI_LayoutConstraint_SetMaxWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
+void OH_ArkUI_LayoutConstraint_SetMaxWidth(ArkUI_LayoutConstraint* Constraint, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the minimum width.
@@ -3019,7 +3188,8 @@ void OH_ArkUI_LayoutConstraint_SetMaxWidth(ArkUI_LayoutConstraint* Constraint, i
 * @param value Indicates the minimum width, in px.
 * @since 12
 */
-void OH_ArkUI_LayoutConstraint_SetMinWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
+void OH_ArkUI_LayoutConstraint_SetMinWidth(ArkUI_LayoutConstraint* Constraint, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the maximum height.
@@ -3028,7 +3198,8 @@ void OH_ArkUI_LayoutConstraint_SetMinWidth(ArkUI_LayoutConstraint* Constraint, i
 * @param value Indicates the maximum height, in px.
 * @since 12
 */
-void OH_ArkUI_LayoutConstraint_SetMaxHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
+void OH_ArkUI_LayoutConstraint_SetMaxHeight(ArkUI_LayoutConstraint* Constraint, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the minimum height.
@@ -3037,7 +3208,8 @@ void OH_ArkUI_LayoutConstraint_SetMaxHeight(ArkUI_LayoutConstraint* Constraint, 
 * @param value Indicates the minimum height, in px.
 * @since 12
 */
-void OH_ArkUI_LayoutConstraint_SetMinHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
+void OH_ArkUI_LayoutConstraint_SetMinHeight(ArkUI_LayoutConstraint* Constraint, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the width percentage reference.
@@ -3046,7 +3218,8 @@ void OH_ArkUI_LayoutConstraint_SetMinHeight(ArkUI_LayoutConstraint* Constraint, 
 * @param value Indicates the width percentage reference, in px.
 * @since 12
 */
-void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
+void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth(ArkUI_LayoutConstraint* Constraint, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the height percentage reference.
@@ -3055,7 +3228,8 @@ void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth(ArkUI_LayoutConstraint* 
 * @param value Indicates the height percentage reference, in px.
 * @since 12
 */
-void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
+void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight(ArkUI_LayoutConstraint* Constraint, int32_t value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the pointer to a canvas for drawing, which can be converted into the <b>OH_Drawing_Canvas</b> pointer
@@ -3065,7 +3239,8 @@ void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight(ArkUI_LayoutConstraint*
 * @return Returns the pointer to the canvas for drawing.
 * @since 12
 */
-void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context);
+void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the size of a drawing area.
@@ -3074,7 +3249,92 @@ void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context);
 * @return Returns the size of the drawing area.
 * @since 12
 */
-ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context);
+ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Creates <b>Grid</b> layout options.
+ *
+ * @return <b>Grid</b> layout options created.
+ * @since 22
+ */
+ArkUI_GridLayoutOptions* OH_ArkUI_GridLayoutOptions_Create() __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Disposes of <b>Grid</b> layout options.
+ *
+ * @param option <b>Grid</b> layout options.
+ * @since 22
+ */
+void OH_ArkUI_GridLayoutOptions_Dispose(ArkUI_GridLayoutOptions* option)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the irregular grid item index array for the grid layout.
+ *
+ * @param option <b>Grid</b> layout options.
+ * @param irregularIndexes Array of irregular grid item indexes.
+ * @param size Size of the index array.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         If an error code is returned, it may be due to a failure in parameter validation;
+ *         the parameter must not be null.
+ * @since 22
+ */
+int32_t OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(
+    ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t size)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Obtains the irregular grid item index array for the grid layout.
+ * When <b>OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback</b> is not set,
+ * the grid item specified in <b>irregularIndexes</b> occupies an entire row of the grid that scrolls vertically or
+ * an entire column of the grid that scrolls horizontally.
+ *
+ * @param option <b>Grid</b> layout options.
+ * @param irregularIndexes Array of irregular grid item indexes.
+ * @param size Size of the index array.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the provided buffer size is insufficient.
+ *         If an error code is returned, it may be due to a failure in parameter validation;
+ *         the parameter must not be null.
+ * @since 22
+ */
+int32_t OH_ArkUI_GridLayoutOptions_GetIrregularIndexes(
+    ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t* size)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Registers a callback to obtain the row and column span for the grid item at the specified index.
+ *
+ * @param option <b>Grid</b> layout options.
+ * @param userData Indicates the custom data.
+ * @param callback Callback that returns the row and column span for the grid item at the specified index.
+ *        itemIndex: grid item index, which must be within the range set by
+ *        {@link OH_ArkUI_GridLayoutOptions_SetIrregularIndexes}.
+ * @since 22
+ */
+void OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback(
+    ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemSize (*callback)(int32_t itemIndex, void* userData))
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Registers a callback to obtain the starting row, starting column, row span,
+ * and column span for the grid item at the specified index.
+ *
+ * @param option <b>Grid</b> layout options.
+ * @param userData Indicates the custom data.
+ * @param callback Callback that returns the starting row, starting column, row span,
+ *        and column span for the grid item at the specified index.
+ *        itemIndex: grid item index.
+ * @since 22
+ */
+void OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback(
+    ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemRect (*callback)(int32_t itemIndex, void* userData))
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
 * @brief Creates water flow section configuration.
@@ -3082,7 +3342,8 @@ ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context);
 * @return Returns the water flow section configuration.
 * @since 12
 */
-ArkUI_WaterFlowSectionOption* OH_ArkUI_WaterFlowSectionOption_Create();
+ArkUI_WaterFlowSectionOption* OH_ArkUI_WaterFlowSectionOption_Create()
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroys the pointer to a water flow section configuration.
@@ -3090,7 +3351,8 @@ ArkUI_WaterFlowSectionOption* OH_ArkUI_WaterFlowSectionOption_Create();
 * @param option Indicates the pointer to a water flow section configuration.
 * @since 12
 */
-void OH_ArkUI_WaterFlowSectionOption_Dispose(ArkUI_WaterFlowSectionOption* option);
+void OH_ArkUI_WaterFlowSectionOption_Dispose(ArkUI_WaterFlowSectionOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the FlowItem block configuration information array length.
@@ -3099,7 +3361,8 @@ void OH_ArkUI_WaterFlowSectionOption_Dispose(ArkUI_WaterFlowSectionOption* optio
 * @param size Array Length.
 * @since 12
 */
-void OH_ArkUI_WaterFlowSectionOption_SetSize(ArkUI_WaterFlowSectionOption* option, int32_t size);
+void OH_ArkUI_WaterFlowSectionOption_SetSize(ArkUI_WaterFlowSectionOption* option, int32_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the FlowItem grouping configuration information array length.
@@ -3109,7 +3372,8 @@ void OH_ArkUI_WaterFlowSectionOption_SetSize(ArkUI_WaterFlowSectionOption* optio
 *         The possible cause of the failure is that the option parameter is abnormal, such as a null pointer.
 * @since 12
 */
-int32_t OH_ArkUI_WaterFlowSectionOption_GetSize(ArkUI_WaterFlowSectionOption* option);
+int32_t OH_ArkUI_WaterFlowSectionOption_GetSize(ArkUI_WaterFlowSectionOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the number of items in a water flow section.
@@ -3120,7 +3384,8 @@ int32_t OH_ArkUI_WaterFlowSectionOption_GetSize(ArkUI_WaterFlowSectionOption* op
 * @since 12
 */
 void OH_ArkUI_WaterFlowSectionOption_SetItemCount(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, int32_t itemCount);
+    int32_t index, int32_t itemCount)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the number of items in the water flow section that matches the specified index.
@@ -3130,7 +3395,8 @@ void OH_ArkUI_WaterFlowSectionOption_SetItemCount(ArkUI_WaterFlowSectionOption* 
 * @return Returns the number of items in the water flow section.
 * @since 12
 */
-int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
+int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief The FlowItem grouping configuration information getsthe spindle size of
@@ -3142,7 +3408,8 @@ int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOptio
 * @since 12
 */
 void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float(*callback)(int32_t itemIndex));
+    int32_t index, float(*callback)(int32_t itemIndex))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief The FlowItem grouping configuration information getsthe spindle size of
@@ -3156,7 +3423,8 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkU
 */
 void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData(
     ArkUI_WaterFlowSectionOption* option, int32_t index, void* userData,
-    float (*callback)(int32_t itemIndex, void* userData));
+    float (*callback)(int32_t itemIndex, void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the number of columns (in a vertical layout) or rows (in a horizontal layout) of a water flow.
@@ -3167,7 +3435,8 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithU
 * @since 12
 */
 void OH_ArkUI_WaterFlowSectionOption_SetCrossCount(
-    ArkUI_WaterFlowSectionOption* option, int32_t index, int32_t crossCount);
+    ArkUI_WaterFlowSectionOption* option, int32_t index, int32_t crossCount)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the number of columns (in a vertical layout) or rows (in a horizontal layout) in the water flow section
@@ -3178,7 +3447,8 @@ void OH_ArkUI_WaterFlowSectionOption_SetCrossCount(
 * @return Returns the number of columns or rows.
 * @since 12
 */
-int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
+int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the gap between columns in the specified water flow section.
@@ -3189,7 +3459,8 @@ int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOpti
 * @since 12
 */
 void OH_ArkUI_WaterFlowSectionOption_SetColumnGap(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float columnGap);
+    int32_t index, float columnGap)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the gap between columns in the water flow section that matches the specified index.
@@ -3199,7 +3470,8 @@ void OH_ArkUI_WaterFlowSectionOption_SetColumnGap(ArkUI_WaterFlowSectionOption* 
 * @return Returns the gap between columns.
 * @since 12
 */
-float OH_ArkUI_WaterFlowSectionOption_GetColumnGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
+float OH_ArkUI_WaterFlowSectionOption_GetColumnGap(ArkUI_WaterFlowSectionOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the gap between rows in the specified water flow section.
@@ -3210,7 +3482,8 @@ float OH_ArkUI_WaterFlowSectionOption_GetColumnGap(ArkUI_WaterFlowSectionOption*
 * @since 12
 */
 void OH_ArkUI_WaterFlowSectionOption_SetRowGap(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float rowGap);
+    int32_t index, float rowGap)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the gap between rows in the water flow section that matches the specified index.
@@ -3220,7 +3493,8 @@ void OH_ArkUI_WaterFlowSectionOption_SetRowGap(ArkUI_WaterFlowSectionOption* opt
 * @return Returns the gap between rows.
 * @since 12
 */
-float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
+float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Sets the margins for the specified water flow section.
@@ -3234,7 +3508,8 @@ float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* op
 * @since 12
 */
 void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index,
-    float marginTop, float marginRight, float marginBottom, float marginLeft);
+    float marginTop, float marginRight, float marginBottom, float marginLeft)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtains the margins of the water flow section that matches the specified index.
@@ -3244,7 +3519,8 @@ void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* opt
 * @return Returns the margins.
 * @since 12
 */
-ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index);
+ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates a navigation indicator.
@@ -3253,7 +3529,8 @@ ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOpt
  * @return Returns the pointer to the new indicator.
  * @since 12
 */
-ArkUI_SwiperIndicator* OH_ArkUI_SwiperIndicator_Create(ArkUI_SwiperIndicatorType type);
+ArkUI_SwiperIndicator* OH_ArkUI_SwiperIndicator_Create(ArkUI_SwiperIndicatorType type)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys the pointer to the indicator.
@@ -3261,7 +3538,8 @@ ArkUI_SwiperIndicator* OH_ArkUI_SwiperIndicator_Create(ArkUI_SwiperIndicatorType
  * @param indicator Indicates the pointer to the indicator.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_Dispose(ArkUI_SwiperIndicator* indicator);
+void OH_ArkUI_SwiperIndicator_Dispose(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the distance between the navigation point and the start of the swiper.
@@ -3270,7 +3548,8 @@ void OH_ArkUI_SwiperIndicator_Dispose(ArkUI_SwiperIndicator* indicator);
  * @param value Indicates the distance between the navigation point and the start of the swiper.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetStartPosition(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetStartPosition(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the distance between the navigation point and the start of the swiper.
@@ -3279,7 +3558,8 @@ void OH_ArkUI_SwiperIndicator_SetStartPosition(ArkUI_SwiperIndicator* indicator,
  * @return Returns the distance between the navigation point and the start of the swiper.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetStartPosition(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetStartPosition(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the distance between the navigation point and the top of the swiper.
@@ -3288,7 +3568,8 @@ float OH_ArkUI_SwiperIndicator_GetStartPosition(ArkUI_SwiperIndicator* indicator
  * @param value Indicates the distance between the navigation point and the top of the swiper.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetTopPosition(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetTopPosition(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the distance between the navigation point and the top of the swiper.
@@ -3297,7 +3578,8 @@ void OH_ArkUI_SwiperIndicator_SetTopPosition(ArkUI_SwiperIndicator* indicator, f
  * @return Returns the distance between the navigation point and the top of the swiper.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetTopPosition(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetTopPosition(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the distance between the navigation point and the right of the swiper.
@@ -3306,7 +3588,8 @@ float OH_ArkUI_SwiperIndicator_GetTopPosition(ArkUI_SwiperIndicator* indicator);
  * @param value Indicates the distance between the navigation point and the right of the swiper.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetEndPosition(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetEndPosition(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the distance between the navigation point and the end of the swiper.
@@ -3315,7 +3598,8 @@ void OH_ArkUI_SwiperIndicator_SetEndPosition(ArkUI_SwiperIndicator* indicator, f
  * @return Returns the distance between the navigation point and the end of the swiper.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetEndPosition(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetEndPosition(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the distance between the navigation point and the bottom of the swiper.
@@ -3324,7 +3608,8 @@ float OH_ArkUI_SwiperIndicator_GetEndPosition(ArkUI_SwiperIndicator* indicator);
  * @param value Indicates the distance between the navigation point and the bottom of the swiper.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetBottomPosition(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetBottomPosition(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the distance between the navigation point and the bottom of the swiper.
@@ -3333,7 +3618,8 @@ void OH_ArkUI_SwiperIndicator_SetBottomPosition(ArkUI_SwiperIndicator* indicator
  * @return Returns the distance between the navigation point and the bottom of the swiper.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetBottomPosition(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetBottomPosition(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the width of the dot for the dot indicator.
@@ -3342,7 +3628,8 @@ float OH_ArkUI_SwiperIndicator_GetBottomPosition(ArkUI_SwiperIndicator* indicato
  * @param value Indicates the width of the dot for the dot indicator.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetItemWidth(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetItemWidth(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the width of the dot for the dot indicator.
@@ -3351,7 +3638,8 @@ void OH_ArkUI_SwiperIndicator_SetItemWidth(ArkUI_SwiperIndicator* indicator, flo
  * @return Returns the width of the dot for the dot indicator.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetItemWidth(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetItemWidth(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the height of the dot for the dot indicator.
@@ -3360,7 +3648,8 @@ float OH_ArkUI_SwiperIndicator_GetItemWidth(ArkUI_SwiperIndicator* indicator);
  * @param value Indicates the height of the dot for the dot indicator.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetItemHeight(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetItemHeight(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief  Obtains the height of the dot for the dot indicator.
@@ -3369,7 +3658,8 @@ void OH_ArkUI_SwiperIndicator_SetItemHeight(ArkUI_SwiperIndicator* indicator, fl
  * @return Returns the height of the dot for the dot indicator.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetItemHeight(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetItemHeight(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the width of the selected dot for the dot indicator.
@@ -3378,7 +3668,8 @@ float OH_ArkUI_SwiperIndicator_GetItemHeight(ArkUI_SwiperIndicator* indicator);
  * @param value Indicates the width of the selected dot for the dot indicator.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetSelectedItemWidth(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetSelectedItemWidth(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief  Obtains the width of the selected dot for the dot indicator.
@@ -3387,7 +3678,8 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemWidth(ArkUI_SwiperIndicator* indica
  * @return Returns the width of the selected dot for the dot indicator.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetSelectedItemWidth(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetSelectedItemWidth(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the height of the selected dot for the dot indicator.
@@ -3396,7 +3688,8 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemWidth(ArkUI_SwiperIndicator* indic
  * @param value Indicates the height of the selected dot for the dot indicator.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetSelectedItemHeight(ArkUI_SwiperIndicator* indicator, float value);
+void OH_ArkUI_SwiperIndicator_SetSelectedItemHeight(ArkUI_SwiperIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief  Obtains the height of the selected dot for the dot indicator.
@@ -3405,7 +3698,8 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemHeight(ArkUI_SwiperIndicator* indic
  * @return Returns the height of the selected dot for the dot indicator.
  * @since 12
 */
-float OH_ArkUI_SwiperIndicator_GetSelectedItemHeight(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetSelectedItemHeight(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to display the mask style of the dot navigation indicator.
@@ -3414,7 +3708,8 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemHeight(ArkUI_SwiperIndicator* indi
  * @param mask Whether to display the mask style. True means to display.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetMask(ArkUI_SwiperIndicator* indicator, int32_t mask);
+void OH_ArkUI_SwiperIndicator_SetMask(ArkUI_SwiperIndicator* indicator, int32_t mask)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains whether to display the mask style of the dot navigation indicator.
@@ -3423,7 +3718,8 @@ void OH_ArkUI_SwiperIndicator_SetMask(ArkUI_SwiperIndicator* indicator, int32_t 
  * @return Returns whether to display the mask style. True means to display.
  * @since 12
 */
-int32_t OH_ArkUI_SwiperIndicator_GetMask(ArkUI_SwiperIndicator* indicator);
+int32_t OH_ArkUI_SwiperIndicator_GetMask(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the color of the dot navigation indicator.
@@ -3432,7 +3728,8 @@ int32_t OH_ArkUI_SwiperIndicator_GetMask(ArkUI_SwiperIndicator* indicator);
  * @param color the color of the dot navigation indicator, in 0xARGB format.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetColor(ArkUI_SwiperIndicator* indicator, uint32_t color);
+void OH_ArkUI_SwiperIndicator_SetColor(ArkUI_SwiperIndicator* indicator, uint32_t color)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the color of the dot navigation indicator.
@@ -3441,7 +3738,8 @@ void OH_ArkUI_SwiperIndicator_SetColor(ArkUI_SwiperIndicator* indicator, uint32_
  * @return Returns the color of the dot navigation indicator, in 0xARGB format.
  * @since 12
 */
-uint32_t OH_ArkUI_SwiperIndicator_GetColor(ArkUI_SwiperIndicator* indicator);
+uint32_t OH_ArkUI_SwiperIndicator_GetColor(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the color of the selected dot for the navigation indicator.
@@ -3450,7 +3748,8 @@ uint32_t OH_ArkUI_SwiperIndicator_GetColor(ArkUI_SwiperIndicator* indicator);
  * @param selectedColor the color of the selected dot, in 0xARGB format.
  * @since 12
 */
-void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator, uint32_t selectedColor);
+void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator, uint32_t selectedColor)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the color of the selected dot for the dot navigation indicator.
@@ -3459,7 +3758,8 @@ void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator,
  * @return Returns the color of the selected dot, in 0xARGB format.
  * @since 12
 */
-uint32_t OH_ArkUI_SwiperIndicator_GetSelectedColor(ArkUI_SwiperIndicator* indicator);
+uint32_t OH_ArkUI_SwiperIndicator_GetSelectedColor(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the number of maxDisplayCount for the dot navigation indicator.
@@ -3471,7 +3771,8 @@ uint32_t OH_ArkUI_SwiperIndicator_GetSelectedColor(ArkUI_SwiperIndicator* indica
  *         maxDisplayCount more then 9
  * @since 12
 */
-int32_t OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(ArkUI_SwiperIndicator* indicator, int32_t maxDisplayCount);
+int32_t OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(ArkUI_SwiperIndicator* indicator, int32_t maxDisplayCount)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the number of maxDisplayCount for the dot navigation indicator.
@@ -3481,7 +3782,8 @@ int32_t OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(ArkUI_SwiperIndicator* indic
  *         0 - indicator is null
  * @since 12
 */
-int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indicator);
+int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets whether to ignore the size of the indicator for {@link OH_ArkUI_SwiperIndicator_SetBottomPosition}.
@@ -3491,7 +3793,8 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indic
  * The default value is 0.
  * @since 19
 */
-void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator, int32_t ignoreSize);
+void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator, int32_t ignoreSize)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Obtains whether to ignore the size of the indicator for {@link OH_ArkUI_SwiperIndicator_SetBottomPosition}.
@@ -3500,7 +3803,8 @@ void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indic
  * @return Returns whether to ignore the size of the indicator.
  * @since 19
 */
-int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator);
+int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the space between the dots of the navigation indicator.
@@ -3509,7 +3813,8 @@ int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* in
  * @param space the space between the dots of the navigation indicator, the default value is 8vp.
  * @since 19
 */
-void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float space);
+void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float space)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Obtains the space between the dots of the navigation indicator.
@@ -3518,7 +3823,8 @@ void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float s
  * @return the space between the dots of the navigation indicator
  * @since 19
 */
-float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator);
+float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Creates a digital indicator.
@@ -3526,7 +3832,8 @@ float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator);
  * @return Returns the pointer to the new indicator.
  * @since 19
  */
-ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create();
+ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create()
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the distance between the digital indicator and the start of the swiper.
@@ -3535,7 +3842,8 @@ ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create();
  * @param value Indicates the distance between the digital indicator and the start of the swiper.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
+void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the distance between the digital indicator and the start of the swiper.
@@ -3544,7 +3852,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* 
  * @return Returns the distance between the digital indicator and the start of the swiper.
  * @since 19
  */
-float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator* indicator);
+float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the distance between the digital indicator and the top of the swiper.
@@ -3553,7 +3862,8 @@ float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator*
  * @param value Indicates the distance between the digital indicator and the top of the swiper.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
+void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the distance between the digital indicator and the top of the swiper.
@@ -3562,7 +3872,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* in
  * @return Returns the distance between the digital indicator and the top of the swiper.
  * @since 19
  */
-float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* indicator);
+float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the distance between the digital indicator and the end of the swiper.
@@ -3571,7 +3882,8 @@ float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* i
  * @param value Indicates the distance between the digital indicator and the end of the swiper.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
+void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the distance between the digital indicator and the end of the swiper.
@@ -3580,7 +3892,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* in
  * @return Returns the distance between the digital indicator and the end of the swiper.
  * @since 19
  */
-float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* indicator);
+float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the distance between the digital indicator and the bottom of the swiper.
@@ -3589,7 +3902,8 @@ float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* i
  * @param value Returns the distance between the digital indicator and the bottom of the swiper.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
+void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the distance between the digital indicator and the bottom of the swiper.
@@ -3598,7 +3912,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator*
  * @return Returns the distance between the digital indicator and the bottom of the swiper.
  * @since 19
  */
-float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator* indicator);
+float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the font color of total count in the digital indicator.
@@ -3607,7 +3922,8 @@ float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator
  * @param color font color, in 0xARGB format. Default value: 0xFF182431.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t color);
+void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t color)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the font color of total count in the digital indicator.
@@ -3616,7 +3932,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indi
  * @return font color, in 0xARGB format.
  * @since 19
  */
-uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* indicator);
+uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the font color of selected index in the digital indicator.
@@ -3625,7 +3942,8 @@ uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* 
  * @param selectedColor font color, in 0xARGB format. Default value: 0xFF182431.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t selectedColor);
+void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t selectedColor)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the font color of selected index in the digital indicator.
@@ -3634,7 +3952,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicat
  * @return font color, in 0xARGB format.
  * @since 19
  */
-uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator);
+uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the font size of total count in the digital indicator.
@@ -3643,7 +3962,8 @@ uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitInd
  * @param size font size, in fp.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indicator, float size);
+void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indicator, float size)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the font size of total count in the digital indicator.
@@ -3652,7 +3972,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indic
  * @return font size, in fp.
  * @since 19
  */
-float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indicator);
+float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the font size of selected index in the digital indicator.
@@ -3661,7 +3982,8 @@ float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indi
  * @param size font size, in fp.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator, float size);
+void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator, float size)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the font size of selected index in the digital indicator.
@@ -3670,7 +3992,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicato
  * @return font size, in fp.
  * @since 19
  */
-float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator);
+float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the font weight of total count in the digital indicator.
@@ -3679,7 +4002,8 @@ float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicat
  * @param fontWeight font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight fontWeight);
+void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight fontWeight)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the font weight of total count in the digital indicator.
@@ -3688,7 +4012,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *ind
  * @return font weight {@link ArkUI_FontWeight}.
  * @since 19
  */
-ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIndicator* indicator);
+ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the font weight of selected index in the digital indicator.
@@ -3698,7 +4023,8 @@ ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIn
  * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(
-    ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight selectedFontWeight);
+    ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight selectedFontWeight)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the font weight of selected index in the digital indicator.
@@ -3707,7 +4033,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(
  * @return font weight {@link ArkUI_FontWeight}.
  * @since 19
  */
-ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_SwiperDigitIndicator* indicator);
+ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Destroys the digital indicator.
@@ -3715,7 +4042,8 @@ ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_Swipe
  * @param indicator The pointer to the digital indicator.
  * @since 19
  */
-void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator);
+void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets whether to ignore the size of the indicator for {@link OH_ArkUI_SwiperDigitIndicator_SetBottomPosition}.
@@ -3725,7 +4053,8 @@ void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator
  * The default value is 0.
  * @since 19
 */
-void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize);
+void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Obtains whether to ignore the size of the indicator for {@link OH_ArkUI_SwiperDigitIndicator_SetBottomPosition}.
@@ -3734,7 +4063,8 @@ void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndica
  * @return Returns whether to ignore the size of the indicator.
  * @since 19
 */
-int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator);
+int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Creates a arrow style for swiper.
@@ -3742,7 +4072,7 @@ int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitInd
  * @return Returns the pointer to the new arrow style.
  * @since 19
  */
-ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create();
+ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create() __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets whether to show the background for the arrow.
@@ -3753,7 +4083,8 @@ ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create();
  *        The default value is <b>0</b>.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowStyle, int32_t showBackground);
+void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowStyle, int32_t showBackground)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets whether to show the background for the arrow.
@@ -3763,7 +4094,8 @@ void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowSt
  *         The value <b>1</b> means to show the background, and <b>0</b> means the opposite.
  * @since 19
  */
-int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arrowStyle);
+int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the display position of the arrow.
@@ -3775,7 +4107,8 @@ int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arro
  *        The default value is <b>0</b>.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle, int32_t showSidebarMiddle);
+void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle, int32_t showSidebarMiddle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the display position of the arrow.
@@ -3785,7 +4118,8 @@ void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arro
  *         and <b>0</b> means display on boths sides of the swiper indicator.
  * @since 19
  */
-int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle);
+int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the background size of the arrow.
@@ -3796,7 +4130,8 @@ int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* a
  *        The default value is <b>32</b> when the arrow displays on both sides of the swiper.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowStyle, float backgroundSize);
+void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowStyle, float backgroundSize)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the background size of the arrow.
@@ -3805,7 +4140,8 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowSt
  * @return Returns the background size of the arrow. The unit is vp.
  * @since 19
  */
-float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowStyle);
+float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Destroys the arrow style.
@@ -3813,7 +4149,8 @@ float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowS
  * @param arrowStyle The pointer to the arrow style.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle);
+void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the background color of the arrow.
@@ -3824,7 +4161,8 @@ void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle);
  *        The default value is <b>0x19182431</b> when the arrow displays on both sides of the swiper.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowStyle, uint32_t backgroundColor);
+void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowStyle, uint32_t backgroundColor)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the background color of the arrow.
@@ -3833,7 +4171,8 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowS
  * @return Returns the background color of the arrow, in 0xARGB format.
  * @since 19
  */
-uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* arrowStyle);
+uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the size of the arrow.
@@ -3845,7 +4184,8 @@ uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* ar
  *        The arrow size is fixed to 3/4 of the background size when the background is shown.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, float arrowSize);
+void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, float arrowSize)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the size of the arrow.
@@ -3854,7 +4194,8 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, 
  * @return the size of the arrow. The unit is vp.
  * @since 19
  */
-float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle);
+float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Sets the color of the arrow.
@@ -3863,7 +4204,8 @@ float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle)
  * @param arrowColor the color of the arrow, in 0xARGB format. The default value is <b>0x00182431</b>.
  * @since 19
  */
-void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle, uint32_t arrowColor);
+void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle, uint32_t arrowColor)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Gets the color of the arrow.
@@ -3872,7 +4214,8 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle,
  * @return Returns the color of the arrow, in 0xARGB format.
  * @since 19
  */
-uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle);
+uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Create auxiliary line information in the RelativeContaine container.
@@ -3881,7 +4224,8 @@ uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowSt
  * @return auxiliary line information.
  * @since 12
  */
-ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size);
+ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy auxiliary line information.
@@ -3889,7 +4233,8 @@ ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size);
  * @param guideline auxiliary line information.
  * @since 12
  */
-void OH_ArkUI_GuidelineOption_Dispose(ArkUI_GuidelineOption* guideline);
+void OH_ArkUI_GuidelineOption_Dispose(ArkUI_GuidelineOption* guideline)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the Id of the auxiliary line.
@@ -3899,7 +4244,8 @@ void OH_ArkUI_GuidelineOption_Dispose(ArkUI_GuidelineOption* guideline);
  * @param index auxiliary line index value.
  * @since 12
  */
-void OH_ArkUI_GuidelineOption_SetId(ArkUI_GuidelineOption* guideline, const char* value, int32_t index);
+void OH_ArkUI_GuidelineOption_SetId(ArkUI_GuidelineOption* guideline, const char* value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the direction of the auxiliary line.
@@ -3909,7 +4255,8 @@ void OH_ArkUI_GuidelineOption_SetId(ArkUI_GuidelineOption* guideline, const char
  * @param index auxiliary line index value.
  * @since 12
  */
-void OH_ArkUI_GuidelineOption_SetDirection(ArkUI_GuidelineOption* guideline, ArkUI_Axis value, int32_t index);
+void OH_ArkUI_GuidelineOption_SetDirection(ArkUI_GuidelineOption* guideline, ArkUI_Axis value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the distance from the left or top of the container.
@@ -3919,7 +4266,8 @@ void OH_ArkUI_GuidelineOption_SetDirection(ArkUI_GuidelineOption* guideline, Ark
  * @param index auxiliary line index value.
  * @since 12
  */
-void OH_ArkUI_GuidelineOption_SetPositionStart(ArkUI_GuidelineOption* guideline, float value, int32_t index);
+void OH_ArkUI_GuidelineOption_SetPositionStart(ArkUI_GuidelineOption* guideline, float value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the distance from the right or bottom of the container.
@@ -3929,7 +4277,8 @@ void OH_ArkUI_GuidelineOption_SetPositionStart(ArkUI_GuidelineOption* guideline,
  * @param index auxiliary line index value.
  * @since 12
  */
-void OH_ArkUI_GuidelineOption_SetPositionEnd(ArkUI_GuidelineOption* guideline, float value, int32_t index);
+void OH_ArkUI_GuidelineOption_SetPositionEnd(ArkUI_GuidelineOption* guideline, float value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the Id of the auxiliary line.
@@ -3939,7 +4288,8 @@ void OH_ArkUI_GuidelineOption_SetPositionEnd(ArkUI_GuidelineOption* guideline, f
  * @return Id.
  * @since 12
  */
-const char* OH_ArkUI_GuidelineOption_GetId(ArkUI_GuidelineOption* guideline, int32_t index);
+const char* OH_ArkUI_GuidelineOption_GetId(ArkUI_GuidelineOption* guideline, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the direction of the auxiliary line.
@@ -3949,7 +4299,8 @@ const char* OH_ArkUI_GuidelineOption_GetId(ArkUI_GuidelineOption* guideline, int
  * @return direction.
  * @since 12
  */
-ArkUI_Axis OH_ArkUI_GuidelineOption_GetDirection(ArkUI_GuidelineOption* guideline, int32_t index);
+ArkUI_Axis OH_ArkUI_GuidelineOption_GetDirection(ArkUI_GuidelineOption* guideline, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the distance from the left or top of the container.
@@ -3959,7 +4310,8 @@ ArkUI_Axis OH_ArkUI_GuidelineOption_GetDirection(ArkUI_GuidelineOption* guidelin
  * @return The distance from the left or top of the container.
  * @since 12
  */
-float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline, int32_t index);
+float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the distance from the right side or bottom of the container.
@@ -3969,7 +4321,8 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
  * @return The distance from the right side or bottom of the container.
  * @since 12
  */
-float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, int32_t index);
+float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief creates barrier information within the RelativeContaine container.
@@ -3978,7 +4331,8 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
  * @return barrier information.
  * @since 12
  */
-ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size);
+ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy barrier information.
@@ -3986,7 +4340,8 @@ ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size);
  * @param barrierStyle barrier information.
  * @since 12
  */
-void OH_ArkUI_BarrierOption_Dispose(ArkUI_BarrierOption* barrierStyle);
+void OH_ArkUI_BarrierOption_Dispose(ArkUI_BarrierOption* barrierStyle)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the Id of the barrier.
@@ -3996,7 +4351,8 @@ void OH_ArkUI_BarrierOption_Dispose(ArkUI_BarrierOption* barrierStyle);
  * @param index Barrier index value.
  * @since 12
  */
-void OH_ArkUI_BarrierOption_SetId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index);
+void OH_ArkUI_BarrierOption_SetId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the direction of the barrier.
@@ -4007,7 +4363,8 @@ void OH_ArkUI_BarrierOption_SetId(ArkUI_BarrierOption* barrierStyle, const char*
  * @since 12
  */
 void OH_ArkUI_BarrierOption_SetDirection(
-    ArkUI_BarrierOption* barrierStyle, ArkUI_BarrierDirection value, int32_t index);
+    ArkUI_BarrierOption* barrierStyle, ArkUI_BarrierDirection value, int32_t index)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the dependent component of the barrier.
@@ -4017,7 +4374,8 @@ void OH_ArkUI_BarrierOption_SetDirection(
  * @param index Barrier index value.
  * @since 12
  */
-void OH_ArkUI_BarrierOption_SetReferencedId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index);
+void OH_ArkUI_BarrierOption_SetReferencedId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the Id of the barrier.
@@ -4027,7 +4385,8 @@ void OH_ArkUI_BarrierOption_SetReferencedId(ArkUI_BarrierOption* barrierStyle, c
  * @return The Id of the barrier.
  * @since 12
  */
-const char* OH_ArkUI_BarrierOption_GetId(ArkUI_BarrierOption* barrierStyle, int32_t index);
+const char* OH_ArkUI_BarrierOption_GetId(ArkUI_BarrierOption* barrierStyle, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the direction of the barrier.
@@ -4037,7 +4396,8 @@ const char* OH_ArkUI_BarrierOption_GetId(ArkUI_BarrierOption* barrierStyle, int3
  * @return The direction of the barrier.
  * @since 12
  */
-ArkUI_BarrierDirection OH_ArkUI_BarrierOption_GetDirection(ArkUI_BarrierOption* barrierStyle, int32_t index);
+ArkUI_BarrierDirection OH_ArkUI_BarrierOption_GetDirection(ArkUI_BarrierOption* barrierStyle, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the dependent components of the barrier.
@@ -4049,7 +4409,8 @@ ArkUI_BarrierDirection OH_ArkUI_BarrierOption_GetDirection(ArkUI_BarrierOption* 
  * @since 12
  */
 const char* OH_ArkUI_BarrierOption_GetReferencedId(
-    ArkUI_BarrierOption* barrierStyle, int32_t index, int32_t referencedIndex);
+    ArkUI_BarrierOption* barrierStyle, int32_t index, int32_t referencedIndex)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Gets the number of dependent components of the barrier.
@@ -4059,7 +4420,8 @@ const char* OH_ArkUI_BarrierOption_GetReferencedId(
  * @return The number of dependent components of the barrier.
  * @since 12
  */
-int32_t OH_ArkUI_BarrierOption_GetReferencedIdSize(ArkUI_BarrierOption* barrierStyle, int32_t index);
+int32_t OH_ArkUI_BarrierOption_GetReferencedIdSize(ArkUI_BarrierOption* barrierStyle, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the types and parameters related to content transition effects.
@@ -4075,7 +4437,8 @@ typedef struct ArkUI_ContentTransitionEffect ArkUI_ContentTransitionEffect;
  * @return content transition effect.
  * @since 21
  */
-ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type);
+ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief creates alignment rule information for subcomponents in relative containers.
@@ -4083,7 +4446,8 @@ ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t t
  * @return Alignment rule information.
  * @since 12
  */
-ArkUI_AlignmentRuleOption* OH_ArkUI_AlignmentRuleOption_Create();
+ArkUI_AlignmentRuleOption* OH_ArkUI_AlignmentRuleOption_Create()
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys the alignment rule information of subcomponents in relative containers.
@@ -4091,7 +4455,8 @@ ArkUI_AlignmentRuleOption* OH_ArkUI_AlignmentRuleOption_Create();
  * @param option Alignment rule information of subcomponents in the relative container.
  * @since 12
  */
-void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
+void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the start alignment parameter.
@@ -4102,7 +4467,8 @@ void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetStart(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment);
+    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the end alignment parameter.
@@ -4113,7 +4479,8 @@ void OH_ArkUI_AlignmentRuleOption_SetStart(
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetEnd(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment);
+    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the parameters for horizontal center alignment.
@@ -4124,7 +4491,8 @@ void OH_ArkUI_AlignmentRuleOption_SetEnd(
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment);
+    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the parameters for top alignment.
@@ -4135,7 +4503,8 @@ void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, const char* id,
-    ArkUI_VerticalAlignment alignment);
+    ArkUI_VerticalAlignment alignment)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the bottom alignment parameters.
@@ -4146,7 +4515,8 @@ void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, cons
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBottom(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_VerticalAlignment alignment);
+    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_VerticalAlignment alignment)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the parameters for vertical center alignment.
@@ -4157,7 +4527,8 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom(
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_VerticalAlignment alignment);
+    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_VerticalAlignment alignment)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the horizontal offset parameter of the component under the anchor point constraint.
@@ -4166,7 +4537,8 @@ void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
  * @param horizontal bias value in the horizontal direction.
  * @since 12
  */
-void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* option, float horizontal);
+void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* option, float horizontal)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the vertical offset parameter of the component under the anchor point constraint.
@@ -4175,7 +4547,8 @@ void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* o
  * @param vertical bias value in the vertical direction.
  * @since 12
  */
-void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical);
+void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the Id of the start-aligned parameter.
@@ -4184,7 +4557,8 @@ void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* opt
  * @return The id value of the anchor component.
  * @since 12
  */
-const char* OH_ArkUI_AlignmentRuleOption_GetStartId(ArkUI_AlignmentRuleOption* option);
+const char* OH_ArkUI_AlignmentRuleOption_GetStartId(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the alignment of the start-aligned parameter.
@@ -4193,7 +4567,8 @@ const char* OH_ArkUI_AlignmentRuleOption_GetStartId(ArkUI_AlignmentRuleOption* o
 * @return The alignment of the parameters.
 * @since 12
 */
-ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetStartAlignment(ArkUI_AlignmentRuleOption* option);
+ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetStartAlignment(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the end alignment parameter.
@@ -4202,7 +4577,8 @@ ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetStartAlignment(ArkUI_A
  * @return End-aligned parameter id.
  * @since 12
  */
-const char* OH_ArkUI_AlignmentRuleOption_GetEndId(ArkUI_AlignmentRuleOption* option);
+const char* OH_ArkUI_AlignmentRuleOption_GetEndId(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Get the end alignment parameter.
@@ -4211,7 +4587,8 @@ const char* OH_ArkUI_AlignmentRuleOption_GetEndId(ArkUI_AlignmentRuleOption* opt
 * @return The alignment of the end-aligned parameter.
 * @since 12
 */
-ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetEndAlignment(ArkUI_AlignmentRuleOption* option);
+ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetEndAlignment(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the parameters of horizontal center alignment.
@@ -4220,7 +4597,8 @@ ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetEndAlignment(ArkUI_Ali
 * @return The id of the parameter of horizontal center alignment.
 * @since 12
 */
-const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal(ArkUI_AlignmentRuleOption* option);
+const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the parameters of horizontal center alignment.
@@ -4229,7 +4607,8 @@ const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal(ArkUI_AlignmentRu
 * @return The alignment of the horizontally centered alignment parameter.
 * @since 12
 */
-ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentHorizontal(ArkUI_AlignmentRuleOption* option);
+ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentHorizontal(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the top-aligned parameters.
@@ -4238,7 +4617,8 @@ ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentHorizon
  * @return Top aligned parameter id.
  * @since 12
  */
-const char* OH_ArkUI_AlignmentRuleOption_GetTopId(ArkUI_AlignmentRuleOption* option);
+const char* OH_ArkUI_AlignmentRuleOption_GetTopId(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Get the top-aligned parameters.
@@ -4247,7 +4627,8 @@ const char* OH_ArkUI_AlignmentRuleOption_GetTopId(ArkUI_AlignmentRuleOption* opt
 * @return The alignment of the top-aligned parameter.
 * @since 12
 */
-ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetTopAlignment(ArkUI_AlignmentRuleOption* option);
+ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetTopAlignment(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the bottom alignment parameters.
@@ -4256,7 +4637,8 @@ ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetTopAlignment(ArkUI_Align
  * @return The id of the bottom-aligned parameter.
  * @since 12
  */
-const char* OH_ArkUI_AlignmentRuleOption_GetBottomId(ArkUI_AlignmentRuleOption* option);
+const char* OH_ArkUI_AlignmentRuleOption_GetBottomId(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Get the bottom alignment parameters.
@@ -4265,7 +4647,8 @@ const char* OH_ArkUI_AlignmentRuleOption_GetBottomId(ArkUI_AlignmentRuleOption* 
 * @return The alignment of the bottom-aligned parameter.
 * @since 12
 */
-ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetBottomAlignment(ArkUI_AlignmentRuleOption* option);
+ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetBottomAlignment(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the parameters of vertical center alignment.
@@ -4274,7 +4657,8 @@ ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetBottomAlignment(ArkUI_Al
 * @return The id of the vertical center alignment parameter.
 * @since 12
 */
-const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdVertical(ArkUI_AlignmentRuleOption* option);
+const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdVertical(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Gets the parameters of vertical center alignment.
@@ -4283,7 +4667,8 @@ const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdVertical(ArkUI_AlignmentRule
 * @return The alignment of the vertical center alignment parameter.
 * @since 12
 */
-ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical(ArkUI_AlignmentRuleOption* option);
+ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the bias value in the horizontal direction.
@@ -4292,7 +4677,8 @@ ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical(
  * @return The bias value in the horizontal direction.
  * @since 12
  */
-float OH_ArkUI_AlignmentRuleOption_GetBiasHorizontal(ArkUI_AlignmentRuleOption* option);
+float OH_ArkUI_AlignmentRuleOption_GetBiasHorizontal(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the bias value in the vertical direction.
@@ -4301,7 +4687,8 @@ float OH_ArkUI_AlignmentRuleOption_GetBiasHorizontal(ArkUI_AlignmentRuleOption* 
  * @return bias value in vertical direction.
  * @since 12
 */
-float OH_ArkUI_AlignmentRuleOption_GetBiasVertical(ArkUI_AlignmentRuleOption* option);
+float OH_ArkUI_AlignmentRuleOption_GetBiasVertical(ArkUI_AlignmentRuleOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a configuration item for the ListitemSwipeActionItem interface settings.
@@ -4310,7 +4697,8 @@ float OH_ArkUI_AlignmentRuleOption_GetBiasVertical(ArkUI_AlignmentRuleOption* op
  *         it indicates creation failure, and the reason for the failure may be that the address space is full.
  * @since 12
 */
-ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create();
+ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create()
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroy the ListitemSwipeActionItem instance.
@@ -4318,7 +4706,8 @@ ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create();
 * @param item List Item SwipeActionItem instance to be destroyed.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* item);
+void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* item)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the layout content of ListItem SwipeActionItem.
@@ -4327,7 +4716,8 @@ void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* ite
 * @param node Layout information.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* item, ArkUI_NodeHandle node);
+void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* item, ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the threshold for long-distance sliding deletion distance of components.
@@ -4336,7 +4726,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* 
 * @param distance Component long-distance sliding deletion distance threshold.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item, float distance);
+void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item, float distance)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Obtain the threshold for long-distance sliding deletion distance of components.
@@ -4346,7 +4737,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeA
 *         The possible cause of the failure is that the item parameter is abnormal, such as a null pointer.
 * @since 12
 */
-float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item);
+float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the event to be called when a sliding entry enters the deletion area.
@@ -4355,7 +4747,8 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipe
 * @param callback Callback Events.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
+void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)())
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the event triggered when a sliding entry enters the deletion area.
@@ -4366,7 +4759,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(void* userData));
+    void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the event to be called when a component enters the long-range deletion area and deletes a ListItem.
@@ -4375,7 +4769,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_Lis
 * @param callback Callback Events.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
+void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem* item, void (*callback)())
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the event triggered when a component enters the long-range deletion area and deletes a ListItem.
@@ -4386,7 +4781,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(void* userData));
+    void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the event to be called when a sliding entry exits the deletion area.
@@ -4395,7 +4791,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwip
 * @param callback Callback Events.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
+void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)())
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the event triggered when a sliding entry exits the deletion area.
@@ -4406,7 +4803,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(void* userData));
+    void* userData, void (*callback)(void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the event triggered when the sliding state of a list item changes.
@@ -4417,7 +4815,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_List
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeActionItem* item,
-    void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState));
+    void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the event triggered when the sliding state of a list item changes.
@@ -4429,7 +4828,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeAction
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState, void* userData));
+    void* userData, void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState, void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a configuration item for the ListitemSwipeActionOption interface settings.
@@ -4438,7 +4838,8 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(ArkUI_ListIte
  *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
  * @since 12
 */
-ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create();
+ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create()
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroy the ListitemSwipeActionOption instance.
@@ -4446,7 +4847,8 @@ ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create();
 * @param option List Item SwipeActionOption instance to be destroyed.
 * @since 12
 */
-void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption* option);
+void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the layout content on the left (vertical layout) or top (horizontal layout)
@@ -4457,7 +4859,8 @@ void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption*
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption* option,
-    ArkUI_ListItemSwipeActionItem* item);
+    ArkUI_ListItemSwipeActionItem* item)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the layout content on the right (vertical layout) or bottom (horizontal layout)
@@ -4468,7 +4871,8 @@ void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetEnd(ArkUI_ListItemSwipeActionOption* option,
-    ArkUI_ListItemSwipeActionItem* item);
+    ArkUI_ListItemSwipeActionItem* item)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Set the sliding effect.
@@ -4478,7 +4882,8 @@ void OH_ArkUI_ListItemSwipeActionOption_SetEnd(ArkUI_ListItemSwipeActionOption* 
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect(ArkUI_ListItemSwipeActionOption* option,
-    ArkUI_ListItemSwipeEdgeEffect edgeEffect);
+    ArkUI_ListItemSwipeEdgeEffect edgeEffect)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Get the sliding effect.
@@ -4488,7 +4893,8 @@ void OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect(ArkUI_ListItemSwipeActionO
 *         The possible cause of the failure is that the option parameter is abnormal, such as a null pointer.
 * @since 12
 */
-int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActionOption* option);
+int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActionOption* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief The event called when the sliding operation offset changes.
@@ -4499,7 +4905,8 @@ int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActi
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeActionOption* option,
-    void (*callback)(float offset));
+    void (*callback)(float offset))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the event triggered when the sliding operation offset changes.
@@ -4511,7 +4918,8 @@ void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeAct
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_ListItemSwipeActionOption* option,
-    void* userData, void (*callback)(float offset, void* userData));
+    void* userData, void (*callback)(float offset, void* userData))
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create configuration items for the ListChildrenMainSize interface settings.
@@ -4520,7 +4928,8 @@ void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_List
  *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
  * @since 12
 */
-ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
+ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create()
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Destroy the ListChildrenMainSize instance.
@@ -4528,7 +4937,8 @@ ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
 * @param option The ListChildrenMainSize instance to be destroyed.
 * @since 12
 */
-void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option);
+void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the default size of ChildrenMainSizeOption for the List component.
@@ -4539,7 +4949,8 @@ void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* opt
  * @since 12
 */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(ArkUI_ListChildrenMainSize* option,
-    float defaultMainSize);
+    float defaultMainSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the default size of ChildrenMainSizeOption for the List component.
@@ -4549,7 +4960,8 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(ArkUI_ListChildre
  *         When the option is a null pointer, it returns -1.
  * @since 12
 */
-float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option);
+float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Reset the array size of ChildrenMainSizeOption for the List component.
@@ -4558,7 +4970,8 @@ float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenM
  * @param totalSize Array size.
  * @since 12
 */
-void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize);
+void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Resize the ChildrenMainSizeOption array operation on the List component.
@@ -4571,7 +4984,8 @@ void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* opti
  * @since 12
 */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(ArkUI_ListChildrenMainSize* option, int32_t index,
-    int32_t deleteCount, int32_t addCount);
+    int32_t deleteCount, int32_t addCount)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Update the value of the ChildrenMainSizeOption array in the List component.
@@ -4583,7 +4997,8 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(ArkUI_ListChildrenMainSize* o
  * @since 12
 */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(ArkUI_ListChildrenMainSize* option,
-    int32_t index, float mainSize);
+    int32_t index, float mainSize)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the value of the ChildrenMainSizeOption array for the List component.
@@ -4593,7 +5008,8 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(ArkUI_ListChildrenMainSiz
  * @return The value of the specific position of the array. If the function parameter is abnormal, return -1.
  * @since 12
 */
-float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);
+float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates measurement information for this custom span.
@@ -4602,7 +5018,8 @@ float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
+ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of measurement information of this custom span.
@@ -4610,7 +5027,8 @@ ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
  * @param info The CustomSpanMeasureInfo instance to be destroyed.
  * @since 12
 */
-void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
+void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the font size of a custom span.
@@ -4620,7 +5038,8 @@ void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
  * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* info);
+float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates measurement metrics for this custom span.
@@ -4629,7 +5048,8 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* in
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
+ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of measurement metrics of this custom span.
@@ -4637,7 +5057,8 @@ ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
  * @param metrics The CustomSpanMetrics instance to be destroyed.
  * @since 12
 */
-void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
+void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the width for a custom span.
@@ -4650,7 +5071,8 @@ void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
  *         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, float width);
+int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, float width)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets the height for a custom span.
@@ -4663,7 +5085,8 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, fl
  *         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, float height);
+int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, float height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Creates drawing information for this custom span.
@@ -4672,7 +5095,8 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, f
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
+ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Disposes of drawing information for this custom span.
@@ -4680,7 +5104,8 @@ ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
  * @param info The CustomSpanDrawInfo instance to be destroyed.
  * @since 12
 */
-void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
+void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the x-axis offset of the custom span relative to the mounted component.
@@ -4690,7 +5115,8 @@ void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
  * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
+float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the top margin of the custom span relative to the mounted component.
@@ -4700,7 +5126,8 @@ float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
  * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
+float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the bottom margin of the custom span relative to the mounted component.
@@ -4710,7 +5137,8 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
  * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
+float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Obtains the baseline offset of the custom span relative to the mounted component.
@@ -4720,7 +5148,8 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
  * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
-float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info);
+float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a image frame from the image path.
@@ -4730,7 +5159,8 @@ float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info);
  * the src parameter is abnormal, for example, the pointer is null.
  * @since 12
 */
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src);
+ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create a image frame from the drawable descriptor.
@@ -4742,7 +5172,8 @@ ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(c
  * @since 12
 */
 ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(
-    ArkUI_DrawableDescriptor* drawable);
+    ArkUI_DrawableDescriptor* drawable)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the pointer to the image frame.
@@ -4750,7 +5181,8 @@ ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawable
  * @param imageInfo Indicates the pointer to the image frame.
  * @since 12
 */
-void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the width of the image frame.
@@ -4759,7 +5191,8 @@ void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* image
  * @param width Indicates the width of the image frame, and the unit is PX.
  * @since 12
 */
-void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width);
+void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the width of the image frame.
@@ -4768,7 +5201,8 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imag
  * @return Return the width of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
  * @since 12
 */
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the height of the image frame.
@@ -4777,7 +5211,8 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* i
  * @param height Indicates the height of the image frame, and the unit is PX.
  * @since 12
 */
-void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height);
+void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the height of the image frame.
@@ -4786,7 +5221,8 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* ima
  * @return Return the height of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
  * @since 12
 */
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the vertical coordinate of the image relative to the upper left corner of the widget.
@@ -4796,7 +5232,8 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* 
  * and the unit is PX.
  * @since 12
 */
-void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t top);
+void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t top)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the vertical coordinate of the image relative to the upper left corner of the widget.
@@ -4806,7 +5243,8 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageI
  * and the unit is PX. Return 0 when the imageInfo is null.
  * @since 12
 */
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the horizontal coordinate of the image relative to the upper left corner of the widget.
@@ -4816,7 +5254,8 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* ima
  * and the unit is PX.
  * @since 12
 */
-void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t left);
+void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t left)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the horizontal coordinate of the image relative to the upper left corner of the widget.
@@ -4826,7 +5265,8 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* image
  * and the unit is PX. Return 0 when the imageInfo is null.
  * @since 12
 */
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set the playback duration of the image frame.
@@ -4835,7 +5275,8 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* im
  * @param duration Indicates the playback duration of each image frame, and the unit is milliseconds.
  * @since 12
 */
-void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration);
+void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get the playback duration of the image frame.
@@ -4845,7 +5286,8 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* i
  * Return 0 when the imageInfo is null.
  * @since 12
 */
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create accessibility state.
@@ -4854,7 +5296,8 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo
  * If a null pointer is returned, the object fails to be created. The possible cause is that the address space is full.
  * @since 12
 */
-ArkUI_AccessibilityState* OH_ArkUI_AccessibilityState_Create(void);
+ArkUI_AccessibilityState* OH_ArkUI_AccessibilityState_Create(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Dispose accessibility state.
@@ -4862,7 +5305,8 @@ ArkUI_AccessibilityState* OH_ArkUI_AccessibilityState_Create(void);
 * @param state accessibility state object.
 * @since 12
 */
-void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state);
+void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility state disabled.
@@ -4871,7 +5315,8 @@ void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state);
  * @param isDisabled accessibility state disabled, Value 1 indicates disabled and 0 indicates enbled.
  * @since 12
 */
-void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, int32_t isDisabled);
+void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, int32_t isDisabled)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility state disabled.
@@ -4881,7 +5326,8 @@ void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, in
  *         If the function parameter is abnormal, return the default value.
  * @since 12
 */
-int32_t OH_ArkUI_AccessibilityState_IsDisabled(ArkUI_AccessibilityState* state);
+int32_t OH_ArkUI_AccessibilityState_IsDisabled(ArkUI_AccessibilityState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility state selected.
@@ -4891,7 +5337,8 @@ int32_t OH_ArkUI_AccessibilityState_IsDisabled(ArkUI_AccessibilityState* state);
  *        The default value is 0.
  * @since 12
 */
-void OH_ArkUI_AccessibilityState_SetSelected(ArkUI_AccessibilityState* state, int32_t isSelected);
+void OH_ArkUI_AccessibilityState_SetSelected(ArkUI_AccessibilityState* state, int32_t isSelected)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility state selected.
@@ -4902,7 +5349,8 @@ void OH_ArkUI_AccessibilityState_SetSelected(ArkUI_AccessibilityState* state, in
  *         If the function parameter is abnormal, return the default value.
  * @since 12
 */
-int32_t OH_ArkUI_AccessibilityState_IsSelected(ArkUI_AccessibilityState* state);
+int32_t OH_ArkUI_AccessibilityState_IsSelected(ArkUI_AccessibilityState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility checked state.
@@ -4912,7 +5360,8 @@ int32_t OH_ArkUI_AccessibilityState_IsSelected(ArkUI_AccessibilityState* state);
  *        The default value is ARKUI_ACCESSIBILITY_UNCHECKED.
  * @since 12
 */
-void OH_ArkUI_AccessibilityState_SetCheckedState(ArkUI_AccessibilityState* state, int32_t checkedState);
+void OH_ArkUI_AccessibilityState_SetCheckedState(ArkUI_AccessibilityState* state, int32_t checkedState)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility checked state.
@@ -4923,7 +5372,8 @@ void OH_ArkUI_AccessibilityState_SetCheckedState(ArkUI_AccessibilityState* state
  *         If the function parameter is abnormal, return the default value.
  * @since 12
 */
-int32_t OH_ArkUI_AccessibilityState_GetCheckedState(ArkUI_AccessibilityState* state);
+int32_t OH_ArkUI_AccessibilityState_GetCheckedState(ArkUI_AccessibilityState* state)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Create accessibility value.
@@ -4932,7 +5382,8 @@ int32_t OH_ArkUI_AccessibilityState_GetCheckedState(ArkUI_AccessibilityState* st
  * If a null pointer is returned, the object fails to be created. The possible cause is that the address space is full.
  * @since 12
 */
-ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void);
+ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
 * @brief Dispose accessibility value.
@@ -4940,7 +5391,8 @@ ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void);
 * @param value accessibility value object.
 * @since 12
 */
-void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
+void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility minimum value.
@@ -4949,7 +5401,8 @@ void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
  * @param min minimum value based on range components, The default value is -1.
  * @since 12
 */
-void OH_ArkUI_AccessibilityValue_SetMin(ArkUI_AccessibilityValue* value, int32_t min);
+void OH_ArkUI_AccessibilityValue_SetMin(ArkUI_AccessibilityValue* value, int32_t min)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility minimum value.
@@ -4959,7 +5412,8 @@ void OH_ArkUI_AccessibilityValue_SetMin(ArkUI_AccessibilityValue* value, int32_t
  *         If the function parameter is abnormal, return -1.
  * @since 12
 */
-int32_t OH_ArkUI_AccessibilityValue_GetMin(ArkUI_AccessibilityValue* value);
+int32_t OH_ArkUI_AccessibilityValue_GetMin(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility minimum value.
@@ -4968,7 +5422,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetMin(ArkUI_AccessibilityValue* value);
  * @param max maximum value based on range components, The default value is -1.
  * @since 12
 */
-void OH_ArkUI_AccessibilityValue_SetMax(ArkUI_AccessibilityValue* value, int32_t max);
+void OH_ArkUI_AccessibilityValue_SetMax(ArkUI_AccessibilityValue* value, int32_t max)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility minimum value.
@@ -4978,7 +5433,8 @@ void OH_ArkUI_AccessibilityValue_SetMax(ArkUI_AccessibilityValue* value, int32_t
  *         If the function parameter is abnormal, return -1.
  * @since 12
 */
-int32_t OH_ArkUI_AccessibilityValue_GetMax(ArkUI_AccessibilityValue* value);
+int32_t OH_ArkUI_AccessibilityValue_GetMax(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility current value.
@@ -4987,7 +5443,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetMax(ArkUI_AccessibilityValue* value);
  * @param current value based on range components, The default value is -1.
  * @since 12
 */
-void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int32_t current);
+void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int32_t current)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility current value.
@@ -4997,7 +5454,8 @@ void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int
  *         If the function parameter is abnormal, return -1.
  * @since 12
 */
-int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value);
+int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Set accessibility minimum value.
@@ -5006,7 +5464,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value);
  * @param rangeMin minimum value based on range components, The default value is -1.
  * @since 18
 */
-void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin);
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get accessibility minimum value.
@@ -5016,7 +5475,8 @@ void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, in
  *         If the function parameter is abnormal, return -1.
  * @since 18
 */
-int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value);
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set accessibility maximum value.
@@ -5025,7 +5485,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
  * @param rangeMax maximum value based on range components, The default value is -1.
  * @since 18
 */
-void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax);
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get accessibility maximum value.
@@ -5035,7 +5496,8 @@ void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, in
  *         If the function parameter is abnormal, return -1.
  * @since 18
 */
-int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value);
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set accessibility current value.
@@ -5044,7 +5506,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
  * @param rangeCurrent value based on range components, The default value is -1.
  * @since 18
 */
-void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent);
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Get accessibility current value.
@@ -5054,7 +5517,8 @@ void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value
  *         If the function parameter is abnormal, return -1.
  * @since 18
 */
-int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value);
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Set accessibility text value.
@@ -5063,7 +5527,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* va
  * @param text The textual description information of the component, which defaults to an empty string.
  * @since 12
 */
-void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const char* text);
+void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const char* text)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Get accessibility text value.
@@ -5073,7 +5538,8 @@ void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const 
  *         If the function parameter is abnormal, return null.
  * @since 12
 */
-const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
+const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the instance of Customs Property.
@@ -5081,7 +5547,8 @@ const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value)
  * @param handle The instance of Customs Property to be destroyed.
  * @since 14
  */
-void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
+void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get custom attribute value information.
@@ -5090,7 +5557,8 @@ void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
  * @return Customize the value information within the attribute structure.
  * @since 14
  */
-const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
+const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Get window name from HostWindowInfo.
@@ -5099,7 +5567,8 @@ const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle)
  * @return Window name in HostWindowInfo.
  * @since 15
  */
-const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
+const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy the instance of HostWindowInfo.
@@ -5107,7 +5576,8 @@ const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
  * @param info Instance of HostWindowInfo to be destroyed.
  * @since 15
  */
-void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
+void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy ActiveChildenInfo instance.
@@ -5115,7 +5585,8 @@ void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
  * @param handle ActiveChild instance to be destroyed.
  * @since 14
  */
-void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
+void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
@@ -5125,7 +5596,8 @@ void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
  * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
  * @since 14
  */
-ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
+ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
@@ -5134,7 +5606,8 @@ ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildren
  * @return Number of child nodes. Default value: 0.
  * @since 14
  */
-int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
+int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle)
+__attribute__((__availability__(ohos, introduced=14.0.0)));
 
 /**
  * @brief Create linear progress indicator style information.
@@ -5143,7 +5616,8 @@ int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 15
  */
-ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void);
+ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy linear progress indicator style information.
@@ -5151,7 +5625,8 @@ ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void)
  * @param option Linear progress indicator style information.
  * @since 15
  */
-void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option);
+void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set whether the scan effect is enabled.
@@ -5160,7 +5635,8 @@ void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption*
  * @param enabled Whether to enable the scan effect. Default value: false.
  * @since 15
  */
-void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
+void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set whether smoothing effect is enabled.
@@ -5170,7 +5646,8 @@ void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinea
  * the set value takes place gradually. Otherwise, it takes place immediately. Default value: true.
  * @since 15
  */
-void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
+void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set linear progress indicator stroke width.
@@ -5180,7 +5657,8 @@ void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLin
  * Default value: 4.0vp.
  * @since 15
  */
-void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth);
+void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Set linear progress indicator stroke radius.
@@ -5190,7 +5668,8 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyle
  * Default value: strokeWidth/2.
  * @since 15
  */
-void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyleOption* option, float strokeRadius);
+void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyleOption* option, float strokeRadius)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get whether scan effect is enable.
@@ -5199,7 +5678,8 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyl
  * @return Whether to enable the scan effect.
  * @since 15
  */
-bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
+bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get whether smoothing effect is enabled.
@@ -5208,7 +5688,8 @@ bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinea
  * @return Whether to enable the smooth effect.
  * @since 15
  */
-bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
+bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get linear progress indicator stroke width.
@@ -5217,7 +5698,8 @@ bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLin
  * @return Stroke width of the progress indicator.
  * @since 15
  */
-float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option);
+float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get linear progress indicator stroke radius.
@@ -5226,7 +5708,8 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
  * @return Rounded corner radius of the progress indicator.
  * @since 15
  */
-float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
+float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Create a cross-language option instance.
@@ -5234,7 +5717,8 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearSty
  * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
  * @since 15
  */
-ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
+ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Destroy the cross-language option instance.
@@ -5242,7 +5726,8 @@ ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
  * @param option The cross-language option instance.
  * @since 15
  */
-void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
+void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Enable the attribute setting in the cross-language option.
@@ -5252,7 +5737,8 @@ void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
  * Default value: false.
  * @since 15
  */
-void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Get the attribute setting enable of the cross-language option.
@@ -5261,7 +5747,8 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  * @return The attribute setting enable of the cross-language option.
  * @since 15
  */
-bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
+bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Creates an option for taking snapshot, the returned value must be released through
@@ -5271,7 +5758,7 @@ bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageO
  *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
  * @since 15
  */
-ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions();
+ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions() __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Dispose a snapshot option object.
@@ -5279,7 +5766,8 @@ ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions();
  * @param snapshotOptions Indicates the pointer to the snapshot option.
  * @since 15
  */
-void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
+void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Config the snapshot option with scale.
@@ -5290,7 +5778,8 @@ void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 15
  */
-int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
+int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Defines the parameters for visible area change events.
@@ -5305,7 +5794,8 @@ typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions;
 * @return Returns the created instance of visible area change event parameters.
 * @since 17
 */
-ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create();
+ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create()
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
 * @brief Disposes of an instance of visible area change event parameters.
@@ -5313,7 +5803,8 @@ ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create();
 * @param option Instance to be destroyed.
 * @since 17
 */
-void OH_ArkUI_VisibleAreaEventOptions_Dispose(ArkUI_VisibleAreaEventOptions* option);
+void OH_ArkUI_VisibleAreaEventOptions_Dispose(ArkUI_VisibleAreaEventOptions* option)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
 * @brief Sets the threshold ratios for visible area changes.
@@ -5331,7 +5822,8 @@ void OH_ArkUI_VisibleAreaEventOptions_Dispose(ArkUI_VisibleAreaEventOptions* opt
 *         the parameter must not be null.
 * @since 17
 */
-int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t size);
+int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t size)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
 * @brief Sets the expected update interval for visible area changes.
@@ -5346,7 +5838,34 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions
 * @since 17
 */
 int32_t OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(
-    ArkUI_VisibleAreaEventOptions *option, int32_t value);
+    ArkUI_VisibleAreaEventOptions *option, int32_t value)
+    __attribute__((__availability__(ohos, introduced=17.0.0)));
+
+/**
+* @brief Sets the flag for controlling if the child components can exceed the parent's bounds.
+* if set to false, the part that exceeds the parent's bounds will be considered as invisible area,
+* set to true to allow the exceeding, the part that exceeds will be considered as visible area.
+*
+* Please note that if the parent component set clip(true), the measureFromViewport configuration
+* will be ignored.
+*
+* @param option Instance of visible area change event parameters.
+* @param measureFromViewport When this parameter is set to true, the parts of the component
+*    that exceed the parent component's area will also be included in the visible area calculation. However, this
+*    only applies if the parent component does not explicitly set the clip property to true. If the parent component
+*    sets clip to true, regardless of the value of this parameter, the parts that exceed the parent component's area
+*    will still be treated as invisible in the visible area calculation.
+* Default measureFromViewport: <b>false</b>.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         If an error code is returned, it may be due to a failure in parameter validation;
+*         the parameter must not be null.
+* @since 22
+*/
+int32_t OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport(
+    ArkUI_VisibleAreaEventOptions* option, bool measureFromViewport)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Obtains the threshold ratios for visible area changes.
@@ -5362,7 +5881,8 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(
  *         the parameter must not be null.
  * @since 17
  */
-int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t* size);
+int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t* size)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
 
 /**
  * @brief Obtains the expected update interval for visible area changes.
@@ -5371,7 +5891,19 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions
  * @return Returns the expected update interval, in ms.  Default value: <b>1000</b>.
  * @since 17
  */
-int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_VisibleAreaEventOptions* option);
+int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_VisibleAreaEventOptions* option)
+__attribute__((__availability__(ohos, introduced=17.0.0)));
+
+/**
+ * @brief Obtains the value set through {@link OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport} .
+ *
+ * @param option Instance of visible area change event parameters.
+ * @return Returns the flag for controlling of the visible area calculation. Default value: <b>false</b>.
+ *
+ * @since 22
+ */
+bool OH_ArkUI_VisibleAreaEventOptions_GetMeasureFromViewport(ArkUI_VisibleAreaEventOptions* option)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  *@brief Creates a TextPickerRangeContent instance.
@@ -5380,7 +5912,8 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_Visible
  *@return Returns a <b>TextPickerRangeContent</b> instance.
  *@since 19
  */
-ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
+ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Sets the icon of items in a text picker ranges.
@@ -5391,7 +5924,8 @@ ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(i
  *@since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
-    ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
+    ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Sets the text of items in a text picker ranges
@@ -5402,7 +5936,8 @@ void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
  *@since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
-    ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
+    ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Destroy the TextPickerRangeContent instance.
@@ -5410,7 +5945,8 @@ void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
  *@param handle The TextPickerRangeContent instance for obtaining information.
  *@since 19
  */
-void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
+void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Creates a TextCascadePickerRangeContent instance.
@@ -5419,7 +5955,8 @@ void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentAr
  *@return Returns a <b>TextCascadePickerRangeContent</b> instance.
  *@since 19
  */
-ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
+ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Sets the text of items in a multi text picker ranges.
@@ -5430,7 +5967,8 @@ ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContent
  *@since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
-    ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
+    ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Sets the childs info of items in a multi text picker ranges.
@@ -5441,7 +5979,8 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
  *@since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
-    ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
+    ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index)
+    __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  *@brief Destroy the TextCascadePickerRangeContent instance.
@@ -5449,7 +5988,8 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
  *@param handle The TextCascadePickerRangeContent instance for obtaining information.
  *@since 19
  */
-void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
+void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle)
+__attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
  * @brief Create an object for the EmbeddedComponent option.
@@ -5457,7 +5997,8 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePicker
  * @return A pointer to the object of the EmbeddedComponent option.
  * @since 20
  */
-ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create();
+ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create()
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroy the object by EmbeddedComponent option.
@@ -5465,7 +6006,8 @@ ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create();
  * @param option Pointer to the object by the EmbeddeComponent to be destroyed.
  * @since 20
  */
-void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option);
+void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the onError of EmbeddedComponent.
@@ -5477,7 +6019,8 @@ void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* opt
  * @since 20
  */
 void OH_ArkUI_EmbeddedComponentOption_SetOnError(
-    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, const char* name, const char* message));
+    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, const char* name, const char* message))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Set the onTerminated of EmbeddedComponent.
@@ -5488,7 +6031,8 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(
  * @since 20
  */
 void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
-    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
+    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want))
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Expand the swipe action.
@@ -5501,7 +6045,8 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
  *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
  * @since 21
  */
-int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction);
+int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Collapse the swipe action.
@@ -5513,7 +6058,8 @@ int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListIte
  *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
  * @since 21
  */
-int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Create an edge object for position attribute.
@@ -5521,7 +6067,7 @@ int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
  * @return A pointer to the edge object.
  * @since 21
  */
-ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Create();
+ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Create() __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Creates a deep copy of an edge object for position attribute.
@@ -5530,7 +6076,8 @@ ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Create();
  * @return A pointer to the new edge object.
  * @since 21
  */
-ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Copy(const ArkUI_PositionEdges* edges);
+ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Copy(const ArkUI_PositionEdges* edges)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Dispose an edge object for position attribute.
@@ -5538,7 +6085,8 @@ ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Copy(const ArkUI_PositionEdges* edge
  * @param edges Pointer to the edge object to be disposed.
  * @since 21
  */
-void OH_ArkUI_PositionEdges_Dispose(ArkUI_PositionEdges* edges);
+void OH_ArkUI_PositionEdges_Dispose(ArkUI_PositionEdges* edges)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the top edge of an edge object for position attribute.
@@ -5547,7 +6095,8 @@ void OH_ArkUI_PositionEdges_Dispose(ArkUI_PositionEdges* edges);
  * @param value The distance of top edge to the corresponding edge of parent container, in vp.
  * @since 21
  */
-void OH_ArkUI_PositionEdges_SetTop(ArkUI_PositionEdges* edges, float value);
+void OH_ArkUI_PositionEdges_SetTop(ArkUI_PositionEdges* edges, float value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the top edge of an edge object for position attribute.
@@ -5559,7 +6108,8 @@ void OH_ArkUI_PositionEdges_SetTop(ArkUI_PositionEdges* edges, float value);
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PositionEdges_GetTop(ArkUI_PositionEdges* edges, float* value);
+int32_t OH_ArkUI_PositionEdges_GetTop(ArkUI_PositionEdges* edges, float* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the left edge of an edge object for position attribute.
@@ -5568,7 +6118,8 @@ int32_t OH_ArkUI_PositionEdges_GetTop(ArkUI_PositionEdges* edges, float* value);
  * @param value The distance of left edge to the corresponding edge of parent container, in vp.
  * @since 21
  */
-void OH_ArkUI_PositionEdges_SetLeft(ArkUI_PositionEdges* edges, float value);
+void OH_ArkUI_PositionEdges_SetLeft(ArkUI_PositionEdges* edges, float value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the left edge of an edge object for position attribute.
@@ -5580,7 +6131,8 @@ void OH_ArkUI_PositionEdges_SetLeft(ArkUI_PositionEdges* edges, float value);
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PositionEdges_GetLeft(ArkUI_PositionEdges* edges, float* value);
+int32_t OH_ArkUI_PositionEdges_GetLeft(ArkUI_PositionEdges* edges, float* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the bottom edge of an edge object for position attribute.
@@ -5589,7 +6141,8 @@ int32_t OH_ArkUI_PositionEdges_GetLeft(ArkUI_PositionEdges* edges, float* value)
  * @param value The distance of bottom edge to the corresponding edge of parent container, in vp.
  * @since 21
  */
-void OH_ArkUI_PositionEdges_SetBottom(ArkUI_PositionEdges* edges, float value);
+void OH_ArkUI_PositionEdges_SetBottom(ArkUI_PositionEdges* edges, float value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the bottom edge of an edge object for position attribute.
@@ -5601,7 +6154,8 @@ void OH_ArkUI_PositionEdges_SetBottom(ArkUI_PositionEdges* edges, float value);
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value);
+int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the right edge of an edge object for position attribute.
@@ -5610,7 +6164,8 @@ int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* valu
  * @param value The distance of right edge to the corresponding edge of parent container, in vp.
  * @since 21
  */
-void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value);
+void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the right edge of an edge object for position attribute.
@@ -5622,7 +6177,8 @@ void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value);
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value);
+int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Create a policy object for PixelRound attribute.
@@ -5630,7 +6186,7 @@ int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value
  * @return A pointer to the policy object.
  * @since 21
  */
-ArkUI_PixelRoundPolicy* OH_ArkUI_PixelRoundPolicy_Create();
+ArkUI_PixelRoundPolicy* OH_ArkUI_PixelRoundPolicy_Create() __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Dispose a policy object for PixelRound attribute.
@@ -5638,7 +6194,8 @@ ArkUI_PixelRoundPolicy* OH_ArkUI_PixelRoundPolicy_Create();
  * @param policy Pointer to the policy object to be disposed.
  * @since 21
  */
-void OH_ArkUI_PixelRoundPolicy_Dispose(ArkUI_PixelRoundPolicy* policy);
+void OH_ArkUI_PixelRoundPolicy_Dispose(ArkUI_PixelRoundPolicy* policy)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the top edge of a policy object for PixelRound attribute.
@@ -5647,7 +6204,8 @@ void OH_ArkUI_PixelRoundPolicy_Dispose(ArkUI_PixelRoundPolicy* policy);
  * @param value The CalcPolicy of top edge.
  * @since 21
  */
-void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
+void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the top edge of a policy object for PixelRound attribute.
@@ -5659,7 +6217,8 @@ void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_Pixe
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PixelRoundPolicy_GetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
+int32_t OH_ArkUI_PixelRoundPolicy_GetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the start edge of a policy object for PixelRound attribute.
@@ -5668,7 +6227,8 @@ int32_t OH_ArkUI_PixelRoundPolicy_GetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_P
  * @param value The CalcPolicy of start edge.
  * @since 21
  */
-void OH_ArkUI_PixelRoundPolicy_SetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
+void OH_ArkUI_PixelRoundPolicy_SetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the start edge of a policy object for PixelRound attribute.
@@ -5680,7 +6240,8 @@ void OH_ArkUI_PixelRoundPolicy_SetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_Pi
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PixelRoundPolicy_GetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
+int32_t OH_ArkUI_PixelRoundPolicy_GetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the bottom edge of a policy object for PixelRound attribute.
@@ -5689,7 +6250,8 @@ int32_t OH_ArkUI_PixelRoundPolicy_GetStart(ArkUI_PixelRoundPolicy* policy, ArkUI
  * @param value The CalcPolicy of bottom edge.
  * @since 21
  */
-void OH_ArkUI_PixelRoundPolicy_SetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
+void OH_ArkUI_PixelRoundPolicy_SetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the bottom edge of a policy object for PixelRound attribute.
@@ -5701,7 +6263,8 @@ void OH_ArkUI_PixelRoundPolicy_SetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_P
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PixelRoundPolicy_GetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
+int32_t OH_ArkUI_PixelRoundPolicy_GetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Sets the end edge of a policy object for PixelRound attribute.
@@ -5710,7 +6273,8 @@ int32_t OH_ArkUI_PixelRoundPolicy_GetBottom(ArkUI_PixelRoundPolicy* policy, ArkU
  * @param value The CalcPolicy of end edge.
  * @since 21
  */
-void OH_ArkUI_PixelRoundPolicy_SetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
+void OH_ArkUI_PixelRoundPolicy_SetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
  * @brief Gets the end edge of a policy object for PixelRound attribute.
@@ -5722,7 +6286,686 @@ void OH_ArkUI_PixelRoundPolicy_SetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_Pixe
  *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
  * @since 21
  */
-int32_t OH_ArkUI_PixelRoundPolicy_GetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
+int32_t OH_ArkUI_PixelRoundPolicy_GetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
+
+/**
+ * @brief Defines the text menu item for edit menu item.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_TextMenuItem ArkUI_TextMenuItem;
+/**
+ * @brief Create an object of the text edit menu item.
+ *
+ * @return A pointer to the ArkUI_TextMenuItem.
+ * @since 22
+ */
+ArkUI_TextMenuItem* OH_ArkUI_TextMenuItem_Create() __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Dispose an object of the text edit menu options.
+ *
+ * @param textMenuItem Pointer to the ArkUI_TextMenuItem object to be disposed.
+ * @since 22
+ */
+void OH_ArkUI_TextMenuItem_Dispose(ArkUI_TextMenuItem* textMenuItem)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set text menu item title.
+ *
+ * @param item The text menu item.
+ * @param content The name of the text menu item, which defaults to an empty string. The string will copy to framework.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_SetContent(ArkUI_TextMenuItem* item, const char* content)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get text menu item title.
+ *
+ * @param item The text menu item object.
+ * @param buffer The buffer of the text menu content, memory space needs to be allocated by the developer.
+ * @param bufferSize The name of the text menu item, which defaults to an empty string;
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ *
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_GetContent(const ArkUI_TextMenuItem* item, char* buffer, int32_t bufferSize,
+    int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set text menu item icon.
+ *
+ * @param item The text menu item.
+ * @param icon The text menu item icon resource, which defaults to an empty string. The string will copy to framework.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_SetIcon(ArkUI_TextMenuItem* item, const char* icon)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get text menu item icon.
+ *
+ * @param item The text menu item object
+ * @param buffer The buffer of the text menu content, memory space needs to be allocated by the developer.
+ * @param bufferSize The icon of the text menu item, which defaults to an empty string;
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ *
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_GetIcon(const ArkUI_TextMenuItem* item, char* buffer, int32_t bufferSize,
+    int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set text menu item label info for keyboard shortcut.
+ *
+ * @param item The text menu item.
+ * @param labelInfo The text menu item shortcut displays, which defaults to an empty string.
+ *      The string will copy to framework.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_SetLabelInfo(ArkUI_TextMenuItem* item, const char* labelInfo)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get text menu item label info for keyboard shortcut..
+ *
+ * @param item The text menu item object
+ * @param buffer The buffer of the text menu content, memory space needs to be allocated by the developer.
+ * @param bufferSize The shortcuts of the text menu item, which defaults to an empty string;
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ *
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_GetLabelInfo(const ArkUI_TextMenuItem* item, char* buffer, int32_t bufferSize,
+    int32_t* writeLength)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set text menu item id.
+ *
+ * @param item The text menu item.
+ * @param id The text menu id.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_SetId(ArkUI_TextMenuItem* item, int32_t id)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get text menu item id.
+ *
+ * @param item The text menu item object
+ * @param id The text menu item id;
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+*/
+ArkUI_ErrorCode OH_ArkUI_TextMenuItem_GetId(const ArkUI_TextMenuItem* item, int32_t* id)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Defines text menu item array.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_TextMenuItemArray ArkUI_TextMenuItemArray;
+
+/**
+ * @brief Get the size of text menu items.
+ *
+ * @param items The text menu items.
+ * @param size The size of text menu items.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+*/
+ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_GetSize(ArkUI_TextMenuItemArray* items, int32_t* size)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get text menu item at index.
+ *
+ * @param items The text menu items.
+ * @param index The index of text menu items.
+ * @param item The text menu item at index of array.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_GetItem(ArkUI_TextMenuItemArray* items, int32_t index,
+    ArkUI_TextMenuItem** item)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Insert text menu item at index.
+ *
+ * @param items The text menu items.
+ * @param item The text menu item at index of array. The item will copy by framework.
+ * @param index The index of text menu items.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_Insert(ArkUI_TextMenuItemArray* items, ArkUI_TextMenuItem* item,
+    int32_t index)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Erase text menu item at index.
+ *
+ * @param items The text menu items.
+ * @param index The index of text menu items.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_Erase(ArkUI_TextMenuItemArray* items, int32_t index)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Clear all the items.
+ *
+ * @param items The text menu items.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_Clear(ArkUI_TextMenuItemArray* items)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Enumerates the text menu item id.
+ *
+ * @since 22
+ */
+typedef enum {
+    /**
+     * Indicates the TextMenuItemId to copy and delete the currently selected text.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_CUT = 0,
+
+    /**
+     * Indicates the TextMenuItemId to copy the currently selected text to the clipboard.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_COPY = 1,
+
+    /**
+     * Indicates the TextMenuItemId to copy the current contents of the clipboard into the text view.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_PASTE = 2,
+
+    /**
+     * Indicates the TextMenuItemId to select all text in a text view.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_SELECT_ALL = 3,
+
+    /**
+     * Indicates the TextMenuItemId for collaboration service menu items.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_COLLABORATION_SERVICE = 4,
+
+    /**
+     * Indicates the TextMenuItemId to recognize the text in the picture and input it into the text view.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_CAMERA_INPUT = 5,
+
+    /**
+     * Indicates the TextMenuItemId to help with text creation by invoking large models.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_AI_WRITER = 6,
+
+    /**
+     * Indicates the TextMenuItemId to translate the selected content.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_TRANSLATE = 7,
+
+    /**
+     * Indicates the TextMenuItemId to search the selected content.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_SEARCH = 8,
+
+    /**
+     * Indicates the TextMenuItemId to share the selected content.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_SHARE = 9,
+
+    /**
+     * Indicates the TextMenuItemId to open url.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_URL = 10,
+
+    /**
+     * Indicates the TextMenuItemId to open email.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_EMAIL = 11,
+
+    /**
+     * Indicates the TextMenuItemId to call the phone number.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_PHONE_NUMBER = 12,
+
+    /**
+     * Indicates the TextMenuItemId to open map.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_ADDRESS = 13,
+
+    /**
+     * Indicates the TextMenuItemId to open calendar.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_DATA_TIME = 14,
+
+    /**
+     * Indicates the TextMenuItemId for asking AI.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_ASK_AI = 15,
+
+    /**
+     * Inclusive begin of app-reserved ID range.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_BEGIN = 10000,
+    /**
+     * Inclusive end of app-reserved ID range.
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_END = 20000,
+} ArkUI_TextMenuItemId;
+
+/**
+ * @brief Defines the text menu item for edit menu options.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
+/**
+ * @brief Create an object of the text edit menu options.
+ *
+ * @return A pointer to the ArkUI_TextEditMenuOptions.
+ * @since 22
+ */
+ArkUI_TextEditMenuOptions* OH_ArkUI_TextEditMenuOptions_Create()
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Dispose an object of the text edit menu options.
+ *
+ * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object to be disposed.
+ * @since 22
+ */
+void OH_ArkUI_TextEditMenuOptions_Dispose(ArkUI_TextEditMenuOptions* editMenuOptions)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * The text menu create callback function.
+ *
+ * @param items The framework creates and owns the array.
+ *     In callback: the developer can modify the array by calling {@link OH_ArkUI_TextMenuItemArray_Insert},
+ *     {@link OH_ArkUI_TextMenuItemArray_Erase}, or similar APIs.
+ *     The developer must not free the array instance.
+ * @param userData User defined data.
+ * @since 22
+ */
+typedef void (*ArkUI_TextCreateMenuCallback)(
+    ArkUI_TextMenuItemArray*    items,
+    void*                       userData
+);
+
+/**
+ * The text menu prepare callback function.
+ *
+ * @param items The framework creates and owns the array.
+ *     In callback: the developer can modify the array by calling {@link OH_ArkUI_TextMenuItemArray_Insert},
+ *     {@link OH_ArkUI_TextMenuItemArray_Erase}, or similar APIs.
+ *     The developer must not free the array instance.
+ * @param userData User defined data.
+ * @since 22
+ */
+typedef void (*ArkUI_TextPrepareMenuCallback)(
+    ArkUI_TextMenuItemArray*    items,
+    void*                       userData
+);
+
+/**
+ * The text menu item click callback function.
+ *
+ * @param item The menu item click.
+ * @param start The start offset of the selected content.
+ * @param end The end offset of the selected content.
+ * @param userData The user data.
+ * @return bool Return True, the event is consumed, false otherwise.
+ * @since 22
+ */
+typedef bool (*ArkUI_TextMenuItemClickCallback)(
+    const ArkUI_TextMenuItem*    item,
+    int32_t                      start,
+    int32_t                      end,
+    void*                        userData
+);
+
+/**
+ * @brief Set the event to be called when text menu create.
+ *
+ * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object.
+ * @param userData The user data.
+ * @param cb The create callback function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnCreateMenuCallback(
+    ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextCreateMenuCallback cb)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+/**
+ * @brief Set the event to be called when menu prepare.
+ *
+ * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object.
+ * @param userData The user data.
+ * @param cb The prepare callback function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnPrepareMenuCallback(
+    ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextPrepareMenuCallback cb)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set the event to be called when menu item click.
+ *
+ * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object.
+ * @param userData The user data.
+ * @param cb The menu item click callback function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
+    ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Defines the selection menu.
+ *
+ * @since 22
+ */
+typedef struct ArkUI_TextSelectionMenuOptions ArkUI_TextSelectionMenuOptions;
+
+/**
+ * @brief Enumerates the text span type.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** The span type only contains text. */
+    ARKUI_TEXT_SPAN_TYPE_TEXT = 0,
+    /** The span type only contains image. */
+    ARKUI_TEXT_SPAN_TYPE_IMAGE = 1,
+    /** The span type contains both text and image. */
+    ARKUI_TEXT_SPAN_TYPE_MIXED = 2,
+    /**
+     * When no other types are explicitly specified, this type will be matched.
+     * When this type is registered but TEXT, IMAGE, or MIXED types are not registered,
+     * this type will be triggered and displayed for those registered types.
+     */
+    ARKUI_TEXT_SPAN_TYPE_DEFAULT = 3,
+} ArkUI_TextSpanType;
+
+/**
+ * @brief Enumerates the text response type.
+ *
+ * @since 22
+ */
+typedef enum {
+    /** The response type of right click. */
+    ARKUI_TEXT_RESPONSE_TYPE_RIGHT_CLICK = 0,
+    /** The response type of long press. */
+    ARKUI_TEXT_RESPONSE_TYPE_LONG_PRESS = 1,
+    /** The response type of select by mouse. */
+    ARKUI_TEXT_RESPONSE_TYPE_SELECT = 2,
+    /**
+     * When no other types are explicitly specified, this type will be matched.
+     * When this type is registered but RIGHT_CLICK, LONG_PRESS, or SELECT types are not registered,
+     * this type will be triggered and displayed for right-click, long press, and mouse selection actions.
+     */
+    ARKUI_TEXT_RESPONSE_TYPE_DEFAULT = 3,
+} ArkUI_TextResponseType;
+
+/**
+ * @brief Create an object of the text selection menu options.
+ *
+ * @return A pointer to the ArkUI_TextSelectionMenuOptions.
+ * @since 22
+ */
+ArkUI_TextSelectionMenuOptions* OH_ArkUI_TextSelectionMenuOptions_Create()
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Dispose an object of the text selection menu options.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object to be disposed.
+ * @since 22
+ */
+void OH_ArkUI_TextSelectionMenuOptions_Dispose(ArkUI_TextSelectionMenuOptions* selectionMenuOptions)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the recognition types of a configuration object for selected text recognition.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param textSpanType The span type of {@link ArkUI_TextSpanType}.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetSpanType(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
+    ArkUI_TextSpanType textSpanType)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+/**
+ * @brief Gets the span type select menu options.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param spanType the text span type {@link ArkUI_TextSpanType}.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetSpanType(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
+    ArkUI_TextSpanType* spanType)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set custom text menu node of text.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param node The custom menu node.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetContentNode(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
+    ArkUI_NodeHandle node)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+/**
+ * @brief Get custom text menu node of text.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param node The custom menu node.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetContentNode(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
+    ArkUI_NodeHandle* node)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the recognition types of a configuration object for selected text recognition.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param responseType The response type of {@link ArkUI_TextResponseType}.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetResponseType(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
+    ArkUI_TextResponseType responseType)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+/**
+ * @brief Gets the response type select menu options.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param responseType The text response type {@link ArkUI_TextResponseType}.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetResponseType(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
+    ArkUI_TextResponseType* responseType)
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Set the event to be called when selection menu show.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param userData The user data.
+ * @param callback The callback function of menu show.
+ *     start The start offset of the selected content.
+ *     end The end offset of the selected content.
+ *     userData The user data.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuShowCallback(
+    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, void* userData,
+    void (*callback)(int32_t start, int32_t end, void* userData))
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+/**
+ * @brief Set the event to be called when selection menu hide.
+ *
+ * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
+ * @param userData The user data.
+ * @param callback The callback function of menu hide.
+ *     start The start offset of the selected content.
+ *     end The end offset of the selected content.
+ *     userData The user data.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuHideCallback(
+    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, void* userData,
+    void (*callback)(int32_t start, int32_t end, void* userData))
+    __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Creates a configuration object for textField's counter.
+ *
+ * @return A pointer to the configuration object.
+ * @since 22
+ */
+ArkUI_ShowCounterConfig* OH_ArkUI_ShowCounterConfig_Create() __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Disposes a configuration object for textField's counter.
+ *
+ * @param config Pointer to the configuration object to be disposed.
+ * @since 22
+ */
+void OH_ArkUI_ShowCounterConfig_Dispose(ArkUI_ShowCounterConfig* config)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the color of counter when textField hasn't wanted to exceed the maximum character count.
+ *
+ * @param config Pointer to the configuration object to be modified.
+ * @param color The color of the counter when textField hasn't wanted to exceed the maximum character count, in 0xARGB format.
+ * @since 22
+ */
+void OH_ArkUI_ShowCounterConfig_SetCounterTextColor(ArkUI_ShowCounterConfig* config, uint32_t color)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Sets the color of counter when textField wants to exceed the maximum character count.
+ *
+ * @param config Pointer to the configuration object to be modified.
+ * @param color The color of the counter when textField wants to exceed the maximum character count, in 0xARGB format.
+ * @since 22
+ */
+void OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config, uint32_t color)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Gets the color of counter when textField hasn't wanted to exceed the maximum character count.
+ *
+ * @param config Pointer to the configuration object.
+ * @return Returns the color of the counter when textField hasn't wanted to exceed the maximum character count, in 0xARGB format.
+ * @since 22
+ */
+uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextColor(ArkUI_ShowCounterConfig* config)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Gets the color of counter when textField wants to exceed the maximum character count.
+ *
+ * @param config Pointer to the configuration object.
+ * @return Returns the color of the counter when textField wants to exceed the maximum character count, in 0xARGB format.
+ * @since 22
+ */
+uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config)
+__attribute__((__availability__(ohos, introduced=22.0.0)));
 #ifdef __cplusplus
 };
 #endif

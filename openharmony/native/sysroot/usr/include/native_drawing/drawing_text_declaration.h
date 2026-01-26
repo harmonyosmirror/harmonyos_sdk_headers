@@ -157,6 +157,12 @@ typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
  */
 typedef struct OH_Drawing_Run OH_Drawing_Run;
 
+/**
+ * @brief Defines an <b>OH_Drawing_FontFullDescriptor</b>, which describes the font information.
+ *
+ * @since 22
+ */
+typedef struct OH_Drawing_FontFullDescriptor OH_Drawing_FontFullDescriptor;
 #ifdef __cplusplus
 }
 #endif

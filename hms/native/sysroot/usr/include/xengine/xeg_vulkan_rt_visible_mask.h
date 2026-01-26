@@ -27,6 +27,7 @@
 #ifndef XEG_VULKAN_RT_VISIBLEMASK_H
 #define XEG_VULKAN_RT_VISIBLEMASK_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <vulkan/vulkan.h>
 #include "xeg_vulkan_common.h"
@@ -338,7 +339,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CreateRTVisibleMask(
     VkDevice           device,
     const void*        pCreateInfo,
     XEG_RTVisibleMask* pRTVisibleMask
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Records the ray-traced VisibleMask rendering command.
@@ -354,7 +356,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdRenderRTVisibleMask(
     VkCommandBuffer    commandBuffer,
     XEG_RTVisibleMask  rtVisibleMask,
     const void*        pDescription
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys an {@link XEG_RTVisibleMask} object.
@@ -364,7 +367,8 @@ VKAPI_ATTR VkResult VKAPI_CALL HMS_XEG_CmdRenderRTVisibleMask(
  */
 VKAPI_ATTR void VKAPI_CALL HMS_XEG_DestroyRTVisibleMask(
     XEG_RTVisibleMask rtVisibleMask
-);
+)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #endif /* XEG_NO_PROTOTYPES */
 

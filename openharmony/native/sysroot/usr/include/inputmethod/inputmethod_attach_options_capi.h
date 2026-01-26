@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
 #define OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
+#include "info/application_target_sdk_version.h"
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {
@@ -55,7 +56,8 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
-InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
+InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Create a new {@link InputMethod_AttachOptions} instance.
  *
@@ -66,14 +68,16 @@ InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
  * @since 15
  */
 InputMethod_AttachOptions *OH_AttachOptions_CreateWithRequestKeyboardReason(
-    bool showKeyboard, InputMethod_RequestKeyboardReason requestKeyboardReason);
+    bool showKeyboard, InputMethod_RequestKeyboardReason requestKeyboardReason)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 /**
  * @brief Delete a {@link InputMethod_AttachOptions} instance.
  *
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be destroyed.
  * @since 12
  */
-void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options);
+void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get showKeyboard value from {@link InputMethod_AttachOptions}.
  *
@@ -87,7 +91,8 @@ void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options);
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions *options, bool *showKeyboard);
+InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions *options, bool *showKeyboard)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Get showKeyboard value from {@link InputMethod_AttachOptions}.
  *
@@ -101,7 +106,8 @@ InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions 
  * @since 15
  */
 InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason(
-    InputMethod_AttachOptions *options, int *requestKeyboardReason);
+    InputMethod_AttachOptions *options, int *requestKeyboardReason)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

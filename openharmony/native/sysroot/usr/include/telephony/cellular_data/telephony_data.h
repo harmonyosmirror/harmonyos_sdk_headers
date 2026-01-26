@@ -36,6 +36,7 @@
 #ifndef NATIVE_TELEPHONY_DATA_API_H
 #define NATIVE_TELEPHONY_DATA_API_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -49,7 +50,7 @@ extern "C" {
  * @syscap SystemCapability.Telephony.CellularData
  * @since 13
  */
-int32_t OH_Telephony_GetDefaultCellularDataSlotId(void);
+int32_t OH_Telephony_GetDefaultCellularDataSlotId(void) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 #ifdef __cplusplus
 }

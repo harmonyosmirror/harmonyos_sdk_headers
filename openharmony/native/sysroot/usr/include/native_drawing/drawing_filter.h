@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_FILTER_H
 #define C_INCLUDE_DRAWING_FILTER_H
 
+#include "info/application_target_sdk_version.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -54,7 +55,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-OH_Drawing_Filter* OH_Drawing_FilterCreate(void);
+OH_Drawing_Filter* OH_Drawing_FilterCreate(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets an <b>OH_Drawing_ImageFilter</b> object for an <b>OH_Drawing_Filter</b> object.
@@ -65,7 +66,8 @@ OH_Drawing_Filter* OH_Drawing_FilterCreate(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_ImageFilter* imageFilter);
+void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_ImageFilter* imageFilter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Sets an <b>OH_Drawing_MaskFilter</b> object for an <b>OH_Drawing_Filter</b> object.
@@ -76,7 +78,8 @@ void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_Image
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter* filter, OH_Drawing_MaskFilter* maskFilter);
+void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter* filter, OH_Drawing_MaskFilter* maskFilter)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets an <b>OH_Drawing_ColorFilter</b> object for an <b>OH_Drawing_Filter</b> object.
@@ -87,7 +90,8 @@ void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter* filter, OH_Drawing_MaskFi
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_ColorFilter* colorFilter);
+void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_ColorFilter* colorFilter)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Gets an <b>OH_Drawing_ColorFilter</b> object from an <b>OH_Drawing_Filter</b> object.
@@ -98,7 +102,8 @@ void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_Color
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_FilterGetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_ColorFilter* colorFilter);
+void OH_Drawing_FilterGetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_ColorFilter* colorFilter)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroys an <b>OH_Drawing_Filter</b> object and reclaims the memory occupied by the object.
@@ -108,7 +113,7 @@ void OH_Drawing_FilterGetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_Color
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_FilterDestroy(OH_Drawing_Filter* filter);
+void OH_Drawing_FilterDestroy(OH_Drawing_Filter* filter) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 #ifdef __cplusplus
 }

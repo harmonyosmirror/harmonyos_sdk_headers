@@ -34,6 +34,7 @@
 #ifndef OH_SENSOR_TYPE_H
 #define OH_SENSOR_TYPE_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -201,7 +202,7 @@ typedef struct Sensor_Info Sensor_Info;
  * returns <b>NULL</b> otherwise.
  * @since 11
  */
-Sensor_Info **OH_Sensor_CreateInfos(uint32_t count);
+Sensor_Info **OH_Sensor_CreateInfos(uint32_t count) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys an array of {@link Sensor_Info} instances and reclaims memory.
@@ -212,7 +213,8 @@ Sensor_Info **OH_Sensor_CreateInfos(uint32_t count);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count);
+int32_t OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the sensor name.
@@ -224,7 +226,8 @@ int32_t OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorInfo_GetName(Sensor_Info* sensor, char *sensorName, uint32_t *length);
+int32_t OH_SensorInfo_GetName(Sensor_Info* sensor, char *sensorName, uint32_t *length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the sensor's vendor name.
@@ -236,7 +239,8 @@ int32_t OH_SensorInfo_GetName(Sensor_Info* sensor, char *sensorName, uint32_t *l
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint32_t *length);
+int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint32_t *length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the sensor type.
@@ -247,7 +251,8 @@ int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint3
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType);
+int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the sensor resolution.
@@ -258,7 +263,8 @@ int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution);
+int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the minimum data reporting interval of a sensor.
@@ -269,7 +275,8 @@ int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSamplingInterval);
+int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSamplingInterval)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the maximum data reporting interval of a sensor.
@@ -280,7 +287,8 @@ int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSa
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSamplingInterval);
+int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSamplingInterval)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines the sensor data information.
@@ -297,7 +305,8 @@ typedef struct Sensor_Event Sensor_Event;
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorType);
+int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the timestamp of sensor data.
@@ -308,7 +317,8 @@ int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorTyp
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestamp);
+int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestamp)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the accuracy of sensor data.
@@ -319,7 +329,8 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy);
+int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains sensor data. The data length and content depend on the sensor type.
@@ -361,7 +372,8 @@ int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *a
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length);
+int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines the sensor subscription ID, which uniquely identifies a sensor.
@@ -376,7 +388,7 @@ typedef struct Sensor_SubscriptionId Sensor_SubscriptionId;
  * returns <b>NULL</b> otherwise.
  * @since 11
  */
-Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void);
+Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys a {@link Sensor_SubscriptionId} instance and reclaims memory.
@@ -386,7 +398,8 @@ Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id);
+int32_t OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the sensor type.
@@ -397,7 +410,8 @@ int32_t OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *sensorType);
+int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *sensorType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the sensor type.
@@ -408,7 +422,8 @@ int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType);
+int32_t OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines the sensor subscription attribute.
@@ -423,7 +438,8 @@ typedef struct Sensor_SubscriptionAttribute Sensor_SubscriptionAttribute;
  * returns <b>NULL</b> otherwise.
  * @since 11
  */
-Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void);
+Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys a {@link Sensor_SubscriptionAttribute} instance and reclaims memory.
@@ -433,7 +449,8 @@ Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *attribute);
+int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *attribute)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets the sensor data reporting interval.
@@ -445,7 +462,8 @@ int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *att
  * @since 11
  */
 int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAttribute* attribute,
-    const int64_t samplingInterval);
+    const int64_t samplingInterval)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the sensor data reporting interval.
@@ -457,7 +475,8 @@ int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAt
  * @since 11
  */
 int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval(Sensor_SubscriptionAttribute* attribute,
-    int64_t *samplingInterval);
+    int64_t *samplingInterval)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Defines the callback function used to report sensor data.
@@ -478,7 +497,7 @@ typedef struct Sensor_Subscriber Sensor_Subscriber;
  * if the operation is successful; returns <b>NULL</b> otherwise.
  * @since 11
  */
-Sensor_Subscriber *OH_Sensor_CreateSubscriber(void);
+Sensor_Subscriber *OH_Sensor_CreateSubscriber(void) __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Destroys a {@link Sensor_Subscriber} instance and reclaims memory.
@@ -488,7 +507,8 @@ Sensor_Subscriber *OH_Sensor_CreateSubscriber(void);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber);
+int32_t OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Sets a callback function to report sensor data.
@@ -499,7 +519,8 @@ int32_t OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber);
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorSubscriber_SetCallback(Sensor_Subscriber* subscriber, const Sensor_EventCallback callback);
+int32_t OH_SensorSubscriber_SetCallback(Sensor_Subscriber* subscriber, const Sensor_EventCallback callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Obtains the callback function used to report sensor data.
@@ -510,7 +531,8 @@ int32_t OH_SensorSubscriber_SetCallback(Sensor_Subscriber* subscriber, const Sen
  * returns an error code defined in {@link Sensor_Result} otherwise.
  * @since 11
  */
-int32_t OH_SensorSubscriber_GetCallback(Sensor_Subscriber* subscriber, Sensor_EventCallback *callback);
+int32_t OH_SensorSubscriber_GetCallback(Sensor_Subscriber* subscriber, Sensor_EventCallback *callback)
+__attribute__((__availability__(ohos, introduced=11.0.0)));
 #ifdef __cplusplus
 }
 #endif

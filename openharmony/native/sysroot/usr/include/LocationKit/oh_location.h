@@ -32,6 +32,7 @@
 #ifndef OH_LOCATION_H
 #define OH_LOCATION_H
 
+#include "info/application_target_sdk_version.h"
 #include "oh_location_type.h"
 
 #ifdef __cplusplus
@@ -52,7 +53,8 @@ extern "C" {
  *     {@link LOCATION_SERVICE_UNAVAILABLE} Abnormal startup of location services.\n
  * @since 13
  */
-Location_ResultCode OH_Location_IsLocatingEnabled(bool* enabled);
+Location_ResultCode OH_Location_IsLocatingEnabled(bool* enabled)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Start locating and subscribe location changed.
@@ -73,7 +75,8 @@ Location_ResultCode OH_Location_IsLocatingEnabled(bool* enabled);
  * @permission ohos.permission.APPROXIMATELY_LOCATION
  * @since 13
  */
-Location_ResultCode OH_Location_StartLocating(const Location_RequestConfig* requestConfig);
+Location_ResultCode OH_Location_StartLocating(const Location_RequestConfig* requestConfig)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Stop locating and unsubscribe location changed.
@@ -96,7 +99,8 @@ Location_ResultCode OH_Location_StartLocating(const Location_RequestConfig* requ
  * @permission ohos.permission.APPROXIMATELY_LOCATION
  * @since 13
  */
-Location_ResultCode OH_Location_StopLocating(const Location_RequestConfig* requestConfig);
+Location_ResultCode OH_Location_StopLocating(const Location_RequestConfig* requestConfig)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 }
 #endif

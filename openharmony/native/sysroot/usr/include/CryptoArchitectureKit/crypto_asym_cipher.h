@@ -36,6 +36,7 @@
 #ifndef CRYPTO_ASYM_CIPHER_H
 #define CRYPTO_ASYM_CIPHER_H
 
+#include "info/application_target_sdk_version.h"
 #include "crypto_common.h"
 #include "crypto_asym_key.h"
 
@@ -63,7 +64,8 @@ typedef struct OH_CryptoAsymCipher OH_CryptoAsymCipher;
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoAsymCipher_Create(const char *algoName, OH_CryptoAsymCipher **ctx);
+OH_Crypto_ErrCode OH_CryptoAsymCipher_Create(const char *algoName, OH_CryptoAsymCipher **ctx)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Initializes the asymmetric cipher context with the given crypto mode, key and parameters.
@@ -79,7 +81,8 @@ OH_Crypto_ErrCode OH_CryptoAsymCipher_Create(const char *algoName, OH_CryptoAsym
  * @see OH_CryptoAsymCipher_Final
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoAsymCipher_Init(OH_CryptoAsymCipher *ctx, Crypto_CipherMode mode, OH_CryptoKeyPair *key);
+OH_Crypto_ErrCode OH_CryptoAsymCipher_Init(OH_CryptoAsymCipher *ctx, Crypto_CipherMode mode, OH_CryptoKeyPair *key)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Finalizes the encryption or decryption operation.
@@ -96,7 +99,8 @@ OH_Crypto_ErrCode OH_CryptoAsymCipher_Init(OH_CryptoAsymCipher *ctx, Crypto_Ciph
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoAsymCipher_Final(OH_CryptoAsymCipher *ctx, const Crypto_DataBlob *in,
-    Crypto_DataBlob *out);
+    Crypto_DataBlob *out)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the asymmetric cipher context.
@@ -104,7 +108,7 @@ OH_Crypto_ErrCode OH_CryptoAsymCipher_Final(OH_CryptoAsymCipher *ctx, const Cryp
  * @param ctx Indicates the asymmetric cipher context.
  * @since 20
  */
-void OH_CryptoAsymCipher_Destroy(OH_CryptoAsymCipher *ctx);
+void OH_CryptoAsymCipher_Destroy(OH_CryptoAsymCipher *ctx) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Defines the SM2 ciphertext spec structure.
@@ -142,7 +146,8 @@ typedef enum {
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Ciphertext, OH_CryptoSm2CiphertextSpec **spec);
+OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Ciphertext, OH_CryptoSm2CiphertextSpec **spec)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Gets the specified item of the SM2 ciphertext.
@@ -158,7 +163,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Cipherte
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec *spec,
-    CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *out);
+    CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *out)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the specified item to the SM2 ciphertext spec.
@@ -174,7 +180,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec 
  * @since 20
  */
 OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec *spec,
-    CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *in);
+    CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *in)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Encodes the SM2 ciphertext spec to ciphertext in DER format.
@@ -188,7 +195,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec 
  *         {@link OH_Crypto_ErrCode#CRYPTO_OPERTION_ERROR} 17630001 - If crypto operation failed.
  * @since 20
  */
-OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *spec, Crypto_DataBlob *out);
+OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *spec, Crypto_DataBlob *out)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the SM2 ciphertext spec.
@@ -196,7 +204,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *
  * @param spec Indicates the SM2 ciphertext spec.
  * @since 20
  */
-void OH_CryptoSm2CiphertextSpec_Destroy(OH_CryptoSm2CiphertextSpec *spec);
+void OH_CryptoSm2CiphertextSpec_Destroy(OH_CryptoSm2CiphertextSpec *spec)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

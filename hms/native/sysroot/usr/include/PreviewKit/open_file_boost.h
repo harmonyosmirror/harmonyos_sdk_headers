@@ -24,6 +24,7 @@
 #ifndef PREVIEW_OPEN_FILE_BOOST_H
 #define PREVIEW_OPEN_FILE_BOOST_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -121,7 +122,8 @@ typedef OpenFileBoost_CbErrCode (*HMS_OpenFileBoost_OnFilePreload)(void* fileInf
  * code if the function fails to be executed. For details, see {@link OpenFileBoost_ErrCode}.
  * @since 5.0.3(15)
  */
-OpenFileBoost_ErrCode HMS_OpenFileBoost_GetFdFromPreloadFileInfo(void* fileInfo, int32_t* fd);
+OpenFileBoost_ErrCode HMS_OpenFileBoost_GetFdFromPreloadFileInfo(void* fileInfo, int32_t* fd)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Obtains the sandbox path information.
@@ -135,7 +137,8 @@ OpenFileBoost_ErrCode HMS_OpenFileBoost_GetFdFromPreloadFileInfo(void* fileInfo,
  * @since 5.0.3(15)
  */
 OpenFileBoost_ErrCode HMS_OpenFileBoost_GetSandboxPathFromPreloadFileInfo(
-    void* fileInfo, char* sandboxPath, int32_t pathLen);
+    void* fileInfo, char* sandboxPath, int32_t pathLen)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Registers the callbacks used for preloading.
@@ -153,7 +156,8 @@ OpenFileBoost_ErrCode HMS_OpenFileBoost_GetSandboxPathFromPreloadFileInfo(
 OpenFileBoost_ErrCode HMS_OpenFileBoost_RegisterFilePreload(
     HMS_OpenFileBoost_QueryAppState queryAppState,
     HMS_OpenFileBoost_OnFilePreload filePreload,
-    HMS_OpenFileBoost_OnFilePreload cancelFilePreload);
+    HMS_OpenFileBoost_OnFilePreload cancelFilePreload)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Unregisters the preloading callback.
@@ -162,7 +166,8 @@ OpenFileBoost_ErrCode HMS_OpenFileBoost_RegisterFilePreload(
  * code if the function fails to be executed. For details, see {@link OpenFileBoost_ErrCode}.
  * @since 5.0.3(15)
  */
-OpenFileBoost_ErrCode HMS_OpenFileBoost_UnregisterFilePreload(void);
+OpenFileBoost_ErrCode HMS_OpenFileBoost_UnregisterFilePreload(void)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Calls this API to notify the system of the preloading hit when a user opens a preloaded file. This helps
@@ -174,7 +179,8 @@ OpenFileBoost_ErrCode HMS_OpenFileBoost_UnregisterFilePreload(void);
  * code if the function fails to be executed. For details, see {@link OpenFileBoost_ErrCode}.
  * @since 5.0.3(15)
  */
-OpenFileBoost_ErrCode HMS_OpenFileBoost_NotifyPreloadHit(int32_t fd, char* sandboxPath, int32_t pathLen);
+OpenFileBoost_ErrCode HMS_OpenFileBoost_NotifyPreloadHit(int32_t fd, char* sandboxPath, int32_t pathLen)
+__attribute__((__availability__(ohos, introduced=15.0.0)));
 
 #ifdef __cplusplus
 }

@@ -40,6 +40,7 @@
 #ifndef NATIVE_INCLUDE_PHOTO_NATIVE_H
 #define NATIVE_INCLUDE_PHOTO_NATIVE_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
@@ -69,7 +70,8 @@ typedef struct OH_PhotoNative OH_PhotoNative;
  * @since 12
  * @version 1.0
  */
-Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNative** mainImage);
+Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNative** mainImage)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Release camera photo.
@@ -80,7 +82,8 @@ Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNati
  * @since 12
  * @version 1.0
  */
-Camera_ErrorCode OH_PhotoNative_Release(OH_PhotoNative* photo);
+Camera_ErrorCode OH_PhotoNative_Release(OH_PhotoNative* photo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

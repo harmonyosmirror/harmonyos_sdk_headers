@@ -36,6 +36,7 @@
 #ifndef NET_HTTP_H
 #define NET_HTTP_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include <string.h>
 
@@ -52,7 +53,7 @@ extern "C" {
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-Http_Headers *OH_Http_CreateHeaders(void);
+Http_Headers *OH_Http_CreateHeaders(void) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys the headers of a request or response.
@@ -61,7 +62,7 @@ Http_Headers *OH_Http_CreateHeaders(void);
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-void OH_Http_DestroyHeaders(Http_Headers **headers);
+void OH_Http_DestroyHeaders(Http_Headers **headers) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Sets the key-value pair of the request or response header.
@@ -73,7 +74,8 @@ void OH_Http_DestroyHeaders(Http_Headers **headers);
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-uint32_t OH_Http_SetHeaderValue(struct Http_Headers *headers, const char *name, const char *value);
+uint32_t OH_Http_SetHeaderValue(struct Http_Headers *headers, const char *name, const char *value)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains the value of a request or response header by key.
@@ -84,7 +86,8 @@ uint32_t OH_Http_SetHeaderValue(struct Http_Headers *headers, const char *name, 
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-Http_HeaderValue *OH_Http_GetHeaderValue(Http_Headers *headers, const char *name);
+Http_HeaderValue *OH_Http_GetHeaderValue(Http_Headers *headers, const char *name)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Obtains all the key-value pairs of a request or response header.
@@ -94,7 +97,8 @@ Http_HeaderValue *OH_Http_GetHeaderValue(Http_Headers *headers, const char *name
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-Http_HeaderEntry *OH_Http_GetHeaderEntries(Http_Headers *headers);
+Http_HeaderEntry *OH_Http_GetHeaderEntries(Http_Headers *headers)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Destroys all key-value pairs obtained in {@link OH_Http_GetHeaderEntries}.
@@ -103,7 +107,8 @@ Http_HeaderEntry *OH_Http_GetHeaderEntries(Http_Headers *headers);
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-void OH_Http_DestroyHeaderEntries(Http_HeaderEntry **headerEntry);
+void OH_Http_DestroyHeaderEntries(Http_HeaderEntry **headerEntry)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Create a http request.
@@ -113,7 +118,7 @@ void OH_Http_DestroyHeaderEntries(Http_HeaderEntry **headerEntry);
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-Http_Request *OH_Http_CreateRequest(const char *url);
+Http_Request *OH_Http_CreateRequest(const char *url) __attribute__((__availability__(ohos, introduced=20.0.0)));
  
 /**
  * @brief Initiates an HTTP request.
@@ -126,7 +131,8 @@ Http_Request *OH_Http_CreateRequest(const char *url);
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-int OH_Http_Request(Http_Request *request, Http_ResponseCallback callback, Http_EventsHandler handler);
+int OH_Http_Request(Http_Request *request, Http_ResponseCallback callback, Http_EventsHandler handler)
+__attribute__((__availability__(ohos, introduced=20.0.0)));
  
 /**
  * @brief Destroy the HTTP request.
@@ -135,7 +141,7 @@ int OH_Http_Request(Http_Request *request, Http_ResponseCallback callback, Http_
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
-void OH_Http_Destroy(struct Http_Request **request);
+void OH_Http_Destroy(struct Http_Request **request) __attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif

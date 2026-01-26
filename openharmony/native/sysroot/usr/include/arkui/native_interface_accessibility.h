@@ -36,6 +36,7 @@
 #ifndef _NATIVE_INTERFACE_ACCESSIBILITY_H
 #define _NATIVE_INTERFACE_ACCESSIBILITY_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -412,7 +413,8 @@ typedef struct ArkUI_AccessibilityProviderCallbacks {
  * @since 13
  */
 int32_t OH_ArkUI_AccessibilityProviderRegisterCallback(
-    ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacks* callbacks);
+    ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacks* callbacks)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Registers callbacks with instance for the accessibility provider.
@@ -510,7 +512,8 @@ typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
  * @since 15
  */
 int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* instanceId,
-    ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacksWithInstance* callbacks);
+    ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacksWithInstance* callbacks)
+    __attribute__((__availability__(ohos, introduced=15.0.0)));
 
 /**
  * @brief Sends accessibility event information.
@@ -522,7 +525,8 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* i
  */
 void OH_ArkUI_SendAccessibilityAsyncEvent(
     ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityEventInfo* eventInfo,
-    void (*callback)(int32_t errorCode));
+    void (*callback)(int32_t errorCode))
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Adds and obtains the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -532,7 +536,8 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
  * @since 13
  */
 ArkUI_AccessibilityElementInfo* OH_ArkUI_AddAndGetAccessibilityElementInfo(
-    ArkUI_AccessibilityElementInfoList* list);
+    ArkUI_AccessibilityElementInfoList* list)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the element ID for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -544,7 +549,8 @@ ArkUI_AccessibilityElementInfo* OH_ArkUI_AddAndGetAccessibilityElementInfo(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetElementId(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t elementId);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t elementId)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the parent ID for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -556,7 +562,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetElementId(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetParentId(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t parentId);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t parentId)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the component type for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -568,7 +575,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetParentId(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetComponentType(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* componentType);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* componentType)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the component content for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -580,7 +588,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetComponentType(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetContents(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* contents);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* contents)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the hint text for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -592,7 +601,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetContents(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetHintText(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* hintText);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* hintText)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the accessibility text for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -604,7 +614,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetHintText(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityText(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityText);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityText)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the accessibility description for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -616,7 +627,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityText(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityDescription(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityDescription);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityDescription)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Set the number of child nodes and child node IDs for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -629,7 +641,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityDescription(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetChildNodeIds(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t childCount, int64_t* childNodeIds);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t childCount, int64_t* childNodeIds)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the operation actions for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -642,7 +655,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetChildNodeIds(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetOperationActions(ArkUI_AccessibilityElementInfo* elementInfo,
-    int32_t operationCount, ArkUI_AccessibleAction* operationActions);
+    int32_t operationCount, ArkUI_AccessibleAction* operationActions)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the screen area for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -654,7 +668,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetOperationActions(ArkUI_Accessibility
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetScreenRect(
-    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleRect* screenRect);
+    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleRect* screenRect)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is checkable for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -666,7 +681,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetScreenRect(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetCheckable(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool checkable);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool checkable)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is checked for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -678,7 +694,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetCheckable(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetChecked(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool checked);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool checked)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is focusable for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -689,7 +706,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetChecked(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetFocusable(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool focusable);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool focusable)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is focused for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -701,7 +719,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetFocusable(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetFocused(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool isFocused);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool isFocused)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is visible for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -713,7 +732,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetFocused(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetVisible(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool isVisible);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool isVisible)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the accessibility focus state for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -725,7 +745,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetVisible(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityFocused(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool accessibilityFocused);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool accessibilityFocused)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is selected for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -737,7 +758,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityFocused(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetSelected(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool selected);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool selected)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is clickable for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -749,7 +771,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetSelected(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetClickable(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool clickable);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool clickable)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is long clickable for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -761,7 +784,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetClickable(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetLongClickable(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool longClickable);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool longClickable)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is enabled for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -773,7 +797,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetLongClickable(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetEnabled(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool isEnabled);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool isEnabled)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is a password for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -785,7 +810,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetEnabled(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetIsPassword(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool isPassword);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool isPassword)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is scrollable for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -797,7 +823,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetIsPassword(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetScrollable(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool scrollable);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool scrollable)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is editable for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -809,7 +836,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetScrollable(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetEditable(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool editable);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool editable)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets whether the element is a hint for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -821,7 +849,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetEditable(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetIsHint(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool isHint);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool isHint)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the range information for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -833,7 +862,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetIsHint(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetRangeInfo(
-    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleRangeInfo* rangeInfo);
+    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleRangeInfo* rangeInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the grid information for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -845,7 +875,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetRangeInfo(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetGridInfo(
-    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleGridInfo* gridInfo);
+    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleGridInfo* gridInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the grid item for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -857,7 +888,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetGridInfo(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetGridItemInfo(
-    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleGridItemInfo* gridItem);
+    ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleGridItemInfo* gridItem)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the starting index of the selected text for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -869,7 +901,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetGridItemInfo(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextStart);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextStart)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the end index of the selected text for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -881,7 +914,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextEnd);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextEnd)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the index of the currently selected item for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -893,7 +927,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetCurrentItemIndex(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t currentItemIndex);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t currentItemIndex)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the index of the first item for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -905,7 +940,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetCurrentItemIndex(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetStartItemIndex(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t startItemIndex);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t startItemIndex)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the index of the last item for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -917,7 +953,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetStartItemIndex(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetEndItemIndex(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t endItemIndex);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t endItemIndex)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the number of items for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -929,7 +966,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetEndItemIndex(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetItemCount(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t itemCount);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t itemCount)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the offset for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -941,7 +979,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetItemCount(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityOffset(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t offset);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t offset)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the accessibility group for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -953,7 +992,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityOffset(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityGroup(
-    ArkUI_AccessibilityElementInfo* elementInfo, bool accessibilityGroup);
+    ArkUI_AccessibilityElementInfo* elementInfo, bool accessibilityGroup)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the accessibility level for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -965,7 +1005,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityGroup(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityLevel(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityLevel);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityLevel)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the z-index for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -977,7 +1018,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityLevel(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetZIndex(
-    ArkUI_AccessibilityElementInfo* elementInfo, int32_t zIndex);
+    ArkUI_AccessibilityElementInfo* elementInfo, int32_t zIndex)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the opacity for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -989,7 +1031,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetZIndex(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityOpacity(
-    ArkUI_AccessibilityElementInfo* elementInfo, float opacity);
+    ArkUI_AccessibilityElementInfo* elementInfo, float opacity)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the background color for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -1001,7 +1044,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityOpacity(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetBackgroundColor(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* backgroundColor);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* backgroundColor)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the background image for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -1013,7 +1057,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetBackgroundColor(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetBackgroundImage(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* backgroundImage);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* backgroundImage)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the blur effect for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -1025,7 +1070,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetBackgroundImage(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetBlur(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* blur);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* blur)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the hit test behavior for an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -1037,7 +1083,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetBlur(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* hitTestBehavior);
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* hitTestBehavior)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creates an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -1047,7 +1094,8 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(
  * @since 13
  * @version 1.0
  */
-ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void);
+ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroys an <b>ArkUI_AccessibilityElementInfo</b> object.
@@ -1056,7 +1104,8 @@ ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void);
  * @since 13
  * @version 1.0
  */
-void OH_ArkUI_DestoryAccessibilityElementInfo(ArkUI_AccessibilityElementInfo* elementInfo);
+void OH_ArkUI_DestoryAccessibilityElementInfo(ArkUI_AccessibilityElementInfo* elementInfo)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Creates an <b>ArkUI_AccessibilityEventInfo</b> object.
@@ -1065,7 +1114,8 @@ void OH_ArkUI_DestoryAccessibilityElementInfo(ArkUI_AccessibilityElementInfo* el
  *         The possible reason for failure is that the memory error occurred during object creation.
  * @since 13
  */
-ArkUI_AccessibilityEventInfo* OH_ArkUI_CreateAccessibilityEventInfo(void);
+ArkUI_AccessibilityEventInfo* OH_ArkUI_CreateAccessibilityEventInfo(void)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Destroys an <b>ArkUI_AccessibilityEventInfo</b> object.
@@ -1073,7 +1123,8 @@ ArkUI_AccessibilityEventInfo* OH_ArkUI_CreateAccessibilityEventInfo(void);
  * @param eventInfo Indicates the pointer to the <b>ArkUI_AccessibilityEventInfo</b> object to destroy.
  * @since 13
  */
-void OH_ArkUI_DestoryAccessibilityEventInfo(ArkUI_AccessibilityEventInfo* eventInfo);
+void OH_ArkUI_DestoryAccessibilityEventInfo(ArkUI_AccessibilityEventInfo* eventInfo)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the event type for an <b>ArkUI_AccessibilityEventInfo</b> object.
@@ -1085,7 +1136,8 @@ void OH_ArkUI_DestoryAccessibilityEventInfo(ArkUI_AccessibilityEventInfo* eventI
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityEventSetEventType(
-    ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityEventType eventType);
+    ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityEventType eventType)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the text announced for accessibility for an <b>ArkUI_AccessibilityEventInfo</b> object.
@@ -1097,7 +1149,8 @@ int32_t OH_ArkUI_AccessibilityEventSetEventType(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityEventSetTextAnnouncedForAccessibility(
-    ArkUI_AccessibilityEventInfo* eventInfo,  const char* textAnnouncedForAccessibility);
+    ArkUI_AccessibilityEventInfo* eventInfo,  const char* textAnnouncedForAccessibility)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the request focus ID for an <b>ArkUI_AccessibilityEventInfo</b> object.
@@ -1109,7 +1162,8 @@ int32_t OH_ArkUI_AccessibilityEventSetTextAnnouncedForAccessibility(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityEventSetRequestFocusId(
-    ArkUI_AccessibilityEventInfo* eventInfo,  int32_t requestFocusId);
+    ArkUI_AccessibilityEventInfo* eventInfo,  int32_t requestFocusId)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Sets the element information for an <b>ArkUI_AccessibilityEventInfo</b> object.
@@ -1121,7 +1175,8 @@ int32_t OH_ArkUI_AccessibilityEventSetRequestFocusId(
 * @since 13
 */
 int32_t OH_ArkUI_AccessibilityEventSetElementInfo(
-    ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityElementInfo* elementInfo);
+    ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityElementInfo* elementInfo)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
 * @brief Obtains the value of a key from an <b>ArkUI_AccessibilityActionArguments</b> object.
@@ -1134,7 +1189,8 @@ int32_t OH_ArkUI_AccessibilityEventSetElementInfo(
 * @since 13
 */
 int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
-    ArkUI_AccessibilityActionArguments* arguments, const char* key, char** value);
+    ArkUI_AccessibilityActionArguments* arguments, const char* key, char** value)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 #ifdef __cplusplus
 };
 #endif

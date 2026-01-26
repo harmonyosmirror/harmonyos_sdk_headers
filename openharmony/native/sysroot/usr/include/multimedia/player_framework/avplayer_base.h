@@ -39,6 +39,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_BASH_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_BASH_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 
 #include "native_avformat.h"
@@ -228,7 +229,7 @@ typedef enum AVPlayerBufferingType {
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_STATE;
+extern const char* OH_PLAYER_STATE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get state change reason, value type is int32_t.
@@ -236,7 +237,7 @@ extern const char* OH_PLAYER_STATE;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_STATE_CHANGE_REASON;
+extern const char* OH_PLAYER_STATE_CHANGE_REASON __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get volume, value type is float.
@@ -244,7 +245,7 @@ extern const char* OH_PLAYER_STATE_CHANGE_REASON;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_VOLUME;
+extern const char* OH_PLAYER_VOLUME __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get bitrate count, value type is uint32_t array.
@@ -252,7 +253,7 @@ extern const char* OH_PLAYER_VOLUME;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_BITRATE_ARRAY;
+extern const char* OH_PLAYER_BITRATE_ARRAY __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get audio interrupt type, value type is int32_t.
@@ -260,7 +261,7 @@ extern const char* OH_PLAYER_BITRATE_ARRAY;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_AUDIO_INTERRUPT_TYPE;
+extern const char* OH_PLAYER_AUDIO_INTERRUPT_TYPE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get audio interrupt force, value type is int32_t.
@@ -268,7 +269,7 @@ extern const char* OH_PLAYER_AUDIO_INTERRUPT_TYPE;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_AUDIO_INTERRUPT_FORCE;
+extern const char* OH_PLAYER_AUDIO_INTERRUPT_FORCE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get audio interrupt hint, value type is int32_t.
@@ -276,7 +277,7 @@ extern const char* OH_PLAYER_AUDIO_INTERRUPT_FORCE;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_AUDIO_INTERRUPT_HINT;
+extern const char* OH_PLAYER_AUDIO_INTERRUPT_HINT __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get audio device change reason, value type is int32_t.
@@ -284,7 +285,7 @@ extern const char* OH_PLAYER_AUDIO_INTERRUPT_HINT;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON;
+extern const char* OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get buffering type, value type is AVPlayerBufferingType.
@@ -292,7 +293,7 @@ extern const char* OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_BUFFERING_TYPE;
+extern const char* OH_PLAYER_BUFFERING_TYPE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get buffering value, value type is int32_t.
@@ -300,77 +301,108 @@ extern const char* OH_PLAYER_BUFFERING_TYPE;
  * @since 12
  * @version 1.0
  */
-extern const char* OH_PLAYER_BUFFERING_VALUE;
+extern const char* OH_PLAYER_BUFFERING_VALUE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get seek position, value type is int32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_SEEK_POSITION;
+extern const char* OH_PLAYER_SEEK_POSITION __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get playback speed, value type is AVPlaybackSpeed.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_PLAYBACK_SPEED;
+extern const char* OH_PLAYER_PLAYBACK_SPEED __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key for retrieving effective playback rate, the value type is float.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 20
  */
-extern const char* OH_PLAYER_PLAYBACK_RATE;
+extern const char* OH_PLAYER_PLAYBACK_RATE __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Key to get bitrate, value type is uint32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_BITRATE;
+extern const char* OH_PLAYER_BITRATE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get current position, value type is int32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_CURRENT_POSITION;
+extern const char* OH_PLAYER_CURRENT_POSITION __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get duration, value type is int64_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_DURATION;
+extern const char* OH_PLAYER_DURATION __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get video width, value type is int32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_VIDEO_WIDTH;
+extern const char* OH_PLAYER_VIDEO_WIDTH __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get video height, value type is int32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_VIDEO_HEIGHT;
+extern const char* OH_PLAYER_VIDEO_HEIGHT __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get message type, value type is int32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_MESSAGE_TYPE;
+extern const char* OH_PLAYER_MESSAGE_TYPE __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Key to get is live stream, value type is int32_t.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 12
  */
-extern const char* OH_PLAYER_IS_LIVE_STREAM;
+extern const char* OH_PLAYER_IS_LIVE_STREAM __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Key to get the value whether the media resource contains video content,
+ *        value type is int32_t. 1 means true and 0 means false.
+ *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_VIDEO __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Key to get the value whether the media resource contains audio content,
+ *        value type is int32_t. 1 means true and 0 means false.
+ *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_AUDIO __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Key to get the value whether the media resource contains subtitle content,
+ *        value type is int32_t. 1 means true and 0 means false.
+ *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_SUBTITLE __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Key to get is track index, value type is int32_t.
+ *        Track description key, see {@link OH_AVPlayer_GetTrackDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_TRACK_INDEX __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
  * @brief Called when a player message or alarm is received.

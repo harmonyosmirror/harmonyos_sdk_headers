@@ -32,6 +32,7 @@
 #ifndef OH_WIFI_H
 #define OH_WIFI_H
 
+#include "info/application_target_sdk_version.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -86,7 +87,7 @@ typedef enum Wifi_ResultCode {
  *     {@link WIFI_OPERATION_FAILED} Internal execution failed.\n
  * @since 13
  */
-Wifi_ResultCode OH_Wifi_IsWifiEnabled(bool *enabled);
+Wifi_ResultCode OH_Wifi_IsWifiEnabled(bool *enabled) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Get the device Mac address.
@@ -104,7 +105,8 @@ Wifi_ResultCode OH_Wifi_IsWifiEnabled(bool *enabled);
  *     {@link WIFI_STA_DISABLED} Wi-Fi STA disabled.
  * @since 21
  */
-Wifi_ResultCode OH_Wifi_GetDeviceMacAddress(char *macAddr, unsigned int *macAddrLen);
+Wifi_ResultCode OH_Wifi_GetDeviceMacAddress(char *macAddr, unsigned int *macAddrLen)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
 #ifdef __cplusplus
 }
 #endif

@@ -42,6 +42,7 @@
 #ifndef NATIVE_AVCENCINFO_H
 #define NATIVE_AVCENCINFO_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdint.h>
 #include "native_averrors.h"
 
@@ -147,7 +148,7 @@ typedef struct DrmSubsample {
  * @since 12
  * @version 1.0
  */
-OH_AVCencInfo *OH_AVCencInfo_Create();
+OH_AVCencInfo *OH_AVCencInfo_Create() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Destroy the OH_AVCencInfo instance and free the internal resources.
@@ -162,7 +163,7 @@ OH_AVCencInfo *OH_AVCencInfo_Create();
  * @since 12
  * @version 1.0
 */
-OH_AVErrCode OH_AVCencInfo_Destroy(OH_AVCencInfo *cencInfo);
+OH_AVErrCode OH_AVCencInfo_Destroy(OH_AVCencInfo *cencInfo) __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to set algo of cencinfo.
@@ -175,7 +176,8 @@ OH_AVErrCode OH_AVCencInfo_Destroy(OH_AVCencInfo *cencInfo);
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlgorithm algo);
+OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlgorithm algo)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to set key id and iv of cencinfo.
@@ -193,7 +195,8 @@ OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlg
  * @version 1.0
  */
 OH_AVErrCode OH_AVCencInfo_SetKeyIdAndIv(OH_AVCencInfo *cencInfo, uint8_t *keyId,
-    uint32_t keyIdLen, uint8_t *iv, uint32_t ivLen);
+    uint32_t keyIdLen, uint8_t *iv, uint32_t ivLen)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to set subsample info of cencinfo.
@@ -212,7 +215,8 @@ OH_AVErrCode OH_AVCencInfo_SetKeyIdAndIv(OH_AVCencInfo *cencInfo, uint8_t *keyId
  * @version 1.0
  */
 OH_AVErrCode OH_AVCencInfo_SetSubsampleInfo(OH_AVCencInfo *cencInfo, uint32_t encryptedBlockCount,
-    uint32_t skippedBlockCount, uint32_t firstEncryptedOffset, uint32_t subsampleCount, DrmSubsample *subsamples);
+    uint32_t skippedBlockCount, uint32_t firstEncryptedOffset, uint32_t subsampleCount, DrmSubsample *subsamples)
+    __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to set mode of cencinfo.
@@ -225,7 +229,8 @@ OH_AVErrCode OH_AVCencInfo_SetSubsampleInfo(OH_AVCencInfo *cencInfo, uint32_t en
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVCencInfo_SetMode(OH_AVCencInfo *cencInfo, enum DrmCencInfoMode mode);
+OH_AVErrCode OH_AVCencInfo_SetMode(OH_AVCencInfo *cencInfo, enum DrmCencInfoMode mode)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
  * @brief Method to attach cencinfo to AVBuffer.
@@ -239,7 +244,8 @@ OH_AVErrCode OH_AVCencInfo_SetMode(OH_AVCencInfo *cencInfo, enum DrmCencInfoMode
  * @since 12
  * @version 1.0
  */
-OH_AVErrCode OH_AVCencInfo_SetAVBuffer(OH_AVCencInfo *cencInfo, OH_AVBuffer *buffer);
+OH_AVErrCode OH_AVCencInfo_SetAVBuffer(OH_AVCencInfo *cencInfo, OH_AVBuffer *buffer)
+__attribute__((__availability__(ohos, introduced=12.0.0)));
 
 #ifdef __cplusplus
 }

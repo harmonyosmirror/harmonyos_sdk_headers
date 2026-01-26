@@ -42,6 +42,7 @@
 #ifndef NATIVE_HUKS_API_H
 #define NATIVE_HUKS_API_H
 
+#include "info/application_target_sdk_version.h"
 #include "native_huks_type.h"
 
 #ifdef __cplusplus
@@ -58,7 +59,8 @@ extern "C" {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion);
+struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion)
+__attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Generates a key.
@@ -94,7 +96,8 @@ struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion);
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_GenerateKeyItem(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSetIn, struct OH_Huks_ParamSet *paramSetOut);
+    const struct OH_Huks_ParamSet *paramSetIn, struct OH_Huks_ParamSet *paramSetOut)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Imports a key in plaintext.
@@ -125,7 +128,8 @@ struct OH_Huks_Result OH_Huks_GenerateKeyItem(const struct OH_Huks_Blob *keyAlia
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_ImportKeyItem(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *key);
+    const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *key)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Imports a wrapped key.
@@ -161,7 +165,8 @@ struct OH_Huks_Result OH_Huks_ImportKeyItem(const struct OH_Huks_Blob *keyAlias,
  */
 struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem(const struct OH_Huks_Blob *keyAlias,
     const struct OH_Huks_Blob *wrappingKeyAlias, const struct OH_Huks_ParamSet *paramSet,
-    const struct OH_Huks_Blob *wrappedKeyData);
+    const struct OH_Huks_Blob *wrappedKeyData)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Exports a public key.
@@ -186,7 +191,8 @@ struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem(const struct OH_Huks_Blob *ke
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_ExportPublicKeyItem(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *key);
+    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *key)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Deletes a key.
@@ -210,7 +216,8 @@ struct OH_Huks_Result OH_Huks_ExportPublicKeyItem(const struct OH_Huks_Blob *key
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_DeleteKeyItem(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet);
+    const struct OH_Huks_ParamSet *paramSet)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtains the attributes of a key.
@@ -236,7 +243,8 @@ struct OH_Huks_Result OH_Huks_DeleteKeyItem(const struct OH_Huks_Blob *keyAlias,
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_GetKeyItemParamSet(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSetIn, struct OH_Huks_ParamSet *paramSetOut);
+    const struct OH_Huks_ParamSet *paramSetIn, struct OH_Huks_ParamSet *paramSetOut)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Checks whether a key exists.
@@ -259,7 +267,8 @@ struct OH_Huks_Result OH_Huks_GetKeyItemParamSet(const struct OH_Huks_Blob *keyA
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_IsKeyItemExist(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet);
+    const struct OH_Huks_ParamSet *paramSet)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the key certificate chain. This API can be called only by system applications.
@@ -288,7 +297,8 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist(const struct OH_Huks_Blob *keyAlias
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_AttestKeyItem(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
+    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Obtain the key certificate chain.
@@ -317,7 +327,8 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem(const struct OH_Huks_Blob *keyAlias,
  * @note this is a networking duration interface caller need to get the certChain in asynchronous thread
  */
 struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
+    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain)
+    __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
  * @brief Initializes the key session interface and obtains a handle (mandatory) and challenge value (optional).
@@ -327,22 +338,32 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAl
  * @param handle Indicates the pointer to the handle of the key session obtained.
  *    This handle is required for subsequent operations, including {@link OH_Huks_UpdateSession},
  * {@link OH_Huks_FinishSession}, and {@link OH_Huks_AbortSession}.
- * @param token Indicates the pointer to the token used for key access control.
+ * @param challenge Indicates the pointer to the challenge value obtained.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet or handle or
- *             token is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
- *             input parameter abnormal..
+ *         token is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
- *             is invalid.
+ *         is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
- *             get key argument.
+ *         get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_SESSION_LIMIT} 12000010 - If reached max session limit.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
+ *         the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN not authenticated,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_UpdateSession
@@ -350,7 +371,8 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAl
  * @see OH_Huks_AbortSession
  */
 struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *handle, struct OH_Huks_Blob *token);
+    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *handle, struct OH_Huks_Blob *token)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Adds data by segment for the key operation, performs the related key operation,
@@ -363,26 +385,34 @@ struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias,
  * @param outData Indicates the pointer to the output data.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
- *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
- *             input parameter abnormal..
+ *         outData is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
- *             is invalid.
+ *         is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit,
- *             or if the handle is not exist.
+ *         or if the handle is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
- *             get key argument.
+ *         get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
+ *         the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED} 12000007 - If auth token info
- *             verify failed.
+ *         verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT} 12000009 - If authentication token timed out.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET} 12000016 - If device password is required
- *             but not set.
+ *         but not set.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN not authenticated,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_InitSession
@@ -390,7 +420,8 @@ struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias,
  * @see OH_Huks_AbortSession
  */
 struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
-    const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData);
+    const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Ends the key session.
@@ -412,7 +443,8 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  *             get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
+ *         or the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED} 12000007 - If auth token info
  *             verify failed.
@@ -423,6 +455,14 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST} 12000017 - If the key with same alias is
  *             already exist, add since api 20.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN not authenticated,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_InitSession
@@ -430,7 +470,8 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  * @see OH_Huks_AbortSession
  */
 struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
-    const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData);
+    const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Aborts a key session.
@@ -440,17 +481,20 @@ struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
  *    By default, this parameter is a null pointer.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
- *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
- *             input parameter abnormal..
+ *         outData is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
- *             is invalid.
+ *         is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - or if the handle is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
- *             get key argument.
+ *         get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_InitSession
@@ -458,7 +502,8 @@ struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
  * @see OH_Huks_FinishSession
  */
 struct OH_Huks_Result OH_Huks_AbortSession(const struct OH_Huks_Blob *handle,
-    const struct OH_Huks_ParamSet *paramSet);
+    const struct OH_Huks_ParamSet *paramSet)
+    __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
  * @brief Get key alias list.
@@ -476,7 +521,8 @@ struct OH_Huks_Result OH_Huks_AbortSession(const struct OH_Huks_Blob *handle,
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSet,
-    struct OH_Huks_KeyAliasSet **outData);
+    struct OH_Huks_KeyAliasSet **outData)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Export the wrapped key encrypted by a specific key.
@@ -496,7 +542,8 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
  * @since 20
  */
 struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet,
-    struct OH_Huks_Blob *wrappedKey);
+    struct OH_Huks_Blob *wrappedKey)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Import the wrapped key encrypted by a specific key.
@@ -517,7 +564,8 @@ struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const
  * @since 20
  */
 struct OH_Huks_Result OH_Huks_UnwrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet,
-    struct OH_Huks_Blob *wrappedKey);
+    struct OH_Huks_Blob *wrappedKey)
+    __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 #ifdef __cplusplus
 }

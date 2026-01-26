@@ -39,6 +39,7 @@
 #ifndef OH_PREFERENCES_H
 #define OH_PREFERENCES_H
 
+#include "info/application_target_sdk_version.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -83,7 +84,8 @@ typedef void (*OH_PreferencesDataObserver)(void *context, const OH_PreferencesPa
  * @see OH_Preferences OH_PreferencesOption.
  * @since 13
  */
-OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode);
+OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Closes a Preferences object.
@@ -97,7 +99,7 @@ OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode);
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_Close(OH_Preferences *preference);
+int OH_Preferences_Close(OH_Preferences *preference) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the integer value in a Preferences object based on the given key.
@@ -114,7 +116,8 @@ int OH_Preferences_Close(OH_Preferences *preference);
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_GetInt(OH_Preferences *preference, const char *key, int *value);
+int OH_Preferences_GetInt(OH_Preferences *preference, const char *key, int *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the Boolean value in a Preferences object based on the given key.
@@ -131,7 +134,8 @@ int OH_Preferences_GetInt(OH_Preferences *preference, const char *key, int *valu
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *value);
+int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Obtains the string value in a Preferences object based on the given key.
@@ -150,7 +154,8 @@ int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *va
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char **value, uint32_t *valueLen);
+int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char **value, uint32_t *valueLen)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Free a string got by Preferences object.
@@ -159,7 +164,7 @@ int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char *
  * @see OH_Preferences.
  * @since 13
  */
-void OH_Preferences_FreeString(char *string);
+void OH_Preferences_FreeString(char *string) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets an integer in a Preferences object.
@@ -175,7 +180,8 @@ void OH_Preferences_FreeString(char *string);
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_SetInt(OH_Preferences *preference, const char *key, int value);
+int OH_Preferences_SetInt(OH_Preferences *preference, const char *key, int value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets a Boolean value in a Preferences object.
@@ -191,7 +197,8 @@ int OH_Preferences_SetInt(OH_Preferences *preference, const char *key, int value
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_SetBool(OH_Preferences *preference, const char *key, bool value);
+int OH_Preferences_SetBool(OH_Preferences *preference, const char *key, bool value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Sets a string in a Preferences object.
@@ -207,7 +214,8 @@ int OH_Preferences_SetBool(OH_Preferences *preference, const char *key, bool val
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_SetString(OH_Preferences *preference, const char *key, const char *value);
+int OH_Preferences_SetString(OH_Preferences *preference, const char *key, const char *value)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Deletes a KV pair from a Preferences object.
@@ -222,7 +230,8 @@ int OH_Preferences_SetString(OH_Preferences *preference, const char *key, const 
  * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_Delete(OH_Preferences *preference, const char *key);
+int OH_Preferences_Delete(OH_Preferences *preference, const char *key)
+__attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Registers a data observer for a Preferences object.
@@ -242,7 +251,8 @@ int OH_Preferences_Delete(OH_Preferences *preference, const char *key);
  * @since 13
  */
 int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *context,
-    OH_PreferencesDataObserver observer, const char *keys[], uint32_t keyCount);
+    OH_PreferencesDataObserver observer, const char *keys[], uint32_t keyCount)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Unregisters a data observer for a Preferences object.
@@ -261,7 +271,8 @@ int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *contex
  * @since 13
  */
 int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, void *context,
-    OH_PreferencesDataObserver observer, const char *keys[], uint32_t keyCount);
+    OH_PreferencesDataObserver observer, const char *keys[], uint32_t keyCount)
+    __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
  * @brief Check if a type is supported or not.
@@ -273,7 +284,8 @@ int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, void *cont
  *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
  * @since 18
  */
-int OH_Preferences_IsStorageTypeSupported(Preferences_StorageType type, bool *isSupported);
+int OH_Preferences_IsStorageTypeSupported(Preferences_StorageType type, bool *isSupported)
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 #ifdef __cplusplus
 };
