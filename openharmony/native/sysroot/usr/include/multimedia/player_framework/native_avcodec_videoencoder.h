@@ -19,7 +19,7 @@
  *
  * @brief The VideoEncoder module provides interfaces for video encoding.
  *
- * @syscap SystemCapability.Multimedia.VideoEncoder
+ * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @since 9
  */
 
@@ -91,7 +91,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name) __attribute__((__avai
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
@@ -108,8 +108,7 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec) __attribute__((__availab
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
- * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_RegisterCallback
  * @since 9
@@ -129,8 +128,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
- * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData)
@@ -150,7 +148,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 12
  */
@@ -168,9 +166,11 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid. Invalid param in format.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. unsupported input format parameters.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 9
  */
@@ -187,7 +187,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -203,7 +203,7 @@ OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec) __attribute__((__availab
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -218,7 +218,7 @@ OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec) __attribute__((__availabil
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -235,7 +235,7 @@ OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec) __attribute__((__availabili
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -251,8 +251,7 @@ OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec) __attribute__((__availabil
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
- * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec) __attribute__((__availability__(ohos, introduced=9.0.0)));
@@ -264,7 +263,7 @@ OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec) __attribute__((__availabil
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns a pointer to an OH_AVFormat instance.
- * Return nullptr if the codec is nullptr or invaild.
+ * Return nullptr if the codec is nullptr or invalid.
  * @since 9
  */
 OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec)
@@ -279,9 +278,11 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid. Invalid param in format.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. unsupported input format parameters.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -296,11 +297,8 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * managing the life cycle of the window, call OH_NativeWindow_DestroyNativeWindow() when done.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
- * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
- * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **window)
@@ -317,7 +315,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * Buffer index should be given by {@link OH_AVCodecOnNewOutputData}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_FreeOutputBuffer
@@ -336,7 +334,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -355,7 +353,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * Buffer index should be given by {@link OH_AVCodecOnNeedInputData}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_PushInputBuffer
@@ -395,7 +393,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * Index should be given by {@link OH_VideoEncoder_OnNeedInputParameter}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 12
  */
@@ -410,10 +408,12 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
- * Buffer index should be given by {@link OH_AVCodecOnNewOutputBuffer}.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. invalid index or consecutive assignment to the same index,
+ * the error does not affect the subsequent encode process.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 11
  */
@@ -436,7 +436,6 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay..
@@ -476,11 +475,10 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
  * {@link AV_ERR_STREAM_CHANGED}, stream format changed, call {@link OH_VideoEncoder_GetOutputDescription} to
- * retrieve new steam information.
+ * retrieve new stream information.
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
  * @since 20
  */
@@ -509,7 +507,7 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns a pointer to an OH_AVFormat instance.
- * Return nullptr if the encoder is nullptr or invaild.
+ * Return nullptr if the encoder is nullptr or invalid.
  * @since 10
  */
 OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec)
@@ -524,10 +522,7 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
  * false if the codec instance is invalid
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
- * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * @since 10
  */
 OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid)

@@ -22,9 +22,6 @@
  * For example, you can use these functions to output logs of the specified log type, service domain, log tag,
  * and log level.
  *
- * @kit PerformanceAnalysisKit
- * @syscap SystemCapability.HiviewDFX.HiLog
- *
  * @since 8
  */
 
@@ -55,7 +52,9 @@
  * Output result:\n
  *     05-06 15:01:06.870 1051 1051 W 0201/MY_TAG: Failed to visit <private>, reason:503.\n
  *
- * @library libhilog.so
+ * @kit PerformanceAnalysisKit
+ * @include <hilog/log.h>
+ * @library libhilog_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiLog
  * @since 8
  */

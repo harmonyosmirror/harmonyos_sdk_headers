@@ -181,6 +181,11 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011,
     /**
+     * @error Http clear text not permitted.
+     * @since 23
+     */
+    AV_ERR_IO_CLEARTEXT_NOT_PERMITTED = 5411012,
+    /**
      * @error Signals a stream format change in synchronous mode.
      * Required follow-up actions:
      *    - For video encoders: Call {@link OH_VideoEncoder_GetOutputDescription}
@@ -196,6 +201,17 @@ typedef enum OH_AVErrCode {
      * @since 20
      */
     AV_ERR_TRY_AGAIN_LATER = 5410006,
+    /**
+     * @error Super-resolution unsupported.
+     * @since 23
+     */
+    AV_ERR_SUPER_RESOLUTION_UNSUPPORTED = 5410003,
+    /**
+     * @error No PlaybackStrategy set to enable super-resolution feature.
+     * @since 23
+     */
+    AV_ERR_SUPER_RESOLUTION_NOT_ENABLED = 5410004,
+
 } OH_AVErrCode;
 
 #ifdef __cplusplus

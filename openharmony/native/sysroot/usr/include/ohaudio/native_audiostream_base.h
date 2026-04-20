@@ -901,6 +901,82 @@ typedef enum {
     AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
 } OH_AudioStream_VolumeMode;
 
+/**
+ * @brief Defines audio latency types.
+ *
+ * @since 23
+ */
+typedef enum {
+    /**
+     * Type to get latency of all audio processing units, including software and hardware.
+     *
+     * @since 23
+     */
+    AUDIOSTREAM_LATENCY_TYPE_ALL = 0,
+
+    /**
+     * Type to get latency of software part, including audio effects in software.
+     *
+     * @since 23
+     */
+    AUDIOSTREAM_LATENCY_TYPE_SOFTWARE = 1,
+
+    /**
+     * Type to get latency of hardware part, including audio effects in hal, driver and hardware.
+     *
+     * @since 23
+     */
+    AUDIOSTREAM_LATENCY_TYPE_HARDWARE = 2
+} OH_AudioStream_LatencyType;
+
+/**
+ * @brief Defines mode for playback capture, each mode means different target
+ * streams to capture.
+ *
+ * @since 23
+ */
+typedef enum {
+    /**
+     * Default mode. Capture most of the audio streams, except tone streams and privacy streams.
+     * @since 23
+     */
+    AUDIOSTREAM_PLAYBACKCAPTURE_MODE_DEFAULT = 0x0,
+    /**
+     * Media mode. Capture media, voice message and also unknown streams.
+     * @since 23
+     */
+    AUDIOSTREAM_PLAYBACKCAPTURE_MODE_MEDIA = 0x1,
+    /**
+     * Excluding self mode. Capture streams excluding the audio played by application itself.
+     * @since 23
+     */
+    AUDIOSTREAM_PLAYBACKCAPTURE_MODE_EXCLUDING_SELF = 0x8000,
+} OH_AudioStream_PlaybackCaptureMode;
+
+/**
+ * @brief Defines the playback capture start state, which is returned asynchronously
+ * after calling {@link #OH_AudioCapturer_RequestPlaybackCaptureStart} function.
+ *
+ * @since 23
+ */
+typedef enum {
+/**
+ * Start playback capture success state.
+ * @since 23
+ */
+    AUDIOSTREAM_PLAYBACKCAPTURE_START_STATE_SUCCESS = 0,
+/**
+ * Start playback capture failed state, because the request for interrupt is denied
+ * or meet system internal error.
+ * @since 23
+ */
+    AUDIOSTREAM_PLAYBACKCAPTURE_START_STATE_FAILED = 1,
+/**
+ * Start playback capture but user not authorized state.
+ * @since 23
+ */
+    AUDIOSTREAM_PLAYBACKCAPTURE_START_STATE_NOT_AUTHORIZED = 2,
+} OH_AudioStream_PlaybackCaptureStartState;
 #ifdef __cplusplus
 }
 #endif

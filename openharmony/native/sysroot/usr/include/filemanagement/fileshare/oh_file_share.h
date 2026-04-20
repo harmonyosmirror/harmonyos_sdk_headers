@@ -147,12 +147,12 @@ typedef struct FileShare_PolicyInfo {
  * OH_FileShare_ReleasePolicyErrorResult() to clear Resource.
  * @param resultNum Output the size of the result array.
  * @return Returns the status code of the execution.
- *         {@link E_PARAMS} 401 - Invalid input parameter.
- *         {@link E_DEVICE_NOT_SUPPORT} 801 - Device not supported.
- *         {@link E_PERMISSION} 201 - No permission to perform this operation.
- *         {@link E_EPERM} 13900001 - operation not permitted.
- *         {@link E_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
- *         {@link E_NO_ERROR} 0 - This operation was successfully executed.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_PERMISSION_ERROR} 201 - No permission to perform this operation.
+ *         {@link ERR_EPERM} 13900001 - operation not permitted.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
+ *         {@link ERR_OK} 0 - This operation was successfully executed.
  * @since 12
  */
 FileManagement_ErrCode OH_FileShare_PersistPermission(const FileShare_PolicyInfo *policies,
@@ -171,12 +171,12 @@ FileManagement_ErrCode OH_FileShare_PersistPermission(const FileShare_PolicyInfo
  * OH_FileShare_ReleasePolicyErrorResult() to clear Resource.
  * @param resultNum Output the size of the result array.
  * @return Returns the status code of the execution.
- *         {@link E_PARAMS} 401 - Invalid input parameter.
- *         {@link E_DEVICE_NOT_SUPPORT} 801 - Device not supported.
- *         {@link E_PERMISSION} 201 - No permission to perform this operation.
- *         {@link E_EPERM} 13900001 - operation not permitted.
- *         {@link E_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
- *         {@link E_NO_ERROR} 0 - This operation was successfully executed.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_PERMISSION_ERROR} 201 - No permission to perform this operation.
+ *         {@link ERR_EPERM} 13900001 - operation not permitted.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
+ *         {@link ERR_OK} 0 - This operation was successfully executed.
  * @since 12
  */
 FileManagement_ErrCode OH_FileShare_RevokePermission(const FileShare_PolicyInfo *policies,
@@ -195,12 +195,12 @@ FileManagement_ErrCode OH_FileShare_RevokePermission(const FileShare_PolicyInfo 
  * OH_FileShare_ReleasePolicyErrorResult() to clear Resource.
  * @param resultNum Output the size of the result array.
  * @return Returns the status code of the execution.
- *         {@link E_PARAMS} 401 - Invalid input parameter.
- *         {@link E_DEVICE_NOT_SUPPORT} 801 - Device not supported.
- *         {@link E_PERMISSION} 201 - No permission to perform this operation.
- *         {@link E_EPERM} 13900001 - operation not permitted.
- *         {@link E_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
- *         {@link E_NO_ERROR} 0 - This operation was successfully executed.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_PERMISSION_ERROR} 201 - No permission to perform this operation.
+ *         {@link ERR_EPERM} 13900001 - operation not permitted.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
+ *         {@link ERR_OK} 0 - This operation was successfully executed.
  * @since 12
  */
 FileManagement_ErrCode OH_FileShare_ActivatePermission(const FileShare_PolicyInfo *policies,
@@ -219,12 +219,12 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission(const FileShare_PolicyInf
  * OH_FileShare_ReleasePolicyErrorResult() to clear Resource.
  * @param resultNum Output the size of the result array.
  * @return Returns the status code of the execution.
- *         {@link E_PARAMS} 401 - Invalid input parameter.
- *         {@link E_DEVICE_NOT_SUPPORT} 801 - Device not supported.
- *         {@link E_PERMISSION} 201 - No permission to perform this operation.
- *         {@link E_EPERM} 13900001 - operation not permitted.
- *         {@link E_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
- *         {@link E_NO_ERROR} 0 - This operation was successfully executed.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_PERMISSION_ERROR} 201 - No permission to perform this operation.
+ *         {@link ERR_EPERM} 13900001 - operation not permitted.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
+ *         {@link ERR_OK} 0 - This operation was successfully executed.
  * @since 12
  */
 FileManagement_ErrCode OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies,
@@ -242,12 +242,12 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission(const FileShare_PolicyI
  * @param result Output a pointer to an bool instance. Please use free() to clear Resource.
  * @param resultNum Output the size of the result array.
  * @return Returns the status code of the execution.
- *         {@link E_PARAMS} 401 - Invalid input parameter.
- *         {@link E_DEVICE_NOT_SUPPORT} 801 - Device not supported.
- *         {@link E_PERMISSION} 201 - No permission to perform this operation.
- *         {@link E_EPERM} 13900001 - operation not permitted.
- *         {@link E_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
- *         {@link E_NO_ERROR} 0 - This operation was successfully executed.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_PERMISSION_ERROR} 201 - No permission to perform this operation.
+ *         {@link ERR_EPERM} 13900001 - operation not permitted.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
+ *         {@link ERR_OK} 0 - This operation was successfully executed.
  * @since 12
  */
 FileManagement_ErrCode OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies,

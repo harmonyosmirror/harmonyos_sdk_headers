@@ -45,6 +45,7 @@
 #include <stdio.h>
 #include "camera.h"
 #include "multimedia/image_framework/image/image_native.h"
+#include "multimedia/image_framework/image/picture_native.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,6 +73,19 @@ typedef struct OH_PhotoNative OH_PhotoNative;
  */
 Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNative** mainImage)
 __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Get the uncompressed image.
+ *
+ * @param photo the {@link OH_PhotoNative} instance.
+ * @param picture the {@link OH_PictureNative} which use to get the uncompressed image.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 23
+ * @version 1.0
+ */
+Camera_ErrorCode OH_PhotoNative_GetUncompressedImage(OH_PhotoNative* photo, OH_PictureNative** picture)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Release camera photo.

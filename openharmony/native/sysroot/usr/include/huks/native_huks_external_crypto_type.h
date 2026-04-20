@@ -48,7 +48,18 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Defines the maximum byte length of the provider name.
+ *
+ * @since 22
+ */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_PROVIDER_NAME_LEN 100
+
+/**
+ * @brief Defines the maximum byte length of the resource ID.
+ *
+ * @since 22
+ */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_RESOURCE_ID_LEN   512
 
 /**
@@ -134,21 +145,21 @@ typedef struct OH_Huks_ExternalCryptoParamSet {
  */
 typedef enum OH_Huks_ExternalCryptoTag {
     /**
-     * @brief PIN code
+     * @brief PIN code.
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_UKEY_PIN = OH_HUKS_TAG_TYPE_BYTES | 200001,
 
     /**
-     * @brief Ability Name
+     * @brief Ability Name.
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_ABILITY_NAME = OH_HUKS_TAG_TYPE_BYTES | 200002,
 
     /**
-     * @brief Extra data
+     * @brief Extra data.
      *
      * @since 22
      */
@@ -209,4 +220,4 @@ typedef enum OH_Huks_ExternalPinAuthState {
 #endif
 
 /** @} */
-#endif /* NATIVE_HUKS_EXTERNAL_CRYPTO_API_H */
+#endif /* NATIVE_HUKS_EXTERNAL_CRYPTO_TYPE_H */

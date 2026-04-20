@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image_NativeModule
  * @{
  *
  * @brief Provides APIs for access to the image interface.
@@ -57,6 +57,24 @@ struct OH_ImageNative;
  * @since 12
  */
 typedef struct OH_ImageNative OH_ImageNative;
+
+/**
+ * @brief Defines the image buffer data.
+ *
+ * @since 23
+ */
+typedef struct OH_ImageBufferData {
+    /** rowStride of each component. */
+    int32_t *rowStride;
+    /** pixelStride of each component. */
+    int32_t *pixelStride;
+    /** number of strides.  */
+    int32_t  numStride;
+    /** byte length of the buffer  */
+    size_t  bufferSize;
+    /** native buffer of the image. */
+    OH_NativeBuffer  *nativeBuffer;
+} OH_ImageBufferData;
 
 /**
  * @brief Obtains {@link Image_Size} of an {@link OH_ImageNative} object.
@@ -164,6 +182,45 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  * @since 12
  */
 Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image) __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Obtains the color space from an {@link OH_ImageNative} object.
+ *
+ * @param image Indicates the pointer to an {@link OH_ImageNative} object.
+ * @param colorSpaceName Indicates the pointer to the obtained color space name, see {@link ColorSpaceName}.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_BAD_PARAMETER} if bad parameter.
+ * @since 23
+ */
+Image_ErrorCode OH_ImageNative_GetColorSpace(OH_ImageNative *image, int32_t *colorSpaceName)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the image format from an {@link OH_ImageNative} object.
+ *
+ * @param image Indicates the pointer to an {@link OH_ImageNative} object.
+ * @param format Indicates the pointer to the obtained image format.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_BAD_PARAMETER} if bad parameter.
+ * @since 23
+ */
+Image_ErrorCode OH_ImageNative_GetFormat(OH_ImageNative *image, OH_NativeBuffer_Format *format)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the image buffer data from an {@link OH_ImageNative} object.
+ *
+ * @param image Indicates the pointer to an {@link OH_ImageNative} object.
+ * @param imageBufferData Indicates the pointer to the obtained image buffer data.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_BAD_PARAMETER} if bad parameter.
+ * @since 23
+ */
+Image_ErrorCode OH_ImageNative_GetBufferData(OH_ImageNative *image, OH_ImageBufferData *imageBufferData)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 };

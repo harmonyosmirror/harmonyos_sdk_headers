@@ -187,7 +187,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  *         {@link SCAN_ERROR_DEVICE_BUSY} Indicates that the scanner is busy.
  *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates that the input parameter is invalid.
  *         {@link SCAN_ERROR_IO_ERROR} Indicates an error occured while communicating with the device.
- *         {@link SCAN_ERROR_NO_MEM} Indicates an insufficent amount of memory is available.
+ *         {@link SCAN_ERROR_NO_MEMORY} Indicates an insufficent amount of memory is available.
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
@@ -263,7 +263,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  *         {@link SCAN_ERROR_NO_DOCS} Indicates the document feeder is out of documents.
  *         {@link SCAN_ERROR_COVER_OPEN} Indicates the scanner cover is open.
  *         {@link SCAN_ERROR_IO_ERROR} Indicates an error occurred while communicating with the device.
- *         {@link SCAN_ERROR_NO_MEM} Indicates an insufficent amount of memory is available.
+ *         {@link SCAN_ERROR_NO_MEMORY} Indicates an insufficent amount of memory is available.
  *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates that the input parameter is invalid.
  *         {@link SCAN_ERROR_DEVICE_BUSY} Indicates the device is busy, the operation should be retried later.
  * @syscap SystemCapability.Print.PrintFramework
@@ -303,7 +303,7 @@ int32_t OH_Scan_CancelScan(const char* scannerId) __attribute__((__availability_
  *         {@link SCAN_ERROR_NO_DOCS} Indicates the document feeder is out of documents.
  *         {@link SCAN_ERROR_COVER_OPEN} Indicates the scanner cover is open.
  *         {@link SCAN_ERROR_IO_ERROR} Indicates an error occurred while communicating with the scanner.
- *         {@link SCAN_ERROR_NO_MEM} Indicates an insufficent amount of memory is available.
+ *         {@link SCAN_ERROR_NO_MEMORY} Indicates an insufficent amount of memory is available.
  *         {@link SCAN_ERROR_DEVICE_BUSY} Indicates the device is busy, the operation should be retried later.
  * @syscap SystemCapability.Print.PrintFramework
  * @since 12

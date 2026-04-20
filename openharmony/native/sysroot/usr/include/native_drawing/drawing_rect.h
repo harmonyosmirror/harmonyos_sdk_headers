@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -316,6 +316,86 @@ __attribute__((__availability__(ohos, introduced=22.0.0)));
  */
 OH_Drawing_ErrorCode OH_Drawing_RectInset(OH_Drawing_Rect* rect, float left, float top, float right, float bottom)
 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Checks if rect is empty.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param isEmpty Indicates whether rect is empty.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect or isEmpty is nullptr.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectIsEmpty(const OH_Drawing_Rect* rect, bool* isEmpty)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Offsets rect by adding dx to its left and right coordinates, and adding dy to its top and bottom
+ * coordinates.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param dx Indicates the distance to offset on the x-axis in pixels.
+ * @param dy Indicates the distance to offset on the y-axis in pixels.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect is nullptr.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectOffset(OH_Drawing_Rect* rect, float dx, float dy)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Offsets rect to a specific position and keeps the width and height unchanged.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param newLeft Indicates the new left coordinate.
+ * @param newTop Indicates the new top coordinate.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect is nullptr.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectOffsetTo(OH_Drawing_Rect* rect, float newLeft, float newTop)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Sets the boundary coordinates of rect to zero.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect is nullptr.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectSetEmpty(OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Swaps the left and right if the left is greater than right; and swaps top and bottom if the top is greater
+ * than bottom. If the edges are already valid, then nothing is done.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect is nullptr.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectSort(OH_Drawing_Rect* rect)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Sets rect to the union of itself and another.
+ *
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param other Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect or other is nullptr.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_RectUnion(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 }

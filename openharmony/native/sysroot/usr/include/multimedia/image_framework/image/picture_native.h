@@ -14,7 +14,7 @@
  */
  
 /**
- * @addtogroup image
+ * @addtogroup Image_NativeModule
  * @{
  *
  * @brief Provides APIs for obtaining picture data and information.
@@ -118,6 +118,65 @@ typedef enum {
 } Image_AuxiliaryPictureType;
 
 /**
+ * @brief Define a OH_ComposeOptions struct type, Describes compose parameters.
+ *
+ * Used to specify the parameters used for composition, such as the target pixel format.
+ *
+ * @since 23
+ */
+typedef struct OH_ComposeOptions OH_ComposeOptions;
+
+/**
+ * @brief Create a instance for OH_ComposeOptions struct.
+ *
+ * @param options The OH_ComposeOptions pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 23
+ */
+Image_ErrorCode OH_ComposeOptions_Create(OH_ComposeOptions **options)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set desired pixel format for ComposeOptions.
+ *
+ * @param options The OH_ComposeOptions pointer will be operated.
+ * @param desiredPixelFormat The desired pixel format will be set, RGBA_1010102\YCBCR_P010\YCRCB_P010 are supported.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredPixelFormat is not supported.
+ * @since 23
+ */
+Image_ErrorCode OH_ComposeOptions_SetDesiredPixelFormat(OH_ComposeOptions *options, PIXEL_FORMAT desiredPixelFormat)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get desired pixel format for ComposeOptions.
+ *
+ * @param options The OH_ComposeOptions pointer will be operated.
+ * @param desiredPixelFormat The desired pixel format.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredPixelFormat is nullptr.
+ * @since 23
+ */
+Image_ErrorCode OH_ComposeOptions_GetDesiredPixelFormat(OH_ComposeOptions *options, PIXEL_FORMAT *desiredPixelFormat)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Releases an OH_ComposeOptions object.
+ *
+ * @param options Indicates a OH_ComposeOptions pointer.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @since 23
+ */
+Image_ErrorCode OH_ComposeOptions_Release(OH_ComposeOptions *options)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Create a <b>Picture</b> object.
  *
  * @param mainPixelmap The pixel map of the main image.
@@ -151,11 +210,27 @@ __attribute__((__availability__(ohos, introduced=13.0.0)));
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or hdrPixelmap is nullptr.
- *         {@link IMAGE_UNSUPPORTED_OPERATION} Unsupported operation, e.g. the picture does not has a gainmap
+ *         {@link IMAGE_UNSUPPORTED_OPERATION} Unsupported operation, e.g. the picture does not has a gainmap.
  * @since 13
  */
 Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *picture, OH_PixelmapNative **hdrPixelmap)
 __attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Obtains the hdr pixel map with options.
+ *
+ * @param picture The Picture pointer will be operated.
+ * @param options The compose options.
+ * @param hdrPixelmap Hdr pixel map pointer for obtained.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or hdrPixelmap is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_OPERATION} Unsupported operation, e.g. the picture does not has a gainmap.
+ * @since 23
+ */
+Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmapWithOptions(OH_PictureNative *picture,
+    OH_ComposeOptions *options, OH_PixelmapNative **hdrPixelmap)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Obtains the gainmap pixel map.

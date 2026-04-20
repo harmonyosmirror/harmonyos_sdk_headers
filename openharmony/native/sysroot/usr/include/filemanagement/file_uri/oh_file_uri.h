@@ -56,7 +56,7 @@ extern "C" {
  * @param length The length of the input path.
  * @param result Output a pointer to a uri string. Please use free() to clear the resource.
  * @return Returns the status code of the execution.
- *         {@link ERR_PARAMS}  401 - Invalid input parameter.
+ *         {@link ERR_INVALID_PARAMETER}  401 - Invalid input parameter.
  *         {@link ERR_UNKNOWN} 13900042 - Unknow error. The length of the output uri string is 0.
  *         {@link ERR_ENOMEM}  13900011 - Failed to apply for memory or failed to copy memory.
  *         {@link ERR_OK} 0 - This operation was successfully executed.
@@ -73,7 +73,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  * @param length The length of the input uri.
  * @param result Output a pointer to a path string. Please use free() to clear the resource.
  * @return Returns the status code of the execution.
- *         {@link ERR_PARAMS} 401 - Invalid input parameter.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
  *         {@link ERR_UNKNOWN} 13900042 - Unknow error. The length of the output path string is 0.
  *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
  *         {@link ERR_OK} 0 - This operation was successfully executed.
@@ -90,10 +90,10 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  * @param length  The length of the input uri.
  * @param result Output a pointer to a uri string. Please use free() to clear the resource.
  * @return Returns the status code of the execution.
- *         {@link ERR_PARAMS} 401 - Invalid input parameter.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
  *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
  *         {@link ERR_ENOENT} 13900002 - No such file or directory.
- *         {@link ERR_UNKNOWN} - Unknow error. The length of the output path string is 0.
+ *         {@link ERR_UNKNOWN} 13900042 - Unknow error. The length of the output path string is 0.
  *         {@link ERR_OK} 0 - This operation was successfully executed.
  * @syscap SystemCapability.FileManagement.AppFileService
  * @since 12
@@ -121,7 +121,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 * @param length  The length of the input uri.
 * @param result Output a pointer to a FileName string. Please use free() to clear the resource.
 * @return Returns the status code of the execution.
-*         {@link ERR_PARAMS} 401 - Invalid input parameter.
+*         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter.
 *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory or failed to copy memory.
 *         {@link ERR_OK} 0 - This operation was successfully executed.
 * @syscap SystemCapability.FileManagement.AppFileService

@@ -89,7 +89,7 @@ FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop) __attribute__((__availability__
 /**
  * @brief Controls an epoll file descriptor on ffrt loop.
  *
- * @warning Do not call `exit` in `cb` - this my cause unexpected behavior.
+ * @warning Do not call `exit` in `cb` - this may cause unexpected behavior.
  *
  * @param loop Indicates a loop handle.
  * @param op Indicates operation on the target file descriptor.
@@ -107,7 +107,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Starts a timer on ffrt loop.
  *
- * @warning Do not call `exit` in `cb` - this my cause unexpected behavior.
+ * @warning Do not call `exit` in `cb` - this may cause unexpected behavior.
  * @param loop Indicates a loop handle.
  * @param timeout Indicates the number of milliseconds that specifies timeout.
  * @param data Indicates user data used in cb.

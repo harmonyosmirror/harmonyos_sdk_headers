@@ -235,6 +235,23 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMod
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
+ * @brief Gets the supported full output capability for the specific camera, including capabilities of yuv, heif and hdr etc.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param camera the {@link Camera_Device} to be queried.
+ * @param sceneMode the {@link Camera_SceneMode} to be queried.
+ * @param cameraOutputCapability the supported {@link Camera_OutputCapability} will be filled
+ *        if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_GetSupportedFullCameraOutputCapabilityWithSceneMode(Camera_Manager* cameraManager,
+    const Camera_Device* camera, Camera_SceneMode sceneMode, Camera_OutputCapability** cameraOutputCapability)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Delete the supported output capability.
  *
  * @param cameraManager the {@link Camera_Manager} instance.
@@ -431,6 +448,22 @@ Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraMan
     __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
+ * @brief Create a metadata output with object types instance.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param metadataObjectTypes the {@link Camera_MetadataObjectType} to create {@link Camera_MetadataOutput}.
+ * @param size the size of the {@link Camera_MetadataObjectType}.
+ * @param metadataOutput the {@link Camera_MetadataOutput} will be created if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_CreateMetadataOutputWithObjectTypes(Camera_Manager* cameraManager,
+    const Camera_MetadataObjectType* metadataObjectTypes, uint32_t size, Camera_MetadataOutput** metadataOutput)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Gets supported scene mode for specific camera.
  *
  * @param camera the {@link Camera_Device} to be queryed.
@@ -514,6 +547,34 @@ Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,
 Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager, Camera_Position position,
     Camera_Type type, Camera_Device* camera)
     __attribute__((__availability__(ohos, introduced=18.0.0)));
+
+/**
+ * @brief Queries specified devices based on camera type, connection type and position.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param deviceQueryInfo the {@link Camera_DeviceQueryInfo} instance.
+ * @param cameraSize the size of supported {@link Camera_Device} list.
+ * @param cameras the supported {@link Camera_Device} list.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_GetCameraDevices(Camera_Manager* cameraManager,
+    Camera_DeviceQueryInfo* deviceQueryInfo, uint32_t* cameraSize, Camera_Device** cameras)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Delete specified devices.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param cameras the {@link Camera_Device} list to be deleted.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_DeleteCameraDevices(Camera_Manager* cameraManager, Camera_Device* cameras)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Obtains the concurrent information of specified cameras, the empty return means concurrency is not supported.

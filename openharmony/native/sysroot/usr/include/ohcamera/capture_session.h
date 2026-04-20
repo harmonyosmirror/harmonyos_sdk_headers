@@ -1287,7 +1287,7 @@ Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(
  * @since 22
  */
 typedef void (*OH_CaptureSession_OnIsoChange)(Camera_CaptureSession* session, int32_t isoValue);
- 
+
 /**
  * @brief Register iso change event callback.
  *
@@ -1300,7 +1300,7 @@ typedef void (*OH_CaptureSession_OnIsoChange)(Camera_CaptureSession* session, in
 Camera_ErrorCode OH_CaptureSession_RegisterIsoChangeCallback(
     Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
- 
+
 /**
  * @brief Unregister iso change callback.
  *

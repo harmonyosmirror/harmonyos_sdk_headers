@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup OH_PictureInPicture
+ * @addtogroup WindowManager
  * @{
  *
  * @file oh_window_pip.h
@@ -369,7 +369,7 @@ int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, Pictur
     __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
- * @brief Set picture-in-picture controll enable status.
+ * @brief Set picture-in-picture control enable status.
  *
  * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type.

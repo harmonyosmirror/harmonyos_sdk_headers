@@ -49,6 +49,7 @@
 #include "native_window/external_window.h"
 #include "ohaudio/native_audiostream_base.h"
 #include "native_avcodec_base.h"
+#include "avmedia_source.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -346,6 +347,17 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  */
 OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *speed)
 __attribute__((__availability__(ohos, introduced=11.0.0)));
+
+/**
+ * @brief get the current player playback rate
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param rate the playback rate which can get.
+ * @return Returns {@link AV_ERR_OK} if the current player playback rate is get; returns an error code defined
+ * in {@link native_averrors.h} otherwise.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_GetPlaybackRate(OH_AVPlayer *player, float *rate)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Set the renderer information of the player's audio renderer
@@ -699,7 +711,7 @@ __attribute__((__availability__(ohos, introduced=21.0.0)));
  * @param player Pointer to an OH_AVPlayer instance
  * @return Returns the player's source media info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- *   1. player is invalid.
+ *   1. player is invaild.
  *   2. player's media source is invalid.
  * @since 22
  */
@@ -719,13 +731,442 @@ __attribute__((__availability__(ohos, introduced=22.0.0)));
  * @return Returns one track info of player media source by the index if the execution is successful,
  * otherwise returns nullptr.
  * Possible failure causes:
- *   1. player is invalid.
+ *   1. player is invaild.
  *   2. player's media source is invalid.
  *   3. index is out of tracks array's bounds.
  * @since 22
  */
 OH_AVFormat *OH_AVPlayer_GetTrackDescription(OH_AVPlayer *player, uint32_t index)
 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Get the statistic metrics info of current player.
+ *     This API can be called only when the AVPlayer is in the prepared, playing, paused, completed, or stopped state.
+ *     It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
+ *     to be manually released by the caller.
+ * @param {OH_AVPlayer*} player Pointer to an OH_AVPlayer instance
+ * @return Returns the player's statistic metrics info.
+ *     if the execution is successful, otherwise returns nullptr. Possible failure causes:
+ *     1. player is invalid.
+ * @since 23
+ */
+OH_AVFormat *OH_AVPlayer_GetPlaybackStatisticMetrics(OH_AVPlayer *player)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Add subtitle resource represented by FD to the player. Currently, the external subtitle must be set after
+ *     fdSrc of the video resource is set in an AVPlayer instance.
+ * @param {OH_AVPlayer} player Pointer to an OH_AVPlayer instance
+ * @param {int32_t} fd Indicates the file descriptor of subtitle source.
+ * @param {int64_t} offset Indicates the offset of media source in file descriptor.
+ * @param {int64_t} size Indicates the size of media source.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_AddFdSubtitleSource(OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Add subtitle resource represented by url to the player. The external subtitle must be set after
+ * url is set in an AVPlayer instance.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param url Indicates the url of subtitle source.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_AddUrlSubtitleSource(OH_AVPlayer *player, const char *url)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set playback start position and end position. After the setting, only the content in the specified range of
+ * the audio or video file is played. It can be used in the initialized, prepared, paused, stopped, or completed state.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param mSecondsStart Playback start position, should be in [0, duration),
+ *        -1 means that the start position is not set, and the playback will start from 0.
+ * @param mSecondsEnd Playback end position, which should usually be in (startTimeMs, duration],
+ *        -1 means that the end position is not set, and the playback will be ended at the end of the stream.
+ * @param closestRange Use closest seek policy or not.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetPlaybackRange(OH_AVPlayer *player, int32_t mSecondsStart, int32_t mSecondsEnd,
+    bool closestRange)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Mute the media stream. This API can be called only when the AVPlayer is in the prepared, playing,
+ * paused, or completed state.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param mediaType Specified media type, see {@link OH_MediaType} in {@link native_avcodec_base.h}
+ * @param muted true for mute, false for unmute.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input parameter is invalid.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetMediaMuted(OH_AVPlayer *player, OH_MediaType mediaType, bool muted)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the playback position, accurate to millisecond. This API can be called only when the AVPlayer is in
+ * the prepared, playing, paused, or completed state.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @return Returns the playback position in milliseconds.
+ *         Return -1 if the player is nullptr or invalid.
+ * @since 23
+ */
+int32_t OH_AVPlayer_GetPlaybackPosition(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Checks whether the media source supports continuous seek.
+ *     The actual value is returned when this API is called in the prepared, playing, paused, or completed state.
+ *     The value **false** is returned if it is called in other states. For devices that do not support the seek
+ *     operation in {@link AV_SEEK_CONTINUOUS} mode, false is returned.
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @return true - seek continuous is supported.
+ *         false - seek continuous is not supported or the support status is uncertain.
+ * @since 23
+ */
+bool OH_AVPlayer_IsSeekContinuousSupported(OH_AVPlayer *player)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Select track with switch mode when playing a resource with multiple audio and video tracks.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param index The selected track index.
+ * @param mode The switch mode.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input parameter is invalid.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SelectTrackWithMode(OH_AVPlayer *player, int32_t index, AVPlayerTrackSwitchMode mode)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Subscribes to update events of the maximum audio level value, which is periodically reported when audio
+ * resources are played.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param callback Pointer to callback function, nullptr indicates unregister callback.
+ * @param userData Pointer to user specific data.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetAmplitudeUpdateCallback(OH_AVPlayer *player, OH_AVPlayerOnAmplitudeUpdateCallback callback,
+    void *userData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Subscribes to events indicating that a Supplemental Enhancement Information (SEI) message is received. This
+ *     applies only to HTTP-FLV live streaming and is triggered when SEI messages are present in the video stream.
+ *     You must initiate the subscription before calling prepare.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param payloadTypes playload types
+ * @param typeNum The size of the playload types array.
+ * @param callback Pointer to callback function, nullptr indicates unregister callback.
+ * @param userData Pointer to user specific data
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetSeiReceivedCallback(OH_AVPlayer *player, const int32_t *payloadTypes, uint32_t typeNum,
+    OH_AVPlayerOnSeiMessageReceivedCallback callback, void *userData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the number of message items in SEI message array.
+ * @param message Pointer to an OH_AVSeiMessageArray instance
+ * @return The number of message items in SEI message array
+ * @since 23
+ */
+uint32_t OH_AVSeiMessage_GetSeiCount(OH_AVSeiMessageArray *message)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get SEI of the message item by index in SEI message array.
+ * @param message Pointer to an OH_AVSeiMessageArray instance
+ * @param index The index of the message item
+ * @return The SEI of the message item
+ * @since 23
+ */
+OH_AVFormat *OH_AVSeiMessage_GetSei(OH_AVSeiMessageArray *message, uint32_t index)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set video window size for super-resolution. This API can be called when the AVPlayer is in the initialized,
+ *     prepared, playing, paused, completed, or stopped state.The input parameter values must be in the range
+ *     of 320 x 320 to 1920 x 1080 (in px).
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param width Width of the window. The value range is [320 - 1920], in px.
+ * @param height Height of the window. The value range is [320 - 1080], in px.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, or Parameter errord.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if Operation not allowed.
+ *         {@link AV_ERR_SUPER_RESOLUTION_UNSUPPORTED} if Super resolution is not supported.
+ *         {@link AV_ERR_SUPER_RESOLUTION_NOT_ENABLED} if Missing enable super resolution feature in{@link
+ *          OH_AVPlaybackStrategy}.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t width, int32_t height)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Enable or disable super-resolution dynamically. This API can be called when the AVPlayer is in the
+ * initialized, prepared, playing, paused, completed, or stopped state.
+ * Must enable super-resolution feature in {@link OH_AVPlaybackStrategy} before calling prepare.
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param enabled true: super-resolution enabled; false: super-resolution disabled.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, or Parameter error.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if Operation not allowed.
+ *         {@link AV_ERR_SUPER_RESOLUTION_UNSUPPORTED} if Super resolution is not supported.
+ *         {@link AV_ERR_SUPER_RESOLUTION_NOT_ENABLED} if Missing enable super resolution feature in{@link
+ *          OH_AVPlaybackStrategy}.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetVideoSuperResolutionEnable(OH_AVPlayer *player, bool enabled)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Create a playback strategy instance
+ * @return a playback strategy instance, nullptr if fails.
+ * @since 23
+ */
+OH_AVPlaybackStrategy *OH_AVPlaybackStrategy_Create(void) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Release a playback strategy instance
+ * @param strategy The OH_AVPlaybackStrategy instance.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_Destroy(OH_AVPlaybackStrategy *strategy)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Choose a stream width close to it.
+ * @param strategy The OH_AVPlaybackStrategy used by avplayer.
+ * @param width the preferred width chosen to play by avplayer at start.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredWidth(OH_AVPlaybackStrategy *strategy, int32_t width)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Choose a stream height close to it.
+ * @param strategy The OH_AVPlaybackStrategy used by avplayer.
+ * @param height The preferred width chosen to play by avplayer at start.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredHeight(OH_AVPlaybackStrategy *strategy, int32_t height)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Choose a preferred buffer duration close to it.
+ * @param strategy The OH_AVPlaybackStrategy used by avplayer.
+ * @param ms The preferred buffer duration chosen to play by avplayer at start.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredBufferDuration(OH_AVPlaybackStrategy *strategy, int32_t ms)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Enable or disable preferred HDR mode.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param enabled true to enable HDR, false to disable.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredHdr(OH_AVPlaybackStrategy *strategy, bool enabled)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set preferred subtitle language.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param lang Subtitle language code (e.g., "zh").
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredSubtitleLanguage(OH_AVPlaybackStrategy *strategy, const char *lang)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set preferred audio language.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param lang Audio language code (e.g., "en").
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredAudioLanguage(OH_AVPlaybackStrategy *strategy, const char *lang)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set muted media type for playback.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param mediaType Media type to mute.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetMutedMediaType(OH_AVPlaybackStrategy *strategy, OH_MediaType mediaType)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set whether to show the first frame on prepare.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param enabled true to show, false otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetShowFirstFrameOnPrepare(OH_AVPlaybackStrategy *strategy, bool enabled)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set the threshold for auto quick play.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param seconds Threshold value.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(OH_AVPlaybackStrategy *strategy, double seconds)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Enable or disable super resolution.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param enabled true to enable, false to disable.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetSuperResolutionEnable(OH_AVPlaybackStrategy *strategy, bool enabled)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set preferred buffer duration for playing in seconds (double).
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param seconds Buffer duration in seconds.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetPreferredBufferDurationForPlaying(OH_AVPlaybackStrategy *strategy,
+    double seconds)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set whether to keep decoding when muted.
+ *
+ * @param strategy Pointer to OH_AVPlaybackStrategy.
+ * @param enabled true to keep decoding, false to pause decoding when muted.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input strategy is nullptr.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlaybackStrategy_SetKeepDecodingOnMute(OH_AVPlaybackStrategy *strategy, bool enabled)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set playback strategy to avplayer. This API can be called only when the avplayer is in the initialized state.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param strategy The playback strategy instance.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetPlaybackStrategy(OH_AVPlayer *player, OH_AVPlaybackStrategy *strategy)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get statistic info of current player. This API can be called only when the avplayer is in the prepared,
+ *     playing, or paused state.
+ * @param {OH_AVPlayer*} player Pointer to an OH_AVPlayer instance
+ * @return Returns a pointer to an OH_AVFormat instance.
+ *         Return nullptr if the player is nullptr or invalid.
+ * @since 23
+ */
+OH_AVFormat* OH_AVPlayer_GetPlaybackInfo(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Sets an OH_AVMediaSource to the player.
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param source Indicates the media source.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, source is null or player setUrlSource failed.
+ * @since 23
+ */
+OH_AVErrCode OH_AVPlayer_SetMediaSource(OH_AVPlayer *player, OH_AVMediaSource *source)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the track count of player media source.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @return Returns the track count.
+ * @since 23
+ */
+uint32_t OH_AVPlayer_GetTrackCount(OH_AVPlayer *player) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the player track info by the index.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param trackIndex Indicates tracks array index.
+ * @return Returns a pointer to an OH_AVFormat instance.
+ *         Return nullptr if the player is nullptr or invalid.
+ *         Return nullptr if the trackIndex is invalid.
+ * @since 23
+ */
+OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 }

@@ -48,7 +48,17 @@ typedef enum ServiceCollaborationFilterType {
     /** indicates the collaboration service used to scan documents. */
     SCAN_DOCUMENT = 2,
     /** indicates the collaboration service used to pick images. */
-    IMAGE_PICKER = 3
+    IMAGE_PICKER = 3,
+    /** 
+     * indicates the collaboration service used to pick videos. 
+     * @since 6.1.0(23)
+     */
+    VIDEO_PICKER = 5,
+    /** 
+     * indicates the collaboration service used to pick images and videos. 
+     * @since 6.1.0(23)
+     */
+    IMAGE_VIDEO_PICKER = 6,
 } ServiceCollaborationFilterType;
 
 /**
@@ -60,7 +70,27 @@ typedef enum ServiceCollaborationFilterType {
 typedef enum ServiceCollaborationDataType {
     /** indicates the data type is IMAGE. */
     IMAGE = 1,
+    /** 
+     * indicates the data type is VIDEO.
+     * @since 6.1.0(23)
+     */
+    VIDEO = 2,
 } ServiceCollaborationDataType;
+
+/**
+ * @brief Enumerates the types of collaboration devices type.
+ * The caller must set up { @link CollaborationDeviceFilterType  } to specify the type of device to get.
+ *
+ * @since 6.1.0(23)
+ */
+typedef enum CollaborationDeviceFilterType {
+    /** 1 indicates the device type is phone. */
+    PHONE = 1,
+    /** 2 indicates the device type is tablet. */
+    TABLET = 2,
+    /** 3 indicates the device type is pc/2in1. */
+    PC_2IN1 = 3
+} CollaborationDeviceFilterType;
 
 /**
  * @brief Enumerates the types of collaboration service event code.
@@ -98,15 +128,36 @@ typedef enum ServiceCollaborationEventCode {
      * @since 5.1.0(18)
      */
     REMOTE_DISTRIBUTED_SERVICES_CONFLICT = 1001202014,
+    /** 
+     * Indicates indicates received the last pack of video data.
+     * @since 6.1.0(23)
+     */
+    SEND_VIDEO_SUCCESS = 1001202015,
+    /**
+     * Indicates received the middle video data. 
+     * @since 6.1.0(23)
+     */
+    MULTI_VIDEO_SENDING_BACK = 1001202016,
+    /** 
+     * Indicates device storage is not enough. 
+     * @since 6.1.0(23)
+     */
+    STORE_VIDEO_FAIL = 1001202017,
 } ServiceCollaborationEventCode;
 
+
+#define COLLABORATIONDEVICEINFO_DEVICENETWORKID_MAXLENGTH 65
+#define COLLABORATIONDEVICEINFO_DEVICENAME_MAXLENGTH 128
+/** 
+ * @brief Indicates uri max length
+ * @since 6.1.0(23)
+ */
+#define SERVICE_COLLABORATION_URI_MAXLENGTH 4096
 /**
  * @brief Indicates the peer device with its basic properties and service filter type.
  *
  * @since 5.0.0(12)
  */
-#define COLLABORATIONDEVICEINFO_DEVICENETWORKID_MAXLENGTH  65
-#define COLLABORATIONDEVICEINFO_DEVICENAME_MAXLENGTH 128
 typedef struct ServiceCollaboration_CollaborationDeviceInfo {
     /** the peer device type. only could be 0x14 for phone or 0x17 for pad. */
     uint32_t deviceType;
@@ -146,6 +197,23 @@ typedef struct ServiceCollaboration_SelectInfo {
     /** maximum number of images that can be selected. */
     uint32_t maxSize;
 } ServiceCollaboration_SelectInfo;
+
+/**
+ * @brief Indicates the selected device which to do service collaboration
+ * with { @link HMS_ServiceCollaboration_StartCollaborationV2}.
+ *
+ * @since 6.1.0(23)
+ */
+typedef struct ServiceCollaboration_SelectInfoV2 {
+    /** the wanted service filter type. */
+    ServiceCollaborationFilterType serviceFilterType;
+    /** the selected device network id. */
+    char deviceNetworkId[COLLABORATIONDEVICEINFO_DEVICENETWORKID_MAXLENGTH];
+    /** maximum number of images that can be selected. */
+    uint32_t maxSize;
+    /** Application sandbox directory path URI. */
+    char uri[SERVICE_COLLABORATION_URI_MAXLENGTH]; 
+} ServiceCollaboration_SelectInfoV2;
 
 /**
  * @brief Indicates the callback with { @link HMS_ServiceCollaboration_StartCollaboration}.
@@ -205,6 +273,22 @@ ServiceCollaboration_CollaborationDeviceInfoSets* HMS_ServiceCollaboration_GetCo
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
+ * @brief Get collaboration devices with supported service filter types and device filter types.
+ *
+ * @param deviceFilterNum The device filter types size.
+ * @param deviceFilterTypes {@link CollaborationDeviceFilterType} The device filter types.
+ * @param serviceFilterNum The service filter types size.
+ * @param serviceFilterTypes {@link ServiceCollaborationFilterType} The service filter types.
+ * @return The peer devices with its service filter types and device filter types.
+ *
+ * @since 6.1.0(23)
+ */
+ServiceCollaboration_CollaborationDeviceInfoSets *HMS_ServiceCollaboration_GetCollaborationDeviceInfosV2(
+    uint32_t deviceFilterNum, CollaborationDeviceFilterType deviceFilterTypes[], uint32_t serviceFilterNum,
+    ServiceCollaborationFilterType serviceFilterTypes[])
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief start collaboration to selected device.
  *
  * @param selectService {@link ServiceCollaboration_SelectInfo} The selected service info.
@@ -216,6 +300,19 @@ ServiceCollaboration_CollaborationDeviceInfoSets* HMS_ServiceCollaboration_GetCo
 uint32_t HMS_ServiceCollaboration_StartCollaboration(
     const ServiceCollaboration_SelectInfo* selectService, ServiceCollaborationCallback* callback)
     __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief start collaboration to selected device.
+ *
+ * @param selectService {@link ServiceCollaboration_SelectInfoV2} The selected service info.
+ * @param callback {@link ServiceCollaborationCallback} The service collaboration callback.
+ * @return The collaborationId.
+ *
+ * @since 6.1.0(23)
+ */
+uint32_t HMS_ServiceCollaboration_StartCollaborationV2(
+    const ServiceCollaboration_SelectInfoV2* selectService, ServiceCollaborationCallback* callback)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief stop collaboration to selected device.

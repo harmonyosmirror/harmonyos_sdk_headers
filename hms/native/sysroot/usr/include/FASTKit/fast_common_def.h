@@ -23,6 +23,7 @@
  *
  * @since 6.0.2(22)
  */
+
 #ifndef FAST_COMMON_DEF_H
 #define FAST_COMMON_DEF_H
 #include <stddef.h>
@@ -53,6 +54,7 @@ typedef enum FAST_ErrorCode {
     /** Out of memory. */
     FAST_ERROR_CODE_OOM = 1023199001
 } FAST_ErrorCode;
+
 #ifdef __cplusplus
 }
 #endif

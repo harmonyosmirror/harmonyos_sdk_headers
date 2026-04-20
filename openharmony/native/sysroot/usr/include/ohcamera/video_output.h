@@ -238,6 +238,20 @@ Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutpu
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
+ * @brief Gets the video rotation angle without device degree.
+ *
+ * @param videoOutput the {@link Camera_VideoOutput} instance which used to get the video rotation angle.
+ * @param imageRotation the {@link Camera_ImageRotation} result of video rotation angle.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_VideoOutput_GetVideoRotationWithoutDeviceDegree(Camera_VideoOutput* videoOutput,
+    Camera_ImageRotation* imageRotation)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Get supported video output frame rate list.
  *
  * @param videoOutput the {@link Camera_VideoOutput} instance to deliver supported frame rate list.

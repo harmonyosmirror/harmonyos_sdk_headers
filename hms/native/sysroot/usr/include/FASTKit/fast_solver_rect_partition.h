@@ -23,6 +23,7 @@
  *
  * @since 6.0.2(22)
  */
+
 #ifndef FAST_SOLVER_RECT_PARTITION_H
 #define FAST_SOLVER_RECT_PARTITION_H
 #include "info/application_target_sdk_version.h"
@@ -120,6 +121,7 @@ FAST_EXPORT FAST_ErrorCode HMS_FAST_RectPartition_SetAlgo(FAST_RectPartitionConf
 FAST_EXPORT FAST_ErrorCode HMS_FAST_RectPartition_Solve(FAST_RectPartitionConfig* config,
     size_t size, const FAST_Rect* origin, FAST_Rect* result, size_t* resultSize)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
+
 #ifdef __cplusplus
 }
 #endif

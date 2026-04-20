@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image
  * @{
  *
  * @brief Provides APIs for obtaining pixel map data and information.

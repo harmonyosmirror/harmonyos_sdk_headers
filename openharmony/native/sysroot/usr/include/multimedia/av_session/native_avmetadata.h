@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,69 +42,12 @@
 
 #include "info/application_target_sdk_version.h"
 #include <stdint.h>
+#include "native_avsession_errors.h"
+#include "native_avsession_base.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief AVMetadata error code
- *
- * @since 13
- * @version 1.0
- */
-typedef enum {
-    /**
-     * @error The call was successful.
-     */
-    AVMETADATA_SUCCESS = 0,
-
-    /**
-     * @error This means that the function was executed with an invalid input parameter.
-     */
-    AVMETADATA_ERROR_INVALID_PARAM = 1,
-
-    /**
-     * @error This means there is no memory left.
-     */
-    AVMETADATA_ERROR_NO_MEMORY = 2,
-} AVMetadata_Result;
-
-/**
- * @brief Defines the skip interval when fastforward or rewind.
- *
- * @since 13
- * @version 1.0
- */
-typedef enum {
-    /**
-     * @brief 10 seconds
-     */
-    SECONDS_10 = 10,
-
-    /**
-     * @brief 15 seconds
-     */
-    SECONDS_15 = 15,
-
-    /**
-     * @brief 30 seconds
-     */
-    SECONDS_30 = 30,
-} AVMetadata_SkipIntervals;
-
-/**
- * @brief Display tag
- *
- * @since 13
- * @version 1.0
- */
-typedef enum {
-    /**
-     * @brief Indicate the audio vivid property.
-     */
-    AVSESSION_DISPLAYTAG_AUDIO_VIVID = 1,
-} AVMetadata_DisplayTag;
 
 /**
  * @brief Declaring the avmetadata builder.
@@ -355,6 +298,21 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
  */
 AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* builder, int32_t tags)
 __attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Set the protocols supported
+ *
+ * @param builder The metadata builder instance pointer
+ * @param filter The protocols supported by this session,if not set, the default is {@link TYPE_CAST_PLUS_STREAM}
+ * @return Function result code:
+ *         {@link AVMETADATA_SUCCESS} If the execution is successful.
+ *         {@link AVMETADATA_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of builder is nullptr;
+ *                                                 2.The param of filter is invalid.
+ * @since 23
+ */
+AVMetadata_Result OH_AVMetadataBuilder_SetFilter(OH_AVMetadataBuilder* builder, uint32_t filter)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Create the avmetadta.

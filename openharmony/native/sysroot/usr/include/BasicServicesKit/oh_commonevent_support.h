@@ -577,6 +577,21 @@ static const char* const COMMON_EVENT_MINORSMODE_OFF = "usual.event.MINORSMODE_O
  * @since 15
  */
 static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.event.MANAGED_BROWSER_POLICY_CHANGED";
+
+/**
+ * @brief This common event means that the open and closed state of the stand associated
+ * with the tablet mode has changed.
+ * This is a protected common event that can only be sent by system.
+ * @since 23
+ */
+static const char* const COMMON_EVENT_TABLET_MODE_CHANGED = "usual.event.TABLET_MODE_CHANGED";
+
+/**
+ * @brief This common event means that the state (open or closed) of the laptop lid has changed.
+ * This is a protected common event that can only be sent by system.
+ * @since 23
+ */
+static const char* const COMMON_EVENT_LID_STATE_CHANGED = "usual.event.LID_STATE_CHANGED";
 #ifdef __cplusplus
 }
 #endif

@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image_NativeModule
  * @{
  *
  * @brief Provides APIs for access to the image interface.
@@ -185,6 +185,11 @@ typedef enum {
     IMAGE_UNKNOWN_MIME_TYPE = 7600102,
     /** too large data or image */
     IMAGE_TOO_LARGE = 7600103,
+    /**
+     * @error Failed to get image data.
+     * @since 23
+     */
+    IMAGE_GET_IMAGE_DATA_FAILED = 7600104,
     /** @error DMA memory does not exist */
     IMAGE_DMA_NOT_EXIST = 7600173,
     /** @error DMA operation failed */
@@ -198,8 +203,8 @@ typedef enum {
     /** invalid region */
     IMAGE_INVALID_REGION = 7600204,
     /**
-     *  @error unsupported memory format
-     *  @since 13
+     * @error unsupported memory format
+     * @since 13
      */
     IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,
     /**
@@ -257,6 +262,12 @@ typedef enum {
      * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,
+    /**
+     * @error Unsupported metadata. For example, the property key is not supported,
+     *     or the property value is invalid.
+     * @since 23
+     */
+    IMAGE_SOURCE_UNSUPPORTED_METADATA = 7700202,
     /* @error unsupported options, e.g, cannot convert image into desired pixel format.
      * @since 15
      */

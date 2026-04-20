@@ -76,6 +76,13 @@ typedef struct ArkUI_AccessibilityProvider ArkUI_AccessibilityProvider;
 typedef struct ArkUI_AccessibilityActionArguments ArkUI_AccessibilityActionArguments;
 
 /**
+ * @brief Defines the pointer to the ArkUI native component object
+ *
+ * @since 23
+ */
+typedef struct ArkUI_Node* ArkUI_NodeHandle;
+
+/**
  * @brief Defines an enum for accessibility action types.
  *
  * @since 13
@@ -1191,6 +1198,22 @@ int32_t OH_ArkUI_AccessibilityEventSetElementInfo(
 int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
     ArkUI_AccessibilityActionArguments* arguments, const char* key, char** value)
     __attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
+ * instance of this <b>ArkUI_NodeHandle</b> instance.
+ *
+ * @param node Indicates the pointer to the <b>ArkUI_NodeHandle</b> instance.
+ * @param provider Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
+ * @return Returns the result code.
+ * @return Returns <b>ARKUI_ERROR_CODE_NO_ERROR<b> if the operation is successful.
+ *         Returns <b>ARKUI_ERROR_CODE_PARAM_INVALID<b> if a parameter error occurs:1. node or
+ *         provider is nullptr. 2. the type of node is not ARKUI_NODE_CUSTOM.
+ * @since 23
+ */
+int32_t OH_ArkUI_NativeModule_GetNativeAccessibilityProvider(
+    ArkUI_NodeHandle* node, ArkUI_AccessibilityProvider** provider)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 };
 #endif

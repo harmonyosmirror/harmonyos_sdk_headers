@@ -144,6 +144,26 @@ typedef enum {
      * @brief Unducked the playback.
      */
     AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK = 5,
+
+    /**
+     * @brief Suggests to mute the playback because there is another application begin to play nonmixable
+     * audio, application can decide whether to mute.
+     * If interrupt strategy is duck, {@link #AUDIO_SESSION_STATE_CHANGE_HINT_DUCK} will replace mute suggestion event,
+     * but application can still decide to mute when receive hint duck.
+     *
+     * @since 23
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_MUTE_SUGGESTION = 6,
+
+    /**
+     * @brief Suggest to unmute the playback because another application's nonmixable audio ends,
+     * application can decide whether to mute.
+     * If interrupt strategy is unduck, {@link #AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK} will replace unmute
+     * suggestion event, but application can still decide to unmute when receive hint unduck.
+     *
+     * @since 23
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION = 7,
 } OH_AudioSession_StateChangeHint;
 
 /**
@@ -735,6 +755,42 @@ OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevice(
     OH_AudioDeviceDescriptor *audioDeviceDescriptor)
     __attribute__((__availability__(ohos, introduced=21.0.0)));
 
+/**
+ * @brief Enables mute suggestion callback function when using {@link #CONCURRENCY_MIX_WITH_OTHERS} mode.
+ * Usually when using mix mode, application won't receive state change event when there is another audio playing
+ * simultaneously. But in some scenarios, like game or radio, the application may intend to mute its audio to
+ * achieve better user experience.
+ * If enabled, the mute and unmute suggestion hint will be sent by {@link #OH_AudioSession_StateChangedCallback}
+ * registered by {@link #OH_AudioSessionManager_RegisterStateChangeCallback}. Mute suggestion means there is
+ * another application starting non-mixable audio.
+ * This function only supports audio session with {@link #OH_AudioSession_Scene} set and activated with
+ * {@link #CONCURRENCY_MIX_WITH_OTHERS} mode. And it takes effect only once during activation, so application
+ * need to enable it every time before activation.
+ *
+ * @param audioSessionManager the {@link #OH_AudioSessionManager}
+ *     returned by the {@link #OH_AudioManager_GetAudioSessionManager}.
+ * @param enable Sets true to enable mute suggestion while registering session state change event callback.
+ * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *     or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} Parameter validation fails.
+ *     or {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} Function is called without setting
+ *     {@link #OH_AudioSession_Scene} or called after audio session activation.
+ *     or {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} Audio client call audio service error, system internal error.
+ * @since 23
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers(
+    OH_AudioSessionManager *audioSessionManager, bool enable)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Returns if there is any other application playing audio in media usage, including media session activated.
+ *
+ * @param audioSessionManager the {@link #OH_AudioSessionManager}
+ *     returned by the {@link #OH_AudioManager_GetAudioSessionManager}.
+ * @return True if there is other application playing audio in media usage.
+ * @since 23
+ */
+bool OH_AudioSessionManager_IsOtherMediaPlaying(OH_AudioSessionManager *audioSessionManager)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif

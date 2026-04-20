@@ -242,6 +242,20 @@ Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
+ * @brief Gets the photo rotation angle without device degree.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance which used to get the photo rotation angle.
+ * @param imageRotation the {@link Camera_ImageRotation} result of photo rotation angle.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_PhotoOutput_GetPhotoRotationWithoutDeviceDegree(Camera_PhotoOutput* photoOutput,
+    Camera_ImageRotation* imageRotation)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Unregister capture start event callback.
  *
  * @param photoOutput the {@link Camera_PhotoOutput} instance.

@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup PREFERENCES
+ * @addtogroup Preferences
  * @{
  *
  * @brief Provides APIs for processing data in the form of key-value (KV) pairs.
@@ -25,7 +25,7 @@
  */
 
 /**
- * @file preferences_err_code.h
+ * @file oh_preferences_err_code.h
  *
  * @brief Defines the status codes used in the Preferences module.
  *

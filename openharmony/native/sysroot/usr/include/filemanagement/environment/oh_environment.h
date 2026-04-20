@@ -46,9 +46,9 @@ extern "C" {
  *
  * @param result Output a pointer to a string. Please use free() to clear the resource.
  * @return Return the status code of the execution.
- *         {@link PARAMETER_ERROR} 401 - Invalid input parameter, pointer is null.
- *         {@link DEVICE_NOT_SUPPORTED} 801 - Device not supported.
- *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
 FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result)
@@ -59,9 +59,9 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  *
  * @param result Output a pointer to a string. Please use free() to clear the resource.
  * @return Return the status code of the execution.
- *         {@link PARAMETER_ERROR} 401 - Invalid input parameter, pointer is null.
- *         {@link DEVICE_NOT_SUPPORTED} 801 - Device not supported.
- *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
 FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result)
@@ -72,9 +72,9 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  *
  * @param result Output a pointer to a string. Please use free() to clear the resource.
  * @return Return the status code of the execution.
- *         {@link PARAMETER_ERROR} 401 - Invalid input parameter, pointer is null.
- *         {@link DEVICE_NOT_SUPPORTED} 801 - Device not supported.
- *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
+ *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
+ *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
+ *         {@link ERR_ENOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
 FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result)

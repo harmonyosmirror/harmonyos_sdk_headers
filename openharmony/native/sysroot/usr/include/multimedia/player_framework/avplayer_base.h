@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -51,6 +51,18 @@ extern "C" {
 typedef struct OH_AVPlayer OH_AVPlayer;
 
 /**
+ * @brief OH_AVSeiMessageArray field.
+ * @since 23
+ */
+typedef struct OH_AVSeiMessageArray OH_AVSeiMessageArray;
+
+/**
+ * @brief OH_AVPlaybackStrategy field.
+ * @since 23
+ */
+typedef struct OH_AVPlaybackStrategy OH_AVPlaybackStrategy;
+
+/**
  * @brief Player States
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
@@ -94,6 +106,13 @@ typedef enum AVPlayerSeekMode {
      * @since 12
      */
     AV_SEEK_CLOSEST = 2,
+    /**
+     * Seek in continuous mode, which can provide a smoother dragging experience, but the device needs to support
+     * the current stream to execute seek continuous. Before calling seek continuous,
+     * check whether it is supported, see {@link #OH_AVPlayer_IsSeekContinuousSupported}.
+     * @since 23
+     */
+    AV_SEEK_CONTINUOUS = 3,
 } AVPlayerSeekMode;
 
 /**
@@ -201,6 +220,13 @@ typedef enum AVPlayerOnInfoType {
      * @since 20
      */
     AV_INFO_TYPE_PLAYBACK_RATE_DONE = 18,
+
+    /**
+     * @brief Super-resolution changed info type. 
+     *
+     * @since 23
+     */
+    AV_INFO_TYPE_SUPER_RESOLUTION_CHANGED = 19,
 } AVPlayerOnInfoType;
 
 /**
@@ -222,6 +248,19 @@ typedef enum AVPlayerBufferingType {
     /** Indicates how long the buffer cache data can be played. */
     AVPLAYER_BUFFERING_CACHED_DURATION,
 } AVPlayerBufferingType;
+
+/**
+ * @brief Enumerates the track switch mode
+ * @since 23
+ */
+typedef enum AVPlayerTrackSwitchMode {
+    /** Switch track smoothly */
+    AV_TRACK_SWITCH_MODE_SMOOTH = 0,
+    /** Switch track segment */
+    AV_TRACK_SWITCH_MODE_SEGMENT = 1,
+    /** Switch track closest */
+    AV_TRACK_SWITCH_MODE_CLOSEST = 2,
+} AVPlayerTrackSwitchMode;
 
 /**
  * @brief Key to get state, value type is int32_t.
@@ -405,6 +444,86 @@ extern const char* OH_PLAYER_MD_KEY_HAS_SUBTITLE __attribute__((__availability__
 extern const char* OH_PLAYER_MD_KEY_TRACK_INDEX __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
+ * Sei message key for payload type.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SEI_PAYLOAD_TYPE __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Sei message key for payload content.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SEI_PAYLOAD_CONTENT __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get whether the super resolution feature is enabled,
+ *        value type is int32_t. The value is 1 when enabled, otherwise 0.
+ *        Used in the info callback when super resolution state changes.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SUPER_RESOLUTION_ENABLE_STATE __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Track change info key for track info, its value is int32_t type.
+ * @since 23
+ */
+extern const char* OH_PLAYER_TRACH_CHANGE_INFO_TRACK_INDEX __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Track change info key for track selected flag, its value is int32_t type.
+ * @since 23
+ */
+extern const char* OH_PLAYER_TRACH_CHANGE_INFO_TRACK_SELECTED __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Subtitle update info key for duration, its value is int32_t type.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SUBTITLE_UPDATE_INFO_DURATION __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Subtitle update info key for start time, its value is int32_t type.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SUBTITLE_UPDATE_INFO_START_TIME __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Subtitle update info key for subtitle text, its value is string type.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SUBTITLE_UPDATE_INFO_TEXT __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Playback info key for server ip address.
+ * @since 23
+ */
+extern const char* OH_PLAYER_SERVER_IP_ADDRESS __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Playback info key for downloading state.
+ * @since 23
+ */
+extern const char* OH_PLAYER_IS_DOWNLOADING __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Playback info key for buffer duration.
+ * @since 23
+ */
+extern const char* OH_PLAYER_BUFFER_DURATION __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Playback info key for download rate.
+ * @since 23
+ */
+extern const char* OH_PLAYER_DOWNLOAD_RATE __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * Playback info key for average download rate.
+ * @since 23
+ */
+extern const char* OH_PLAYER_AVG_DOWNLOAD_RATE __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Called when a player message or alarm is received.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player The pointer to an OH_AVPlayer instance.
@@ -455,6 +574,33 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
     void *userData);
 
 /**
+ * @brief Called when the maximum audio level values are calculated.
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param amplitudes The pointer to the maximum audio level values array.
+ *        Note: the amplitudes array will be released after callback automatically.
+ *        If necessary, user need copy the data for the further use.
+ * @param size The size of the maximum audio level values array.
+ * @param userData Pointer to user specific data.
+ * @since 23
+ */
+typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double *amplitudes, uint32_t size,
+    void *userData);
+
+/**
+ * @brief Describes the handle used to obtain SEI messages. This is used when in subscriptions to SEI message events.
+ * and the callback returns detailed SEI information.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param message SEI message array. 
+ *        Note: the message array will be released after callback automatically.
+ *        If necessary, user need copy the data for the further use.
+ * @param playbackPosition playback position
+ * @param userData Pointer to user specific data
+ * @since 23
+ */
+typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
+    int32_t playbackPosition, void *userData);
+
+/**
  * @brief A collection of all callback function pointers in OH_AVPlayer. Register an instance of this
  * structure to the OH_AVPlayer instance, and process the information reported through the callback to ensure the
  * normal operation of OH_AVPlayer.
@@ -470,6 +616,71 @@ typedef struct AVPlayerCallback {
     OH_AVPlayerOnInfo onInfo;
     OH_AVPlayerOnError onError;
 } AVPlayerCallback;
+
+/**
+ * @brief Key to get prepare duration value in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_PREPARE_DURATION __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get resource link establishment time in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_RESOURCE_CONNECTION_DURATION
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get decapsulation time of the first sample in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_FIRST_FRAME_DECAPSULATION_DURATION
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get cumulative playback time in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_TOTAL_PLAYING_TIME __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get cumulative times of media resource loading request in statistic metrics info,
+ *     value type is uint32_t.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_REQUEST_COUNT __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get the total time spent loading the media resource in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_TIME __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get size of loaded media resources in statistic metrics info,
+ *     value type is int64_t.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_SIZE __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get cumulative stalling count in statistic metrics info,
+ *     value type is uint32_t.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_STALLING_COUNT __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to get the cumulative stalling time in statistic metrics info,
+ *     value type is uint32_t,in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 }

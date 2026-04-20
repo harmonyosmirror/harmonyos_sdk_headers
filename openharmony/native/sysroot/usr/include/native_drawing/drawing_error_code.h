@@ -81,6 +81,41 @@ typedef enum {
      * @since 22
      */
     OH_DRAWING_ERROR_INCORRECT_PARAMETER = 26200004,
+    /**
+     * @error File not found. The specified file does not exist or the path is incorrect..
+     * @since 23
+     */
+    OH_DRAWING_ERROR_FILE_NOT_FOUND = 26200005,
+    /**
+    * @error Failed to open the file. The file cannot be opened due to permission or I/O issues.
+    * @since 23
+    */
+    OH_DRAWING_ERROR_OPEN_FILE_FAILED = 26200006,
+    /**
+    * @error File seek failed. The system failed to reposition the file read pointer..
+    * @since 23
+    */
+    OH_DRAWING_ERROR_FILE_SEEK_FAILED = 26200007,
+    /**
+    * @error Failed to get the file size. The system was unable to obtain the file size information.
+    * @since 23
+    */
+    OH_DRAWING_ERROR_GET_FILE_SIZE_FAILED = 26200008,
+    /**
+    * @error Failed to read the file. The file could not be read completely or contains unreadable data.
+    * @since 23
+    */
+    OH_DRAWING_ERROR_READ_FILE_FAILED = 26200009,
+    /**
+    * @error Empty file. The specified file is empty and contains no valid data.
+    * @since 23
+    */
+    OH_DRAWING_ERROR_EMPTY_FILE = 26200010,
+    /**
+    * @error Corrupted file. The file content is invalid or damaged and cannot be parsed.
+    * @since 23
+    */
+    OH_DRAWING_ERROR_FILE_CORRUPTED = 26200011,
 } OH_Drawing_ErrorCode;
 
 /**

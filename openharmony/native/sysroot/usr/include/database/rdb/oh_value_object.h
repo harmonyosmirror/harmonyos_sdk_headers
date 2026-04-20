@@ -31,7 +31,7 @@
  * @brief Provides numeric type conversion functions.
  *
  * @kit ArkData
- * @library libnative_rdb_ndk.so
+ * @library libnative_rdb_ndk.z.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */

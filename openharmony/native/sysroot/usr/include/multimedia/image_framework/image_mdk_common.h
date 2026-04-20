@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image
  * @{
  *
  * @brief Provides APIs for access to the image interface.

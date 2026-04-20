@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image
  * @{
  *
  * @brief Provides native APIs for image sources.

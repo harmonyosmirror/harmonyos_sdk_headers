@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup OH_DisplayCapture
+ * @addtogroup OH_DisplayManager
  * @{
  *
  * @brief Defines the data structures for the C APIs of the display module.
@@ -50,7 +50,7 @@ extern "C" {
 /**
  * @brief Capture a screen pixelmap of the specified display.
  *
- * @permission {@code ohos.permission.CUSTOM_SCREEN_CAPTURE}
+ * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE
  * @param displayId The ID of the display to be captured.
  * @param pixelMap The output pixel map of the captured display.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.

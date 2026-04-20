@@ -166,6 +166,18 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
 __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
+ * @brief Write unsigned integer data to OH_AVFormat
+ * @param format pointer to an OH_AVFormat instance
+ * @param key key to write data
+ * @param value written data
+ * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * @since 23
+ */
+bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Write Long data to OH_AVFormat
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param format pointer to an OH_AVFormat instance
@@ -252,6 +264,19 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  */
 bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out)
 __attribute__((__availability__(ohos, introduced=9.0.0)));
+
+/**
+ * @brief Read unsigned integer data from OH_AVFormat
+ * @param format pointer to an OH_AVFormat instance
+ * @param key read key value
+ * @param out read data
+ * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr.
+ * @since 23
+ */
+bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Read Long data from OH_AVFormat
@@ -386,6 +411,33 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  */
 bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)
 __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Get the total number of keys contained in OH_AVFormat.
+ * @param format Pointer to an OH_AVFormat instance
+ * @return Returns the number of keys on success; returns 0 on failure
+ * @details Possible failure causes:
+ * 1. input format is NULL;
+ * 2. system resources are insufficient.
+ * @since 23
+ */
+uint32_t OH_AVFormat_GetKeyCount(OH_AVFormat *format) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the key name string by index from OH_AVFormat.
+ * @param format Pointer to an OH_AVFormat instance
+ * @param index Zero-based index of the key to query, range: [0, OH_AVFormat_GetKeyCount(format))
+ * @param key Output pointer to receive the key name string; the lifecycle is bound to the format
+ * @return Returns TRUE on success, FALSE on failure
+ * @details Possible failure causes:
+ * 1. input format is NULL;
+ * 2. index is out of range;
+ * 3. key is NULL;
+ * 4. system resources are insufficient.
+ * @since 23
+ */
+bool OH_AVFormat_GetKey(OH_AVFormat *format, uint32_t index, const char **key)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 }

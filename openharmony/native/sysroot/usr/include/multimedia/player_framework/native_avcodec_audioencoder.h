@@ -20,6 +20,7 @@
  * @brief The AudioEncoder module provides functions for audio encoding.
  *
  * @syscap SystemCapability.Multimedia.Media.AudioEncoder
+ * @deprecated since 11
  * @since 9
  */
 
@@ -31,6 +32,7 @@
  * @kit AVCodecKit
  * @library libnative_media_aenc.so
  * @syscap SystemCapability.Multimedia.Media.AudioEncoder
+ * @deprecated since 11
  * @since 9
  */
 

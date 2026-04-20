@@ -20,7 +20,7 @@
  *
  * @brief Provides APIs related to MindSpore Lite model inference.
  *
- * @Syscap SystemCapability.Ai.MindSpore
+ * @syscap SystemCapability.Ai.MindSpore
  * @since 9
  */
 
@@ -46,6 +46,11 @@ extern "C" {
 
 typedef void *OH_AI_ModelHandle;
 
+/**
+ * @brief Defines a pointer to a training configuration object.
+ *
+ * @since 11
+ */
 typedef void *OH_AI_TrainCfgHandle;
 
 typedef struct OH_AI_TensorHandleArray {
@@ -432,7 +437,26 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle
  */
 OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path)
 __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Run model inference with configuration.
+ *
+ * @param model Model object handle.
+ * @param inputs The array that includes all input tensor handles.
+ * @param outputs The array that includes all output tensor handles.
+ * @param config The config buffer of predition, as format of key-values.
+ * @param before CallBack before predict.
+ * @param after CallBack after predict.
+ * @return OH_AI_Status.
+ * @since 23
+ */
+OH_AI_API OH_AI_Status OH_AI_ModelPredictWithConfig(OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs,
+    OH_AI_TensorHandleArray *outputs, const char *config,
+    const OH_AI_KernelCallBack before, const OH_AI_KernelCallBack after)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif
+
+/** @} */
 #endif  // MINDSPORE_INCLUDE_C_API_MODEL_C_H

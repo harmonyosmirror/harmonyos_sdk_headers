@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup OH_DisplayInfo
+ * @addtogroup OH_DisplayManager
  * @{
  *
  * @brief Defines the data structures for the C APIs of the display module.
@@ -61,16 +61,16 @@ extern "C" {
  */
 typedef enum {
     /** device rotation 0 degree */
-    DISPLAY_MANAGER_ROTATION_0,
+    DISPLAY_MANAGER_ROTATION_0 = 0,
 
     /** device rotation 90 degrees */
-    DISPLAY_MANAGER_ROTATION_90,
+    DISPLAY_MANAGER_ROTATION_90 = 1,
 
     /** device rotation 180 degrees */
-    DISPLAY_MANAGER_ROTATION_180,
+    DISPLAY_MANAGER_ROTATION_180 = 2,
 
     /** device rotation 270 degree */
-    DISPLAY_MANAGER_ROTATION_270,
+    DISPLAY_MANAGER_ROTATION_270 = 3,
 } NativeDisplayManager_Rotation;
 
 /**

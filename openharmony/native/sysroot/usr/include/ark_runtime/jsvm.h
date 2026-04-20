@@ -105,7 +105,9 @@ EXTERN_C_START
  *
  * @param  options The options for initialize the JavaScript VM.
  * @return Returns JSVM funtions result code.
- *         Returns {@link JSVM_OK } in all cases.\n
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_GENERIC_FAILURE } If the execution fails, it means that the current process has completed
+ *                                       JSVM initialization and there is no need to repeat the execution.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_Init(const JSVM_InitOptions* options)
@@ -117,7 +119,8 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * @param options The options for create the VM instance.
  * @param result The new VM instance.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if the any of the input arguments is NULL. \n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CreateVM(const JSVM_CreateVMOptions* options,
@@ -130,7 +133,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateVM(const JSVM_CreateVMOptions* options,
  *
  * @param vm The VM instance to set mircrotasks policy.
  * @param policy Policy for running microtasks.
- * @return Returns JSVM_OK if the API succeeded.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } If `vm` is NULL or `policy` is out of range.\n
  * @since 18
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_SetMicrotaskPolicy(JSVM_VM vm,
@@ -142,7 +147,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetMicrotaskPolicy(JSVM_VM vm,
  *
  * @param vm The VM instance to be Destroyed.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } If `vm` is NULL.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_DestroyVM(JSVM_VM vm) __attribute__((__availability__(ohos, introduced=11.0.0)));
@@ -255,7 +261,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnv(JSVM_VM vm,
  * @param index The index of the environment in the snapshot.
  * @param result The new environment created.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } If the snapshot context for `index` could not be created.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnvFromSnapshot(JSVM_VM vm,
@@ -323,7 +330,12 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetVM(JSVM_Env env,
  * @param cacheRejected Whether the code cache rejected by compilation.
  * @param result The compiled script.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if the any of the input arguments is NULL. \n
+ *         Returns {@link JSVM_STRING_EXPECTED } If `script` is not a string.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } If compilation failed (e.g. compiler returned empty).\n
+ *         Returns {@link JSVM_CANNOT_RUN_JS} if an exception occurs. \n
+ *         Returns {@link JSVM_PENDING_EXCEPTION} if an exception occurs. \n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
@@ -348,7 +360,12 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
  * @param origin The information of source code.
  * @param result The compiled script.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if the any of the input arguments is NULL. \n
+ *         Returns {@link JSVM_STRING_EXPECTED } If `script` is not a string.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } If compilation failed.\n
+ *         Returns {@link JSVM_CANNOT_RUN_JS} if an exception occurs. \n
+ *         Returns {@link JSVM_PENDING_EXCEPTION} if an exception occurs. \n
  * @since 12
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin(JSVM_Env env,
@@ -1453,7 +1470,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueInt64(JSVM_Env env,
  * @param result Number of bytes copied into the buffer, excluding the null terminator.
  * @return Returns JSVM funtions result code.
  *         {@link JSVM_OK } If the function executed successfully.\n
- *         {@link JSVM_NUMBER_EXPECTED } If a non-number JSVM_Value is passed in.\n
+ *         {@link JSVM_STRING_EXPECTED } If a non-string JSVM_Value is passed in.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringLatin1(JSVM_Env env,
@@ -1475,7 +1492,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringLatin1(JSVM_Env env,
  * @param result Number of bytes copied into the buffer, excluding the null terminator.
  * @return Returns JSVM funtions result code.
  *         {@link JSVM_OK } If the function executed successfully.\n
- *         {@link JSVM_NUMBER_EXPECTED } If a non-number JSVM_Value is passed in.\n
+ *         {@link JSVM_STRING_EXPECTED } If a non-string JSVM_Value is passed in.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf8(JSVM_Env env,
@@ -1497,7 +1514,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf8(JSVM_Env env,
  * @param result Number of 2-byte code units copied into the buffer, excluding the null terminator.
  * @return Returns JSVM funtions result code.
  *         {@link JSVM_OK } If the function executed successfully.\n
- *         {@link JSVM_NUMBER_EXPECTED } If a non-number JSVM_Value is passed in.\n
+ *         {@link JSVM_STRING_EXPECTED } If a non-string JSVM_Value is passed in.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf16(JSVM_Env env,
@@ -3029,6 +3046,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsSet(JSVM_Env env,
  * @return Returns JSVM functions result code
  *         {@link JSVM_OK } if the API succeeded. \n
  *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *         {@link JSVM_STRING_EXPECTED } If there are parameters passed in that are not of type string.\n
+ *         {@link JSVM_GENERIC_FAILURE } If there is an unknown reason causing execution failure.\n
+ *         {@link JSVM_PENDING_EXCEPTION } If a JS exception occurs during the execution process.\n
  * @since 12
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,

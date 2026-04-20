@@ -120,6 +120,13 @@ typedef enum {
      * @since 20
      */
     ARKWEB_M132 = 2,
+
+    /**
+     * ArkWeb auto use the newest ArkWeb Engine version.
+     * Evergreen Web Engine.
+     * @since 23
+     */
+    ARKWEB_EVERGREEN = 99999,
 } ArkWebEngineVersion;
  
 /**
@@ -268,6 +275,7 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
  * @brief Sets whether to enable blankless page loading. This API must be used in pair with the
  * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
  *
+ * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
  * @param webTag webTag used when the webviewController is created.
  * @param key Key value that uniquely identifies the current page. It must be the same as the key value of the
  * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
@@ -307,6 +315,7 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  * This API applies to pages in an applet or web application whose URLs are not fixed or cannot be uniquely
  * identified.
  *
+ * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
  * @param webTag webTag used when the webviewController is created.
  * Default value: N/A.
  * The value cannot be empty.
@@ -394,6 +403,13 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy)
 __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * Check if the currently active ArkWeb engine is Evergreen.
+ * @return { bool } true means the application is using the Evergreen Web Engine, false means not.
+ * @since 23
+ */
+bool OH_NativeArkWeb_IsActiveWebEngineEvergreen() __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 };

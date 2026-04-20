@@ -37,9 +37,9 @@
 #define _ARKUI_UI_INPUT_EVENT_H_
 
 #include "info/application_target_sdk_version.h"
+#include "native_type.h"
 #include <stdint.h>
 
-#include "native_type.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -92,7 +92,6 @@ typedef ArkUI_TouchTestInfoItem* ArkUI_TouchTestInfoItemHandle;
  * @since 22
  */
 typedef ArkUI_TouchTestInfoItemHandle* ArkUI_TouchTestInfoItemArray;
-
 
 /**
  * @brief Enumerates the UI input event types.
@@ -317,6 +316,72 @@ enum {
     UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
     /** ABS_HAT0Y. */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
+    /**
+     * Game controller RX-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RX = 8,
+    /**
+     * Game controller RY-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RY = 9,
+    /**
+     * Game controller THROTTLE-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_THROTTLE = 10,
+    /**
+     * Game controller RUDDER-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RUDDER = 11,
+    /**
+     * Game controller WHEEL-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_WHEEL = 12,
+    /**
+     * Game controller HAT1X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1X = 13,
+    /**
+     * Game controller HAT1Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1Y = 14,
+    /**
+     * Game controller HAT2X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2X = 15,
+    /**
+     * Game controller HAT2Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2Y = 16,
+    /**
+     * Game controller HAT3X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3X = 17,
+    /**
+     * Game controller HAT3Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3Y = 18,
 };
 
 /**
@@ -1440,7 +1505,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
  */
 int32_t OH_ArkUI_AxisEvent_SetPropagation(const ArkUI_UIInputEvent* event, bool propagation)
 __attribute__((__availability__(ohos, introduced=17.0.0)));
- 
+
 /**
  * @brief Obtains the scroll step coefficient for a wheel-based axis event.
  * This API returns the user-configured scroll scale factor factor.
@@ -1464,7 +1529,7 @@ __attribute__((__availability__(ohos, introduced=17.0.0)));
  */
 int32_t OH_ArkUI_PointerEvent_CreateClonedEvent(const ArkUI_UIInputEvent* event, ArkUI_UIInputEvent** clonedEvent)
 __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Destroys a cloned event pointer.
  *
@@ -1478,7 +1543,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
  */
 int32_t OH_ArkUI_PointerEvent_DestroyClonedEvent(const ArkUI_UIInputEvent* event)
 __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Sets the X and Y coordinates of a cloned event relative to the upper left corner of the current component.
  *
@@ -1494,7 +1559,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPosition(const ArkUI_UIInputEvent* event, float x, float y)
 __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Sets the X and Y coordinates of a specific contact point of a cloned event relative to the upper left corner
  * of the current component.
@@ -1513,7 +1578,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
 int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex(
     const ArkUI_UIInputEvent* event, float x, float y, int32_t pointerIndex)
     __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Sets the action type of a cloned event.
  *
@@ -1528,7 +1593,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex(
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventActionType(const ArkUI_UIInputEvent* event, int32_t actionType)
 __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Sets the touch point ID of a cloned pointer event.
  *
@@ -1543,7 +1608,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId(const ArkUI_UIInputEvent* event, int32_t fingerId)
 __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Sets the touch point ID of a specific contact point of a cloned event.
  *
@@ -1560,7 +1625,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
 int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(
     const ArkUI_UIInputEvent* event, int32_t fingerId, int32_t pointerIndex)
     __attribute__((__availability__(ohos, introduced=15.0.0)));
- 
+
 /**
  * @brief Posts a cloned event to a specific node.
  *

@@ -26,7 +26,7 @@
  */
 
 /**
- * @file drawing_text_linetypography.h
+ * @file drawing_text_lineTypography.h
  *
  * @brief Declares functions related to <b>lineTypography</b> in the drawing module.
  *

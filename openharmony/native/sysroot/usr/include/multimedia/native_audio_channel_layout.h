@@ -14,10 +14,10 @@
  */
 
 /**
- * @addtogroup MediaFoundation
+ * @addtogroup Core
  * @{
  *
- * @brief Provides APIs for media foundation.
+ * @brief Provides APIs for Core.
  *
  * @since 11
  */

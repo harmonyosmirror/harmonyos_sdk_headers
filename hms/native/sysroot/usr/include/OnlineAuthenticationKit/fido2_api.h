@@ -301,7 +301,7 @@ typedef enum FIDO2_ErrorCode {
 
     /** Failed to connect to the service. */
     FIDO2_CONNECT_SERVICE_FAILED = 1021300011,
-    
+
     /** The number of credentials has reached the upper limit. */
     FIDO2_MAX_CRED_NUM_REACHED = 1021300012,
 

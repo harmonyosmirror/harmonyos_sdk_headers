@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image_NativeModule
  * @{
  *
  * @brief Provides APIs for obtaining image data.

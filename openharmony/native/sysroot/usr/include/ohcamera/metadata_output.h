@@ -163,6 +163,36 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 Camera_ErrorCode OH_MetadataOutput_Release(Camera_MetadataOutput* metadataOutput)
 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
+/**
+ * @brief add metadata object types.
+ *
+ * @param metadataOutput the {@link Camera_MetadataOutput} instance.
+ * @param types the target {@link Camera_MetadataObjectType} to add.
+ * @param size the size of the metadata Object types.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_MetadataOutput_AddMetadataObjectTypes(Camera_MetadataOutput* metadataOutput, 
+    Camera_MetadataObjectType* types, uint32_t size)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+ 
+/**
+ * @brief remove metadata object types.
+ *
+ * @param metadataOutput the {@link Camera_MetadataOutput} instance.
+ * @param types the target {@link Camera_MetadataObjectType} to remove.
+ * @param size the size of the metadata Object types.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_MetadataOutput_RemoveMetadataObjectTypes(Camera_MetadataOutput* metadataOutput, 
+    Camera_MetadataObjectType* types, uint32_t size)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+ 
 #ifdef __cplusplus
 }
 #endif

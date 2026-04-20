@@ -8,7 +8,6 @@
  *
  * @brief Provides APIs for Device Security.
  *
- * @syscap SystemCapability.Security.SafetyDetect
  * @since 5.0.1(13)
  */
 
@@ -20,7 +19,7 @@
  * Allows you to query current device security mode.
  *
  * @kit DeviceSecurityKit
- * @library libdevice_security_mode_ndk.z.so
+ * @library libdevice_security_mode.z.so
  * @syscap SystemCapability.Security.SafetyDetect
  * @since 5.0.1(13)
  */
@@ -34,7 +33,7 @@ extern "C" {
 #endif
 
 /**
- * @breif Defines security modes. This enum is a bitmap.
+ * @brief Defines security modes. This enum is a bitmap.
  * @since 5.0.1(13)
  */
 typedef enum DSM_DeviceSecurityMode {

@@ -212,7 +212,7 @@ __attribute__((__availability__(ohos, introduced=15.0.0)));
 /**
  * @brief Sets whether is private mode or not.
  *
- * @permission {@code ohos.permission.PRIVACY_WINDOW}
+ * @permission ohos.permission.PRIVACY_WINDOW
  * @param windowId WindowId when window is created.
  * @param isPrivacy In private mode if true, or not if false.
  * @return Returns the result code.

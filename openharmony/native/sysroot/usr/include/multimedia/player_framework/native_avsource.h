@@ -124,7 +124,8 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} source is invalid.
+ * {@link AV_ERR_INVALID_VAL}, an invalid source instance pointer is passed to parameter source,
+ * including a null pointer;
  * @since 10
 */
 OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source) __attribute__((__availability__(ohos, introduced=10.0.0)));
@@ -151,8 +152,8 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source) __attribute__((__a
  * @param trackIndex The track index to get format.
  * @return Returns the track's format info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- *  1. source is invalid.
- *  2. trackIndex is out of range.
+ * 1. source is invalid.
+ * 2. trackIndex is out of range.
  * @since 10
 */
 OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex)

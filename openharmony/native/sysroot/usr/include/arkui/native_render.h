@@ -1254,10 +1254,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(
 /**
  * @brief Create a content modifier handle.
  *
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @return {@link ArkUI_RenderContentModifierHandle} A content modifier handle.
  * @since 20
  */
 ArkUI_RenderContentModifierHandle OH_ArkUI_RenderNodeUtils_CreateContentModifier()
@@ -2013,10 +2010,6 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param fillColor The fill color of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeMaskOption* mask, uint32_t fillColor)
@@ -2027,10 +2020,6 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param strokeColor The stroke color of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
@@ -2042,10 +2031,6 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param strokeWidth The stroke width of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNodeMaskOption* mask, float strokeWidth)

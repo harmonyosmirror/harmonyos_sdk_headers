@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,17 +15,6 @@
  */
 
 /**
- * @addtogroup ar_engine
- * @{
- *
- * @brief Provides APIs related to the augmented reality capability of AREngine.
- *
- * Covers basic AR capabilities, including motion tracking, environment tracking, and hit testing.
- *
- * @since 5.0.0(12)
- */
-
-/**
  * @file ar_engine_core.h
  * @kit AREngine
  *
@@ -33,6 +23,17 @@
  *
  * @library libarengine_ndk.z.so
  * @syscap SystemCapability.AREngine.Core
+ * @since 5.0.0(12)
+ */
+
+ /**
+ * @addtogroup ar_engine
+ * @{
+ *
+ * @brief Provides APIs related to the augmented reality capability of AREngine.
+ *
+ * Covers basic AR capabilities, including motion tracking, environment tracking, and hit testing.
+ *
  * @since 5.0.0(12)
  */
 #ifndef NDK_INCLUDE_AR_ENGINE_CORE_H
@@ -253,7 +254,7 @@ typedef enum {
      * The data buffer type is a 16-bit unsigned integer.
      * @since 5.0.5(17)
      */
-    ARENGINE_IMAGE_Y_16 = 4,
+    ARENGINE_IMAGE_Y_16 = 4
 } AREngine_ARImageFormat;
 
 /**
@@ -281,6 +282,18 @@ typedef enum {
 
     /** Invalid trackable object type. */
     ARENGINE_TRACKABLE_INVALID = 0,
+
+    /**
+     * Trackable object of the face type.
+     * @since 6.1.0(23)
+     */
+    ARENGINE_TRACKABLE_FACE = 0x50000002,
+
+    /**
+ * Trackable object of the face type.
+ * @since 6.1.0(23)
+ */
+    ARENGINE_TRACKABLE_BODY = 0x50000001
 } AREngine_ARTrackableType;
 
 /**
@@ -295,7 +308,7 @@ typedef enum {
     ARENGINE_TRACKING_STATE_PAUSED = 1,
 
     /** Tracking status: stopped. */
-    ARENGINE_TRACKING_STATE_STOPPED = 2,
+    ARENGINE_TRACKING_STATE_STOPPED = 2
 } AREngine_ARTrackingState;
 
 /**
@@ -310,7 +323,7 @@ typedef enum {
     ARENGINE_TRACKING_STATE_REASON_EXCESSIVE_MOTION = 1,
 
     /** Tracking failure cause: insufficient visual features (such as weak texture). */
-    ARENGINE_TRACKING_STATE_REASON_INSUFFICIENT_FEATURES = 2,
+    ARENGINE_TRACKING_STATE_REASON_INSUFFICIENT_FEATURES = 2
 } AREngine_ARTrackingStateReason;
 
 /**
@@ -328,7 +341,7 @@ typedef enum {
     ARENGINE_PLANE_FINDING_MODE_VERTICAL = 2,
 
     /** Both horizontal and vertical planes are detected. */
-    ARENGINE_PLANE_FINDING_MODE_HORIZONTAL_AND_VERTICAL = 3,
+    ARENGINE_PLANE_FINDING_MODE_HORIZONTAL_AND_VERTICAL = 3
 } AREngine_ARPlaneFindingMode;
 
 /**
@@ -343,7 +356,7 @@ typedef enum {
      * <b>HMS_AREngine_ARSession_Update</b> returns results immediately (returns the previous frame when no new frame
      * is available).
      */
-    ARENGINE_UPDATE_MODE_LATEST = 1,
+    ARENGINE_UPDATE_MODE_LATEST = 1
 } AREngine_ARUpdateMode;
 
 /**
@@ -369,7 +382,7 @@ typedef enum {
     ARENGINE_POWER_MODE_BOOST = 3,
 
     /** Ultra power saving mode. */
-    ARENGINE_POWER_MODE_ULTRA_POWER_SAVING = 11,
+    ARENGINE_POWER_MODE_ULTRA_POWER_SAVING = 11
 } AREngine_ARPowerMode;
 
 /**
@@ -381,7 +394,7 @@ typedef enum {
     ARENGINE_FOCUS_MODE_FIXED = 0,
 
     /** Auto focus. */
-    ARENGINE_FOCUS_MODE_AUTO = 1,
+    ARENGINE_FOCUS_MODE_AUTO = 1
 } AREngine_ARFocusMode;
 
 /**
@@ -399,7 +412,7 @@ typedef enum {
     ARENGINE_PLANE_FACING_VERTICAL = 2,
 
     /** Unsupported type. */
-    ARENGINE_PLANE_FACING_INVALID = 3,
+    ARENGINE_PLANE_FACING_INVALID = 3
 } AREngine_ARPlaneType;
 
 /**
@@ -416,6 +429,19 @@ typedef enum {
      * @since 5.1.0(18)
      */
     ARENGINE_TYPE_IMAGE = 0x80,
+
+    /**
+     * Face tracking type. In this type, the traceable object type returned through interfaces
+     * such as <b>HMS_AREngine_ARSession_GetAllTrackables</b> is <b>ARENGINE_TRACKABLE_FACE</b>.
+     * @since 6.1.0(23)
+     */
+    ARENGINE_TYPE_FACE = 0x10,
+
+    /**
+ * Body pose estimation type. In this type, AREngine_ARBody type returned through interfaces
+ * @since 6.1.0(23)
+ */
+    ARENGINE_TYPE_BODY = 0x2
 } AREngine_ARType;
 
 /**
@@ -431,7 +457,7 @@ typedef enum {
     ARENGINE_SEMANTIC_MODE_PLANE = 1,
 
     /** Uses object semantics. */
-    ARENGINE_SEMANTIC_MODE_TARGET = 2,
+    ARENGINE_SEMANTIC_MODE_TARGET = 2
 } AREngine_ARSemanticMode;
 
 /**
@@ -443,7 +469,7 @@ typedef enum {
     ARENGINE_POINT_ORIENTATION_INITIALIZED_TO_IDENTITY = 0,
 
     /** The orientation is determined by the estimated plane's normal vector. */
-    ARENGINE_POINT_ORIENTATION_ESTIMATED_SURFACE_NORMAL = 1,
+    ARENGINE_POINT_ORIENTATION_ESTIMATED_SURFACE_NORMAL = 1
 } AREngine_ARPointOrientationMode;
 
 /**
@@ -494,7 +520,7 @@ typedef enum {
      * Cube Space
      * @since 6.0.0(20)
      */
-    ARENGINE_CUBE_SPACE = 11,
+    ARENGINE_CUBE_SPACE = 11
 } AREngine_ARSemanticPlaneLabel;
 
 /**
@@ -512,7 +538,7 @@ typedef enum {
     ARENGINE_TARGET_SHAPE_CIRCLE = 2,
 
     /** Rectangle. */
-    ARENGINE_TARGET_SHAPE_RECTANGLE = 3,
+    ARENGINE_TARGET_SHAPE_RECTANGLE = 3
 } AREngine_ARTargetShapeLabel;
 
 /**
@@ -530,7 +556,7 @@ typedef enum {
     ARENGINE_POSE_TYPE_ROTATE_180 = 2,
 
     /** Pose that performs a 270-degree rotation. */
-    ARENGINE_POSE_TYPE_ROTATE_270 = 3,
+    ARENGINE_POSE_TYPE_ROTATE_270 = 3
 } AREngine_ARPoseType;
 
 /**
@@ -545,7 +571,7 @@ typedef enum {
      * Disables camera preview, for example, when in VR mode and the preview stream is not required.
      * In this mode, OpenGL textures set through <b>HMS_AREngine_ARSession_SetCameraGLTexture</b> won't be updated.
      */
-    ARENGINE_PREVIEW_MODE_DISABLED = 1,
+    ARENGINE_PREVIEW_MODE_DISABLED = 1
 } AREngine_ARPreviewMode;
 
 /**
@@ -655,7 +681,7 @@ typedef enum {
      * <b>HMS_AREngine_ARCamera_GetDisplayOrientedPose</b>/HMS_AREngine_ARCamera_GetPose</b> interface)
      * is the data in the gravity coordinate system.
      */
-    ARENGINE_POSE_MODE_GRAVITY_HEADING = 1,
+    ARENGINE_POSE_MODE_GRAVITY_HEADING = 1
 } AREngine_ARPoseMode;
 
 /**
@@ -676,7 +702,7 @@ typedef enum {
     ARENGINE_ADD_AUGMENTED_IMAGE_REASON_FEATURE_LIMIT = 3,
 
     /** Attempted to add an image with insufficient quality (other scenarios) to the image database. */
-    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_OTHER = 4,
+    ARENGINE_ADD_AUGMENTED_IMAGE_REASON_OTHER = 4
 } AREngine_ARAddAugmentedImageReason;
 
 /**
@@ -718,7 +744,7 @@ typedef enum {
      * Cyclic deletion mode; When the number of photos exceeds 50, delete the previously added pictures from the first
      * one.
      */
-    ARENGINE_ADD_AUTO = 1,
+    ARENGINE_ADD_AUTO = 1
 } AREngine_ARImageDatabaseMode;
 
 /**
@@ -732,7 +758,7 @@ typedef enum {
     /**
      * Enable depth.
      */
-    ARENGINE_DEPTH_MODE_AUTOMATIC = 1,
+    ARENGINE_DEPTH_MODE_AUTOMATIC = 1
 } AREngine_ARDepthMode;
 
 /**
@@ -747,7 +773,7 @@ typedef enum {
     ARENGINE_DEPTH_CONFIDENCE_MEDIUM = 1,
 
     /** The confidence of this depth image is high. */
-    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2,
+    ARENGINE_DEPTH_CONFIDENCE_HIGH = 2
 } AREngine_ARConfidenceLevel;
 
 /**
@@ -759,7 +785,7 @@ typedef enum {
     ARENGINE_MESH_MODE_DISABLED = 0,
 
     /** Enable mesh. */
-    ARENGINE_MESH_MODE_ENABLED = 1,
+    ARENGINE_MESH_MODE_ENABLED = 1
 } AREngine_ARMeshMode;
 
 /**
@@ -777,7 +803,7 @@ typedef enum {
     ARENGINE_SEMANTIC_DENSE_MODE_CUBE_VOLUME = 2,
 
     /** Semantic Dense For Cube Space. */
-    ARENGINE_SEMANTIC_DENSE_MODE_CUBE_SPACE = 3,
+    ARENGINE_SEMANTIC_DENSE_MODE_CUBE_SPACE = 3
 } AREngine_ARSemanticDenseMode;
 
 /**
@@ -3363,6 +3389,673 @@ void HMS_AREngine_ARSemanticDense_Release(AREngine_ARSemanticDenseData *semantic
 __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
+ * @brief Multi-face detection mode
+ * @since 6.1.0(23)
+ */
+typedef enum {
+    /** Disable multi-face detection mode */
+    ARENGINE_MULTIFACE_DISABLE = 0x300,
+
+    /** Enable multi-face detection mode */
+    ARENGINE_MULTIFACE_ENABLE = 0x800
+} AREngine_ARMultiFaceMode;
+
+/**
+ * @brief Indicates a collection of face geometry data.
+ * @since 6.1.0(23)
+ */
+typedef struct AREngine_ARFaceGeometry AREngine_ARFaceGeometry;
+
+/**
+ * @brief Indicates a collection of face blendShapes data.
+ * @since 6.1.0(23)
+ */
+typedef struct AREngine_ARFaceBlendShapes AREngine_ARFaceBlendShapes;
+
+/**
+ * @brief Config the direction the camera lens is facing
+ * @since 6.1.0(23)
+ */
+typedef enum {
+    /** Rear camera. */
+    ARENGINE_CAMERA_FACING_REAR = 0,
+
+    /** Front camera. */
+    ARENGINE_CAMERA_FACING_FRONT = 1
+} AREngine_ARCameraLensFacing;
+
+/**
+ * @brief Indicates a face object, which describes the detected trackable face information.
+ * @since 6.1.0(23)
+ */
+typedef struct AREngine_ARFace AREngine_ARFace;
+
+/**
+ * @brief Face Mesh Triangle Labeling .
+ * @since 6.1.0(23)
+ */
+typedef enum {
+    /** Not a face part. */
+    ARENGINE_TRIANGLE_LABEL_NON_FACE = -1,
+
+    /** Other parts of the face that are not critical. */
+    ARENGINE_TRIANGLE_LABEL_FACE_OTHER = 0,
+
+    /** Lower lip. */
+    ARENGINE_TRIANGLE_LABEL_LOWER_LIP = 1,
+
+    /** Upper lip. */
+    ARENGINE_TRIANGLE_LABEL_UPPER_LIP = 2,
+
+    /** Left eye. */
+    ARENGINE_TRIANGLE_LABEL_LEFT_EYE = 3,
+
+    /** Right eye. */
+    ARENGINE_TRIANGLE_LABEL_RIGHT_EYE = 4,
+
+    /** Left eyebrow. */
+    ARENGINE_TRIANGLE_LABEL_LEFT_BROW = 5,
+
+    /** Right eyebrow. */
+    ARENGINE_TRIANGLE_LABEL_RIGHT_BROW = 6,
+
+    /** Brow center. */
+    ARENGINE_TRIANGLE_LABEL_BROW_CENTER = 7,
+
+    /** Nose. */
+    ARENGINE_TRIANGLE_LABEL_NOSE = 8
+} AREngine_ARAnimojiTriangleLabel;
+
+/**
+ * @brief Microexpression Types.
+ * @since 6.1.0(23)
+ */
+typedef enum {
+    /** Left eye closes. */
+    ARENGINE_ARANIMOJI_EYE_BLINK_LEFT = 0,
+
+    /** Left upper eyelid slightly droops. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_DOWN_LEFT = 1,
+
+    /** Left inner eyelid expands to the left. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_IN_LEFT = 2,
+
+    /** Left eyelid expands to the left. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_OUT_LEFT = 3,
+
+    /** Left upper eyelid slightly raises. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_UP_LEFT = 4,
+
+    /** Left lower eyelid raises. */
+    ARENGINE_ARANIMOJI_EYE_SQUINT_LEFT = 5,
+
+    /** Left eye widens. */
+    ARENGINE_ARANIMOJI_EYE_WIDE_LEFT = 6,
+
+    /** Right eye closes. */
+    ARENGINE_ARANIMOJI_EYE_BLINK_RIGHT = 7,
+
+    /** Right upper eyelid slightly droops. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_DOWN_RIGHT = 8,
+
+    /** Right inner eyelid expands to the right. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_IN_RIGHT = 9,
+
+    /** Right eyelid expands to the right. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_OUT_RIGHT = 10,
+
+    /** Right upper eyelid slightly raises. */
+    ARENGINE_ARANIMOJI_EYE_LOOK_UP_RIGHT = 11,
+
+    /** Right lower eyelid raises. */
+    ARENGINE_ARANIMOJI_EYE_SQUINT_RIGHT = 12,
+
+    /** Right eye widens. */
+    ARENGINE_ARANIMOJI_EYE_WIDE_RIGHT = 13,
+
+    /** Jaw moves forward. */
+    ARENGINE_ARANIMOJI_JAW_FORWARD = 14,
+
+    /** Jaw moves to the left. */
+    ARENGINE_ARANIMOJI_JAW_LEFT = 15,
+
+    /** Jaw moves to the right. */
+    ARENGINE_ARANIMOJI_JAW_RIGHT = 16,
+
+    /** Mouth opens. */
+    ARENGINE_ARANIMOJI_JAW_OPEN = 17,
+
+    /** O-shaped mouth. */
+    ARENGINE_ARANIMOJI_MOUTH_FUNNEL = 18,
+
+    /** Pursed lips. */
+    ARENGINE_ARANIMOJI_MOUTH_PUCKER = 19,
+
+    /** Mouth moves to the left. */
+    ARENGINE_ARANIMOJI_MOUTH_LEFT = 20,
+
+    /** Mouth moves to the right. */
+    ARENGINE_ARANIMOJI_MOUTH_RIGHT = 21,
+
+    /** Left corner of the mouth moves left. */
+    ARENGINE_ARANIMOJI_MOUTH_SMILE_LEFT = 22,
+
+    /** Right corner of the mouth moves right. */
+    ARENGINE_ARANIMOJI_MOUTH_SMILE_RIGHT = 23,
+
+    /** Left corner of the mouth pulls down. */
+    ARENGINE_ARANIMOJI_MOUTH_FROWN_LEFT = 24,
+
+    /** Right corner of the mouth pulls down. */
+    ARENGINE_ARANIMOJI_MOUTH_FROWN_RIGHT = 25,
+
+    /** Left cheek raises. */
+    ARENGINE_ARANIMOJI_MOUTH_DIMPLE_LEFT = 26,
+
+    /** Right cheek raises. */
+    ARENGINE_ARANIMOJI_MOUTH_DIMPLE_RIGHT = 27,
+
+    /** Left corner of the mouth stretches. */
+    ARENGINE_ARANIMOJI_MOUTH_STRETCH_LEFT = 28,
+
+    /** Right corner of the mouth stretches. */
+    ARENGINE_ARANIMOJI_MOUTH_STRETCH_RIGHT = 29,
+
+    /** Lower lip rolls inward. */
+    ARENGINE_ARANIMOJI_MOUTH_ROLL_LOWER = 30,
+
+    /** Upper lip rolls inward. */
+    ARENGINE_ARANIMOJI_MOUTH_ROLL_UPPER = 31,
+
+    /** Lower lip shrugs upward. */
+    ARENGINE_ARANIMOJI_MOUTH_SHRUG_LOWER = 32,
+
+    /** Upper lip shrugs upward. */
+    ARENGINE_ARANIMOJI_MOUTH_SHRUG_UPPER = 33,
+
+    /** Upper lips flip upward. */
+    ARENGINE_ARANIMOJI_MOUTH_UPPER_UP = 34,
+
+    /** Lower lip moves down. */
+    ARENGINE_ARANIMOJI_MOUTH_LOWER_DOWN = 35,
+
+    /** Lower lip moves outward. */
+    ARENGINE_ARANIMOJI_MOUTH_LOWER_OUT = 36,
+
+    /** Left eyebrow moves down. */
+    ARENGINE_ARANIMOJI_BROW_DOWN_LEFT = 37,
+
+    /** Right eyebrow moves down. */
+    ARENGINE_ARANIMOJI_BROW_DOWN_RIGHT = 38,
+
+    /** Both inner eyebrows raise. */
+    ARENGINE_ARANIMOJI_BROW_INNER_UP = 39,
+
+    /** Left outer eyebrow raises. */
+    ARENGINE_ARANIMOJI_BROW_OUTER_UP_LEFT = 40,
+
+    /** Right outer eyebrow raises. */
+    ARENGINE_ARANIMOJI_BROW_OUTER_UP_RIGHT = 41,
+
+    /** Cheeks puff outward. */
+    ARENGINE_ARANIMOJI_CHEEK_PUFF = 42,
+
+    /** Left cheek raises. */
+    ARENGINE_ARANIMOJI_CHEEK_SQUINT_LEFT = 43,
+
+    /** Right cheek raises. */
+    ARENGINE_ARANIMOJI_CHEEK_SQUINT_RIGHT = 44,
+
+    /** Nose raises with frown. */
+    ARENGINE_ARANIMOJI_FROWN_NOSE_MOUTH_UP = 45,
+
+    /** Tongue position inside mouth. */
+    ARENGINE_ARANIMOJI_TONGUE_IN = 46,
+
+    /** Tongue slightly sticking out. */
+    ARENGINE_ARANIMOJI_TONGUE_OUT_SLIGHT = 47,
+
+    /** Tongue moves left. */
+    ARENGINE_ARANIMOJI_TONGUE_LEFT = 48,
+
+    /** Tongue moves right. */
+    ARENGINE_ARANIMOJI_TONGUE_RIGHT = 49,
+
+    /** Tongue moves up. */
+    ARENGINE_ARANIMOJI_TONGUE_UP = 50,
+
+    /** Tongue moves down. */
+    ARENGINE_ARANIMOJI_TONGUE_DOWN = 51,
+
+    /** Tongue moves left-up. */
+    ARENGINE_ARANIMOJI_TONGUE_LEFT_UP = 52,
+
+    /** Tongue moves left-down. */
+    ARENGINE_ARANIMOJI_TONGUE_LEFT_DOWN = 53,
+
+    /** Tongue moves right-up. */
+    ARENGINE_ARANIMOJI_TONGUE_RIGHT_UP = 54,
+
+    /** Tongue moves right-down. */
+    ARENGINE_ARANIMOJI_TONGUE_RIGHT_DOWN = 55,
+
+    /** Left eyeball moves left. */
+    ARENGINE_ARANIMOJI_LEFT_EYEBALL_LEFT = 56,
+
+    /** Left eyeball moves right. */
+    ARENGINE_ARANIMOJI_LEFT_EYEBALL_RIGHT = 57,
+
+    /** Left eyeball moves up. */
+    ARENGINE_ARANIMOJI_LEFT_EYEBALL_UP = 58,
+
+    /** Left eyeball moves down. */
+    ARENGINE_ARANIMOJI_LEFT_EYEBALL_DOWN = 59,
+
+    /** Right eyeball moves left. */
+    ARENGINE_ARANIMOJI_RIGHT_EYEBALL_LEFT = 60,
+
+    /** Right eyeball moves right. */
+    ARENGINE_ARANIMOJI_RIGHT_EYEBALL_RIGHT = 61,
+
+    /** Right eyeball moves up. */
+    ARENGINE_ARANIMOJI_RIGHT_EYEBALL_UP = 62,
+
+    /** Right eyeball moves down. */
+    ARENGINE_ARANIMOJI_RIGHT_EYEBALL_DOWN = 63
+} AREngine_ARAnimojiBlendShape;
+
+/**
+ * @brief Creates an <b>AREngine_ARSession</b> session.
+ * @permission ohos.permission.CAMERA.
+ * @param env JNI environment for the current APK.
+ * @param applicationContext App context.
+ * @param outSessionPointer Created session object.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_PERMISSION_NOT_GRANTED} Permissions not granted, such as the camera permission\n
+ *         {@link ARENGINE_ERROR_DEVICE_NOT_SUPPORTED} Device not compatible.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARSession_Create_Human_Perception(void *env, void *applicationContext,
+    AREngine_ARSession **outSessionPointer)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the face blendShapes of the current face.
+ * @param session The AREngine session.
+ * @param face Current face object.
+ * @param outBlendShapes Face blendShapes object of the current face.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFace_AcquireBlendShapes(const AREngine_ARSession *session, const AREngine_ARFace *face,
+	AREngine_ARFaceBlendShapes **outBlendShapes)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the camera lens facing mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param outFacing Camera lens facing. For details, please refer to <b>AREngine_ARCameraLensFacing</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetCameraLensFacing(const AREngine_ARSession *session,
+    const AREngine_ARConfig *config, AREngine_ARCameraLensFacing *outFacing)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of triangle indices in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry data of the current face.
+ * @param outSize the size of triangle indices.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_GetIndicesSize(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Releases the face geometry object of the current face, that is, the object created by
+ * <b>HMS_AREngine_ARFace_AcquireGeometry</b>.
+ * @param geometry face geometry object of the current face.
+ * @since 6.1.0(23)
+ */
+void HMS_AREngine_ARFaceGeometry_Release(AREngine_ARFaceGeometry *geometry)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of face blendShapes.
+ * @param session The AREngine session.
+ * @param blendShapes Face blendShapes object of the current face.
+ * @param outSize the size of face blendShapes.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceBlendShapes_GetCount(const AREngine_ARSession *session,
+    const AREngine_ARFaceBlendShapes *blendShapes, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the set of face blendShapes.
+ * @param session The AREngine session.
+ * @param blendShapes Face blendShapes object of the current face.
+ * @param outData the set of face blendShapes.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceBlendShapes_AcquireData(const AREngine_ARSession *session,
+    const AREngine_ARFaceBlendShapes *blendShapes, const float **outData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtain all expression parameter type arrays.
+ * @param session The AREngine session.
+ * @param blendShapes Face blendShapes object of the current face.
+ * @param types the set of face blendShapes.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceBlendShapes_AcquireTypes(const AREngine_ARSession *session,
+    const AREngine_ARFaceBlendShapes *blendShapes, const AREngine_ARAnimojiBlendShape **types)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of triangle labels in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry data of the current face.
+ * @param outSize the size of triangle labels.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_GetTriangleLabelsSize(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Sets the multi-face detecting mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param faceMode Multi-face detecting mode. For details, please refer to <b>AREngine_ARMultiFaceMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetMultiFaceMode(const AREngine_ARSession *session, AREngine_ARConfig *config,
+	AREngine_ARMultiFaceMode faceMode)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Releases the face blendShapes object of the current face, that is, the object created by
+ * <b>HMS_AREngine_ARFace_AcquireBlendShapes</b>.
+ * @param blendShapes face blendShapes object of the current face.
+ * @since 6.1.0(23)
+ */
+void HMS_AREngine_ARFaceBlendShapes_Release(AREngine_ARFaceBlendShapes *blendShapes)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the face geometry of the current face.
+ * @param session The AREngine session.
+ * @param face Current face object.
+ * @param outGeometry Face geometry object of the current face.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_RESOURCE_EXHAUSTED} Resource exhausted.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFace_AcquireGeometry(const AREngine_ARSession *session, const AREngine_ARFace *face,
+	AREngine_ARFaceGeometry **outGeometry)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of triangle in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry object of the current face.
+ * @param outSize the size of triangle
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_GetTriangleCount(const AREngine_ARSession *session,
+	const AREngine_ARFaceGeometry *geometry, int32_t *outSize)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of vertices in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry object of the current face.
+ * @param outSize the size of vertices
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_GetVerticesSize(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the multi-face detecting mode.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param outFaceMode Muti-face detecting mode. For details, please refer to <b>AREngine_ARMultiFaceMode</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_GetMultiFaceMode(const AREngine_ARSession *session,
+    const AREngine_ARConfig *config, AREngine_ARMultiFaceMode *outFaceMode)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the pose information for the conversion from the local coordinate system of a face to the
+ * world coordinate system.
+ *
+ * In the face's local coordinate system (right-handed): The origin is at the center of the face's bounding rectangle;
+ * the x-axis is along the longer edge, the z-axis is along the shorter edge, and Y+ indicates the face's normal
+ * vector.
+ *
+ * @param session The AREngine session.
+ * @param face Face object to be processed.
+ * @param outPose Pose information for the conversion from the local coordinate system of a face to the world
+ * coordinate system.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFace_GetCenterPose(const AREngine_ARSession *session, const AREngine_ARFace *face,
+	AREngine_ARPose *outPose)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the set of triangle labels in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry data of the current face.
+ * @param data the set of triangle labels.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_AcquireTriangleLabels(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, const AREngine_ARAnimojiTriangleLabel **data)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the set of texture coord in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry object of the current face.
+ * @param outData the set of texture coord.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_AcquireTexCoord(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, const float **outData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the face view matrix of the current face.
+ * @param session The AREngine session.
+ * @param face Current face.
+ * @param outColMajor4x4 Face view matrix data of the current face. Array consisting of 16
+ * floating point numbers, indicating a column-major uniform transformation matrix in OpenGL.
+ * @param colMajor4x4Num the size of outColMajor4x4.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFace_AcquireViewMatrix(const AREngine_ARSession *session, const AREngine_ARFace *face,
+	float *outColMajor4x4, int32_t colMajor4x4Num)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Sets the camera lens facing.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param facing Camera lens facing. For details, please refer to <b>AREngine_ARCameraLensFacing</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetCameraLensFacing(const AREngine_ARSession *session,
+    AREngine_ARConfig *config, AREngine_ARCameraLensFacing facing)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the set of vertices in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry data of the current face.
+ * @param outData the set of vertices,  formatted as [x0, y0, z0, x1, y1, z1,...].
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_AcquireVertices(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, const float **outData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the set of triangle indices in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry data of the current face.
+ * @param data the set of triangle indices.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_AcquireIndices(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, const int32_t **data)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of texture coord in the face geometry.
+ * @param session The AREngine session.
+ * @param geometry Face geometry object of the current face.
+ * @param outSize the size of texture coord.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceGeometry_GetTexCoordSize(const AREngine_ARSession *session,
+    const AREngine_ARFaceGeometry *geometry, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief AR feature type.
+ * @since 6.1.0(23)
+ */
+typedef enum {
+    /** the feature of plane finding */
+    ARENGINE_FEATURE_TYPE_SLAM = 0,
+
+    /** the feature of depth */
+    ARENGINE_FEATURE_TYPE_DEPTH = 1,
+
+    /** the feature of mesh */
+    ARENGINE_FEATURE_TYPE_MESH = 2,
+
+    /** the feature of image */
+    ARENGINE_FEATURE_TYPE_IMAGE = 3,
+
+    /** the feature of semantic dense */
+    ARENGINE_FEATURE_TYPE_SEMANTIC_DENSE = 4,
+
+    /** the feature of semantic */
+    ARENGINE_FEATURE_TYPE_SEMANTIC = 5,
+
+    /** the feature of face */
+    ARENGINE_FEATURE_TYPE_FACE = 6,
+
+    /** the feature of body */
+    ARENGINE_FEATURE_TYPE_BODY = 7
+} AREngine_FeatureType;
+
+/**
+ * @brief Check whether AREngine supports this type.
+ * @param type - Type of feature supported by AREngine. For details, please refer to <b>AREngine_FeatureType</b>.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_DEVICE_NOT_SUPPORTED} Device not compatible.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_CheckSupported(AREngine_FeatureType type)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief The callback is used to receive the photo image data.
  * @since 6.0.2(22)
  */
@@ -3454,8 +4147,306 @@ AREngine_ARStatus HMS_AREngine_ARConfig_SetImageStreamMode(const AREngine_ARSess
 AREngine_ARStatus HMS_AREngine_ARConfig_GetImageStreamMode(const AREngine_ARSession *session,
     const AREngine_ARConfig *config, AREngine_ARImageStreamMode *outMode)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Indicates a collection of face landmark data.
+ * @since 6.1.0(23)
+ */
+typedef struct AREngine_ARFaceLandmark AREngine_ARFaceLandmark;
+
+/**
+ * @brief Obtains the 3D data set of face landmark.
+ * @param session The AREngine session.
+ * @param landmark Face landmark object of the current face.
+ * @param outData The 3D data set of face landmark.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceLandmark_AcquireVertices3D(const AREngine_ARSession *session,
+    const AREngine_ARFaceLandmark *landmark, const float **outData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the face landmark of the current face.
+ * @param session The AREngine session.
+ * @param face Current face object.
+ * @param outLandmark Face landmark object of the current face.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ *         {@link ARENGINE_ERROR_FATAL} Failure.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFace_AcquireLandmark(const AREngine_ARSession *session, const AREngine_ARFace *face,
+	AREngine_ARFaceLandmark **outLandmark)
+ __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the size of face landmark.
+ * @param session The AREngine session.
+ * @param landmark Face landmark object of the current face.
+ * @param outSize The size of face landmark.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceLandmark_GetCount(const AREngine_ARSession *session,
+    const AREngine_ARFaceLandmark *landmark, int32_t *outSize)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Releases the face landmark object of the current face.
+ * @param landmark Face landmark object of the current face.
+ * @since 6.1.0(23)
+ */
+void HMS_AREngine_ARFaceLandmark_Release(AREngine_ARFaceLandmark *landmark)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the 2D data set of face landmark.
+ * @param session The AREngine session.
+ * @param landmark Face landmark object of the current face.
+ * @param outData The 2D data set of face landmark.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARFaceLandmark_AcquireVertices2D(const AREngine_ARSession *session,
+    const AREngine_ARFaceLandmark *landmark, const float **outData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Body skeleton type.
+ * @since 6.1.0(23)
+ */
+typedef enum {
+    /** Neck */
+    ARENGINE_ARBODY_SKELETON_NECK = 1,
+
+    /** Right Shoulder */
+    ARENGINE_ARBODY_SKELETON_R_SHO = 2,
+
+    /** Right Elbow */
+    ARENGINE_ARBODY_SKELETON_R_ELBOW = 3,
+
+    /** Right Wrist */
+    ARENGINE_ARBODY_SKELETON_R_WRIST = 4,
+
+    /** Left Shoulder */
+    ARENGINE_ARBODY_SKELETON_L_SHO = 5,
+
+    /** Left Elbow */
+    ARENGINE_ARBODY_SKELETON_L_ELBOW = 6,
+
+    /** Left Wrist */
+    ARENGINE_ARBODY_SKELETON_L_WRIST = 7,
+
+    /** Right Hip */
+    ARENGINE_ARBODY_SKELETON_R_HIP = 8,
+
+    /** Right Knee */
+    ARENGINE_ARBODY_SKELETON_R_KNEE = 9,
+
+    /** Right Ankle */
+    ARENGINE_ARBODY_SKELETON_R_ANKLE = 10,
+
+    /** Left Hip */
+    ARENGINE_ARBODY_SKELETON_L_HIP = 11,
+
+    /** Left Knee */
+    ARENGINE_ARBODY_SKELETON_L_KNEE = 12,
+
+    /** Left Ankle */
+    ARENGINE_ARBODY_SKELETON_L_ANKLE = 13,
+
+    /** Middle of Hips */
+    ARENGINE_ARBODY_SKELETON_HIP_MID = 14,
+
+    /** Right Ear */
+    ARENGINE_ARBODY_SKELETON_R_EAR = 15,
+
+    /** Right Eye */
+    ARENGINE_ARBODY_SKELETON_R_EYE = 16,
+
+    /** Nose */
+    ARENGINE_ARBODY_SKELETON_NOSE = 17,
+
+    /** Left Eye */
+    ARENGINE_ARBODY_SKELETON_L_EYE = 18,
+
+    /** Left Ear */
+    ARENGINE_ARBODY_SKELETON_L_EAR = 19,
+
+    /** Spine */
+    ARENGINE_ARBODY_SKELETON_SPINE = 20
+} AREngine_ARBodySkeletonType;
+
+/**
+ * @brief Indicates a collection of human body data.
+ * @since 6.1.0(23)
+ */
+typedef struct AREngine_ARBody AREngine_ARBody;
+
+/**
+ * @brief Obtains the coordinates of skeleton point data.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outSkeletonPointData2D The coordinates of skeleton points.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonPointData2D(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, const float **outSkeletonPointData2D)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the time stamp (ns) of body.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param timeStamp The time stamp of body.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetBodyTimeStamp(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, int64_t *timeStamp)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the skeleton type of skeleton point data.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outSkeletonTypes The skeleton type of skeleton points.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonTypes(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, const AREngine_ARBodySkeletonType **outSkeletonTypes)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the number of body skeleton point.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outPointCount The number of skeleton points.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonPointCount(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, int32_t *outPointCount)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the connection size of body skeletons.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outConnectionCount The number of body skeleton connections.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonConnectionSize(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, int32_t *outConnectionCount)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief set the max number of bodies need to detect.
+ * @param session The AREngine session.
+ * @param config Points to the configuration object with the target configuration information.
+ * @param maxNum max number of bodies need to detect.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARConfig_SetBodyDetectedNum(const AREngine_ARSession *session,
+    AREngine_ARConfig *config, int32_t maxNum)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the track id of body.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outBodyTrackId The track id of body.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetBodyTrackId(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, const int32_t *outBodyTrackId)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the confidence of skeleton point data.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outConfidence The confidence of skeleton points, each item range of 0 ~ 1.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonConfidence(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, const float **outConfidence)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the validation of skeleton point data.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outSkeletonPointIsValid The validation of skeleton points. 1 indicates being valid, otherwise 0.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonPointIsValid(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, const int32_t **outSkeletonPointIsValid)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains the connection relationship of body skeletons.
+ * @param session The AREngine session.
+ * @param body Body object obtained by <b>HMS_AREngine_ARSession_GetAllTrackables</b>.
+ * @param outSkeletonConnection The connections of body skeleton points.
+ * @return Returns the status code of the exception.
+ *         {@link ARENGINE_SUCCESS} Success.\n
+ *         {@link ARENGINE_ERROR_INVALID_ARGUMENT} Invalid parameters, for example,
+ *         the input parameter is empty or invalid.\n
+ * @since 6.1.0(23)
+ */
+AREngine_ARStatus HMS_AREngine_ARBody_GetSkeletonConnection(const AREngine_ARSession *session,
+    const AREngine_ARBody *body, const AREngine_ARBodySkeletonType **outSkeletonConnection)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif
 #endif // NDK_INCLUDE_AR_ENGINE_CORE_H
+
 /** @} */

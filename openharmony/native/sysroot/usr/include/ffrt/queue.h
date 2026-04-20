@@ -124,7 +124,7 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
 /**
  * @brief Sets the timeout callback function of a serial queue attribute.
  *
- * @warning Do not call `exit` in `f` - this my cause unexpected behavior.
+ * @warning Do not call `exit` in `f` - this may cause unexpected behavior.
  * @param attr Serial queue attribute pointer.
  * @param f Serial queue timeout callback function.
  * @since 10

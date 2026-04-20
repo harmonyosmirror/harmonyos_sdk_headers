@@ -52,6 +52,14 @@ struct OH_NativeBuffer;
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
+ * @brief Defines the ipc parcel.
+ *
+ * @since 23
+ * @version 1.0
+ */
+typedef struct OHIPCParcel OHIPCParcel;
+
+/**
  * @brief Indicates the usage of a native buffer.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
@@ -67,9 +75,21 @@ typedef enum OH_NativeBuffer_Usage {
      * @since 20
      */
     NATIVEBUFFER_USAGE_MEM_MMZ_CACHE = (1ULL << 5),
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),       /// < For GPU write case */
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),      /// < For GPU read case */
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16), /// < Often be mapped for direct CPU reads */
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),  /// < 512 bytes alignment */
 } OH_NativeBuffer_Usage;
 
@@ -332,6 +352,92 @@ int32_t OH_NativeBuffer_GetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffe
     int32_t *size, uint8_t **metadata)
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
+/**
+ * @brief Provide direct cpu access to the OH_NativeBuffer in the process's address space and wait fence.\n
+ * If the interface returns OK, fenceFd does not need to be closed by the developer,
+ * Otherwise, the developer needs to close the fenceFd.\n
+ * This interface is a non-thread-safe type interface.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
+ * @param fenceFd Indicates the pointer to a file descriptor handle.
+ * @param virAddr Indicates the address of the <b>OH_NativeBuffer</b> in virtual memory.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ * {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - buffer or virAddr is NULL or invalid fenceFd.
+ * {@link NATIVE_ERROR_UNKNOWN} 50002000 - map failed.
+ * @since 23
+ * @version 1.0
+ */
+int32_t OH_NativeBuffer_MapWaitFence(OH_NativeBuffer *buffer, int32_t fenceFd, void **virAddr)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+ 
+/**
+ * @brief Serialize <b>OH_NativeBuffer</b> object to the serialized <b>OHIPCParcel</b> object.\n
+ * This interface is a non-thread-safe type interface.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
+ * @param parcel Indicates the serialized <b>OHIPCParcel</b> object.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ * {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - buffer or parcel is NULL.
+ * {@link SURFACE_ERROR_BINDER_ERROR} 50401000 - ipc send failed.
+ * @since 23
+ * @version 1.0
+ */
+int32_t OH_NativeBuffer_WriteToParcel(OH_NativeBuffer* buffer, OHIPCParcel* parcel)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+ 
+/**
+ * @brief Deserialize data from the serialized <b>OHIPCParcel</b> object and rebuild <b>OH_NativeBuffer</b> object.
+ * This interface will cause an increase in the reference count of the <b>OH_NativeBuffer</b> instance.
+ * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference</b>,\n
+ * otherwise memory leaks will occur.
+ * This interface is a non-thread-safe type interface.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param parcel Indicates the serialized <b>OHIPCParcel</b> object.
+ * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> pointer.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ * {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - parcel or buffer is NULL.
+ * {@link NATIVE_ERROR_UNKNOWN} 50002000 - deserialize failed.
+ * @since 23
+ * @version 1.0
+ */
+int32_t OH_NativeBuffer_ReadFromParcel(OHIPCParcel* parcel, OH_NativeBuffer** buffer)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+ 
+/**
+ * @brief Check whether the system supports the <b>NativeBufferConfig</b>.\n
+ * This interface is a non-thread-safe type interface.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param config Indicates the config of the <b>OH_NativeBuffer</b>.
+ * @param isSupported Indicates whether the system supports the <b>NativeBufferConfig</b>.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ * {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - isSupported is NULL.
+ * @since 23
+ * @version 1.0
+ */
+int32_t OH_NativeBuffer_IsSupported(OH_NativeBuffer_Config config, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+ 
+/**
+ * @brief Provide direct cpu access to the <b>OH_NativeBuffer</b> in the process's address space,\n
+ * and return a <b>NativeBufferConfig<b> of the <b>OH_NativeBuffer</b>.
+ * This interface is a non-thread-safe type interface.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
+ * @param virAddr Indicates the address of the <b>OH_NativeBuffer</b> in virtual memory.
+ * @param config Indicates the pointer to the <b>NativeBufferConfig</b> of the buffer.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ * {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - buffer or virAddr or config is NULL or invalid fenceFd.
+ * {@link NATIVE_ERROR_UNKNOWN} 50002000 - map failed.
+ * @since 23
+ * @version 1.0
+ */
+int32_t OH_NativeBuffer_MapAndGetConfig(OH_NativeBuffer* buffer, void** virAddr, OH_NativeBuffer_Config* config)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif

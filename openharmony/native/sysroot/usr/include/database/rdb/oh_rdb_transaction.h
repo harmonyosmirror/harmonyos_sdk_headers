@@ -39,14 +39,13 @@
 
 #ifndef OH_RDB_TRANSACTION_H
 #define OH_RDB_TRANSACTION_H
-
 #include "info/application_target_sdk_version.h"
-#include "database/rdb/oh_cursor.h"
-#include "database/rdb/oh_predicates.h"
-#include "database/rdb/oh_values_bucket.h"
-#include "database/rdb/oh_rdb_types.h"
 #include "database/data/oh_data_values.h"
 #include "database/data/oh_data_values_buckets.h"
+#include "database/rdb/oh_cursor.h"
+#include "database/rdb/oh_predicates.h"
+#include "database/rdb/oh_rdb_types.h"
+#include "database/rdb/oh_values_bucket.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -230,6 +229,12 @@ int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const ch
 /**
  * @brief Inserts a batch of data into the target table.
  *
+ * A maximum of 32766 parameters can be inserted at a time. If the number of parameters exceeds the upper limit,
+ * the error code RDB_E_INVALID_ARGS is returned. The product of the number of inserted data records and the size of
+ * the union of all fields in the inserted data equals the number of parameters. For example, if the size of the union
+ * is 10, a maximum of 3276 data records can be inserted (3276 × 10 = 32760). Ensure that your application complies
+ * with this constraint when calling this API to avoid errors caused by excessive parameters.
+ *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
  * @param table Represents the target table.
  * @param rows Represents the rows data to be inserted into the table.
@@ -346,6 +351,21 @@ int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicate
 __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
+ * @brief Queries data in the database based on specified conditions without row count.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param predicates Represents the specified update condition by the instance object of OH_Predicates.
+ * @param columns Represents the columns to query. If the value is empty array, the query applies to all columns.
+ * @param len Represents the number of columns elements.
+ * @return If the operation is successful, a pointer to the instance of the OH_Cursor structure is returned.
+ * If database has closed or the database does not respond, nullptr is returned.
+ * @since 23
+ */
+OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_Predicates *predicates,
+    const char * const columns[], int len)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Queries data in the database based on specified conditions.
  *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
@@ -372,6 +392,19 @@ OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *pre
  */
 OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args)
 __attribute__((__availability__(ohos, introduced=18.0.0)));
+
+/**
+ * @brief Queries data in the database based on SQL statement without row count.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param sql Represents the SQL statement to execute.
+ * @param args Represents a pointer to an instance of OH_Data_Values and  it is the selection arguments.
+ * @return If the operation is successful, a pointer to the instance of the OH_Cursor structure is returned.
+ * If database has closed or the database does not respond, nullptr is returned.
+ * @since 23
+ */
+OH_Cursor *OH_RdbTrans_QuerySqlWithoutRowCount(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Executes an SQL statement that contains specified parameters.
@@ -414,6 +447,108 @@ __attribute__((__availability__(ohos, introduced=18.0.0)));
  */
 int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
+/**
+ * @brief Inserts a batch of data into the target table and output change info to context.
+ *
+ * A maximum of 32766 parameters can be inserted at a time. If the number of parameters exceeds the upper limit,
+ * the error code RDB_E_INVALID_ARGS is returned. The product of the number of inserted data records and the size of
+ * the union of all fields in the inserted data equals the number of parameters. For example, if the size of the union
+ * is 10, a maximum of 3276 data records can be inserted (3276 × 10 = 32760). Ensure that your application complies
+ * with this constraint when calling this API to avoid errors caused by excessive parameters.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param table Represents the target table.
+ * @param rows Represents the rows data to be inserted into the table.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param context Represents a pointer to a pointer to an {@link OH_RDB_ReturningContext} instance.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} The error code for not support.
+ *         Returns {@link RDB_E_DATABASE_BUSY} The error code for database busy.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQLite error.
+ *             Possible causes: syntax error, such as a table or column not existing.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Transaction, OH_Data_VBuckets, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
+ * @since 23
+ */
+int OH_RdbTrans_BatchInsertWithReturning(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,
+    Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Updates data in the database based on specified conditions and output change info to context.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param row Represents the row data to be updated into the table.
+ * @param predicates Represents a pointer to an {link OH_Predicates} instance.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param context Represents a pointer to a pointer to an {@link OH_RDB_ReturningContext} instance.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} The error code for not support.
+ *         Returns {@link RDB_E_EMPTY_VALUES_BUCKET} The error code for a values bucket is empty.
+ *         Returns {@link RDB_E_DATABASE_BUSY} The error code for database busy.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQLite error.
+ *             Possible causes: syntax error, such as a table or column not existing.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Transaction, OH_Data_VBuckets, OH_Predicates, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
+ * @since 23
+ */
+int OH_RdbTrans_UpdateWithReturning(OH_Rdb_Transaction *trans, OH_VBucket *row, OH_Predicates *predicates,
+    Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Deletes data from the database based on specified conditions and output change info to context.
+ *
+ * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param predicates Represents a pointer to an {@link OH_Predicates} instance.
+ * @param context Represents a pointer to a pointer to an {@link OH_RDB_ReturningContext} instance.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} The error code for not support.
+ *         Returns {@link RDB_E_DATABASE_BUSY} The error code for database busy.
+ *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQLite error.
+ *             Possible causes: syntax error, such as a table or column not existing.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Transaction, OH_Predicates, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
+ * @since 23
+ */
+int OH_RdbTrans_DeleteWithReturning(
+    OH_Rdb_Transaction *trans, OH_Predicates *predicates, OH_RDB_ReturningContext *context)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 };
 #endif

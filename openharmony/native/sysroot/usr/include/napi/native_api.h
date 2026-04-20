@@ -3252,6 +3252,23 @@ NAPI_EXTERN napi_status napi_get_strong_sendable_reference_value(napi_env env,
                                                                  napi_sendable_ref ref,
                                                                  napi_value* result)
                                                                  __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Throws an ArkTS Error with text information.
+ * @param env Current running virtual machine context.
+ * @param errorCode Error code to be set on the error object.
+ * @param msg C string representing the text to be associated with the error object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env or msg is nullptr.\n
+ *         {@link napi_pending_exception } There is an uncaught exception occurred before execution.\n
+ * @since 23
+ */
+NAPI_EXTERN napi_status napi_throw_business_error(napi_env env,
+                                                  int32_t errorCode,
+                                                  const char* msg)
+                                                  __attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif

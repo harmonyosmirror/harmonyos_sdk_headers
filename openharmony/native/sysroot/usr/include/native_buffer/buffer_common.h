@@ -149,6 +149,16 @@ typedef enum OH_NativeBuffer_MetadataType {
      */
     OH_IMAGE_HDR_VIVID_SINGLE,
     /**
+     * HDR IMAGE ISO DUAL.
+     * @since 23
+     */
+    OH_IMAGE_HDR_ISO_DUAL,
+    /**
+     * HDR IMAGE ISO SINGLE.
+     * @since 23
+     */
+    OH_IMAGE_HDR_ISO_SINGLE,
+    /**
      * NONE Metadata
      * @since 13
      */

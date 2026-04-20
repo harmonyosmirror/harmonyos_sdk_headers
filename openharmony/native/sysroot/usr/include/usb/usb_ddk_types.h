@@ -298,7 +298,7 @@ typedef enum {
     /** @error The operation is successful. */
     USB_DDK_SUCCESS = 0,
     /** @error The operation failed.
-     *  @deprecate since 16
+     *  @deprecated since 16
      */
     USB_DDK_FAILED = -1,
     /** @error Permission denied.
@@ -312,11 +312,11 @@ typedef enum {
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /** @error Null pointer exception
-     *  @deprecate since 16
+     *  @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
     /** @error Device busy.
-     *  @deprecate since 16
+     *  @deprecated since 16
      */
     USB_DDK_DEVICE_BUSY = -6,
     /** @error Invalid operation. */

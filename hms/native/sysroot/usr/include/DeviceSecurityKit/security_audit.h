@@ -218,7 +218,67 @@ typedef enum {
      * @syscap SystemCapability.Security.SecurityAudit
      * @since 6.0.0(20)
      */
-    SECURITY_AUDIT_NOTIFY_EVENT_USB_ACCESS_INTERCEPTED = 0x30000000
+    SECURITY_AUDIT_NOTIFY_EVENT_USB_ACCESS_INTERCEPTED = 0x30000000,
+    /**
+     * SMB file transfer event.
+     * 
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_SMB_FILE_SEND = 0x0F000001,
+    /**
+     * KIA file pre-open event.
+     * 
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_KIA_PRE_OPEN = 0x1C000014,
+    /**
+     * HDC debug event.
+     *
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_HDC_DEBUG = 0x27000100,
+    /**
+     * HDC debug interception event.
+     *
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_HDC_DEBUG_INTERCEPTED = 0x27000101,
+    /**
+     * Multi-user space data exchange event.
+     *
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_USER_SPACE_DATA_TRANSFER = 0x2F000000,
+    /**
+     * Multi-user space data exchange policy event.
+     *
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_USER_SPACE_DATA_TRANSFER_POLICY = 0x2F000001,
+    /**
+     * Serial Port access event.
+     *
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_SERIAL_PORT_ACCESS = 0x30000100,
+    /**
+     * Network interception event.
+     * 
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_NETWORK_INTERCEPTED = 0x03000002,
+    /**
+     * WIFI interception event.
+     * 
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_WIFI_INTERCEPTED = 0x03000100,
+    /**
+     * Print interception event.
+     *
+     * @since 6.1.0(23)
+     */
+    SECURITY_AUDIT_NOTIFY_EVENT_PRINT_INTERCEPTED = 0x2E000001
 } SecurityAudit_Notify_Event;
 
 /**
@@ -447,17 +507,24 @@ typedef enum {
 
 /**
  * @brief Creates a new notification client.
+ * 
+ * This function initializes a notification client through a handler designed to handle notify events.
+ * The client can be used to subscribe to notification events or set filters.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {SecurityAudit_Client**} client Pointer to the new client instance.
  * @param {SecurityAudit_Handler} handler Handler that processes all messages sent to this client.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the number of clients exceeds the total upper limit, 1012000002 is returned.
- * If the number of clients exceeds the upper limit of the current process, 1012000003 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000002 if the operation is successful.
+ *         Returns 1012000003 if the operation is successful.
+ * @note The caller is responsible for freeing the client using `HMS_SecurityAudit_DeleteClient` when it is no longer
+ * needed.
+ * 
+ * @see HMS_SecurityAudit_DeleteClient
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_NewClient(SecurityAudit_Client** client, SecurityAudit_Handler handler)
@@ -465,14 +532,19 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes a notification client.
+ * 
+ * This function is used to release a notification client that has already been initialized.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {SecurityAudit_Client*} client Client instance to be deleted.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ * @note After the caller uses this function to release the client,
+ * all notification events subscribed through the client will be unsubscribed,
+ * and all filters added through the client will be removed.
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_DeleteClient(SecurityAudit_Client* client)
@@ -480,16 +552,23 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Subscribes to notification events.
+ * 
+ * This function is used to subscribe to notification events that the caller wants to listen to.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {SecurityAudit_Client*} client Client that subscribes to notification events.
  * @param {SecurityAudit_Notify_Event*} events Array of notification events to be subscribed to.
  * @param {uint64_t} count Number of notification events in the array.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ * @note The caller is responsible for unsubscribing the events using `HMS_SecurityAudit_Unsubscribe` when it is no
+ * longer needed.
+ * 
+ * @see HMS_SecurityAudit_Unsubscribe
+ * @see SecurityAudit_Notify_Event
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_Subscribe(const SecurityAudit_Client* client, const SecurityAudit_Notify_Event *events,
@@ -498,16 +577,17 @@ int32_t HMS_SecurityAudit_Subscribe(const SecurityAudit_Client* client, const Se
 
 /**
  * @brief Unsubscribes from notification events.
+ * 
+ * This function is used to unsubscribe from notification events that the caller is listening to.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {SecurityAudit_Client*} client Client that unsubscribes from notification events.
  * @param {SecurityAudit_Notify_Event*} events Array of notification events to be unsubscribed from.
  * @param {uint64_t} count Number of notification events in the array.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_Unsubscribe(const SecurityAudit_Client* client, const SecurityAudit_Notify_Event *events,
@@ -516,18 +596,25 @@ int32_t HMS_SecurityAudit_Unsubscribe(const SecurityAudit_Client* client, const 
 
 /**
  * @brief Adds a filter condition to a notify event.
+ * 
+ * This function is used to set filter criteria for notification events.
+ * By properly configuring positive and negative filter conditions, you can more accurately detect the desired events.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {SecurityAudit_Client*} client Client created before.
  * @param {SecurityAudit_Notify_Event} event Notify event for which a filter condition is to be added.
  * @param {SecurityAudit_Filter*} filter Filter description of the notify event.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the number of filters exceeds the upper limit, 1012000004 is returned.
- * If the event does not support the filter condition, 1012000005 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000004 if the number of filters exceeds the upper limit.
+ *         Returns 1012000005 if the event does not support the filter condition.
+ * @note Support setting filter before using `HMS_SecurityAudit_Subscribe` to subscribe to events.
+ * @note The caller can use `HMS_SecurityAudit_RemoveFilter` to remove previously set filter conditions.
+ * 
+ * @see HMS_SecurityAudit_RemoveFilter
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_AddFilter(const SecurityAudit_Client* client, SecurityAudit_Notify_Event event,
@@ -536,17 +623,18 @@ int32_t HMS_SecurityAudit_AddFilter(const SecurityAudit_Client* client, Security
 
 /**
  * @brief Deletes the filter condition of a notify event.
+ * 
+ * This function is used to delete the filter set by the caller.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {SecurityAudit_Client*} client Client created before.
  * @param {SecurityAudit_Notify_Event} event Notify event whose filter condition is to be deleted.
  * @param {SecurityAudit_Filter*} filter Filter description of the notify event.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the event does not support the filter condition, 1012000005 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000005 if the event does not support the filter condition.
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_RemoveFilter(const SecurityAudit_Client* client, SecurityAudit_Notify_Event event,
@@ -555,17 +643,24 @@ int32_t HMS_SecurityAudit_RemoveFilter(const SecurityAudit_Client* client, Secur
 
 /**
  * @brief Creates a new auth client.
+ * 
+ * This function initializes an auth client through a handler designed to handle auth events.
+ * The client can be used to subscribe to auth events or set filters.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient**} client Pointer to the new client instance.
  * @param {SecurityAudit_Handler} handler Handler that processes all messages sent to this client.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the number of clients exceeds the total upper limit, 1012000002 is returned.
- * If the number of clients exceeds the upper limit of the current process, 1012000003 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000002 if the operation is successful.
+ *         Returns 1012000003 if the operation is successful.
+ * @note The caller is responsible for freeing the client using `HMS_SecurityAudit_DeleteAuthClient` when it is no
+ * longer needed.
+ * 
+ * @see HMS_SecurityAudit_DeleteAuthClient
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_NewAuthClient(SecurityAudit_AuthClient** client, SecurityAudit_Handler handler)
@@ -573,14 +668,19 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Deletes an auth client.
+ * 
+ * This function is used to release an auth client that has already been initialized.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient*} client Client instance to be deleted.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ * @note After the caller uses this function to release the client,
+ * all auth events subscribed through the client will be unsubscribed,
+ * and all filters added through the client will be removed.
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_DeleteAuthClient(SecurityAudit_AuthClient* client)
@@ -588,16 +688,23 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Subscribes to auth events.
+ * 
+ * This function is used to subscribe to notification events that the caller wants to listen to.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient*} client Client that subscribes to auth events.
  * @param {SecurityAudit_Auth_Event*} events Array of auth events to be subscribed to.
  * @param {uint64_t} count Number of auth events in the array.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ * @note The caller is responsible for unsubscribing the events using `HMS_SecurityAudit_UnsubscribeAuthEvent` when it
+ * is no longer needed.
+ * 
+ * @see HMS_SecurityAudit_UnsubscribeAuthEvent
+ * @see SecurityAudit_Auth_Event
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_SubscribeAuthEvent(const SecurityAudit_AuthClient* client,
@@ -606,16 +713,17 @@ int32_t HMS_SecurityAudit_SubscribeAuthEvent(const SecurityAudit_AuthClient* cli
 
 /**
  * @brief Unsubscribes from auth events.
+ * 
+ * This function is used to unsubscribe from auth events that the caller is listening to.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient*} client Client that unsubscribes from auth events.
  * @param {SecurityAudit_Auth_Event*} events Array of auth events to be unsubscribed from.
  * @param {uint64_t} count Number of auth events in the array.
- * @return Function execution result.
- * Result code description:
- * 0 is returned if the operation is successful.
- * 201 is returned if the permission verification fails.
- * 1012000001 is returned if an internal error occurs.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_UnsubscribeAuthEvent(const SecurityAudit_AuthClient* client,
@@ -624,18 +732,25 @@ int32_t HMS_SecurityAudit_UnsubscribeAuthEvent(const SecurityAudit_AuthClient* c
 
 /**
  * @brief Adds a filter condition to an auth event.
+ * 
+ * This function is used to set filter criteria for auth events.
+ * By properly configuring positive and negative filter conditions, you can more accurately detect the desired events.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient*} client Client created before.
  * @param {SecurityAudit_Auth_Event} event Auth event for which a filter condition is to be added.
  * @param {SecurityAudit_Filter*} filter Filter description of the auth event.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the number of filters exceeds the upper limit, 1012000004 is returned.
- * If the event does not support the filter condition, 1012000005 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000004 if the number of filters exceeds the upper limit.
+ *         Returns 1012000005 if the event does not support the filter condition.
+ * @note Support setting filter before using `HMS_SecurityAudit_SubscribeAuthEvent` to subscribe to events.
+ * @note The caller can use `HMS_SecurityAudit_RemoveAuthEventFilter` to remove previously set filter conditions.
+ * 
+ * @see HMS_SecurityAudit_RemoveAuthEventFilter
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_AddAuthEventFilter(const SecurityAudit_AuthClient* client, SecurityAudit_Auth_Event event,
@@ -644,17 +759,18 @@ int32_t HMS_SecurityAudit_AddAuthEventFilter(const SecurityAudit_AuthClient* cli
 
 /**
  * @brief Deletes the filter condition of an auth event.
+ * 
+ * This function is used to delete the filter set by the caller.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient*} client Client created before.
  * @param {SecurityAudit_Auth_Event} event Auth event whose filter condition is to be deleted.
  * @param {SecurityAudit_Filter*} filter Filter description of the auth event.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the event does not support the filter condition, 1012000005 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000005 if the event does not support the filter condition.
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_RemoveAuthEventFilter(const SecurityAudit_AuthClient* client, SecurityAudit_Auth_Event event,
@@ -663,17 +779,23 @@ int32_t HMS_SecurityAudit_RemoveAuthEventFilter(const SecurityAudit_AuthClient* 
 
 /**
  * @brief Sets the authorization result for an audit event.
+ * 
+ * This function is used to block or allow the auth events received by caller.
  *
  * @permission ohos.permission.kernel.AUTH_AUDIT_EVENT
  * @param {SecurityAudit_AuthClient*} client Client that generates the event.
  * @param {SecurityAudit_Event} event Audit event information.
  * @param {SecurityAudit_AuthResult} authResult Authorization result information.
- * @return Function execution result. 
- * Result code description:
- * 0 is returned if the operation is successful.
- * 201 is returned if the permission verification fails.
- * If an internal error occurs, 1012000001 is returned.
- * If the auth event cannot be found, 1012000007 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000007 the auth event cannot be found.
+ * @note The caller should use the event received by the `SecurityAudit_Handler` to enforce blocking or allowing
+ * policies.
+ * 
+ * @see SecurityAudit_Handler
+ * 
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_Auth(const SecurityAudit_AuthClient* client, const SecurityAudit_Event *event,
@@ -681,32 +803,34 @@ int32_t HMS_SecurityAudit_Auth(const SecurityAudit_AuthClient* client, const Sec
     __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
- * @brief Queries all processes.
+ * @brief Queries all processes information.
+ * 
+ * This function is used to obtain information about all application processes that have been launched on the device.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {char**} result Query result.
- * @return Function execution result.
- * Result code description:
- * 0 is returned if the operation is successful.
- * 201 is returned if the permission verification fails.
- * 1012000001 is returned if an internal error occurs.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_QueryAllProcesses(char** result) __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
  * @brief Query process information in batches.
+ * 
+ * This function is used to obtain information about application processes on a device via PIDs.
  *
  * @permission ohos.permission.QUERY_AUDIT_EVENT
  * @param {uint64_t*} pids List of process IDs to be queried.
  * @param {uint64_t} count Number of processes.
  * @param {char**} result Query result.
- * @return Function execution result.
- * Return value description:
- * If the operation is successful, 0 is returned.
- * If the permission verification fails, 201 is returned.
- * If an internal error occurs, 1012000001 is returned.
- * If the number of queried processes exceeds the threshold, 1012000006 is returned.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *         Returns 1012000006 if the number of queried processes exceeds the threshold.
  * @since 6.0.0(20)
  */
 int32_t HMS_SecurityAudit_QueryProcesses(uint64_t* pids, uint64_t count, char** result)

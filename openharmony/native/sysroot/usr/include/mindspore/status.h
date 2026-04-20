@@ -54,7 +54,7 @@ typedef enum OH_AI_Status {
   // Core
   OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE | 0x1,
 
-  // Lite  // Common error code, range: [-1, -100）
+  // Lite  // Common error code, range: (-100,-1]
   OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -1),             /**< Common error code. */
   OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -2),           /**< NULL pointer returned.*/
   OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -3),     /**< Invalid parameter.*/
@@ -65,35 +65,41 @@ typedef enum OH_AI_Status {
   OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -8),  /**< Error occur in thread pool. */
   OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -9), /**< Object is not initialized. */
 
-  // Executor error code, range: [-100,-200)
+  // Executor error code, range: (-200,-100]
   OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -100), /**< Failed to check range. */
   OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR =
     OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -101),                                   /**< Failed to check input tensor. */
   OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -102), /**< Exist executor running. */
 
-  // Graph error code, range: [-200,-300)
+  // Graph error code, range: (-300,-200]
   OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -200), /**< Failed to verify graph file. */
 
-  // Node error code, range: [-300,-400)
+  // Node error code, range: (-400,-300]
   OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -300),     /**< Failed to find operator. */
   OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -301), /**< Invalid operator name. */
   OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -302), /**< Invalid operator attr. */
   OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE =
     OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -303), /**< Failed to execution operator. */
 
-  // Tensor error code, range: [-400,-500)
+  // Tensor error code, range: (-500,-400]
   OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -400), /**< Failed to checking tensor format. */
 
-  // InferShape error code, range: [-500,-600)
+  // InferShape error code, range: (-600,-500]
   OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -500), /**< Failed to infer shape. */
   OH_AI_STATUS_LITE_INFER_INVALID =
     OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -501), /**< Invalid infer shape before runtime. */
 
-  // User input param error code, range: [-600, 700)
+  // User input param error code, range: (-700,-600]
   OH_AI_STATUS_LITE_INPUT_PARAM_INVALID =
     OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -600), /**< Invalid input param by user. */
+  
+  // AIPP module error code, range: (-800,-700]
+  OH_AI_STATUS_LITE_AIPP_NOT_SUPPORTED = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -700), /**< Not support AIPP. */
+  OH_AI_STATUS_LITE_AIPP_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -701), /** Failed to infer with AIPP. */
 } OH_AI_Status;
 #ifdef __cplusplus
 }
 #endif
+
+/** @} */
 #endif  // MINDSPORE_INCLUDE_C_API_STATUS_C_H

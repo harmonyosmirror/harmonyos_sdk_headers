@@ -35,7 +35,6 @@
  * @library libhuks_ndk.z.so
  * @syscap SystemCapability.Security.Huks.Core
  *
- * include "huks/include/native_huks_type.h"
  * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0
@@ -52,7 +51,11 @@ extern "C" {
 #endif
 
 /**
- * @brief Initializes a parameter set.
+ * @brief Initializing the parameter set, with no parameter information, allocating the default available memory space
+ *        for the parameter set.
+ *        The parameter set after initialisation needs to be released via OH_Huks_FreeParamSet.
+ *        The set of parameters to which parameters are added must use OH_Huks_AddParams to add parameters and must use
+ *        OH_Huks_BuildParamSet to construct the parameter set.
  *
  * @param paramSet Indicates the double pointer to the parameter set to initialize.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the initialization is successful.
@@ -80,7 +83,8 @@ struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
     __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
- * @brief Constructs a parameter set.
+ * @brief After initializing the parameter set and adding parameters, serialize the parameter set and copy the
+ *        blob type data to the adjacent memory area at the end of the paramSet structure.
  *
  * @param paramSet Indicates the double pointer to the parameter set to construct.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
@@ -109,7 +113,7 @@ void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet) __attribute__((__a
  * @param paramSet Indicates the double pointer to the new parameter set generated.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If fromParamSet or fromParamSetSize
- *             or paramSet is invalid.
+ *         or paramSet is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  * @since 9
  * @version 1.0
@@ -126,7 +130,7 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
  * @param param Indicates the double pointer to the parameter obtained.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet or param is invalid,
- *             or if the param doesn't exist in the pararmset.
+ *         or if the param doesn't exist in the pararmSet.
  * @since 9
  * @version 1.0
  */
@@ -156,7 +160,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * @param paramSet Indicates the pointer to the parameter set to check.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the parameters in the parameter set are valid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet is invalid or
- *             the parameter set has invalid, duplicate, or incorrect tags.
+ *         the parameter set has invalid, duplicate, or incorrect tags.
  * @since 9
  * @version 1.0
  */
@@ -183,7 +187,7 @@ __attribute__((__availability__(ohos, introduced=9.0.0)));
  * @param param Indicates the pointer to the second parameter.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the two parameters are the same.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If one of the paramSet is invalid,
- *             or if the params don't match, or if the tag inside is invalid.
+ *         or if the params don't match, or if the tag inside is invalid.
  * @since 9
  * @version 1.0
  */
@@ -191,9 +195,9 @@ struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *basePa
 __attribute__((__availability__(ohos, introduced=9.0.0)));
 
 /**
- * @brief Destroys a parameter set.
+ * @brief Destroys a key alias parameter set.
  *
- * @param keyAliasSet Indicates the pointer to the parameter set to destroy.
+ * @param keyAliasSet Indicates the pointer to the key alias parameter set to destroy.
  * @since 20
  * @version 1.0
  */

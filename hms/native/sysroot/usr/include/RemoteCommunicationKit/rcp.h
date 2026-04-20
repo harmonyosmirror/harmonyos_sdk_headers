@@ -1405,6 +1405,51 @@ typedef struct Rcp_Response Rcp_Response;
  * Others - 1007900000 + CURL_ERROR_CODE. For more common error codes, see curl error codes.
  * @since 5.0.0(12)
  */
+ /**
+ * @brief Response callback function pointer.
+ *
+ * @param usrCtx User Context.
+ * @param response Pointer to {@link Rcp_Response}.
+ * @param errCode [out] Indicates the common error codes.
+ * 0 - Success.
+ * 1007900001 - Unsupported protocol.
+ * 1007900003 - URL using bad/illegal format or missing URL.
+ * 1007900005 - Couldn't resolve proxy name.
+ * 1007900006 - Couldn't resolve host name.
+ * 1007900007 - Couldn't connect to server.
+ * 1007900008 - Weird server reply.
+ * 1007900009 - Access denied to remote resource.
+ * 1007900016 - Error in the HTTP2 framing layer.
+ * 1007900018 - Transferred a partial file.
+ * 1007900025 - Upload failed.
+ * 1007900026 - Failed to open/read local data from file/application.
+ * 1007900027 - Out of memory.
+ * 1007900028 - Timeout was reached.
+ * 1007900047 - Number of redirects hit maximum amount.
+ * 1007900052 - Server returned nothing (no headers, no data).
+ * 1007900055 - Failed sending data to the peer.
+ * 1007900056 - Failure when receiving data from the peer.
+ * 1007900058 - Problem with the local SSL certificate.
+ * 1007900059 - Couldn't use specified SSL cipher.
+ * 1007900060 - SSL peer certificate or SSH remote key was not OK.
+ * 1007900061 - Unrecognized or bad HTTP Content or Transfer-Encoding.
+ * 1007900063 - Maximum file size exceeded.
+ * 1007900070 - Disk full or allocation exceeded.
+ * 1007900073 - Remote file already exists.
+ * 1007900077 - Problem with the SSL CA cert (path? access rights?).
+ * 1007900078 - Remote file not found.
+ * 1007900201 - Plaintext transmission is forbidden.
+ * 1007900992 - Request is canceled.
+ * 1007900993 - Session is closed or invalid.
+ * 1007900094 - An authentication function returned an error.
+ * 1007900995 - Get system proxy failed.
+ * 1007900996 - Proxy type not supported.
+ * 1007900997 - Invalid content type.
+ * 1007900998 - Method not supported.
+ * 1007900999 - Internal Error.
+ * Others - 1007900000 + CURL_ERROR_CODE. For more common error codes, see curl error codes.
+ * @since 6.1.0(23)
+ */
 typedef void (*Rcp_ResponseCallback)(void *usrCtx, Rcp_Response *response, uint32_t errCode);
 
 /**
@@ -1735,8 +1780,58 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  * @syscap SystemCapability.Collaboration.RemoteCommunication
  * @since 5.0.0(12)
  */
+ /**
+ * @brief Send an async request and get a response
+ *
+ * @param session Pointer to {@link Rcp_Session}
+ * @param request Pointer to {@link Rcp_Request}
+ * @param errCode [out] Indicates the common error codes.
+ * 0 - success.
+ * 201 - Permission denied.
+ * 401 - Parameter error.
+ * 1007900001 - Unsupported protocol.
+ * 1007900003 - URL using bad/illegal format or missing URL.
+ * 1007900005 - Couldn't resolve proxy name.
+ * 1007900006 - Couldn't resolve host name.
+ * 1007900007 - Couldn't connect to server.
+ * 1007900008 - Weird server reply.
+ * 1007900009 - Access denied to remote resource.
+ * 1007900016 - Error in the HTTP2 framing layer.
+ * 1007900018 - Transferred a partial file.
+ * 1007900025 - Upload failed.
+ * 1007900026 - Failed to open/read local data from file/application.
+ * 1007900027 - Out of memory.
+ * 1007900028 - Timeout was reached.
+ * 1007900047 - Number of redirects hit maximum amount.
+ * 1007900052 - Server returned nothing (no headers, no data).
+ * 1007900055 - Failed sending data to the peer.
+ * 1007900056 - Failure when receiving data from the peer.
+ * 1007900058 - Problem with the local SSL certificate.
+ * 1007900059 - Couldn't use specified SSL cipher.
+ * 1007900060 - SSL peer certificate or SSH remote key was not OK.
+ * 1007900061 - Unrecognized or bad HTTP Content or Transfer-Encoding.
+ * 1007900063 - Maximum file size exceeded.
+ * 1007900070 - Disk full or allocation exceeded.
+ * 1007900073 - Remote file already exists.
+ * 1007900077 - Problem with the SSL CA cert (path? access rights?).
+ * 1007900078 - Remote file not found.
+ * 1007900201 - Plaintext transmission is forbidden.
+ * 1007900992 - Request is canceled.
+ * 1007900993 - Session is closed or invalid.
+ * 1007900094 - An authentication function returned an error.
+ * 1007900995 - Get system proxy failed.
+ * 1007900996 - Proxy type not supported.
+ * 1007900997 - Invalid content type.
+ * 1007900998 - Method not supported.
+ * 1007900999 - Internal Error.
+ * Others - 1007900000 + CURL_ERROR_CODE. For more common error codes, see curl error codes.
+ * @return Rcp_Response* Pointer to {@link Rcp_Response}
+ * @permission ohos.permission.INTERNET
+ * @permission ohos.permission.GET_NETWORK_INFO If you want to use 'cellular' of {@link PathPreference}.
+ * @since 6.1.0(23)
+ */
 Rcp_Response *HMS_Rcp_FetchSync(Rcp_Session *session, Rcp_Request *request, uint32_t *errCode)
-__attribute__((__availability__(ohos, introduced=12.0.0)));
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Send a sync request and get a response

@@ -246,6 +246,31 @@ void OH_Drawing_CanvasDrawPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
 __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
+ * @brief Draw a pixel map on the grid, with the grid evenly distributed over the pixel map.
+ *
+ * @param cCanvas Indicates the pointer to an OH_Drawing_Canvas object.
+ * @param pixelMap Indicates the pointer to an OH_Drawing_PixelMap.
+ * @param meshWidth The number of columns in the mesh.
+ * @param meshHeight The number of rows in the mesh.
+ * @param vertices Indicates the vertex array that specifies the drawing positions of the mesh.
+ * @param verticesSize The size of vertices.
+ * @param vertOffset The number of vert elements to skip before drawing.
+ * @param colors Indicates the color array that specifies a color at each vertex.
+ * @param colorsSize The size of colors.
+ * @param colorOffset The number of color elements to skip before drawing.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if any of canvas, pixelMap
+ *                 and dst is nullptr.
+ * @since 23
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapMesh(OH_Drawing_Canvas* cCanvas, OH_Drawing_PixelMap* pixelMap,
+    uint32_t meshWidth, uint32_t meshHeight, const float* vertices, uint32_t verticesSize, uint32_t vertOffset,
+    const uint32_t* colors, uint32_t colorsSize, uint32_t colorOffset)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Divides the pixelmap into a grid with nine sections: four sides, four corners, and the center.
  * Draws the specified section of the pixelmap onto the canvas, corners are unmodified or scaled down if they exceed
  * the destination rectangle, center and four sides are scaled to fit remaining space.

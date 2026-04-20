@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup PREFERENCES
+ * @addtogroup Preferences
  * @{
  *
  * @brief Provides APIs for processing data in the form of key-value (KV) pairs.
@@ -100,6 +100,21 @@ __attribute__((__availability__(ohos, introduced=13.0.0)));
  * @since 13
  */
 int OH_Preferences_Close(OH_Preferences *preference) __attribute__((__availability__(ohos, introduced=13.0.0)));
+
+/**
+ * @brief Delete a Preferences object.
+ *
+ * @param option Pointer to an {@Link OH_PreferencesOption} instance.
+ * @return Returns the status code of the execution. For details, see {@Link OH_Preferences_ErrCode}.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
+ *         {@link PREFERENCES_ERROR_DELETE_FILE} indicates delete file failed.
+ * @see OH_Preferences.
+ * @since 23
+ */
+int OH_Preferences_DeletePreferences(OH_PreferencesOption *option)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Obtains the integer value in a Preferences object based on the given key.
@@ -286,6 +301,137 @@ int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, void *cont
  */
 int OH_Preferences_IsStorageTypeSupported(Preferences_StorageType type, bool *isSupported)
 __attribute__((__availability__(ohos, introduced=18.0.0)));
+
+/**
+ * @brief Sets value {@Link OH_PreferencesValue} in a Preferences object.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key to set.
+ * @param value Pointer to the value {@Link OH_PreferencesValue} to set.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @see OH_Preferences.
+ * @since 23
+ */
+int OH_Preferences_SetValue(OH_Preferences *preference, const char *key, OH_PreferencesValue *value)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains value in a Preferences object based on the given key.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key of the value obtained.
+ * @param value Pointer to the value {@Link OH_PreferencesValue} obtained.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @see OH_Preferences.
+ * @since 23
+ */
+int OH_Preferences_GetValue(OH_Preferences *preference, const char *key, OH_PreferencesValue **value)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Obtains all value in a Preferences object.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param pairs Pointer to the KV pairs to be observed. Release {@Link OH_Preferences_FreeString} the
+ * memory by user when this parameter is no longer required.
+ * @param count Pointer to the all value size obtained.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @see OH_Preferences.
+ * @since 23
+ */
+int OH_Preferences_GetAll(OH_Preferences *preference, OH_PreferencesPair **pairs, uint32_t *count)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Check whether a Preferences object contains a KV pair matching a specified key.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key of the data to Check.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @see OH_Preferences.
+ * @since 23
+ */
+bool OH_Preferences_HasKey(OH_Preferences *preference, const char *key)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Save the {@link OH_Preferences} object cache to the xml file
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
+ * @see OH_Preferences.
+ * @since 23
+ */
+int OH_Preferences_Flush(OH_Preferences *preference) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Clears all value from the {@link OH_Preferences} object cache.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
+ * @see OH_Preferences.
+ * @since 23
+ */
+int OH_Preferences_ClearCache(OH_Preferences *preference) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Registers a multi process data observer for a Preferences object.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param context Pointer to the context of the data observer.
+ * @param observer the {@Link OH_PreferencesDataObserver} to register.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ *         {@link PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT} indicates get dataObsMgrClient error.
+ * @see OH_Preferences OH_PreferencesDataObserver.
+ * @since 23
+ */
+int OH_Preferences_RegisterMultiProcessDataObserver(OH_Preferences *preference, void *context,
+    OH_PreferencesDataObserver observer)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Unregisters a multi process data observer for a Preferences object.
+ *
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param context Pointer to the context of the data observer.
+ * @param observer the {@Link OH_PreferencesDataObserver} to unregister.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @see OH_Preferences OH_PreferencesDataObserver.
+ * @since 23
+ */
+int OH_Preferences_UnregisterMultiProcessDataObserver(OH_Preferences *preference, void *context,
+    OH_PreferencesDataObserver observer)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 };

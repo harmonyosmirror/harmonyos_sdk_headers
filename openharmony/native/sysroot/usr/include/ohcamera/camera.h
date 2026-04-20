@@ -259,6 +259,31 @@ typedef enum Camera_Connection {
 } Camera_Connection;
 
 /**
+ * @brief Describes the query information of the camera device.
+ *
+ * @since 23
+ * @version 1.0
+ */
+typedef struct Camera_DeviceQueryInfo {
+    /**
+     * Camera type list.
+     */
+    Camera_Type* cameraType;
+    /**
+     * Camera type size.
+     */
+    uint32_t cameraTypeSize;
+    /**
+     * Camera position attribute.
+     */
+    Camera_Position cameraPosition;
+    /**
+     * Camera connection type attribute.
+     */
+    Camera_Connection connectionType;
+} Camera_DeviceQueryInfo;
+
+/**
  * @brief Enum for camera format type.
  *
  * @since 11
@@ -290,7 +315,13 @@ typedef enum Camera_Format {
      * YCRCB P010 Format.
      * @since 12
      */
-    CAMERA_FORMAT_YCRCB_P010 = 2002
+    CAMERA_FORMAT_YCRCB_P010 = 2002,
+
+    /**
+     * HEIC Format.
+     * @since 23
+     */
+    CAMERA_FORMAT_HEIC = 2003,
 } Camera_Format;
 
 /**
@@ -441,9 +472,21 @@ typedef enum Camera_ImageRotation {
     IAMGE_ROTATION_0 = 0,
 
     /**
+     * The capture image rotates 0 degrees.
+     * @since 23
+     */
+    CAMERA_IMAGE_ROTATION_0 = 0,
+
+    /**
      * The capture image rotates 90 degrees.
      */
     IAMGE_ROTATION_90 = 90,
+
+    /**
+     * The capture image rotates 90 degrees.
+     * @since 23
+     */
+    CAMERA_IMAGE_ROTATION_90 = 90,
 
     /**
      * The capture image rotates 180 degrees.
@@ -451,9 +494,21 @@ typedef enum Camera_ImageRotation {
     IAMGE_ROTATION_180 = 180,
 
     /**
+     * The capture image rotates 180 degrees.
+     * @since 23
+     */
+    CAMERA_IMAGE_ROTATION_180 = 180,
+
+    /**
      * The capture image rotates 270 degrees.
      */
-    IAMGE_ROTATION_270 = 270
+    IAMGE_ROTATION_270 = 270,
+
+    /**
+     * The capture image rotates 270 degrees.
+     * @since 23
+     */
+    CAMERA_IMAGE_ROTATION_270 = 270,
 } Camera_ImageRotation;
 
 /**
@@ -489,7 +544,19 @@ typedef enum Camera_MetadataObjectType {
     /**
      * Face detection.
      */
-    FACE_DETECTION = 0
+    FACE_DETECTION = 0,
+    
+    /**
+     * Face detection type.
+     * @since 23
+     */
+    CAMERA_METADATA_OBJECT_TYPE_FACE_DETECTION = 0,
+ 
+    /**
+     * Human body detection type.
+     * @since 23
+     */
+    CAMERA_METADATA_OBJECT_TYPE_HUMAN_BODY = 1
 } Camera_MetadataObjectType;
 
 /**
@@ -505,15 +572,34 @@ typedef enum Camera_TorchMode {
     OFF = 0,
 
     /**
+     * The device torch is always off.
+     * @since 23
+     */
+    CAMERA_TORCH_MODE_OFF = 0,
+
+    /**
      * The device torch is always on.
      */
     ON = 1,
 
     /**
+     * The device torch is always on.
+     * @since 23
+     */
+    CAMERA_TORCH_MODE_ON = 1,
+
+    /**
      * The device continuously monitors light levels and
      * uses the torch when necessary.
      */
-    AUTO = 2
+    AUTO = 2,
+
+    /**
+     * The device continuously monitors light levels and
+     * uses the torch when necessary.
+     * @since 23
+     */
+    CAMERA_TORCH_MODE_AUTO = 2
 } Camera_TorchMode;
 
 /**
@@ -524,9 +610,15 @@ typedef enum Camera_TorchMode {
  */
 typedef enum Camera_SmoothZoomMode {
     /**
-     * Normal zoom mode.
+     * Normal smooth zoom mode.
      */
-    NORMAL = 0
+    NORMAL = 0,
+
+    /**
+     * Normal smooth zoom mode.
+     * @since 23
+     */
+    CAMERA_SMOOTH_ZOOM_MODE_NORMAL = 0
 } Camera_SmoothZoomMode;
 
 /**
@@ -554,7 +646,13 @@ typedef enum Camera_PreconfigType {
     /**
      * The preconfig type is high quality.
      */
-    PRECONFIG_HIGH_QUALITY = 3
+    PRECONFIG_HIGH_QUALITY = 3,
+    
+    /**
+     * The preconfig type is high quality photo session with BT2020.
+     * @since 23
+     */
+    PRECONFIG_HIGH_QUALITY_PHOTOSESSION_BT2020 = 4
 } Camera_PreconfigType;
 
 /**
@@ -1010,14 +1108,32 @@ typedef enum Camera_FoldStatus {
     NON_FOLDABLE = 0,
 
     /**
+     * Non_foldable status.
+     * @since 23
+     */
+    CAMERA_FOLD_STATUS_NON_FOLDABLE = 0,
+
+    /**
      * Expanded status.
      */
     EXPANDED = 1,
 
     /**
+     * Expanded status.
+     * @since 23
+     */
+    CAMERA_FOLD_STATUS_EXPANDED = 1,
+
+    /**
      * Folded status.
      */
-    FOLDED = 2
+    FOLDED = 2,
+
+    /**
+     * Folded status.
+     * @since 23
+     */
+    CAMERA_FOLD_STATUS_FOLDED = 2
 } Camera_FoldStatus;
 
 /**
@@ -1285,6 +1401,24 @@ typedef enum Camera_PhotoQualityPrioritization {
      */
     CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1,
 } Camera_PhotoQualityPrioritization;
+
+/**
+ * @brief Camera occlusion detection result.
+ *
+ * @since 23
+ * @version 1.0
+ */
+typedef struct Camera_OcclusionDetectionResult {
+    /**
+     * Check whether camera is occluded.
+     */
+    bool isCameraOccluded;
+
+    /**
+     * Check whether camera lens is dirty.
+     */
+    bool isCameraLensDirty;
+} Camera_OcclusionDetectionResult;
 
 #ifdef __cplusplus
 }

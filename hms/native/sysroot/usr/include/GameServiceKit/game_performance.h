@@ -1643,7 +1643,7 @@ GamePerformance_ErrorCode HMS_GamePerformance_DeviceInfo_GetGpuInfo(GamePerforma
  *
  * @param deviceInfo Pointer to the {@link GamePerformance_DeviceInfo} instance.
  * The value can not be null. Otherwise, an error code will be returned.
- * @param thermalInfo Output data. Secondary pointer to the {@link GamePerformance_GpuInfo} instance.
+ * @param thermalInfo Output data. Secondary pointer to the {@link GamePerformance_ThermalInfo} instance.
  * When the thermal info is no longer needed, it must be released using {@link HMS_GamePerformance_DestroyThermalInfo}.
  * @return Returns the status code of the exception.
  *         {@link GAME_PERFORMANCE_SUCCESS} 0 - Success.

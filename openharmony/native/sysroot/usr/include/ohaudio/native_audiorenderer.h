@@ -689,6 +689,31 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  */
 typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,
     void* audioData, int32_t audioDataSize);
+
+/**
+ * @brief Gets the estimated audio latency in milliseconds for current audio route. For wireless connection
+ * audio devices cases, the latency result may not be very accurate, system just provides it for reference only.
+ * The real-time buffer status is also not taken into consideration, so it is recommended to get it only at the
+ * beginning of audio playback, and do not call th function very frequently because it may be blocked by route
+ * change.
+ * Applications should still use {@link #OH_AudioRenderer_GetAudioTimestampInfo} to handle A/V sync after audio
+ * data has been output to hardware.
+ *
+ * @param renderer AudioRenderer created by OH_AudioStreamBuilder_GenerateRenderer().
+ * @param type Type of audio latency to get.
+ * @param latencyMs Pointer to a variable to receive the latency in milliseconds.
+ * @return Function result code:
+ *         {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link #AUDIOSTREAM_ERROR_INVALID_PARAM}
+ *             1.The param of renderer is nullptr.
+ *             2.The param of latencyMs is nullptr.
+ *             3.The param of type is invalid value.
+ *         {@link #AUDIOSTREAM_ERROR_SYSTEM} System internal error, like audio service error.
+ * @since 23
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetLatency(OH_AudioRenderer* renderer,
+    OH_AudioStream_LatencyType type, int32_t* latencyMs)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif

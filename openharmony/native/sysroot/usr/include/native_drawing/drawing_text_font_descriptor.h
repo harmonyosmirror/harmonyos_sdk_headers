@@ -95,6 +95,56 @@ typedef enum {
     FULL_DESCRIPTOR_ATTR_B_MONO = 8,
     /** whether symbolic fonts are supported */
     FULL_DESCRIPTOR_ATTR_B_SYMBOLIC = 9,
+    /**
+    * The local postscript name of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_LOCAL_POSTSCRIPT_NAME = 10,
+    /**
+    * The local full name of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_LOCAL_FULL_NAME = 11,
+    /**
+    * The local family name of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_LOCAL_FAMILY_NAME = 12,
+    /**
+    * The local sub family name of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_LOCAL_SUB_FAMILY_NAME = 13,
+    /**
+    * The version of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_VERSION = 14,
+    /**
+    * The manufacture of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_MANUFACTURE = 15,
+    /**
+    * The copyright of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_COPYRIGHT = 16,
+    /**
+    * The trademark of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_TRADEMARK = 17,
+    /**
+    * The license of the font
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_S_LICENSE = 18,
+    /**
+    * The font index in ttc file
+    * @since 23
+    */
+    FULL_DESCRIPTOR_ATTR_I_INDEX = 21,
 } OH_Drawing_FontFullDescriptorAttributeId;
 
 /**
@@ -221,6 +271,39 @@ void OH_Drawing_DestroyFontFullDescriptors(OH_Drawing_Array* descriptorArray)
 __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
+ * @brief Defines an <b>OH_Drawing_GetFontUnicodeArrayFromFile</b>, which is used to get unicode from font file.
+ *
+ * @param fontSrc Indicates the path of the font file.
+ * @param index Indicates the index of the font data in the ttc file.
+ * @param unicodeArray Output parameter to receive unicode, When no longer needed, use 'free()' to release.
+ * @param arrayLength Output parameter to receive the length of the unicode array.
+ * @return error code.
+ *         Returns <b>OH_DRAWING_SUCCESS</b> if the operation is successful.
+ *         Returns <b>OH_DRAWING_ERROR_INCORRECT_PARAMETER</b> if the fontSrc is invalid or non-font file.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc, uint32_t index,
+    int32_t** unicodeArray, int32_t* arrayLength)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Defines an <b>OH_Drawing_GetFontUnicodeArrayFromBuffer</b>, which is used to get unicode from font buffer.
+ *
+ * @param fontBuffer Indicates the font data.
+ * @param length Indicates the font data length.
+ * @param index Indicates the index of the font data in the ttc file.
+ * @param unicodeArray Output parameter to receive unicode, When no longer needed, use 'free()' to release.
+ * @param arrayLength Output parameter to receive the length of the unicode array.
+ * @return error code.
+ *         Returns <b>OH_DRAWING_SUCCESS</b> if the operation is successful.
+ *         Returns <b>OH_DRAWING_ERROR_INCORRECT_PARAMETER</b> if the fontBuffer is invalid or non-font buffer.
+ * @since 23
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffer, size_t length, uint32_t index,
+    int32_t** unicodeArray, int32_t* arrayLength)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Retrieves an integer attribute value from a font full descriptor.
  *
  * @param descriptor Pointer to the font full descriptor <b>OH_Drawing_FontFullDescriptor</b>.
@@ -270,6 +353,36 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Draw
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeString(const OH_Drawing_FontFullDescriptor* descriptor,
     OH_Drawing_FontFullDescriptorAttributeId id, OH_Drawing_String* str)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Defines an <b>OH_Drawing_GetFontCountFromFile</b>, which is used to get font count from font file.
+ *
+ * @param fontSrc Indicates the path of the font file.
+ * @return font count.
+ * @since 23
+ */
+uint32_t OH_Drawing_GetFontCountFromFile(const char* fontSrc) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+* @brief Defines an <b>OH_Drawing_GetFontCountFromBuffer</b>, which is used to get font count from font buffer.
+*
+* @param fontBuffer Indicates the font data.
+* @param length Indicates the font data length.
+* @return font count.
+* @since 23
+*/
+uint32_t OH_Drawing_GetFontCountFromBuffer(uint8_t* fontBuffer, size_t length)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the font path list.
+ * @param fontType Indicates enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
+ * @param pathCount The count of return path list.
+ * @return Returns a font path object <b>OH_Drawing_String</b> list.
+ * @since 23
+ */
+OH_Drawing_String* OH_Drawing_GetFontPathsByType(OH_Drawing_SystemFontType fontType, size_t* pathCount)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 #ifdef __cplusplus
 }
 #endif

@@ -31,7 +31,7 @@
  * @brief Declaration error code information.
  *
  * @kit ArkData
- * @library libnative_rdb_ndk.so
+ * @library libnative_rdb_ndk.z.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
@@ -427,6 +427,13 @@ typedef enum OH_Rdb_ErrCode {
      * @since 22
      */
     RDB_E_SUB_LIMIT_REACHED = (E_BASE + 66),
+
+    /**
+     * @brief SQLite error. Possible causes: syntax error, such as a table or column not existing.
+     *
+     * @since 23
+     */
+    RDB_E_SQLITE_ERROR = (E_BASE + 67),
 } OH_Rdb_ErrCode;
 
 #ifdef __cplusplus

@@ -344,6 +344,20 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
     AbilityRuntime_StartOptions *options)
     __attribute__((__availability__(ohos, introduced=17.0.0)));
 
+    /**
+ * @brief Obtain the version code of the application.
+ *
+ * @param versionCode The version code of the application.
+ * @return The error code.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the versionCode is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED} if the application info does not exist.
+ * @since 21
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)
+__attribute__((__availability__(ohos, introduced=21.0.0)));
+
 /**
  * @brief Starts self UIAbility with start options and receives the process ID.
  *
@@ -385,20 +399,6 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(Abili
     __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
- * @brief Obtain the version code of the application.
- *
- * @param versionCode The version code of the application.
- * @return The error code.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the versionCode is null.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED} if the application info does not exist.
- * @since 21
- */
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)
-__attribute__((__availability__(ohos, introduced=21.0.0)));
-
-/**
  * @brief Obtain the log file directory of the application.
  *
  * @param buffer A pointer to a buffer that receives the log file directory of the application.
@@ -415,6 +415,23 @@ __attribute__((__availability__(ohos, introduced=21.0.0)));
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLogFileDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Notify page changed.
+ *
+ * @param targetPageName The target page name.
+ * @param targetPageNameLength The target page name length.
+ * @param windowId The window identifier associated with the target page.
+ *
+ * @return Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
+ * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if targetPageName is null or windowId is invalid.
+ * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} 
+ *           if internal error occurs, such as failed to access dependency module.
+ * @since 23
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextNotifyPageChanged(
+    const char* targetPageName, int32_t targetPageNameLength, int32_t windowId)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 } // extern "C"

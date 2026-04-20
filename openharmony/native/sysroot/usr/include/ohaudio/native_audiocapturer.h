@@ -391,6 +391,38 @@ typedef void (*OH_AudioCapturer_OnFastStatusChange)(
     OH_AudioStream_FastStatus status
 );
 
+/**
+ * @brief Callback function to get playback capture start result.
+ *
+ * @param capturer Pointer to the AudioCapturer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ *     {@link #OH_AudioCapturer_RequestPlaybackCaptureStart}.
+ * @param state The final state to describe whether start request is successful.
+ * @since 23
+ */
+typedef void (*OH_AudioCapturer_OnPlaybackCaptureStartCallback)(
+    OH_AudioCapturer* capturer,
+    void* userData,
+    OH_AudioStream_PlaybackCaptureStartState state);
+
+/**
+ * Asynchronously request to start the playback capture stream.
+ * This function is non-blocking, which means system will continue to process user authorization and
+ * stream starting when receiving the start request. And the final result will be returned by callback.
+ * @param capturer reference created by {@link #OH_AudioStreamBuilder_GenerateCapturer}
+ * @param callback Callback function used to receive the final result of start request.
+ * @param userData Pointer to an application data structure that will be passed to the callback functions.
+ * @return Function result code:
+ *     {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *     {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr or callback is invalid.
+ *     {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Running and released are illegal states.
+ *     {@link #AUDIOSTREAM_ERROR_SYSTEM} System internal error, like audio service error.
+ * @since 23
+ */
+OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCapturer* capturer,
+    OH_AudioCapturer_OnPlaybackCaptureStartCallback callback, void* userData)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
 #ifdef __cplusplus
 }
 #endif

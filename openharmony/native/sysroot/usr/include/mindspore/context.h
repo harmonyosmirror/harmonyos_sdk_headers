@@ -372,10 +372,10 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
  * @brief Obtain the NNRT priority, Only valid for NNRT.
  * @param device_info Device info object handle.
  * @return NNRT priority.
- * @since 10
+ * @since 23
  */
 OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority(const OH_AI_DeviceInfoHandle device_info)
-__attribute__((__availability__(ohos, introduced=10.0.0)));
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Add extension of key/value format to device info, Only valid for NNRT.

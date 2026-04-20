@@ -40,7 +40,18 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Max operator name length.
+ *
+ * @since 13
+ */
 #define TELEPHONY_MAX_OPERATOR_LEN 64
+
+/**
+ * @brief Max plmn numeric length.
+ *
+ * @since 13
+ */
 #define TELEPHONY_MAX_PLMN_NUMERIC_LEN 6
 
 /**

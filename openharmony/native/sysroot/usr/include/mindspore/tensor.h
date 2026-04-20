@@ -46,10 +46,15 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Tensor object handle.
+ *
+ * @since 12
+ */
 typedef void *OH_AI_TensorHandle;
 
 /**
- * @brief tensor allocator handle.
+ * @brief Tensor allocator handle.
  *
  * @since 12
  */

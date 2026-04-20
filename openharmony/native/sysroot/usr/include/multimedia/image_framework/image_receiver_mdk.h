@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup image
+ * @addtogroup Image
  * @{
  *
  * @brief Provides APIs for obtaining image data from the native layer.

@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup PREFERENCES
+ * @addtogroup Preferences
  * @{
  *
  * @brief Provides APIs for processing data in the form of key-value (KV) pairs.

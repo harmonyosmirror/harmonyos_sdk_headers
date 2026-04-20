@@ -108,10 +108,12 @@ struct OH_Huks_Result OH_Huks_UnregisterProvider(
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the cached resource ID is not found.
  *     This may happen because the resourceId has not been opened.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input parameter is abnormal.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input
+ *     parameter is abnormal.
  *     This error may occur if the process function is not found, or due to other issues.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST} 12000017 - If the resource with the resourceId is already open.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST} 12000017 - If the resource with the
+ *     resourceId is already open.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
@@ -159,7 +161,7 @@ struct OH_Huks_Result OH_Huks_CloseResource(
  *     parameter abnormal.
  *     This error may occur if the process function is not found, or due to other issues.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet 
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet
  *     or authState is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.

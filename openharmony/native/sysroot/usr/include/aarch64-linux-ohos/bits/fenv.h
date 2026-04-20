@@ -9,6 +9,13 @@
 #define FE_UPWARD     0x400000
 #define FE_TOWARDZERO 0xc00000
 
+#ifdef MUSL_EXTERNAL_FUNCTION
+#if defined(__aarch64__)
+#define FPCR_EXCEPTION_TRAP_SHIFT 8
+#define FPCR_GET_EXCEPT_MASK(FPCR_VAL) (((FPCR_VAL) >> FPCR_EXCEPTION_TRAP_SHIFT) & FE_ALL_EXCEPT)
+#endif
+#endif
+
 typedef unsigned int fexcept_t;
 
 typedef struct {

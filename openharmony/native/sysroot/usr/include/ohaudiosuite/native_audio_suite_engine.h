@@ -656,6 +656,211 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetVoiceBeautifierType(
     OH_AudioNode* audioNode, OH_VoiceBeautifierType* voiceBeautifierType)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
 
+/**
+ * @brief Set position parameters for space rendering
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param position Position parameters.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a space render node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderPositionParams(
+    OH_AudioNode* audioNode, OH_AudioSuite_SpaceRenderPositionParams position)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get position parameters for space rendering
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param position Position parameters.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a space render node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderPositionParams(
+    OH_AudioNode* audioNode, OH_AudioSuite_SpaceRenderPositionParams* position)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set rotation parameters for space rendering
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param rotation Rotation parameters.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a space render node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderRotationParams(
+    OH_AudioNode* audioNode, OH_AudioSuite_SpaceRenderRotationParams rotation)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get rotation parameters for space rendering
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param rotation Rotation parameters.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a space render node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderRotationParams(
+    OH_AudioNode* audioNode, OH_AudioSuite_SpaceRenderRotationParams* rotation)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set extension parameters for space rendering
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param extension Extension parameters.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a space render node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderExtensionParams(
+    OH_AudioNode* audioNode, OH_AudioSuite_SpaceRenderExtensionParams extension)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get extension parameters for space rendering
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param extension Extension parameters.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a space render node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderExtensionParams(
+    OH_AudioNode* audioNode, OH_AudioSuite_SpaceRenderExtensionParams* extension)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set the tempo and pitch adjustment parameters.
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param speed value range: [0.5, 10.0] for Tempo
+ * @param pitch value range: [0.1, 5.0] for Pitch
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a tempo and pitch node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetTempoAndPitch(OH_AudioNode* audioNode, float speed, float pitch)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get the tempo and pitch adjustment parameters.
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param speed value range: [0.5, 10.0] for Tempo.
+ * @param pitch value range: [0.1, 5.0] for Pitch.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a tempo and pitch node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_GetTempoAndPitch(OH_AudioNode* audioNode, float* speed, float* pitch)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set pure change voice option of audio node.
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param option Change voice option. {@link #OH_AudioSuite_PureVoiceChangeOption}
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a pure voice change node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetPureVoiceChangeOption(
+    OH_AudioNode* audioNode, OH_AudioSuite_PureVoiceChangeOption option)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get pure voice change option of audio node.
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param option Change voice option. {@link #OH_AudioSuite_PureVoiceChangeOption}
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a pure voice change node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_GetPureVoiceChangeOption(
+    OH_AudioNode* audioNode, OH_AudioSuite_PureVoiceChangeOption* option)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Set general voice change type of audio node.
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param type Change voice type. {@link #OH_AudioSuite_GeneralVoiceChangeType}
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a general voice change node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
+    OH_AudioNode* audioNode, OH_AudioSuite_GeneralVoiceChangeType type)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Get general voice change type of audio node.
+ *
+ * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
+ * @param type Change voice type. {@link #OH_AudioSuite_GeneralVoiceChangeType}
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
+ * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
+ * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a general voice change node.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 23
+ */
+OH_AudioSuite_Result OH_AudioSuiteEngine_GetGeneralVoiceChangeType(
+    OH_AudioNode* audioNode, OH_AudioSuite_GeneralVoiceChangeType* type)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+
 #ifdef __cplusplus
 }
 #endif

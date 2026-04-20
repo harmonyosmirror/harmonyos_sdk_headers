@@ -214,6 +214,20 @@ Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previ
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
+ * @brief Gets the preview rotation angle without display rotation.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance which used to get the preview rotation angle.
+ * @param imageRotation the {@link Camera_ImageRotation} result of preview rotation angle.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_PreviewOutput_GetPreviewRotationWithoutDisplayRotation(Camera_PreviewOutput* previewOutput,
+    Camera_ImageRotation* imageRotation)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
  * @brief Sets the preview rotation angle.
  *
  * @param previewOutput the {@link Camera_PreviewOutput} instance which used to set the preview rotation angle.
@@ -283,6 +297,35 @@ Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutp
 Camera_ErrorCode OH_PreviewOutput_GetActiveFrameRate(Camera_PreviewOutput* previewOutput,
     Camera_FrameRateRange* frameRateRange)
     __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Check whether to support bandwidth compression.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance which used to check whether bandwidth compression supported.
+ * @param isSupported the result of whether bandwidth compression supported.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_PreviewOutput_IsBandwidthCompressionSupported(Camera_PreviewOutput* previewOutput,
+    bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Enable bandwidth compression or not.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance which used to enable bandwidth compression or not.
+ * @param enabled the flag indicates whether bandwidth compression is enabled.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_PreviewOutput_EnableBandwidthCompression(Camera_PreviewOutput* previewOutput, bool enabled)
+__attribute__((__availability__(ohos, introduced=23.0.0)));
 
 #ifdef __cplusplus
 }

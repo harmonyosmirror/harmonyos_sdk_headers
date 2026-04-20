@@ -241,6 +241,7 @@ typedef struct {
  * Before invoking an API, you are advised to use ARKWEB_MEMBER_MISSING to check
  * whether the function structure has a corresponding function pointer to avoid crash
  * caused by mismatch between the SDK and the device ROM.
+ * Use OH_ArkWeb_GetNativeAPI in the UI thread to obtain the Controller-related interface cluster.
  *
  * @since 12
  */
@@ -348,6 +349,7 @@ typedef struct {
  * Before invoking an API, you are advised to use ARKWEB_MEMBER_MISSING to check
  * whether the function structure has a corresponding function pointer to avoid crash
  * caused by mismatch between the SDK and the device ROM.
+ * Use OH_ArkWeb_GetNativeAPI in the UI thread to obtain the WebMessagePort-related interface cluster.
  *
  * @since 12
  */
@@ -391,6 +393,7 @@ typedef struct {
  * Before invoking an API, you are advised to use ARKWEB_MEMBER_MISSING to check
  * whether the function structure has a corresponding function pointer to avoid crash
  * caused by mismatch between the SDK and the device ROM.
+ * Use OH_ArkWeb_GetNativeAPI in the UI thread to obtain the WebMessage-related interface cluster.
  *
  * @since 12
  */
@@ -447,6 +450,7 @@ typedef struct {
  * Before invoking an API, you are advised to use ARKWEB_MEMBER_MISSING to check
  * whether the function structure has a corresponding function pointer to avoid crash
  * caused by mismatch between the SDK and the device ROM.
+ * Use OH_ArkWeb_GetNativeAPI in the UI thread to obtain the CookieManager-related interface cluster.
  *
  * @since 12
  */

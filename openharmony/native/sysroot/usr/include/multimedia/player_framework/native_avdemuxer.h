@@ -71,7 +71,6 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeyS
  * @brief Call back will be invoked when updating DRM information.
  * @param demuxer Player OH_AVDemuxer.
  * @param mediaKeySystemInfo DRM information.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
  * @since 12
  */
 typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo);
@@ -83,7 +82,8 @@ typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_Me
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns a pointer to an OH_AVDemuxer instance if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- *  1. source is invalid.
+ *  1. invalid source, is NULL pointer;
+ *  2. non OH_AVSource instance.
  * @since 10
 */
 OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source)
@@ -98,7 +98,8 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
  * @param demuxer Pointer to an OH_AVDemuxer instance.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} demuxer is invalid.
+ * {@link AV_ERR_INVALID_VAL} an invalid demuxer instance pointer is passed to parameter demuxer,
+ * including a null pointer;
  * @since 10
 */
 OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer) __attribute__((__availability__(ohos, introduced=10.0.0)));
@@ -114,8 +115,11 @@ OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer) __attribute__((__availa
  * @param trackIndex The index of the selected track.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} demuxer is invalid, demuxer is not properly initialized,
- *                                     trackIndex is out of range, track is not supported to be read.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT} demuxer is not properly initialized.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
+ * 2. trackIndex is out of range;
+ * 3. track is not supported to be read.
  * @since 10
 */
 OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex)
@@ -132,7 +136,8 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
  * @param trackIndex The index of the unselected track.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} demuxer is invalid, demuxer is not properly initialized.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT} demuxer is not properly initialized.
+ * {@link AV_ERR_INVALID_VAL} the input demuxer pointer is non demuxer instance or NULL.
  * @since 10
 */
 OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex)
@@ -149,11 +154,17 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
  * @param info The OH_AVCodecBufferAttr handle pointer to the buffer storing sample information.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} demuxer is invalid, demuxer is not properly initialized, sample is invalid,
- *                                     trackIndex is out of range.
- *          {@link AV_ERR_OPERATE_NOT_PERMIT} trackIndex has not been selected.
- *          {@link AV_ERR_NO_MEMORY} capability of sample is not enough to store all frame data.
- *          {@link AV_ERR_UNKNOWN} failed to read or parse frame from file.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
+ * 2. a null pointer is passed to parameter sample;
+ * 3. trackIndex is out of range;
+ * 4. the input sample is empty.
+ * 5. the input info is empty.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}
+ * 1. trackIndex has not been selected;
+ * 2. demuxer is not properly initialized.
+ * {@link AV_ERR_NO_MEMORY} capability of sample is not enough to store frame data.
+ * {@link AV_ERR_UNKNOWN} failed to read or parse frame from file.
  * @deprecated since 11
  * @useinstead OH_AVDemuxer_ReadSampleBuffer
  * @since 10
@@ -172,11 +183,16 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
  * @param sample The OH_AVBuffer handle pointer to the buffer storing the sample data and corresponding attribute.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} demuxer is invalid, demuxer is not properly initialized, sample is invalid,
- *                                     trackIndex is out of range.
- *          {@link AV_ERR_OPERATE_NOT_PERMIT} trackIndex has not been selected.
- *          {@link AV_ERR_NO_MEMORY} capability of sample is not enough to store frame data.
- *          {@link AV_ERR_UNKNOWN} failed to read or parse frame from file.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
+ * 2. a null pointer is passed to parameter sample;
+ * 3. trackIndex is out of range;
+ * 4. the input sample is empty.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}
+ * 1. trackIndex has not been selected;
+ * 2. demuxer is not properly initialized.
+ * {@link AV_ERR_NO_MEMORY} capability of sample is not enough to store frame data.
+ * {@link AV_ERR_UNKNOWN} failed to read or parse frame from file.
  * @since 11
 */
 OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t trackIndex,
@@ -192,10 +208,16 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
  * @param mode The mode for seeking. See {@link OH_AVSeekMode}.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} demuxer is invalid, demuxer is not properly initialized,
- *                                     millisecond is out of range.
- *          {@link AV_ERR_OPERATE_NOT_PERMIT} trackIndex has not been selected, resource is unseekable.
- *          {@link AV_ERR_UNKNOWN} failed to seek.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
+ * 2. the millisecond value is out of range.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}
+ * 1. trackIndex has not been selected;
+ * 2. demuxer is not properly initialized;
+ * 3. resource is unseekable.
+ * {@link AV_ERR_UNKNOWN}
+ * 1. seek failed;
+ * 2. selecting SEEK_MODE_CEXT_SYNC for OH_AVSeekMode and no I-frame after the time point may result in jump failure.
  * @since 10
 */
 OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond, OH_AVSeekMode mode)
