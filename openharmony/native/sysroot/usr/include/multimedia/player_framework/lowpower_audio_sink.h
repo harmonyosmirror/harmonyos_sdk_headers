@@ -65,7 +65,7 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  * decoded audio track, which can be extracted from the OH_AVSource. This interface must be called before Prepare
  * is called.
  *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSinkinstance
+ * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
  * @param {OH_AVFormat*} format A pointer to an OH_AVFormat to give the description of the audio track to be decoded
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
@@ -202,7 +202,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Stop(OH_LowPowerAudioSink* sink)
 __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
- * @brief Reset the lowpower audio sink. Too reuse this instance, you need to call the Configure.
+ * @brief Reset the lowpower audio sink. To reuse this instance, you need to call the Configure.
  *
  * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -290,7 +290,7 @@ OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, fl
 __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
- * @brief Regsister callback instance for lowpower audio sink.
+ * @brief Register callback instance for lowpower audio sink.
  *
  * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
  * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance

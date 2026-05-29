@@ -17,7 +17,7 @@
  * @addtogroup AVImageGenerator
  * @{
  *
- * @brief Provides APIs for generating an image at the specific time from a video resource.
+ * @brief Provides APIs for generating an image at a specific time from a video resource.
  *
  * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
@@ -27,7 +27,7 @@
  * @file avimage_generator.h
  *
  * @brief Defines the avimage generator APIs. Uses the Native APIs provided by Media AVImageGenerator
- *        to get an image at the specific time from a video resource.
+ *        to get an image at a specific time from a video resource.
  *
  * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @kit MediaKit
@@ -88,7 +88,7 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
     __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
- * @brief Fetch an image at the specific time from a video resource.
+ * @brief Fetch an image at a specific time from a video resource.
  *
  * This function must be called after {@link SetFDSource}.
  *

@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides APIs of Drm.
- * @kit DrmKit.
+ * @kit DrmKit
  * @since 11
  * @version 1.0
  */
@@ -149,8 +149,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
 /**
  * @brief Process media key response.
  * @param mediaKeySession Media key session instance.
- * @param response Media Key resposne.
- * @param responseLen Media Key resposne len.
+ * @param response Media Key response.
+ * @param responseLen Media Key response len.
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len for in buffer and out data.
  * @return {@link DRM_ERR_OK} 0 - Success.
@@ -215,8 +215,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
  * @param mediaKeySession Media key session instance.
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len.
- * @param releaseReponse Media Key resposne.
- * @param releaseReponseLen Media Key resposne len.
+ * @param releaseResponse Media Key response.
+ * @param releaseResponseLen Media Key response len.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
  *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
@@ -224,8 +224,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *mediaKeySession,
-    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse,
-    int32_t releaseReponseLen)
+    uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseResponse,
+    int32_t releaseResponseLen)
     __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
@@ -299,7 +299,7 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
- * @brief Release the resource before the session gonna be unused.
+ * @brief Release the resource before the session going to be unused.
  * @param mediaKeySession Media key session instance.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
@@ -314,5 +314,5 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 }
 #endif
 
-#endif // OHOS_DRM_NATIVE_MEDIA_KEY_SYSTEM_H
+#endif // OHOS_DRM_NATIVE_MEDIA_KEY_SESSION_H
 /** @} */

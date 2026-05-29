@@ -76,6 +76,34 @@ typedef enum OH_AVCodecCategory {
 } OH_AVCodecCategory;
 
 /**
+ * @brief The codec type
+ *
+ * @since 24
+ */
+typedef enum OH_AVCodecType {
+    /**
+     * Indicates video encoder.
+     * @since 24
+     */
+    OH_AVCODEC_TYPE_VIDEO_ENCODER = 0,
+    /**
+     * Indicates video decoder.
+     * @since 24
+     */
+    OH_AVCODEC_TYPE_VIDEO_DECODER = 1,
+    /**
+     * Indicates audio encoder
+     * @since 24
+     */
+    OH_AVCODEC_TYPE_AUDIO_ENCODER = 2,
+    /**
+     * Indicates audio decoder
+     * @since 24
+     */
+    OH_AVCODEC_TYPE_AUDIO_DECODER = 3
+} OH_AVCodecType;
+
+/**
  * @brief The enum of optional features that can be used in specific codec seenarios.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -121,6 +149,23 @@ OH_AVCapability *OH_AVCodec_GetCapabilityByCategory(const char *mime, bool isEnc
 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
+ * @brief Obtains a list of codec capabilities for a specified codec type.
+ *
+ * This function retrieves all matching codec capabilities based on the provided codec type.
+ *
+ * @param codecType The type of codec to filter by, refer to {@link OH_AVCodecType}.
+ * @param count Output parameter. A pointer to a uint32_t variable that will store
+ *              the number of matched codec capabilities found.
+ * @return Returns a pointer to an array of {@link OH_AVCapability} instances if matches are found;
+ *         returns NULL if no matching codecs are found or if an error occurs.
+ * @note The memory for the codec capability list is managed internally.
+ *       Developers MUST NOT manually allocate or free this memory.
+ * @since 24
+ */
+OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_t *count)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
  * @brief Check if the capability instance is describing a hardware codec.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param capability Codec capability pointer
@@ -131,6 +176,16 @@ __attribute__((__availability__(ohos, introduced=10.0.0)));
 bool OH_AVCapability_IsHardware(OH_AVCapability *capability) __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
+ * @brief Check if the capability instance is describing a secure codec.
+ *
+ * @param capability Codec capability pointer
+ * @return Returns true if the capability instance is describing a secure codec,
+ * false if the capability instance is describing a non-secure codec
+ * @since 24
+ */
+bool OH_AVCapability_IsSecure(OH_AVCapability *capability) __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
  * @brief Get the codec name.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param capability Codec capability pointer
@@ -139,6 +194,27 @@ bool OH_AVCapability_IsHardware(OH_AVCapability *capability) __attribute__((__av
  */
 const char *OH_AVCapability_GetName(OH_AVCapability *capability)
 __attribute__((__availability__(ohos, introduced=10.0.0)));
+
+/**
+ * @brief Get the codec mime type.
+ *
+ * @param capability Codec capability pointer
+ * @return Returns codec mime type string
+ * @since 24
+ */
+const char *OH_AVCapability_GetMimeType(OH_AVCapability *capability)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Check if the mime type of the codec of the capability matches the specified mime type.
+ *
+ * @param capability Codec capability pointer
+ * @param mimeType target mime type string to check
+ * @return Returns true if the mime type matches, false otherwise
+ * @since 24
+ */
+bool OH_AVCapability_CheckMimeType(OH_AVCapability *capability, const char *mimeType)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Get the supported max instance number of the codec.

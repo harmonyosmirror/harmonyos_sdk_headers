@@ -723,7 +723,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * is used to handle audio capturer stream events.
      *
      * @deprecated since 20
-     * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback
+     * @useinstead OH_AudioCapturer_OnDeviceChangeCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnStreamEvent)(
@@ -855,9 +855,9 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Result of audio data callabck is invalid. */
+    /** Result of audio data callback is invalid. */
     AUDIO_DATA_CALLBACK_RESULT_INVALID = -1,
-    /** Result of audio data callabck is valid. */
+    /** Result of audio data callback is valid. */
     AUDIO_DATA_CALLBACK_RESULT_VALID = 0,
 } OH_AudioData_Callback_Result;
 

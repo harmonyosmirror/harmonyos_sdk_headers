@@ -158,6 +158,22 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag flag,
 HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture() __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
+ * @brief Requests application trace capture with specified configuration.
+ *
+ * @param config Indicates the trace request configuration. See {@link OH_HiDebug_RequestTraceConfig}.
+ * @param callback Indicates the callback for the trace request. See {@link OH_HiDebug_RequestTraceCallback}.
+ * @return Result code.
+ *         {@link HIDEBUG_SUCCESS} The operation is successful.
+ *         {@link HIDEBUG_TRACE_ABNORMAL} Remote service exception.
+ *         {@link OH_HIDEBUG_TRACE_STORAGE_LIMIT} Trace storage limit reached.
+ *         {@link HIDEBUG_RESOURCE_UNAVAILABLE} Resource unavailable.
+ * @since 24
+ */
+HiDebug_ErrorCode OH_HiDebug_RequestTrace(OH_HiDebug_RequestTraceConfig *config,
+    OH_HiDebug_RequestTraceCallback callback)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
  * @brief Get the graphics memory of application.
  *
  * @param value Indicates value of graphics memory, in kibibytes.
@@ -318,6 +334,51 @@ __attribute__((__availability__(ohos, introduced=23.0.0)));
  * @since 23
  */
 void OH_HiDebug_ResetCrashObj(uint64_t crashObj) __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Starts Resource Profiler for the current process asynchronously.
+ * The callback is invoked only after profiling stops, including auto-stop caused by the maximum duration.
+ * When profiling output is available, the callback carries the output file path. If profiling stops without
+ * producing output, the callback is invoked with a NULL file path.
+ *
+ * @param type Type of resource to be profiled.
+ * @param config Configuration parameters for the profiler.
+ * @param callback Callback to receive the profiling result. See {@link OH_HiDebug_ProfilingCallback}.
+ * @return Result code
+ *         {@link HIDEBUG_RES_PROF_SUCCESS} Resource profiler started successfully.
+ *         {@link HIDEBUG_RES_PROF_INVALID_ARG} Invalid resource profiler argument.
+ *         {@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} Invalid maximum duration.
+ *         {@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} Invalid filter size.
+ *         {@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} Invalid maximum stack depth.
+ *         {@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} Invalid statistics interval.
+ *         {@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} Invalid sample interval.
+ *         {@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE} Invalid resource type.
+ *         {@link HIDEBUG_RES_PROF_PERMISSION_DENIED} Resource profiler permission denied.
+ *         {@link HIDEBUG_RES_PROF_ALREADY_STARTED} Resource profiler already started.
+ *         {@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT} Resource profiler process count exceeds the limit.
+ *         {@link HIDEBUG_RES_PROF_CONFLICT} Resource profiler conflicts with CLI tools or system profiling tasks.
+ *         {@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED} Daily quota exceeded during resource profiling.
+ *         {@link HIDEBUG_RES_PROF_CPU_OVERLOADED} System is experiencing high CPU utilization.
+ *         {@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL} Insufficient available memory.
+ *         {@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL} Insufficient available storage space.
+ *         {@link HIDEBUG_RES_PROF_FAILURE} Failed to start the resource profiler.
+ * @since 24
+ */
+HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDebug_ResProfilerConfig* config,
+    OH_HiDebug_ProfilingCallback callback)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Stops resource profiler for the current process. This API can be called after the
+ * {@link OH_HiDebug_StartProfiler} API and the call duration must be within the maximum duration.
+ *
+ * @return Result code
+ *         {@link HIDEBUG_RES_PROF_SUCCESS} Resource profiler stopped successfully.
+ *         {@link HIDEBUG_RES_PROF_NOT_STARTED} Resource profiler not started.
+ *         {@link HIDEBUG_RES_PROF_FAILURE} Failed to stop the resource profiler.
+ * @since 24
+ */
+HiDebug_ErrorCode OH_HiDebug_StopProfiler(void) __attribute__((__availability__(ohos, introduced=24.0.0)));
 #ifdef __cplusplus
 }
 #endif // __cplusplus

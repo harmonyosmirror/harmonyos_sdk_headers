@@ -52,7 +52,7 @@ typedef enum {
     AV_SESSION_ERR_SUCCESS = 0,
 
     /**
-     * @error Invalid parameter。
+     * @error Invalid parameter.
      */
     AV_SESSION_ERR_INVALID_PARAMETER = 401,
 
@@ -366,12 +366,12 @@ typedef enum {
  */
 typedef enum {
     /**
-     * @brief Result of avsession callabck is success.
+     * @brief Result of avsession callback is success.
      */
     AVSESSION_CALLBACK_RESULT_SUCCESS = 0,
 
     /**
-     * @brief Result of avsession callabck failed.
+     * @brief Result of avsession callback failed.
      */
     AVSESSION_CALLBACK_RESULT_FAILURE = -1,
 } AVSessionCallback_Result;

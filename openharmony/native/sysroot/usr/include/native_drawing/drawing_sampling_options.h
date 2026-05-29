@@ -56,7 +56,7 @@ extern "C" {
 typedef enum {
     /** single sample point (nearest neighbor) */
     FILTER_MODE_NEAREST,
-    /** interporate between 2x2 sample points (bilinear interpolation) */
+    /** interpolate between 2x2 sample points (bilinear interpolation) */
     FILTER_MODE_LINEAR,
 } OH_Drawing_FilterMode;
 

@@ -41,61 +41,105 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Defines the component code enumeration for MindSpore Lite.
+ *
+ * Used to identify the component module to which a status code belongs.
+ * Each status code contains a component code part.
+ * Component codes are used to distinguish error codes from different modules.
+ *
+ * @since 9
+ */
 enum OH_AI_CompCode {
+  /** Core component code. */
   OH_AI_COMPCODE_CORE = 0x00000000u,
+  /** MD component code. */
   OH_AI_COMPCODE_MD = 0x10000000u,
+  /** ME component code. */
   OH_AI_COMPCODE_ME = 0x20000000u,
+  /** MC component code. */
   OH_AI_COMPCODE_MC = 0x30000000u,
+  /** Lite component code. */
   OH_AI_COMPCODE_LITE = 0xF0000000u,
 };
 
+/**
+ * @brief Defines the status code enumeration for MindSpore Lite.
+ *
+ * Used to indicate the return status of MindSpore Lite API calls, including success and various error conditions.
+ * Status codes are divided into different ranges, each corresponding to a specific type of error or status.
+ * Common error code ranges: (-100,-1] for general errors, (-200,-100] for executor errors, (-300,-200] for graph
+ * errors, (-400,-300] for operator errors, (-500,-400] for tensor errors, (-600,-500] for shape inference errors,
+ * (-700,-600] for user input parameter errors, (-800,-700] for AIPP module errors.
+ *
+ * @since 9
+ */
 typedef enum OH_AI_Status {
+  /** Success. */
   OH_AI_STATUS_SUCCESS = 0,
-  // Core
+  /** Core failure. */
   OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE | 0x1,
+  /** Common error. */
+  OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -1),
+  /** Null pointer returned. */
+  OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -2),
+  /** Invalid parameter. */
+  OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -3),
+  /** No change. */
+  OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -4),
+  /** No error but exit. */
+  OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -5),
+  /** Failed to create memory. */
+  OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -6),
+  /** Not support. */
+  OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -7),
+  /** Error occurred in thread pool. */
+  OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -8),
+  /** Object is not initialized. */
+  OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -9),
 
-  // Lite  // Common error code, range: (-100,-1]
-  OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -1),             /**< Common error code. */
-  OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -2),           /**< NULL pointer returned.*/
-  OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -3),     /**< Invalid parameter.*/
-  OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -4),         /**< No change. */
-  OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -5),      /**< No error but exit. */
-  OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -6),     /**< Fail to create memory. */
-  OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -7),       /**< Fail to support. */
-  OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -8),  /**< Error occur in thread pool. */
-  OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -9), /**< Object is not initialized. */
-
-  // Executor error code, range: (-200,-100]
-  OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -100), /**< Failed to check range. */
+  /** Failed to check tensor range. */
+  OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -100),
+  /** Failed to check input tensor. */
   OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR =
-    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -101),                                   /**< Failed to check input tensor. */
-  OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -102), /**< Exist executor running. */
+    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -101),
+  /** Executor is already running. */
+  OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -102),
 
-  // Graph error code, range: (-300,-200]
-  OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -200), /**< Failed to verify graph file. */
-
-  // Node error code, range: (-400,-300]
-  OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -300),     /**< Failed to find operator. */
-  OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -301), /**< Invalid operator name. */
-  OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -302), /**< Invalid operator attr. */
+  /** Failed to verify graph file. */
+  OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -200),
+  /** Failed to find operator. */
+  OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -300),
+  /** Invalid operator name. */
+  OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -301),
+  /** Invalid operator attribute. */
+  OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -302),
+  /** Failed to execute operator. */
   OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE =
-    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -303), /**< Failed to execution operator. */
+    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -303),
 
-  // Tensor error code, range: (-500,-400]
-  OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -400), /**< Failed to checking tensor format. */
-
-  // InferShape error code, range: (-600,-500]
-  OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -500), /**< Failed to infer shape. */
+  /** Failed to check tensor format. */
+  OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -400),
+  /** Failed to infer shape. */
+  OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -500),
+  /** Invalid shape inference before runtime. */
   OH_AI_STATUS_LITE_INFER_INVALID =
-    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -501), /**< Invalid infer shape before runtime. */
-
-  // User input param error code, range: (-700,-600]
+    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -501),
+  /** Invalid input parameter from user. */
   OH_AI_STATUS_LITE_INPUT_PARAM_INVALID =
-    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -600), /**< Invalid input param by user. */
-  
-  // AIPP module error code, range: (-800,-700]
-  OH_AI_STATUS_LITE_AIPP_NOT_SUPPORTED = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -700), /**< Not support AIPP. */
-  OH_AI_STATUS_LITE_AIPP_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -701), /** Failed to infer with AIPP. */
+    OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -600),
+
+  /**
+   * @brief AIPP is not supported.
+   * @since 23
+   */
+  OH_AI_STATUS_LITE_AIPP_NOT_SUPPORTED = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -700),
+
+  /**
+   * @brief Failed to infer with AIPP.
+   * @since 23
+   */
+  OH_AI_STATUS_LITE_AIPP_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -701),
 } OH_AI_Status;
 #ifdef __cplusplus
 }

@@ -27,7 +27,7 @@
  * @file oh_device_manager.h
  *
  * @brief Provides APIs to obtain information about trusted devices and local devices.
- * File to include: <distributedhardware/device_manager/oh_device_manager_err_code.h>
+ * File to include: <distributedhardware/device_manager/oh_device_manager.h>
  *
  * @kit DistributedServiceKit
  * @library libdevicemanager_ndk.so

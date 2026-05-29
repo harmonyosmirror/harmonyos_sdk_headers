@@ -17,7 +17,7 @@
  * @addtogroup AbilityRuntime
  * @{
  *
- * @brief Describe the constant of context.
+ * @brief Describes the constants of context.
  *
  * @syscap SystemCapability.Ability.AbilityRuntime.Core
  * @since 13
@@ -26,7 +26,7 @@
 /**
  * @file context_constant.h
  *
- * @brief Defines the constant of context.
+ * @brief Defines the constants of context.
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -57,18 +57,18 @@ typedef enum {
     ABILITY_RUNTIME_AREA_MODE_EL2 = 1,
     /**
      * User credential encryption area.
-     * when screen locked, can read/write, and create file.
+     * Files can be read, written, and created when the screen is locked.
      */
     ABILITY_RUNTIME_AREA_MODE_EL3 = 2,
     /**
      * User credential encryption area.
-     * when screen locked, FEB2.0 can read/write, FEB3.0 can't
-     * read/write, and all can't create file.
+     * when the screen is locked, FEB2.0 can read and write files, while FEB3.0 cannot.
+     * File creation is not allowed in either case.
      */
     ABILITY_RUNTIME_AREA_MODE_EL4 = 3,
     /**
      * User privacy-sensitive encryption area.
-     * when the screen locked, a closed file cannot be opened, read, or written,
+     * when the screen is locked, a closed file cannot be opened, read, or written,
      * a file can be created and then opened, read, or written.
      */
     ABILITY_RUNTIME_AREA_MODE_EL5 = 4,
@@ -107,7 +107,7 @@ typedef enum {
 } AbilityRuntime_WindowMode;
 
 /**
-* Support window mode
+* Supported window modes
 *
 * @since 17
 */

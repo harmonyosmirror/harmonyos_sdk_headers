@@ -123,7 +123,7 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_Error)(OH_AVCastCo
     void* userData, AVSession_ErrCode error);
 
 /**
- * @brief Request to destory the avcastcontroller.
+ * @brief Request to destroy the avcastcontroller.
  *
  * @param avcastcontroller The avcastcontroller instance pointer
  * @return Function result code:

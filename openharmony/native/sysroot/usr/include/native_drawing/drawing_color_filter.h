@@ -121,7 +121,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void)
 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
- * @brief Creates an <b>OH_Drawing_ColorFilter</b> with the given mutColor used to multiply source color and addColor
+ * @brief Creates an <b>OH_Drawing_ColorFilter</b> with the given mulColor used to multiply source color and addColor
  * used to add to source color. The Alpha channel will not be affected.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing

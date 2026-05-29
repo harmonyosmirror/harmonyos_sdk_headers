@@ -278,7 +278,70 @@ typedef enum {
      *
      * @since 6.1.0(23)
      */
-    SECURITY_AUDIT_NOTIFY_EVENT_PRINT_INTERCEPTED = 0x2E000001
+    SECURITY_AUDIT_NOTIFY_EVENT_PRINT_INTERCEPTED = 0x2E000001,
+    /**
+    * Code unsigned event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_CS_VERIFY_NULL = 0x12001081,
+    /**
+    * Code signature verification exception event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_CS_VERIFY_ABNORMAL = 0x12001082,
+    /**
+    * Abnormal file system mount event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_FS_MOUNT_ABNORMAL = 0x1C001102,
+    /**
+    * Driver code signature verification exception event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_DRIVER_CS_ABNORMAL = 0x1C001200,
+    /**
+    * Driving illegal mapping of kernel memory event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_DRIVER_MMAP_ABNORMAL = 0x1C001201,
+    /**
+    * Abnormal kernel memory usage event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_KERNEL_MEMORY_ABNORMAL = 0x1C001300,
+    /**
+    * Abnormal process debugging event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_PROCESS_DEBUG_ABNORMAL = 0x1C001401,
+    /**
+    * Abnormal process crash event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_PROCESS_CRASH_ABNORMAL = 0x1C001402,
+    /**
+    * Process privilege escalation event.
+    *
+    * @stagemodelonly
+    * @since 6.1.1(24)
+    */
+    SECURITY_AUDIT_NOTIFY_EVENT_PROCESS_PRIVILEGE_ESCALATION = 0x1C001403
 } SecurityAudit_Notify_Event;
 
 /**
@@ -835,6 +898,28 @@ int32_t HMS_SecurityAudit_QueryAllProcesses(char** result) __attribute__((__avai
  */
 int32_t HMS_SecurityAudit_QueryProcesses(uint64_t* pids, uint64_t count, char** result)
 __attribute__((__availability__(ohos, introduced=20.0.0)));
+
+/**
+ * @brief Query code sign information.
+ *
+ * This function is used to obtain code signature information via a file path.
+ *
+ * @permission ohos.permission.QUERY_AUDIT_EVENT
+ * @param {char*} path File path to be queried.
+ * @param {char**} outOwnedResult Code signature information.
+ * @return Returns the error code.
+ *         Returns 0 if the operation is successful.
+ *         Returns 201 if the permission verification fails.
+ *         Returns 1012000001 if an internal error occurs.
+ *             Possible causes:
+ *             1. IPC cross-process invoking fails.
+ *             2. System service process is faulty.
+ *         Returns 1012000008 if the file cannot be found.
+ * @stagemodelonly
+ * @since 6.1.1(24)
+ */
+int32_t HMS_SecurityAudit_AcquireCodeSign(char* path, char** outOwnedResult)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 
 #ifdef __cplusplus
 }

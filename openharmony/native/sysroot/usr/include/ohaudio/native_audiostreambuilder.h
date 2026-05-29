@@ -49,7 +49,7 @@ extern "C" {
 #endif
 
 /**
- * Create a stremBuilder can be used to open a renderer or capturer client.
+ * Create an audio stream builder that can be used to open a renderer or capturer client.
  *
  * OH_AudioStreamBuilder_Destroy() must be called when you are done using the builder.
  *
@@ -64,7 +64,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** build
 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
- * Destroy a streamBulder.
+ * Destroy an audio stream builder.
  *
  * This function must be called when you are done using the builder.
  *
@@ -80,12 +80,12 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* build
 __attribute__((__availability__(ohos, introduced=10.0.0)));
 
 /**
- * Set the channel count of the capturer client
+ * @brief Set the sampling rate of the stream client.
  *
  * @since 10
  *
- * @param builder Reference created by OH_AudioStreamBuilder
- * @param rate Pointer to a variable that will be set for the channel count.
+ * @param builder Reference created by OH_AudioStreamBuilder_Create().
+ * @param rate The target sampling rate.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
@@ -323,13 +323,13 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
  * @since 10
  *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create()
- * @param audioCapturer Pointer to a viriable to receive the stream client.
+ * @param audioCapturer Pointer to a variable to receive the stream client.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of builder is nullptr;
  *                                                 2.StreamType invalid;
- *                                                 3.Create OHAudioCapturer failed.
+ *                                                 3.Create OHAudioRenderer failed.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer** audioCapturer)

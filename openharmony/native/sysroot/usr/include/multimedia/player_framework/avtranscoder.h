@@ -61,7 +61,7 @@ OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create() __attribute__((__availabi
 /**
  * @brief release a transcoder config instance.
  * @param {OH_AVTranscoder_Config*} config Pointer to an OH_AVTranscoder_Config instance.
- * @return @return Function result code.
+ * @return Function result code.
  *          {@link AV_ERR_OK} if the execution is successful.
  *          {@link AV_ERR_INVALID_VAL} if input config is nullptr.
  * @since 20
@@ -312,7 +312,7 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
 /**
  * @brief Enable B frame in destination video.
  * @param {OH_AVTranscoder_Config*} config Pointer to an OH_AVTranscoder_Config instance
- * @param {bool} enabled Whecher enable B Frame. If this function is not called, B Frame is disabled.
+ * @param {bool} enabled Whether enable B Frame. If this function is not called, B Frame is disabled.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr.

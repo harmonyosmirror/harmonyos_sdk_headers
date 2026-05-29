@@ -255,8 +255,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreatePixelMapShader(OH_Drawing_
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param startPt Indicates the center of the start circle for the gradient.
  * @param startRadius Indicates the radius of the start circle for this gradient.
- * @param endPt Indicates the center of the start circle for the gradient.
- * @param endRadius Indicates the radius of the start circle for this gradient.
+ * @param endPt Indicates the center of the end circle for the gradient.
+ * @param endRadius Indicates the radius of the end circle for this gradient.
  * @param colors Indicates the colors to be distributed between the two points.
  * @param pos Indicates the relative position of each corresponding color in the colors array.
  * @param size Indicates the number of colors and pos.

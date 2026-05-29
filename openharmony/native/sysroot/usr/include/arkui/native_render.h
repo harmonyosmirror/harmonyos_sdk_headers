@@ -1097,7 +1097,7 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  *
  * @param node Handle to the target render node.
  * @param borderRadius Handle to border radius option.
- * @r eturn Error code.
+ * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.

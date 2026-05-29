@@ -127,6 +127,9 @@ typedef struct {
     int32_t height;          ///< Height in pixels
     int32_t format;          ///< One of PixelFormat
     int32_t usage;           ///< Combination of buffer usage
+    /**
+     * @since 10
+     */
     int32_t stride;          ///< the stride of memory in bytes
 } OH_NativeBuffer_Config;
 

@@ -67,7 +67,7 @@ typedef enum {
 } OH_AudioDevice_ChangeType;
 
 /**
- * @brief Defines the audio device device role.
+ * @brief Defines the audio device role.
  *
  * @since 12
  */
@@ -84,7 +84,7 @@ typedef enum {
 } OH_AudioDevice_Role;
 
 /**
- * @brief Defines the audio device device type.
+ * @brief Defines the audio device type.
  *
  * @since 12
  */
@@ -221,7 +221,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * @brief Device used for media ouput.
+     * @brief Device used for media output.
      *
      * @since 12
      */
@@ -289,7 +289,8 @@ typedef struct OH_AudioDeviceDescriptorArray {
 } OH_AudioDeviceDescriptorArray;
 
 /**
- * @brief Declaring the audio device blocked status. By default, the audio device is considered as unbloked.
+  * @brief Declaring the audio device blocked status.
+ * By default, the audio device is considered as unblocked.
  *
  * @since 13
  */
@@ -315,7 +316,7 @@ typedef enum {
  *
  * @param audioDeviceDescriptor reference returned by {@link OH_AudioRoutingManager_GetDevices} or
  * {@link OH_AudioRouterManager_OnDeviceChangedCallback}.
- * @param deviceRole the pointer {@link OH_AudioDevice_DeviceRole} variable that will be set the device role value.
+ * @param deviceRole the pointer {@link OH_AudioDevice_Role} variable that will be set the device role value.
  * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}.
  * @since 12
  */
@@ -328,7 +329,7 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescr
  *
  * @param audioDeviceDescriptor reference returned by {@link OH_AudioRoutingManager_GetDevices} or
  * {@link OH_AudioRouterManager_OnDeviceChangedCallback}.
- * @param deviceType the pointer {@link OH_AudioDevice_DeviceType}
+ * @param deviceType the pointer {@link OH_AudioDevice_Type}
  * pointer variable that will be set the device type value.
  * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}.
  * @since 12

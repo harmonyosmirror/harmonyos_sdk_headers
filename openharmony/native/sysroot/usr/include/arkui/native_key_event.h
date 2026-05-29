@@ -158,9 +158,9 @@ typedef enum {
     ARKUI_KEYCODE_Y = 2041,
     /** Key Z **/
     ARKUI_KEYCODE_Z = 2042,
-    /** Key # **/
+    /** Key , **/
     ARKUI_KEYCODE_COMMA = 2043,
-    /** Key # **/
+    /** Key . **/
     ARKUI_KEYCODE_PERIOD = 2044,
     /** Left Alt key **/
     ARKUI_KEYCODE_ALT_LEFT = 2045,
@@ -300,7 +300,7 @@ typedef enum {
     ARKUI_KEYCODE_NUMPAD_9 = 2112,
     /** Key / on numeric keypad **/
     ARKUI_KEYCODE_NUMPAD_DIVIDE = 2113,
-    /** Key ) on numeric keypad **/
+    /** Key * on numeric keypad **/
     ARKUI_KEYCODE_NUMPAD_MULTIPLY = 2114,
     /** Key - on numeric keypad **/
     ARKUI_KEYCODE_NUMPAD_SUBTRACT = 2115,

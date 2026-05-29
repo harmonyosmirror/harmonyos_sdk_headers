@@ -52,9 +52,9 @@ typedef enum ResourceManager_ErrorCode {
     ERROR_CODE_INVALID_INPUT_PARAMETER = 401,
     /** @error Invalid resource ID */
     ERROR_CODE_RES_ID_NOT_FOUND = 9001001,
-    /** @error Invalid resource name */
-    ERROR_CODE_RES_NOT_FOUND_BY_ID = 9001002,
     /** @error No matching resource is found based on the resource ID */
+    ERROR_CODE_RES_NOT_FOUND_BY_ID = 9001002,
+    /** @error Invalid resource name */
     ERROR_CODE_RES_NAME_NOT_FOUND = 9001003,
     /** @error No matching resource is found based on the resource name */
     ERROR_CODE_RES_NOT_FOUND_BY_NAME = 9001004,

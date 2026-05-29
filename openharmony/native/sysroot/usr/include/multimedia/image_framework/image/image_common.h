@@ -1672,6 +1672,792 @@ static const char *IMAGE_PROPERTY_GIF_DELAY_TIME = "GifDelayTime";
  * @since 20
  */
 static const char *IMAGE_PROPERTY_GIF_DISPOSAL_TYPE = "GifDisposalType";
+
+/**
+ * @brief The dng version.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DNG_VERSION = "DNGVersion";
+
+/**
+ * @brief The dng backward version.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DNG_BACKWARD_VERSION = "DNGBackwardVersion";
+
+/**
+ * @brief A unique camera model.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_UNIQUE_CAMERA_MODEL = "UniqueCameraModel";
+
+/**
+ * @brief A localized camera model.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_LOCALIZED_CAMERA_MODEL = "LocalizedCameraModel";
+
+/**
+ * @brief The CFA (color filter array) plane color.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CFA_PLANE_COLOR = "CFAPlaneColor";
+
+/**
+ * @brief The CFA (color filter array) layout.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CFA_LAYOUT = "CFALayout";
+
+/**
+ * @brief The linearization table.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_LINEARIZATION_TABLE = "LinearizationTable";
+
+/**
+ * @brief The black level repeat dimension.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BLACK_LEVEL_REPEAT_DIM = "BlackLevelRepeatDim";
+
+/**
+ * @brief The zero‑light encoding level.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BLACK_LEVEL = "BlackLevel";
+
+/**
+ * @brief The black level delta H.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BLACK_LEVEL_DELTA_H = "BlackLevelDeltaH";
+
+/**
+ * @brief The black level delta V.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BLACK_LEVEL_DELTA_V = "BlackLevelDeltaV";
+
+/**
+ * @brief The white level.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_WHITE_LEVEL = "WhiteLevel";
+
+/**
+ * @brief The default scale.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DEFAULT_SCALE = "DefaultScale";
+
+/**
+ * @brief The default crop origin.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DEFAULT_CROP_ORIGIN = "DefaultCropOrigin";
+
+/**
+ * @brief The default crop size.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DEFAULT_CROP_SIZE = "DefaultCropSize";
+
+/**
+ * @brief A transformation matrix under the first calibration illuminant.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_COLOR_MATRIX1 = "ColorMatrix1";
+
+/**
+ * @brief A transformation matrix under the second calibration illuminant.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_COLOR_MATRIX2 = "ColorMatrix2";
+
+/**
+ * @brief A calibration matrix under the first calibration illuminant.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CAMERA_CALIBRATION1 = "CameraCalibration1";
+
+/**
+ * @brief A calibration matrix under the second calibration illuminant.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CAMERA_CALIBRATION2 = "CameraCalibration2";
+
+/**
+ * @brief A dimensionality reduction matrix under the first calibration
+ * illuminant. It is used in {@link
+ * OH_ImageSourceNative_GetImagePropertyArraySize} and {@link
+ * OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_REDUCTION_MATRIX1 = "ReductionMatrix1";
+
+/**
+ * @brief A dimensionality reduction matrix under the second calibration
+ * illuminant. It is used in {@link
+ * OH_ImageSourceNative_GetImagePropertyArraySize} and {@link
+ * OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_REDUCTION_MATRIX2 = "ReductionMatrix2";
+
+/**
+ * @brief The analog balance.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ANALOG_BALANCE = "AnalogBalance";
+
+/**
+ * @brief The as‑shot neutral.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_AS_SHOT_NEUTRAL = "AsShotNeutral";
+
+/**
+ * @brief The as‑shot white point encoded as x-y chromaticity coordinates.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_AS_SHOT_WHITEXY = "AsShotWhiteXY";
+
+/**
+ * @brief The baseline exposure.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BASELINE_EXPOSURE = "BaselineExposure";
+
+/**
+ * @brief The baseline noise.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BASELINE_NOISE = "BaselineNoise";
+
+/**
+ * @brief The baseline sharpness.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BASELINE_SHARPNESS = "BaselineSharpness";
+
+/**
+ * @brief The Bayer green split.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BAYER_GREEN_SPLIT = "BayerGreenSplit";
+
+/**
+ * @brief The linear response limit.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_LINEAR_RESPONSE_LIMIT = "LinearResponseLimit";
+
+/**
+ * @brief The serial number of the camera.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CAMERA_SERIAL_NUMBER = "CameraSerialNumber";
+
+/**
+ * @brief Information about the lens.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_LENS_INFO = "LensInfo";
+
+/**
+ * @brief The chroma blur radius.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CHROMA_BLUR_RADIUS = "ChromaBlurRadius";
+
+/**
+ * @brief The anti‑alias strength.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ANTI_ALIAS_STRENGTH = "AntiAliasStrength";
+
+/**
+ * @brief The shadow scale.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_SHADOW_SCALE = "ShadowScale";
+
+/**
+ * @brief The private data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DNG_PRIVATE_DATA = "DNGPrivateData";
+
+/**
+ * @brief Whether the EXIF MakerNote tag is safe.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_MAKER_NOTE_SAFETY = "MakerNoteSafety";
+
+/**
+ * @brief The first calibration illuminant.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CALIBRATION_ILLUMINANT1 = "CalibrationIlluminant1";
+
+/**
+ * @brief The second calibration illuminant.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CALIBRATION_ILLUMINANT2 = "CalibrationIlluminant2";
+
+/**
+ * @brief The best quality scale.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BEST_QUALITY_SCALE = "BestQualityScale";
+
+/**
+ * @brief The unique identifier of raw image data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_RAW_DATA_UNIQUE_ID = "RawDataUniqueID";
+
+/**
+ * @brief The original raw file name.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ORIGINAL_RAW_FILE_NAME = "OriginalRawFileName";
+
+/**
+ * @brief The original raw file data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ORIGINAL_RAW_FILE_DATA = "OriginalRawFileData";
+
+/**
+ * @brief The active area.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ACTIVE_AREA = "ActiveArea";
+
+/**
+ * @brief The masked areas.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_MASKED_AREAS = "MaskedAreas";
+
+/**
+ * @brief An ICC profile.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_AS_SHOT_ICC_PROFILE = "AsShotICCProfile";
+
+/**
+ * @brief The as‑shot pre‑profile matrix.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_AS_SHOT_PRE_PROFILE_MATRIX = "AsShotPreProfileMatrix";
+
+/**
+ * @brief The current ICC profile.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CURRENT_ICC_PROFILE = "CurrentICCProfile";
+
+/**
+ * @brief The current pre‑profile matrix.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CURRENT_PRE_PROFILE_MATRIX = "CurrentPreProfileMatrix";
+
+/**
+ * @brief The colorimetric reference.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
+ * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_COLORIMETRIC_REFERENCE = "ColorimetricReference";
+
+/**
+ * @brief The camera calibration signature.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_CAMERA_CALIBRATION_SIGNATURE = "CameraCalibrationSignature";
+
+/**
+ * @brief The profile calibration signature.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_CALIBRATION_SIGNATURE = "ProfileCalibrationSignature";
+
+/**
+ * @brief The extra camera profiles.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_EXTRA_CAMERA_PROFILES = "ExtraCameraProfiles";
+
+/**
+ * @brief The as‑shot camera profile name.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_AS_SHOT_PROFILE_NAME = "AsShotProfileName";
+
+/**
+ * @brief The applied noise reduction.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_NOISE_REDUCTION_APPLIED = "NoiseReductionApplied";
+
+/**
+ * @brief The profile name.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_NAME = "ProfileName";
+
+/**
+ * @brief The profile hue/saturation map dimensions.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_HUE_SAT_MAP_DIMS = "ProfileHueSatMapDims";
+
+/**
+ * @brief The first hue/saturation mapping table data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_HUE_SAT_MAP_DATA1 = "ProfileHueSatMapData1";
+
+/**
+ * @brief The second hue/saturation mapping table data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_HUE_SAT_MAP_DATA2 = "ProfileHueSatMapData2";
+
+/**
+ * @brief The profile tone curve.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_TONE_CURVE = "ProfileToneCurve";
+
+/**
+ * @brief The profile embedding policy.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_EMBED_POLICY = "ProfileEmbedPolicy";
+
+/**
+ * @brief The profile copyright.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_COPYRIGHT = "ProfileCopyright";
+
+/**
+ * @brief The first forward matrix.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_FORWARD_MATRIX1 = "ForwardMatrix1";
+
+/**
+ * @brief The second forward matrix.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_FORWARD_MATRIX2 = "ForwardMatrix2";
+
+/**
+ * @brief The preview application name.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PREVIEW_APPLICATION_NAME = "PreviewApplicationName";
+
+/**
+ * @brief The preview application version.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PREVIEW_APPLICATION_VERSION = "PreviewApplicationVersion";
+
+/**
+ * @brief The preview settings name.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PREVIEW_SETTINGS_NAME = "PreviewSettingsName";
+
+/**
+ * @brief The preview settings digest.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PREVIEW_SETTINGS_DIGEST = "PreviewSettingsDigest";
+
+/**
+ * @brief The preview color space.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PREVIEW_COLOR_SPACE = "PreviewColorSpace";
+
+/**
+ * @brief The preview date and time.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PREVIEW_DATE_TIME = "PreviewDateTime";
+
+/**
+ * @brief An MD5 digest of the raw image data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_RAW_IMAGE_DIGEST = "RawImageDigest";
+
+/**
+ * @brief An MD5 digest of the data stored in the OriginalRawFileData.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ORIGINAL_RAW_FILE_DIGEST = "OriginalRawFileDigest";
+
+/**
+ * @brief The sub-tile block size.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_SUB_TILE_BLOCK_SIZE = "SubTileBlockSize";
+
+/**
+ * @brief The row interleave factor.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
+ * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ROW_INTERLEAVE_FACTOR = "RowInterleaveFactor";
+
+/**
+ * @brief The profile lookup table dimensions.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_LOOK_TABLE_DIMS = "ProfileLookTableDims";
+
+/**
+ * @brief The profile lookup table data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_LOOK_TABLE_DATA = "ProfileLookTableData";
+
+/**
+ * @brief The first opcode list.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_OPCODE_LIST1 = "OpcodeList1";
+
+/**
+ * @brief The second opcode list.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_OPCODE_LIST2 = "OpcodeList2";
+
+/**
+ * @brief The third opcode list.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyBlob}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_OPCODE_LIST3 = "OpcodeList3";
+
+/**
+ * @brief The noise profile.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_NOISE_PROFILE = "NoiseProfile";
+
+/**
+ * @brief The original default final size.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ORIGINAL_DEFAULT_FINAL_SIZE = "OriginalDefaultFinalSize";
+
+/**
+ * @brief The original best quality final size.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ORIGINAL_BEST_QUALITY_FINAL_SIZE = "OriginalBestQualityFinalSize";
+
+/**
+ * @brief The original default crop size.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_ORIGINAL_DEFAULT_CROP_SIZE = "OriginalDefaultCropSize";
+
+/**
+ * @brief The profile hue‑saturation map encoding.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_HUE_SAT_MAP_ENCODING = "ProfileHueSatMapEncoding";
+
+/**
+ * @brief The profile lookup table encoding.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_PROFILE_LOOK_TABLE_ENCODING = "ProfileLookTableEncoding";
+
+/**
+ * @brief The baseline exposure offset.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_BASELINE_EXPOSURE_OFFSET = "BaselineExposureOffset";
+
+/**
+ * @brief The default black render.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DEFAULT_BLACK_RENDER = "DefaultBlackRender";
+
+/**
+ * @brief A modified MD5 digest of the raw image data.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyString}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_NEW_RAW_IMAGE_DIGEST = "NewRawImageDigest";
+
+/**
+ * @brief The gain between the main raw IFD and the preview IFD.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_RAW_TO_PREVIEW_GAIN = "RawToPreviewGain";
+
+/**
+ * @brief The default user crop.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
+ * {@link OH_ImageSourceNative_GetImagePropertyIntArray}.
+ *
+ * @since 24
+ */
+static const char *OHOS_DNG_PROPERTY_DEFAULT_USER_CROP = "DefaultUserCrop";
 #ifdef __cplusplus
 };
 #endif

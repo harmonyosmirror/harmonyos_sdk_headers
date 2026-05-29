@@ -3928,6 +3928,34 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RemoveHandlerForGC(JSVM_VM vm,
                                                    void* userData)
                                                    __attribute__((__availability__(ohos, introduced=18.0.0)));
 
+/**
+ * @brief Deserialize JavaScript code cache in thread pool, and release
+ * JSVM_DeserializeResult with OH_JSVM_ReleaseDeserializeResult.
+ *
+ * @param vm The VM instance where background deserialize will be performed.
+ * @param cacheData Code cache data to be deserialized.
+ * @param result The result of background deserialize.
+ * @return Returns JSVM funtions result code.
+ *         {@link JSVM_OK } if the function executed successfully.\n
+ *         {@link JSVM_INVALID_ARG } if any of the pointer arguments is NULL.\n
+ * @since 24
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_BackgroundDeserialize(
+    JSVM_VM vm, JSVM_CodeCache cacheData, JSVM_DeserializeResult *result)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Release deserialize result.
+ *
+ * @param result The background deserialize result to be release.
+ * @return Returns JSVM funtions result code.
+ *         {@link JSVM_OK } if the function executed successfully.\n
+ *         {@link JSVM_INVALID_ARG } if any of the pointer arguments is NULL.\n
+ * @since 24
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseDeserializeResult(JSVM_DeserializeResult result)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
 EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */

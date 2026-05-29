@@ -244,29 +244,29 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
     __attribute__((__availability__(ohos, introduced=20.0.0)));
 
 /**
- * @brief Starts self UIAbility.
+ * @brief Starts the UIAbility of the current application.
  *
- * @permission {@code ohos.permission.NDK_START_SELF_UI_ABILITY}
- * @param want The arguments passed to start self UIAbility.
- * For details, see {@link AbilityBase_Want}.
- * @return Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the call is successful.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED} if the caller has no correct permission.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided is invalid.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED} if the device does not support starting self uiability.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY} if the target ability does not exist.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE} if the ability type is incorrect.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED} if the crowdtesting application expires.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE} if the ability cannot be started in Wukong mode.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_CONTROLLED} if the app is controlled.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED} if the app is controlled by EDM.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_CROSS_APP} if the caller tries to start a different application.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY} if the caller is not top ability.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED}
- *          if the number of app instances reached the limit (since 17).
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED}
- *          if the APP_INSTANCE_KEY cannot be specified (since 17).
- * For details, see {@link AbilityRuntime_ErrorCode}.
+ * @permission ohos.permission.NDK_START_SELF_UI_ABILITY
+ * @param want Pointer to the Want information required for starting the UIAbility.
+ * @return **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
+ *      **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification for the caller fails.
+ *      **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: Parameter verification for the caller fails.
+ *      **ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED**: The device type is not supported.
+ *      **ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY**: The specified ability name does not exist.
+ *      **ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE**: The ability type is incorrect.
+ *      **ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED**: The crowdtesting application expires.
+ *      **ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE**: The ability is started or stopped in Wukong mode.
+ *      **ABILITY_RUNTIME_ERROR_CODE_CONTROLLED**: The application is under control.
+ *      **ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED**: The application is under control by EDM.
+ *      **ABILITY_RUNTIME_ERROR_CODE_CROSS_APP**: Redirecting to third-party applications is not allowed in API versions
+ *      later than 11.
+ *      **ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error occurs.
+ *      **ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY**: The application is not a top one.
+ *      **ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED** (available since API version 17): The number of instances has
+ *      reached the upper limit.
+ *      **ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED** (available since API version 17): Setting **
+ *      APP_INSTANCE_KEY** is not supported.
+ *      For details, see **AbilityRuntime_ErrorCode**.
  * @since 15
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want)
@@ -309,35 +309,37 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
     __attribute__((__availability__(ohos, introduced=21.0.0)));
 
 /**
- * @brief Starts self UIAbility with start options.
+ * @brief Starts the UIAbility of the current application using **StartOptions**.
  *
- * @permission {@code ohos.permission.NDK_START_SELF_UI_ABILITY}
- * @param want The arguments passed to start self UIAbility.
- * For details, see {@link AbilityBase_Want}.
- * @param options The start options passed to start self UIAbility.
- * For details, see {@link AbilityRuntime_StartOptions}.
- * @return Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the call is successful.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED} if the caller has no correct permission.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided is invalid.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED} if the device does not support starting self uiability.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY} if the target ability does not exist.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE} if the ability type is incorrect.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED} if the crowdtesting application expires.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE} if the ability cannot be started in Wukong mode.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_CONTROLLED} if the app is controlled.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED} if the app is controlled by EDM.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_CROSS_APP} if the caller tries to start a different application.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY} if the caller is not foreground process.
- * Returns {@link ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED} if setting visibility is disabled.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED}
- *          if the app clone or multi-instance is not supported.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY} if the app instance key is invalid.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED} if the number of app instances reached the limit.
- * Returns {@link ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED} if the multi-instance is not supported.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED}
- *          if the APP_INSTANCE_KEY cannot be specified.
- * For details, see {@link AbilityRuntime_ErrorCode}.
+ * @permission ohos.permission.NDK_START_SELF_UI_ABILITY
+ * @param want Pointer to the Want information required for starting the UIAbility.
+ * @param options Pointer to **StartOptions** required for starting the UIAbility.
+ *      If the value of {@link startVisibility}
+ *      is not null, ensure that the current application has been added to the status bar.
+ *      Otherwise, the {@link ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED} error code is returned.
+ * @return <ul><li>**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification for the caller fails.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: Parameter verification for the caller fails.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED**: The device type is not supported.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY**: The specified ability name does not exist.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE**: The ability type is incorrect.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED**: The crowdtesting application expires.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE**: The ability is started or stopped in Wukong mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_CONTROLLED**: The application is under control.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED**: The application is under control by EDM.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_CROSS_APP**: Redirecting to third-party applications
+ *      is not allowed in API versions later than 11.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error occurs.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY**: The application is not a top one.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED**:
+ *      Setting the window visibility during startup is not allowed.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED**:
+ *      The application does not support clone or multi-instance mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY**: The multi-instance key is invalid.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: The number of instances has reached the upper limit.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: The application does not support multi-instance mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: Setting **APP_INSTANCE_KEY** is not supported.
+ *      For details, see **AbilityRuntime_ErrorCode**.</li></ul>
  * @since 17
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,

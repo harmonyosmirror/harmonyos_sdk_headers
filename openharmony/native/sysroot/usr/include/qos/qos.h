@@ -122,6 +122,12 @@ int OH_QoS_GetThreadQoS(QoS_Level *level) __attribute__((__availability__(ohos, 
  * @since 20
  */
 typedef unsigned int OH_QoS_GewuSession;
+
+/**
+ * @brief Invalid session id for return.
+ *
+ * @since 20
+ */
 #define OH_QOS_GEWU_INVALID_SESSION_ID (static_cast<OH_QoS_GewuSession>(0xffffffffU))
 /**
  * @brief Request id
@@ -129,6 +135,12 @@ typedef unsigned int OH_QoS_GewuSession;
  * @since 20
  */
 typedef unsigned int OH_QoS_GewuRequest;
+
+/**
+ * @brief Invalid request id for return.
+ *
+ * @since 20
+ */
 #define OH_QOS_GEWU_INVALID_REQUEST_ID (static_cast<OH_QoS_GewuRequest>(0xffffffffU))
 
 

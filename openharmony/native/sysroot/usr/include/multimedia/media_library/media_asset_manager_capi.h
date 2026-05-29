@@ -28,7 +28,7 @@
  * @brief Defines the media asset manager APIs.
  *
  * Uses the Native APIs provided by Media Asset Manager
- * to reqeust media source.
+ * to request media source.
  *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core

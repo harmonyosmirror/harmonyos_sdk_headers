@@ -142,7 +142,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
- * @brief Get preferred ouput devices by audio usage.
+ * @brief Get preferred output devices by audio usage.
  *
  * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned
  * by {@link OH_AudioManager_GetAudioRoutingManager}.
@@ -303,6 +303,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(
     OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback,
     void *userData)
     __attribute__((__availability__(ohos, introduced=13.0.0)));
+
 #ifdef __cplusplus
 }
 #endif

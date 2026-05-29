@@ -123,6 +123,34 @@ extern "C" {
  */
 #define MAIN_THREAD_JANK_PARAM_AUTO_STOP_SAMPLING "auto_stop_sampling"
 
+/**
+ * @brief Print additional memory information near the PC and LR registers
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING "extend_pc_lr_printing"
+
+/**
+ * @brief Automatically truncate the cppcrash log size
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES "log_file_cutoff_sz_bytes"
+
+/**
+ * @brief Only print VMA within the stacktrace of the cppcrash log
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING "simplify_vma_printing"
+
+/**
+ * @brief Merge the app log into the system cppcrash log and return it via external_log in the APP_CRASH event
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
+
 #ifdef __cplusplus
 }
 #endif

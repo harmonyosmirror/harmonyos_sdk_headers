@@ -348,36 +348,6 @@ extern const char *g_debug_prefix;
     } while (0)
 #endif /* TA_LOG_LEVEL >= TA_LOG_LEVEL_ERROR */
 
-/**
- * @brief Defines an enum for system events.
- *
- * @since 20
- */
-typedef enum {
-    /** Fault event. */
-    FAULT = 1,
-    /** Statistics event. */
-    STATISTIC  = 2,
-    /** Security event. */
-    SECURITY  = 3,
-    /** Behavior event. */
-    BEHAVIOR = 4,
-} HISYSEVENT_TYPE;
-
-/**
- * @brief Reports DFX messages to HiViewOcean.
- *
- * @param domain Domain name of a message.
- * @param event Event name of a message.
- * @param event_type Event type of a message.
- * @param fmt Format of a logged message.
- *
- * @since 20
- */
-
-void tee_report(const char *domain, const char *event, HISYSEVENT_TYPE event_type, const char *fmt, ...);
-
-
 #ifdef __cplusplus
 }
 #endif

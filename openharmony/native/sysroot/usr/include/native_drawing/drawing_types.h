@@ -74,7 +74,7 @@ typedef struct OH_Drawing_Pen OH_Drawing_Pen;
 typedef struct OH_Drawing_Region OH_Drawing_Region;
 
 /**
- * @brief Defines as a brush, which is used to describe the style and color to fill in a shape.
+ * @brief Defines a brush, which is used to describe the style and color to fill in a shape.
  *
  * @since 8
  * @version 1.0
@@ -130,7 +130,7 @@ typedef struct OH_Drawing_Point OH_Drawing_Point;
 typedef struct OH_Drawing_PixelMap OH_Drawing_PixelMap;
 
 /**
- * @brief Define color space to determine color information.
+ * @brief Defines a color space to determine color information.
  *
  * @since 12
  * @version 1.0
@@ -149,7 +149,7 @@ typedef struct {
 } OH_Drawing_Point2D;
 
 /**
- * @brief Defines a corner radii, which is on x-axis and y-axis.
+ * @brief Defines corner radii, which is on x-axis and y-axis.
  *
  * @since 12
  * @version 1.0
@@ -169,7 +169,7 @@ typedef struct {
 } OH_Drawing_Point3D;
 
 /**
- * @brief Defines a pathEffect, which is used to affects stroked paths.
+ * @brief Defines a pathEffect, which is used to affect stroked paths.
  *
  * @since 12
  * @version 1.0
@@ -549,7 +549,7 @@ typedef struct OH_Drawing_FontMgr OH_Drawing_FontMgr;
 typedef struct OH_Drawing_FontStyleSet OH_Drawing_FontStyleSet;
 
 /**
- * @brief Define OH_Drawing_RecordCmdUtils, which is used to generate drawing commands tool.
+ * @brief Defines OH_Drawing_RecordCmdUtils, which is used to generate drawing commands tool.
  *
  * @since 13
  * @version 1.0
@@ -557,7 +557,7 @@ typedef struct OH_Drawing_FontStyleSet OH_Drawing_FontStyleSet;
 typedef struct OH_Drawing_RecordCmdUtils OH_Drawing_RecordCmdUtils;
 
 /**
- * @brief Define OH_Drawing_RecordCmd, which is used to replay drawing commands.
+ * @brief Defines OH_Drawing_RecordCmd, which is used to replay drawing commands.
  *
  * @since 13
  * @version 1.0

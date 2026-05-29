@@ -46,13 +46,13 @@ extern "C" {
 #endif
 
 /**
- * @brief definiton of avtranscoder
+ * @brief definition of avtranscoder
  * @since 20
 */
 typedef struct OH_AVTranscoder OH_AVTranscoder;
 
 /**
- * @brief definiton of avtranscoder config
+ * @brief definition of avtranscoder config
  * @since 20
  */
 typedef struct OH_AVTranscoder_Config OH_AVTranscoder_Config;
@@ -89,8 +89,8 @@ typedef void (*OH_AVTranscoder_OnStateChange)(OH_AVTranscoder *transcoder, OH_AV
  * @param {int32_t} errorCode Error code.
  *         {@link AV_ERR_NO_MEMORY} if memory is insufficient.
  *         {@link AV_ERR_IO} if IO access failed.
- *         {@link AV_ERR_INVALID_STATE} if the current state does not support this operation.
- *         {@link AV_ERR_UNSUPPORT} if unsurpport function.
+ *         {@link AV_ERR_INVALID_STATE} if current state does not support this operation.
+ *         {@link AV_ERR_UNSUPPORT} if unsupported function.
  *         {@link AV_ERR_INVALID_VAL} if the parameter check failed.
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
  * @param {const char*} errorMsg Error message.

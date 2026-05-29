@@ -575,7 +575,7 @@ void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option)
 __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
- * @brief Sets the duration for thea nimation of an animator, in milliseconds.
+ * @brief Sets the duration for the animation of an animator, in milliseconds.
  *
  * @param option Indicates the target animator parameter object.
  * @param value Indicates the playback duration, in milliseconds.

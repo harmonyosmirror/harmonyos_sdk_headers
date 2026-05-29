@@ -604,6 +604,13 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RAWVIDEO __attribute__((__availabil
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG1 __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
+ * @brief Enumerates the MIME type of video Cinepak codec.
+ *
+ * @since 24
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
  * @brief Enumerates the MIME type of video MSVIDEO1 codec.
  *
  * @since 22
@@ -1447,6 +1454,40 @@ extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT __attribute__((__availab
  * @since 23
  */
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Key to enable {@link OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO} in audio decoder,
+ * value type is int32_t (0 or 1): 1 is enabled, 0 is disabled.
+ *
+ * This is an optional key, default is 0.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Key for latitude, value type is float, The range is [-90.0, 90.0].
+ * Represents the latitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LATITUDE __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Key for longitude, value type is float, The range is [-180.0, 180.0].
+ * Represents the longitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LONGITUDE __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Key for altitude, value type is float.
+ * This is an optional key. Represents the altitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ALTITUDE __attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Media type.

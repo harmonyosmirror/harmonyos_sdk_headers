@@ -33,8 +33,8 @@
  * @since 12
  */
 
-#ifndef ARKUI_NATIVE_GESTTURE_H
-#define ARKUI_NATIVE_GESTTURE_H
+#ifndef ARKUI_NATIVE_GESTURE_H
+#define ARKUI_NATIVE_GESTURE_H
 
 #include "info/application_target_sdk_version.h"
 #include "ui_input_event.h"
@@ -1311,5 +1311,5 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 };
 #endif
 
-#endif // ARKUI_NATIVE_GESTTURE_H
+#endif // ARKUI_NATIVE_GESTURE_H
 /** @} */

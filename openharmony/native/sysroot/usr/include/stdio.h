@@ -242,7 +242,7 @@ enum fdsan_owner_type {
  * @brief Create an owner tag using specified fdsan_owner_type and at least 56 bits tag value.
  *
  * @param type: Indicate the specified fdsan_owner_type.
- * @param tag: Indicate the specified tag value, at least 56 bits, usually specified as sturct address such as FILE*.
+ * @param tag: Indicate the specified tag value, at least 56 bits, usually specified as struct address such as FILE*.
  * @return Return the created tag, which can be used to exchange.
  * @since 12
  */
@@ -252,7 +252,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Exchange owner tag for specified fd.
  *
- * This method will check if param expected_tag is euqal to current owner tag, fdsan error will occur if not.
+ * This method will check if param expected_tag is equal to current owner tag, fdsan error will occur if not.
  *
  * @param fd: Specified fd.
  * @param expected_tag: Used to check if equal to current owner tag.
@@ -265,7 +265,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Check fd owner tag and close fd.
  *
- * This method will check if param tag is euqal to current owner tag, fdsan error will occur if not,
+ * This method will check if param tag is equal to current owner tag, fdsan error will occur if not,
  * then call syscall to close fd.
  *
  * @param fd: Specified fd.

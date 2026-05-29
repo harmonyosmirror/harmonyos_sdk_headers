@@ -410,7 +410,7 @@ typedef struct {
     *
     * @note This method must be called before the <b>setLevelMode</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
-    * @param uniqueId Indicates the uniquedId of any nodes in router or navigation pages.
+    * @param uniqueId Indicates the uniqueId of any nodes in router or navigation pages.
     * @return Returns the error code.
     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -763,7 +763,7 @@ void* OH_ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event)
 __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
- * @brief Obtains the c from a dialog box dismiss event object.
+ * @brief Obtains the dismiss reason from a dialog box dismiss event object.
  *
  * @param event Indicates the pointer to a dialog box dismiss event object.
  *

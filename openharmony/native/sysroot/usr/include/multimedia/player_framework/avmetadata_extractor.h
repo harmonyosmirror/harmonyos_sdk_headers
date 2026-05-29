@@ -82,12 +82,12 @@ __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
  * @brief Set an OH_AVMetadataExtractor_OutputParam instance's size attribute
- * If the width or height is negtive, use the original video width or height;
+ * If the width or height is negative, use the original video width or height;
  * If the width or height is zero, keep the aspect ratio and scale image.
  * If width and height both are positive, scale image with input width and height parameter.
  * @param outputParam - Pointer to an OH_AVMetadataExtractor_OutputParam instance.
- * @param width - The width of output image, scaled if neccessary.
- * @param height - The height of output image, scaled if neccessary.
+ * @param width - The width of output image, scaled if necessary.
+ * @param height - The height of output image, scaled if necessary.
  * @return The return value is TRUE for success, FALSE for failure.
  *     Possible failure causes: outputParam is nullptr.
  * @since 23
@@ -124,7 +124,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFrameByTime(OH_AVMetadataExtractor *ext
     __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
- * @brief defines the callback function for frames fetched by AVMetadataExtractor
+ * @brief Defines the callback function for frames fetched by AVMetadataExtractor
  *     Note: frameInfo will be released automatically after callback, but user should release
  *     frameInfo.image manually by {@link OH_PixelmapNative_Destroy} to avoid memory leaks.
  * @since 23
@@ -164,7 +164,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFramesByTimes(OH_AVMetadataExtractor *e
 /**
  * @brief Cancel the batch fetch images operation (initiated by {@link OH_AVMetadataExtractor_FetchFramesByTimes}).
  * The pending fetches are cancelled and marked with CANCELLED result
- * in {@OH_AVMetadataExtractor_OnFrameFetched} callback
+ * in {@link OH_AVMetadataExtractor_OnFrameFetched} callback
  *
  * @param extractor - Pointer to an OH_AVMetadataExtractor instance.
  * @since 23
@@ -251,25 +251,11 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
  *         {@link AV_ERR_UNSUPPORTED_FORMAT} if format is unsupported.
  *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ *         {@link AV_ERR_IO_CLEARTEXT_NOT_PERMITTED} if http cleartext traffic is not permitted. Add since api 23.
  * @since 18
  */
- /**
- * @brief Extract metadata info from the media source.
- *        This function must be called after source set.
- *
- * @param extractor Pointer to an OH_AVMetadataExtractor instance.
- * @param avMetadata Pointer to an {@link OH_AVFormat} instance, its content contains the fetched metadata info.
- * @return Function result code.
- *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input extractor is nullptr or input param is invalid.
- *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
- *         {@link AV_ERR_UNSUPPORTED_FORMAT} if format is unsupported.
- *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
- *         {@link AV_ERR_IO_CLEARTEXT_NOT_PERMITTED} if http cleartext traffic is not permitted.
- * @since 23
- */
 OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata)
-__attribute__((__availability__(ohos, introduced=23.0.0)));
+__attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
  * @brief Fetch album cover from the audio source.

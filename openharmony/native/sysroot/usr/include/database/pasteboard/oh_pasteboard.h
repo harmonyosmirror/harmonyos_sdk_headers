@@ -327,6 +327,18 @@ __attribute__((__availability__(ohos, introduced=13.0.0)));
 bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard) __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
+ * @brief Checks whether the paste data is in a remote device.
+ *
+ * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @return Returns a boolean value, which indicates whether the paste data is in a remote device.
+ *         The value {@code true} means the paste data is in a remote device.
+ *         The value {@code false} means the opposite.
+ * @see OH_Pasteboard.
+ * @since 24
+ */
+bool OH_Pasteboard_HasRemoteData(OH_Pasteboard* pasteboard) __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
  * @brief Obtains data from the Pasteboard.
  *
  * @permission ohos.permission.READ_PASTEBOARD

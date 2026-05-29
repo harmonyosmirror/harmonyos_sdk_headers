@@ -81,7 +81,7 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
  *
  * @param {OH_AVSamplesBuffer} samplesBuffer OH_AVSamplesBuffer instance
  * @return Returns remained capacity of OH_AVSamplesBuffer instance,
- * return -1 if samplesBuffer or data poniter is is nullptr or invalid.
+ * return -1 if samplesBuffer or data pointer is nullptr or invalid.
  * @since 20
  */
 int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer)

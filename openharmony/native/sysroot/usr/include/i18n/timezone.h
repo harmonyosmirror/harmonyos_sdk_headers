@@ -94,7 +94,7 @@ typedef enum TimeRuleType {
 } TimeRuleType;
 
 /**
- * @brief Define the date and time rules to specify a date and time.
+ * @brief Defines the date and time rules to specify a date and time.
  *
  * @since 22
  */
@@ -120,7 +120,7 @@ typedef struct DateTimeRule {
     int32_t weekInMonth;
 
     /**
-     * @brief Indicates the milliseconds in a Day.
+     * @brief Indicates the milliseconds in a day.
      */
     int32_t millisInDay;
 
@@ -136,7 +136,7 @@ typedef struct DateTimeRule {
 } DateTimeRule;
 
 /**
- * @brief Define the initial rule of a timezone which has no clear start time.
+ * @brief Defines the initial rule of a timezone which has no clear start time.
  *
  * @since 22
  */
@@ -153,7 +153,7 @@ typedef struct InitialTimeZoneRule {
 } InitialTimeZoneRule;
 
 /**
- * @brief Define a set of timezone rules by the rule effective time array.
+ * @brief Defines a set of timezone rules by the rule effective time array.
  *
  * @since 22
  */
@@ -197,7 +197,7 @@ typedef struct TimeArrayTimeZoneRule {
 #define MAX_YEAR_IN_ANNUAL_TIMEZONE_RULE 0x7fffffff
 
 /**
- * @brief Define a set of timezone rules by specifying the start year when the rules come into effect and end.
+ * @brief Defines a set of timezone rules by specifying the start year when the rules come into effect and end.
  *
  * @since 22
  */
@@ -234,7 +234,7 @@ typedef struct AnnualTimeZoneRule {
 } AnnualTimeZoneRule;
 
 /**
- * @brief Define a set of timezone rules of a timezone.
+ * @brief Defines a set of timezone rules of a timezone.
  *
  * @since 22
  */
@@ -279,7 +279,7 @@ I18n_ErrorCode OH_i18n_GetTimeZoneRules(const char* timeZoneID, TimeZoneRules* r
 __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
- * @brief Define the query information and query result.
+ * @brief Defines the query information and query result.
  *
  * @since 22
  */
@@ -311,7 +311,7 @@ typedef struct TimeZoneRuleQuery {
 } TimeZoneRuleQuery;
 
 /**
- * @brief Obtains the time when the TimeArrayTimeZoneRule frist took effect.
+ * @brief Obtains the time when the TimeArrayTimeZoneRule first took effect.
  *
  * @param rule Indicates the rule defined by TimeArrayTimeZoneRule{@link TimeArrayTimeZoneRule}.
  * @param query Indicates the query information and query result.
@@ -325,7 +325,7 @@ I18n_ErrorCode OH_i18n_GetFirstStartFromTimeArrayTimeZoneRule(TimeArrayTimeZoneR
 __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
- * @brief Obtains the time when the AnnualTimeZoneRule frist took effect.
+ * @brief Obtains the time when the AnnualTimeZoneRule first took effect.
  *
  * @param rule Indicates the rule defined by AnnualTimeZoneRule{@link AnnualTimeZoneRule}.
  * @param query Indicates the query information and query result.

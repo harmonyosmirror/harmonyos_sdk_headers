@@ -35,7 +35,11 @@
 #define OH_WINDOW_H
 
 #include "info/application_target_sdk_version.h"
+#ifdef __cplusplus
 #include <cstddef>
+#else
+#include <stddef.h>
+#endif
 #include "stdbool.h"
 #include "stdint.h"
 
@@ -396,6 +400,129 @@ __attribute__((__availability__(ohos, introduced=22.0.0)));
  * @since 22
  */
 int32_t OH_WindowManager_UnlockCursor(int32_t windowId) __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Gets the system default display size scaling factor of the screen where the window is located.
+ *
+ * @param info Display size scaling factor information for the current window.
+ * @param density System default display size scaling factor
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_DensityInfo_GetDefaultDensity(const OH_WindowManager_DensityInfo* info,
+    float* density)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the system display size scaling factor of the screen where the window is located.
+ *
+ * @param info Display size scaling factor information for the current window.
+ * @param density System display size scaling factor
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_DensityInfo_GetSystemDensity(const OH_WindowManager_DensityInfo* info,
+    float* density)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the custom display size scaling factor of the window.
+ *
+ * @param info Display size scaling factor information for the current window.
+ * @param density Custom display size scaling factor of the window. A return value of -1 indicates that no custom
+ *     display size scaling factor has been set, or it has been reset.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_DensityInfo_GetCustomDensity(const OH_WindowManager_DensityInfo* info,
+    float* density)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Get the system display size scaling factor, the system default display size scaling factor,
+ *     and the custom display size scaling factor information of the screen where the current window is located.
+ *
+ * @param windowId WindowId when window is created.
+ * @param info Display size scaling factor information for the current window.
+ *     A return value of NULL means this interface is not supported on the current device.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal. Possible cause:
+ *             1. The window is not created or destroyed;
+ *             2. This window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_GetDensityInfoCopy(int32_t windowId,
+    const OH_WindowManager_DensityInfo** info)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Listen for changes in the display size scaling factor information of the window. The callback function is
+ *     triggered when any of the system display size scaling factor, system default display size scaling factor, or
+ *     custom display size scaling factor of the screen where the window resides changes.
+ *     To unlisten for changes in the display size scaling factor information of the window, call
+ *     OH_WindowManager_UnregisterDensityInfoChangeCallback.
+ *
+ * @param windowId WindowId when window is created.
+ * @param callback Callback used to return the result of density information.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal. Possible cause:
+ *             1. The window is not created or destroyed;
+ *             2. This window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_RegisterDensityInfoChangeCallback(int32_t windowId,
+    OH_WindowManager_DensityInfoCallback callback)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Unlisten for changes in the display size scaling factor information of the window. The callback function is
+ *     triggered when any of the system display size scaling factor, system default display size scaling factor, or
+ *     custom display size scaling factor of the screen where the window resides changes.
+ *     To listen for changes in the display size scaling factor information of the window, call
+ *     OH_WindowManager_RegisterDensityInfoChangeCallback.
+ *
+ * @param windowId WindowId when window is created.
+ * @param callback Callback used to return the result of density information.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal. Possible cause:
+ *             1. The window is not created or destroyed;
+ *             2. This window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_UnregisterDensityInfoChangeCallback(int32_t windowId,
+    OH_WindowManager_DensityInfoCallback callback)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Releases the memory occupied by DensityInfo.
+ *
+ * @param info Display size scaling factor information for the current window.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 24
+ */
+int32_t OH_WindowManager_DensityInfo_Release(const OH_WindowManager_DensityInfo* info)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 
 #ifdef __cplusplus
 }

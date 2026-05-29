@@ -235,7 +235,7 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 /**
  * @brief Obtain a list of ability that support opening files in a certain format.
  *
- * @permisssion {@code ohos.permission.GET_ABILITY_INFO}.
+ * @permission ohos.permission.GET_ABILITY_INFO
  * @param fileType Indicates the file type.
  * @param abilityResourceInfo Indicates the ability resource array.
  * @param size Indicates the ability resource array size.

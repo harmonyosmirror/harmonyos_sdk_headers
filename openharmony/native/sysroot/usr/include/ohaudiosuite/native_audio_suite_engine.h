@@ -46,7 +46,7 @@ extern "C" {
 /**
  * @brief Request to create the audio engine.
  *
- * @param audioSuiteEngine Pointer to a viriable to receive audioSuiteEngine.
+ * @param audioSuiteEngine Pointer to a variable to receive audioSuiteEngine.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if audioSuiteEngine is nullptr,
  * or {@link #AUDIOSUITE_ERROR_INVALID_STATE} if the engine is already created.
@@ -80,7 +80,7 @@ __attribute__((__availability__(ohos, introduced=22.0.0)));
  * it only supports the {@link EFFECT_NODE_TYPE_EQUALIZER} effect node.
  *
  * @param audioSuiteEngine Reference created by OH_AudioSuiteEngine_Create.
- * @param audioSuitePipeline Pointer to a viriable to receive the pipeline.
+ * @param audioSuitePipeline Pointer to a variable to receive the pipeline.
  * @param workMode It indicates whether the pipeline is operating in Edit mode or real-time rendering mode.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr
@@ -181,9 +181,9 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  * When finishedFlag is true, the application should no longer call this interface.
  *
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline
- * @param audioData Audio data pointer, where user should read.
- * @param requestFrameSize Size of audio data user specified.
- * @param responseSize Size of audio data the system realy write.
+ * @param audioData Audio data pointer, where user should read, unit is byte.
+ * @param requestFrameSize Size of audio data user specified, unit is byte.
+ * @param responseSize Size of audio data the system really write.
  * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
@@ -214,8 +214,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline.
  * @param audioDataArray Audio data array pointer, where user should read,
  * The size of each one-dimensional array should be consistent.
- * @param responseSize Size of audio data the system realy write,
- * The system ensures that the data size filled for each one-dimensional array is consistent.
+ * @param responseSize Size of audio data the system really write,
+ *     The system ensures that the data size filled for each one-dimensional array is consistent, unit is byte.
  * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
@@ -326,7 +326,7 @@ __attribute__((__availability__(ohos, introduced=22.0.0)));
  * @param audioNode AudioNode where this callback occurs.
  * @param userData User data which is passed by user.
  * @param audioData Audio data pointer, where user should fill in audio data.
- * @param audioDataSize Size of audio data that user should fill in.
+ * @param audioDataSize Size of audio data that user should fill in, unit is byte.
  * @param finished This boolean value indicates that all data
  * of the application has been consumed since last execute {@link OH_AudioSuiteEngine_StartPipeline}.
  * @return Length of the valid data that has written into audioData buffer.
@@ -364,7 +364,7 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
  *
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline.
  * @param builder Audio node builder created by OH_AudioSuiteNodeBuilder_Create.
- * @param audioNode Pointer to a viriable to receive the audio node.
+ * @param audioNode Pointer to a variable to receive the audio node.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
  * or {@link #AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} the number of nodes
@@ -384,7 +384,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_CreateNode(
     __attribute__((__availability__(ohos, introduced=22.0.0)));
 
 /**
- * @brief Destory an audio node.
+ * @brief Destroy an audio node.
  *
  * Whether the node can be deleted depends on the state of the pipeline it belongs to.
  * If the pipeline is not in the stopped state and the node is in an active processing path,

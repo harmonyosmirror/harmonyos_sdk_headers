@@ -60,7 +60,18 @@ typedef struct AbilityBase_Element {
     char* abilityName;
 } AbilityBase_Element;
 
+/**
+ * @brief Want data structure.
+ *
+ * @since 15
+ */
 struct AbilityBase_Want;
+
+/**
+ * @brief Want data structure.
+ *
+ * @since 15
+ */
 typedef struct AbilityBase_Want AbilityBase_Want;
 
 /**

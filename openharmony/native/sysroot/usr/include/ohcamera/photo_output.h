@@ -54,7 +54,7 @@ extern "C" {
 /**
  * @brief Photo output object
  *
- * A pointer can be created using {@link Camera_PhotoOutput} method.
+ * A pointer can be created using {@link Camera_PhotoOutput}.
  *
  * @since 11
  * @version 1.0
@@ -108,19 +108,19 @@ typedef void (*OH_PhotoOutput_OnError)(Camera_PhotoOutput* photoOutput, Camera_E
 typedef void (*OH_PhotoOutput_CaptureEnd) (Camera_PhotoOutput* photoOutput, int32_t frameCount);
 
 /**
- * @brief Photo output capture start with infomation callback.
+ * @brief Photo output capture start with information callback.
  *
  * @param photoOutput the {@link Camera_PhotoOutput} which deliver the callback.
- * @param Info the {@link Camera_CaptureStartInfo} which is delivered by the callback..
+ * @param info the {@link Camera_CaptureStartInfo} which is delivered by the callback.
  * @since 12
  */
 typedef void (*OH_PhotoOutput_CaptureStartWithInfo) (Camera_PhotoOutput* photoOutput, Camera_CaptureStartInfo* Info);
 
 /**
- * @brief Photo output eframe shutter end callback.
+ * @brief Photo output frame shutter end callback.
  *
  * @param photoOutput the {@link Camera_PhotoOutput} which deliver the callback.
- * @param Info the {@link Camera_CaptureStartInfo} which is delivered by the callback.
+ * @param info the {@link Camera_CaptureStartInfo} which is delivered by the callback.
  * @since 12
  */
 typedef void (*OH_PhotoOutput_OnFrameShutterEnd) (Camera_PhotoOutput* photoOutput, Camera_FrameShutterInfo* Info);
@@ -389,7 +389,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutpu
  * @brief Unregister photo output photo available callback.
  *
  * @param photoOutput the {@link Camera_PhotoOutput} instance.
- * @param callback the {@link PhotoOutput_Callbacks} to be unregistered.
+ * @param callback the {@link OH_PhotoOutput_PhotoAvailable} to be unregistered.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
@@ -441,7 +441,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * @brief Capture photo with capture setting.
  *
  * @param photoOutput the {@link Camera_PhotoOutput} instance which used to capture photo.
- * @param setting the {@link Camera_PhotoCaptureSetting} to used to capture photo.
+ * @param setting the {@link Camera_PhotoCaptureSetting} to be used to capture photo.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SESSION_NOT_RUNNING} if the capture session not running.
@@ -455,7 +455,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* p
 /**
  * @brief Release photo output.
  *
- * @param photoOutput the {@link Camera_PhotoOutput} instance to released.
+ * @param photoOutput the {@link Camera_PhotoOutput} instance to be released.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -506,7 +506,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Delete photo profile instance.
  *
- * @param profile the {@link Camera_Profile} instance to deleted.
+ * @param profile the {@link Camera_Profile} instance to be deleted.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12

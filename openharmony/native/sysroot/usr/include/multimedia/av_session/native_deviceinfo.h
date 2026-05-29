@@ -58,7 +58,7 @@ extern "C" {
 typedef struct AVSession_DeviceInfo AVSession_DeviceInfo;
 
 /**
- * @brief Declaring the target Device Infomation.
+ * @brief Declaring the target Device Information.
  *
  * @since 23
  */

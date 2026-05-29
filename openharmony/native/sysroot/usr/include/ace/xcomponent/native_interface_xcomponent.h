@@ -126,7 +126,7 @@ typedef enum {
     OH_NATIVEXCOMPONENT_TOOL_TYPE_FINGER,
     /** Indicates a stylus. */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_PEN,
-    /** Indicates a eraser. */
+    /** Indicates an eraser. */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_RUBBER,
     /** Indicates a brush. */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_BRUSH,
@@ -242,9 +242,9 @@ typedef struct {
     float force;
     /** Timestamp of the current touch event. */
     int64_t timeStamp;
-    /** The angle betweenprojection on plane-X-Y and axis-Z of the current touch event. */
+    /** The angle between projection on plane-X-Y and axis-Z of the current touch event. */
     float titlX;
-    /** The angle betweenprojection on plane-Y-Z and axis-Z of the current touch event. */
+    /** The angle between projection on plane-Y-Z and axis-Z of the current touch event. */
     float titlY;
     /** The sourceTool of the current touch event. */
     OH_NativeXComponent_TouchEvent_SourceTool sourceTool;
@@ -1266,10 +1266,10 @@ int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node) __attribute__((__a
 int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node) __attribute__((__availability__(ohos, introduced=19.0.0)));
 
 /**
- * @brief Obtains whether the XComponent node has initalized or not.
+ * @brief Obtains whether the XComponent node has initialized or not.
  *
  * @param node Indicates the pointer to the XComponent node.
- * @param isInitialized Indicates whether the XComponent node has initalized.
+ * @param isInitialized Indicates whether the XComponent node has initialized.
  * @return Returns the status code of the execution.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} the execution is successful.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node is invalid.

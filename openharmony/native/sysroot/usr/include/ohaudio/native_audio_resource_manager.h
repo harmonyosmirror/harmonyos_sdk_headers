@@ -176,6 +176,6 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif // NATIVE_AUDIO_RESOURCE_MANAGER_H
 /** @} */

@@ -1082,6 +1082,80 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImagePropertyDoubleArray(OH_ImageSour
 Image_ErrorCode OH_ImageSourceNative_ModifyImagePropertyBlob(OH_ImageSourceNative *source, Image_String *key,
     void *value, size_t size)
     __attribute__((__availability__(ohos, introduced=23.0.0)));
+
+/**
+ * @brief Defines raw data in an image.
+ * It is used in {@link OH_ImageSourceNative_CreateImageRawData}.
+ *
+ * @since 24
+ */
+struct OH_ImageRawData;
+
+/**
+ * @brief Defines raw data in an image.
+ * It is used in {@link OH_ImageSourceNative_CreateImageRawData}.
+ *
+ * @since 24
+ */
+typedef struct OH_ImageRawData OH_ImageRawData;
+
+/**
+ * @brief Obtains rawData object from an image.
+ *         The rawData object usually occupies a large amount of memory because it contains
+ *         raw data from the camera. When the rawData object and the data it contains are not used, call the
+ *         {@link OH_ImageSourceNative_DestroyImageRawData} method to destroy them in a timely manner.
+ *
+ * @param source Pointer to the image source.
+ * @param rawData Double pointer to the rawData object obtained after decoding.
+ * @return Returns One of the following result codes:
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_SOURCE} Bad source.
+ *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if the rawData object is invalid.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE} Unsupported MIME type.
+ * @since 24
+ */
+Image_ErrorCode OH_ImageSourceNative_CreateImageRawData(const OH_ImageSourceNative *source, OH_ImageRawData **rawData)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets binary data from the rawData object.
+ *
+ * @param rawData Pointer to the rawData object.
+ * @param data Pointer to the binary buffer data.
+ * @param length Pointer to the length of data obtained.
+ * @return Returns One of the following result codes:
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if the rawData object is invalid.
+ * @since 24
+ */
+ Image_ErrorCode OH_ImageSourceNative_GetBufferFromRawData(const OH_ImageRawData *rawData,
+    uint8_t **data, size_t *length)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets number of bits that each pixel actually occupies in the buffer data.
+ *
+ * @param rawData Pointer to the rawData object.
+ * @param bitsPerPixel Pointer to the bitsPerPixel obtained.
+ * @return Returns One of the following result codes:
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if the rawData object is invalid.
+ * @since 24
+ */
+Image_ErrorCode OH_ImageSourceNative_GetBitsPerPixelFromRawData(const OH_ImageRawData *rawData, uint8_t *bitsPerPixel)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Destroys the rawData object.
+ *
+ * @param rawData Pointer to the rawData object.
+ * @return Returns One of the following result codes:
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if the rawData object is invalid.
+ * @since 24
+ */
+Image_ErrorCode OH_ImageSourceNative_DestroyImageRawData(OH_ImageRawData *rawData)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 #ifdef __cplusplus
 };
 #endif

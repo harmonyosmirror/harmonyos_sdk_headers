@@ -250,12 +250,22 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-    /** Head modal */
+    /** Head modal. It is valid only when maxLine is set to 1 in OH_Drawing_TypographyStyle. */
     ELLIPSIS_MODAL_HEAD = 0,
-    /** Middle modal */
+    /** Middle modal. It is valid only when maxLine is set to 1 in OH_Drawing_TypographyStyle. */
     ELLIPSIS_MODAL_MIDDLE = 1,
     /** Tail modal */
     ELLIPSIS_MODAL_TAIL = 2,
+    /**
+     * Head modal. It is valid for any value of maxLines in OH_Drawing_TypographyStyle.
+     * @since 24
+     */
+    ELLIPSIS_MODAL_MULTILINE_HEAD = 3,
+    /**
+     * Middle modal. It is valid for any value of maxLines in OH_Drawing_TypographyStyle.
+     * @since 24
+     */
+    ELLIPSIS_MODAL_MULTILINE_MIDDLE = 4,
 } OH_Drawing_EllipsisModal;
 
 /**
@@ -598,6 +608,11 @@ typedef enum OH_Drawing_TextStyleAttributeId {
     TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 2,
     /** Font width */
     TEXT_STYLE_ATTR_I_FONT_WIDTH = 3,
+    /**
+     * Font edging
+     * @since 24
+     */
+    TEXT_STYLE_ATTR_I_FONT_EDGING = 4,
 } OH_Drawing_TextStyleAttributeId;
 
 /**
@@ -643,6 +658,11 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_FALLBACK_LINE_SPACING = 7,
+    /**
+     * Ellipsis modal
+     * @since 24
+     */
+    TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL = 8,
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
@@ -901,6 +921,18 @@ typedef struct {
     /** The families of the font to use when calculating the strut */
     char** families;
 } OH_Drawing_StrutStyle;
+
+/**
+ * @brief Defines the text rect struct.
+ *
+ * @since 24
+ */
+typedef struct OH_Drawing_RectSize {
+    /** Rect width */
+    double width;
+    /** Rect height */
+    double height;
+} OH_Drawing_RectSize;
 
 /**
  * @brief Creates an <b>OH_Drawing_TypographyStyle</b> object.
@@ -1180,11 +1212,11 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to a text style object <b>OH_Drawing_TextStyle</b>.
- * @param foregroundPen Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
+ * @param backgroundBrush Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundPen)
+void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* backgroundBrush)
 __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
@@ -1324,13 +1356,13 @@ __attribute__((__availability__(ohos, introduced=8.0.0)));
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
- * @param potisionX Indicates the x coordinate.
- * @param potisionY Indicates the y coordinate.
+ * @param positionX Indicates the x coordinate.
+ * @param positionY Indicates the y coordinate.
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
-    double potisionX, double potisionY)
+    double positionX, double positionY)
     __attribute__((__availability__(ohos, introduced=8.0.0)));
 
 /**
@@ -1348,6 +1380,52 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
 void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
     OH_Drawing_Path* path, double hOffset, double vOffset)
     __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Layout text within a constrained rectangle.
+ *
+ * @param typography Indicates the pointer to the text <b>OH_Drawing_Typography</b> object.
+ * @param constraintsRect Constraints height and width for layout.
+ * @param fitStrRangeArr On return, contains the character range of the paragraph that actually fit.
+ * Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
+ * Releases memory by <b>OH_Drawing_ReleaseArrayBuffer</b>.
+ * @param fitStrRangeArrayLen On return, the size of the fit string array.
+ * @return Returns an <b>OH_Drawing_RectSize</b> object that represents the paragraph's actual rectangle.
+ * @since 24
+ */
+OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(OH_Drawing_Typography* typography,
+    OH_Drawing_RectSize constraintsRect, OH_Drawing_Array** fitStrRangeArr, size_t* fitStrRangeArrayLen)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Get range by array index.
+ *
+ * @param array Indicates the pointer to the text <b>OH_Drawing_Array</b> object.
+ * @param index Range's index in array.
+ * @return Returns Indicates the pointer to an <b>OH_Drawing_Range</b> object.
+ * @since 24
+ */
+OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_t index)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Releases the memory occupied by an <b>OH_Drawing_Array</b> object.
+ *
+ * @param array Indicates the pointer to the text <b>OH_Drawing_Array</b> object.
+ * Supported array type: Fonts full name array, get by <b>OH_Drawing_GetSystemFontFullNamesByType</b>.
+ * Supported array type: Text lines array, get by <b>OH_Drawing_TypographyGetTextLines</b>.
+ * Supported array type: String indices array, get by <b>OH_Drawing_GetRunStringIndices</b>.
+ * Supported array type: Rect array, get by <b>OH_Drawing_RectCreateArray</b>.
+ * Supported array type: FontDescriptors array, get by <b>OH_Drawing_GetFontFullDescriptorsFromStream</b>.
+ * Supported array type: FontDescriptors array, get by <b>OH_Drawing_GetFontFullDescriptorsFromPath</b>.
+ * Supported array type: Text ranges array, get by <b>OH_Drawing_TypographyLayoutWithConstraintsWithBuffer</b>.
+ * @return Returns an error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if the array is nullptr or not supported.
+ * @since 24
+ */
+OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Gets the max width.
@@ -1631,12 +1709,12 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * @brief Gets affinity from position and affinity.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param positionandaffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
+ * @param positionAndAffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
  * @return Returns affinity from position and affinity.
  * @since 11
  * @version 1.0
  */
-int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionandaffinity)
+int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity)
 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
@@ -2520,6 +2598,18 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  */
 void OH_Drawing_TextStyleAddFontVariation(OH_Drawing_TextStyle* style, const char* axis, const float value)
 __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Add font variation with normalization data.
+ *
+ * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param axis Indicates the pointer to font variation axis.
+ * @param normalizedValue Indicates the font variation value to set.
+ * @since 24
+ */
+void OH_Drawing_TextStyleAddFontVariationWithNormalization(OH_Drawing_TextStyle* style,
+    const char* axis, const float normalizedValue)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Get all font features.
@@ -3534,6 +3624,77 @@ __attribute__((__availability__(ohos, introduced=20.0.0)));
 void OH_Drawing_DestroyPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity)
 __attribute__((__availability__(ohos, introduced=23.0.0)));
 
+/**
+ * @brief Gets the character range corresponding to the specified glyph range.
+ *
+ * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
+ * @param glyphRangeStart Indicates the start of the glyph range.
+ * @param glyphRangeEnd Indicates the end of the glyph range.
+ * @param actualGlyphRange Indicates the pointer to an <b>OH_Drawing_Range</b> pointer.
+ *     If this parameter is <b>NULL</b>, the actual glyph range will not be provided,
+ *     indicating that the actual glyph range information is not required.
+ *     Releases memory by <b>OH_Drawing_ReleaseRangeBuffer</b>.
+ * @param textEncodingType Indicates the text encoding type <b>OH_Drawing_TextEncoding</b>.
+ *     Currently only UTF-8 and UTF-16 encoding types are supported.
+ *     For UTF-8 encoding, the returned character range represents byte ranges.
+ *     For UTF-16 encoding, the returned character range represents UTF-16 code unit ranges.
+ * @return The pointer to the <b>OH_Drawing_Range</b> object representing the character range.
+ *     Releases memory by <b>OH_Drawing_ReleaseRangeBuffer</b>.
+ * @since 24
+ */
+OH_Drawing_Range* OH_Drawing_TypographyGetCharacterRangeForGlyphRangeWithBuffer(OH_Drawing_Typography* typography,
+    size_t glyphRangeStart, size_t glyphRangeEnd, OH_Drawing_Range** actualGlyphRange,
+    OH_Drawing_TextEncoding textEncodingType)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the character position and affinity from the specified coordinate.
+ *
+ * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
+ * @param dx Indicates the positionX of typography to set.
+ * @param dy Indicates the positionY of typography to set.
+ * @param textEncodingType Indicates the text encoding type <b>OH_Drawing_TextEncoding</b>.
+ *     Currently only UTF-8 and UTF-16 encoding types are supported.
+ *     For UTF-8 encoding, the returned position represents a byte offset.
+ *     For UTF-16 encoding, the returned position represents a UTF-16 code unit offset.
+ * @return The pointer to the <b>OH_Drawing_PositionAndAffinity</b> object.
+ *     Releases memory by <b>OH_Drawing_DestroyPositionAndAffinity</b>.
+ * @since 24
+ */
+OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetCharacterPositionAtCoordinateWithBuffer(
+    OH_Drawing_Typography* typography, double dx, double dy, OH_Drawing_TextEncoding textEncodingType)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the glyph range corresponding to the specified character range.
+ *
+ * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
+ * @param characterRangeStart Indicates the start of the character range.
+ * @param characterRangeEnd Indicates the end of the character range.
+ * @param actualCharacterRange Indicates the pointer to an <b>OH_Drawing_Range</b> pointer.
+ *     If this parameter is <b>NULL</b>, the actual character range will not be provided,
+ *     indicating that the actual character range information is not required.
+ *     Releases memory by <b>OH_Drawing_ReleaseRangeBuffer</b>.
+ * @param textEncodingType Indicates the text encoding type <b>OH_Drawing_TextEncoding</b>.
+ *     Currently only UTF-8 and UTF-16 encoding types are supported.
+ *     For UTF-8 encoding, the input character range should be interpreted as byte ranges.
+ *     For UTF-16 encoding, the input character range should be interpreted as UTF-16 code unit ranges.
+ * @return The pointer to the <b>OH_Drawing_Range</b> object representing the glyph range.
+ *     Releases memory by <b>OH_Drawing_ReleaseRangeBuffer</b>.
+ * @since 24
+ */
+OH_Drawing_Range* OH_Drawing_TypographyGetGlyphRangeForCharacterRangeWithBuffer(OH_Drawing_Typography* typography,
+    size_t characterRangeStart, size_t characterRangeEnd, OH_Drawing_Range** actualCharacterRange,
+    OH_Drawing_TextEncoding textEncodingType)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Releases the memory occupied by an <b>OH_Drawing_Range</b> object.
+ *
+ * @param range Indicates the pointer to an <b>OH_Drawing_Range</b> object.
+ * @since 24
+ */
+void OH_Drawing_ReleaseRangeBuffer(OH_Drawing_Range* range) __attribute__((__availability__(ohos, introduced=24.0.0)));
 #ifdef __cplusplus
 }
 #endif

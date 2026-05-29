@@ -41,20 +41,10 @@
 #define __TEE_TIME_API_H
 
 #include "tee_defines.h"
-#include "tee_rtc_time_api.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief Get current TEE system rtc time.
- *
- * @param time [OUT] current TEE system rtc time.
- *
- * @since 20
- */
-void get_sys_rtc_time(TEE_Time *time);
 
 /**
  * @brief Obtains the current TEE system time.

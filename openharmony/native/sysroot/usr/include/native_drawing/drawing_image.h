@@ -73,7 +73,7 @@ void OH_Drawing_ImageDestroy(OH_Drawing_Image* image) __attribute__((__availabil
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param image Indicates the pointer to an <b>OH_Drawing_Image</b> object.
  * @param bitmap Indicates the pointer to an <b>OH_Drawing_Bitmap</b> object.
- * @return Returns true if successed.
+ * @return Returns true if successded.
  * @since 12
  * @version 1.0
  */

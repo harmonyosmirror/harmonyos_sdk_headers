@@ -80,17 +80,17 @@ typedef enum {
     AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED = 6800104,
 
     /**
-     * @error This means the operation is timeout.
+     * @error This means the operation timed out.
      */
     AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,
 
     /**
-     * @error This means reached stream limit.
+     * @error This means the stream limit is reached.
      */
     AUDIOCOMMON_RESULT_ERROR_STREAM_LIMIT = 6800201,
 
     /**
-     * @error An system error has occurred.
+     * @error A system error has occurred.
      */
     AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301,
 } OH_AudioCommon_Result;

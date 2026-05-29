@@ -99,14 +99,14 @@ static const char* const COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF";
 static const char* const COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON";
 
 /**
- * @brief This commonEvent means when the device is is about to enter the hibernate mode.
+ * @brief This commonEvent means when the device is about to enter the hibernate mode.
  *
  * @since 15
  */
 static const char* const COMMON_EVENT_ENTER_HIBERNATE = "usual.event.ENTER_HIBERNATE";
 
 /**
- * @brief This commonEvent means when the device is exits the hibernate mode.
+ * @brief This commonEvent means when the device exits the hibernate mode.
  *
  * @since 15
  */
@@ -546,7 +546,7 @@ static const char* const COMMON_EVENT_SCREEN_LOCKED = "usual.event.SCREEN_LOCKED
 static const char* const COMMON_EVENT_HTTP_PROXY_CHANGE = "usual.event.HTTP_PROXY_CHANGE";
  
 /**
- * @brief This commonEvent means when the network connectivityy change.
+ * @brief This commonEvent means when the network connectivity change.
  *
  * This is a protected common event that can only be sent by system.
  *

@@ -142,7 +142,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Stop metadata output.
  *
- * @param metadataOutput the {@link Camera_MetadataOutput} instance to be stoped.
+ * @param metadataOutput the {@link Camera_MetadataOutput} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.

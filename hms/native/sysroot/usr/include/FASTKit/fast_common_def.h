@@ -13,7 +13,6 @@
  * @syscap SystemCapability.FAST.Core
  * @since 6.0.2(22)
  */
-
 /**
  * @addtogroup FAST
  * @{
@@ -39,20 +38,47 @@ extern "C" {
  * @since 6.0.2(22)
  */
 typedef enum FAST_ErrorCode {
-    /** Operation succeeded. */
+    /**
+ * @brief Operation succeeded.
+ * @since 6.0.2(22)
+ */
     FAST_ERROR_CODE_SUCCESS = 1023100000,
 
-    /** General failure. */
+    /**
+ * @brief General failure.
+ * @since 6.0.2(22)
+ */
     FAST_ERROR_CODE_FAIL = 1023100001,
 
-    /** Input parameter is illegal. */
+    /**
+ * @brief Input parameter is illegal.
+ * @since 6.0.2(22)
+ */
     FAST_ERROR_CODE_ILLEGAL_INPUT = 1023100002,
 
-    /** Pointer argument is invalid (e.g., NULL). */
+    /**
+ * @brief Pointer argument is invalid (e.g., NULL).
+ * @since 6.0.2(22)
+ */
     FAST_ERROR_CODE_INVALID_PTR = 1023100003,
 
-    /** Out of memory. */
-    FAST_ERROR_CODE_OOM = 1023199001
+    /**
+ * @brief Out of memory.
+ * @since 6.0.2(22)
+ */
+    FAST_ERROR_CODE_OOM = 1023199001,
+
+    /**
+ * @brief Key exists.
+ * @since 6.1.1(24)
+ */
+    FAST_ERROR_CODE_KEY_EXISTS = 1023110000,
+
+    /**
+ * @brief Key not exists.
+ * @since 6.1.1(24)
+ */
+    FAST_ERROR_CODE_KEY_NOT_EXISTS = 1023110001,
 } FAST_ErrorCode;
 
 #ifdef __cplusplus

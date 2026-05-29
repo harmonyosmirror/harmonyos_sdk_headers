@@ -188,7 +188,7 @@ CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_Subscr
     __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
- * @brief Destory the subscriber.
+ * @brief Destroy the subscriber.
  *
  * @param subscriber Indicates the created subscriber.
  * @since 12
@@ -671,7 +671,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
     __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
- * @brief Publish a commen event.
+ * @brief Publish a common event.
  *
  * @param event Indicates the name of the common event.
  * @return Returns the error code.
@@ -686,7 +686,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
 CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event) __attribute__((__availability__(ohos, introduced=18.0.0)));
 
 /**
- * @brief Publish a commen event with specified publish information.
+ * @brief Publish a common event with specified publish information.
  *
  * @param event Indicates the name of the common event.
  * @param info Indicates the publish information.

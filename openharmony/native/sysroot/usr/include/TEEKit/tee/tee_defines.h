@@ -967,22 +967,6 @@ typedef struct {
     int32_t year;
 } TEE_Date_Time;
 
-/**
- * @brief Definitions the timer property of TEE.
- *
- * @since 20
- */
-typedef struct {
-    /** Type of the timer. */
-    uint32_t type;
-    /** Timer ID. */
-    uint32_t timer_id;
-    /** Timer class. */
-    uint32_t timer_class;
-    /** Reserved field for future use. */
-    uint32_t reserved2;
-} TEE_timer_property;
-
 #ifdef __cplusplus
 }
 #endif

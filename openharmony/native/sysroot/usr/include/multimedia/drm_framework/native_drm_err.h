@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides APIs of Drm.
- * @kit DrmKit.
+ * @kit DrmKit
  * @since 11
  * @version 1.0
  */
@@ -62,7 +62,7 @@ typedef enum Drm_ErrCode {
      */
     DRM_ERR_NO_MEMORY = DRM_CAPI_ERR_BASE + 1,
     /**
-     * opertation not be permitted.
+     * operation not be permitted.
      */
     DRM_ERR_OPERATION_NOT_PERMITTED = DRM_CAPI_ERR_BASE + 2,
     /**
@@ -90,7 +90,7 @@ typedef enum Drm_ErrCode {
      */
     DRM_ERR_INVALID_STATE = DRM_CAPI_ERR_BASE + 8,
     /**
-     * unsupport interface.
+     * unsupported interface.
      */
     DRM_ERR_UNSUPPORTED = DRM_CAPI_ERR_BASE + 9,
     /**

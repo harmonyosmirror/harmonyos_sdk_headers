@@ -25,7 +25,7 @@
 /**
  * @file ohbattery_info.h
  *
- * @brief Declares the APIs to get informations about the current battery capacity and the power source type,
+ * @brief Declares the APIs to get information about the current battery capacity and the power source type,
  *        defines strings that identify corresponding common events.
  *
  * @library libohbattery_info.so

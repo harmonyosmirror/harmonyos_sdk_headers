@@ -802,6 +802,52 @@ Print_ErrorCode OH_Print_StartPrintByNative(const char *printJobName,
                                             void *context)
                                             __attribute__((__availability__(ohos, introduced=13.0.0)));
 
+/**
+ * @brief Indicates the print job state.
+ *
+ * @since 24
+ */
+typedef enum {
+    /** Print job succeed. */
+    OH_PRINT_JOB_SUCCEED = 0,
+    /** Print job failed. */
+    OH_PRINT_JOB_FAIL = 1,
+    /** Print job cancel. */
+    OH_PRINT_JOB_CANCEL = 2,
+    /** Print job block. */
+    OH_PRINT_JOB_BLOCK = 3,
+} OH_Print_JobState;
+
+/**
+ * @brief Print job state callback.
+ *
+ * @param jobId The print job id of one print task.
+ * @param state The state of current print job.
+ * @since 24
+ */
+typedef void(*OH_Print_OnJobStateChanged)(const char *jobId, OH_Print_JobState state);
+
+/**
+ * @brief This API starts initiating a print job with job state change callback.
+ *
+ * @permission ohos.permission.PRINT
+ * @param printJob A pointer to a {@link Print_PrintJob} instance that specifies the information for the print job.
+ * @param jobStateChangedCb The {@link OH_Print_OnJobStateChanged} to be registered.
+ * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
+ *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
+ *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
+ *         {@link PRINT_ERROR_INVALID_PRINTER} The printer should be in the list of connected printers.
+ *         {@link PRINT_ERROR_SERVER_FAILURE} Unable to create print job in the print service.
+ *         {@link PRINT_ERROR_INVALID_PRINT_JOB} Unable to find the job int the job queue.
+ *         {@link PRINT_ERROR_GENERIC_FAILURE} Unable to copy the callback.
+ *         {@link PRINT_ERROR_INVALID_PARAMETER} callback is NULL.
+ *
+ * @since 24
+ */
+Print_ErrorCode OH_Print_StartPrintWithJobStateCallback(const Print_PrintJob *printJob,
+                                                        OH_Print_OnJobStateChanged jobStateChangedCb)
+                                                        __attribute__((__availability__(ohos, introduced=24.0.0)));
+
 #ifdef __cplusplus
 }
 #endif

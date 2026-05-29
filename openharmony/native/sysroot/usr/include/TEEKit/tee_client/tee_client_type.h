@@ -245,32 +245,6 @@ typedef union {
 } TEEC_Parameter;
 
 /**
- * @brief Defines the parameters for the Trusted User Interface (TUI).
- *
- * @since 20
- */
-typedef struct {
-    /** TUI event type. */
-    uint32_t event_type;
-    /** Return value, is keycode if TUI event is getKeycode. */
-    uint32_t value;
-    /** Notch size of the screen for the TUI. */
-    uint32_t notch;
-    /** Width of the foldable screen for the TUI. */
-    uint32_t width;
-    /** Height of the foldable screen for the TUI. */
-    uint32_t height;
-    /** State of the foldable screen for the TUI. */
-    uint32_t fold_state;
-    /** One state of the folded screen for the TUI. */
-    uint32_t display_state;
-    /** Real width of the mobile device for the TUI. */
-    uint32_t phy_width;
-    /** Real height of the mobile device for the TUI. */
-    uint32_t phy_height;
-} TEEC_TUI_Parameter;
-
-/**
  * @brief Defines the parameters for opening a session or sending a command.
  *
  * @since 20

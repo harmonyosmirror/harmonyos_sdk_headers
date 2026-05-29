@@ -474,6 +474,7 @@ typedef void (*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)
  * @param onProcessExit Pointer to the callback function to handle the exit of a native child process.
  * For details, see {@link OH_Ability_OnNativeChildProcessExit}.
  * @return Returns {@link NCP_NO_ERROR} if the call is successful.
+ *         Returns {@link NCP_ERR_INVALID_PARAM} if the param is invalid.
  *         Returns {@link NCP_ERR_INTERNAL} if internal error occurs.
  *         For details, see {@link Ability_NativeChildProcess_ErrCode}.
  * @since 20

@@ -392,7 +392,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Stop capture session.
  *
- * @param session the {@link Camera_CaptureSession} instance to be stoped.
+ * @param session the {@link Camera_CaptureSession} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -404,7 +404,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Release capture session.
  *
- * @param session the {@link Camera_CaptureSession} instance to be release.
+ * @param session the {@link Camera_CaptureSession} instance to be released.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -466,6 +466,42 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  */
 Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, Camera_FlashMode flashMode)
 __attribute__((__availability__(ohos, introduced=11.0.0)));
+
+/**
+ * @brief Capture session flash state change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
+ * @param flashState The {@link OH_Camera_FlashState} which delivered by the callback.
+ * @since 24
+ */
+typedef void (*OH_CaptureSession_OnFlashStateChange)(const Camera_CaptureSession* session,
+    OH_Camera_FlashState flashState);
+
+/**
+ * @brief Register flash state change event callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param flashStateChange The {@link OH_CaptureSession_OnFlashStateChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterFlashStateChangeCallback(const Camera_CaptureSession* session,
+    OH_CaptureSession_OnFlashStateChange flashStateChange)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Unregister flash state change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param flashStateChange The {@link OH_CaptureSession_OnFlashStateChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterFlashStateChangeCallback(const Camera_CaptureSession* session,
+    OH_CaptureSession_OnFlashStateChange flashStateChange)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Check whether a specified exposure mode is supported.
@@ -535,6 +571,154 @@ Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* sessi
 __attribute__((__availability__(ohos, introduced=11.0.0)));
 
 /**
+ * @brief Check whether a specified exposure metering mode is supported.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureMeteringMode The {@link OH_Camera_ExposureMeteringMode} to be checked.
+ * @param isSupported Pointer to the result of whether exposure mode supported.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_IsExposureMeteringModeSupported(const Camera_CaptureSession* session,
+    OH_Camera_ExposureMeteringMode exposureMeteringMode, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Get current exposure metering mode.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureMeteringMode Pointer to the {@link OH_Camera_ExposureMeteringMode} instance.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureSession* session,
+    OH_Camera_ExposureMeteringMode* exposureMeteringMode)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Set exposure metering mode.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureMeteringMode The target {@link OH_Camera_ExposureMeteringMode} to set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetExposureMeteringMode(const Camera_CaptureSession* session,
+    OH_Camera_ExposureMeteringMode exposureMeteringMode)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Query the iso range.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param minIsoValue the minimum of iso value.
+ * @param maxIsoValue the Maximum of iso value.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetSupportedISORange(const Camera_CaptureSession* session,
+    int32_t *minIsoValue, int32_t *maxIsoValue)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Get current iso sensitivity value, as defined in ISO 12232:2006.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isoValue Pointer to the current iso sensitivity value.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetIso(const Camera_CaptureSession* session, int32_t* isoValue)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Sets ISO sensitivity value, within the range of getSupportedIsoRange. This control is only effective if
+ * ExposureMode is set to EXPOSURE_MODE_LOCKED.
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isoValue Indicates target iso value to set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetIso(const Camera_CaptureSession* session, int32_t isoValue)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the supported physical apertures list. 
+ * Release the physical apertures memory by calling {@link OH_CaptureSession_DeletePhysicalApertures}.
+ *
+ * @param session the {@link Camera_CaptureSession} instance
+ * @param apertures pointer to an array for storing physical aperture values
+ * @param size the size of physical apertures.
+ * @return {@link #CAMERA_OK} success 
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetSupportedPhysicalApertures(const Camera_CaptureSession* session,
+    OH_Camera_PhysicalAperture** apertures, uint32_t* size)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Delete the physical apertures.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param apertures pointer to an array for storing physical aperture values
+ * @param size the array size of the physical apertures.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_DeletePhysicalApertures(const Camera_CaptureSession* session,
+    OH_Camera_PhysicalAperture* apertures, uint32_t size)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the current physical aperture value
+ *
+ * @param session the {@link Camera_CaptureSession} instance
+ * @param aperture returned current aperture value
+ * @return {@link #CAMERA_OK} success
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetPhysicalAperture(const Camera_CaptureSession* session, double* aperture)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Set physical aperture value.
+ *
+ * @param session the {@link Camera_CaptureSession} instance
+ * @param aperture the aperture value to set
+ * @return {@link #CAMERA_OK} success
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetPhysicalAperture(const Camera_CaptureSession* session, double aperture)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
  * @brief Query the exposure compensation range.
  *
  * @param session the {@link Camera_CaptureSession} instance.
@@ -575,6 +759,90 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  */
 Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* session, float* exposureBias)
 __attribute__((__availability__(ohos, introduced=11.0.0)));
+
+/**
+ * @brief Get the supported range of exposure durations. Units: Microseconds.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param minExposureDuration Pointer to the minimum of exposure duration.
+ * @param maxExposureDuration Pointer to the maximum of exposure duration.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetSupportedExposureDurationRange(const Camera_CaptureSession* session,
+    int32_t* minExposureDuration, int32_t* maxExposureDuration)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Set exposure duration. Units: Microseconds.
+ * If the sensor can't expose this duration exactly,
+ *     it will shorten the duration to the nearest supported value, which is
+ * reporeted by Callback {@link OH_CaptureSession_OnExposureDurationChange}.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureDuration the target exposure duration to set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetExposureDuration(const Camera_CaptureSession* session, int32_t exposureDuration)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Get current exposure duration. Units: Microseconds.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureDuration Pointer to the current exposure duration.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetExposureDuration(const Camera_CaptureSession* session, int32_t* exposureDuration)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Capture session exposure duration change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
+ * @param exposureDuration The exposure duration which delivered by the callback.
+ * @since 24
+ */
+typedef void (*OH_CaptureSession_OnExposureDurationChange)(const Camera_CaptureSession* session,
+    int32_t exposureDuration);
+
+/**
+ * @brief Register exposure info change event callback.
+ *    After exposure parameters are changed, the system will returns the updated exposure infos.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureDurationChange The {@link OH_CaptureSession_OnExposureDurationChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterExposureInfoChangeCallback(const Camera_CaptureSession* session,
+    OH_CaptureSession_OnExposureDurationChange exposureDurationChange)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Unregister exposure info change callback.Invoke this method after finishing camera operations.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param exposureDurationChange The {@link OH_CaptureSession_OnExposureDurationChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterExposureInfoChangeCallback(
+    const Camera_CaptureSession* session, OH_CaptureSession_OnExposureDurationChange exposureDurationChange)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Check whether a specified focus mode is supported.
@@ -865,6 +1133,49 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
  */
 Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session, float* focalLength)
 __attribute__((__availability__(ohos, introduced=12.0.0)));
+
+/**
+ * @brief Get current focus distance, ranging from 0.0 to 1.0, with 0.0 being shortest
+ * distance at which the lens can focus and 1.0 the furthest. The default value is 1.0.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param focusDistance Pointer to the current focus distance.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetFocusDistance(const Camera_CaptureSession* session, float* focusDistance)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Sets focus distance. Possible distance values range from 0.0 to 1.0, with 0.0 being shortest
+ * distance at which the lens can focus and 1.0 the furthest. The default value is 1.0.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param focusDistance The focus distance to be set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetFocusDistance(const Camera_CaptureSession* session, float focusDistance)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Check whether focus distance is supported.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isSupported Pointer to the result of whether focus distance is supported.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_IsFocusDistanceSupported(const Camera_CaptureSession* session, bool* isSupported)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 
 /**
  * @brief Set target zoom ratio by smooth method.
@@ -1313,6 +1624,118 @@ Camera_ErrorCode OH_CaptureSession_RegisterIsoChangeCallback(
 Camera_ErrorCode OH_CaptureSession_UnregisterIsoChangeCallback(
     Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange)
     __attribute__((__availability__(ohos, introduced=22.0.0)));
+
+/**
+ * @brief Query the raw zoom range.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param minZoom the minimum of zoom value.
+ * @param maxZoom the Maximum of zoom value.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *          {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetRAWCaptureZoomRatioRange(const Camera_CaptureSession* session,
+    float* minZoom, float* maxZoom)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Checks if the specified OIS mode is supported.
+ *
+ * @param session Pointer to a session.
+ * @param oisMode The OIS mode {@link OH_Camera_OISMode} to check.
+ * @param isSupported Output parameter indicating support status.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_IsOISModeSupported(const Camera_CaptureSession* session,
+    OH_Camera_OISMode oisMode, bool* isSupported)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the supported bias range for the specified OIS axis.
+ *
+ * @param session Pointer to a session.
+ * @param oisAxis The OIS axis {@link OH_Camera_OISAxes}
+ * @param minBias Output parameter for minimum bias value.
+ * @param maxBias Output parameter for maximum bias value.
+ * @param step Output parameter for bias step value.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetSupportedOISBiasRange(const Camera_CaptureSession* session,
+    OH_Camera_OISAxes oisAxis, float* minBias, float* maxBias, float* step)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the current OIS mode.
+ *
+ * @param session Pointer to a session.
+ * @param oisMode Output parameter for current OIS mode {@link OH_Camera_OISMode}.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetCurrentOISMode(const Camera_CaptureSession* session,
+    OH_Camera_OISMode* oisMode)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Gets the current custom bias values for all OIS axes.
+ *
+ * @param session Pointer to a session.
+ * @param pitchBias Output parameter for pitch axis bias value.
+ * @param yawBias Output parameter for yaw axis bias value.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_GetCurrentCustomOISBias(const Camera_CaptureSession* session,
+    float* pitchBias, float* yawBias)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Sets the OIS mode.
+ *
+ * @param session Pointer to a session.
+ * @param oisMode The OIS mode {@link OH_Camera_OISMode} to set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetOISMode(const Camera_CaptureSession* session,
+    OH_Camera_OISMode oisMode)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Sets custom OIS bias values for all axes.
+ *
+ * @param session Pointer to a session.
+ * @param pitchBias Bias value for pitch axis.
+ * @param yawBias Bias value for yaw axis.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 24
+ */
+Camera_ErrorCode OH_CaptureSession_SetOISModeCustom(const Camera_CaptureSession* session,
+    float pitchBias, float yawBias)
+    __attribute__((__availability__(ohos, introduced=24.0.0)));
 #ifdef __cplusplus
 }
 #endif

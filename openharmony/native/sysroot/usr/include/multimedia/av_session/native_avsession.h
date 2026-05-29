@@ -159,7 +159,7 @@ AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* se
     __attribute__((__availability__(ohos, introduced=13.0.0)));
 
 /**
- * @brief Request to destory the avsession.
+ * @brief Request to destroy the avsession.
  *
  * @param avsession The avsession instance pointer
  * @return Function result code：

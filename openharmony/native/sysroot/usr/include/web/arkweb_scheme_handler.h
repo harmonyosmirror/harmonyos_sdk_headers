@@ -238,13 +238,12 @@ typedef void (*ArkWeb_OnRequestStart)(const ArkWeb_SchemeHandler* schemeHandler,
  * @brief Callback when the request is completed.
  *
  * This will be called on the IO thread.\n
- * Should destory the resourceRequest by ArkWeb_ResourceRequest_Destroy and use ArkWeb_ResourceHandler_Destroy\n
+ * Should destroy the resourceRequest by ArkWeb_ResourceRequest_Destroy and use ArkWeb_ResourceHandler_Destroy\n
  * destroy the ArkWeb_ResourceHandler received in ArkWeb_OnRequestStart.\n
  *
  * @param schemeHandler The ArkWeb_SchemeHandler.
  * @param resourceRequest The ArkWeb_ResourceRequest.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 typedef void (*ArkWeb_OnRequestStop)(const ArkWeb_SchemeHandler* schemeHandler,
@@ -652,11 +651,10 @@ bool OH_ArkWebResourceRequest_IsMainFrame(const ArkWeb_ResourceRequest* resource
 __attribute__((__availability__(ohos, introduced=12.0.0)));
 
 /**
- * @brief Get if this is a request is triggered by user gesutre.
+ * @brief Get if this is a request is triggered by user gesture.
  * @param resourceRequest The ArkWeb_ResourceRequest.
  * @return True if this is triggered by user gesture; false otherwise.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 bool OH_ArkWebResourceRequest_HasGesture(const ArkWeb_ResourceRequest* resourceRequest)
@@ -739,10 +737,9 @@ int32_t OH_ArkWeb_ClearSchemeHandlers(const char* webTag) __attribute__((__avail
 
 /**
  * @brief Create a SchemeHandler.
- * @param schemeHandler Return the created SchemeHandler. Use OH_ArkWeb_DestroySchemeHandler destroy it when donn't
+ * @param schemeHandler Return the created SchemeHandler. Use OH_ArkWeb_DestroySchemeHandler destroy it when don't
  *                      need it.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler)
@@ -812,9 +809,8 @@ int32_t OH_ArkWebSchemeHandler_SetOnRequestStop(ArkWeb_SchemeHandler* schemeHand
 
 /**
  * @brief Create a Response for a request.
- * @param response The created Response. Use OH_ArkWeb_DestroyResponse to destroy when donn't need it.
+ * @param response The created Response. Use OH_ArkWeb_DestroyResponse to destroy when don't need it.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 void OH_ArkWeb_CreateResponse(ArkWeb_Response** response) __attribute__((__availability__(ohos, introduced=12.0.0)));

@@ -99,7 +99,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_Create(OH_AVSession_AV
 __attribute__((__availability__(ohos, introduced=23.0.0)));
 
 /**
- * @brief Destroy a builder.
+ * @brief Destroys a builder.
  *
  * @param builder The AVMediaDescription builder instance pointer
  * @return Function result code:
@@ -194,7 +194,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetAlbumCoverUri(
  * @brief Set the media type of the resource
  *
  * @param builder The AVMediaDescription builder instance pointer
- * @param mediaType The type of this  resource, such as VIDEO or AUDIO, which is capital.
+ * @param mediaType The media type of the resource, such as VIDEO or AUDIO.
  * @return Return code:
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:
@@ -226,7 +226,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetLyricContent(
  * @brief Set the duration of the resource
  *
  * @param builder The AVMediaDescription builder instance pointer
- * @param duration The duration of resource, in miliseconds
+ * @param duration The duration of resource, in milliseconds
  * @return Function result code:
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:
@@ -247,7 +247,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetDuration(OH_AVSessi
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of builder is nullptr;
- *                                                 2.The param of mediaUri nullptr.
+ *                                                 2.The param of mediaUri is nullptr.
  * @since 23
  */
 AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetMediaUri(OH_AVSession_AVMediaDescriptionBuilder* builder,
@@ -311,7 +311,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetAlbumTitle(OH_AVSes
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of builder is nullptr.
- *                                                 2.The param of title is appName.
+ *                                                 2.The param of title  is appName.
  * @since 23
  */
 AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetAppName(OH_AVSession_AVMediaDescriptionBuilder* builder,
@@ -547,7 +547,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_GenerateAVMediaDescrip
 /**
  * @brief Request to release the avMediaDescription.
  *
- * @param avMediaDescription Pointer to a viriable to receive the avMediaDescription object.
+ * @param avMediaDescription Pointer to a variable to receive the avMediaDescription object.
  * @return Function result code:
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM} The param of avMediaDescription is nullptr.

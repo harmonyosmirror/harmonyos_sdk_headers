@@ -155,7 +155,7 @@ OH_Drawing_Path* OH_Drawing_PathCreate(void) __attribute__((__availability__(oho
  * @brief Creates an <b>OH_Drawing_Path</b> copy object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param path Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_Path</b> object created.
  * @since 12
  * @version 1.0

@@ -17,7 +17,7 @@
  * @addtogroup OHAVSession
  * @{
  *
- * @brief Provide the definition of the C interface for the avsession module.
+ * @brief Provide the defination of the C interface for the avsession module.
  *
  * @since 23
  * @version 1.0

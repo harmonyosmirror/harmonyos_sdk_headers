@@ -257,13 +257,13 @@ typedef enum {
      */
     AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST = 6,
     /**
-     * @error audio pipeline not exist.
+     * @error audio node not exist.
      *
      * @since 22
      */
     AUDIOSUITE_ERROR_NODE_NOT_EXIST = 7,
     /**
-     * @error the connect or disconnect betwen the nodes is unsupported.
+     * @error the connect or disconnect between the nodes is unsupported.
      *
      * @since 22
      */

@@ -133,5 +133,5 @@ OH_AudioCommon_Result OH_AudioManager_UnregisterAudioSceneChangeCallback(OH_Audi
 }
 #endif
 
-#endif // NATIVE_AUDIO_ROUTING_MANAGER_H
+#endif // NATIVE_AUDIO_MANAGER_H
 /** @} */

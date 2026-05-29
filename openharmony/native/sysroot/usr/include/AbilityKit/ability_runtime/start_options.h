@@ -48,7 +48,20 @@
 extern "C" {
 #endif
 
+/**
+ * @brief The file declares the {@link AbilityRuntime_StartOptions} struct for application startup parameters and the
+ * functions for setting and obtaining data.
+ *
+ * @since 17
+ */
 struct AbilityRuntime_StartOptions;
+
+/**
+ * @brief The file declares the {@link AbilityRuntime_StartOptions} struct for application startup parameters and the
+ * functions for setting and obtaining data.
+ *
+ * @since 17
+ */
 typedef struct AbilityRuntime_StartOptions AbilityRuntime_StartOptions;
 
 /**

@@ -140,7 +140,7 @@ typedef void (*OH_LowPowerAudioSink_OnDeviceChanged)(
  * @brief When the lowpower audio sink play to end of stream, the function pointer will be called
  * to report play completed event.
  *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSinkinstance
+ * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
  * @param {void*} userData User specific data
  * @since 20
  */
@@ -149,6 +149,6 @@ typedef void (*OH_LowPowerAudioSink_OnEos)(OH_LowPowerAudioSink* sink, void* use
 #ifdef __cplusplus
 }
 #endif
-#endif // NATIVE_LOWERPOWER_AUDIOSINK_BASH_H
+#endif // NATIVE_LOWPOWER_AUDIO_SINK_BASE_H
 
 /** @} */

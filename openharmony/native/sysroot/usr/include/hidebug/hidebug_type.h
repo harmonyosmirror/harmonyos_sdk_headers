@@ -64,6 +64,11 @@ typedef enum HiDebug_ErrorCode {
     /** No trace running */
     HIDEBUG_NO_TRACE_RUNNING = 11400105,
     /**
+     * Trace storage limit reached
+     * @since 24
+     */
+    OH_HIDEBUG_TRACE_STORAGE_LIMIT = 11400120,
+    /**
      * The pc passed to the symbolic function is invalid
      * @since 20
      */
@@ -83,6 +88,101 @@ typedef enum HiDebug_ErrorCode {
      * @since 22
      */
     HIDEBUG_RESOURCE_UNAVAILABLE = 11400302,
+    /**
+     * Resource profiler started/stopped successfully.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_SUCCESS = 11400400,
+    /**
+     * Invalid resource profiler argument.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_ARG = 11400410,
+    /**
+     * Invalid maximum duration.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_MAX_DURATION = 11400411,
+    /**
+     * Invalid filter size.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_FILTER_SIZE = 11400412,
+    /**
+     * Invalid maximum stack depth.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH = 11400413,
+    /**
+     * Invalid statistics interval.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL = 11400414,
+    /**
+     * Invalid sample interval.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL = 11400415,
+    /**
+     * Invalid resource type.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE = 11400416,
+    /**
+     * Resource profiler permission denied.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_PERMISSION_DENIED = 11400420,
+    /**
+     * Resource profiler already started.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_ALREADY_STARTED = 11400421,
+    /**
+     * Resource profiler not started.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_NOT_STARTED = 11400422,
+    /**
+     * Resource profiler process count exceeds the limit.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_PROCESS_OVERLIMIT = 11400423,
+    /**
+     * Resource profiler conflicts with CLI tools or system profiling tasks.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_CONFLICT = 11400424,
+    /**
+     * Resource profiler automatically stopped due to the duration limit.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_AUTO_STOPPED_BY_DURATION = 11400425,
+    /**
+     * Daily quota exceeded during resource profiling.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED = 11400426,
+    /**
+     * System is experiencing high CPU utilization.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_CPU_OVERLOADED = 11400427,
+    /**
+     * Insufficient available memory.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL = 11400428,
+    /**
+     * Insufficient available storage space.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL = 11400429,
+    /**
+     * Failed to start/stop the resource profiler.
+     * @since 24
+     */
+    HIDEBUG_RES_PROF_FAILURE = 11400430,
 } HiDebug_ErrorCode;
 
 /**
@@ -195,6 +295,43 @@ typedef enum HiDebug_TraceFlag {
     /** Capture all thread trace */
     HIDEBUG_TRACE_FLAG_ALL_THREADS = 2
 } HiDebug_TraceFlag;
+
+/**
+ * @brief Defines trace request configuration.
+ *
+ * @since 24
+ */
+typedef struct OH_HiDebug_RequestTraceConfig {
+    /**
+     * Identifier used as the prefix of the output trace file name.
+     * @since 24
+     */
+    const char* identifier;
+    /**
+     * The buffer size of the trace file, in kb.
+     * @since 24
+     */
+    uint32_t bufferSizeKb;
+    /**
+     * The duration of the trace, in ms.
+     * @since 24
+     */
+    uint32_t durationMs;
+    /**
+     * Reserved field for future use. Set to 0.
+     * @since 24
+     */
+    uint32_t reserved;
+} OH_HiDebug_RequestTraceConfig;
+
+/**
+ * @brief Defines callback type for trace request.
+ *
+ * @param errorCode Result code, see {@link HiDebug_ErrorCode}.
+ * @param filePath Path of the generated trace file, may be NULL on failure.
+ * @since 24
+ */
+typedef void (*OH_HiDebug_RequestTraceCallback)(HiDebug_ErrorCode errorCode, const char* filePath);
 
 /**
  * @brief Defines structure type for MallocDispatch table.
@@ -401,6 +538,101 @@ typedef enum HiDebug_CrashObjType {
     /** 4KB memory block */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
 } HiDebug_CrashObjType;
+
+/**
+ * @brief Defines a struct for the resource profiler configuration.
+ *
+ * @since 24
+ */
+typedef struct OH_HiDebug_ResProfilerConfig {
+    /**
+     * Maximum collection duration, in seconds.
+     * @since 24
+     */
+    uint32_t maxDuration;
+    /**
+     * Filter size, in bytes.
+     * @since 24
+     */
+    uint32_t filterSize;
+    /**
+     * Maximum stack trace depth, in frames.
+     * @since 24
+     */
+    uint32_t maxStackDepth;
+    /**
+     * Statistics interval, in seconds.
+     * @since 24
+     */
+    uint32_t statisticsInterval;
+    /**
+     * Sample interval, in bytes.
+     * In sampling mode, if the memory allocation size is less than or equal to the sample interval,
+     * it will be sampled probabilistically, otherwise, it will be sampled fully.
+     * @since 24
+     */
+    uint32_t sampleInterval;
+} OH_HiDebug_ResProfilerConfig;
+
+/**
+ * @brief Defines an enum for the resource profiler types.
+ *
+ * @since 24
+ */
+typedef enum OH_HiDebug_ResourceType {
+    /**
+     * File descriptor
+     * @since 24
+     */
+    OH_RES_TYPE_FD,
+    /**
+     * Thread
+     * @since 24
+     */
+    OH_RES_TYPE_THREAD,
+    /**
+     * Native memory
+     * @since 24
+     */
+    OH_RES_TYPE_NATIVE,
+    /**
+     * GPU memory
+     * @since 24
+     */
+    OH_RES_TYPE_GPU,
+    /**
+     * Global handle
+     * @since 24
+     */
+    OH_RES_TYPE_GLOBAL_HANDLE
+} OH_HiDebug_ResourceType;
+
+/**
+ * @brief Encapsulates result of a single profiling request operation.
+ *        It represents data delivered via OH_HiDebug_ProfilingCallback.
+ *
+ * @since 24
+ */
+typedef struct OH_HiDebug_ProfilingResult {
+    /**
+     * Profiled resource type.
+     * @since 24
+    */
+    OH_HiDebug_ResourceType resourceType;
+    /**
+     * File path of the profiling result data. Null if the profiling fails.
+     * @since 24
+    */
+    const char* filePath;
+} OH_HiDebug_ProfilingResult;
+
+/**
+ * @brief Callback signature for the resource profiling result.
+ *
+ * @param result Pointer to the OH_HiDebug_ProfilingResult structure.
+ * @since 24
+ */
+typedef void (*OH_HiDebug_ProfilingCallback)(OH_HiDebug_ProfilingResult* result);
 
 #ifdef __cplusplus
 }

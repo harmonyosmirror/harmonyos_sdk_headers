@@ -52,7 +52,7 @@ extern "C" {
 /**
  * @brief Video output object
  *
- * A pointer can be created using {@link Camera_VideoOutput} method.
+ * A pointer can be created using {@link Camera_VideoOutput}.
  *
  * @since 11
  * @version 1.0
@@ -151,7 +151,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Stop video output.
  *
- * @param videoOutput the {@link Camera_VideoOutput} instance to be stoped.
+ * @param videoOutput the {@link Camera_VideoOutput} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -188,7 +188,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Delete video profile instance.
  *
- * @param profile the {@link Camera_VideoProfile} instance to deleted.
+ * @param profile the {@link Camera_VideoProfile} instance to be deleted.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12

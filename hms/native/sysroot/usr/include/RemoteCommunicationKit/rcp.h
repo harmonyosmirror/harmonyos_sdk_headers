@@ -1951,6 +1951,29 @@ uint32_t HMS_Rcp_SetRequestOnStatusCodeReceiveCallback(Rcp_Request *request,
                                                        Rcp_OnStatusCodeReceiveCallback onStatusCodeReceiveCallback)
                                                        __attribute__((__availability__(ohos, introduced=21.0.0)));
 
+/**
+ * @brief Set the request to be used only for connecting to a server without transferring data.
+ *
+ * @param request Pointer to {@link Rcp_Request} to be set.
+ * @param connectOnly Whether for connecting only.
+          true: indicates the request is used only for connecting. false: indicates the request can transfer data.
+ * @return uint32_t 0 - Success. 1007900401 - Parameter error because of unexpected NULL ptr.
+ * @since 6.1.1(24)
+ */
+uint32_t HMS_Rcp_SetRequestConnectOnly(Rcp_Request *request, bool connectOnly)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
+
+/**
+ * @brief Get a default session. Use {@link HMS_Rcp_CloseSession} if no need for this default session.
+ *
+ * @permission ohos.permission.INTERNET
+ * @param session This pointer will be set as a default session.
+ * @return uint32_t 0 - Success. 201 - Permission denied. 1007900027 - Out of memory.
+ *         1007900401 - Parameter error because of unexpected NULL ptr.
+ * @since 6.1.1(24)
+ */
+uint32_t HMS_Rcp_GetDefaultSession(Rcp_Session **session) __attribute__((__availability__(ohos, introduced=24.0.0)));
+
 #ifdef __cplusplus
 }
 #endif

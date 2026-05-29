@@ -52,7 +52,7 @@ extern "C" {
 /**
  * @brief Preview output object
  *
- * A pointer can be created using {@link Camera_PreviewOutput} method.
+ * A pointer can be created using {@link Camera_PreviewOutput}.
  *
  * @since 11
  * @version 1.0
@@ -153,7 +153,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
 /**
  * @brief Stop preview output.
  *
- * @param previewOutput the {@link Camera_PreviewOutput} instance to be stoped.
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -190,7 +190,7 @@ __attribute__((__availability__(ohos, introduced=12.0.0)));
 /**
  * @brief Delete preview profile instance.
  *
- * @param profile the {@link Camera_Profile} instance to deleted.
+ * @param profile the {@link Camera_Profile} instance to be deleted.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
@@ -327,6 +327,17 @@ Camera_ErrorCode OH_PreviewOutput_IsBandwidthCompressionSupported(Camera_Preview
 Camera_ErrorCode OH_PreviewOutput_EnableBandwidthCompression(Camera_PreviewOutput* previewOutput, bool enabled)
 __attribute__((__availability__(ohos, introduced=23.0.0)));
 
+/**
+ * @brief add surface for preview output.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to add surfaceId.
+ * @param surfaceId the which use to create {@link Camera_PreviewOutput}.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is incorrect.
+ * @since 24
+ */
+Camera_ErrorCode OH_PreviewOutput_AddDeferredSurface(const Camera_PreviewOutput* previewOutput, const char* surfaceId)
+__attribute__((__availability__(ohos, introduced=24.0.0)));
 #ifdef __cplusplus
 }
 #endif

@@ -39,7 +39,6 @@
 #define TEE_EXT_API_H
 
 #include "tee_defines.h"
-#include "tee_hw_ext_api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -111,18 +110,6 @@ typedef struct ta_caller_info {
 TEE_Result tee_ext_get_caller_info(caller_info *caller_info_data, uint32_t length);
 
 /**
- * @brief Get user ID of current CA.
- *
- * @param user_id Indicates the user ID to be returned.
- *
- * @return Returns <b>TEE_SUCCESS</b> if the operation is successful.
- * @return Returns other information otherwise.
- *
- * @since 20
- */
-TEE_Result tee_ext_get_caller_userid(uint32_t *user_id);
-
-/**
  * @brief Adds information about a caller that can invoke this TA.
  * This API applies to the client applications (CAs) in the native CA and HAP format.
  *
@@ -182,24 +169,6 @@ TEE_Result AddCaller_TA_all(void);
  * @since 20
  */
 uint32_t tee_get_session_type(void);
-
-/**
- * @brief Derive key from platform key.
- *
- * @param object             [IN/OUT] input data in ObjectInfo->keytype, output keys in Attributes.
- * @param key_size           [IN] key size in bits, it desides the ecc curve type too.
- * @param params             [IN] unused.
- * @param param_count        [IN] unused.
- * @param exinfo             [IN] user info as dervice salt.
- * @param exinfo_size        [IN] size of user info, Max is 64 bytes, must bigger than 0.
- *
- * @return Returns <b>TEE_SUCCESS</b> if the operation is successful.
- * @return Returns other information otherwise.
- *
- * @since 20
- */
-TEE_Result tee_ext_derive_ta_platfrom_keys(TEE_ObjectHandle object, uint32_t key_size, const TEE_Attribute *params,
-    uint32_t param_count, const uint8_t *exinfo, uint32_t exinfo_size);
 
 #ifdef __cplusplus
 }

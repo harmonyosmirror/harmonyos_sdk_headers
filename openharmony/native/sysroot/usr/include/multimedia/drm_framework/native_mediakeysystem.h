@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides APIs of Drm.
- * @kit DrmKit.
+ * @kit DrmKit
  * @since 11
  * @version 1.0
  */
@@ -138,7 +138,7 @@ bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,
 
 /**
  * @brief Creates a media key system instance from the name.
- * @param name Secifies which drm system will be created by name.
+ * @param name Specifies which drm system will be created by name.
  * @param mediaKeySystem Media key system instance.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
@@ -156,7 +156,7 @@ __attribute__((__availability__(ohos, introduced=11.0.0)));
  * @brief Set media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
  * @param configName Configuration name string.
- * @param value Configuration vaule string to be set.
+ * @param value Configuration value string to be set.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
  *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
@@ -170,8 +170,8 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySys
  * @brief Get media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
  * @param configName Configuration name string.
- * @param value Configuration vaule string to be get.
- * @param valueLen Configuration vaule string len for in buffer.
+ * @param value Configuration value string to be get.
+ * @param valueLen Configuration value string len for in buffer.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
@@ -186,7 +186,7 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySys
  * @brief Set media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
  * @param configName Configuration name string.
- * @param value Configuration vaule in byte array to be set.
+ * @param value Configuration value in byte array to be set.
  * @param valueLen Value array len.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
@@ -202,8 +202,8 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKey
  * @brief Get media key system configuration value by name.
  * @param mediaKeySystem Media key system instance.
  * @param configName Configuration name string.
- * @param value Configuration vaule in byte array to be get.
- * @param valueLen Configuration vaule len for in buffer and out data.
+ * @param value Configuration value in byte array to be get.
+ * @param valueLen Configuration value len for in buffer and out data.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
@@ -294,7 +294,7 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeyS
 /**
  * @brief Process a media key system provision response.
  * @param mediaKeySystem Media key system instance.
- * @param response The provision reponse will be processed.
+ * @param response The provision response will be processed.
  * @param responseLen The response len.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
@@ -368,7 +368,7 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySyste
 
 /**
  * @brief Destroy a media key system instance.
- * @param mediaKeySystem Secifies which media key system instance will be destroyed.
+ * @param mediaKeySystem Specifies which media key system instance will be destroyed.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
  *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.

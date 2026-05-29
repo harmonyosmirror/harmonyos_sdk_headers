@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides APIs of Drm.
- * @kit DrmKit.
+ * @kit DrmKit
  * @since 11
  * @version 1.0
  */
@@ -77,30 +77,29 @@ typedef enum DRM_EventType {
   } DRM_EventType;
 
 /**
- * @brief Content potection level.
- * @syscap SystemCapability.Multimedia.Drm.Core
+ * @brief Content protection level.
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_ContentProtectionLevel {
     /**
-     * Content potection level unknown.
+     * Content protection level unknown.
      */
     CONTENT_PROTECTION_LEVEL_UNKNOWN = 0,
     /**
-     * Content potection level software crypto.
+     * Content protection level software crypto.
      */
     CONTENT_PROTECTION_LEVEL_SW_CRYPTO,
     /**
-     * Content potection level hardware crypto.
+     * Content protection level hardware crypto.
      */
     CONTENT_PROTECTION_LEVEL_HW_CRYPTO,
     /**
-     * Content potection level enhanced hardware crypto.
+     * Content protection level enhanced hardware crypto.
      */
     CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO,
     /**
-     * Content potection level max stub.
+     * Content protection level max stub.
      */
     CONTENT_PROTECTION_LEVEL_MAX,
 } DRM_ContentProtectionLevel;
@@ -421,7 +420,7 @@ typedef struct DRM_KeysInfo {
 #define MAX_MEDIA_KEY_STATUS_VALUE_LEN 256
 
 /**
- * @brief Media key status like pocily etc.
+ * @brief Media key status like policy etc.
  * @since 11
  * @version 1.0
  */

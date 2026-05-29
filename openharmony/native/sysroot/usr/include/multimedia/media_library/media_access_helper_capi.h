@@ -25,7 +25,7 @@
 /**
  * @file media_access_helper_capi.h
  *
- * @brief Defines APIs related to media assess helper.
+ * @brief Defines APIs related to media access helper.
  *
  * Provides the ability to create photo albums, as well as access and modify media data information in the albums.
  *
